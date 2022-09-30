@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'presentation/widgets/account/components/page.dart';
 import 'presentation/widgets/sign_in/components/page.dart';
 
 void main() {
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const SignInPageComponent(),
+      home: const AccountPegeComponent(),
     );
   }
 }
