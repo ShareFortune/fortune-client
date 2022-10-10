@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../../../profile/create/containers/page.dart';
+import '../../../account/account/containers/page.dart';
 
-class AccountCreationPageComponent extends StatelessWidget {
-  const AccountCreationPageComponent({super.key});
+class ProfileCreationPageComponent extends StatelessWidget {
+  const ProfileCreationPageComponent({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -32,39 +32,29 @@ class AccountCreationPageComponent extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: const [
                 Text(
-                  "アカウント作成",
+                  "プロフィール作成",
                   style: TextStyle(
                     fontSize: 25,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
 
-                /// 名前
+                /// アイコン
                 SizedBox(height: 30),
                 TextField(
                   style: TextStyle(fontSize: textFieldFontSize),
                   decoration: InputDecoration(
-                    hintText: '名前',
+                    hintText: 'アイコン',
                     contentPadding: edgeInsets,
                   ),
                 ),
 
-                /// 電話またはメールアドレス
+                /// 性別
                 SizedBox(height: 30),
                 TextField(
                   style: TextStyle(fontSize: textFieldFontSize),
                   decoration: InputDecoration(
                     hintText: '電話またはメールアドレス',
-                    contentPadding: edgeInsets,
-                  ),
-                ),
-
-                /// 生年月日
-                SizedBox(height: 30),
-                TextField(
-                  style: TextStyle(fontSize: textFieldFontSize),
-                  decoration: InputDecoration(
-                    hintText: '生年月日',
                     contentPadding: edgeInsets,
                   ),
                 ),
@@ -87,8 +77,7 @@ class AccountCreationPageComponent extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) =>
-                          const ProfileCreationPageContainer(),
+                      builder: (context) => const AccountPegeContainer(),
                     ),
                   );
                 },
