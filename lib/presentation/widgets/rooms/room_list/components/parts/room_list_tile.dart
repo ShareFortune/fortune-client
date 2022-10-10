@@ -1,6 +1,9 @@
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 
+import '../../../room/containers/page.dart';
+import 'member_icon_list.dart';
+
 class RoomListTileComponent extends StatelessWidget {
   const RoomListTileComponent({super.key});
 
@@ -24,7 +27,14 @@ class RoomListTileComponent extends StatelessWidget {
         ],
       ),
       child: InkWell(
-        onTap: (() {}),
+        onTap: (() {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const RoomPageContainer(),
+            ),
+          );
+        }),
         child: Padding(
           padding: const EdgeInsets.only(left: 30, right: 30, top: 20),
           child: Column(
@@ -42,6 +52,10 @@ class RoomListTileComponent extends StatelessWidget {
               ),
               Text(outputFormat.format(DateTime.now())),
               const SizedBox(height: 10),
+              const MemberIconListComponent(
+                users: [1, 1, 1],
+                height: 50,
+              ),
             ],
           ),
         ),
