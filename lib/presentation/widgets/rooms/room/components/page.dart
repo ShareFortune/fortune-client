@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../account/account/containers/page.dart';
 import '../containers/parts/header_image.dart';
 import '../containers/parts/room_tag_wrappers.dart';
 import 'parts/room_member_icon_list.dart';
@@ -21,7 +22,7 @@ class RoomPageComponent extends StatelessWidget {
           ),
         ),
         leading: IconButton(
-          onPressed: () {},
+          onPressed: Navigator.of(context).pop,
           icon: const Icon(
             Icons.arrow_back_ios,
             color: Colors.black,
@@ -49,7 +50,7 @@ class RoomPageComponent extends StatelessWidget {
 
             /// タイトル
             Padding(
-              padding: EdgeInsets.only(left: 30, right: 30, top: 10),
+              padding: const EdgeInsets.only(left: 30, right: 30, top: 10),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -76,7 +77,14 @@ class RoomPageComponent extends StatelessWidget {
                         fontSize: 16,
                       ),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const AccountPegeContainer(),
+                        ),
+                      );
+                    },
                   ),
                 ],
               ),

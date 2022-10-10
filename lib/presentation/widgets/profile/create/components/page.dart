@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../rooms/room_list/containers/page.dart';
+import '../../../home/home/containers/page.dart';
 
 class ProfileCreationPageComponent extends StatelessWidget {
   const ProfileCreationPageComponent({super.key});
@@ -77,7 +77,8 @@ class ProfileCreationPageComponent extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const RoomListPageContainer(),
+                      // builder: (context) => const RoomListPageContainer(),
+                      builder: (context) => const HomePageContainer(),
                     ),
                   );
                 },
