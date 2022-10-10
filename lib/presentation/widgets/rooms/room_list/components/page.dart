@@ -10,7 +10,8 @@ class RoomListPageComponent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("title"),
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        title: const Text("title", style: TextStyle(color: Colors.black)),
       ),
       body: AnimationLimiter(
         child: ListView.builder(
