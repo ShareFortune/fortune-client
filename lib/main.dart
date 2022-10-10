@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'presentation/widgets/account/components/page.dart';
-import 'presentation/widgets/sign_in/components/page.dart';
+import 'presentation/widgets/sign_in/containers/page.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const AccountPegeComponent(),
+      home: const SignInPageContainer(),
     );
   }
 }

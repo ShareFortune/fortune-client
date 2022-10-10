@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
-class PlanWidget extends StatelessWidget {
+class MyPlanWidget extends StatelessWidget {
+  const MyPlanWidget({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Column(

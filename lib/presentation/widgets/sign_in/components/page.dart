@@ -2,6 +2,8 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
 
+import '../../account/create/containers/page.dart';
+
 class SignInPageComponent extends StatelessWidget {
   const SignInPageComponent({super.key});
 
@@ -15,14 +17,19 @@ class SignInPageComponent extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.end,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              TextButton(
-                onPressed: (() {}),
-                child: const Text("次へ"),
-              ),
               const SizedBox(height: 100),
               SignInButton(
+                text: "Sign in with Apple",
                 Buttons.AppleDark,
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          const AccountCreationPageContainer(),
+                    ),
+                  );
+                },
               ),
               SignInButton(
                 Buttons.Google,
