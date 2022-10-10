@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../containers/parts/header_image.dart';
 import '../containers/parts/room_tag_wrappers.dart';
+import 'parts/room_member_icon_list.dart';
 
 class RoomPageComponent extends StatelessWidget {
   const RoomPageComponent({super.key});
@@ -36,15 +37,103 @@ class RoomPageComponent extends StatelessWidget {
           ),
         ],
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: const [
-          /// 背景画像 + いいねボタン
-          RoomHeaderImageContainer(),
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            /// 背景画像 + いいねボタン
+            const RoomHeaderImageContainer(),
 
-          /// タグ
-          RoomTagWrappersContainer(),
-        ],
+            /// タグ
+            const RoomTagWrappersContainer(),
+
+            /// タイトル
+            Padding(
+              padding: EdgeInsets.only(left: 30, right: 30, top: 10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text(
+                    "ルームタイトル",
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      minimumSize: Size(100, 50),
+                      backgroundColor: Colors.blue,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                    ),
+                    child: const Text(
+                      "参加",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                      ),
+                    ),
+                    onPressed: () {},
+                  ),
+                ],
+              ),
+            ),
+
+            /// 男女比
+            const Padding(
+              padding: EdgeInsets.only(left: 30, right: 30, top: 0, bottom: 15),
+              child: Text(
+                "男性 3 / 女性 3",
+                style: TextStyle(color: Colors.black45),
+              ),
+            ),
+
+            const Divider(),
+
+            /// 参加者
+            const RoomMemberIconListComponent(100),
+
+            const SizedBox(height: 10),
+            const Divider(),
+
+            /// 説明
+            Padding(
+              padding: const EdgeInsets.only(
+                  left: 30, right: 30, top: 50, bottom: 15),
+              child: Column(
+                children: const [
+                  Text(
+                    "開催内容",
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Text(
+                    "基本情報",
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Text(
+                    "詳細情報",
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
