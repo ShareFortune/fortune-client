@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:intl/intl.dart';
 
-import '../../../room/containers/page.dart';
-import '../../../room_list/components/parts/member_icon_list.dart';
+import '../../../../rooms/room/containers/page.dart';
+import '../../../../rooms/room_list/components/parts/member_icon_list.dart';
 
 class ParticipatingRoomListTileComponent extends StatelessWidget {
   const ParticipatingRoomListTileComponent({super.key});

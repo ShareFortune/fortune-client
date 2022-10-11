@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 
-import '../../../room_list/components/parts/room_list_tile.dart';
+import '../../../../rooms/room_list/components/parts/room_list_tile.dart';
 
 class GestParticipatingRoomListTileComponent extends StatelessWidget {
   const GestParticipatingRoomListTileComponent({super.key});

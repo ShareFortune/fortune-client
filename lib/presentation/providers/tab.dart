@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:fortune_client/presentation/widgets/message_rooms/message_room/components/page.dart';
 
 import '../widgets/account/account/containers/page.dart';
-import '../widgets/rooms/participating_room_list/containers/page.dart';
+import '../widgets/message_rooms/message_room/containers/page.dart';
+import '../widgets/message_rooms/message_room_list/containers/page.dart';
+import '../widgets/participating/room_list/containers/page.dart';
 import '../widgets/rooms/room_list/containers/page.dart';
 
 final tabItemProvider =
@@ -19,9 +22,10 @@ enum TabItem {
     page: ParticipatingRoomListPageContainer(),
   ),
 
-  chat(
+  messages(
     icon: Icons.chat,
-    page: ParticipatingRoomListPageContainer(),
+    page: MessageRoomListPageContainer(),
+    // page: ChatPage(),
   ),
 
   account(
@@ -43,7 +47,7 @@ enum TabItem {
 
 final navigatorKeys = <TabItem, GlobalKey<NavigatorState>>{
   TabItem.home: GlobalKey<NavigatorState>(),
-  TabItem.chat: GlobalKey<NavigatorState>(),
+  TabItem.messages: GlobalKey<NavigatorState>(),
   TabItem.rooms: GlobalKey<NavigatorState>(),
   TabItem.account: GlobalKey<NavigatorState>(),
 };

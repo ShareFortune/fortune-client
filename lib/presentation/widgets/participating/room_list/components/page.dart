@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../room_list/containers/page.dart';
 import 'parts/gest_participating_room_list_tile.dart';
 import 'parts/host_participating_room_list_tile.dart';
 
@@ -23,17 +22,6 @@ class ParticipatingRoomListPageComponent extends StatelessWidget {
             tabs: <Widget>[
               Tab(child: Text("ホスト", style: TextStyle(color: Colors.black))),
               Tab(child: Text("ゲスト", style: TextStyle(color: Colors.black))),
-
-              // Tab(
-              //     icon: Icon(
-              //   Icons.cloud_outlined,
-              //   color: Colors.black,
-              // )),
-              // Tab(
-              //     icon: Icon(
-              //   Icons.beach_access_sharp,
-              //   color: Colors.black,
-              // )),
             ],
           ),
         ),
