@@ -1,65 +1,132 @@
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 
-import '../../../room/containers/page.dart';
-import 'member_icon_list.dart';
-
 class RoomListTileComponent extends StatelessWidget {
   const RoomListTileComponent({super.key});
 
   @override
   Widget build(BuildContext context) {
-    DateFormat outputFormat = DateFormat('yyyy年MM月');
+    const double iconSize = 12;
+    const double iconPadding = 8;
 
-    return Container(
-      width: MediaQuery.of(context).size.width,
-      height: 140,
-      margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
-      decoration: const BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.all(Radius.circular(4.0)),
-        boxShadow: <BoxShadow>[
-          BoxShadow(
-            color: Colors.black12,
-            blurRadius: 4.0,
-            offset: Offset(0.0, 4.0),
-          ),
-        ],
-      ),
-      child: InkWell(
-        onTap: (() {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => const RoomPageContainer(),
-            ),
-          );
-        }),
-        child: Padding(
-          padding: const EdgeInsets.only(left: 30, right: 30, top: 20),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text(
-                "title",
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
+    const userIcon =
+        "https://gws-ug.jp/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png";
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+      child: Column(children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Row(
+              children: const [
+                CircleAvatar(
+                  radius: 23,
+                  backgroundImage: NetworkImage(userIcon),
+                  child: Align(
+                    alignment: Alignment.bottomRight,
+                  ),
                 ),
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-              ),
-              Text(outputFormat.format(DateTime.now())),
-              const SizedBox(height: 10),
-              const MemberIconListComponent(
-                users: [1, 1, 1],
-                height: 50,
+                SizedBox(width: 30),
+                Text(
+                  "data",
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+              ],
+            ),
+            const Text("2 days ago"),
+          ],
+        ),
+        const SizedBox(height: 10),
+        Container(
+          width: MediaQuery.of(context).size.width,
+          decoration: const BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.all(Radius.circular(4.0)),
+            boxShadow: <BoxShadow>[
+              BoxShadow(
+                color: Colors.black12,
+                blurRadius: 4.0,
+                offset: Offset(0.0, 4.0),
               ),
             ],
           ),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  "ゲームしませんか？",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 15,
+                  ),
+                ),
+                const SizedBox(height: 10),
+                Row(
+                  children: const [
+                    Text("男性:"),
+                    SizedBox(width: iconPadding),
+                    CircleAvatar(
+                      radius: iconSize,
+                      backgroundImage: NetworkImage(userIcon),
+                    ),
+                    SizedBox(width: iconPadding),
+                    CircleAvatar(
+                      radius: iconSize,
+                      backgroundImage: NetworkImage(userIcon),
+                    ),
+                    SizedBox(width: iconPadding),
+                    CircleAvatar(
+                      radius: iconSize,
+                      backgroundImage: NetworkImage(userIcon),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 5),
+                Row(
+                  children: const [
+                    Text("女性:"),
+                    SizedBox(width: iconPadding),
+                    CircleAvatar(
+                      radius: iconSize,
+                      backgroundImage: NetworkImage(userIcon),
+                    ),
+                    SizedBox(width: iconPadding),
+                    CircleAvatar(
+                      radius: iconSize,
+                      backgroundImage: NetworkImage(userIcon),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 10),
+                Row(
+                  children: const [
+                    Text("参加人数: "),
+                    Text("8/10名"),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text("東京都・調布市"),
+                    Row(
+                      children: const [
+                        Icon(Icons.favorite_border),
+                        SizedBox(width: 5),
+                        Text("12"),
+                      ],
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
         ),
-      ),
+        const SizedBox(height: 15),
+        const Divider(),
+      ]),
     );
   }
 }
