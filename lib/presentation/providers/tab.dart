@@ -5,7 +5,8 @@ import 'package:fortune_client/presentation/widgets/message_rooms/message_room/c
 import '../widgets/account/account/containers/page.dart';
 import '../widgets/message_rooms/message_room/containers/page.dart';
 import '../widgets/message_rooms/message_room_list/containers/page.dart';
-import '../widgets/participating/room_list/containers/page.dart';
+import '../widgets/participating/participating_room_list/containers/page.dart';
+import '../widgets/profile/profile/containers/page.dart';
 import '../widgets/rooms/room_list/containers/page.dart';
 
 final tabItemProvider =
@@ -25,12 +26,12 @@ enum TabItem {
   messages(
     icon: Icons.chat,
     page: MessageRoomListPageContainer(),
-    // page: ChatPage(),
   ),
 
   account(
     icon: Icons.manage_accounts,
-    page: AccountPegeContainer(),
+    page: ProfilePegeContainer(),
+    // page: AccountPegeContainer(),
   );
 
   const TabItem({

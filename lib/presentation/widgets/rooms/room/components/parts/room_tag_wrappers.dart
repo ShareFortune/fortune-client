@@ -5,15 +5,12 @@ class RoomTagWrappersComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
-      child: Wrap(
-        children: [
-          _tagButton("料理"),
-          _tagButton("居酒屋"),
-          _tagButton("少人数"),
-        ],
-      ),
+    return Wrap(
+      children: [
+        _tagButton("料理"),
+        _tagButton("居酒屋"),
+        _tagButton("少人数"),
+      ],
     );
   }
 
