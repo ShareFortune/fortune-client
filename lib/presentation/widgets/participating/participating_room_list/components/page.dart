@@ -12,6 +12,7 @@ class ParticipatingRoomListPageComponent extends StatelessWidget {
       length: 2,
       child: Scaffold(
         appBar: AppBar(
+          elevation: 0,
           backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           title: const Text('参加ルーム',
               style: TextStyle(

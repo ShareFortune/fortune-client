@@ -63,6 +63,7 @@ class RoomListPageComponent extends StatelessWidget {
                     ),
                   ),
                 ),
+                SizedBox(width: 10),
                 OutlinedButton.icon(
                   style: OutlinedButton.styleFrom(
                     elevation: 0,
@@ -84,6 +85,7 @@ class RoomListPageComponent extends StatelessWidget {
                     ),
                   ),
                 ),
+                SizedBox(width: 10),
                 OutlinedButton.icon(
                   style: OutlinedButton.styleFrom(
                     elevation: 0,
@@ -110,7 +112,7 @@ class RoomListPageComponent extends StatelessWidget {
           ),
         ),
         SliverPadding(
-          padding: EdgeInsets.only(top: 10.0),
+          padding: const EdgeInsets.only(top: 10.0),
           sliver: SliverList(
             delegate: SliverChildBuilderDelegate((context, index) {
               return AnimationLimiter(
