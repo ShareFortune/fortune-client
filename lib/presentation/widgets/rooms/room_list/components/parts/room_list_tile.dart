@@ -1,4 +1,3 @@
-import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 
 class RoomListTileComponent extends StatelessWidget {
@@ -102,15 +101,16 @@ class RoomListTileComponent extends StatelessWidget {
                 ),
                 const SizedBox(height: 10),
                 Row(
-                  children: const [
-                    Text("参加人数: "),
-                    Text("8/10名"),
-                  ],
-                ),
-                Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text("東京都・調布市"),
+                    Row(
+                      children: const [
+                        Text("参加人数: "),
+                        Text("8/10名"),
+                        SizedBox(width: 10),
+                        Text("東京都・調布市"),
+                      ],
+                    ),
                     Row(
                       children: const [
                         Icon(Icons.favorite_border),
