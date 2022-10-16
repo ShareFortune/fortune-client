@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:fortune_client/presentation/widgets/message_rooms/message_room/components/page.dart';
 
-import '../widgets/account/account/containers/page.dart';
-import '../widgets/message_rooms/message_room/containers/page.dart';
+import '../../views/screens/rooms/room_i_attend/room_i_attend_screen_component.dart';
+import '../../views/screens/rooms/rooms/rooms_screen_container.dart';
 import '../widgets/message_rooms/message_room_list/containers/page.dart';
-import '../widgets/participating/participating_room_list/containers/page.dart';
+
 import '../widgets/profile/profile/containers/page.dart';
-import '../widgets/rooms/room_list/containers/page.dart';
 
 final tabItemProvider =
     AutoDisposeStateProvider<TabItem>((ref) => TabItem.home);
@@ -15,12 +13,12 @@ final tabItemProvider =
 enum TabItem {
   home(
     icon: Icons.home,
-    page: RoomListPageContainer(),
+    page: RoomsScreenContainer(),
   ),
 
   rooms(
     icon: Icons.event,
-    page: ParticipatingRoomListPageContainer(),
+    page: RoomIAttendScreenComponent(),
   ),
 
   messages(

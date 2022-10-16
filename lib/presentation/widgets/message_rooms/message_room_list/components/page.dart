@@ -40,9 +40,12 @@ class MessageRoomListPageComponent extends StatelessWidget {
                 radius: 26,
                 backgroundImage: NetworkImage(userIcon),
               ),
+
+              /// 通知と投稿日時
               trailing: Stack(
-                alignment: AlignmentDirectional.center,
+                // alignment: AlignmentDirectional.center,
                 children: [
+                  /// 通知
                   Container(
                     height: 25,
                     padding:
@@ -60,6 +63,8 @@ class MessageRoomListPageComponent extends StatelessWidget {
                       ),
                     ),
                   ),
+
+                  /// 投稿日時
                   const Text(
                     "昨日",
                     style: TextStyle(fontSize: 10),
@@ -82,58 +87,3 @@ class MessageRoomListPageComponent extends StatelessWidget {
     );
   }
 }
-
-// body: ListView.builder(
-//       itemCount: 20,
-//       shrinkWrap: true,
-//       physics: const NeverScrollableScrollPhysics(),
-//       itemBuilder: (context, index) {
-//         return Row(
-//           children: [
-//             const CircleAvatar(
-//               radius: 26,
-//               backgroundImage: NetworkImage(userIcon),
-//             ),
-//             Column(
-//               crossAxisAlignment: CrossAxisAlignment.start,
-//               children: const [
-//                 Text(
-//                   "渋谷に集まろー",
-//                   style: TextStyle(fontWeight: FontWeight.bold),
-//                 ),
-//                 Text(
-//                   "いつ集まりますか？ 今週の月曜都合よければ集まりませんか？",
-//                   maxLines: 2,
-//                   softWrap: true,
-//                   style: TextStyle(fontSize: 14),
-//                 ),
-//               ],
-//             ),
-//             Column(
-//               children: [
-//                 Container(
-//                   height: 25,
-//                   padding:
-//                       const EdgeInsets.only(left: 10, right: 10, top: 4.2),
-//                   decoration: BoxDecoration(
-//                     color: Colors.green,
-//                     borderRadius: BorderRadius.circular(15),
-//                   ),
-//                   child: const Text(
-//                     "10",
-//                     maxLines: 1,
-//                     style: TextStyle(
-//                       color: Colors.white,
-//                       fontWeight: FontWeight.bold,
-//                     ),
-//                   ),
-//                 ),
-//                 Text(
-//                   "昨日",
-//                   style: TextStyle(fontSize: 10),
-//                 ),
-//               ],
-//             ),
-//           ],
-//         );
-//       }),
