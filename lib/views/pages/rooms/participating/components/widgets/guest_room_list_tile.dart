@@ -31,57 +31,60 @@ class GuestRoomListTileWidget extends StatelessWidget {
     );
     return Padding(
       padding: const EdgeInsets.only(top: 10, left: 15, right: 15),
-      child: Column(
-        children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(right: 15),
-                child: CircleAvatar(
-                  radius: iconSize,
-                  backgroundImage: NetworkImage(hostIcon),
+      child: InkWell(
+        onTap: onTapRoom,
+        child: Column(
+          children: [
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(right: 15),
+                  child: CircleAvatar(
+                    radius: iconSize,
+                    backgroundImage: NetworkImage(hostIcon),
+                  ),
                 ),
-              ),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                      roomTitle,
-                      style: const TextStyle(
-                        fontSize: 16,
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        roomTitle,
+                        style: const TextStyle(
+                          fontSize: 16,
+                        ),
                       ),
-                    ),
-                    Row(
-                      children: [
-                        Text(hostName, style: textStyle),
-                        const Text("・", style: textStyle),
-                        const Text("2日前に申請", style: textStyle),
-                      ],
-                    ),
-                  ],
+                      Row(
+                        children: [
+                          Text(hostName, style: textStyle),
+                          const Text("・", style: textStyle),
+                          const Text("2日前に申請", style: textStyle),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 10),
-
-          /// ステータスボタン
-          /// ステータスに応じてUI変化
-          OutlinedButton(
-            onPressed: () {},
-            style: OutlinedButton.styleFrom(
-              padding: const EdgeInsets.symmetric(),
+              ],
             ),
-            child: const SizedBox(
-                width: double.infinity, child: Center(child: Text("リクエスト中"))),
-          ),
-          const SizedBox(height: 10),
-          const Divider(),
-        ],
+            const SizedBox(height: 10),
+
+            /// ステータスボタン
+            /// ステータスに応じてUI変化
+            OutlinedButton(
+              onPressed: () {},
+              style: OutlinedButton.styleFrom(
+                padding: const EdgeInsets.symmetric(),
+              ),
+              child: const SizedBox(
+                  width: double.infinity, child: Center(child: Text("リクエスト中"))),
+            ),
+            const SizedBox(height: 10),
+            const Divider(),
+          ],
+        ),
       ),
     );
   }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../rooms/rooms/containers/page.dart';
+import '../../../rooms/room_list/containers/page.dart';
 import '../components/page.dart';
 
 class SignInPageContainer extends ConsumerWidget {
@@ -13,7 +13,7 @@ class SignInPageContainer extends ConsumerWidget {
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => const RoomsPageContainer(),
+          builder: (context) => const RoomListPageContainer(),
         ),
       );
     }

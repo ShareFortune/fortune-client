@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../room/containers/page.dart';
 import '../../components/widgets/room_list_tile_component.dart';
 
 class RoomListTileContainer extends StatelessWidget {
@@ -20,6 +21,15 @@ class RoomListTileContainer extends StatelessWidget {
           icon,
         ];
 
+        onTapRoom() {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const RoomPageContainer(),
+            ),
+          );
+        }
+
         return RoomListTileComponent(
           hostName: "hostName",
           hostIcon: icon,
@@ -28,7 +38,7 @@ class RoomListTileContainer extends StatelessWidget {
           femaleUserIcons: icons,
           holdingPlace: "東京都・府中市",
           maxNumOfParticipants: 10,
-          onTapRoom: () {},
+          onTapRoom: onTapRoom,
         );
       },
     );

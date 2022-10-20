@@ -7,6 +7,7 @@ class FortuneAppBarComponent extends StatelessWidget {
     super.key,
     required this.myIconPath,
     required this.onPressedMyIconButton,
+    required this.onPressedAddButton,
     required this.bottomWidget,
   });
 
@@ -16,6 +17,10 @@ class FortuneAppBarComponent extends StatelessWidget {
   /// マイアカウントのアイコンボタンがプレスされた時の関数
   /// クリック時はマイアカウントページへ移動
   final void Function()? onPressedMyIconButton;
+
+  /// マイアカウントのアイコンボタンがプレスされた時の関数
+  /// クリック時はマイアカウントページへ移動
+  final void Function()? onPressedAddButton;
 
   /// [FortuneAppBar]の下部に表示されるウィジット
   /// [bottomWidget]内でのクリックイベントは実装された状態で受け取る
@@ -35,11 +40,21 @@ class FortuneAppBarComponent extends StatelessWidget {
             fontWeight: FontWeight.bold,
           )),
       actions: [
+        /// 追加ボタン
+        IconButton(
+          onPressed: onPressedAddButton,
+          icon: const Icon(
+            Icons.add_box_outlined,
+            color: Colors.black,
+          ),
+        ),
+
         /// アイコンボタン
         ElevatedButton(
           style: ElevatedButton.styleFrom(
             elevation: 0,
             backgroundColor: Colors.transparent,
+            shadowColor: Colors.transparent,
           ),
           onPressed: onPressedMyIconButton,
           child: CircleAvatar(

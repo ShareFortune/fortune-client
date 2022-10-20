@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../pages/rooms/create/containers/page.dart';
 import '../components/page.dart';
 
 class FortuneAppBarContainer extends ConsumerWidget
@@ -11,10 +12,21 @@ class FortuneAppBarContainer extends ConsumerWidget
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    /// ルーム追加
+    onPressedAddButton() {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const RoomCreationPageContainer(),
+        ),
+      );
+    }
+
     return FortuneAppBarComponent(
       myIconPath:
           "https://gws-ug.jp/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png",
       onPressedMyIconButton: () {},
+      onPressedAddButton: onPressedAddButton,
       bottomWidget: bottomWidget,
     );
   }

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../../account/account/containers/page.dart';
-import '../containers/parts/header_image.dart';
 import '../containers/parts/room_tag_wrappers.dart';
 import 'parts/room_member_icon_list.dart';
 
@@ -10,17 +9,28 @@ class RoomPageComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const textStyleTitle = TextStyle(
+      fontSize: 20,
+      color: Colors.black,
+      fontWeight: FontWeight.bold,
+    );
+    const textStyleSubTitle = TextStyle(
+      fontSize: 18,
+      color: Colors.black,
+      fontWeight: FontWeight.bold,
+    );
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         elevation: 0,
-        title: const Text(
-          "ルームタイトル",
-          style: TextStyle(
-            color: Colors.black,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
+        // title: const Text(
+        //   "ルームタイトル",
+        //   style: TextStyle(
+        //     color: Colors.black,
+        //     fontWeight: FontWeight.bold,
+        //   ),
+        // ),
         leading: IconButton(
           onPressed: Navigator.of(context).pop,
           icon: const Icon(
@@ -42,69 +52,47 @@ class RoomPageComponent extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            /// 背景画像 + いいねボタン
-            const RoomHeaderImageContainer(),
+            // /// 背景画像 + いいねボタン
+            // const RoomHeaderImageContainer(),
 
-            /// タグ
-            const RoomTagWrappersContainer(),
-
-            /// タイトル
             Padding(
               padding: const EdgeInsets.only(left: 30, right: 30, top: 10),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
-                    "ルームタイトル",
-                    style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                    ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      /// タイトル
+                      _titleField(textStyleTitle),
+
+                      /// 参加ボタン
+                      const SizedBox(width: 10),
+                      _joinButton(context),
+                    ],
                   ),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      minimumSize: Size(100, 50),
-                      backgroundColor: Colors.blue,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30),
-                      ),
-                    ),
-                    child: const Text(
-                      "参加",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16,
-                      ),
-                    ),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const AccountPegeContainer(),
-                        ),
-                      );
-                    },
-                  ),
+
+                  /// タグ
+                  const SizedBox(height: 30),
+                  const RoomTagWrappersContainer(),
                 ],
               ),
             ),
 
-            /// 男女比
-            const Padding(
-              padding: EdgeInsets.only(left: 30, right: 30, top: 0, bottom: 15),
-              child: Text(
-                "男性 3 / 女性 3",
-                style: TextStyle(color: Colors.black45),
-              ),
-            ),
+            // /// 男女比
+            // const Padding(
+            //   padding: EdgeInsets.only(left: 30, right: 30, top: 0, bottom: 15),
+            //   child: Text(
+            //     "男性 3 / 女性 3",
+            //     style: TextStyle(color: Colors.black45),
+            //   ),
+            // ),
 
             const Divider(),
 
             /// 参加者
-            const RoomMemberIconListComponent(100),
+            const RoomMemberIconListComponent(),
 
-            const SizedBox(height: 10),
             const Divider(),
 
             /// 説明
@@ -112,27 +100,25 @@ class RoomPageComponent extends StatelessWidget {
               padding: const EdgeInsets.only(
                   left: 30, right: 30, top: 50, bottom: 15),
               child: Column(
-                children: const [
-                  Text(
-                    "開催内容",
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text("ルーム基本情報", style: textStyleSubTitle),
+
+                  const SizedBox(height: 30),
+
+                  /// 開催場所
+                  holdingPlace(),
+
+                  /// 説明
+                  const SizedBox(height: 30),
+                  roomExplanation(),
+
+                  /// キャンセル
+                  const SizedBox(height: 30),
+                  const Text(
+                    "キャンセルポリシー",
                     style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  Text(
-                    "基本情報",
-                    style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  Text(
-                    "詳細情報",
-                    style: TextStyle(
-                      fontSize: 20,
+                      fontSize: 15,
                       color: Colors.black,
                       fontWeight: FontWeight.bold,
                     ),
@@ -143,6 +129,111 @@ class RoomPageComponent extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+
+  Widget roomExplanation() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: const [
+        Text(
+          "ルームの説明",
+          style: TextStyle(
+            fontSize: 15,
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        Text(
+          "ゲーム好き集合。好きなゲームについて話しませんか？",
+          style: TextStyle(
+            fontSize: 15,
+            color: Colors.black,
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _titleField(TextStyle textStyle) {
+    return Flexible(
+      child: Text(
+        "ルームタイトル",
+        style: textStyle,
+      ),
+    );
+  }
+
+  Widget holdingPlace() {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        IconButton(
+          onPressed: (() {}),
+          icon: const Icon(Icons.location_on),
+        ),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text(
+              "開催場所",
+              style: TextStyle(
+                fontSize: 15,
+                color: Colors.black,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const Text(
+              "東京都調布市",
+              style: TextStyle(
+                fontSize: 15,
+                color: Colors.black,
+              ),
+            ),
+            TextButton(
+                onPressed: () {},
+                style: ButtonStyle(
+                  padding: MaterialStateProperty.all(EdgeInsets.zero),
+                  minimumSize: MaterialStateProperty.all(Size.zero),
+                  // tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                ),
+                child: const Text(
+                  "Googleマップで表示",
+                  style: TextStyle(
+                    fontSize: 15,
+                    color: Colors.blue,
+                  ),
+                )),
+          ],
+        ),
+      ],
+    );
+  }
+
+  Widget _joinButton(BuildContext context) {
+    return ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        minimumSize: const Size(100, 50),
+        backgroundColor: Colors.blue,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(30),
+        ),
+      ),
+      child: const Text(
+        "参加",
+        style: TextStyle(
+          fontWeight: FontWeight.bold,
+          fontSize: 16,
+        ),
+      ),
+      onPressed: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const AccountPegeContainer(),
+          ),
+        );
+      },
     );
   }
 }

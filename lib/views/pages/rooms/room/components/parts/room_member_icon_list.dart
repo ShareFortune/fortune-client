@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 
 class RoomMemberIconListComponent extends StatelessWidget {
-  const RoomMemberIconListComponent(this.hieght, {super.key});
-
-  final double hieght;
+  const RoomMemberIconListComponent({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,29 +16,17 @@ class RoomMemberIconListComponent extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const Text(
-                "参加者  8/10",
-                style: TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 17,
-                ),
-              ),
-              TextButton(
-                onPressed: (() {}),
-                child: const Text(
-                  "もっと見る",
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 14,
-                  ),
-                ),
-              ),
+              /// 参加者アイコン
+              participant(),
+
+              /// 参加者リストを表示
+              seeMoreButton(),
             ],
           ),
         ),
+        SizedBox(height: 10),
         SizedBox(
-          height: hieght,
+          height: 120,
           child: ListView.builder(
             shrinkWrap: true,
             scrollDirection: Axis.horizontal,
@@ -48,18 +34,76 @@ class RoomMemberIconListComponent extends StatelessWidget {
             itemBuilder: (context, index) {
               return Padding(
                 padding: const EdgeInsets.only(left: 15, top: 0),
-                child: CircleAvatar(
-                  radius: hieght / 2,
-                  backgroundImage: const NetworkImage(userIcon),
-                  child: const Align(
-                    alignment: Alignment.bottomRight,
-                  ),
+                child: Column(
+                  // mainAxisAlignment: MainAxisAlignment.start,
+                  // crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    /// アイコン
+                    participantIcon(userIcon),
+
+                    /// 名前
+                    const SizedBox(height: 5),
+                    participantName(),
+                  ],
                 ),
               );
             },
           ),
         ),
       ],
+    );
+  }
+
+  Widget participantName() {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        Container(
+          width: 10,
+          height: 10,
+          decoration: const BoxDecoration(
+            shape: BoxShape.circle,
+            color: Colors.blue,
+          ),
+        ),
+        const SizedBox(width: 10),
+        const Text("名前"),
+      ],
+    );
+  }
+
+  Widget participantIcon(String userIcon) {
+    return CircleAvatar(
+      radius: 40,
+      backgroundImage: NetworkImage(userIcon),
+      child: const Align(
+        alignment: Alignment.bottomRight,
+      ),
+    );
+  }
+
+  Widget seeMoreButton() {
+    return TextButton(
+      onPressed: (() {}),
+      child: const Text(
+        "もっと見る",
+        style: TextStyle(
+          fontWeight: FontWeight.bold,
+          fontSize: 14,
+        ),
+      ),
+    );
+  }
+
+  Widget participant() {
+    return const Text(
+      "参加者  8/10",
+      style: TextStyle(
+        color: Colors.black,
+        fontWeight: FontWeight.bold,
+        fontSize: 17,
+      ),
     );
   }
 }

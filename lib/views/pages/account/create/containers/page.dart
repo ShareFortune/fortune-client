@@ -8,15 +8,17 @@ class AccountCreationPageContainer extends ConsumerWidget {
   const AccountCreationPageContainer({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    onPressedNextButton() {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const ProfileCreationPageContainer(),
+        ),
+      );
+    }
+
     return AccountCreationPageComponent(
-      onPressedNextButton: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => const ProfileCreationPageContainer(),
-          ),
-        );
-      },
+      onPressedNextButton: onPressedNextButton,
     );
   }
 }

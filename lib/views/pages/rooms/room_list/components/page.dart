@@ -5,8 +5,8 @@ import '../../../../widgets/app_bar/containers/page.dart';
 import '../containers/widgets/room_list_tile_container.dart';
 import 'widgets/search_bar_component.dart';
 
-class RoomsPageComponent extends StatelessWidget {
-  const RoomsPageComponent({
+class RoomListPageComponent extends StatelessWidget {
+  const RoomListPageComponent({
     super.key,
     required this.userIconPath,
     required this.onPressedMyIconButton,
@@ -15,6 +15,7 @@ class RoomsPageComponent extends StatelessWidget {
   final String userIconPath;
 
   final Function() onPressedMyIconButton;
+
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(

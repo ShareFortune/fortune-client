@@ -17,7 +17,7 @@ enum TabItem {
 
   rooms(
     icon: Icons.event,
-    page: ParticipatingRoomsPageContainer(),
+    page: ParticipatingRoomListPageContainer(),
   ),
 
   messages(

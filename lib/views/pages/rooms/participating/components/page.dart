@@ -6,10 +6,13 @@ import 'widgets/guest_room_list_tile.dart';
 import 'widgets/hosts_room_list_tile.dart';
 
 class ParticipatingRoomListPageComponent extends StatelessWidget {
-  const ParticipatingRoomListPageComponent({super.key});
+  const ParticipatingRoomListPageComponent(
+      {super.key, required this.onTapRoom});
 
   final String icon =
       "https://gws-ug.jp/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png";
+
+  final void Function() onTapRoom;
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +75,7 @@ class ParticipatingRoomListPageComponent extends StatelessWidget {
                   femaleUserIcons: icons,
                   holdingPlace: "東京都・府中市",
                   maxNumOfParticipants: 10,
-                  onTapRoom: () {},
+                  onTapRoom: onTapRoom,
                 ),
               ),
             ),
@@ -97,7 +100,7 @@ class ParticipatingRoomListPageComponent extends StatelessWidget {
                   hostIcon: icon,
                   hostName: 'hostName',
                   roomTitle: "roomTitle",
-                  onTapRoom: () {},
+                  onTapRoom: onTapRoom,
                 ),
               ),
             ),
