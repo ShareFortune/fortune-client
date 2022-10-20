@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../../account/account/containers/page.dart';
-import '../containers/parts/room_tag_wrappers.dart';
-import 'parts/room_member_icon_list.dart';
+import '../containers/widgets/room_member_icon_list.dart';
+import '../containers/widgets/room_tag_wrappers.dart';
 
 class RoomPageComponent extends StatelessWidget {
   const RoomPageComponent({super.key});
@@ -91,7 +91,7 @@ class RoomPageComponent extends StatelessWidget {
             const Divider(),
 
             /// 参加者
-            const RoomMemberIconListComponent(),
+            const RoomMemberIconListContainer(),
 
             const Divider(),
 

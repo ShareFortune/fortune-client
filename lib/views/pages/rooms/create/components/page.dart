@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class RoomCreationPageComponent extends StatelessWidget {
   const RoomCreationPageComponent({super.key, this.onPressedNextButton});

@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 
 class RoomMemberIconListComponent extends StatelessWidget {
-  const RoomMemberIconListComponent({super.key});
+  const RoomMemberIconListComponent({
+    super.key,
+    required this.onTapParticipantIcon,
+  });
+
+  final void Function() onTapParticipantIcon;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +29,7 @@ class RoomMemberIconListComponent extends StatelessWidget {
             ],
           ),
         ),
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         SizedBox(
           height: 120,
           child: ListView.builder(
@@ -35,8 +40,6 @@ class RoomMemberIconListComponent extends StatelessWidget {
               return Padding(
                 padding: const EdgeInsets.only(left: 15, top: 0),
                 child: Column(
-                  // mainAxisAlignment: MainAxisAlignment.start,
-                  // crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     /// アイコン
                     participantIcon(userIcon),
@@ -74,11 +77,11 @@ class RoomMemberIconListComponent extends StatelessWidget {
   }
 
   Widget participantIcon(String userIcon) {
-    return CircleAvatar(
-      radius: 40,
-      backgroundImage: NetworkImage(userIcon),
-      child: const Align(
-        alignment: Alignment.bottomRight,
+    return GestureDetector(
+      onTap: onTapParticipantIcon,
+      child: CircleAvatar(
+        radius: 40,
+        backgroundImage: NetworkImage(userIcon),
       ),
     );
   }

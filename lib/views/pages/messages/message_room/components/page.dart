@@ -1,3 +1,5 @@
+// ignore_for_file: depend_on_referenced_packages
+
 import 'dart:convert';
 import 'dart:io';
 
@@ -12,6 +14,8 @@ import 'package:path_provider/path_provider.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/services.dart' show rootBundle;
+
+import '../../../../widgets/app_bar/containers/page.dart';
 
 class MessageRoomPageComponent extends StatefulWidget {
   const MessageRoomPageComponent({super.key});
@@ -34,10 +38,7 @@ class _MessageRoomPageComponentState extends State<MessageRoomPageComponent> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        // backgroundColor: Colors.transparent,
-      ),
+      // appBar: FortuneAppBarContainer(),
       body: Chat(
         messages: _messages,
         onAttachmentPressed: _handleAttachmentPressed,

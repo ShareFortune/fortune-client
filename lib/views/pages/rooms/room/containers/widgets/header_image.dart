@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../components/parts/room_header_image.dart';
+import '../../components/widgets/room_header_image.dart';
 
 class RoomHeaderImageContainer extends StatelessWidget {
   const RoomHeaderImageContainer({super.key});

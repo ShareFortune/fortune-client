@@ -31,7 +31,16 @@ class MyApp extends ConsumerWidget {
               .map(
                 (tabItem) => Offstage(
                   offstage: currentTab.state != tabItem,
-                  child: tabItem.page,
+
+                  /// ナビゲーションバーを遷移後も表示するために[Navigator]を利用
+                  child: Navigator(
+                    key: navigatorKeys[tabItem],
+                    onGenerateRoute: (settings) {
+                      return MaterialPageRoute<Widget>(
+                        builder: (context) => tabItem.page,
+                      );
+                    },
+                  ),
                 ),
               )
               .toList(),

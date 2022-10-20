@@ -14,7 +14,7 @@ class RoomListPageComponent extends StatelessWidget {
 
   final String userIconPath;
 
-  final Function() onPressedMyIconButton;
+  final void Function() onPressedMyIconButton;
 
   @override
   Widget build(BuildContext context) {
