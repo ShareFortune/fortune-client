@@ -8,6 +8,6 @@ class RoomCreationPageContainer extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return RoomCreationPageComponent();
+    return const RoomCreationPageComponent();
   }
 }
