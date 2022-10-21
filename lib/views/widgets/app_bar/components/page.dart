@@ -16,11 +16,11 @@ class FortuneAppBarComponent extends StatelessWidget {
 
   /// マイアカウントのアイコンボタンがプレスされた時の関数
   /// クリック時はマイアカウントページへ移動
-  final void Function()? onPressedMyIconButton;
+  final void Function() onPressedMyIconButton;
 
   /// マイアカウントのアイコンボタンがプレスされた時の関数
   /// クリック時はマイアカウントページへ移動
-  final void Function()? onPressedAddButton;
+  final void Function() onPressedAddButton;
 
   /// [FortuneAppBar]の下部に表示されるウィジット
   /// [bottomWidget]内でのクリックイベントは実装された状態で受け取る

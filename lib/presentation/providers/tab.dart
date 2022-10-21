@@ -23,13 +23,12 @@ enum TabItem {
   messages(
     icon: Icons.chat,
     page: MessageRoomListPageContainer(),
-  ),
-
-  account(
-    icon: Icons.manage_accounts,
-    // page: ProfilePegeContainer(),
-    page: AccountPegeContainer(),
   );
+
+  // account(
+  //   icon: Icons.manage_accounts,
+  //   page: AccountPegeContainer(),
+  // );
 
   const TabItem({
     required this.icon,
@@ -47,5 +46,5 @@ final navigatorKeys = <TabItem, GlobalKey<NavigatorState>>{
   TabItem.home: GlobalKey<NavigatorState>(),
   TabItem.messages: GlobalKey<NavigatorState>(),
   TabItem.rooms: GlobalKey<NavigatorState>(),
-  TabItem.account: GlobalKey<NavigatorState>(),
+  // TabItem.account: GlobalKey<NavigatorState>(),
 };
