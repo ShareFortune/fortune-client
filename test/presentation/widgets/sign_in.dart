@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:fortune_client/presentation/widgets/sign_in/containers/page.dart';
+import 'package:fortune_client/views/pages/auth/sign_in/containers/page.dart';
 
 // - [ ]  ログイン画面
 //     - [ ]  ログイン画面が表示されているか
