@@ -13,18 +13,14 @@ class ProfileCreateParams {
   final String secondImagePath;
   final String thirdImagePath;
   final String fourthImagePath;
-
   final Gender gender;
   final int height;
-
   final DrinkFrequency drinkFrequency;
   final CigaretteFrequency cigaretteFrequency;
   final String selfIntroduction;
-
   final int countryId;
   final int prefectureId;
   final int cityId;
-
   final List<Tag> tag;
 
   ProfileCreateParams({
