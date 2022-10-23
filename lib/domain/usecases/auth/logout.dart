@@ -4,4 +4,8 @@ abstract class LogoutUseCase implements UseCase<LogoutParams, LogoutResults> {}
 
 class LogoutParams {}
 
-class LogoutResults {}
+class LogoutResults {
+  final bool isLogout;
+
+  LogoutResults({required this.isLogout});
+}

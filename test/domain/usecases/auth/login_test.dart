@@ -16,9 +16,10 @@ void main() {
 
   final LoginParams params = LoginParams();
 
-  test("ログインする", () async {
-    final result = await usecase.handle(params);
-    print(result);
-    expect(result.isLogin, true);
+  group("ログインができるか", () {
+    test("ログインができるか", () async {
+      final result = await usecase.handle(params);
+      expect(result.isLogin, true);
+    });
   });
 }
