@@ -3,7 +3,7 @@ import 'package:fortune_client/domain/entities/models/room.dart';
 import '../core/usecase.dart';
 
 abstract class RoomFetchAllUseCase
-    implements UseCase<RoomFetchAllParams, RoomFetchAllParams> {}
+    implements UseCase<RoomFetchAllParams, RoomFetchAllResults> {}
 
 class RoomFetchAllParams {}
 

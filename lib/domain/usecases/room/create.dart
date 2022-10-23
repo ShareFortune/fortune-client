@@ -8,7 +8,7 @@ abstract class RoomCreateUseCase
 
 class RoomCreateParams {
   final String roomName;
-  final String mamberNum;
+  final int mamberNum;
   final AgeGroup ageGroup;
   final String address;
   final String explanation;
