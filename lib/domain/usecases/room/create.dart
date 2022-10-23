@@ -1,10 +1,11 @@
 import 'package:fortune_client/domain/entities/enum/age_group.dart';
+import 'package:fortune_client/domain/entities/models/tag.dart';
 
 import '../../entities/models/room.dart';
 import '../core/usecase.dart';
 
 abstract class RoomCreateUseCase
-    implements UseCase<RoomCreateParams, RoomCreateParams> {}
+    implements UseCase<RoomCreateParams, RoomCreateResults> {}
 
 class RoomCreateParams {
   final String roomName;
@@ -12,7 +13,7 @@ class RoomCreateParams {
   final AgeGroup ageGroup;
   final String address;
   final String explanation;
-  final List<String> tag;
+  final List<Tag> tag;
 
   RoomCreateParams({
     required this.roomName,
