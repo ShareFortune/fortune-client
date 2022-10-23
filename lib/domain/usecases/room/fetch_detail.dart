@@ -1,20 +1,20 @@
 import '../core/usecase.dart';
 
-abstract class RoomFetchDetailUseCase
-    implements UseCase<RoomFetchDetailParams, RoomFetchDetailParams> {}
+// abstract class RoomFetchDetailUseCase
+//     implements UseCase<RoomFetchDetailParams, RoomFetchDetailParams> {}
 
-class RoomFetchDetailParams {
-  final String id;
+// class RoomFetchDetailParams {
+//   final String id;
 
-  RoomFetchDetailParams({
-    required this.id,
-  });
-}
+//   RoomFetchDetailParams({
+//     required this.id,
+//   });
+// }
 
-class RoomFetchDetailResults {
-  final List<Room> rooms;
+// class RoomFetchDetailResults {
+//   final List<Room> rooms;
 
-  RoomFetchDetailResults({
-    required this.rooms,
-  });
-}
+//   RoomFetchDetailResults({
+//     required this.rooms,
+//   });
+// }

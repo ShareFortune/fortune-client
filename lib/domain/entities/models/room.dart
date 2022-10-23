@@ -1,33 +1,38 @@
 import '../const/types.dart';
 import '../enum/age_group.dart';
 import '../enum/room_status.dart';
+import 'member.dart';
+import 'tag.dart';
 
 class Room {
+  /// ルームID
   final RoomID id;
+
+  /// ルームネーム
   final String name;
-  final EventHeldAt holdAt;
-  final UserID hostUserId;
-  final List<UserID> memberIDs;
-  final int membersNumber;
-  final AgeGroup ageGroup;
-  final EventID eventID;
-  final List<TagID> tagIds;
+
+  /// 開催者
+  final Member hostUser;
+
+  /// ルームのステータス
   final RoomStatus roomStatus;
-  final DateTime openedAt;
-  final DateTime closedAt;
+
+  /// 作成日時
+  final DateTime createdAt;
+
+  /// 参加メンバー
+  final List<Member> members;
+
+  /// 設定タグ
+  final List<Tag> tags;
 
   Room({
     required this.id,
     required this.name,
-    required this.holdAt,
-    required this.hostUserId,
-    required this.memberIDs,
-    required this.membersNumber,
-    required this.ageGroup,
-    required this.eventID,
-    required this.tagIds,
     required this.roomStatus,
-    required this.openedAt,
-    required this.closedAt,
+    required this.createdAt,
+    required this.hostUser,
+    required this.members,
+    required this.tags,
   });
 }
