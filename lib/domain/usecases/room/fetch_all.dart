@@ -10,5 +10,7 @@ class RoomFetchAllParams {}
 class RoomFetchAllResults {
   final List<Room> rooms;
 
-  RoomFetchAllResults({required this.rooms});
+  RoomFetchAllResults({
+    required this.rooms,
+  });
 }
