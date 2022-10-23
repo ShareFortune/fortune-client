@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../views/pages/account/account/containers/page.dart';
-import '../../views/pages/messages/message_room_list/containers/page.dart';
-import '../../views/pages/rooms/participating/containers/page.dart';
-import '../../views/pages/rooms/room_list/containers/page.dart';
+import '../views/pages/account/account/containers/page.dart';
+import '../views/pages/messages/message_room_list/containers/page.dart';
+import '../views/pages/rooms/participating/containers/page.dart';
+import '../views/pages/rooms/room_list/containers/page.dart';
 
 final currentTabProvider =
     AutoDisposeStateProvider<TabItem>((ref) => TabItem.home);

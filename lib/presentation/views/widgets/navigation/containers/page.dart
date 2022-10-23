@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../../presentation/providers/tab.dart';
+import '../../../../state/tab.dart';
 import '../components/page.dart';
 
 class BottomNavigationBarContainer extends StatelessWidget {

@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 
-import '../../../../presentation/providers/tab.dart';
+import '../../../../state/tab.dart';
 
 class BottomNavigationBarComponent extends StatelessWidget {
   const BottomNavigationBarComponent({

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../widgets/room_list_tile_component.dart';
+import '../../../room_list/components/widgets/room_list_tile_component.dart';
 
 class RoomListTileContainer extends StatelessWidget {
   const RoomListTileContainer({super.key});

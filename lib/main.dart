@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'presentation/providers/tab.dart';
+import 'presentation/state/tab.dart';
 
-import 'views/widgets/navigation/containers/page.dart';
+import 'presentation/views/widgets/navigation/containers/page.dart';
 
 void main() async {
+  // await Firebase.initializeApp();
   runApp(const ProviderScope(child: MyApp()));
 }
 

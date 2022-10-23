@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:fortune_client/views/res/size_config.dart';
+import 'package:fortune_client/presentation/views/res/size_config.dart';
 
 import '../components/page.dart';
 
