@@ -14,9 +14,9 @@ class MessageFetchAllParams {
 }
 
 class MessageFetchAllResults {
-  final List<Message> Messages;
+  final List<Message> messages;
 
   MessageFetchAllResults({
-    required this.Messages,
+    required this.messages,
   });
 }

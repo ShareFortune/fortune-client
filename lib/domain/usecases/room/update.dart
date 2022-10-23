@@ -4,7 +4,7 @@ import '../../entities/enum/age_group.dart';
 import '../core/usecase.dart';
 
 abstract class RoomUpdateUseCase
-    implements UseCase<RoomUpdateParams, RoomUpdateParams> {}
+    implements UseCase<RoomUpdateParams, RoomUpdateResults> {}
 
 class RoomUpdateParams {
   final String roomName;
