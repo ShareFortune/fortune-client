@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-import 'presentation/state/tab.dart';
-
-import 'presentation/views/widgets/navigation/containers/page.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:fortune_client/presentation/state/tab.dart';
+import 'package:fortune_client/presentation/views/widgets/navigation/containers/page.dart';
 
 void main() async {
-  // await Firebase.initializeApp();
+  await Firebase.initializeApp();
   runApp(const ProviderScope(child: MyApp()));
 }
 
