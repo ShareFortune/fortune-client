@@ -1,4 +1,5 @@
-import 'package:fortune_client/domain/entities/models/room/room.dart';
+import 'package:fortune_client/domain/entities/const/types.dart';
+import 'package:fortune_client/domain/entities/models/tag/tag.dart';
 
 import '../../entities/enum/age_group.dart';
 import '../core/usecase.dart';
@@ -12,7 +13,7 @@ class RoomUpdateParams {
   final AgeGroup ageGroup;
   final String address;
   final String explanation;
-  final List<String> tag;
+  final List<Tag> tag;
 
   RoomUpdateParams({
     required this.roomName,
@@ -25,9 +26,9 @@ class RoomUpdateParams {
 }
 
 class RoomUpdateResults {
-  final Room updatedRoom;
+  final RoomID roomID;
 
   RoomUpdateResults({
-    required this.updatedRoom,
+    required this.roomID,
   });
 }

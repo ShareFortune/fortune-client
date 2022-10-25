@@ -1,5 +1,7 @@
 import 'package:fortune_client/domain/entities/const/types.dart';
 import 'package:fortune_client/domain/entities/enum/age_group.dart';
+import 'package:fortune_client/domain/entities/models/tag/tag.dart';
+import 'package:fortune_client/domain/usecases/core/usecase.dart';
 
 abstract class RoomCreateUseCase
     implements UseCase<RoomCreateParams, RoomCreateResults> {}
@@ -23,7 +25,6 @@ class RoomCreateParams {
 }
 
 class RoomCreateResults {
-  // final Room createdRoom;
   final RoomID roomID;
 
   RoomCreateResults({

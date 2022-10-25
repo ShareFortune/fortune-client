@@ -3,15 +3,12 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:fortune_client/domain/repositories/room.dart';
 import 'package:mockito/annotations.dart';
 
-import 'create.mocks.dart';
-
 @GenerateMocks([RoomRepository])
 void main() {
   // late RoomCreateInteractor interactor;
   late RoomRepository repository;
 
   setUp(() {
-    repository = MockRoomRepository();
     // interactor = RoomCreateInteractor(repository);
   });
 

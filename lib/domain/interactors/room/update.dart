@@ -4,17 +4,17 @@ import 'package:fortune_client/domain/entities/models/member/member.dart';
 import 'package:fortune_client/domain/entities/models/room/room.dart';
 import 'package:fortune_client/domain/repositories/room.dart';
 import 'package:fortune_client/domain/usecases/core/error/failures.dart';
-import 'package:fortune_client/domain/usecases/room/create.dart';
+import 'package:fortune_client/domain/usecases/room/update.dart';
 import 'package:fpdart/fpdart.dart';
 
-class RoomCreateInteractor implements RoomCreateUseCase {
+class RoomUpdateInteractor implements RoomUpdateUseCase {
   final RoomRepository repository;
 
-  RoomCreateInteractor(this.repository);
+  RoomUpdateInteractor(this.repository);
 
   @override
-  Future<Either<Failure, RoomCreateResults>> handle(
-      RoomCreateParams params) async {
+  Future<Either<Failure, RoomUpdateResults>> handle(
+      RoomUpdateParams params) async {
     const host = Member(
       id: "id",
       name: "name",
@@ -32,11 +32,11 @@ class RoomCreateInteractor implements RoomCreateUseCase {
       tags: params.tags,
     );
 
-    final newRoomID = await repository.create(newRoom);
-    return newRoomID.match<Future<Either<Failure, RoomCreateResults>>>(
+    final updatedRoomID = await repository.update(newRoom);
+    return updatedRoomID.match<Future<Either<Failure, RoomUpdateResults>>>(
       (l) async => Either.left(l),
       (r) async {
-        return Either.of(RoomCreateResults(roomID: r));
+        return Either.of(RoomUpdateResults(roomID: r));
       },
     );
   }
