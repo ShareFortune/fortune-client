@@ -7,34 +7,40 @@ part of 'profile.dart';
 // **************************************************************************
 
 _$_Profile _$$_ProfileFromJson(Map<String, dynamic> json) => _$_Profile(
-      id: json['id'] as String?,
-      userId: json['userId'] as String,
-      birthday: DateTime.parse(json['birthday'] as String),
+      mainImagePath: json['mainImagePath'] as String,
+      secondImagePath: json['secondImagePath'] as String,
+      thirdImagePath: json['thirdImagePath'] as String,
+      fourthImagePath: json['fourthImagePath'] as String,
+      fifthImagePath: json['fifthImagePath'] as String,
+      sixthImagePath: json['sixthImagePath'] as String,
+      name: json['name'] as String,
       gender: $enumDecode(_$GenderEnumMap, json['gender']),
+      height: json['height'] as int,
       drinkFrequency:
           $enumDecode(_$DrinkFrequencyEnumMap, json['drinkFrequency']),
       cigaretteFrequency:
           $enumDecode(_$CigaretteFrequencyEnumMap, json['cigaretteFrequency']),
       selfIntroduction: json['selfIntroduction'] as String,
-      countryID: json['countryID'] as String,
-      prefectureID: json['prefectureID'] as String,
-      cityID: json['cityID'] as String,
+      adress: Address.fromJson(json['adress'] as Map<String, dynamic>),
       occupationID: json['occupationID'] as String,
     );
 
 Map<String, dynamic> _$$_ProfileToJson(_$_Profile instance) =>
     <String, dynamic>{
-      'id': instance.id,
-      'userId': instance.userId,
-      'birthday': instance.birthday.toIso8601String(),
+      'mainImagePath': instance.mainImagePath,
+      'secondImagePath': instance.secondImagePath,
+      'thirdImagePath': instance.thirdImagePath,
+      'fourthImagePath': instance.fourthImagePath,
+      'fifthImagePath': instance.fifthImagePath,
+      'sixthImagePath': instance.sixthImagePath,
+      'name': instance.name,
       'gender': _$GenderEnumMap[instance.gender]!,
+      'height': instance.height,
       'drinkFrequency': _$DrinkFrequencyEnumMap[instance.drinkFrequency]!,
       'cigaretteFrequency':
           _$CigaretteFrequencyEnumMap[instance.cigaretteFrequency]!,
       'selfIntroduction': instance.selfIntroduction,
-      'countryID': instance.countryID,
-      'prefectureID': instance.prefectureID,
-      'cityID': instance.cityID,
+      'adress': instance.adress,
       'occupationID': instance.occupationID,
     };
 

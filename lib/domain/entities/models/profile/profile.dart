@@ -1,7 +1,7 @@
-import 'package:fortune_client/domain/entities/const/types.dart';
 import 'package:fortune_client/domain/entities/enum/cigarette_frequency.dart';
 import 'package:fortune_client/domain/entities/enum/drink_frequency.dart';
 import 'package:fortune_client/domain/entities/enum/gender.dart';
+import 'package:fortune_client/domain/entities/models/address/address.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'profile.freezed.dart';
@@ -10,16 +10,19 @@ part 'profile.g.dart';
 @freezed
 class Profile with _$Profile {
   const factory Profile({
-    required ProfileID? id,
-    required UserID userId,
-    required DateTime birthday,
+    required String mainImagePath,
+    required String secondImagePath,
+    required String thirdImagePath,
+    required String fourthImagePath,
+    required String fifthImagePath,
+    required String sixthImagePath,
+    required String name,
     required Gender gender,
+    required int height,
     required DrinkFrequency drinkFrequency, // お酒をよく飲むか
     required CigaretteFrequency cigaretteFrequency, // タバコをよく吸うか
     required String selfIntroduction, // 自己紹介文(nullalble)
-    required String countryID, // 住んでいる国ID
-    required String prefectureID, // 住んでいる都道府県ID
-    required String cityID, // 住んでいる都市ID
+    required Address adress, // 居住地
     required String occupationID, // 職業ID
   }) = _Profile;
 
