@@ -12,6 +12,10 @@ class ProfileUpdateParams {
   final String secondImagePath;
   final String thirdImagePath;
   final String fourthImagePath;
+  final String fifthImagePath;
+  final String sixthImagePath;
+
+  final String name;
   final Gender gender;
   final int height;
   final DrinkFrequency drinkFrequency;
@@ -21,12 +25,16 @@ class ProfileUpdateParams {
   final int prefectureId;
   final int cityId;
   final List<Tag> tag;
+  final String occupationID;
 
   ProfileUpdateParams({
     required this.mainImagePath,
     required this.secondImagePath,
     required this.thirdImagePath,
     required this.fourthImagePath,
+    required this.fifthImagePath,
+    required this.sixthImagePath,
+    required this.name,
     required this.gender,
     required this.height,
     required this.drinkFrequency,
@@ -36,6 +44,7 @@ class ProfileUpdateParams {
     required this.prefectureId,
     required this.cityId,
     required this.tag,
+    required this.occupationID,
   });
 }
 
