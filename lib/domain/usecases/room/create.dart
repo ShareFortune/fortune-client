@@ -1,5 +1,6 @@
 import 'package:fortune_client/domain/entities/const/types.dart';
 import 'package:fortune_client/domain/entities/enum/age_group.dart';
+import 'package:fortune_client/domain/entities/models/address/address.dart';
 import 'package:fortune_client/domain/entities/models/tag/tag.dart';
 import 'package:fortune_client/domain/usecases/core/usecase.dart';
 
@@ -10,7 +11,7 @@ class RoomCreateParams {
   final String roomName;
   final int mamberNum;
   final AgeGroup ageGroup;
-  final String address;
+  final Address address;
   final String explanation;
   final List<Tag> tags;
 
