@@ -1,4 +1,4 @@
-import 'package:fortune_client/domain/entities/models/room.dart';
+import 'package:fortune_client/domain/entities/models/room/room.dart';
 
 import '../../entities/enum/age_group.dart';
 import '../core/usecase.dart';

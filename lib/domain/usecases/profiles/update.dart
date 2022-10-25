@@ -1,9 +1,8 @@
-import 'package:fortune_client/domain/entities/models/tag.dart';
-
-import '../../entities/enum/cigarette_frequency.dart';
-import '../../entities/enum/drink_frequency.dart';
-import '../../entities/enum/gender.dart';
-import '../core/usecase.dart';
+import 'package:fortune_client/domain/entities/enum/cigarette_frequency.dart';
+import 'package:fortune_client/domain/entities/enum/drink_frequency.dart';
+import 'package:fortune_client/domain/entities/enum/gender.dart';
+import 'package:fortune_client/domain/entities/models/tag/tag.dart';
+import 'package:fortune_client/domain/usecases/core/usecase.dart';
 
 abstract class ProfileUpdateUseCase
     implements UseCase<ProfileUpdateParams, ProfileUpdateResults> {}
