@@ -1,5 +1,5 @@
 import '../../entities/const/types.dart';
-import '../../entities/models/message.dart';
+import '../../entities/models/message/message.dart';
 import '../core/usecase.dart';
 
 abstract class MessageFetchAllUseCase

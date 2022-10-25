@@ -1,4 +1,4 @@
-import '../../entities/models/message_room.dart';
+import '../../entities/models/message_room/message_room.dart';
 import '../core/usecase.dart';
 
 abstract class MessageMessageRoomFetchAllUseCase
