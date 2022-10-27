@@ -49,10 +49,23 @@ dependencies:
   open_filex: ^4.1.1
   image_picker: ^0.8.6
   bottom_sheet: ^3.1.2
+  firebase_auth: ^4.0.2
+  firebase_core: ^2.1.0
+  google_sign_in: ^5.4.2
+  equatable: ^2.0.5
+  fpdart: ^0.3.0
+  freezed_annotation: ^2.2.0
+
+
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  mockito: ^5.3.2
+  build_runner: ^2.3.2
+  # Googleサインイン実行時のテスト用ライブラリ
+  google_sign_in_mocks: ^0.2.1
+
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
@@ -60,6 +73,8 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
+  freezed: ^2.2.0
+  json_serializable: ^6.5.3
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -103,3 +118,10 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+# analysis_options.yaml
+analyzer:
+  exclude:
+    - "**/*.g.dart"
+    - "**/*.freezed.dart"
+  errors:
+    invalid_annotation_target: ignore

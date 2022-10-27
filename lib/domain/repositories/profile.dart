@@ -1,9 +1,9 @@
 import 'package:fortune_client/domain/entities/const/types.dart';
-
-import '../entities/models/profile.dart';
+import 'package:fortune_client/domain/entities/models/profile/profile.dart';
+import 'package:fortune_client/domain/usecases/core/error/failures.dart';
+import 'package:fpdart/fpdart.dart';
 
 abstract class ProfileRepository {
-  create(Profile profile);
-  update(Profile profile);
-  Future<Profile> fetch(UserID id);
+  Future<Either<Failure, ProfileID>> create(Profile profile);
+  Future<Either<Failure, ProfileID>> update(Profile profile);
 }
