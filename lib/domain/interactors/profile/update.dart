@@ -2,7 +2,6 @@ import 'package:fortune_client/domain/entities/models/address/address.dart';
 import 'package:fortune_client/domain/entities/models/profile/profile.dart';
 import 'package:fortune_client/domain/repositories/profile.dart';
 import 'package:fortune_client/domain/usecases/core/error/failures.dart';
-import 'package:fortune_client/domain/usecases/profile/create.dart';
 import 'package:fortune_client/domain/usecases/profile/update.dart';
 import 'package:fpdart/fpdart.dart';
 
@@ -13,7 +12,7 @@ class ProfileUpdateInteractor implements ProfileUpdateUseCase {
 
   @override
   Future<Either<Failure, ProfileUpdateResults>> handle(
-      ProfileCreateParams params) async {
+      ProfileUpdateParams params) async {
     final profile = Profile(
       mainImagePath: params.mainImagePath,
       secondImagePath: params.secondImagePath,
@@ -35,7 +34,7 @@ class ProfileUpdateInteractor implements ProfileUpdateUseCase {
       occupationID: params.occupationID,
     );
 
-    final newProfileID = await repository.create(profile);
+    final newProfileID = await repository.update(profile);
     return newProfileID.match<Future<Either<Failure, ProfileUpdateResults>>>(
       (l) async => Either.left(l),
       (r) async {
