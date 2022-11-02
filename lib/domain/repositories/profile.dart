@@ -4,6 +4,6 @@ import 'package:fortune_client/domain/usecases/core/error/failures.dart';
 import 'package:fpdart/fpdart.dart';
 
 abstract class ProfileRepository {
-  Future<Either<Failure, ProfileID>> create(Profile profile);
-  Future<Either<Failure, ProfileID>> update(Profile profile);
+  Future<ProfileID> create(Profile profile);
+  Future<ProfileID> update(Profile profile);
 }

@@ -34,12 +34,11 @@ class ProfileCreateInteractor implements ProfileCreateUseCase {
       occupationID: params.occupationID,
     );
 
-    final newProfileID = await repository.create(profile);
-    return newProfileID.match<Future<Either<Failure, ProfileCreateResults>>>(
-      (l) async => Either.left(l),
-      (r) async {
-        return Either.of(ProfileCreateResults());
-      },
-    );
+    try {
+      final result = await repository.create(profile);
+      return Either.of(ProfileCreateResults());
+    } on Failure catch (e) {
+      return Either.left(e);
+    }
   }
 }

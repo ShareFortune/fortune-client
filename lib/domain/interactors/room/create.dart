@@ -32,12 +32,11 @@ class RoomCreateInteractor implements RoomCreateUseCase {
       tags: params.tags,
     );
 
-    final newRoomID = await repository.create(newRoom);
-    return newRoomID.match<Future<Either<Failure, RoomCreateResults>>>(
-      (l) async => Either.left(l),
-      (r) async {
-        return Either.of(RoomCreateResults(roomID: r));
-      },
-    );
+    try {
+      final result = await repository.create(newRoom);
+      return Either.of(RoomCreateResults(roomID: result));
+    } on Failure catch (e) {
+      return Either.left(e);
+    }
   }
 }

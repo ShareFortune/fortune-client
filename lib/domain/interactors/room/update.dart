@@ -32,12 +32,11 @@ class RoomUpdateInteractor implements RoomUpdateUseCase {
       tags: params.tags,
     );
 
-    final updatedRoomID = await repository.update(newRoom);
-    return updatedRoomID.match<Future<Either<Failure, RoomUpdateResults>>>(
-      (l) async => Either.left(l),
-      (r) async {
-        return Either.of(RoomUpdateResults(roomID: r));
-      },
-    );
+    try {
+      final result = await repository.update(newRoom);
+      return Either.of(RoomUpdateResults(roomID: result));
+    } on Failure catch (e) {
+      return Either.left(e);
+    }
   }
 }

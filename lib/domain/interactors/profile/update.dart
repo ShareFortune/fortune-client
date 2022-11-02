@@ -34,12 +34,11 @@ class ProfileUpdateInteractor implements ProfileUpdateUseCase {
       occupationID: params.occupationID,
     );
 
-    final newProfileID = await repository.update(profile);
-    return newProfileID.match<Future<Either<Failure, ProfileUpdateResults>>>(
-      (l) async => Either.left(l),
-      (r) async {
-        return Either.of(ProfileUpdateResults());
-      },
-    );
+    try {
+      final result = await repository.update(profile);
+      return Either.of(ProfileUpdateResults());
+    } on Failure catch (e) {
+      return Either.left(e);
+    }
   }
 }

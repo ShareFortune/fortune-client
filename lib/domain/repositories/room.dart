@@ -4,6 +4,6 @@ import 'package:fortune_client/domain/usecases/core/error/failures.dart';
 import 'package:fpdart/fpdart.dart';
 
 abstract class RoomRepository {
-  Future<Either<Failure, RoomID>> create(Room room);
-  Future<Either<Failure, RoomID>> update(Room room);
+  Future<RoomID> create(Room room);
+  Future<RoomID> update(Room room);
 }

@@ -12,13 +12,11 @@ class LoginInteractor implements LoginUseCase {
 
   @override
   Future<Either<Failure, LoginResults>> handle(NoParams params) async {
-    final result = await repository.signInWithGoogle();
-
-    return result.match<Future<Either<Failure, LoginResults>>>(
-      (l) async => Either.left(l),
-      (r) async {
-        return Either.of(LoginResults(isLogin: r));
-      },
-    );
+    try {
+      final result = await repository.signInWithGoogle();
+      return Either.of(LoginResults(isLogin: result));
+    } on Failure catch (e) {
+      return Either.left(e);
+    }
   }
 }

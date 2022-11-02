@@ -3,12 +3,10 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i4;
+import 'dart:async' as _i3;
 
-import 'package:fortune_client/domain/entities/models/room/room.dart' as _i6;
-import 'package:fortune_client/domain/repositories/room.dart' as _i3;
-import 'package:fortune_client/domain/usecases/core/error/failures.dart' as _i5;
-import 'package:fpdart/fpdart.dart' as _i2;
+import 'package:fortune_client/domain/entities/models/room/room.dart' as _i4;
+import 'package:fortune_client/domain/repositories/room.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint
@@ -22,54 +20,28 @@ import 'package:mockito/mockito.dart' as _i1;
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
-class _FakeEither_0<L, R> extends _i1.SmartFake implements _i2.Either<L, R> {
-  _FakeEither_0(
-    Object parent,
-    Invocation parentInvocation,
-  ) : super(
-          parent,
-          parentInvocation,
-        );
-}
-
 /// A class which mocks [RoomRepository].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockRoomRepository extends _i1.Mock implements _i3.RoomRepository {
+class MockRoomRepository extends _i1.Mock implements _i2.RoomRepository {
   MockRoomRepository() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i4.Future<_i2.Either<_i5.Failure, String>> create(_i6.Room? room) =>
-      (super.noSuchMethod(
+  _i3.Future<String> create(_i4.Room? room) => (super.noSuchMethod(
         Invocation.method(
           #create,
           [room],
         ),
-        returnValue: _i4.Future<_i2.Either<_i5.Failure, String>>.value(
-            _FakeEither_0<_i5.Failure, String>(
-          this,
-          Invocation.method(
-            #create,
-            [room],
-          ),
-        )),
-      ) as _i4.Future<_i2.Either<_i5.Failure, String>>);
+        returnValue: _i3.Future<String>.value(''),
+      ) as _i3.Future<String>);
   @override
-  _i4.Future<_i2.Either<_i5.Failure, String>> update(_i6.Room? room) =>
-      (super.noSuchMethod(
+  _i3.Future<String> update(_i4.Room? room) => (super.noSuchMethod(
         Invocation.method(
           #update,
           [room],
         ),
-        returnValue: _i4.Future<_i2.Either<_i5.Failure, String>>.value(
-            _FakeEither_0<_i5.Failure, String>(
-          this,
-          Invocation.method(
-            #update,
-            [room],
-          ),
-        )),
-      ) as _i4.Future<_i2.Either<_i5.Failure, String>>);
+        returnValue: _i3.Future<String>.value(''),
+      ) as _i3.Future<String>);
 }
