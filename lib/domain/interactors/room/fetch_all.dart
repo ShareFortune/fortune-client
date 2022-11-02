@@ -1,8 +1,6 @@
-import 'package:fpdart/src/either.dart';
-
 import 'package:fortune_client/domain/usecases/core/error/failures.dart';
-
-import '../../usecases/room/fetch_list.dart';
+import 'package:fortune_client/domain/usecases/room/fetch_list.dart';
+import 'package:fpdart/fpdart.dart';
 
 class RoomFetchAllInteractor implements RoomFetchAllUseCase {
   @override

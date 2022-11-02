@@ -1,8 +1,6 @@
-import '../core/usecase.dart';
+import '../core/usecases/usecase.dart';
 
-abstract class LoginUseCase implements UseCase<LoginParams, LoginResults> {}
-
-class LoginParams {}
+abstract class LoginUseCase implements UseCase<NoParams, LoginResults> {}
 
 class LoginResults {
   final bool isLogin;

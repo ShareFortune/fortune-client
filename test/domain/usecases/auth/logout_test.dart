@@ -4,7 +4,7 @@ import 'package:fortune_client/domain/repositories/auth.dart';
 import 'package:fortune_client/domain/usecases/auth/logout.dart';
 import 'package:mockito/annotations.dart';
 
-import 'login_test.mocks.dart';
+import 'logout_test.mocks.dart';
 
 @GenerateMocks([AuthRepository])
 void main() {

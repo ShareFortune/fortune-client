@@ -2,11 +2,9 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:fortune_client/domain/interactors/auth/login.dart';
 import 'package:fortune_client/domain/repositories/auth.dart';
 
-import 'package:fortune_client/domain/usecases/auth/login.dart';
+import 'package:fortune_client/domain/usecases/core/usecases/usecase.dart';
 
 import 'package:mockito/annotations.dart';
-
-import 'login_test.mocks.dart';
 
 @GenerateMocks([AuthRepository])
 void main() {
@@ -16,11 +14,9 @@ void main() {
     usecase = LoginInteractor(MockAuthRepository());
   });
 
-  final LoginParams params = LoginParams();
-
   group("ログインができるか", () {
     test("ログインができるか", () async {
-      final result = await usecase.handle(params);
+      final result = await usecase.handle(NoParams());
       // expect(result.isLogin, true);
     });
   });

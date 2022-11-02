@@ -1,15 +1,14 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 abstract class FirebaseAuthDataSource {
-  Future<UserCredential?> sigInWithGoogle();
-  logout();
-  update();
-
   bool get isSignIn;
   User? get firebaseUser;
+
+  logout();
+  update();
+  Future<UserCredential?> sigInWithGoogle();
 }
 
 class FirebaseAuthDataSourceImpl implements FirebaseAuthDataSource {
@@ -47,34 +46,16 @@ class FirebaseAuthDataSourceImpl implements FirebaseAuthDataSource {
 
         response = await firebaseAuth.signInWithCredential(credential);
       }
-    } on PlatformException catch (e) {
-      debugPrint('PlatformException: $e');
-    } on FirebaseAuthException catch (e) {
-      debugPrint('FirebaseAuthException: $e');
+    } catch (e) {
+      rethrow;
     }
+
     return response;
   }
-
-  // @override
-  // Future<void> signInWithGoogle() async {
-  //   final GoogleSignInAccount? googleSignInAccount =
-  //       await GoogleSignIn().signIn();
-  //   final GoogleSignInAuthentication googleSignInAuthentication =
-  //       await googleSignInAccount!.authentication;
-
-  //   final AuthCredential credential = GoogleAuthProvider.credential(
-  //     accessToken: googleSignInAuthentication.accessToken,
-  //     idToken: googleSignInAuthentication.idToken,
-  //   );
-  //   await FirebaseAuth.instance.signInWithCredential(credential);
-  // }
 
   @override
   logout() {}
 
   @override
-  update() {
-    // TODO: implement update
-    throw UnimplementedError();
-  }
+  update() {}
 }

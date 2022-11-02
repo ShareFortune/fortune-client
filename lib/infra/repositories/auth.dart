@@ -1,5 +1,7 @@
 import 'package:fortune_client/domain/repositories/auth.dart';
+import 'package:fortune_client/domain/usecases/core/error/failures.dart';
 import 'package:fortune_client/infra/datasources/firebase/auth.dart';
+import 'package:fpdart/fpdart.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
   AuthRepositoryImpl(this._dataSource);
@@ -7,10 +9,16 @@ class AuthRepositoryImpl implements AuthRepository {
   final FirebaseAuthDataSource _dataSource;
 
   @override
-  Future<bool> signInWithGoogle() async {
-    // await _dataSource.signInWithGoogle();
-    // return _dataSource.isSignIn;
-    return true;
+  Future<Either<Failure, bool>> signInWithGoogle() async {
+    try {
+      final result = await _dataSource.sigInWithGoogle();
+      if (result != null) {
+        return Either.right(true);
+      }
+      return Either.right(false);
+    } catch (e) {
+      throw CacheFailure();
+    }
   }
 
   @override
