@@ -4,8 +4,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../room_detail/containers/page.dart';
 import '../components/page.dart';
 
-class ParticipatingRoomListPageContainer extends ConsumerWidget {
-  const ParticipatingRoomListPageContainer({super.key});
+class ParticipatingRoomListPage extends ConsumerWidget {
+  const ParticipatingRoomListPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

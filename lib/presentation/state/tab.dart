@@ -15,12 +15,12 @@ enum TabItem {
 
   rooms(
     icon: Icons.event,
-    page: ParticipatingRoomListPageContainer(),
+    page: ParticipatingRoomListPage(),
   ),
 
   messages(
     icon: Icons.chat,
-    page: MessageRoomListPageContainer(),
+    page: MessageRoomListPage(),
   );
 
   // account(

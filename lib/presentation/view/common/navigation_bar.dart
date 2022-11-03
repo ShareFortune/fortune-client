@@ -1,0 +1,38 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:flutter/material.dart';
+import 'package:fortune_client/presentation/view/routes/app_router.dart';
+
+class FortuneBottomNavigationBar extends StatelessWidget {
+  const FortuneBottomNavigationBar({super.key});
+  @override
+  Widget build(BuildContext context) {
+    return AutoTabsRouter(
+      routes: const [
+        RoomListRoute(),
+        ParticipatingRoomListRoute(),
+        MessageRoomListRoute(),
+      ],
+      builder: (context, child, animation) {
+        final tabsRouter = AutoTabsRouter.of(context);
+
+        return Scaffold(
+          body: FadeTransition(
+            opacity: animation,
+            child: child,
+          ),
+          bottomNavigationBar: BottomNavigationBar(
+            currentIndex: tabsRouter.activeIndex,
+            onTap: (index) {
+              tabsRouter.setActiveIndex(index);
+            },
+            items: const [
+              BottomNavigationBarItem(label: 'Tab1', icon: Icon(Icons.check)),
+              BottomNavigationBarItem(label: 'Tab2', icon: Icon(Icons.check)),
+              BottomNavigationBarItem(label: 'Tab3', icon: Icon(Icons.check)),
+            ],
+          ),
+        );
+      },
+    );
+  }
+}

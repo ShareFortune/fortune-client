@@ -3,8 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../components/page.dart';
 
-class MessageRoomListPageContainer extends StatelessWidget {
-  const MessageRoomListPageContainer({super.key});
+class MessageRoomListPage extends StatelessWidget {
+  const MessageRoomListPage({super.key});
 
   @override
   Widget build(BuildContext context) {
