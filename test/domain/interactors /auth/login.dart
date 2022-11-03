@@ -10,7 +10,7 @@ class LoginInteractor implements LoginUseCase {
   LoginInteractor(this.repository);
 
   @override
-  Future<Either<Failure, LoginResults>> handle(NoParams params) {
+  handle(NoParams params) {
     // TODO: implement handle
     throw UnimplementedError();
   }

@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:fortune_client/domain/domain_providers.dart';
 import 'package:fortune_client/presentation/state/tab.dart';
-import 'package:fortune_client/presentation/views/widgets/navigation/containers/page.dart';
+import 'package:fortune_client/presentation/view/widgets/navigation/containers/page.dart';
 
 void main() async {
   await Firebase.initializeApp();
-  runApp(const ProviderScope(child: MyApp()));
+  runApp(
+    const ProviderScope(
+      overrides: [],
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends ConsumerWidget {

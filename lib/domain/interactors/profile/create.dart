@@ -11,8 +11,7 @@ class ProfileCreateInteractor implements ProfileCreateUseCase {
   ProfileCreateInteractor(this.repository);
 
   @override
-  Future<Either<Failure, ProfileCreateResults>> handle(
-      ProfileCreateParams params) async {
+  handle(ProfileCreateParams params) async {
     final profile = Profile(
       mainImagePath: params.mainImagePath,
       secondImagePath: params.secondImagePath,
@@ -36,9 +35,9 @@ class ProfileCreateInteractor implements ProfileCreateUseCase {
 
     try {
       final result = await repository.create(profile);
-      return Either.of(ProfileCreateResults());
-    } on Failure catch (e) {
-      return Either.left(e);
+      return ProfileCreateResults();
+    } catch (e) {
+      throw e;
     }
   }
 }

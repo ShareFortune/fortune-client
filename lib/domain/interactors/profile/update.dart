@@ -11,8 +11,7 @@ class ProfileUpdateInteractor implements ProfileUpdateUseCase {
   ProfileUpdateInteractor(this.repository);
 
   @override
-  Future<Either<Failure, ProfileUpdateResults>> handle(
-      ProfileUpdateParams params) async {
+  handle(ProfileUpdateParams params) async {
     final profile = Profile(
       mainImagePath: params.mainImagePath,
       secondImagePath: params.secondImagePath,
@@ -36,9 +35,9 @@ class ProfileUpdateInteractor implements ProfileUpdateUseCase {
 
     try {
       final result = await repository.update(profile);
-      return Either.of(ProfileUpdateResults());
-    } on Failure catch (e) {
-      return Either.left(e);
+      return ProfileUpdateResults();
+    } catch (e) {
+      rethrow;
     }
   }
 }

@@ -9,7 +9,7 @@ class LogoutInteractor implements LogoutUseCase {
   LogoutInteractor(this.repository);
 
   @override
-  Future<Either<Failure, LogoutResults>> handle(LogoutParams params) {
+  Future<LogoutResults> handle(LogoutParams params) {
     // TODO: implement handle
     throw UnimplementedError();
   }

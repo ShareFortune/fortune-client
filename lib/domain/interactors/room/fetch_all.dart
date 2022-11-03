@@ -4,8 +4,7 @@ import 'package:fpdart/fpdart.dart';
 
 class RoomFetchAllInteractor implements RoomFetchAllUseCase {
   @override
-  Future<Either<Failure, RoomFetchAllResults>> handle(
-      RoomFetchAllParams params) {
+  handle(RoomFetchAllParams params) {
     // TODO: implement handle
     throw UnimplementedError();
   }

@@ -13,8 +13,7 @@ class RoomUpdateInteractor implements RoomUpdateUseCase {
   RoomUpdateInteractor(this.repository);
 
   @override
-  Future<Either<Failure, RoomUpdateResults>> handle(
-      RoomUpdateParams params) async {
+  handle(RoomUpdateParams params) async {
     const host = Member(
       id: "id",
       name: "name",
@@ -34,9 +33,9 @@ class RoomUpdateInteractor implements RoomUpdateUseCase {
 
     try {
       final result = await repository.update(newRoom);
-      return Either.of(RoomUpdateResults(roomID: result));
-    } on Failure catch (e) {
-      return Either.left(e);
+      return RoomUpdateResults(roomID: result);
+    } catch (e) {
+      rethrow;
     }
   }
 }

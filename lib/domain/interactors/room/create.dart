@@ -5,7 +5,6 @@ import 'package:fortune_client/domain/entities/models/room/room.dart';
 import 'package:fortune_client/domain/repositories/room.dart';
 import 'package:fortune_client/domain/usecases/core/error/failures.dart';
 import 'package:fortune_client/domain/usecases/room/create.dart';
-import 'package:fpdart/fpdart.dart';
 
 class RoomCreateInteractor implements RoomCreateUseCase {
   final RoomRepository repository;
@@ -13,8 +12,7 @@ class RoomCreateInteractor implements RoomCreateUseCase {
   RoomCreateInteractor(this.repository);
 
   @override
-  Future<Either<Failure, RoomCreateResults>> handle(
-      RoomCreateParams params) async {
+  handle(RoomCreateParams params) async {
     const host = Member(
       id: "id",
       name: "name",
@@ -34,9 +32,9 @@ class RoomCreateInteractor implements RoomCreateUseCase {
 
     try {
       final result = await repository.create(newRoom);
-      return Either.of(RoomCreateResults(roomID: result));
-    } on Failure catch (e) {
-      return Either.left(e);
+      return RoomCreateResults(roomID: result);
+    } catch (e) {
+      rethrow;
     }
   }
 }
