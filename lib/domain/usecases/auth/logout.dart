@@ -1,4 +1,4 @@
-import '../core/usecase.dart';
+import '../core/usecases/usecase.dart';
 
 abstract class LogoutUseCase implements UseCase<LogoutParams, LogoutResults> {}
 

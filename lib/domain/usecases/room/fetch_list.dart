@@ -2,15 +2,15 @@ import 'package:fortune_client/domain/entities/models/room/room.dart';
 
 import '../core/usecases/usecase.dart';
 
-abstract class RoomFetchAllUseCase
-    implements UseCase<RoomFetchAllParams, RoomFetchAllResults> {}
+abstract class RoomFetchListUseCase
+    implements UseCase<RoomFetchListParams, RoomFetchListResults> {}
 
-class RoomFetchAllParams {}
+class RoomFetchListParams {}
 
-class RoomFetchAllResults {
+class RoomFetchListResults {
   final List<Room> rooms;
 
-  RoomFetchAllResults({
+  RoomFetchListResults({
     required this.rooms,
   });
 }

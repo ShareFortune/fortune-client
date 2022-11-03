@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:fortune_client/presentation/views/res/size_config.dart';
-
-import '../components/page.dart';
+import 'package:fortune_client/presentation/view/pages/profile/profile/components/page.dart';
+import 'package:fortune_client/presentation/view/res/size_config.dart';
 
 class ProfilePegeContainer extends ConsumerWidget {
   const ProfilePegeContainer({super.key});

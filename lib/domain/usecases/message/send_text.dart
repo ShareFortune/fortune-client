@@ -1,4 +1,4 @@
-import '../core/usecase.dart';
+import '../core/usecases/usecase.dart';
 
 abstract class MessageSendTextUseCase
     implements UseCase<MessageSendTextParams, MessageSendTextResults> {}

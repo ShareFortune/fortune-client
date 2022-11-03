@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../room/containers/page.dart';
+import '../../room_detail/containers/page.dart';
 import '../components/page.dart';
 
 class ParticipatingRoomListPageContainer extends ConsumerWidget {

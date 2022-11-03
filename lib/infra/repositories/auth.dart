@@ -13,7 +13,7 @@ class AuthRepositoryImpl implements AuthRepository {
       final result = await _dataSource.sigInWithGoogle();
       return result != null;
     } catch (e) {
-      throw e;
+      rethrow;
     }
   }
 

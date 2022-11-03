@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 
 /// 検索バー
 /// 検索項目: タグ・人数・場所
-class SearchBarComponent extends StatelessWidget
-    implements PreferredSizeWidget {
-  const SearchBarComponent({Key? key}) : super(key: key);
+class SearchHeader extends StatelessWidget implements PreferredSizeWidget {
+  const SearchHeader({Key? key}) : super(key: key);
 
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);

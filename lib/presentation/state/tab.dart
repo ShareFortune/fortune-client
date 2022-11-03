@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fortune_client/presentation/view/pages/messages/message_room_list/containers/page.dart';
 import 'package:fortune_client/presentation/view/pages/rooms/participating/containers/page.dart';
-import 'package:fortune_client/presentation/view/pages/rooms/room_list/containers/page.dart';
+import 'package:fortune_client/presentation/view/pages/rooms/room_list/room_list_page.dart';
 
 final currentTabProvider =
     AutoDisposeStateProvider<TabItem>((ref) => TabItem.home);
@@ -10,7 +10,7 @@ final currentTabProvider =
 enum TabItem {
   home(
     icon: Icons.home,
-    page: RoomListPageContainer(),
+    page: RoomListPage(),
   ),
 
   rooms(

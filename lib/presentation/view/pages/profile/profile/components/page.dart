@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../rooms/room/containers/widgets/room_tag_wrappers.dart';
+import '../../../rooms/room_detail/containers/widgets/room_tag_wrappers.dart';
 
 class ProfilePegeComponent extends StatelessWidget {
   const ProfilePegeComponent({super.key, required this.containerSize});

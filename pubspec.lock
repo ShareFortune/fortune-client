@@ -321,6 +321,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.6.6"
+  flutter_clean_architecture:
+    dependency: "direct main"
+    description:
+      name: flutter_clean_architecture
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "5.0.3"
   flutter_link_previewer:
     dependency: transitive
     description:
@@ -632,6 +639,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "5.3.2"
+  nested:
+    dependency: transitive
+    description:
+      name: nested
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.0"
   open_filex:
     dependency: "direct main"
     description:
@@ -737,6 +751,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.2.4"
+  provider:
+    dependency: transitive
+    description:
+      name: provider
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "6.0.4"
   pub_semver:
     dependency: transitive
     description:
@@ -758,6 +779,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.1.0"
+  responsive_builder:
+    dependency: transitive
+    description:
+      name: responsive_builder
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.4.3"
   riverpod:
     dependency: transitive
     description:
@@ -765,6 +793,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.1"
+  rxdart:
+    dependency: transitive
+    description:
+      name: rxdart
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.26.0"
   scroll_to_index:
     dependency: transitive
     description:

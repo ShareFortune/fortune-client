@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:fortune_client/domain/domain_providers.dart';
 import 'package:fortune_client/presentation/state/tab.dart';
 import 'package:fortune_client/presentation/view/widgets/navigation/containers/page.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(
     const ProviderScope(
-      overrides: [],
       child: MyApp(),
     ),
   );

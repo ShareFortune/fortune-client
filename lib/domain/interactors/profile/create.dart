@@ -37,7 +37,7 @@ class ProfileCreateInteractor implements ProfileCreateUseCase {
       final result = await repository.create(profile);
       return ProfileCreateResults();
     } catch (e) {
-      throw e;
+      rethrow;
     }
   }
 }

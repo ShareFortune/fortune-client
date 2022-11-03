@@ -2,10 +2,10 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
-import 'package:fortune_client/presentation/view/pages/auth/sign_in/view_model.dart';
+import 'package:fortune_client/presentation/view/pages/auth/sign_in/sign_in_view_model.dart';
 
-class SignInPageComponent extends ConsumerWidget {
-  const SignInPageComponent({super.key});
+class SignInPage extends ConsumerWidget {
+  const SignInPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -70,7 +70,7 @@ class SignInPageComponent extends ConsumerWidget {
           ),
         ),
       ),
-      loading: () => Scaffold(
+      loading: () => const Scaffold(
         body: SafeArea(
           child: Center(
             child: CircularProgressIndicator(
