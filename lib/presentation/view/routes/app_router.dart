@@ -15,12 +15,12 @@ export 'app_router.gr.dart';
   replaceInRouteName: 'Page,Route',
   routes: <AutoRoute>[
     AutoRoute(
-      path: '/sign_in',
+      path: RoutePath.appRouteSignIn,
       page: SignInPage,
       guards: [AuthGuard],
     ),
     AutoRoute(
-      path: '/',
+      // path: '/',
       page: FortuneBottomNavigationBar,
       initial: true,
       children: [
