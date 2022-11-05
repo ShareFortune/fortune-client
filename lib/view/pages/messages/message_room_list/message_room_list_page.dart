@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fortune_client/view/common/app_bar/app_bar.dart';
-import 'package:fortune_client/view/pages/messages/message_room/containers/page.dart';
+import 'package:fortune_client/view/pages/messages/message_room/message_room_page.dart';
 import 'package:fortune_client/view/pages/messages/message_room_list/message_room_list_view_model.dart';
 
 class MessageRoomListPage extends ConsumerWidget {
@@ -32,8 +32,7 @@ class MessageRoomListPage extends ConsumerWidget {
                       /// メッセージルームに遷移
                       Navigator.of(context, rootNavigator: true).push(
                         MaterialPageRoute(
-                          builder: (context) =>
-                              const MessageRoomPageContainer(),
+                          builder: (context) => const MessageRoomPage(),
                         ),
                       );
                     }),

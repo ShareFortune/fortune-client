@@ -28,8 +28,8 @@ class MessageRoomViewModel extends StateNotifier<AsyncValue<MessageRoomState>> {
 
   final Ref _ref;
 
-  initialize() async {
-    await fetch();
+  initialize() {
+    fetch();
   }
 
   fetch() async {
@@ -38,8 +38,7 @@ class MessageRoomViewModel extends StateNotifier<AsyncValue<MessageRoomState>> {
     });
   }
 
-  types.User user() =>
-      const types.User(id: '82091008-a484-4a89-ae75-a22bf8d6f3ac');
+  types.User user() => types.User(id: state.value!.userId);
 
   loadMessages() async {
     final response =
@@ -64,10 +63,10 @@ class MessageRoomViewModel extends StateNotifier<AsyncValue<MessageRoomState>> {
 
   _addMessage(types.Message message) {
     final data = state.value;
-    if (data != null) {
-      data.messages.insert(0, message);
-      state = AsyncValue.data(data);
-    }
+    if (data == null) return;
+    state = AsyncValue.data(data.copyWith(
+      messages: [message, ...data.messages],
+    ));
   }
 
   void handleFileSelection() async {
