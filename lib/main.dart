@@ -1,8 +1,9 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:fortune_client/presentation/state/tab.dart';
-import 'package:fortune_client/presentation/view/widgets/navigation/containers/page.dart';
+import 'package:fortune_client/presentation/view/routes/app_router.gr.dart';
+import 'package:fortune_client/presentation/view/routes/route_guard.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,38 +20,20 @@ class MyApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final currentTab = ref.watch(currentTabProvider.state);
+    final authGuard = ref.watch(authGuardProvider);
+    final appRouter = AppRouter(authGuard: authGuard);
 
-    return MaterialApp(
+    return MaterialApp.router(
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Scaffold(
-        /// ボトムナビゲーションバー
-        bottomNavigationBar: const BottomNavigationBarContainer(),
-
-        /// ボトムナビゲーションバーに応じて表示するウィジットを変更
-        body: Stack(
-          children: TabItem.values
-              .map(
-                (tabItem) => Offstage(
-                  offstage: currentTab.state != tabItem,
-
-                  /// ナビゲーションバーを遷移後も表示するために[Navigator]を利用
-                  child: Navigator(
-                    key: navigatorKeys[tabItem],
-                    onGenerateRoute: (settings) {
-                      return MaterialPageRoute<Widget>(
-                        builder: (context) => tabItem.page,
-                      );
-                    },
-                  ),
-                ),
-              )
-              .toList(),
-        ),
-      ),
+      routerDelegate: appRouter.delegate(),
+      // routerDelegate: AutoRouterDelegate.declarative(
+      //   appRouter,
+      //   routes: routes,
+      // ),
+      routeInformationParser: appRouter.defaultRouteParser(),
     );
   }
 }

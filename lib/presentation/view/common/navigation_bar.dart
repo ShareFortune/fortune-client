@@ -26,9 +26,9 @@ class FortuneBottomNavigationBar extends StatelessWidget {
               tabsRouter.setActiveIndex(index);
             },
             items: const [
-              BottomNavigationBarItem(label: 'Tab1', icon: Icon(Icons.check)),
-              BottomNavigationBarItem(label: 'Tab2', icon: Icon(Icons.check)),
-              BottomNavigationBarItem(label: 'Tab3', icon: Icon(Icons.check)),
+              BottomNavigationBarItem(label: 'ホーム', icon: Icon(Icons.home)),
+              BottomNavigationBarItem(label: '参加', icon: Icon(Icons.event)),
+              BottomNavigationBarItem(label: 'メッセージ', icon: Icon(Icons.chat)),
             ],
           ),
         );

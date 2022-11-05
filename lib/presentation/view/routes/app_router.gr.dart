@@ -10,139 +10,178 @@
 //
 // ignore_for_file: type=lint
 
-part of 'app_router.dart';
+// ignore_for_file: no_leading_underscores_for_library_prefixes
+import 'package:auto_route/auto_route.dart' as _i6;
+import 'package:flutter/material.dart' as _i7;
+import 'package:fortune_client/presentation/view/common/navigation_bar.dart'
+    as _i2;
+import 'package:fortune_client/presentation/view/pages/auth/sign_in/sign_in_page.dart'
+    as _i1;
+import 'package:fortune_client/presentation/view/pages/messages/message_room_list/containers/page.dart'
+    as _i5;
+import 'package:fortune_client/presentation/view/pages/rooms/participating/containers/page.dart'
+    as _i4;
+import 'package:fortune_client/presentation/view/pages/rooms/room_list/room_list_page.dart'
+    as _i3;
+import 'package:fortune_client/presentation/view/routes/route_guard.dart'
+    as _i8;
 
-class _$$AppRouter extends RootStackRouter {
-  _$$AppRouter([GlobalKey<NavigatorState>? navigatorKey]) : super(navigatorKey);
+class AppRouter extends _i6.RootStackRouter {
+  AppRouter({
+    _i7.GlobalKey<_i7.NavigatorState>? navigatorKey,
+    required this.authGuard,
+  }) : super(navigatorKey);
+
+  final _i8.AuthGuard authGuard;
 
   @override
-  final Map<String, PageFactory> pagesMap = {
-    FortuneBottomNavigationBarRoute.name: (routeData) {
-      return MaterialPageX<dynamic>(
+  final Map<String, _i6.PageFactory> pagesMap = {
+    SignInRoute.name: (routeData) {
+      final args = routeData.argsAs<SignInRouteArgs>();
+      return _i6.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const FortuneBottomNavigationBar(),
+        child: _i1.SignInPage(
+          key: args.key,
+          onResult: args.onResult,
+        ),
       );
     },
-    SignInPageRoute.name: (routeData) {
-      return MaterialPageX<dynamic>(
+    FortuneBottomNavigationBar.name: (routeData) {
+      return _i6.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const SignInPage(),
+        child: const _i2.FortuneBottomNavigationBar(),
       );
     },
-    RoomListPageRoute.name: (routeData) {
-      return MaterialPageX<dynamic>(
+    RoomListRoute.name: (routeData) {
+      return _i6.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const RoomListPage(),
+        child: const _i3.RoomListPage(),
       );
     },
-    ParticipatingRoomListPageRoute.name: (routeData) {
-      return MaterialPageX<dynamic>(
+    ParticipatingRoomListRoute.name: (routeData) {
+      return _i6.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const ParticipatingRoomListPage(),
+        child: const _i4.ParticipatingRoomListPage(),
       );
     },
-    MessageRoomListPageRoute.name: (routeData) {
-      return MaterialPageX<dynamic>(
+    MessageRoomListRoute.name: (routeData) {
+      return _i6.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const MessageRoomListPage(),
+        child: const _i5.MessageRoomListPage(),
       );
     },
   };
 
   @override
-  List<RouteConfig> get routes => [
-        RouteConfig(
-          FortuneBottomNavigationBarRoute.name,
+  List<_i6.RouteConfig> get routes => [
+        _i6.RouteConfig(
+          SignInRoute.name,
+          path: '/sign_in',
+        ),
+        _i6.RouteConfig(
+          FortuneBottomNavigationBar.name,
           path: '/',
+          guards: [authGuard],
           children: [
-            RouteConfig(
-              '#redirect',
-              path: '',
-              parent: FortuneBottomNavigationBarRoute.name,
-              redirectTo: 'rooms',
-              fullMatch: true,
-            ),
-            RouteConfig(
-              RoomListPageRoute.name,
+            _i6.RouteConfig(
+              RoomListRoute.name,
               path: 'rooms',
-              parent: FortuneBottomNavigationBarRoute.name,
+              parent: FortuneBottomNavigationBar.name,
             ),
-            RouteConfig(
-              ParticipatingRoomListPageRoute.name,
-              path: 'posts',
-              parent: FortuneBottomNavigationBarRoute.name,
+            _i6.RouteConfig(
+              ParticipatingRoomListRoute.name,
+              path: 'rooms',
+              parent: FortuneBottomNavigationBar.name,
             ),
-            RouteConfig(
-              MessageRoomListPageRoute.name,
-              path: 'settings',
-              parent: FortuneBottomNavigationBarRoute.name,
+            _i6.RouteConfig(
+              MessageRoomListRoute.name,
+              path: 'message_rooms',
+              parent: FortuneBottomNavigationBar.name,
             ),
           ],
-        ),
-        RouteConfig(
-          SignInPageRoute.name,
-          path: '/login',
         ),
       ];
 }
 
 /// generated route for
-/// [FortuneBottomNavigationBar]
-class FortuneBottomNavigationBarRoute extends PageRouteInfo<void> {
-  const FortuneBottomNavigationBarRoute({List<PageRouteInfo>? children})
+/// [_i1.SignInPage]
+class SignInRoute extends _i6.PageRouteInfo<SignInRouteArgs> {
+  SignInRoute({
+    _i7.Key? key,
+    required dynamic Function(bool) onResult,
+  }) : super(
+          SignInRoute.name,
+          path: '/sign_in',
+          args: SignInRouteArgs(
+            key: key,
+            onResult: onResult,
+          ),
+        );
+
+  static const String name = 'SignInRoute';
+}
+
+class SignInRouteArgs {
+  const SignInRouteArgs({
+    this.key,
+    required this.onResult,
+  });
+
+  final _i7.Key? key;
+
+  final dynamic Function(bool) onResult;
+
+  @override
+  String toString() {
+    return 'SignInRouteArgs{key: $key, onResult: $onResult}';
+  }
+}
+
+/// generated route for
+/// [_i2.FortuneBottomNavigationBar]
+class FortuneBottomNavigationBar extends _i6.PageRouteInfo<void> {
+  const FortuneBottomNavigationBar({List<_i6.PageRouteInfo>? children})
       : super(
-          FortuneBottomNavigationBarRoute.name,
+          FortuneBottomNavigationBar.name,
           path: '/',
           initialChildren: children,
         );
 
-  static const String name = 'FortuneBottomNavigationBarRoute';
+  static const String name = 'FortuneBottomNavigationBar';
 }
 
 /// generated route for
-/// [SignInPage]
-class SignInPageRoute extends PageRouteInfo<void> {
-  const SignInPageRoute()
+/// [_i3.RoomListPage]
+class RoomListRoute extends _i6.PageRouteInfo<void> {
+  const RoomListRoute()
       : super(
-          SignInPageRoute.name,
-          path: '/login',
-        );
-
-  static const String name = 'SignInPageRoute';
-}
-
-/// generated route for
-/// [RoomListPage]
-class RoomListPageRoute extends PageRouteInfo<void> {
-  const RoomListPageRoute()
-      : super(
-          RoomListPageRoute.name,
+          RoomListRoute.name,
           path: 'rooms',
         );
 
-  static const String name = 'RoomListPageRoute';
+  static const String name = 'RoomListRoute';
 }
 
 /// generated route for
-/// [ParticipatingRoomListPage]
-class ParticipatingRoomListPageRoute extends PageRouteInfo<void> {
-  const ParticipatingRoomListPageRoute()
+/// [_i4.ParticipatingRoomListPage]
+class ParticipatingRoomListRoute extends _i6.PageRouteInfo<void> {
+  const ParticipatingRoomListRoute()
       : super(
-          ParticipatingRoomListPageRoute.name,
-          path: 'posts',
+          ParticipatingRoomListRoute.name,
+          path: 'rooms',
         );
 
-  static const String name = 'ParticipatingRoomListPageRoute';
+  static const String name = 'ParticipatingRoomListRoute';
 }
 
 /// generated route for
-/// [MessageRoomListPage]
-class MessageRoomListPageRoute extends PageRouteInfo<void> {
-  const MessageRoomListPageRoute()
+/// [_i5.MessageRoomListPage]
+class MessageRoomListRoute extends _i6.PageRouteInfo<void> {
+  const MessageRoomListRoute()
       : super(
-          MessageRoomListPageRoute.name,
-          path: 'settings',
+          MessageRoomListRoute.name,
+          path: 'message_rooms',
         );
 
-  static const String name = 'MessageRoomListPageRoute';
+  static const String name = 'MessageRoomListRoute';
 }

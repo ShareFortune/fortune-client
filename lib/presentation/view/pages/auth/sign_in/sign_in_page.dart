@@ -5,7 +5,9 @@ import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:fortune_client/presentation/view/pages/auth/sign_in/sign_in_view_model.dart';
 
 class SignInPage extends ConsumerWidget {
-  const SignInPage({super.key});
+  const SignInPage({super.key, required this.onResult});
+
+  final Function(bool result) onResult;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -14,6 +16,9 @@ class SignInPage extends ConsumerWidget {
 
     return state.when(
       data: (data) {
+        /// ルート管理
+        onResult(data.isSignIn);
+
         return Scaffold(
           body: Center(
             child: Container(
@@ -26,15 +31,15 @@ class SignInPage extends ConsumerWidget {
                   SignInButton(
                     text: "Sign in with Apple",
                     Buttons.AppleDark,
-                    onPressed: viewModel.signInWithApple(),
+                    onPressed: viewModel.signInWithApple,
                   ),
                   SignInButton(
                     Buttons.Google,
-                    onPressed: viewModel.signInWithGoogle(),
+                    onPressed: viewModel.signInWithGoogle,
                   ),
                   SignInButton(
                     Buttons.Facebook,
-                    onPressed: viewModel.signInWithFacebook(),
+                    onPressed: viewModel.signInWithFacebook,
                   ),
                   const SizedBox(height: 50),
                   RichText(
