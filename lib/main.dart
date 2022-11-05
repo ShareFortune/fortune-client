@@ -28,10 +28,6 @@ class MyApp extends ConsumerWidget {
         primarySwatch: Colors.blue,
       ),
       routerDelegate: appRouter.delegate(),
-      // routerDelegate: AutoRouterDelegate.declarative(
-      //   appRouter,
-      //   routes: routes,
-      // ),
       routeInformationParser: appRouter.defaultRouteParser(),
     );
   }

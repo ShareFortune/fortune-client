@@ -15,7 +15,7 @@ import 'package:auto_route/auto_route.dart' as _i6;
 import 'package:flutter/material.dart' as _i7;
 import 'package:fortune_client/view/pages/auth/sign_in/sign_in_page.dart'
     as _i1;
-import 'package:fortune_client/view/pages/messages/message_room_list/containers/page.dart'
+import 'package:fortune_client/view/pages/messages/message_room_list/message_room_list_page.dart'
     as _i5;
 import 'package:fortune_client/view/pages/rooms/participating/containers/page.dart'
     as _i4;
