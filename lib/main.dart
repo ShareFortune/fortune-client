@@ -2,8 +2,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:fortune_client/presentation/view/routes/app_router.gr.dart';
-import 'package:fortune_client/presentation/view/routes/route_guard.dart';
+import 'package:fortune_client/view/routes/app_router.gr.dart';
+import 'package:fortune_client/view/routes/route_guard.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
