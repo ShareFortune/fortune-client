@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fortune_client/view/pages/account/account/containers/page.dart';
-import 'package:fortune_client/view/pages/rooms/room_detail/containers/widgets/room_member_icon_list.dart';
-import 'package:fortune_client/view/pages/rooms/room_detail/containers/widgets/room_tag_wrappers.dart';
 import 'package:fortune_client/view/pages/rooms/room_detail/room_detail_view_model.dart';
+import 'package:fortune_client/view/widgets/icon_list_view.dart';
+import 'package:fortune_client/view/widgets/tag_wrapper.dart';
 
 class RoomDetailPage extends ConsumerWidget {
   const RoomDetailPage({super.key});
@@ -70,7 +70,7 @@ class RoomDetailPage extends ConsumerWidget {
 
                       /// タグ
                       const SizedBox(height: 30),
-                      const RoomTagWrappersContainer(),
+                      const TagWrapper(),
                     ],
                   ),
                 ),
@@ -78,7 +78,9 @@ class RoomDetailPage extends ConsumerWidget {
                 const Divider(),
 
                 /// 参加者
-                const RoomMemberIconListContainer(),
+                IconListView(
+                  onTapParticipantIcon: () {},
+                ),
 
                 const Divider(),
 

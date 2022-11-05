@@ -13,7 +13,6 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i6;
 import 'package:flutter/material.dart' as _i7;
-import 'package:fortune_client/view/widgets/navigation_bar.dart' as _i2;
 import 'package:fortune_client/view/pages/auth/sign_in/sign_in_page.dart'
     as _i1;
 import 'package:fortune_client/view/pages/messages/message_room_list/containers/page.dart'
@@ -23,6 +22,7 @@ import 'package:fortune_client/view/pages/rooms/participating/containers/page.da
 import 'package:fortune_client/view/pages/rooms/room_list/room_list_page.dart'
     as _i3;
 import 'package:fortune_client/view/routes/route_guard.dart' as _i8;
+import 'package:fortune_client/view/widgets/navigation_bar.dart' as _i2;
 
 class AppRouter extends _i6.RootStackRouter {
   AppRouter({
@@ -44,10 +44,10 @@ class AppRouter extends _i6.RootStackRouter {
         ),
       );
     },
-    FortuneBottomNavigationBar.name: (routeData) {
+    NavigationBar.name: (routeData) {
       return _i6.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i2.FortuneBottomNavigationBar(),
+        child: const _i2.NavigationBar(),
       );
     },
     RoomListRoute.name: (routeData) {
@@ -77,24 +77,24 @@ class AppRouter extends _i6.RootStackRouter {
           path: '/sign_in',
         ),
         _i6.RouteConfig(
-          FortuneBottomNavigationBar.name,
+          NavigationBar.name,
           path: '/',
           guards: [authGuard],
           children: [
             _i6.RouteConfig(
               RoomListRoute.name,
-              path: 'rooms',
-              parent: FortuneBottomNavigationBar.name,
+              path: 'rooms_search',
+              parent: NavigationBar.name,
             ),
             _i6.RouteConfig(
               ParticipatingRoomListRoute.name,
               path: 'rooms',
-              parent: FortuneBottomNavigationBar.name,
+              parent: NavigationBar.name,
             ),
             _i6.RouteConfig(
               MessageRoomListRoute.name,
               path: 'message_rooms',
-              parent: FortuneBottomNavigationBar.name,
+              parent: NavigationBar.name,
             ),
           ],
         ),
@@ -136,16 +136,16 @@ class SignInRouteArgs {
 }
 
 /// generated route for
-/// [_i2.FortuneBottomNavigationBar]
-class FortuneBottomNavigationBar extends _i6.PageRouteInfo<void> {
-  const FortuneBottomNavigationBar({List<_i6.PageRouteInfo>? children})
+/// [_i2.NavigationBar]
+class NavigationBar extends _i6.PageRouteInfo<void> {
+  const NavigationBar({List<_i6.PageRouteInfo>? children})
       : super(
-          FortuneBottomNavigationBar.name,
+          NavigationBar.name,
           path: '/',
           initialChildren: children,
         );
 
-  static const String name = 'FortuneBottomNavigationBar';
+  static const String name = 'NavigationBar';
 }
 
 /// generated route for
@@ -154,7 +154,7 @@ class RoomListRoute extends _i6.PageRouteInfo<void> {
   const RoomListRoute()
       : super(
           RoomListRoute.name,
-          path: 'rooms',
+          path: 'rooms_search',
         );
 
   static const String name = 'RoomListRoute';

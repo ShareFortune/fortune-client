@@ -8,7 +8,6 @@ import 'package:fortune_client/view/pages/rooms/room_list/room_list_page.dart';
 import 'package:fortune_client/view/routes/route_guard.dart';
 import 'package:fortune_client/view/routes/route_path.dart';
 
-/// 自動生成ファイルのインポートに必要
 export 'app_router.gr.dart';
 
 @AdaptiveAutoRouter(
@@ -17,23 +16,23 @@ export 'app_router.gr.dart';
     AutoRoute(
       path: RoutePath.appRouteSignIn,
       page: SignInPage,
-      guards: [AuthGuard],
+      initial: true,
     ),
     AutoRoute(
-      // path: '/',
-      page: FortuneBottomNavigationBar,
-      initial: true,
+      path: "/",
+      page: NavigationBar,
+      guards: [AuthGuard],
       children: [
         AutoRoute(
-          path: RoutePath.appRouteRooms,
+          path: RoutePath.appRouteRoomsSearchTab,
           page: RoomListPage,
         ),
         AutoRoute(
-          path: RoutePath.appRouteParticipatingRooms,
+          path: RoutePath.appRouteParticipatingRoomsTab,
           page: ParticipatingRoomListPage,
         ),
         AutoRoute(
-          path: RoutePath.appRouteMessageRooms,
+          path: RoutePath.appRouteMessageRoomsTab,
           page: MessageRoomListPage,
         ),
       ],

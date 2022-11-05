@@ -1,8 +1,11 @@
 class RoutePath {
-  static const appRouteRooms = '/rooms';
+  /// ボトムナビゲーション遷移
+  static const appRouteRoomsSearchTab = 'rooms_search';
+  static const appRouteParticipatingRoomsTab = 'rooms';
+  static const appRouteMessageRoomsTab = 'message_rooms';
+
+  /// ページ遷移
   static const appRouteRoomDetail = '/rooms/:id';
-  static const appRouteParticipatingRooms = '/rooms';
-  static const appRouteMessageRooms = '/message_rooms';
   static const appRouteMessage = '/message';
   static const appRouteSignIn = '/sign_in';
 }

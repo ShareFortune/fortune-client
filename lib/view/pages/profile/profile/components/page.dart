@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../../../rooms/room_detail/containers/widgets/room_tag_wrappers.dart';
+import 'package:fortune_client/view/widgets/tag_wrapper.dart';
 
 class ProfilePegeComponent extends StatelessWidget {
   const ProfilePegeComponent({super.key, required this.containerSize});
@@ -59,7 +58,7 @@ class ProfilePegeComponent extends StatelessWidget {
                   style: textStyleSubTitle,
                 ),
                 const SizedBox(height: 10),
-                const RoomTagWrappersContainer(),
+                const TagWrapper(),
 
                 const SizedBox(height: 30),
                 const Text(

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class RoomTagWrappersComponent extends StatelessWidget {
-  const RoomTagWrappersComponent({super.key});
+class TagWrapper extends StatelessWidget {
+  const TagWrapper({super.key});
 
   @override
   Widget build(BuildContext context) {

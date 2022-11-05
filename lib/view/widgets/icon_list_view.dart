@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class RoomMemberIconListComponent extends StatelessWidget {
-  const RoomMemberIconListComponent({
+class IconListView extends StatelessWidget {
+  const IconListView({
     super.key,
     required this.onTapParticipantIcon,
   });
