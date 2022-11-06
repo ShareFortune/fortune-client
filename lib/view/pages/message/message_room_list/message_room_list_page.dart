@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fortune_client/view/common/app_bar/app_bar.dart';
-import 'package:fortune_client/view/pages/messages/message_room/message_room_page.dart';
-import 'package:fortune_client/view/pages/messages/message_room_list/message_room_list_view_model.dart';
+import 'package:fortune_client/view/pages/message/message_room/message_room_page.dart';
+import 'package:fortune_client/view/pages/message/message_room_list/message_room_list_view_model.dart';
 
 class MessageRoomListPage extends ConsumerWidget {
   const MessageRoomListPage({super.key});

@@ -1,6 +1,6 @@
 import 'dart:math' as math;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:fortune_client/view/pages/messages/message_room_list/message_room_list_state.dart';
+import 'package:fortune_client/view/pages/message/message_room_list/message_room_list_state.dart';
 
 final messageRoomListViewModelProvider = StateNotifierProvider<
     MessageRoomListViewModel, AsyncValue<MessageRoomListState>>((ref) {

@@ -15,9 +15,9 @@ import 'package:auto_route/auto_route.dart' as _i6;
 import 'package:flutter/material.dart' as _i7;
 import 'package:fortune_client/view/pages/auth/sign_in/sign_in_page.dart'
     as _i1;
-import 'package:fortune_client/view/pages/messages/message_room_list/message_room_list_page.dart'
+import 'package:fortune_client/view/pages/message/message_room_list/message_room_list_page.dart'
     as _i5;
-import 'package:fortune_client/view/pages/rooms/participating/containers/page.dart'
+import 'package:fortune_client/view/pages/rooms/room_join_list/room_join_list_page.dart'
     as _i4;
 import 'package:fortune_client/view/pages/rooms/room_list/room_list_page.dart'
     as _i3;
@@ -56,10 +56,10 @@ class AppRouter extends _i6.RootStackRouter {
         child: const _i3.RoomListPage(),
       );
     },
-    ParticipatingRoomListRoute.name: (routeData) {
+    RoomJoinListRoute.name: (routeData) {
       return _i6.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i4.ParticipatingRoomListPage(),
+        child: const _i4.RoomJoinListPage(),
       );
     },
     MessageRoomListRoute.name: (routeData) {
@@ -87,7 +87,7 @@ class AppRouter extends _i6.RootStackRouter {
               parent: NavigationBar.name,
             ),
             _i6.RouteConfig(
-              ParticipatingRoomListRoute.name,
+              RoomJoinListRoute.name,
               path: 'rooms',
               parent: NavigationBar.name,
             ),
@@ -161,15 +161,15 @@ class RoomListRoute extends _i6.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i4.ParticipatingRoomListPage]
-class ParticipatingRoomListRoute extends _i6.PageRouteInfo<void> {
-  const ParticipatingRoomListRoute()
+/// [_i4.RoomJoinListPage]
+class RoomJoinListRoute extends _i6.PageRouteInfo<void> {
+  const RoomJoinListRoute()
       : super(
-          ParticipatingRoomListRoute.name,
+          RoomJoinListRoute.name,
           path: 'rooms',
         );
 
-  static const String name = 'ParticipatingRoomListRoute';
+  static const String name = 'RoomJoinListRoute';
 }
 
 /// generated route for

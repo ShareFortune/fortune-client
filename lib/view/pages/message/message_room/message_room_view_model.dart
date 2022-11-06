@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:fortune_client/view/pages/messages/message_room/message_room_state.dart';
+import 'package:fortune_client/view/pages/message/message_room/message_room_state.dart';
 import 'package:uuid/uuid.dart';
 import 'package:mime/mime.dart';
 import 'package:open_filex/open_filex.dart';

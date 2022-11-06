@@ -53,7 +53,6 @@ class RoomListPage extends ConsumerWidget {
           child: Center(
             child: Text(
               e.toString(),
-              // style: theme.textTheme.h30,
             ),
           ),
         ),
@@ -61,9 +60,7 @@ class RoomListPage extends ConsumerWidget {
       loading: () => const Scaffold(
         body: SafeArea(
           child: Center(
-            child: CircularProgressIndicator(
-                // color: theme.appColors.primary,
-                ),
+            child: CircularProgressIndicator(),
           ),
         ),
       ),

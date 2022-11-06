@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_chat_ui/flutter_chat_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:fortune_client/view/pages/messages/message_room/message_room_view_model.dart';
+import 'package:fortune_client/view/pages/message/message_room/message_room_view_model.dart';
 
 class MessageRoomPage extends ConsumerWidget {
   const MessageRoomPage({super.key});

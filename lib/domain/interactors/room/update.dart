@@ -3,9 +3,7 @@ import 'package:fortune_client/domain/entities/enum/room_status.dart';
 import 'package:fortune_client/domain/entities/models/member/member.dart';
 import 'package:fortune_client/domain/entities/models/room/room.dart';
 import 'package:fortune_client/domain/repositories/room.dart';
-import 'package:fortune_client/domain/usecases/core/error/failures.dart';
 import 'package:fortune_client/domain/usecases/room/update.dart';
-import 'package:fpdart/fpdart.dart';
 
 class RoomUpdateInteractor implements RoomUpdateUseCase {
   final RoomRepository repository;

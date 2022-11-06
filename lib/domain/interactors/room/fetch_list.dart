@@ -26,6 +26,12 @@ class RoomFetchListInteractor implements RoomFetchListUseCase {
       members: [host, host, host],
       tags: [],
     );
-    return RoomFetchListResults(rooms: [room]);
+    return RoomFetchListResults(rooms: [
+      room,
+      room,
+      room,
+      room,
+      room,
+    ]);
   }
 }

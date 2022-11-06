@@ -9,7 +9,7 @@ class NavigationBar extends StatelessWidget {
     return AutoTabsRouter(
       routes: const [
         RoomListRoute(),
-        ParticipatingRoomListRoute(),
+        RoomJoinListRoute(),
         MessageRoomListRoute(),
       ],
       builder: (context, child, animation) {
