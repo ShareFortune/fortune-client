@@ -1,24 +1,25 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:fortune_client/domain/domain_providers.dart';
+import 'package:fortune_client/domain/usecases/auth/login.dart';
 import 'package:fortune_client/domain/usecases/core/usecases/usecase.dart';
+import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/view/pages/auth/sign_in/sign_in_state.dart';
 
 final signInViewModelProvider =
     StateNotifierProvider<SignInViewModel, AsyncValue<SignInState>>((ref) {
-  return SignInViewModel(ref)..initialize();
+  return SignInViewModel(ref.watch(loginUseCaseProvider))..initialize();
 });
 
 class SignInViewModel extends StateNotifier<AsyncValue<SignInState>> {
-  SignInViewModel(this._ref) : super(const AsyncValue<SignInState>.loading());
+  SignInViewModel(this._useCase)
+      : super(const AsyncValue<SignInState>.loading());
 
-  final Ref _ref;
-  late final _loginUseCase = _ref.watch(loginUseCaseProvider);
+  final LoginUseCase _useCase;
 
   initialize() => state = const AsyncValue.data(SignInState());
 
-  login() async {
+  signInWithGoogle() async {
     state = await AsyncValue.guard(() async {
-      final result = await _loginUseCase.handle(NoParams());
+      final result = await _useCase.handle(NoParams());
       return SignInState(isSignIn: result.isLogin);
     });
   }
@@ -29,6 +30,5 @@ class SignInViewModel extends StateNotifier<AsyncValue<SignInState>> {
     });
   }
 
-  signInWithGoogle() {}
   signInWithFacebook() {}
 }

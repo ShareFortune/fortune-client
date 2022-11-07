@@ -1,5 +1,4 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/services.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 abstract class FirebaseAuthDataSource {
@@ -12,13 +11,7 @@ abstract class FirebaseAuthDataSource {
 }
 
 class FirebaseAuthDataSourceImpl implements FirebaseAuthDataSource {
-  FirebaseAuthDataSourceImpl({
-    required this.googleSignIn,
-    required this.firebaseAuth,
-  });
-
-  final GoogleSignIn googleSignIn;
-  final FirebaseAuth firebaseAuth;
+  FirebaseAuthDataSourceImpl();
 
   final _auth = FirebaseAuth.instance;
 
@@ -35,7 +28,7 @@ class FirebaseAuthDataSourceImpl implements FirebaseAuthDataSource {
     UserCredential? response;
 
     try {
-      final googleUser = await googleSignIn.signIn();
+      final googleUser = await GoogleSignIn().signIn();
       final googleAuth = await googleUser?.authentication;
 
       if (googleAuth != null) {
@@ -44,7 +37,7 @@ class FirebaseAuthDataSourceImpl implements FirebaseAuthDataSource {
           idToken: googleAuth.idToken,
         );
 
-        response = await firebaseAuth.signInWithCredential(credential);
+        response = await _auth.signInWithCredential(credential);
       }
     } catch (e) {
       rethrow;
