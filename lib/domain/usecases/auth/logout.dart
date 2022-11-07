@@ -1,8 +1,6 @@
 import '../core/usecases/usecase.dart';
 
-abstract class LogoutUseCase implements UseCase<LogoutParams, LogoutResults> {}
-
-class LogoutParams {}
+abstract class LogoutUseCase implements UseCase<LogoutResults, NoParams> {}
 
 class LogoutResults {
   final bool isLogout;

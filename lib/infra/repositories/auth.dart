@@ -22,4 +22,9 @@ class AuthRepositoryImpl implements AuthRepository {
     // TODO: implement logout
     throw UnimplementedError();
   }
+
+  @override
+  Future<bool> getCredentials() async {
+    return _dataSource.isSignIn;
+  }
 }

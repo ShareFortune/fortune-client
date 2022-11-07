@@ -1,7 +1,7 @@
 import '../core/usecases/usecase.dart';
 
 abstract class MessageSendImageUseCase
-    implements UseCase<MessageSendImageParams, MessageSendImageResults> {}
+    implements UseCase<MessageSendImageResults, MessageSendImageParams> {}
 
 class MessageSendImageParams {
   final String filePath;

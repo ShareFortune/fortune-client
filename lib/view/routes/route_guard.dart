@@ -1,16 +1,22 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:fortune_client/domain/usecases/auth/get_credentials.dart';
+import 'package:fortune_client/domain/usecases/core/usecases/usecase.dart';
+import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/view/routes/app_router.gr.dart';
 
-final authGuardProvider = Provider((ref) => AuthGuard(ref));
+final authGuardProvider = Provider(
+  (ref) => AuthGuard(ref.watch(getCredentialsUseCaseProvider)),
+);
 
 class AuthGuard extends AutoRouteGuard {
-  AuthGuard(this.ref);
+  AuthGuard(this._useCase);
 
-  final Ref ref;
+  final GetCredentialsUseCase _useCase;
 
   _isAuthenticated() async {
-    return false;
+    final result = await _useCase.handle(NoParams());
+    return result.isSignIn;
   }
 
   @override

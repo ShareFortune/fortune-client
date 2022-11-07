@@ -5,7 +5,7 @@ import 'package:fortune_client/domain/entities/models/tag/tag.dart';
 import 'package:fortune_client/domain/usecases/core/usecases/usecase.dart';
 
 abstract class ProfileCreateUseCase
-    implements UseCase<ProfileCreateParams, ProfileCreateResults> {}
+    implements UseCase<ProfileCreateResults, ProfileCreateParams> {}
 
 class ProfileCreateParams {
   final String mainImagePath;

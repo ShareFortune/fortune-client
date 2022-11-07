@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-abstract class UseCase<Params, Results> {
+abstract class UseCase<Results, Params> {
   Future<Results> handle(Params params);
 }
 

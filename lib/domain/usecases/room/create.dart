@@ -5,7 +5,7 @@ import 'package:fortune_client/domain/entities/models/tag/tag.dart';
 import 'package:fortune_client/domain/usecases/core/usecases/usecase.dart';
 
 abstract class RoomCreateUseCase
-    implements UseCase<RoomCreateParams, RoomCreateResults> {}
+    implements UseCase<RoomCreateResults, RoomCreateParams> {}
 
 class RoomCreateParams {
   final String roomName;
