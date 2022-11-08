@@ -15,10 +15,9 @@ export 'app_router.gr.dart';
     AutoRoute(
       path: RoutePath.appRouteSignIn,
       page: SignInPage,
-      initial: true,
     ),
     AutoRoute(
-      path: "/",
+      initial: true,
       page: NavigationBar,
       guards: [AuthGuard],
       children: [
