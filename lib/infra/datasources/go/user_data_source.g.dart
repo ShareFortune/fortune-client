@@ -13,7 +13,7 @@ class _UserDataSource implements UserDataSource {
     this._dio, {
     this.baseUrl,
   }) {
-    baseUrl ??= 'http://api.fortune-dev.net:8080/api/';
+    baseUrl ??= 'http://api.fortune-dev.net:8080/api/v1';
   }
 
   final Dio _dio;
@@ -50,7 +50,7 @@ class _UserDataSource implements UserDataSource {
     )
         .compose(
           _dio.options,
-          '/v1/users',
+          '/users',
           queryParameters: queryParameters,
           data: _data,
         )
