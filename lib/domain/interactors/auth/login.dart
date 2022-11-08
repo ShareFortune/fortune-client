@@ -11,7 +11,19 @@ class LoginInteractor implements LoginUseCase {
   @override
   Future<LoginResults> handle(NoParams params) async {
     try {
+      /// Firebase login
       final result = await repository.signInWithGoogle();
+
+      ///
+      /// Get token
+      ///
+      /// Create bearer token
+      ///
+      /// 初回ログインならGo Serverでユーザー作成
+      ///
+      /// 成功したら Save token
+      ///
+
       return LoginResults(isLogin: result);
     } catch (e) {
       rethrow;

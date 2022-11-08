@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:dio/dio.dart';
 import 'package:fortune_client/domain/repositories/user_repository.dart';
 import 'package:fortune_client/infra/datasources/go/user_data_source.dart';
 import 'package:fortune_client/infra/models/create_user_model.dart';
@@ -17,8 +18,17 @@ class UserRepositoryImpl implements UserRepository {
     try {
       final result = await _dataSource.create(firebaseId, username, birthday);
       return CreateUserModel.fromJson(json.decode(result)).id;
-    } catch (e) {
+    } on DioError {
       rethrow;
+      // switch (e.type) {
+      //   case DioErrorType.response:
+      //     throw ErrorResponseException(
+      //       code: e.response?.statusCode,
+      //       message: e.response?.statusMessage,
+      //     );
+      //   default:
+      //     rethrow;
+      // }
     }
   }
 }

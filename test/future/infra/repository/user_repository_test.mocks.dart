@@ -32,7 +32,7 @@ class MockUserDataSource extends _i1.Mock implements _i2.UserDataSource {
   _i3.Future<String> create(
     String? firebaseId,
     String? username,
-    String? birthday,
+    String? birthda,
   ) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -40,7 +40,7 @@ class MockUserDataSource extends _i1.Mock implements _i2.UserDataSource {
           [
             firebaseId,
             username,
-            birthday,
+            birthda,
           ],
         ),
         returnValue: _i3.Future<String>.value(''),

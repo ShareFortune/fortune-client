@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:fortune_client/domain/repositories/user_repository.dart';
+import 'package:fortune_client/infra/repositories/user_repository.dart';
 import 'package:fortune_client/view/routes/app_router.gr.dart';
 import 'package:fortune_client/view/routes/route_guard.dart';
+
+import 'injector.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

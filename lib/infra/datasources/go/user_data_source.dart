@@ -12,6 +12,6 @@ abstract class UserDataSource {
   Future<String> create(
     @Part() String firebaseId,
     @Part() String username,
-    @Part() String birthday,
+    @Part() String birthda,
   );
 }

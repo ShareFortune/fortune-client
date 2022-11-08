@@ -24,7 +24,7 @@ class _UserDataSource implements UserDataSource {
   Future<String> create(
     firebaseId,
     username,
-    birthday,
+    birthda,
   ) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
@@ -39,8 +39,8 @@ class _UserDataSource implements UserDataSource {
       username,
     ));
     _data.fields.add(MapEntry(
-      'birthday',
-      birthday,
+      'birthda',
+      birthda,
     ));
     final _result = await _dio.fetch<String>(_setStreamType<String>(Options(
       method: 'POST',
@@ -50,7 +50,7 @@ class _UserDataSource implements UserDataSource {
     )
         .compose(
           _dio.options,
-          '/users',
+          '/user',
           queryParameters: queryParameters,
           data: _data,
         )
