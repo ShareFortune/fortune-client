@@ -2,9 +2,7 @@ import 'package:fortune_client/domain/entities/enum/gender.dart';
 import 'package:fortune_client/domain/entities/enum/room_status.dart';
 import 'package:fortune_client/domain/entities/models/member/member.dart';
 import 'package:fortune_client/domain/entities/models/room/room.dart';
-import 'package:fortune_client/domain/usecases/core/error/failures.dart';
 import 'package:fortune_client/domain/usecases/room/fetch_list.dart';
-import 'package:fpdart/fpdart.dart';
 
 class RoomFetchListInteractor implements RoomFetchListUseCase {
   @override

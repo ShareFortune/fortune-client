@@ -1,4 +1,4 @@
-import '../core/usecases/usecase.dart';
+import '../../../core/usecases/usecase.dart';
 
 abstract class LoginUseCase implements UseCase<LoginResults, NoParams> {}
 

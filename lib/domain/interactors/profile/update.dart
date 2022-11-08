@@ -1,9 +1,7 @@
 import 'package:fortune_client/domain/entities/models/address/address.dart';
 import 'package:fortune_client/domain/entities/models/profile/profile.dart';
 import 'package:fortune_client/domain/repositories/profile.dart';
-import 'package:fortune_client/domain/usecases/core/error/failures.dart';
 import 'package:fortune_client/domain/usecases/profile/update.dart';
-import 'package:fpdart/fpdart.dart';
 
 class ProfileUpdateInteractor implements ProfileUpdateUseCase {
   final ProfileRepository repository;

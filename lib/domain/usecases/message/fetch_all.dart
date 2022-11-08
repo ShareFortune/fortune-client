@@ -1,6 +1,6 @@
 import '../../entities/const/types.dart';
 import '../../entities/models/message/message.dart';
-import '../core/usecases/usecase.dart';
+import '../../../core/usecases/usecase.dart';
 
 abstract class MessageFetchAllUseCase
     implements UseCase<MessageFetchAllResults, MessageFetchAllParams> {}

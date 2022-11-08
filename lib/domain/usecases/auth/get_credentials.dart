@@ -1,4 +1,4 @@
-import 'package:fortune_client/domain/usecases/core/usecases/usecase.dart';
+import 'package:fortune_client/core/usecases/usecase.dart';
 
 abstract class GetCredentialsUseCase
     implements UseCase<GetCredentialsResult, NoParams> {}

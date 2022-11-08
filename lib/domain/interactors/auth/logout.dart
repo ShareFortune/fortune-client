@@ -1,6 +1,6 @@
 import 'package:fortune_client/domain/repositories/auth.dart';
 import 'package:fortune_client/domain/usecases/auth/logout.dart';
-import 'package:fortune_client/domain/usecases/core/usecases/usecase.dart';
+import 'package:fortune_client/core/usecases/usecase.dart';
 
 class LogoutInteractor implements LogoutUseCase {
   final AuthRepository repository;

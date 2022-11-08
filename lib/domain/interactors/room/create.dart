@@ -3,7 +3,6 @@ import 'package:fortune_client/domain/entities/enum/room_status.dart';
 import 'package:fortune_client/domain/entities/models/member/member.dart';
 import 'package:fortune_client/domain/entities/models/room/room.dart';
 import 'package:fortune_client/domain/repositories/room.dart';
-import 'package:fortune_client/domain/usecases/core/error/failures.dart';
 import 'package:fortune_client/domain/usecases/room/create.dart';
 
 class RoomCreateInteractor implements RoomCreateUseCase {

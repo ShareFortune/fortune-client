@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fortune_client/domain/usecases/auth/get_credentials.dart';
-import 'package:fortune_client/domain/usecases/core/usecases/usecase.dart';
+import 'package:fortune_client/core/usecases/usecase.dart';
 import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/view/routes/app_router.gr.dart';
 

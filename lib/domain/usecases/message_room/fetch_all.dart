@@ -1,5 +1,5 @@
 import '../../entities/models/message_room/message_room.dart';
-import '../core/usecases/usecase.dart';
+import '../../../core/usecases/usecase.dart';
 
 abstract class MessageMessageRoomFetchAllUseCase
     implements UseCase<MessageRoomFetchAllResults, MessageRoomFetchAllParams> {}

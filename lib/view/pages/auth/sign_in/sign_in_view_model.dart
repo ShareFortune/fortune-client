@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fortune_client/domain/usecases/auth/login.dart';
-import 'package:fortune_client/domain/usecases/core/usecases/usecase.dart';
+import 'package:fortune_client/core/usecases/usecase.dart';
 import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/view/pages/auth/sign_in/sign_in_state.dart';
 

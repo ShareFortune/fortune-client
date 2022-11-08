@@ -14,7 +14,11 @@ class UserRepositoryImpl implements UserRepository {
     required String username,
     required String birthday,
   }) async {
-    final result = await _dataSource.create(firebaseId, username, birthday);
-    return CreateUserModel.fromJson(json.decode(result)).id;
+    try {
+      final result = await _dataSource.create(firebaseId, username, birthday);
+      return CreateUserModel.fromJson(json.decode(result)).id;
+    } catch (e) {
+      rethrow;
+    }
   }
 }

@@ -1,6 +1,6 @@
 import 'package:fortune_client/domain/repositories/auth.dart';
 import 'package:fortune_client/domain/usecases/auth/get_credentials.dart';
-import 'package:fortune_client/domain/usecases/core/usecases/usecase.dart';
+import 'package:fortune_client/core/usecases/usecase.dart';
 
 class GetCredentialsInteractor implements GetCredentialsUseCase {
   final AuthRepository repository;
