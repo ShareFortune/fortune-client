@@ -12,25 +12,17 @@ class RoomCreateInteractor implements RoomCreateUseCase {
 
   @override
   handle(RoomCreateParams params) async {
-    const host = Member(
-      id: "id",
-      name: "name",
-      gender: Gender.man,
-      mainImageUrl: "mainImageUrl",
-    );
-
-    final newRoom = Room(
-      id: null,
-      name: params.roomName,
-      roomStatus: RoomStatus.closed,
-      createdAt: DateTime.now(),
-      hostUser: host,
-      members: [],
-      tags: params.tags,
-    );
+    /// ホストユーザーのデータを取得
 
     try {
-      final result = await repository.create(newRoom);
+      final result = await repository.create(
+        roomName: params.roomName,
+        membersNum: params.membersNum,
+        ageGroup: params.ageGroup,
+        address: params.address,
+        explanation: params.explanation,
+        tags: params.tags,
+      );
       return RoomCreateResults(roomID: result);
     } catch (e) {
       rethrow;
