@@ -26,9 +26,9 @@ class RoomCreateParams {
 }
 
 class RoomCreateResults {
-  final RoomID roomId;
+  final RoomID roomID;
 
   RoomCreateResults({
-    required this.roomId,
+    required this.roomID,
   });
 }

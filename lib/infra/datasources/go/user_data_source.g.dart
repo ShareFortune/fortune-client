@@ -50,7 +50,7 @@ class _UserDataSource implements UserDataSource {
     )
         .compose(
           _dio.options,
-          '/user',
+          '/users',
           queryParameters: queryParameters,
           data: _data,
         )

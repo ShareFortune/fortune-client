@@ -27,4 +27,9 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<bool> getCredentials() async {
     return _dataSource.isSignIn;
   }
+
+  @override
+  Future<String> getAuthenticationToken() async {
+    return "token";
+  }
 }
