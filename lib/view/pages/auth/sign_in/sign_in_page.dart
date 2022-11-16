@@ -17,7 +17,7 @@ class SignInPage extends ConsumerWidget {
     return state.when(
       data: (data) {
         /// ルート管理
-        onResult(data.isSignIn);
+        onResult(data.credential != null);
 
         return Scaffold(
           body: Center(

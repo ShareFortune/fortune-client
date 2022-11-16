@@ -1,5 +1,4 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:fortune_client/data/repository/auth/auth_repository.dart';
 import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/view/pages/auth/sign_in/sign_in_state.dart';
 
@@ -21,13 +20,13 @@ class SignInViewModel extends StateNotifier<AsyncValue<SignInState>> {
   signInWithGoogle() async {
     state = await AsyncValue.guard(() async {
       final result = await authRepository.signInWithGoogle();
-      return SignInState(isSignIn: result);
+      return SignInState(credential: result);
     });
   }
 
   signInWithApple() async {
     state = await AsyncValue.guard(() async {
-      return const SignInState(isSignIn: true);
+      return const SignInState(credential: null);
     });
   }
 

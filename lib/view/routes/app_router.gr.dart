@@ -83,12 +83,6 @@ class AppRouter extends _i7.RootStackRouter {
   @override
   List<_i7.RouteConfig> get routes => [
         _i7.RouteConfig(
-          '/#redirect',
-          path: '/',
-          redirectTo: '/profile_create',
-          fullMatch: true,
-        ),
-        _i7.RouteConfig(
           SignInRoute.name,
           path: '/sign_in',
         ),
@@ -98,7 +92,7 @@ class AppRouter extends _i7.RootStackRouter {
         ),
         _i7.RouteConfig(
           NavigationBar.name,
-          path: '/navigation-bar',
+          path: '/',
           guards: [authGuard],
           children: [
             _i7.RouteConfig(
@@ -185,7 +179,7 @@ class NavigationBar extends _i7.PageRouteInfo<void> {
   const NavigationBar({List<_i7.PageRouteInfo>? children})
       : super(
           NavigationBar.name,
-          path: '/navigation-bar',
+          path: '/',
           initialChildren: children,
         );
 
