@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:fortune_client/view/pages/rooms/create/room_create_view_model.dart';
 
-class RoomCreationPageComponent extends StatelessWidget {
-  const RoomCreationPageComponent({super.key, this.onPressedNextButton});
+// ignore: must_be_immutable
+class RoomCreatePage extends ConsumerWidget {
+  RoomCreatePage({super.key});
 
-  /// プロフィールの入力画面へ遷移する関数
-  final void Function()? onPressedNextButton;
+  double textFieldEdgeInsetsHor = 5;
+  double textFieldEdgeInsetsVer = 15;
+  double textFieldFontSize = 15;
 
   @override
-  Widget build(BuildContext context) {
-    const edgeInsets = EdgeInsets.symmetric(horizontal: 5, vertical: 15);
-    const double textFieldFontSize = 15;
+  Widget build(BuildContext context, WidgetRef ref) {
+    final state = ref.watch(roomCreateViewModelProvider);
+    final viewModel = ref.watch(roomCreateViewModelProvider.notifier);
 
     return Scaffold(
       appBar: AppBar(
@@ -42,27 +46,27 @@ class RoomCreationPageComponent extends StatelessWidget {
 
                 /// 名前
                 const SizedBox(height: 30),
-                _roomNameInputField(textFieldFontSize, edgeInsets),
+                _roomNameInputField(),
 
                 /// 電話またはメールアドレス
                 const SizedBox(height: 30),
-                _menberNumInputField(textFieldFontSize, edgeInsets),
+                _menberNumInputField(),
 
                 /// 生年月日
                 const SizedBox(height: 30),
-                _ageGroupInputField(textFieldFontSize, edgeInsets),
+                _ageGroupInputField(),
 
                 /// 開催場所
                 const SizedBox(height: 30),
-                _addressInputField(textFieldFontSize, edgeInsets),
+                _addressInputField(),
 
                 /// ルーム説明
                 const SizedBox(height: 30),
-                _explanationInputField(textFieldFontSize, edgeInsets),
+                _explanationInputField(),
 
                 /// タグ
                 const SizedBox(height: 30),
-                _tagInputField(textFieldFontSize, edgeInsets),
+                _tagInputField(),
               ],
             ),
 
@@ -77,7 +81,7 @@ class RoomCreationPageComponent extends StatelessWidget {
                     borderRadius: BorderRadius.circular(30),
                   ),
                 ),
-                onPressed: onPressedNextButton,
+                onPressed: viewModel.create, // 作成
                 child: const Text("作成"),
               ),
             ),
@@ -87,62 +91,80 @@ class RoomCreationPageComponent extends StatelessWidget {
     );
   }
 
-  Widget _tagInputField(double fontSize, EdgeInsetsGeometry padding) {
+  Widget _tagInputField() {
     return TextField(
-      style: TextStyle(fontSize: fontSize),
+      style: TextStyle(fontSize: textFieldFontSize),
       decoration: InputDecoration(
         hintText: 'タグ',
-        contentPadding: padding,
+        contentPadding: EdgeInsets.symmetric(
+          horizontal: textFieldEdgeInsetsHor,
+          vertical: textFieldEdgeInsetsVer,
+        ),
       ),
     );
   }
 
-  Widget _explanationInputField(double fontSize, EdgeInsetsGeometry padding) {
+  Widget _explanationInputField() {
     return TextField(
-      style: TextStyle(fontSize: fontSize),
+      style: TextStyle(fontSize: textFieldFontSize),
       decoration: InputDecoration(
         hintText: 'ルーム説明',
-        contentPadding: padding,
+        contentPadding: EdgeInsets.symmetric(
+          horizontal: textFieldEdgeInsetsHor,
+          vertical: textFieldEdgeInsetsVer,
+        ),
       ),
     );
   }
 
-  Widget _addressInputField(double fontSize, EdgeInsetsGeometry padding) {
+  Widget _addressInputField() {
     return TextField(
-      style: TextStyle(fontSize: fontSize),
+      style: TextStyle(fontSize: textFieldFontSize),
       decoration: InputDecoration(
         hintText: '開催場所',
-        contentPadding: padding,
+        contentPadding: EdgeInsets.symmetric(
+          horizontal: textFieldEdgeInsetsHor,
+          vertical: textFieldEdgeInsetsVer,
+        ),
       ),
     );
   }
 
-  Widget _ageGroupInputField(double fontSize, EdgeInsetsGeometry padding) {
+  Widget _ageGroupInputField() {
     return TextField(
-      style: TextStyle(fontSize: fontSize),
+      style: TextStyle(fontSize: textFieldFontSize),
       decoration: InputDecoration(
         hintText: '募集年齢',
-        contentPadding: padding,
+        contentPadding: EdgeInsets.symmetric(
+          horizontal: textFieldEdgeInsetsHor,
+          vertical: textFieldEdgeInsetsVer,
+        ),
       ),
     );
   }
 
-  Widget _menberNumInputField(double fontSize, EdgeInsetsGeometry padding) {
+  Widget _menberNumInputField() {
     return TextField(
-      style: TextStyle(fontSize: fontSize),
+      style: TextStyle(fontSize: textFieldFontSize),
       decoration: InputDecoration(
         hintText: '募集人数',
-        contentPadding: padding,
+        contentPadding: EdgeInsets.symmetric(
+          horizontal: textFieldEdgeInsetsHor,
+          vertical: textFieldEdgeInsetsVer,
+        ),
       ),
     );
   }
 
-  Widget _roomNameInputField(double fontSize, EdgeInsetsGeometry padding) {
+  Widget _roomNameInputField() {
     return TextField(
-      style: TextStyle(fontSize: fontSize),
+      style: TextStyle(fontSize: textFieldFontSize),
       decoration: InputDecoration(
         hintText: '名前',
-        contentPadding: padding,
+        contentPadding: EdgeInsets.symmetric(
+          horizontal: textFieldEdgeInsetsHor,
+          vertical: textFieldEdgeInsetsVer,
+        ),
       ),
     );
   }

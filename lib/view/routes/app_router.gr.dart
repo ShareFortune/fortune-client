@@ -11,32 +11,34 @@
 // ignore_for_file: type=lint
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:auto_route/auto_route.dart' as _i6;
-import 'package:flutter/material.dart' as _i7;
+import 'package:auto_route/auto_route.dart' as _i7;
+import 'package:flutter/material.dart' as _i8;
 import 'package:fortune_client/view/pages/auth/sign_in/sign_in_page.dart'
     as _i1;
 import 'package:fortune_client/view/pages/message/message_room_list/message_room_list_page.dart'
-    as _i5;
+    as _i6;
+import 'package:fortune_client/view/pages/rooms/create/room_create_page.dart'
+    as _i2;
 import 'package:fortune_client/view/pages/rooms/room_join_list/room_join_list_page.dart'
-    as _i4;
+    as _i5;
 import 'package:fortune_client/view/pages/rooms/room_list/room_list_page.dart'
-    as _i3;
-import 'package:fortune_client/view/routes/route_guard.dart' as _i8;
-import 'package:fortune_client/view/widgets/navigation_bar.dart' as _i2;
+    as _i4;
+import 'package:fortune_client/view/routes/route_guard.dart' as _i9;
+import 'package:fortune_client/view/widgets/navigation_bar.dart' as _i3;
 
-class AppRouter extends _i6.RootStackRouter {
+class AppRouter extends _i7.RootStackRouter {
   AppRouter({
-    _i7.GlobalKey<_i7.NavigatorState>? navigatorKey,
+    _i8.GlobalKey<_i8.NavigatorState>? navigatorKey,
     required this.authGuard,
   }) : super(navigatorKey);
 
-  final _i8.AuthGuard authGuard;
+  final _i9.AuthGuard authGuard;
 
   @override
-  final Map<String, _i6.PageFactory> pagesMap = {
+  final Map<String, _i7.PageFactory> pagesMap = {
     SignInRoute.name: (routeData) {
       final args = routeData.argsAs<SignInRouteArgs>();
-      return _i6.AdaptivePage<dynamic>(
+      return _i7.AdaptivePage<dynamic>(
         routeData: routeData,
         child: _i1.SignInPage(
           key: args.key,
@@ -44,54 +46,72 @@ class AppRouter extends _i6.RootStackRouter {
         ),
       );
     },
-    NavigationBar.name: (routeData) {
-      return _i6.AdaptivePage<dynamic>(
+    RoomCreateRoute.name: (routeData) {
+      final args = routeData.argsAs<RoomCreateRouteArgs>(
+          orElse: () => const RoomCreateRouteArgs());
+      return _i7.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i2.NavigationBar(),
+        child: _i2.RoomCreatePage(key: args.key),
+      );
+    },
+    NavigationBar.name: (routeData) {
+      return _i7.AdaptivePage<dynamic>(
+        routeData: routeData,
+        child: const _i3.NavigationBar(),
       );
     },
     RoomListRoute.name: (routeData) {
-      return _i6.AdaptivePage<dynamic>(
+      return _i7.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i3.RoomListPage(),
+        child: const _i4.RoomListPage(),
       );
     },
     RoomJoinListRoute.name: (routeData) {
-      return _i6.AdaptivePage<dynamic>(
+      return _i7.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i4.RoomJoinListPage(),
+        child: const _i5.RoomJoinListPage(),
       );
     },
     MessageRoomListRoute.name: (routeData) {
-      return _i6.AdaptivePage<dynamic>(
+      return _i7.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i5.MessageRoomListPage(),
+        child: const _i6.MessageRoomListPage(),
       );
     },
   };
 
   @override
-  List<_i6.RouteConfig> get routes => [
-        _i6.RouteConfig(
+  List<_i7.RouteConfig> get routes => [
+        _i7.RouteConfig(
+          '/#redirect',
+          path: '/',
+          redirectTo: '/room_create',
+          fullMatch: true,
+        ),
+        _i7.RouteConfig(
           SignInRoute.name,
           path: '/sign_in',
         ),
-        _i6.RouteConfig(
+        _i7.RouteConfig(
+          RoomCreateRoute.name,
+          path: '/room_create',
+        ),
+        _i7.RouteConfig(
           NavigationBar.name,
-          path: '/',
+          path: '/navigation-bar',
           guards: [authGuard],
           children: [
-            _i6.RouteConfig(
+            _i7.RouteConfig(
               RoomListRoute.name,
               path: 'rooms_search',
               parent: NavigationBar.name,
             ),
-            _i6.RouteConfig(
+            _i7.RouteConfig(
               RoomJoinListRoute.name,
               path: 'rooms',
               parent: NavigationBar.name,
             ),
-            _i6.RouteConfig(
+            _i7.RouteConfig(
               MessageRoomListRoute.name,
               path: 'message_rooms',
               parent: NavigationBar.name,
@@ -103,9 +123,9 @@ class AppRouter extends _i6.RootStackRouter {
 
 /// generated route for
 /// [_i1.SignInPage]
-class SignInRoute extends _i6.PageRouteInfo<SignInRouteArgs> {
+class SignInRoute extends _i7.PageRouteInfo<SignInRouteArgs> {
   SignInRoute({
-    _i7.Key? key,
+    _i8.Key? key,
     required dynamic Function(bool) onResult,
   }) : super(
           SignInRoute.name,
@@ -125,7 +145,7 @@ class SignInRouteArgs {
     required this.onResult,
   });
 
-  final _i7.Key? key;
+  final _i8.Key? key;
 
   final dynamic Function(bool) onResult;
 
@@ -136,12 +156,36 @@ class SignInRouteArgs {
 }
 
 /// generated route for
-/// [_i2.NavigationBar]
-class NavigationBar extends _i6.PageRouteInfo<void> {
-  const NavigationBar({List<_i6.PageRouteInfo>? children})
+/// [_i2.RoomCreatePage]
+class RoomCreateRoute extends _i7.PageRouteInfo<RoomCreateRouteArgs> {
+  RoomCreateRoute({_i8.Key? key})
+      : super(
+          RoomCreateRoute.name,
+          path: '/room_create',
+          args: RoomCreateRouteArgs(key: key),
+        );
+
+  static const String name = 'RoomCreateRoute';
+}
+
+class RoomCreateRouteArgs {
+  const RoomCreateRouteArgs({this.key});
+
+  final _i8.Key? key;
+
+  @override
+  String toString() {
+    return 'RoomCreateRouteArgs{key: $key}';
+  }
+}
+
+/// generated route for
+/// [_i3.NavigationBar]
+class NavigationBar extends _i7.PageRouteInfo<void> {
+  const NavigationBar({List<_i7.PageRouteInfo>? children})
       : super(
           NavigationBar.name,
-          path: '/',
+          path: '/navigation-bar',
           initialChildren: children,
         );
 
@@ -149,8 +193,8 @@ class NavigationBar extends _i6.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i3.RoomListPage]
-class RoomListRoute extends _i6.PageRouteInfo<void> {
+/// [_i4.RoomListPage]
+class RoomListRoute extends _i7.PageRouteInfo<void> {
   const RoomListRoute()
       : super(
           RoomListRoute.name,
@@ -161,8 +205,8 @@ class RoomListRoute extends _i6.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i4.RoomJoinListPage]
-class RoomJoinListRoute extends _i6.PageRouteInfo<void> {
+/// [_i5.RoomJoinListPage]
+class RoomJoinListRoute extends _i7.PageRouteInfo<void> {
   const RoomJoinListRoute()
       : super(
           RoomJoinListRoute.name,
@@ -173,8 +217,8 @@ class RoomJoinListRoute extends _i6.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i5.MessageRoomListPage]
-class MessageRoomListRoute extends _i6.PageRouteInfo<void> {
+/// [_i6.MessageRoomListPage]
+class MessageRoomListRoute extends _i7.PageRouteInfo<void> {
   const MessageRoomListRoute()
       : super(
           MessageRoomListRoute.name,
