@@ -1,23 +1,17 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:fortune_client/domain/usecases/auth/get_credentials.dart';
-import 'package:fortune_client/core/usecases/usecase.dart';
 import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/view/routes/app_router.gr.dart';
 
-final authGuardProvider = Provider(
-  (ref) => AuthGuard(ref.watch(getCredentialsUseCaseProvider)),
-);
+final authGuardProvider = Provider((ref) => AuthGuard(ref));
 
 class AuthGuard extends AutoRouteGuard {
-  AuthGuard(this._useCase);
+  AuthGuard(this._ref);
 
-  final GetCredentialsUseCase _useCase;
+  final Ref _ref;
+  late final authRepository = _ref.watch(Repository.authProvider);
 
-  _isAuthenticated() async {
-    final result = await _useCase.handle(NoParams());
-    return result.isSignIn;
-  }
+  _isAuthenticated() async => await authRepository.isSignIn();
 
   @override
   Future<void> onNavigation(

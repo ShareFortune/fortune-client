@@ -1,4 +1,4 @@
-import 'package:fortune_client/domain/entities/models/room/room.dart';
+import 'package:fortune_client/data/model/room/room.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'room_join_list_state.freezed.dart';

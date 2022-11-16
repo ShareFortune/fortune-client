@@ -1,26 +1,27 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:fortune_client/domain/usecases/auth/login.dart';
-import 'package:fortune_client/core/usecases/usecase.dart';
+import 'package:fortune_client/data/repository/auth/auth_repository.dart';
 import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/view/pages/auth/sign_in/sign_in_state.dart';
 
 final signInViewModelProvider =
     StateNotifierProvider<SignInViewModel, AsyncValue<SignInState>>((ref) {
-  return SignInViewModel(ref.watch(loginUseCaseProvider))..initialize();
+  return SignInViewModel(ref)..initialize();
 });
 
 class SignInViewModel extends StateNotifier<AsyncValue<SignInState>> {
-  SignInViewModel(this._useCase)
-      : super(const AsyncValue<SignInState>.loading());
+  SignInViewModel(this._ref) : super(const AsyncValue<SignInState>.loading());
 
-  final LoginUseCase _useCase;
+  final Ref _ref;
+
+  /// Repository
+  late final authRepository = _ref.watch(Repository.authProvider);
 
   initialize() => state = const AsyncValue.data(SignInState());
 
   signInWithGoogle() async {
     state = await AsyncValue.guard(() async {
-      final result = await _useCase.handle(NoParams());
-      return SignInState(isSignIn: result.isLogin);
+      final result = await authRepository.signInWithGoogle();
+      return SignInState(isSignIn: result);
     });
   }
 
