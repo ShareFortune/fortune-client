@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:fortune_client/view/pages/message/message_room_list/message_room_list_page.dart';
+import 'package:fortune_client/view/pages/profile/create/profile_create_page.dart';
 import 'package:fortune_client/view/pages/rooms/create/room_create_page.dart';
 import 'package:fortune_client/view/pages/rooms/room_join_list/room_join_list_page.dart';
 import 'package:fortune_client/view/widgets/navigation_bar.dart';
@@ -19,8 +20,8 @@ export 'app_router.gr.dart';
     ),
     AutoRoute(
       initial: true,
-      path: RoutePath.appRouteRoomCreate,
-      page: RoomCreatePage,
+      path: RoutePath.appRouteProfileCreate,
+      page: ProfileCreatePage,
     ),
     AutoRoute(
       page: NavigationBar,

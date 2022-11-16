@@ -17,7 +17,7 @@ import 'package:fortune_client/view/pages/auth/sign_in/sign_in_page.dart'
     as _i1;
 import 'package:fortune_client/view/pages/message/message_room_list/message_room_list_page.dart'
     as _i6;
-import 'package:fortune_client/view/pages/rooms/create/room_create_page.dart'
+import 'package:fortune_client/view/pages/profile/create/profile_create_page.dart'
     as _i2;
 import 'package:fortune_client/view/pages/rooms/room_join_list/room_join_list_page.dart'
     as _i5;
@@ -46,12 +46,12 @@ class AppRouter extends _i7.RootStackRouter {
         ),
       );
     },
-    RoomCreateRoute.name: (routeData) {
-      final args = routeData.argsAs<RoomCreateRouteArgs>(
-          orElse: () => const RoomCreateRouteArgs());
+    ProfileCreateRoute.name: (routeData) {
+      final args = routeData.argsAs<ProfileCreateRouteArgs>(
+          orElse: () => const ProfileCreateRouteArgs());
       return _i7.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: _i2.RoomCreatePage(key: args.key),
+        child: _i2.ProfileCreatePage(key: args.key),
       );
     },
     NavigationBar.name: (routeData) {
@@ -85,7 +85,7 @@ class AppRouter extends _i7.RootStackRouter {
         _i7.RouteConfig(
           '/#redirect',
           path: '/',
-          redirectTo: '/room_create',
+          redirectTo: '/profile_create',
           fullMatch: true,
         ),
         _i7.RouteConfig(
@@ -93,8 +93,8 @@ class AppRouter extends _i7.RootStackRouter {
           path: '/sign_in',
         ),
         _i7.RouteConfig(
-          RoomCreateRoute.name,
-          path: '/room_create',
+          ProfileCreateRoute.name,
+          path: '/profile_create',
         ),
         _i7.RouteConfig(
           NavigationBar.name,
@@ -156,26 +156,26 @@ class SignInRouteArgs {
 }
 
 /// generated route for
-/// [_i2.RoomCreatePage]
-class RoomCreateRoute extends _i7.PageRouteInfo<RoomCreateRouteArgs> {
-  RoomCreateRoute({_i8.Key? key})
+/// [_i2.ProfileCreatePage]
+class ProfileCreateRoute extends _i7.PageRouteInfo<ProfileCreateRouteArgs> {
+  ProfileCreateRoute({_i8.Key? key})
       : super(
-          RoomCreateRoute.name,
-          path: '/room_create',
-          args: RoomCreateRouteArgs(key: key),
+          ProfileCreateRoute.name,
+          path: '/profile_create',
+          args: ProfileCreateRouteArgs(key: key),
         );
 
-  static const String name = 'RoomCreateRoute';
+  static const String name = 'ProfileCreateRoute';
 }
 
-class RoomCreateRouteArgs {
-  const RoomCreateRouteArgs({this.key});
+class ProfileCreateRouteArgs {
+  const ProfileCreateRouteArgs({this.key});
 
   final _i8.Key? key;
 
   @override
   String toString() {
-    return 'RoomCreateRouteArgs{key: $key}';
+    return 'ProfileCreateRouteArgs{key: $key}';
   }
 }
 

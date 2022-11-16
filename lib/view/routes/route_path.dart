@@ -7,6 +7,7 @@ class RoutePath {
   /// ページ遷移
   static const appRouteRoomDetail = '/rooms/:id';
   static const appRouteRoomCreate = '/room_create';
+  static const appRouteProfileCreate = '/profile_create';
   static const appRouteMessage = '/message';
   static const appRouteSignIn = '/sign_in';
 }
