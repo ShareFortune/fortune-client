@@ -28,7 +28,7 @@ class ProfileUpdateInteractor implements ProfileUpdateUseCase {
         prefectureId: params.prefectureId,
         cityId: params.cityId,
       ),
-      occupationID: params.occupationID,
+      occupationId: params.occupationID,
     );
 
     try {

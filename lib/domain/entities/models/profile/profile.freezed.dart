@@ -14,21 +14,11 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-Profile _$ProfileFromJson(Map<String, dynamic> json) {
-  return _Profile.fromJson(json);
-}
-
 /// @nodoc
 mixin _$Profile {
-  String get mainImagePath => throw _privateConstructorUsedError;
-  String get secondImagePath => throw _privateConstructorUsedError;
-  String get thirdImagePath => throw _privateConstructorUsedError;
-  String get fourthImagePath => throw _privateConstructorUsedError;
-  String get fifthImagePath => throw _privateConstructorUsedError;
-  String get sixthImagePath => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   Gender get gender => throw _privateConstructorUsedError;
-  int get height => throw _privateConstructorUsedError;
+  double get height => throw _privateConstructorUsedError;
   DrinkFrequency get drinkFrequency =>
       throw _privateConstructorUsedError; // お酒をよく飲むか
   CigaretteFrequency get cigaretteFrequency =>
@@ -36,9 +26,15 @@ mixin _$Profile {
   String get selfIntroduction =>
       throw _privateConstructorUsedError; // 自己紹介文(nullalble)
   Address get adress => throw _privateConstructorUsedError; // 居住地
-  String get occupationID => throw _privateConstructorUsedError;
+  String get occupationId => throw _privateConstructorUsedError; // 職業ID
+  /// プロフィール画像
+  String get mainImagePath => throw _privateConstructorUsedError;
+  String get secondImagePath => throw _privateConstructorUsedError;
+  String get thirdImagePath => throw _privateConstructorUsedError;
+  String get fourthImagePath => throw _privateConstructorUsedError;
+  String get fifthImagePath => throw _privateConstructorUsedError;
+  String get sixthImagePath => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $ProfileCopyWith<Profile> get copyWith => throw _privateConstructorUsedError;
 }
@@ -49,20 +45,20 @@ abstract class $ProfileCopyWith<$Res> {
       _$ProfileCopyWithImpl<$Res, Profile>;
   @useResult
   $Res call(
-      {String mainImagePath,
-      String secondImagePath,
-      String thirdImagePath,
-      String fourthImagePath,
-      String fifthImagePath,
-      String sixthImagePath,
-      String name,
+      {String name,
       Gender gender,
-      int height,
+      double height,
       DrinkFrequency drinkFrequency,
       CigaretteFrequency cigaretteFrequency,
       String selfIntroduction,
       Address adress,
-      String occupationID});
+      String occupationId,
+      String mainImagePath,
+      String secondImagePath,
+      String thirdImagePath,
+      String fourthImagePath,
+      String fifthImagePath,
+      String sixthImagePath});
 
   $AddressCopyWith<$Res> get adress;
 }
@@ -80,12 +76,6 @@ class _$ProfileCopyWithImpl<$Res, $Val extends Profile>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? mainImagePath = null,
-    Object? secondImagePath = null,
-    Object? thirdImagePath = null,
-    Object? fourthImagePath = null,
-    Object? fifthImagePath = null,
-    Object? sixthImagePath = null,
     Object? name = null,
     Object? gender = null,
     Object? height = null,
@@ -93,9 +83,47 @@ class _$ProfileCopyWithImpl<$Res, $Val extends Profile>
     Object? cigaretteFrequency = null,
     Object? selfIntroduction = null,
     Object? adress = null,
-    Object? occupationID = null,
+    Object? occupationId = null,
+    Object? mainImagePath = null,
+    Object? secondImagePath = null,
+    Object? thirdImagePath = null,
+    Object? fourthImagePath = null,
+    Object? fifthImagePath = null,
+    Object? sixthImagePath = null,
   }) {
     return _then(_value.copyWith(
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      gender: null == gender
+          ? _value.gender
+          : gender // ignore: cast_nullable_to_non_nullable
+              as Gender,
+      height: null == height
+          ? _value.height
+          : height // ignore: cast_nullable_to_non_nullable
+              as double,
+      drinkFrequency: null == drinkFrequency
+          ? _value.drinkFrequency
+          : drinkFrequency // ignore: cast_nullable_to_non_nullable
+              as DrinkFrequency,
+      cigaretteFrequency: null == cigaretteFrequency
+          ? _value.cigaretteFrequency
+          : cigaretteFrequency // ignore: cast_nullable_to_non_nullable
+              as CigaretteFrequency,
+      selfIntroduction: null == selfIntroduction
+          ? _value.selfIntroduction
+          : selfIntroduction // ignore: cast_nullable_to_non_nullable
+              as String,
+      adress: null == adress
+          ? _value.adress
+          : adress // ignore: cast_nullable_to_non_nullable
+              as Address,
+      occupationId: null == occupationId
+          ? _value.occupationId
+          : occupationId // ignore: cast_nullable_to_non_nullable
+              as String,
       mainImagePath: null == mainImagePath
           ? _value.mainImagePath
           : mainImagePath // ignore: cast_nullable_to_non_nullable
@@ -119,38 +147,6 @@ class _$ProfileCopyWithImpl<$Res, $Val extends Profile>
       sixthImagePath: null == sixthImagePath
           ? _value.sixthImagePath
           : sixthImagePath // ignore: cast_nullable_to_non_nullable
-              as String,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      gender: null == gender
-          ? _value.gender
-          : gender // ignore: cast_nullable_to_non_nullable
-              as Gender,
-      height: null == height
-          ? _value.height
-          : height // ignore: cast_nullable_to_non_nullable
-              as int,
-      drinkFrequency: null == drinkFrequency
-          ? _value.drinkFrequency
-          : drinkFrequency // ignore: cast_nullable_to_non_nullable
-              as DrinkFrequency,
-      cigaretteFrequency: null == cigaretteFrequency
-          ? _value.cigaretteFrequency
-          : cigaretteFrequency // ignore: cast_nullable_to_non_nullable
-              as CigaretteFrequency,
-      selfIntroduction: null == selfIntroduction
-          ? _value.selfIntroduction
-          : selfIntroduction // ignore: cast_nullable_to_non_nullable
-              as String,
-      adress: null == adress
-          ? _value.adress
-          : adress // ignore: cast_nullable_to_non_nullable
-              as Address,
-      occupationID: null == occupationID
-          ? _value.occupationID
-          : occupationID // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -172,20 +168,20 @@ abstract class _$$_ProfileCopyWith<$Res> implements $ProfileCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String mainImagePath,
-      String secondImagePath,
-      String thirdImagePath,
-      String fourthImagePath,
-      String fifthImagePath,
-      String sixthImagePath,
-      String name,
+      {String name,
       Gender gender,
-      int height,
+      double height,
       DrinkFrequency drinkFrequency,
       CigaretteFrequency cigaretteFrequency,
       String selfIntroduction,
       Address adress,
-      String occupationID});
+      String occupationId,
+      String mainImagePath,
+      String secondImagePath,
+      String thirdImagePath,
+      String fourthImagePath,
+      String fifthImagePath,
+      String sixthImagePath});
 
   @override
   $AddressCopyWith<$Res> get adress;
@@ -201,12 +197,6 @@ class __$$_ProfileCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? mainImagePath = null,
-    Object? secondImagePath = null,
-    Object? thirdImagePath = null,
-    Object? fourthImagePath = null,
-    Object? fifthImagePath = null,
-    Object? sixthImagePath = null,
     Object? name = null,
     Object? gender = null,
     Object? height = null,
@@ -214,9 +204,47 @@ class __$$_ProfileCopyWithImpl<$Res>
     Object? cigaretteFrequency = null,
     Object? selfIntroduction = null,
     Object? adress = null,
-    Object? occupationID = null,
+    Object? occupationId = null,
+    Object? mainImagePath = null,
+    Object? secondImagePath = null,
+    Object? thirdImagePath = null,
+    Object? fourthImagePath = null,
+    Object? fifthImagePath = null,
+    Object? sixthImagePath = null,
   }) {
     return _then(_$_Profile(
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      gender: null == gender
+          ? _value.gender
+          : gender // ignore: cast_nullable_to_non_nullable
+              as Gender,
+      height: null == height
+          ? _value.height
+          : height // ignore: cast_nullable_to_non_nullable
+              as double,
+      drinkFrequency: null == drinkFrequency
+          ? _value.drinkFrequency
+          : drinkFrequency // ignore: cast_nullable_to_non_nullable
+              as DrinkFrequency,
+      cigaretteFrequency: null == cigaretteFrequency
+          ? _value.cigaretteFrequency
+          : cigaretteFrequency // ignore: cast_nullable_to_non_nullable
+              as CigaretteFrequency,
+      selfIntroduction: null == selfIntroduction
+          ? _value.selfIntroduction
+          : selfIntroduction // ignore: cast_nullable_to_non_nullable
+              as String,
+      adress: null == adress
+          ? _value.adress
+          : adress // ignore: cast_nullable_to_non_nullable
+              as Address,
+      occupationId: null == occupationId
+          ? _value.occupationId
+          : occupationId // ignore: cast_nullable_to_non_nullable
+              as String,
       mainImagePath: null == mainImagePath
           ? _value.mainImagePath
           : mainImagePath // ignore: cast_nullable_to_non_nullable
@@ -241,82 +269,37 @@ class __$$_ProfileCopyWithImpl<$Res>
           ? _value.sixthImagePath
           : sixthImagePath // ignore: cast_nullable_to_non_nullable
               as String,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      gender: null == gender
-          ? _value.gender
-          : gender // ignore: cast_nullable_to_non_nullable
-              as Gender,
-      height: null == height
-          ? _value.height
-          : height // ignore: cast_nullable_to_non_nullable
-              as int,
-      drinkFrequency: null == drinkFrequency
-          ? _value.drinkFrequency
-          : drinkFrequency // ignore: cast_nullable_to_non_nullable
-              as DrinkFrequency,
-      cigaretteFrequency: null == cigaretteFrequency
-          ? _value.cigaretteFrequency
-          : cigaretteFrequency // ignore: cast_nullable_to_non_nullable
-              as CigaretteFrequency,
-      selfIntroduction: null == selfIntroduction
-          ? _value.selfIntroduction
-          : selfIntroduction // ignore: cast_nullable_to_non_nullable
-              as String,
-      adress: null == adress
-          ? _value.adress
-          : adress // ignore: cast_nullable_to_non_nullable
-              as Address,
-      occupationID: null == occupationID
-          ? _value.occupationID
-          : occupationID // ignore: cast_nullable_to_non_nullable
-              as String,
     ));
   }
 }
 
 /// @nodoc
-@JsonSerializable()
+
 class _$_Profile implements _Profile {
-  const _$_Profile(
-      {required this.mainImagePath,
-      required this.secondImagePath,
-      required this.thirdImagePath,
-      required this.fourthImagePath,
-      required this.fifthImagePath,
-      required this.sixthImagePath,
-      required this.name,
+  _$_Profile(
+      {required this.name,
       required this.gender,
       required this.height,
       required this.drinkFrequency,
       required this.cigaretteFrequency,
       required this.selfIntroduction,
       required this.adress,
-      required this.occupationID});
+      required this.occupationId,
+      required this.mainImagePath,
+      required this.secondImagePath,
+      required this.thirdImagePath,
+      required this.fourthImagePath,
+      required this.fifthImagePath,
+      required this.sixthImagePath})
+      : assert(name.length > 3, 'ユーザ名は3文字以上です。'),
+        assert(name.length < 10, 'ユーザ名は10文字以下です。');
 
-  factory _$_Profile.fromJson(Map<String, dynamic> json) =>
-      _$$_ProfileFromJson(json);
-
-  @override
-  final String mainImagePath;
-  @override
-  final String secondImagePath;
-  @override
-  final String thirdImagePath;
-  @override
-  final String fourthImagePath;
-  @override
-  final String fifthImagePath;
-  @override
-  final String sixthImagePath;
   @override
   final String name;
   @override
   final Gender gender;
   @override
-  final int height;
+  final double height;
   @override
   final DrinkFrequency drinkFrequency;
 // お酒をよく飲むか
@@ -330,11 +313,25 @@ class _$_Profile implements _Profile {
   final Address adress;
 // 居住地
   @override
-  final String occupationID;
+  final String occupationId;
+// 職業ID
+  /// プロフィール画像
+  @override
+  final String mainImagePath;
+  @override
+  final String secondImagePath;
+  @override
+  final String thirdImagePath;
+  @override
+  final String fourthImagePath;
+  @override
+  final String fifthImagePath;
+  @override
+  final String sixthImagePath;
 
   @override
   String toString() {
-    return 'Profile(mainImagePath: $mainImagePath, secondImagePath: $secondImagePath, thirdImagePath: $thirdImagePath, fourthImagePath: $fourthImagePath, fifthImagePath: $fifthImagePath, sixthImagePath: $sixthImagePath, name: $name, gender: $gender, height: $height, drinkFrequency: $drinkFrequency, cigaretteFrequency: $cigaretteFrequency, selfIntroduction: $selfIntroduction, adress: $adress, occupationID: $occupationID)';
+    return 'Profile(name: $name, gender: $gender, height: $height, drinkFrequency: $drinkFrequency, cigaretteFrequency: $cigaretteFrequency, selfIntroduction: $selfIntroduction, adress: $adress, occupationId: $occupationId, mainImagePath: $mainImagePath, secondImagePath: $secondImagePath, thirdImagePath: $thirdImagePath, fourthImagePath: $fourthImagePath, fifthImagePath: $fifthImagePath, sixthImagePath: $sixthImagePath)';
   }
 
   @override
@@ -342,6 +339,18 @@ class _$_Profile implements _Profile {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Profile &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.gender, gender) || other.gender == gender) &&
+            (identical(other.height, height) || other.height == height) &&
+            (identical(other.drinkFrequency, drinkFrequency) ||
+                other.drinkFrequency == drinkFrequency) &&
+            (identical(other.cigaretteFrequency, cigaretteFrequency) ||
+                other.cigaretteFrequency == cigaretteFrequency) &&
+            (identical(other.selfIntroduction, selfIntroduction) ||
+                other.selfIntroduction == selfIntroduction) &&
+            (identical(other.adress, adress) || other.adress == adress) &&
+            (identical(other.occupationId, occupationId) ||
+                other.occupationId == occupationId) &&
             (identical(other.mainImagePath, mainImagePath) ||
                 other.mainImagePath == mainImagePath) &&
             (identical(other.secondImagePath, secondImagePath) ||
@@ -353,31 +362,12 @@ class _$_Profile implements _Profile {
             (identical(other.fifthImagePath, fifthImagePath) ||
                 other.fifthImagePath == fifthImagePath) &&
             (identical(other.sixthImagePath, sixthImagePath) ||
-                other.sixthImagePath == sixthImagePath) &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.gender, gender) || other.gender == gender) &&
-            (identical(other.height, height) || other.height == height) &&
-            (identical(other.drinkFrequency, drinkFrequency) ||
-                other.drinkFrequency == drinkFrequency) &&
-            (identical(other.cigaretteFrequency, cigaretteFrequency) ||
-                other.cigaretteFrequency == cigaretteFrequency) &&
-            (identical(other.selfIntroduction, selfIntroduction) ||
-                other.selfIntroduction == selfIntroduction) &&
-            (identical(other.adress, adress) || other.adress == adress) &&
-            (identical(other.occupationID, occupationID) ||
-                other.occupationID == occupationID));
+                other.sixthImagePath == sixthImagePath));
   }
 
-  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      mainImagePath,
-      secondImagePath,
-      thirdImagePath,
-      fourthImagePath,
-      fifthImagePath,
-      sixthImagePath,
       name,
       gender,
       height,
@@ -385,42 +375,56 @@ class _$_Profile implements _Profile {
       cigaretteFrequency,
       selfIntroduction,
       adress,
-      occupationID);
+      occupationId,
+      mainImagePath,
+      secondImagePath,
+      thirdImagePath,
+      fourthImagePath,
+      fifthImagePath,
+      sixthImagePath);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$_ProfileCopyWith<_$_Profile> get copyWith =>
       __$$_ProfileCopyWithImpl<_$_Profile>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_ProfileToJson(
-      this,
-    );
-  }
 }
 
 abstract class _Profile implements Profile {
-  const factory _Profile(
-      {required final String mainImagePath,
-      required final String secondImagePath,
-      required final String thirdImagePath,
-      required final String fourthImagePath,
-      required final String fifthImagePath,
-      required final String sixthImagePath,
-      required final String name,
+  factory _Profile(
+      {required final String name,
       required final Gender gender,
-      required final int height,
+      required final double height,
       required final DrinkFrequency drinkFrequency,
       required final CigaretteFrequency cigaretteFrequency,
       required final String selfIntroduction,
       required final Address adress,
-      required final String occupationID}) = _$_Profile;
-
-  factory _Profile.fromJson(Map<String, dynamic> json) = _$_Profile.fromJson;
+      required final String occupationId,
+      required final String mainImagePath,
+      required final String secondImagePath,
+      required final String thirdImagePath,
+      required final String fourthImagePath,
+      required final String fifthImagePath,
+      required final String sixthImagePath}) = _$_Profile;
 
   @override
+  String get name;
+  @override
+  Gender get gender;
+  @override
+  double get height;
+  @override
+  DrinkFrequency get drinkFrequency;
+  @override // お酒をよく飲むか
+  CigaretteFrequency get cigaretteFrequency;
+  @override // タバコをよく吸うか
+  String get selfIntroduction;
+  @override // 自己紹介文(nullalble)
+  Address get adress;
+  @override // 居住地
+  String get occupationId;
+  @override // 職業ID
+  /// プロフィール画像
   String get mainImagePath;
   @override
   String get secondImagePath;
@@ -432,22 +436,6 @@ abstract class _Profile implements Profile {
   String get fifthImagePath;
   @override
   String get sixthImagePath;
-  @override
-  String get name;
-  @override
-  Gender get gender;
-  @override
-  int get height;
-  @override
-  DrinkFrequency get drinkFrequency;
-  @override // お酒をよく飲むか
-  CigaretteFrequency get cigaretteFrequency;
-  @override // タバコをよく吸うか
-  String get selfIntroduction;
-  @override // 自己紹介文(nullalble)
-  Address get adress;
-  @override // 居住地
-  String get occupationID;
   @override
   @JsonKey(ignore: true)
   _$$_ProfileCopyWith<_$_Profile> get copyWith =>

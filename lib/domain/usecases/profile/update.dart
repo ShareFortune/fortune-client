@@ -17,7 +17,7 @@ class ProfileUpdateParams {
 
   final String name;
   final Gender gender;
-  final int height;
+  final double height;
   final DrinkFrequency drinkFrequency;
   final CigaretteFrequency cigaretteFrequency;
   final String selfIntroduction;

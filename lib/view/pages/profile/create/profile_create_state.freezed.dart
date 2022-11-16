@@ -18,11 +18,11 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$ProfileCreateState {
   String get name => throw _privateConstructorUsedError;
   String get gender => throw _privateConstructorUsedError;
+  String get adress => throw _privateConstructorUsedError;
+  String get selfIntroduction => throw _privateConstructorUsedError;
   double get height => throw _privateConstructorUsedError;
   String get drinkFrequency => throw _privateConstructorUsedError;
   String get cigaretteFrequency => throw _privateConstructorUsedError;
-  String get selfIntroduction => throw _privateConstructorUsedError;
-  String get adress => throw _privateConstructorUsedError;
   String get occupationID => throw _privateConstructorUsedError;
   String get mainImagePath => throw _privateConstructorUsedError;
   String get secondImagePath => throw _privateConstructorUsedError;
@@ -45,11 +45,11 @@ abstract class $ProfileCreateStateCopyWith<$Res> {
   $Res call(
       {String name,
       String gender,
+      String adress,
+      String selfIntroduction,
       double height,
       String drinkFrequency,
       String cigaretteFrequency,
-      String selfIntroduction,
-      String adress,
       String occupationID,
       String mainImagePath,
       String secondImagePath,
@@ -74,11 +74,11 @@ class _$ProfileCreateStateCopyWithImpl<$Res, $Val extends ProfileCreateState>
   $Res call({
     Object? name = null,
     Object? gender = null,
+    Object? adress = null,
+    Object? selfIntroduction = null,
     Object? height = null,
     Object? drinkFrequency = null,
     Object? cigaretteFrequency = null,
-    Object? selfIntroduction = null,
-    Object? adress = null,
     Object? occupationID = null,
     Object? mainImagePath = null,
     Object? secondImagePath = null,
@@ -96,6 +96,14 @@ class _$ProfileCreateStateCopyWithImpl<$Res, $Val extends ProfileCreateState>
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
               as String,
+      adress: null == adress
+          ? _value.adress
+          : adress // ignore: cast_nullable_to_non_nullable
+              as String,
+      selfIntroduction: null == selfIntroduction
+          ? _value.selfIntroduction
+          : selfIntroduction // ignore: cast_nullable_to_non_nullable
+              as String,
       height: null == height
           ? _value.height
           : height // ignore: cast_nullable_to_non_nullable
@@ -107,14 +115,6 @@ class _$ProfileCreateStateCopyWithImpl<$Res, $Val extends ProfileCreateState>
       cigaretteFrequency: null == cigaretteFrequency
           ? _value.cigaretteFrequency
           : cigaretteFrequency // ignore: cast_nullable_to_non_nullable
-              as String,
-      selfIntroduction: null == selfIntroduction
-          ? _value.selfIntroduction
-          : selfIntroduction // ignore: cast_nullable_to_non_nullable
-              as String,
-      adress: null == adress
-          ? _value.adress
-          : adress // ignore: cast_nullable_to_non_nullable
               as String,
       occupationID: null == occupationID
           ? _value.occupationID
@@ -159,11 +159,11 @@ abstract class _$$_ProfileCreateStateCopyWith<$Res>
   $Res call(
       {String name,
       String gender,
+      String adress,
+      String selfIntroduction,
       double height,
       String drinkFrequency,
       String cigaretteFrequency,
-      String selfIntroduction,
-      String adress,
       String occupationID,
       String mainImagePath,
       String secondImagePath,
@@ -186,11 +186,11 @@ class __$$_ProfileCreateStateCopyWithImpl<$Res>
   $Res call({
     Object? name = null,
     Object? gender = null,
+    Object? adress = null,
+    Object? selfIntroduction = null,
     Object? height = null,
     Object? drinkFrequency = null,
     Object? cigaretteFrequency = null,
-    Object? selfIntroduction = null,
-    Object? adress = null,
     Object? occupationID = null,
     Object? mainImagePath = null,
     Object? secondImagePath = null,
@@ -208,6 +208,14 @@ class __$$_ProfileCreateStateCopyWithImpl<$Res>
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
               as String,
+      adress: null == adress
+          ? _value.adress
+          : adress // ignore: cast_nullable_to_non_nullable
+              as String,
+      selfIntroduction: null == selfIntroduction
+          ? _value.selfIntroduction
+          : selfIntroduction // ignore: cast_nullable_to_non_nullable
+              as String,
       height: null == height
           ? _value.height
           : height // ignore: cast_nullable_to_non_nullable
@@ -219,14 +227,6 @@ class __$$_ProfileCreateStateCopyWithImpl<$Res>
       cigaretteFrequency: null == cigaretteFrequency
           ? _value.cigaretteFrequency
           : cigaretteFrequency // ignore: cast_nullable_to_non_nullable
-              as String,
-      selfIntroduction: null == selfIntroduction
-          ? _value.selfIntroduction
-          : selfIntroduction // ignore: cast_nullable_to_non_nullable
-              as String,
-      adress: null == adress
-          ? _value.adress
-          : adress // ignore: cast_nullable_to_non_nullable
               as String,
       occupationID: null == occupationID
           ? _value.occupationID
@@ -266,11 +266,11 @@ class _$_ProfileCreateState implements _ProfileCreateState {
   const _$_ProfileCreateState(
       {this.name = "",
       this.gender = "未選択",
+      this.adress = "東京都",
+      this.selfIntroduction = "",
       this.height = 160,
       this.drinkFrequency = "飲まない",
       this.cigaretteFrequency = "吸わない",
-      this.selfIntroduction = "",
-      this.adress = "東京都",
       this.occupationID = "エンジニア",
       this.mainImagePath = "",
       this.secondImagePath = "",
@@ -287,6 +287,12 @@ class _$_ProfileCreateState implements _ProfileCreateState {
   final String gender;
   @override
   @JsonKey()
+  final String adress;
+  @override
+  @JsonKey()
+  final String selfIntroduction;
+  @override
+  @JsonKey()
   final double height;
   @override
   @JsonKey()
@@ -294,12 +300,6 @@ class _$_ProfileCreateState implements _ProfileCreateState {
   @override
   @JsonKey()
   final String cigaretteFrequency;
-  @override
-  @JsonKey()
-  final String selfIntroduction;
-  @override
-  @JsonKey()
-  final String adress;
   @override
   @JsonKey()
   final String occupationID;
@@ -324,7 +324,7 @@ class _$_ProfileCreateState implements _ProfileCreateState {
 
   @override
   String toString() {
-    return 'ProfileCreateState(name: $name, gender: $gender, height: $height, drinkFrequency: $drinkFrequency, cigaretteFrequency: $cigaretteFrequency, selfIntroduction: $selfIntroduction, adress: $adress, occupationID: $occupationID, mainImagePath: $mainImagePath, secondImagePath: $secondImagePath, thirdImagePath: $thirdImagePath, fourthImagePath: $fourthImagePath, fifthImagePath: $fifthImagePath, sixthImagePath: $sixthImagePath)';
+    return 'ProfileCreateState(name: $name, gender: $gender, adress: $adress, selfIntroduction: $selfIntroduction, height: $height, drinkFrequency: $drinkFrequency, cigaretteFrequency: $cigaretteFrequency, occupationID: $occupationID, mainImagePath: $mainImagePath, secondImagePath: $secondImagePath, thirdImagePath: $thirdImagePath, fourthImagePath: $fourthImagePath, fifthImagePath: $fifthImagePath, sixthImagePath: $sixthImagePath)';
   }
 
   @override
@@ -334,14 +334,14 @@ class _$_ProfileCreateState implements _ProfileCreateState {
             other is _$_ProfileCreateState &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.gender, gender) || other.gender == gender) &&
+            (identical(other.adress, adress) || other.adress == adress) &&
+            (identical(other.selfIntroduction, selfIntroduction) ||
+                other.selfIntroduction == selfIntroduction) &&
             (identical(other.height, height) || other.height == height) &&
             (identical(other.drinkFrequency, drinkFrequency) ||
                 other.drinkFrequency == drinkFrequency) &&
             (identical(other.cigaretteFrequency, cigaretteFrequency) ||
                 other.cigaretteFrequency == cigaretteFrequency) &&
-            (identical(other.selfIntroduction, selfIntroduction) ||
-                other.selfIntroduction == selfIntroduction) &&
-            (identical(other.adress, adress) || other.adress == adress) &&
             (identical(other.occupationID, occupationID) ||
                 other.occupationID == occupationID) &&
             (identical(other.mainImagePath, mainImagePath) ||
@@ -363,11 +363,11 @@ class _$_ProfileCreateState implements _ProfileCreateState {
       runtimeType,
       name,
       gender,
+      adress,
+      selfIntroduction,
       height,
       drinkFrequency,
       cigaretteFrequency,
-      selfIntroduction,
-      adress,
       occupationID,
       mainImagePath,
       secondImagePath,
@@ -388,11 +388,11 @@ abstract class _ProfileCreateState implements ProfileCreateState {
   const factory _ProfileCreateState(
       {final String name,
       final String gender,
+      final String adress,
+      final String selfIntroduction,
       final double height,
       final String drinkFrequency,
       final String cigaretteFrequency,
-      final String selfIntroduction,
-      final String adress,
       final String occupationID,
       final String mainImagePath,
       final String secondImagePath,
@@ -406,15 +406,15 @@ abstract class _ProfileCreateState implements ProfileCreateState {
   @override
   String get gender;
   @override
+  String get adress;
+  @override
+  String get selfIntroduction;
+  @override
   double get height;
   @override
   String get drinkFrequency;
   @override
   String get cigaretteFrequency;
-  @override
-  String get selfIntroduction;
-  @override
-  String get adress;
   @override
   String get occupationID;
   @override

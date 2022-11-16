@@ -1,3 +1,4 @@
+import 'package:fortune_client/domain/entities/const/types.dart';
 import 'package:fortune_client/domain/entities/enum/cigarette_frequency.dart';
 import 'package:fortune_client/domain/entities/enum/drink_frequency.dart';
 import 'package:fortune_client/domain/entities/enum/gender.dart';
@@ -17,7 +18,7 @@ class ProfileCreateParams {
 
   final String name;
   final Gender gender;
-  final int height;
+  final double height;
   final DrinkFrequency drinkFrequency;
   final CigaretteFrequency cigaretteFrequency;
   final String selfIntroduction;
@@ -48,4 +49,8 @@ class ProfileCreateParams {
   });
 }
 
-class ProfileCreateResults {}
+class ProfileCreateResults {
+  final ProfileID profileId;
+
+  ProfileCreateResults(this.profileId);
+}
