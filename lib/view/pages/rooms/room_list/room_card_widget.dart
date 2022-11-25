@@ -1,50 +1,51 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:fortune_client/view/theme/app_text_theme.dart';
+import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:gap/gap.dart';
 
-class RoomCardWidget extends StatelessWidget {
+class RoomCardWidget extends ConsumerWidget {
   const RoomCardWidget({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final theme = ref.watch(appThemeProvider);
+
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
         color: Colors.white,
         border: Border.all(
-          width: 1,
-          color: const Color.fromRGBO(0, 0, 0, 0.1),
+          color: theme.appColors.divider,
         ),
         borderRadius: BorderRadius.circular(30),
       ),
       child: Column(
         children: [
-          title(),
+          title(theme),
           const Gap(15),
-          content(),
+          content(theme),
         ],
       ),
     );
   }
 
-  title() {
+  title(AppTheme theme) {
     return Row(
       children: [
         /// ホスト
-        const CircleAvatar(
+        CircleAvatar(
           radius: 30,
-          backgroundColor: Colors.pink,
+          backgroundColor: theme.appColors.primary,
         ),
         const Gap(15),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             /// ルームタイトル
-            const Text(
+            Text(
               "渋谷で飲み会しませんか？",
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-              ),
+              style: theme.textTheme.h40.bold(),
             ),
             const Gap(10),
             Row(
@@ -53,12 +54,9 @@ class RoomCardWidget extends StatelessWidget {
 
                 /// 半径分開ける
                 const Gap(15),
-                const Text(
+                Text(
                   "残り3人",
-                  style: TextStyle(
-                    fontSize: 12,
-                    color: Color.fromRGBO(0, 0, 0, 0.3),
-                  ),
+                  style: theme.textTheme.h20.auxiliary(),
                 ),
               ],
             ),
@@ -68,24 +66,21 @@ class RoomCardWidget extends StatelessWidget {
     );
   }
 
-  content() {
+  content(AppTheme theme) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Row(
-          children: const [
+          children: [
             Icon(
               Icons.place_outlined,
               size: 24,
-              color: Color.fromRGBO(0, 0, 0, 0.5),
+              color: theme.appColors.divider,
             ),
-            Gap(10),
+            const Gap(10),
             Text(
               "東京都・渋谷区",
-              style: TextStyle(
-                fontSize: 14,
-                color: Color.fromRGBO(0, 0, 0, 0.8),
-              ),
+              style: theme.textTheme.h30.auxiliary(),
             ),
           ],
         ),
@@ -93,10 +88,10 @@ class RoomCardWidget extends StatelessWidget {
           onPressed: () {},
           padding: EdgeInsets.zero,
           constraints: const BoxConstraints(),
-          icon: const Icon(
+          icon: Icon(
             size: 24,
-            color: Color.fromRGBO(0, 0, 0, 0.5),
             Icons.favorite_border,
+            color: theme.appColors.divider,
           ),
         ),
       ],
