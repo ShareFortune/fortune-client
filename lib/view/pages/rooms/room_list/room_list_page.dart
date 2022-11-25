@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:fortune_client/gen/assets.gen.dart';
 import 'package:fortune_client/view/common/app_bar/app_bar.dart';
+import 'package:fortune_client/view/pages/rooms/room_list/room_card_widget.dart';
 import 'package:fortune_client/view/pages/rooms/room_list/room_list_state.dart';
 import 'package:fortune_client/view/pages/rooms/room_list/room_list_view_model.dart';
 import 'package:fortune_client/view/widgets/search_header.dart';
@@ -34,10 +35,11 @@ class RoomListPage extends ConsumerWidget {
                           child: Padding(
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 30, vertical: 10),
-                            child: roomListTile(
-                              context: context,
-                              room: data.rooms[index],
-                            ),
+                            child: RoomCardWidget(),
+                            // child: roomListTile(
+                            //   context: context,
+                            //   room: data.rooms[index],
+                            // ),
                           ),
                         ),
                       ),
