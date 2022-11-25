@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import 'package:fortune_client/gen/assets.gen.dart';
 import 'package:fortune_client/view/common/app_bar/app_bar.dart';
 import 'package:fortune_client/view/pages/rooms/room_list/room_list_state.dart';
 import 'package:fortune_client/view/pages/rooms/room_list/room_list_view_model.dart';
@@ -82,7 +83,7 @@ class RoomListPage extends ConsumerWidget {
             children: [
               CircleAvatar(
                 radius: 23,
-                backgroundImage: NetworkImage(room.hostUserIcon),
+                child: Image.asset(room.hostUserIcon, width: 150.0),
               ),
               const SizedBox(width: 30),
               Text(
@@ -203,7 +204,7 @@ class RoomListPage extends ConsumerWidget {
               padding: const EdgeInsets.only(left: 5),
               child: CircleAvatar(
                 radius: iconSize,
-                backgroundImage: NetworkImage(icon),
+                child: Image.asset(icon, width: 150.0),
               ),
             );
           }).toList(),

@@ -1,6 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-
-import '../../../fixtures/model/profile.dart';
+import 'package:fortune_client/data/datasource/stub/model/profile.dart';
 
 void main() {
   group("バリデーションチェック", () {

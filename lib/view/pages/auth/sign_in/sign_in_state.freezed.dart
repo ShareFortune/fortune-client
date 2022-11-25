@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$SignInState {
-  bool get isSignIn => throw _privateConstructorUsedError;
+  UserCredential? get credential => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SignInStateCopyWith<SignInState> get copyWith =>
@@ -29,7 +29,7 @@ abstract class $SignInStateCopyWith<$Res> {
           SignInState value, $Res Function(SignInState) then) =
       _$SignInStateCopyWithImpl<$Res, SignInState>;
   @useResult
-  $Res call({bool isSignIn});
+  $Res call({UserCredential? credential});
 }
 
 /// @nodoc
@@ -45,13 +45,13 @@ class _$SignInStateCopyWithImpl<$Res, $Val extends SignInState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? isSignIn = null,
+    Object? credential = freezed,
   }) {
     return _then(_value.copyWith(
-      isSignIn: null == isSignIn
-          ? _value.isSignIn
-          : isSignIn // ignore: cast_nullable_to_non_nullable
-              as bool,
+      credential: freezed == credential
+          ? _value.credential
+          : credential // ignore: cast_nullable_to_non_nullable
+              as UserCredential?,
     ) as $Val);
   }
 }
@@ -64,7 +64,7 @@ abstract class _$$_SignInStateCopyWith<$Res>
       __$$_SignInStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool isSignIn});
+  $Res call({UserCredential? credential});
 }
 
 /// @nodoc
@@ -78,13 +78,13 @@ class __$$_SignInStateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? isSignIn = null,
+    Object? credential = freezed,
   }) {
     return _then(_$_SignInState(
-      isSignIn: null == isSignIn
-          ? _value.isSignIn
-          : isSignIn // ignore: cast_nullable_to_non_nullable
-              as bool,
+      credential: freezed == credential
+          ? _value.credential
+          : credential // ignore: cast_nullable_to_non_nullable
+              as UserCredential?,
     ));
   }
 }
@@ -92,15 +92,15 @@ class __$$_SignInStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_SignInState implements _SignInState {
-  const _$_SignInState({this.isSignIn = false});
+  const _$_SignInState({this.credential = null});
 
   @override
   @JsonKey()
-  final bool isSignIn;
+  final UserCredential? credential;
 
   @override
   String toString() {
-    return 'SignInState(isSignIn: $isSignIn)';
+    return 'SignInState(credential: $credential)';
   }
 
   @override
@@ -108,12 +108,12 @@ class _$_SignInState implements _SignInState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_SignInState &&
-            (identical(other.isSignIn, isSignIn) ||
-                other.isSignIn == isSignIn));
+            (identical(other.credential, credential) ||
+                other.credential == credential));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, isSignIn);
+  int get hashCode => Object.hash(runtimeType, credential);
 
   @JsonKey(ignore: true)
   @override
@@ -123,10 +123,11 @@ class _$_SignInState implements _SignInState {
 }
 
 abstract class _SignInState implements SignInState {
-  const factory _SignInState({final bool isSignIn}) = _$_SignInState;
+  const factory _SignInState({final UserCredential? credential}) =
+      _$_SignInState;
 
   @override
-  bool get isSignIn;
+  UserCredential? get credential;
   @override
   @JsonKey(ignore: true)
   _$$_SignInStateCopyWith<_$_SignInState> get copyWith =>

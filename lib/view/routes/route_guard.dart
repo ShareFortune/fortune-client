@@ -11,14 +11,14 @@ class AuthGuard extends AutoRouteGuard {
   final Ref _ref;
   late final authRepository = _ref.watch(Repository.authProvider);
 
-  _isAuthenticated() async => await authRepository.isSignIn();
+  _isAuthenticated() => authRepository.isSignIn;
 
   @override
   Future<void> onNavigation(
     NavigationResolver resolver,
     StackRouter router,
   ) async {
-    final isAuthenticated = await _isAuthenticated();
+    final isAuthenticated = _isAuthenticated();
     if (isAuthenticated) {
       resolver.next(true);
     } else {

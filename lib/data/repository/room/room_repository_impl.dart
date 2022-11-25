@@ -1,7 +1,12 @@
+import 'package:fortune_client/data/datasource/remote/go/room_data_source.dart';
 import 'package:fortune_client/data/model/room/room.dart';
 import 'package:fortune_client/data/repository/room/room_repository.dart';
 
 class RoomRepositoryImpl implements RoomRepository {
+  final RoomDataSource _dataSource;
+
+  RoomRepositoryImpl(this._dataSource);
+
   @override
   Future<String> create() {
     // TODO: implement create
@@ -15,8 +20,11 @@ class RoomRepositoryImpl implements RoomRepository {
   }
 
   @override
-  Future<List<Room>> fetchList() {
-    // TODO: implement fetchList
-    throw UnimplementedError();
+  Future<List<Room>> fetchList() async {
+    try {
+      return await _dataSource.getList();
+    } catch (e) {
+      rethrow;
+    }
   }
 }

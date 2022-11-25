@@ -1,12 +1,11 @@
-abstract class AuthRepository {
-  /// トークン取得
-  Future<String> getAuthenticationToken();
+import 'package:firebase_auth/firebase_auth.dart';
 
+abstract class AuthRepository {
   /// サインインしているか
-  Future<bool> isSignIn();
+  bool get isSignIn;
 
   /// Googleでサインイン
-  Future<bool> signInWithGoogle();
+  Future<UserCredential?> signInWithGoogle();
 
   /// ログアウト
   Future<bool> logout();
