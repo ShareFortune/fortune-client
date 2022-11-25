@@ -22,16 +22,16 @@ class RoomHostListItemState with _$RoomHostListItemState {
     @Default(4) int maxNumOfParticipants,
   }) = _RoomHostListItemState;
 
-  static RoomHostListItemState fromEntity(Room room) {
-    return RoomHostListItemState(
-      createdAt: room.createdAt.toString(),
-      title: room.name,
-      maleUserIcons: room.members.map((e) => e.mainImageUrl).toList(),
-      femaleUserIcons: room.members.map((e) => e.mainImageUrl).toList(),
-      holdingPlace: "東京都",
-      maxNumOfParticipants: room.members.length,
-    );
-  }
+  // static RoomHostListItemState fromEntity(Room room) {
+  //   return RoomHostListItemState(
+  //     createdAt: room.createdAt.toString(),
+  //     title: room.name,
+  //     maleUserIcons: room.members.map((e) => e.mainImageUrl).toList(),
+  //     femaleUserIcons: room.members.map((e) => e.mainImageUrl).toList(),
+  //     holdingPlace: "東京都",
+  //     maxNumOfParticipants: room.members.length,
+  //   );
+  // }
 }
 
 @freezed
@@ -47,16 +47,16 @@ class RoomGuestListItemState with _$RoomGuestListItemState {
     @Default(4) int maxNumOfParticipants,
   }) = _RoomGuestListItemState;
 
-  static RoomGuestListItemState fromEntity(Room room) {
-    return RoomGuestListItemState(
-      hostName: room.hostUser.name,
-      createdAt: room.createdAt.toString(),
-      hostUserIcon: room.hostUser.mainImageUrl,
-      title: room.name,
-      maleUserIcons: room.members.map((e) => e.mainImageUrl).toList(),
-      femaleUserIcons: room.members.map((e) => e.mainImageUrl).toList(),
-      holdingPlace: "東京都",
-      maxNumOfParticipants: room.members.length,
-    );
-  }
+  // static RoomGuestListItemState fromEntity(Room room) {
+  //   return RoomGuestListItemState(
+  //     hostName: room.hostUser.name,
+  //     createdAt: room.createdAt.toString(),
+  //     hostUserIcon: room.hostUser.mainImageUrl,
+  //     title: room.name,
+  //     maleUserIcons: room.members.map((e) => e.mainImageUrl).toList(),
+  //     femaleUserIcons: room.members.map((e) => e.mainImageUrl).toList(),
+  //     holdingPlace: "東京都",
+  //     maxNumOfParticipants: room.members.length,
+  //   );
+  // }
 }

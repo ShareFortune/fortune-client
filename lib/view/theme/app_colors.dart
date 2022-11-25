@@ -19,7 +19,7 @@ class AppColors {
 
   factory AppColors.light() {
     return const AppColors(
-      primary: Color(0xFF6200EE),
+      primary: Color.fromRGBO(199, 130, 228, 1),
       primaryVariant: Color(0xFF3700B3),
       onPrimary: Color(0xFFFFFFFF),
       secondary: Color(0xFF03DAC6),
@@ -31,7 +31,7 @@ class AppColors {
       onSurface: Color(0xFF000000),
       error: Color(0xFFB00020),
       onError: Color(0xFFFFFFFF),
-      divider: Color.fromRGBO(0, 0, 0, 0.5),
+      divider: Color.fromRGBO(0, 0, 0, 0.1),
     );
   }
 

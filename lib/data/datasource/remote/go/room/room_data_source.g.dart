@@ -21,13 +21,13 @@ class _RoomDataSource implements RoomDataSource {
   String? baseUrl;
 
   @override
-  Future<List<Room>> getList() async {
+  Future<RoomList> getList() async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     final _result =
-        await _dio.fetch<List<dynamic>>(_setStreamType<List<Room>>(Options(
+        await _dio.fetch<Map<String, dynamic>>(_setStreamType<RoomList>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -39,9 +39,7 @@ class _RoomDataSource implements RoomDataSource {
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    var value = _result.data!
-        .map((dynamic i) => Room.fromJson(i as Map<String, dynamic>))
-        .toList();
+    final value = RoomList.fromJson(_result.data!);
     return value;
   }
 

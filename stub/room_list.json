@@ -1,0 +1,37 @@
+{
+    "nextToken": "aaaaaa",
+    "rooms": [
+        {
+            "id": "aaaaaa",
+            "roomName": "若者の集い",
+            "applicationDeadline": "2022-09-20",
+            "hostMainImageURL": "https://aaa",
+            "participantMainImageURLs": [
+                "https://aaa"
+            ],
+            "address": {
+                "countryId": 1,
+                "prefectureId": 1,
+                "cityId": 1
+            },
+            "isHost": false,
+            "isParticipant": false
+        },
+        {
+            "id": "aaaaaa",
+            "roomName": "若者の集い",
+            "applicationDeadline": "2022-09-20",
+            "hostMainImageURL": "https://aaa",
+            "participantMainImageURLs": [
+                "https://aaa"
+            ],
+            "address": {
+                "countryId": 1,
+                "prefectureId": 1,
+                "cityId": 1
+            },
+            "isHost": false,
+            "isParticipant": false
+        }
+    ]
+}

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:fortune_client/view/routes/app_router.gr.dart';
-import 'package:fortune_client/view/routes/route_guard.dart';
+import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:sizer/sizer.dart';
 
@@ -12,8 +11,7 @@ class MyApp extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = ref.watch(appThemeProvider);
     final themeMode = ref.watch(appThemeModeProvider);
-    final authGuard = ref.watch(authGuardProvider);
-    final appRouter = AppRouter(authGuard: authGuard);
+    final appRouter = ref.watch(appRouterProvider);
 
     return Sizer(
       builder: (context, orientation, deviceType) => MaterialApp.router(

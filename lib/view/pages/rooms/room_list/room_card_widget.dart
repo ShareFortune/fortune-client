@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:fortune_client/view/pages/rooms/room_list/room_list_state.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:gap/gap.dart';
 
 class RoomCardWidget extends ConsumerWidget {
-  const RoomCardWidget({super.key});
+  const RoomCardWidget(this.room, {super.key});
+
+  final RoomListItemState room;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -44,13 +47,13 @@ class RoomCardWidget extends ConsumerWidget {
           children: [
             /// ルームタイトル
             Text(
-              "渋谷で飲み会しませんか？",
+              room.title,
               style: theme.textTheme.h40.bold(),
             ),
             const Gap(10),
             Row(
               children: [
-                members(15),
+                members(15, room.memberIcons),
 
                 /// 半径分開ける
                 const Gap(15),
@@ -79,7 +82,8 @@ class RoomCardWidget extends ConsumerWidget {
             ),
             const Gap(10),
             Text(
-              "東京都・渋谷区",
+              "東京都・渋谷",
+              // room.place,
               style: theme.textTheme.h30.auxiliary(),
             ),
           ],
@@ -98,10 +102,10 @@ class RoomCardWidget extends ConsumerWidget {
     );
   }
 
-  members(double radius) {
+  members(double radius, List icons) {
     final diameter = radius * 2;
     return Stack(
-      children: List.generate(5, (index) {
+      children: List.generate(icons.length, (index) {
         double w;
         if (index == 0) {
           w = diameter;

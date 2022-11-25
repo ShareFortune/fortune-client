@@ -19,7 +19,7 @@ class RoomListViewModel extends StateNotifier<AsyncValue<RoomListState>> {
     state = await AsyncValue.guard(() async {
       final result = await roomRepository.fetchList();
       final rooms = result.map((e) {
-        return RoomListItem.fromEntity(e);
+        return RoomListItemState.fromEntity(e);
       }).toList();
       return RoomListState(rooms: rooms);
     });

@@ -9,6 +9,16 @@
 
 import 'package:flutter/widgets.dart';
 
+class $StubGen {
+  const $StubGen();
+
+  /// File path: stub/room_list.json
+  String get roomList => 'stub/room_list.json';
+
+  /// List of all assets
+  List<String> get values => [roomList];
+}
+
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
@@ -27,6 +37,7 @@ class Assets {
   Assets._();
 
   static const $AssetsImagesGen images = $AssetsImagesGen();
+  static const $StubGen stub = $StubGen();
 }
 
 class AssetGenImage {

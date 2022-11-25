@@ -24,22 +24,26 @@ mixin _$Room {
   String? get id => throw _privateConstructorUsedError;
 
   /// ルームネーム
-  String get name => throw _privateConstructorUsedError;
+  String get roomName => throw _privateConstructorUsedError;
 
-  /// 開催者
-  Member get hostUser => throw _privateConstructorUsedError;
+  /// 期限
+  String get applicationDeadline => throw _privateConstructorUsedError;
 
-  /// ルームのステータス
-  RoomStatus get roomStatus => throw _privateConstructorUsedError;
+  /// ホスト画像
+  String get hostMainImageURL => throw _privateConstructorUsedError;
 
-  /// 作成日時
-  DateTime get createdAt => throw _privateConstructorUsedError;
+  /// メンバー画像リスト
+  List<String> get participantMainImageURLs =>
+      throw _privateConstructorUsedError;
 
-  /// 参加メンバー
-  List<Member> get members => throw _privateConstructorUsedError;
+  /// 居住地
+  Map<String, dynamic> get address => throw _privateConstructorUsedError;
 
-  /// 設定タグ
-  List<Tag> get tags => throw _privateConstructorUsedError;
+  /// ホストかどうか
+  bool get isHost => throw _privateConstructorUsedError;
+
+  /// 参加者かどうか
+  bool get isParticipant => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -53,14 +57,13 @@ abstract class $RoomCopyWith<$Res> {
   @useResult
   $Res call(
       {String? id,
-      String name,
-      Member hostUser,
-      RoomStatus roomStatus,
-      DateTime createdAt,
-      List<Member> members,
-      List<Tag> tags});
-
-  $MemberCopyWith<$Res> get hostUser;
+      String roomName,
+      String applicationDeadline,
+      String hostMainImageURL,
+      List<String> participantMainImageURLs,
+      Map<String, dynamic> address,
+      bool isHost,
+      bool isParticipant});
 }
 
 /// @nodoc
@@ -77,51 +80,48 @@ class _$RoomCopyWithImpl<$Res, $Val extends Room>
   @override
   $Res call({
     Object? id = freezed,
-    Object? name = null,
-    Object? hostUser = null,
-    Object? roomStatus = null,
-    Object? createdAt = null,
-    Object? members = null,
-    Object? tags = null,
+    Object? roomName = null,
+    Object? applicationDeadline = null,
+    Object? hostMainImageURL = null,
+    Object? participantMainImageURLs = null,
+    Object? address = null,
+    Object? isHost = null,
+    Object? isParticipant = null,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
+      roomName: null == roomName
+          ? _value.roomName
+          : roomName // ignore: cast_nullable_to_non_nullable
               as String,
-      hostUser: null == hostUser
-          ? _value.hostUser
-          : hostUser // ignore: cast_nullable_to_non_nullable
-              as Member,
-      roomStatus: null == roomStatus
-          ? _value.roomStatus
-          : roomStatus // ignore: cast_nullable_to_non_nullable
-              as RoomStatus,
-      createdAt: null == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      members: null == members
-          ? _value.members
-          : members // ignore: cast_nullable_to_non_nullable
-              as List<Member>,
-      tags: null == tags
-          ? _value.tags
-          : tags // ignore: cast_nullable_to_non_nullable
-              as List<Tag>,
+      applicationDeadline: null == applicationDeadline
+          ? _value.applicationDeadline
+          : applicationDeadline // ignore: cast_nullable_to_non_nullable
+              as String,
+      hostMainImageURL: null == hostMainImageURL
+          ? _value.hostMainImageURL
+          : hostMainImageURL // ignore: cast_nullable_to_non_nullable
+              as String,
+      participantMainImageURLs: null == participantMainImageURLs
+          ? _value.participantMainImageURLs
+          : participantMainImageURLs // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      address: null == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>,
+      isHost: null == isHost
+          ? _value.isHost
+          : isHost // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isParticipant: null == isParticipant
+          ? _value.isParticipant
+          : isParticipant // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $MemberCopyWith<$Res> get hostUser {
-    return $MemberCopyWith<$Res>(_value.hostUser, (value) {
-      return _then(_value.copyWith(hostUser: value) as $Val);
-    });
   }
 }
 
@@ -133,15 +133,13 @@ abstract class _$$_RoomCopyWith<$Res> implements $RoomCopyWith<$Res> {
   @useResult
   $Res call(
       {String? id,
-      String name,
-      Member hostUser,
-      RoomStatus roomStatus,
-      DateTime createdAt,
-      List<Member> members,
-      List<Tag> tags});
-
-  @override
-  $MemberCopyWith<$Res> get hostUser;
+      String roomName,
+      String applicationDeadline,
+      String hostMainImageURL,
+      List<String> participantMainImageURLs,
+      Map<String, dynamic> address,
+      bool isHost,
+      bool isParticipant});
 }
 
 /// @nodoc
@@ -154,59 +152,66 @@ class __$$_RoomCopyWithImpl<$Res> extends _$RoomCopyWithImpl<$Res, _$_Room>
   @override
   $Res call({
     Object? id = freezed,
-    Object? name = null,
-    Object? hostUser = null,
-    Object? roomStatus = null,
-    Object? createdAt = null,
-    Object? members = null,
-    Object? tags = null,
+    Object? roomName = null,
+    Object? applicationDeadline = null,
+    Object? hostMainImageURL = null,
+    Object? participantMainImageURLs = null,
+    Object? address = null,
+    Object? isHost = null,
+    Object? isParticipant = null,
   }) {
     return _then(_$_Room(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
+      roomName: null == roomName
+          ? _value.roomName
+          : roomName // ignore: cast_nullable_to_non_nullable
               as String,
-      hostUser: null == hostUser
-          ? _value.hostUser
-          : hostUser // ignore: cast_nullable_to_non_nullable
-              as Member,
-      roomStatus: null == roomStatus
-          ? _value.roomStatus
-          : roomStatus // ignore: cast_nullable_to_non_nullable
-              as RoomStatus,
-      createdAt: null == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      members: null == members
-          ? _value._members
-          : members // ignore: cast_nullable_to_non_nullable
-              as List<Member>,
-      tags: null == tags
-          ? _value._tags
-          : tags // ignore: cast_nullable_to_non_nullable
-              as List<Tag>,
+      applicationDeadline: null == applicationDeadline
+          ? _value.applicationDeadline
+          : applicationDeadline // ignore: cast_nullable_to_non_nullable
+              as String,
+      hostMainImageURL: null == hostMainImageURL
+          ? _value.hostMainImageURL
+          : hostMainImageURL // ignore: cast_nullable_to_non_nullable
+              as String,
+      participantMainImageURLs: null == participantMainImageURLs
+          ? _value._participantMainImageURLs
+          : participantMainImageURLs // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      address: null == address
+          ? _value._address
+          : address // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>,
+      isHost: null == isHost
+          ? _value.isHost
+          : isHost // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isParticipant: null == isParticipant
+          ? _value.isParticipant
+          : isParticipant // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$_Room implements _Room {
+class _$_Room extends _Room {
   const _$_Room(
       {required this.id,
-      required this.name,
-      required this.hostUser,
-      required this.roomStatus,
-      required this.createdAt,
-      required final List<Member> members,
-      required final List<Tag> tags})
-      : _members = members,
-        _tags = tags;
+      required this.roomName,
+      required this.applicationDeadline,
+      required this.hostMainImageURL,
+      required final List<String> participantMainImageURLs,
+      required final Map<String, dynamic> address,
+      required this.isHost,
+      required this.isParticipant})
+      : _participantMainImageURLs = participantMainImageURLs,
+        _address = address,
+        super._();
 
   factory _$_Room.fromJson(Map<String, dynamic> json) => _$$_RoomFromJson(json);
 
@@ -216,43 +221,47 @@ class _$_Room implements _Room {
 
   /// ルームネーム
   @override
-  final String name;
+  final String roomName;
 
-  /// 開催者
+  /// 期限
   @override
-  final Member hostUser;
+  final String applicationDeadline;
 
-  /// ルームのステータス
+  /// ホスト画像
   @override
-  final RoomStatus roomStatus;
+  final String hostMainImageURL;
 
-  /// 作成日時
+  /// メンバー画像リスト
+  final List<String> _participantMainImageURLs;
+
+  /// メンバー画像リスト
   @override
-  final DateTime createdAt;
-
-  /// 参加メンバー
-  final List<Member> _members;
-
-  /// 参加メンバー
-  @override
-  List<Member> get members {
+  List<String> get participantMainImageURLs {
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_members);
+    return EqualUnmodifiableListView(_participantMainImageURLs);
   }
 
-  /// 設定タグ
-  final List<Tag> _tags;
+  /// 居住地
+  final Map<String, dynamic> _address;
 
-  /// 設定タグ
+  /// 居住地
   @override
-  List<Tag> get tags {
+  Map<String, dynamic> get address {
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_tags);
+    return EqualUnmodifiableMapView(_address);
   }
+
+  /// ホストかどうか
+  @override
+  final bool isHost;
+
+  /// 参加者かどうか
+  @override
+  final bool isParticipant;
 
   @override
   String toString() {
-    return 'Room(id: $id, name: $name, hostUser: $hostUser, roomStatus: $roomStatus, createdAt: $createdAt, members: $members, tags: $tags)';
+    return 'Room(id: $id, roomName: $roomName, applicationDeadline: $applicationDeadline, hostMainImageURL: $hostMainImageURL, participantMainImageURLs: $participantMainImageURLs, address: $address, isHost: $isHost, isParticipant: $isParticipant)';
   }
 
   @override
@@ -261,15 +270,18 @@ class _$_Room implements _Room {
         (other.runtimeType == runtimeType &&
             other is _$_Room &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.hostUser, hostUser) ||
-                other.hostUser == hostUser) &&
-            (identical(other.roomStatus, roomStatus) ||
-                other.roomStatus == roomStatus) &&
-            (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt) &&
-            const DeepCollectionEquality().equals(other._members, _members) &&
-            const DeepCollectionEquality().equals(other._tags, _tags));
+            (identical(other.roomName, roomName) ||
+                other.roomName == roomName) &&
+            (identical(other.applicationDeadline, applicationDeadline) ||
+                other.applicationDeadline == applicationDeadline) &&
+            (identical(other.hostMainImageURL, hostMainImageURL) ||
+                other.hostMainImageURL == hostMainImageURL) &&
+            const DeepCollectionEquality().equals(
+                other._participantMainImageURLs, _participantMainImageURLs) &&
+            const DeepCollectionEquality().equals(other._address, _address) &&
+            (identical(other.isHost, isHost) || other.isHost == isHost) &&
+            (identical(other.isParticipant, isParticipant) ||
+                other.isParticipant == isParticipant));
   }
 
   @JsonKey(ignore: true)
@@ -277,12 +289,13 @@ class _$_Room implements _Room {
   int get hashCode => Object.hash(
       runtimeType,
       id,
-      name,
-      hostUser,
-      roomStatus,
-      createdAt,
-      const DeepCollectionEquality().hash(_members),
-      const DeepCollectionEquality().hash(_tags));
+      roomName,
+      applicationDeadline,
+      hostMainImageURL,
+      const DeepCollectionEquality().hash(_participantMainImageURLs),
+      const DeepCollectionEquality().hash(_address),
+      isHost,
+      isParticipant);
 
   @JsonKey(ignore: true)
   @override
@@ -298,15 +311,17 @@ class _$_Room implements _Room {
   }
 }
 
-abstract class _Room implements Room {
+abstract class _Room extends Room {
   const factory _Room(
       {required final String? id,
-      required final String name,
-      required final Member hostUser,
-      required final RoomStatus roomStatus,
-      required final DateTime createdAt,
-      required final List<Member> members,
-      required final List<Tag> tags}) = _$_Room;
+      required final String roomName,
+      required final String applicationDeadline,
+      required final String hostMainImageURL,
+      required final List<String> participantMainImageURLs,
+      required final Map<String, dynamic> address,
+      required final bool isHost,
+      required final bool isParticipant}) = _$_Room;
+  const _Room._() : super._();
 
   factory _Room.fromJson(Map<String, dynamic> json) = _$_Room.fromJson;
 
@@ -317,27 +332,31 @@ abstract class _Room implements Room {
   @override
 
   /// ルームネーム
-  String get name;
+  String get roomName;
   @override
 
-  /// 開催者
-  Member get hostUser;
+  /// 期限
+  String get applicationDeadline;
   @override
 
-  /// ルームのステータス
-  RoomStatus get roomStatus;
+  /// ホスト画像
+  String get hostMainImageURL;
   @override
 
-  /// 作成日時
-  DateTime get createdAt;
+  /// メンバー画像リスト
+  List<String> get participantMainImageURLs;
   @override
 
-  /// 参加メンバー
-  List<Member> get members;
+  /// 居住地
+  Map<String, dynamic> get address;
   @override
 
-  /// 設定タグ
-  List<Tag> get tags;
+  /// ホストかどうか
+  bool get isHost;
+  @override
+
+  /// 参加者かどうか
+  bool get isParticipant;
   @override
   @JsonKey(ignore: true)
   _$$_RoomCopyWith<_$_Room> get copyWith => throw _privateConstructorUsedError;

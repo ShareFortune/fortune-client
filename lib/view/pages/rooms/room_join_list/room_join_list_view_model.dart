@@ -13,25 +13,27 @@ class RoomListViewModel extends StateNotifier<AsyncValue<RoomJoinListState>> {
   final Ref _ref;
   late final roomRepository = _ref.watch(Repository.roomProvider);
 
-  Future<void> initialize() async => await fetchList();
+  Future<void> initialize() async => false;
 
-  Future<void> fetchList() async {
-    state = await AsyncValue.guard(() async {
-      final result = await roomRepository.fetchList();
+  // Future<void> initialize() async => await fetchList();
 
-      final hostRooms = result.map((e) {
-        return RoomHostListItemState.fromEntity(e);
-      }).toList();
-      final gestRooms = result.map((e) {
-        return RoomGuestListItemState.fromEntity(e);
-      }).toList();
+  // Future<void> fetchList() async {
+  //   state = await AsyncValue.guard(() async {
+  //     final result = await roomRepository.fetchList();
 
-      return RoomJoinListState(
-        hostRooms: hostRooms,
-        guestRooms: gestRooms,
-      );
-    });
-  }
+  //     final hostRooms = result.map((e) {
+  //       return RoomHostListItemState.fromEntity(e);
+  //     }).toList();
+  //     final gestRooms = result.map((e) {
+  //       return RoomGuestListItemState.fromEntity(e);
+  //     }).toList();
+
+  //     return RoomJoinListState(
+  //       hostRooms: hostRooms,
+  //       guestRooms: gestRooms,
+  //     );
+  //   });
+  // }
 
   onTapRoom() {}
 }

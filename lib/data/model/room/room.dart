@@ -1,6 +1,4 @@
-import 'package:fortune_client/data/model/enum/room_status.dart';
-import 'package:fortune_client/data/model/member/member.dart';
-import 'package:fortune_client/data/model/tag/tag.dart';
+import 'package:fortune_client/data/model/address/address.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'room.freezed.dart';
@@ -8,28 +6,34 @@ part 'room.g.dart';
 
 @freezed
 class Room with _$Room {
+  const Room._();
   const factory Room({
     /// ルームID
     required String? id,
 
     /// ルームネーム
-    required String name,
+    required String roomName,
 
-    /// 開催者
-    required Member hostUser,
+    /// 期限
+    required String applicationDeadline,
 
-    /// ルームのステータス
-    required RoomStatus roomStatus,
+    /// ホスト画像
+    required String hostMainImageURL,
 
-    /// 作成日時
-    required DateTime createdAt,
+    /// メンバー画像リスト
+    required List<String> participantMainImageURLs,
 
-    /// 参加メンバー
-    required List<Member> members,
+    /// 居住地
+    required Map<String, dynamic> address,
 
-    /// 設定タグ
-    required List<Tag> tags,
+    /// ホストかどうか
+    required bool isHost,
+
+    /// 参加者かどうか
+    required bool isParticipant,
   }) = _Room;
+
+  Address get addressEntity => Address.fromJson(address);
 
   factory Room.fromJson(Map<String, dynamic> json) => _$RoomFromJson(json);
 }
