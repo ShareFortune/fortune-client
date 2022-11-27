@@ -15,6 +15,9 @@ class AppColors {
     required this.error,
     required this.onError,
     required this.divider,
+    required this.headline1,
+    required this.iconBtn,
+    required this.iconBtnBg,
   });
 
   factory AppColors.light() {
@@ -32,6 +35,9 @@ class AppColors {
       error: Color(0xFFB00020),
       onError: Color(0xFFFFFFFF),
       divider: Color.fromRGBO(0, 0, 0, 0.1),
+      headline1: Color.fromRGBO(0, 0, 0, 1),
+      iconBtn: Color.fromRGBO(0, 0, 0, 1),
+      iconBtnBg: Color(0xFFFFFFFF),
     );
   }
 
@@ -50,6 +56,9 @@ class AppColors {
       error: Color(0xFFB00020),
       onError: Color(0xFFFFFFFF),
       divider: Color(0xFFFFFFFF),
+      headline1: Color.fromRGBO(0, 0, 0, 0),
+      iconBtn: Color.fromRGBO(0, 0, 0, 1),
+      iconBtnBg: Color(0xFFFFFFFF),
     );
   }
 
@@ -66,4 +75,9 @@ class AppColors {
   final Color error;
   final Color onError;
   final Color divider;
+  final Color headline1;
+
+  /// アイコンボタンカラー
+  final Color iconBtn;
+  final Color iconBtnBg;
 }
