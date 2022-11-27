@@ -17,11 +17,11 @@ class RoomListPage extends ConsumerWidget {
 
     return state.when(
       data: (data) {
-        return CustomScrollView(
-          slivers: [
-            SliverPadding(
-              padding: const EdgeInsets.symmetric(horizontal: 30),
-              sliver: SliverAppBar(
+        return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: CustomScrollView(
+            slivers: [
+              SliverAppBar(
                 backgroundColor: Colors.transparent,
                 title: Text(
                   "ルーム",
@@ -43,31 +43,34 @@ class RoomListPage extends ConsumerWidget {
                   ),
                 ],
               ),
-            ),
-            SliverList(
-              delegate: SliverChildBuilderDelegate(
-                childCount: data.rooms.length,
-                (context, index) {
-                  return AnimationLimiter(
-                    child: AnimationConfiguration.staggeredList(
-                      position: index,
-                      duration: const Duration(milliseconds: 175),
-                      child: SlideAnimation(
-                        verticalOffset: 50.0,
-                        child: FadeInAnimation(
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 30, vertical: 10),
-                            child: RoomCardWidget(data.rooms[index]),
+              SliverPadding(
+                padding: const EdgeInsets.symmetric(vertical: 30),
+                sliver: SliverList(
+                  delegate: SliverChildBuilderDelegate(
+                    childCount: data.rooms.length,
+                    (context, index) {
+                      return AnimationLimiter(
+                        child: AnimationConfiguration.staggeredList(
+                          position: index,
+                          duration: const Duration(milliseconds: 175),
+                          child: SlideAnimation(
+                            verticalOffset: 50.0,
+                            child: FadeInAnimation(
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 10),
+                                child: RoomCardWidget(data.rooms[index]),
+                              ),
+                            ),
                           ),
                         ),
-                      ),
-                    ),
-                  );
-                },
+                      );
+                    },
+                  ),
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         );
       },
       error: (e, msg) => Scaffold(

@@ -18,6 +18,10 @@ class AppColors {
     required this.headline1,
     required this.iconBtn,
     required this.iconBtnBg,
+    required this.navigationBarText,
+    required this.navigationBarIcon,
+    required this.navigationBarSelectedIcon,
+    required this.navigationBarUnSelectedIcon,
   });
 
   factory AppColors.light() {
@@ -38,6 +42,10 @@ class AppColors {
       headline1: Color.fromRGBO(0, 0, 0, 1),
       iconBtn: Color.fromRGBO(0, 0, 0, 1),
       iconBtnBg: Color(0xFFFFFFFF),
+      navigationBarText: Color(0xFFFFFFFF),
+      navigationBarIcon: Color.fromRGBO(0, 0, 0, 1),
+      navigationBarSelectedIcon: Color.fromRGBO(0, 0, 0, 1),
+      navigationBarUnSelectedIcon: Color.fromRGBO(0, 0, 0, 0.5),
     );
   }
 
@@ -59,6 +67,10 @@ class AppColors {
       headline1: Color.fromRGBO(0, 0, 0, 0),
       iconBtn: Color.fromRGBO(0, 0, 0, 1),
       iconBtnBg: Color(0xFFFFFFFF),
+      navigationBarText: Color(0xFFFFFFFF),
+      navigationBarIcon: Color(0xFFFFFFFF),
+      navigationBarSelectedIcon: Color(0xFFFFFFFF),
+      navigationBarUnSelectedIcon: Color(0xFFFFFFFF),
     );
   }
 
@@ -80,4 +92,10 @@ class AppColors {
   /// アイコンボタンカラー
   final Color iconBtn;
   final Color iconBtnBg;
+
+  /// ボトムナビゲーション
+  final Color navigationBarText;
+  final Color navigationBarIcon;
+  final Color navigationBarSelectedIcon;
+  final Color navigationBarUnSelectedIcon;
 }

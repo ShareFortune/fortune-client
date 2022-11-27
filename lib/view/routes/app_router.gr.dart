@@ -24,7 +24,8 @@ import 'package:fortune_client/view/pages/rooms/room_join_list/room_join_list_pa
 import 'package:fortune_client/view/pages/rooms/room_list/room_list_page.dart'
     as _i4;
 import 'package:fortune_client/view/routes/route_guard.dart' as _i9;
-import 'package:fortune_client/view/widgets/navigation_bar.dart' as _i3;
+import 'package:fortune_client/view/common/bottom_navigation_bar/bottom_navigation_bar.dart'
+    as _i3;
 
 class AppRouter extends _i7.RootStackRouter {
   AppRouter({
@@ -57,7 +58,7 @@ class AppRouter extends _i7.RootStackRouter {
     NavigationBar.name: (routeData) {
       return _i7.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i3.NavigationBar(),
+        child: const _i3.MyBottomNavigationBar(),
       );
     },
     RoomListRoute.name: (routeData) {
