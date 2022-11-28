@@ -6,6 +6,10 @@ part 'room_detail_state.freezed.dart';
 @freezed
 class RoomDetailState with _$RoomDetailState {
   const factory RoomDetailState({
-    required Room room,
+    @Default("") String title,
+    @Default("") String hostIcon,
+    @Default("") String explanation,
+    @Default([]) List tags,
+    @Default([]) List members,
   }) = _RoomDetailState;
 }

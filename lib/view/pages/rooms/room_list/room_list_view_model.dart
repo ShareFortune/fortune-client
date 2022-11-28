@@ -1,6 +1,9 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/view/pages/rooms/room_list/room_list_state.dart';
+import 'package:fortune_client/view/routes/route_path.dart';
 
 final roomListViewModelProvider =
     StateNotifierProvider<RoomListViewModel, AsyncValue<RoomListState>>((ref) {
@@ -23,5 +26,10 @@ class RoomListViewModel extends StateNotifier<AsyncValue<RoomListState>> {
       }).toList();
       return RoomListState(rooms: rooms);
     });
+  }
+
+  onTap(BuildContext context) {
+    print("object");
+    context.router.pushNamed(RoutePath.appRouteRoomDetail);
   }
 }

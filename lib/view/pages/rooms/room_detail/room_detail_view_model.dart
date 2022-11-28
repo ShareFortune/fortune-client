@@ -4,7 +4,7 @@ import 'package:fortune_client/view/pages/rooms/room_detail/room_detail_state.da
 final roomDetailViewModelProvider =
     StateNotifierProvider<RoomDetailViewModel, AsyncValue<RoomDetailState>>(
         (ref) {
-  return RoomDetailViewModel(ref: ref);
+  return RoomDetailViewModel(ref: ref)..initialize();
 });
 
 class RoomDetailViewModel extends StateNotifier<AsyncValue<RoomDetailState>> {
@@ -13,6 +13,14 @@ class RoomDetailViewModel extends StateNotifier<AsyncValue<RoomDetailState>> {
         super(const AsyncLoading());
 
   final Ref _ref;
+
+  Future<void> initialize() async => await fetch();
+
+  Future<void> fetch() async {
+    state = await AsyncValue.guard(() async {
+      return const RoomDetailState();
+    });
+  }
 
   Future<void> joinRequest() async {}
 }

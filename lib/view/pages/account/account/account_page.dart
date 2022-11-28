@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:fortune_client/gen/assets.gen.dart';
 import 'package:fortune_client/view/pages/account/account/account_view_model.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
@@ -33,7 +34,7 @@ class AccountPage extends ConsumerWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                _host(theme),
+                _host(theme, image: Assets.images.insta2),
                 const Gap(50),
                 _status(theme),
               ],
@@ -60,12 +61,16 @@ class AccountPage extends ConsumerWidget {
     );
   }
 
-  Widget _host(AppTheme theme) {
+  Widget _host(
+    AppTheme theme, {
+    required AssetGenImage image,
+  }) {
     return Column(
       children: [
         CircleAvatar(
           radius: 50,
-          backgroundColor: theme.appColors.primary,
+          backgroundImage: image.provider(),
+          // backgroundColor: theme.appColors.primary,
         ),
         const Gap(20),
         Text(

@@ -6,7 +6,7 @@ class RoutePath {
   static const appRouteAccountTab = 'account';
 
   /// ページ遷移
-  static const appRouteRoomDetail = '/rooms/:id';
+  static const appRouteRoomDetail = '/rooms/id';
   static const appRouteRoomCreate = '/room_create';
   static const appRouteProfileCreate = '/profile_create';
   static const appRouteMessage = '/message';

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:fortune_client/gen/assets.gen.dart';
 import 'package:fortune_client/view/pages/rooms/participating_room_list/participating_room_list_state.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
@@ -72,7 +73,8 @@ class GuestRoomCardWidget extends ConsumerWidget {
   _hostIcon(AppTheme theme) {
     return CircleAvatar(
       radius: 30,
-      backgroundColor: theme.appColors.primary,
+      // backgroundColor: theme.appColors.primary,
+      backgroundImage: Assets.images.insta4.provider(),
     );
   }
 

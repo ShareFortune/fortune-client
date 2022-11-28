@@ -59,7 +59,10 @@ class RoomListPage extends ConsumerWidget {
                               child: Padding(
                                 padding:
                                     const EdgeInsets.symmetric(vertical: 10),
-                                child: RoomCardWidget(data.rooms[index]),
+                                child: RoomCardWidget(
+                                  room: data.rooms[index],
+                                  onTap: viewModel.onTap,
+                                ),
                               ),
                             ),
                           ),

@@ -16,7 +16,11 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$RoomDetailState {
-  Room get room => throw _privateConstructorUsedError;
+  String get title => throw _privateConstructorUsedError;
+  String get hostIcon => throw _privateConstructorUsedError;
+  String get explanation => throw _privateConstructorUsedError;
+  List<dynamic> get tags => throw _privateConstructorUsedError;
+  List<dynamic> get members => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $RoomDetailStateCopyWith<RoomDetailState> get copyWith =>
@@ -29,9 +33,12 @@ abstract class $RoomDetailStateCopyWith<$Res> {
           RoomDetailState value, $Res Function(RoomDetailState) then) =
       _$RoomDetailStateCopyWithImpl<$Res, RoomDetailState>;
   @useResult
-  $Res call({Room room});
-
-  $RoomCopyWith<$Res> get room;
+  $Res call(
+      {String title,
+      String hostIcon,
+      String explanation,
+      List<dynamic> tags,
+      List<dynamic> members});
 }
 
 /// @nodoc
@@ -47,22 +54,34 @@ class _$RoomDetailStateCopyWithImpl<$Res, $Val extends RoomDetailState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? room = null,
+    Object? title = null,
+    Object? hostIcon = null,
+    Object? explanation = null,
+    Object? tags = null,
+    Object? members = null,
   }) {
     return _then(_value.copyWith(
-      room: null == room
-          ? _value.room
-          : room // ignore: cast_nullable_to_non_nullable
-              as Room,
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      hostIcon: null == hostIcon
+          ? _value.hostIcon
+          : hostIcon // ignore: cast_nullable_to_non_nullable
+              as String,
+      explanation: null == explanation
+          ? _value.explanation
+          : explanation // ignore: cast_nullable_to_non_nullable
+              as String,
+      tags: null == tags
+          ? _value.tags
+          : tags // ignore: cast_nullable_to_non_nullable
+              as List<dynamic>,
+      members: null == members
+          ? _value.members
+          : members // ignore: cast_nullable_to_non_nullable
+              as List<dynamic>,
     ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $RoomCopyWith<$Res> get room {
-    return $RoomCopyWith<$Res>(_value.room, (value) {
-      return _then(_value.copyWith(room: value) as $Val);
-    });
   }
 }
 
@@ -74,10 +93,12 @@ abstract class _$$_RoomDetailStateCopyWith<$Res>
       __$$_RoomDetailStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Room room});
-
-  @override
-  $RoomCopyWith<$Res> get room;
+  $Res call(
+      {String title,
+      String hostIcon,
+      String explanation,
+      List<dynamic> tags,
+      List<dynamic> members});
 }
 
 /// @nodoc
@@ -91,13 +112,33 @@ class __$$_RoomDetailStateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? room = null,
+    Object? title = null,
+    Object? hostIcon = null,
+    Object? explanation = null,
+    Object? tags = null,
+    Object? members = null,
   }) {
     return _then(_$_RoomDetailState(
-      room: null == room
-          ? _value.room
-          : room // ignore: cast_nullable_to_non_nullable
-              as Room,
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      hostIcon: null == hostIcon
+          ? _value.hostIcon
+          : hostIcon // ignore: cast_nullable_to_non_nullable
+              as String,
+      explanation: null == explanation
+          ? _value.explanation
+          : explanation // ignore: cast_nullable_to_non_nullable
+              as String,
+      tags: null == tags
+          ? _value._tags
+          : tags // ignore: cast_nullable_to_non_nullable
+              as List<dynamic>,
+      members: null == members
+          ? _value._members
+          : members // ignore: cast_nullable_to_non_nullable
+              as List<dynamic>,
     ));
   }
 }
@@ -105,14 +146,43 @@ class __$$_RoomDetailStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_RoomDetailState implements _RoomDetailState {
-  const _$_RoomDetailState({required this.room});
+  const _$_RoomDetailState(
+      {this.title = "",
+      this.hostIcon = "",
+      this.explanation = "",
+      final List<dynamic> tags = const [],
+      final List<dynamic> members = const []})
+      : _tags = tags,
+        _members = members;
 
   @override
-  final Room room;
+  @JsonKey()
+  final String title;
+  @override
+  @JsonKey()
+  final String hostIcon;
+  @override
+  @JsonKey()
+  final String explanation;
+  final List<dynamic> _tags;
+  @override
+  @JsonKey()
+  List<dynamic> get tags {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_tags);
+  }
+
+  final List<dynamic> _members;
+  @override
+  @JsonKey()
+  List<dynamic> get members {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_members);
+  }
 
   @override
   String toString() {
-    return 'RoomDetailState(room: $room)';
+    return 'RoomDetailState(title: $title, hostIcon: $hostIcon, explanation: $explanation, tags: $tags, members: $members)';
   }
 
   @override
@@ -120,11 +190,23 @@ class _$_RoomDetailState implements _RoomDetailState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_RoomDetailState &&
-            (identical(other.room, room) || other.room == room));
+            (identical(other.title, title) || other.title == title) &&
+            (identical(other.hostIcon, hostIcon) ||
+                other.hostIcon == hostIcon) &&
+            (identical(other.explanation, explanation) ||
+                other.explanation == explanation) &&
+            const DeepCollectionEquality().equals(other._tags, _tags) &&
+            const DeepCollectionEquality().equals(other._members, _members));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, room);
+  int get hashCode => Object.hash(
+      runtimeType,
+      title,
+      hostIcon,
+      explanation,
+      const DeepCollectionEquality().hash(_tags),
+      const DeepCollectionEquality().hash(_members));
 
   @JsonKey(ignore: true)
   @override
@@ -134,11 +216,23 @@ class _$_RoomDetailState implements _RoomDetailState {
 }
 
 abstract class _RoomDetailState implements RoomDetailState {
-  const factory _RoomDetailState({required final Room room}) =
-      _$_RoomDetailState;
+  const factory _RoomDetailState(
+      {final String title,
+      final String hostIcon,
+      final String explanation,
+      final List<dynamic> tags,
+      final List<dynamic> members}) = _$_RoomDetailState;
 
   @override
-  Room get room;
+  String get title;
+  @override
+  String get hostIcon;
+  @override
+  String get explanation;
+  @override
+  List<dynamic> get tags;
+  @override
+  List<dynamic> get members;
   @override
   @JsonKey(ignore: true)
   _$$_RoomDetailStateCopyWith<_$_RoomDetailState> get copyWith =>
