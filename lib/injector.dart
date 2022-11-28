@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fortune_client/data/datasource/remote/firebase/firebase_auth_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/firebase/firebase_auth_data_source_impl.dart';
-import 'package:fortune_client/data/datasource/remote/go/room_data_source.dart';
+import 'package:fortune_client/data/datasource/remote/go/room/room_data_source.dart';
 import 'package:fortune_client/data/repository/auth/auth_repository.dart';
 import 'package:fortune_client/data/repository/auth/auth_repository_impl.dart';
 import 'package:fortune_client/data/repository/message/message_repository.dart';
@@ -11,6 +11,14 @@ import 'package:fortune_client/data/repository/profile/profile_repository.dart';
 import 'package:fortune_client/data/repository/profile/profile_repository_impl.dart';
 import 'package:fortune_client/data/repository/room/room_repository.dart';
 import 'package:fortune_client/data/repository/room/room_repository_impl.dart';
+import 'package:fortune_client/view/routes/app_router.gr.dart';
+import 'package:fortune_client/view/routes/route_guard.dart';
+
+/// Route
+final appRouterProvider = Provider<AppRouter>((ref) {
+  final authGuard = ref.watch(authGuardProvider);
+  return AppRouter(authGuard: authGuard);
+});
 
 class Repository {
   static final authProvider = Provider<AuthRepository>((ref) {

@@ -9,6 +9,19 @@
 
 import 'package:flutter/widgets.dart';
 
+class $StubGen {
+  const $StubGen();
+
+  /// File path: stub/participating_room_list.json
+  String get participatingRoomList => 'stub/participating_room_list.json';
+
+  /// File path: stub/room_list.json
+  String get roomList => 'stub/room_list.json';
+
+  /// List of all assets
+  List<String> get values => [participatingRoomList, roomList];
+}
+
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
@@ -16,17 +29,35 @@ class $AssetsImagesGen {
   AssetGenImage get imgRecipeNo8921 =>
       const AssetGenImage('assets/images/img_recipe_no_892-1.jpg');
 
+  /// File path: assets/images/insta2.jpeg
+  AssetGenImage get insta2 => const AssetGenImage('assets/images/insta2.jpeg');
+
+  /// File path: assets/images/insta3.jpeg
+  AssetGenImage get insta3 => const AssetGenImage('assets/images/insta3.jpeg');
+
+  /// File path: assets/images/insta4.jpeg
+  AssetGenImage get insta4 => const AssetGenImage('assets/images/insta4.jpeg');
+
+  /// File path: assets/images/insta5.jpeg
+  AssetGenImage get insta5 => const AssetGenImage('assets/images/insta5.jpeg');
+
+  /// File path: assets/images/thinder.jpeg
+  AssetGenImage get thinder =>
+      const AssetGenImage('assets/images/thinder.jpeg');
+
   /// File path: assets/images/user1.jpeg
   AssetGenImage get user1 => const AssetGenImage('assets/images/user1.jpeg');
 
   /// List of all assets
-  List<AssetGenImage> get values => [imgRecipeNo8921, user1];
+  List<AssetGenImage> get values =>
+      [imgRecipeNo8921, insta2, insta3, insta4, insta5, thinder, user1];
 }
 
 class Assets {
   Assets._();
 
   static const $AssetsImagesGen images = $AssetsImagesGen();
+  static const $StubGen stub = $StubGen();
 }
 
 class AssetGenImage {

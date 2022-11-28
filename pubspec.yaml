@@ -29,6 +29,14 @@ dependencies:
   retrofit: ^3.3.1
   image_picker: ^0.8.6
   flutter_svg: ^1.1.6
+  gap: ^2.0.1
+  google_fonts: ^3.0.1
+  sizer: ^2.0.15
+  enum_to_string: ^2.0.1
+  fluttertoast: ^8.1.1
+  fimber: ^0.6.6
+  device_preview: ^1.1.0
+
 
 dev_dependencies:
   flutter_test:
@@ -54,11 +62,5 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/
-
-# analyzer:
-#   exclude:
-#     - "**/*.g.dart"
-#     - "**/*.freezed.dart"
-#   errors:
-#     invalid_annotation_target: ignore
+    - stub/
 

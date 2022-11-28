@@ -6,33 +6,27 @@ part 'room_list_state.freezed.dart';
 @freezed
 class RoomListState with _$RoomListState {
   const factory RoomListState({
-    @Default([]) List<RoomListItem> rooms,
+    @Default([]) List<RoomListItemState> rooms,
   }) = _RoomListState;
 }
 
 @freezed
-class RoomListItem with _$RoomListItem {
-  const factory RoomListItem({
-    @Default("") String hostName,
-    @Default("") String createdAt,
-    @Default("") String hostUserIcon,
-    @Default("") String roomTitle,
-    @Default([]) List<String> maleUserIcons,
-    @Default([]) List<String> femaleUserIcons,
-    @Default("") String holdingPlace,
-    @Default(4) int maxNumOfParticipants,
-  }) = _RoomListItem;
+class RoomListItemState with _$RoomListItemState {
+  const factory RoomListItemState({
+    @Default("") String title,
+    @Default("") String deadline,
+    @Default("") String hostIcon,
+    @Default([]) List<String> memberIcons,
+    @Default("") String place,
+  }) = _RoomListItemState;
 
-  static RoomListItem fromEntity(Room room) {
-    return RoomListItem(
-      hostName: room.hostUser.name,
-      createdAt: room.createdAt.toString(),
-      hostUserIcon: room.hostUser.mainImageUrl,
-      roomTitle: room.name,
-      maleUserIcons: room.members.map((e) => e.mainImageUrl).toList(),
-      femaleUserIcons: room.members.map((e) => e.mainImageUrl).toList(),
-      holdingPlace: "東京都",
-      maxNumOfParticipants: room.members.length,
+  static RoomListItemState fromEntity(Room room) {
+    return RoomListItemState(
+      title: room.roomName,
+      deadline: room.applicationDeadline,
+      hostIcon: room.hostMainImageURL,
+      memberIcons: room.participantMainImageURLs,
+      place: room.addressEntity.toString(),
     );
   }
 }
