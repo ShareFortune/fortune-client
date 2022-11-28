@@ -22,6 +22,8 @@ class AppColors {
     required this.navigationBarIcon,
     required this.navigationBarSelectedIcon,
     required this.navigationBarUnSelectedIcon,
+    required this.tabIndicator,
+    required this.shadow,
   });
 
   factory AppColors.light() {
@@ -46,6 +48,8 @@ class AppColors {
       navigationBarIcon: Color.fromRGBO(0, 0, 0, 1),
       navigationBarSelectedIcon: Color.fromRGBO(0, 0, 0, 1),
       navigationBarUnSelectedIcon: Color.fromRGBO(0, 0, 0, 0.5),
+      tabIndicator: Color.fromRGBO(0, 0, 0, 1),
+      shadow: Color.fromRGBO(0, 0, 0, 0.25),
     );
   }
 
@@ -71,6 +75,8 @@ class AppColors {
       navigationBarIcon: Color(0xFFFFFFFF),
       navigationBarSelectedIcon: Color(0xFFFFFFFF),
       navigationBarUnSelectedIcon: Color(0xFFFFFFFF),
+      tabIndicator: Color.fromRGBO(0, 0, 0, 0.5),
+      shadow: Color.fromRGBO(0, 0, 0, 0.5),
     );
   }
 
@@ -98,4 +104,10 @@ class AppColors {
   final Color navigationBarIcon;
   final Color navigationBarSelectedIcon;
   final Color navigationBarUnSelectedIcon;
+
+  /// タブバー
+  final Color tabIndicator;
+
+  /// 影
+  final Color shadow;
 }

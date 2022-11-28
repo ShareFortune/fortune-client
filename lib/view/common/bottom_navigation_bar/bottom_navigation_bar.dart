@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:fortune_client/view/routes/app_router.dart';
 import 'package:fortune_client/view/routes/app_router.gr.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 
@@ -13,7 +14,7 @@ class MyBottomNavigationBar extends ConsumerWidget {
     return AutoTabsRouter(
       routes: const [
         RoomListRoute(),
-        RoomJoinListRoute(),
+        ParticipatingRoomListRoute(),
         MessageRoomListRoute(),
         MessageRoomListRoute(),
         MessageRoomListRoute(),
@@ -48,20 +49,21 @@ class MyBottomNavigationBar extends ConsumerWidget {
                 icon: Icon(Icons.event),
               ),
               BottomNavigationBarItem(
-                  label: "",
-                  icon: FloatingActionButton(
-                    mini: true,
-                    elevation: 0,
-                    backgroundColor: Colors.transparent,
-                    shape: const CircleBorder(
-                      side: BorderSide(width: 1),
-                    ),
-                    onPressed: null,
-                    child: Icon(
-                      Icons.add,
-                      color: theme.appColors.navigationBarSelectedIcon,
-                    ),
-                  )),
+                label: "",
+                icon: FloatingActionButton(
+                  mini: true,
+                  elevation: 0,
+                  backgroundColor: Colors.transparent,
+                  shape: const CircleBorder(
+                    side: BorderSide(width: 1),
+                  ),
+                  onPressed: null,
+                  child: Icon(
+                    Icons.add,
+                    color: theme.appColors.navigationBarSelectedIcon,
+                  ),
+                ),
+              ),
               const BottomNavigationBarItem(
                 label: 'メッセージ',
                 icon: Icon(Icons.chat),

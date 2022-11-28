@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:fortune_client/data/model/room/room.dart';
+import 'package:fortune_client/data/model/host_room/host_room.dart';
 import 'package:fortune_client/data/model/room_list/room_list.dart';
 import 'package:retrofit/http.dart';
 
@@ -11,4 +11,7 @@ abstract class RoomDataSource {
 
   @GET('/rooms')
   Future<RoomList> getList();
+
+  @GET('/rooms/host')
+  Future<HostRoomList> getHostList();
 }

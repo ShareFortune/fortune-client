@@ -12,11 +12,14 @@ import 'package:flutter/widgets.dart';
 class $StubGen {
   const $StubGen();
 
+  /// File path: stub/participating_room_list.json
+  String get participatingRoomList => 'stub/participating_room_list.json';
+
   /// File path: stub/room_list.json
   String get roomList => 'stub/room_list.json';
 
   /// List of all assets
-  List<String> get values => [roomList];
+  List<String> get values => [participatingRoomList, roomList];
 }
 
 class $AssetsImagesGen {

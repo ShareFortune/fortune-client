@@ -21,7 +21,9 @@ void main() async {
   if (!kReleaseMode) {
     Fimber.plantTree(DebugTree());
   } else {
-    debugPrint = (message, {wrapWidth}) {};
+    debugPrint = (message, {wrapWidth}) {
+      print(message);
+    };
   }
 
   if (Constants.flavor == Flavor.dev) {

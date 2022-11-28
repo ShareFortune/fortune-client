@@ -13,19 +13,19 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i7;
 import 'package:flutter/material.dart' as _i8;
+import 'package:fortune_client/view/common/bottom_navigation_bar/bottom_navigation_bar.dart'
+    as _i3;
 import 'package:fortune_client/view/pages/auth/sign_in/sign_in_page.dart'
     as _i1;
 import 'package:fortune_client/view/pages/message/message_room_list/message_room_list_page.dart'
     as _i6;
 import 'package:fortune_client/view/pages/profile/create/profile_create_page.dart'
     as _i2;
-import 'package:fortune_client/view/pages/rooms/room_join_list/room_join_list_page.dart'
+import 'package:fortune_client/view/pages/rooms/participating_room_list/participating_room_list_page.dart'
     as _i5;
 import 'package:fortune_client/view/pages/rooms/room_list/room_list_page.dart'
     as _i4;
 import 'package:fortune_client/view/routes/route_guard.dart' as _i9;
-import 'package:fortune_client/view/common/bottom_navigation_bar/bottom_navigation_bar.dart'
-    as _i3;
 
 class AppRouter extends _i7.RootStackRouter {
   AppRouter({
@@ -55,7 +55,7 @@ class AppRouter extends _i7.RootStackRouter {
         child: _i2.ProfileCreatePage(key: args.key),
       );
     },
-    NavigationBar.name: (routeData) {
+    MyBottomNavigationBar.name: (routeData) {
       return _i7.AdaptivePage<dynamic>(
         routeData: routeData,
         child: const _i3.MyBottomNavigationBar(),
@@ -67,10 +67,10 @@ class AppRouter extends _i7.RootStackRouter {
         child: const _i4.RoomListPage(),
       );
     },
-    RoomJoinListRoute.name: (routeData) {
+    ParticipatingRoomListRoute.name: (routeData) {
       return _i7.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i5.RoomJoinListPage(),
+        child: const _i5.ParticipatingRoomListPage(),
       );
     },
     MessageRoomListRoute.name: (routeData) {
@@ -92,24 +92,24 @@ class AppRouter extends _i7.RootStackRouter {
           path: '/profile_create',
         ),
         _i7.RouteConfig(
-          NavigationBar.name,
+          MyBottomNavigationBar.name,
           path: '/',
           guards: [authGuard],
           children: [
             _i7.RouteConfig(
               RoomListRoute.name,
               path: 'rooms_search',
-              parent: NavigationBar.name,
+              parent: MyBottomNavigationBar.name,
             ),
             _i7.RouteConfig(
-              RoomJoinListRoute.name,
+              ParticipatingRoomListRoute.name,
               path: 'rooms',
-              parent: NavigationBar.name,
+              parent: MyBottomNavigationBar.name,
             ),
             _i7.RouteConfig(
               MessageRoomListRoute.name,
               path: 'message_rooms',
-              parent: NavigationBar.name,
+              parent: MyBottomNavigationBar.name,
             ),
           ],
         ),
@@ -175,16 +175,16 @@ class ProfileCreateRouteArgs {
 }
 
 /// generated route for
-/// [_i3.NavigationBar]
-class NavigationBar extends _i7.PageRouteInfo<void> {
-  const NavigationBar({List<_i7.PageRouteInfo>? children})
+/// [_i3.MyBottomNavigationBar]
+class MyBottomNavigationBar extends _i7.PageRouteInfo<void> {
+  const MyBottomNavigationBar({List<_i7.PageRouteInfo>? children})
       : super(
-          NavigationBar.name,
+          MyBottomNavigationBar.name,
           path: '/',
           initialChildren: children,
         );
 
-  static const String name = 'NavigationBar';
+  static const String name = 'MyBottomNavigationBar';
 }
 
 /// generated route for
@@ -200,15 +200,15 @@ class RoomListRoute extends _i7.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i5.RoomJoinListPage]
-class RoomJoinListRoute extends _i7.PageRouteInfo<void> {
-  const RoomJoinListRoute()
+/// [_i5.ParticipatingRoomListPage]
+class ParticipatingRoomListRoute extends _i7.PageRouteInfo<void> {
+  const ParticipatingRoomListRoute()
       : super(
-          RoomJoinListRoute.name,
+          ParticipatingRoomListRoute.name,
           path: 'rooms',
         );
 
-  static const String name = 'RoomJoinListRoute';
+  static const String name = 'ParticipatingRoomListRoute';
 }
 
 /// generated route for

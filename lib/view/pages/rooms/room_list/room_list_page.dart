@@ -25,7 +25,7 @@ class RoomListPage extends ConsumerWidget {
                 backgroundColor: Colors.transparent,
                 title: Text(
                   "ルーム",
-                  style: theme.textTheme.h50
+                  style: theme.textTheme.h40
                       .merge(TextStyle(color: theme.appColors.headline1))
                       .bold(),
                 ),

@@ -1,4 +1,5 @@
 import 'package:fortune_client/data/datasource/remote/go/room/room_data_source.dart';
+import 'package:fortune_client/data/model/host_room/host_room.dart';
 import 'package:fortune_client/data/model/room/room.dart';
 import 'package:fortune_client/data/repository/room/room_repository.dart';
 
@@ -23,6 +24,16 @@ class RoomRepositoryImpl implements RoomRepository {
   Future<List<Room>> fetchList() async {
     try {
       final result = await _dataSource.getList();
+      return result.roomsEntity;
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<List<HostRoom>> fetchListHost() async {
+    try {
+      final result = await _dataSource.getHostList();
       return result.roomsEntity;
     } catch (e) {
       rethrow;

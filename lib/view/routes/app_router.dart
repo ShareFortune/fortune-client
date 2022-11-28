@@ -2,7 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:fortune_client/view/common/bottom_navigation_bar/bottom_navigation_bar.dart';
 import 'package:fortune_client/view/pages/message/message_room_list/message_room_list_page.dart';
 import 'package:fortune_client/view/pages/profile/create/profile_create_page.dart';
-import 'package:fortune_client/view/pages/rooms/room_join_list/room_join_list_page.dart';
+import 'package:fortune_client/view/pages/rooms/participating_room_list/participating_room_list_page.dart';
 import 'package:fortune_client/view/pages/auth/sign_in/sign_in_page.dart';
 import 'package:fortune_client/view/pages/rooms/room_list/room_list_page.dart';
 import 'package:fortune_client/view/routes/route_guard.dart';
@@ -32,7 +32,7 @@ export 'app_router.gr.dart';
         ),
         AutoRoute(
           path: RoutePath.appRouteParticipatingRoomsTab,
-          page: RoomJoinListPage,
+          page: ParticipatingRoomListPage,
         ),
         AutoRoute(
           path: RoutePath.appRouteMessageRoomsTab,
