@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fortune_client/view/common/app_bar/app_bar.dart';
 import 'package:fortune_client/view/pages/message/message_room/message_room_page.dart';
+import 'package:fortune_client/view/pages/message/message_room_list/message_room_list_tile_widget.dart';
 import 'package:fortune_client/view/pages/message/message_room_list/message_room_list_view_model.dart';
 
 class MessageRoomListPage extends ConsumerWidget {
@@ -19,81 +20,36 @@ class MessageRoomListPage extends ConsumerWidget {
 
     return state.when(
       data: (data) {
-        return CustomScrollView(
-          slivers: [
-            const FortuneAppBar(),
-            SliverList(
-              delegate: SliverChildBuilderDelegate(
-                childCount: data.messageRooms.length,
-                (context, index) {
-                  final messageRoom = data.messageRooms[index];
-                  return InkWell(
-                    onTap: (() {
-                      /// メッセージルームに遷移
-                      Navigator.of(context, rootNavigator: true).push(
-                        MaterialPageRoute(
-                          builder: (context) => const MessageRoomPage(),
-                        ),
-                      );
-                    }),
-                    child: Padding(
-                      padding:
-                          const EdgeInsets.only(left: 15, right: 10, top: 30),
-                      child: SizedBox(
-                        height: tileHieght,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            CircleAvatar(
-                              radius: 30,
-                              backgroundImage:
-                                  NetworkImage(messageRoom.userIcon),
-                            ),
-                            const SizedBox(width: 15),
-                            Flexible(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    messageRoom.title,
-                                    maxLines: 1,
-                                    overflow: TextOverflow.ellipsis,
-                                    style: textStyleTitle,
-                                  ),
-                                  const SizedBox(height: 3),
-                                  Text(
-                                    messageRoom.content,
-                                    maxLines: 2,
-                                    overflow: TextOverflow.ellipsis,
-                                    style: textStyleSubTitle,
-                                  ),
-                                ],
-                              ),
-                            ),
-                            const SizedBox(width: 10),
-                            SizedBox(
-                              height: tileHieght,
-                              child: Stack(
-                                alignment: AlignmentDirectional.topEnd,
-                                children: [
-                                  /// 投稿日時
-                                  postedDate(messageRoom.postedAt),
-
-                                  /// 通知
-                                  notificationWidget(messageRoom.notifications),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
+        return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: CustomScrollView(
+            slivers: [
+              const FortuneAppBar(),
+              SliverList(
+                delegate: SliverChildBuilderDelegate(
+                  childCount: data.messageRooms.length,
+                  (context, index) {
+                    final messageRoom = data.messageRooms[index];
+                    return InkWell(
+                      onTap: (() {
+                        /// メッセージルームに遷移
+                        Navigator.of(context, rootNavigator: true).push(
+                          MaterialPageRoute(
+                            builder: (context) => const MessageRoomPage(),
+                          ),
+                        );
+                      }),
+                      child: const Padding(
+                        padding: EdgeInsets.only(top: 30),
+                        // padding: EdgeInsets.only(left: 15, right: 10, top: 30),
+                        child: MessageRoomListTileWidget(),
                       ),
-                    ),
-                  );
-                },
+                    );
+                  },
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         );
       },
       error: (e, msg) => Scaffold(

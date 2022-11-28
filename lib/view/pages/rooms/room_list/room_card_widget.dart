@@ -23,6 +23,13 @@ class RoomCardWidget extends ConsumerWidget {
           color: theme.appColors.divider,
         ),
         borderRadius: BorderRadius.circular(30),
+        boxShadow: [
+          BoxShadow(
+            color: theme.appColors.shadow,
+            blurRadius: 4,
+            offset: const Offset(0, 4),
+          ),
+        ],
       ),
       child: Column(
         children: [

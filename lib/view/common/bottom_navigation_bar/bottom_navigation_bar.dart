@@ -39,36 +39,27 @@ class MyBottomNavigationBar extends ConsumerWidget {
             unselectedLabelStyle: theme.textTheme.h10,
             selectedItemColor: theme.appColors.navigationBarSelectedIcon,
             unselectedItemColor: theme.appColors.navigationBarUnSelectedIcon,
-            items: [
-              const BottomNavigationBarItem(
+            items: const [
+              BottomNavigationBarItem(
                 label: 'ホーム',
                 icon: Icon(Icons.home),
               ),
-              const BottomNavigationBarItem(
+              BottomNavigationBarItem(
                 label: '参加',
                 icon: Icon(Icons.event),
               ),
               BottomNavigationBarItem(
                 label: "",
-                icon: FloatingActionButton(
-                  mini: true,
-                  elevation: 0,
-                  backgroundColor: Colors.transparent,
-                  shape: const CircleBorder(
-                    side: BorderSide(width: 1),
-                  ),
-                  onPressed: null,
-                  child: Icon(
-                    Icons.add,
-                    color: theme.appColors.navigationBarSelectedIcon,
-                  ),
+                icon: Icon(
+                  size: 32,
+                  Icons.add_circle_outline,
                 ),
               ),
-              const BottomNavigationBarItem(
+              BottomNavigationBarItem(
                 label: 'メッセージ',
                 icon: Icon(Icons.chat),
               ),
-              const BottomNavigationBarItem(
+              BottomNavigationBarItem(
                 label: 'アカウント',
                 icon: Icon(Icons.account_circle_outlined),
               ),
