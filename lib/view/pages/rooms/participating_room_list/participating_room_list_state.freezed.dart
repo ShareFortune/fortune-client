@@ -351,14 +351,12 @@ abstract class _HostRoomListItemState implements HostRoomListItemState {
 
 /// @nodoc
 mixin _$GuestRoomListItemState {
-  String get hostName => throw _privateConstructorUsedError;
-  String get createdAt => throw _privateConstructorUsedError;
-  String get hostUserIcon => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
-  List<String> get maleUserIcons => throw _privateConstructorUsedError;
-  List<String> get femaleUserIcons => throw _privateConstructorUsedError;
-  String get holdingPlace => throw _privateConstructorUsedError;
-  int get maxNumOfParticipants => throw _privateConstructorUsedError;
+  String get deadline => throw _privateConstructorUsedError;
+  String get hostIcon => throw _privateConstructorUsedError;
+  List<String> get memberIcons => throw _privateConstructorUsedError;
+  String get place => throw _privateConstructorUsedError;
+  bool get state => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $GuestRoomListItemStateCopyWith<GuestRoomListItemState> get copyWith =>
@@ -372,14 +370,12 @@ abstract class $GuestRoomListItemStateCopyWith<$Res> {
       _$GuestRoomListItemStateCopyWithImpl<$Res, GuestRoomListItemState>;
   @useResult
   $Res call(
-      {String hostName,
-      String createdAt,
-      String hostUserIcon,
-      String title,
-      List<String> maleUserIcons,
-      List<String> femaleUserIcons,
-      String holdingPlace,
-      int maxNumOfParticipants});
+      {String title,
+      String deadline,
+      String hostIcon,
+      List<String> memberIcons,
+      String place,
+      bool state});
 }
 
 /// @nodoc
@@ -396,48 +392,38 @@ class _$GuestRoomListItemStateCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? hostName = null,
-    Object? createdAt = null,
-    Object? hostUserIcon = null,
     Object? title = null,
-    Object? maleUserIcons = null,
-    Object? femaleUserIcons = null,
-    Object? holdingPlace = null,
-    Object? maxNumOfParticipants = null,
+    Object? deadline = null,
+    Object? hostIcon = null,
+    Object? memberIcons = null,
+    Object? place = null,
+    Object? state = null,
   }) {
     return _then(_value.copyWith(
-      hostName: null == hostName
-          ? _value.hostName
-          : hostName // ignore: cast_nullable_to_non_nullable
-              as String,
-      createdAt: null == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as String,
-      hostUserIcon: null == hostUserIcon
-          ? _value.hostUserIcon
-          : hostUserIcon // ignore: cast_nullable_to_non_nullable
-              as String,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
-      maleUserIcons: null == maleUserIcons
-          ? _value.maleUserIcons
-          : maleUserIcons // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      femaleUserIcons: null == femaleUserIcons
-          ? _value.femaleUserIcons
-          : femaleUserIcons // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      holdingPlace: null == holdingPlace
-          ? _value.holdingPlace
-          : holdingPlace // ignore: cast_nullable_to_non_nullable
+      deadline: null == deadline
+          ? _value.deadline
+          : deadline // ignore: cast_nullable_to_non_nullable
               as String,
-      maxNumOfParticipants: null == maxNumOfParticipants
-          ? _value.maxNumOfParticipants
-          : maxNumOfParticipants // ignore: cast_nullable_to_non_nullable
-              as int,
+      hostIcon: null == hostIcon
+          ? _value.hostIcon
+          : hostIcon // ignore: cast_nullable_to_non_nullable
+              as String,
+      memberIcons: null == memberIcons
+          ? _value.memberIcons
+          : memberIcons // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      place: null == place
+          ? _value.place
+          : place // ignore: cast_nullable_to_non_nullable
+              as String,
+      state: null == state
+          ? _value.state
+          : state // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -451,14 +437,12 @@ abstract class _$$_GuestRoomListItemStateCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String hostName,
-      String createdAt,
-      String hostUserIcon,
-      String title,
-      List<String> maleUserIcons,
-      List<String> femaleUserIcons,
-      String holdingPlace,
-      int maxNumOfParticipants});
+      {String title,
+      String deadline,
+      String hostIcon,
+      List<String> memberIcons,
+      String place,
+      bool state});
 }
 
 /// @nodoc
@@ -473,48 +457,38 @@ class __$$_GuestRoomListItemStateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? hostName = null,
-    Object? createdAt = null,
-    Object? hostUserIcon = null,
     Object? title = null,
-    Object? maleUserIcons = null,
-    Object? femaleUserIcons = null,
-    Object? holdingPlace = null,
-    Object? maxNumOfParticipants = null,
+    Object? deadline = null,
+    Object? hostIcon = null,
+    Object? memberIcons = null,
+    Object? place = null,
+    Object? state = null,
   }) {
     return _then(_$_GuestRoomListItemState(
-      hostName: null == hostName
-          ? _value.hostName
-          : hostName // ignore: cast_nullable_to_non_nullable
-              as String,
-      createdAt: null == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as String,
-      hostUserIcon: null == hostUserIcon
-          ? _value.hostUserIcon
-          : hostUserIcon // ignore: cast_nullable_to_non_nullable
-              as String,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
-      maleUserIcons: null == maleUserIcons
-          ? _value._maleUserIcons
-          : maleUserIcons // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      femaleUserIcons: null == femaleUserIcons
-          ? _value._femaleUserIcons
-          : femaleUserIcons // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      holdingPlace: null == holdingPlace
-          ? _value.holdingPlace
-          : holdingPlace // ignore: cast_nullable_to_non_nullable
+      deadline: null == deadline
+          ? _value.deadline
+          : deadline // ignore: cast_nullable_to_non_nullable
               as String,
-      maxNumOfParticipants: null == maxNumOfParticipants
-          ? _value.maxNumOfParticipants
-          : maxNumOfParticipants // ignore: cast_nullable_to_non_nullable
-              as int,
+      hostIcon: null == hostIcon
+          ? _value.hostIcon
+          : hostIcon // ignore: cast_nullable_to_non_nullable
+              as String,
+      memberIcons: null == memberIcons
+          ? _value._memberIcons
+          : memberIcons // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      place: null == place
+          ? _value.place
+          : place // ignore: cast_nullable_to_non_nullable
+              as String,
+      state: null == state
+          ? _value.state
+          : state // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -523,55 +497,41 @@ class __$$_GuestRoomListItemStateCopyWithImpl<$Res>
 
 class _$_GuestRoomListItemState implements _GuestRoomListItemState {
   const _$_GuestRoomListItemState(
-      {this.hostName = "",
-      this.createdAt = "",
-      this.hostUserIcon = "",
-      this.title = "",
-      final List<String> maleUserIcons = const [],
-      final List<String> femaleUserIcons = const [],
-      this.holdingPlace = "",
-      this.maxNumOfParticipants = 4})
-      : _maleUserIcons = maleUserIcons,
-        _femaleUserIcons = femaleUserIcons;
+      {this.title = "",
+      this.deadline = "",
+      this.hostIcon = "",
+      final List<String> memberIcons = const [],
+      this.place = "",
+      this.state = false})
+      : _memberIcons = memberIcons;
 
-  @override
-  @JsonKey()
-  final String hostName;
-  @override
-  @JsonKey()
-  final String createdAt;
-  @override
-  @JsonKey()
-  final String hostUserIcon;
   @override
   @JsonKey()
   final String title;
-  final List<String> _maleUserIcons;
   @override
   @JsonKey()
-  List<String> get maleUserIcons {
+  final String deadline;
+  @override
+  @JsonKey()
+  final String hostIcon;
+  final List<String> _memberIcons;
+  @override
+  @JsonKey()
+  List<String> get memberIcons {
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_maleUserIcons);
+    return EqualUnmodifiableListView(_memberIcons);
   }
 
-  final List<String> _femaleUserIcons;
   @override
   @JsonKey()
-  List<String> get femaleUserIcons {
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_femaleUserIcons);
-  }
-
+  final String place;
   @override
   @JsonKey()
-  final String holdingPlace;
-  @override
-  @JsonKey()
-  final int maxNumOfParticipants;
+  final bool state;
 
   @override
   String toString() {
-    return 'GuestRoomListItemState(hostName: $hostName, createdAt: $createdAt, hostUserIcon: $hostUserIcon, title: $title, maleUserIcons: $maleUserIcons, femaleUserIcons: $femaleUserIcons, holdingPlace: $holdingPlace, maxNumOfParticipants: $maxNumOfParticipants)';
+    return 'GuestRoomListItemState(title: $title, deadline: $deadline, hostIcon: $hostIcon, memberIcons: $memberIcons, place: $place, state: $state)';
   }
 
   @override
@@ -579,34 +539,20 @@ class _$_GuestRoomListItemState implements _GuestRoomListItemState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_GuestRoomListItemState &&
-            (identical(other.hostName, hostName) ||
-                other.hostName == hostName) &&
-            (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt) &&
-            (identical(other.hostUserIcon, hostUserIcon) ||
-                other.hostUserIcon == hostUserIcon) &&
             (identical(other.title, title) || other.title == title) &&
+            (identical(other.deadline, deadline) ||
+                other.deadline == deadline) &&
+            (identical(other.hostIcon, hostIcon) ||
+                other.hostIcon == hostIcon) &&
             const DeepCollectionEquality()
-                .equals(other._maleUserIcons, _maleUserIcons) &&
-            const DeepCollectionEquality()
-                .equals(other._femaleUserIcons, _femaleUserIcons) &&
-            (identical(other.holdingPlace, holdingPlace) ||
-                other.holdingPlace == holdingPlace) &&
-            (identical(other.maxNumOfParticipants, maxNumOfParticipants) ||
-                other.maxNumOfParticipants == maxNumOfParticipants));
+                .equals(other._memberIcons, _memberIcons) &&
+            (identical(other.place, place) || other.place == place) &&
+            (identical(other.state, state) || other.state == state));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      hostName,
-      createdAt,
-      hostUserIcon,
-      title,
-      const DeepCollectionEquality().hash(_maleUserIcons),
-      const DeepCollectionEquality().hash(_femaleUserIcons),
-      holdingPlace,
-      maxNumOfParticipants);
+  int get hashCode => Object.hash(runtimeType, title, deadline, hostIcon,
+      const DeepCollectionEquality().hash(_memberIcons), place, state);
 
   @JsonKey(ignore: true)
   @override
@@ -618,31 +564,25 @@ class _$_GuestRoomListItemState implements _GuestRoomListItemState {
 
 abstract class _GuestRoomListItemState implements GuestRoomListItemState {
   const factory _GuestRoomListItemState(
-      {final String hostName,
-      final String createdAt,
-      final String hostUserIcon,
-      final String title,
-      final List<String> maleUserIcons,
-      final List<String> femaleUserIcons,
-      final String holdingPlace,
-      final int maxNumOfParticipants}) = _$_GuestRoomListItemState;
+      {final String title,
+      final String deadline,
+      final String hostIcon,
+      final List<String> memberIcons,
+      final String place,
+      final bool state}) = _$_GuestRoomListItemState;
 
-  @override
-  String get hostName;
-  @override
-  String get createdAt;
-  @override
-  String get hostUserIcon;
   @override
   String get title;
   @override
-  List<String> get maleUserIcons;
+  String get deadline;
   @override
-  List<String> get femaleUserIcons;
+  String get hostIcon;
   @override
-  String get holdingPlace;
+  List<String> get memberIcons;
   @override
-  int get maxNumOfParticipants;
+  String get place;
+  @override
+  bool get state;
   @override
   @JsonKey(ignore: true)
   _$$_GuestRoomListItemStateCopyWith<_$_GuestRoomListItemState> get copyWith =>

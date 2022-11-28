@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fortune_client/view/pages/rooms/room_list/room_list_state.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
+import 'package:fortune_client/view/widgets/member_icons.dart';
 import 'package:gap/gap.dart';
 
 class RoomCardWidget extends ConsumerWidget {
@@ -53,7 +54,7 @@ class RoomCardWidget extends ConsumerWidget {
             const Gap(10),
             Row(
               children: [
-                members(15, room.memberIcons),
+                members(theme),
 
                 /// 半径分開ける
                 const Gap(15),
@@ -82,7 +83,7 @@ class RoomCardWidget extends ConsumerWidget {
             ),
             const Gap(10),
             Text(
-              "東京都・渋谷",
+              "東京都・横浜市",
               // room.place,
               style: theme.textTheme.h30.auxiliary(),
             ),
@@ -102,34 +103,18 @@ class RoomCardWidget extends ConsumerWidget {
     );
   }
 
-  members(double radius, List icons) {
-    final diameter = radius * 2;
-    return Stack(
-      children: List.generate(icons.length, (index) {
-        double w;
-        if (index == 0) {
-          w = diameter;
-        } else {
-          w = diameter * (index + 1) - (diameter / 3) * index;
-        }
+  members(AppTheme theme) {
+    return Row(
+      children: [
+        memberIconsWidget(15, room.memberIcons),
 
-        return Container(
-          width: w,
-          alignment: Alignment.centerRight,
-          child: icon(radius),
-        );
-      }),
-    );
-  }
-
-  icon(double radius) {
-    return CircleAvatar(
-      radius: radius,
-      backgroundColor: Colors.white,
-      child: CircleAvatar(
-        radius: radius - 1,
-        backgroundColor: Colors.grey,
-      ),
+        /// 半径分開ける
+        const Gap(15),
+        Text(
+          "残り3人",
+          style: theme.textTheme.h20.auxiliary(),
+        ),
+      ],
     );
   }
 }

@@ -42,13 +42,11 @@ class HostRoomListItemState with _$HostRoomListItemState {
 @freezed
 class GuestRoomListItemState with _$GuestRoomListItemState {
   const factory GuestRoomListItemState({
-    @Default("") String hostName,
-    @Default("") String createdAt,
-    @Default("") String hostUserIcon,
     @Default("") String title,
-    @Default([]) List<String> maleUserIcons,
-    @Default([]) List<String> femaleUserIcons,
-    @Default("") String holdingPlace,
-    @Default(4) int maxNumOfParticipants,
+    @Default("") String deadline,
+    @Default("") String hostIcon,
+    @Default([]) List<String> memberIcons,
+    @Default("") String place,
+    @Default(false) bool state,
   }) = _GuestRoomListItemState;
 }

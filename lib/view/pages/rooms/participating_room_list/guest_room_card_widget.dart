@@ -9,7 +9,7 @@ import 'package:gap/gap.dart';
 class GuestRoomCardWidget extends ConsumerWidget {
   const GuestRoomCardWidget(this.room, {super.key});
 
-  final HostRoomListItemState room;
+  final GuestRoomListItemState room;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -31,24 +31,58 @@ class GuestRoomCardWidget extends ConsumerWidget {
         ],
       ),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          title(theme),
+          Row(
+            children: [
+              /// ホストアイコン
+              _hostIcon(theme),
+              const Gap(15),
+
+              Expanded(
+                child: Column(
+                  children: [
+                    /// タイトル
+                    _title(theme),
+
+                    const Gap(10),
+
+                    /// メンバー
+                    _members(theme),
+                  ],
+                ),
+              )
+            ],
+          ),
           const Gap(10),
-          members(theme),
-          room.actinon < 1 ? const Gap(0) : const Gap(15),
-          room.actinon < 1 ? const Gap(0) : content(theme),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              /// 場所
+              _place(theme),
+
+              /// ボタン
+              room.state ? _onState(theme) : _offState(theme),
+            ],
+          )
         ],
       ),
     );
   }
 
-  title(AppTheme theme) {
+  _hostIcon(AppTheme theme) {
+    return CircleAvatar(
+      radius: 30,
+      backgroundColor: theme.appColors.primary,
+    );
+  }
+
+  _title(AppTheme theme) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
-          room.title,
+          // room.title,
+          "若者の集い",
           style: theme.textTheme.h40.bold(),
         ),
         IconButton(
@@ -61,10 +95,10 @@ class GuestRoomCardWidget extends ConsumerWidget {
     );
   }
 
-  members(AppTheme theme) {
+  _members(AppTheme theme) {
     return Row(
       children: [
-        memberIconsWidget(15, room.memberIcons),
+        memberIconsWidget(15, ["", ""]),
 
         /// 半径分開ける
         const Gap(15),
@@ -76,7 +110,24 @@ class GuestRoomCardWidget extends ConsumerWidget {
     );
   }
 
-  content(AppTheme theme) {
+  _place(AppTheme theme) {
+    return Row(
+      children: [
+        Icon(
+          Icons.place_outlined,
+          size: 24,
+          color: theme.appColors.iconBtn,
+        ),
+        const Gap(10),
+        Text(
+          "東京都・横浜市",
+          style: theme.textTheme.h30,
+        ),
+      ],
+    );
+  }
+
+  _onState(AppTheme theme) {
     return ElevatedButton(
       onPressed: () {},
       style: ElevatedButton.styleFrom(
@@ -85,25 +136,24 @@ class GuestRoomCardWidget extends ConsumerWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
         ),
+        textStyle: theme.textTheme.h20.bold(),
       ),
-      child: RichText(
-        text: TextSpan(
-          style: theme.textTheme.h20.bold(),
-          children: [
-            const TextSpan(text: 'リクエストを確認する'),
-            WidgetSpan(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: Text(
-                  "${room.actinon}",
-                  style: theme.textTheme.h30.bold(),
-                ),
-              ),
-            ),
-            const TextSpan(text: '件'),
-          ],
+      child: const Text("メッセージ"),
+    );
+  }
+
+  _offState(AppTheme theme) {
+    return ElevatedButton(
+      onPressed: () {},
+      style: ElevatedButton.styleFrom(
+        elevation: 0,
+        backgroundColor: theme.appColors.offState,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
         ),
+        textStyle: theme.textTheme.h20.bold(),
       ),
+      child: const Text("リクエスト中"),
     );
   }
 }

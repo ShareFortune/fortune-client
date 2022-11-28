@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import 'package:fortune_client/view/pages/rooms/participating_room_list/guest_room_card_widget.dart';
 import 'package:fortune_client/view/pages/rooms/participating_room_list/host_room_card_widget.dart';
 import 'package:fortune_client/view/pages/rooms/participating_room_list/participating_room_list_state.dart';
 import 'package:fortune_client/view/pages/rooms/participating_room_list/participating_room_list_view_model.dart';
@@ -65,7 +66,7 @@ class ParticipatingRoomListPage extends ConsumerWidget {
                     _hostRooms(data.hostRooms),
 
                     /// ゲストで参加予定のルームリスト
-                    _guestRooms(),
+                    _guestRooms(data.guestRooms),
                   ],
                 ),
               ),
@@ -116,8 +117,40 @@ class ParticipatingRoomListPage extends ConsumerWidget {
     );
   }
 
-  _guestRooms() {
-    return Center(child: Text("data"));
+  _guestRooms(List<GuestRoomListItemState> guestRooms) {
+    final room = GuestRoomListItemState();
+    List<GuestRoomListItemState> rooms = [
+      room,
+      room.copyWith(state: true),
+      room,
+      room,
+      room.copyWith(state: true),
+    ];
+    // rooms = [GuestRoomListItemState];
+    return ListView.builder(
+      padding: const EdgeInsets.symmetric(vertical: 30),
+      // itemCount: guestRooms.length,
+      itemCount: rooms.length,
+
+      itemBuilder: (context, index) {
+        return AnimationLimiter(
+          child: AnimationConfiguration.staggeredList(
+            position: index,
+            duration: const Duration(milliseconds: 175),
+            child: SlideAnimation(
+              verticalOffset: 50.0,
+              child: FadeInAnimation(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  child: GuestRoomCardWidget(rooms[index]),
+                  // child: GuestRoomCardWidget(guestRooms[index]),
+                ),
+              ),
+            ),
+          ),
+        );
+      },
+    );
   }
 }
 
