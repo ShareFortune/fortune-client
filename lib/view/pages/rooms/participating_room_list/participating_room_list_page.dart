@@ -32,7 +32,7 @@ class ParticipatingRoomListPage extends ConsumerWidget {
                   SliverAppBar(
                     backgroundColor: Colors.transparent,
                     title: Text(
-                      "ルーム",
+                      "参加",
                       style: theme.textTheme.h40
                           .merge(TextStyle(color: theme.appColors.headline1))
                           .bold(),

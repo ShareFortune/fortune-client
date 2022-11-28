@@ -4,12 +4,15 @@ import 'package:fortune_client/view/common/app_bar/app_bar.dart';
 import 'package:fortune_client/view/pages/message/message_room/message_room_page.dart';
 import 'package:fortune_client/view/pages/message/message_room_list/message_room_list_tile_widget.dart';
 import 'package:fortune_client/view/pages/message/message_room_list/message_room_list_view_model.dart';
+import 'package:fortune_client/view/theme/app_text_theme.dart';
+import 'package:fortune_client/view/theme/app_theme.dart';
 
 class MessageRoomListPage extends ConsumerWidget {
   const MessageRoomListPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final theme = ref.watch(appThemeProvider);
     final state = ref.watch(messageRoomListViewModelProvider);
     final viewModel = ref.watch(messageRoomListViewModelProvider.notifier);
 
@@ -24,7 +27,15 @@ class MessageRoomListPage extends ConsumerWidget {
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: CustomScrollView(
             slivers: [
-              const FortuneAppBar(),
+              SliverAppBar(
+                backgroundColor: Colors.transparent,
+                title: Text(
+                  "メッセージ",
+                  style: theme.textTheme.h40
+                      .merge(TextStyle(color: theme.appColors.headline1))
+                      .bold(),
+                ),
+              ),
               SliverList(
                 delegate: SliverChildBuilderDelegate(
                   childCount: data.messageRooms.length,
@@ -41,7 +52,6 @@ class MessageRoomListPage extends ConsumerWidget {
                       }),
                       child: const Padding(
                         padding: EdgeInsets.only(top: 30),
-                        // padding: EdgeInsets.only(left: 15, right: 10, top: 30),
                         child: MessageRoomListTileWidget(),
                       ),
                     );
