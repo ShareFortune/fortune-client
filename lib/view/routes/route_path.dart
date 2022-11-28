@@ -3,6 +3,7 @@ class RoutePath {
   static const appRouteRoomsSearchTab = 'rooms_search';
   static const appRouteParticipatingRoomsTab = 'rooms';
   static const appRouteMessageRoomsTab = 'message_rooms';
+  static const appRouteAccountTab = 'account';
 
   /// ページ遷移
   static const appRouteRoomDetail = '/rooms/:id';

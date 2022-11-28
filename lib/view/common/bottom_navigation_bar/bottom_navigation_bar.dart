@@ -17,7 +17,7 @@ class MyBottomNavigationBar extends ConsumerWidget {
         ParticipatingRoomListRoute(),
         MessageRoomListRoute(),
         MessageRoomListRoute(),
-        MessageRoomListRoute(),
+        AccountRoute(),
       ],
       builder: (context, child, animation) {
         final tabsRouter = AutoTabsRouter.of(context);

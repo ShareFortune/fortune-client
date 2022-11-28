@@ -11,10 +11,12 @@
 // ignore_for_file: type=lint
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:auto_route/auto_route.dart' as _i7;
-import 'package:flutter/material.dart' as _i8;
+import 'package:auto_route/auto_route.dart' as _i8;
+import 'package:flutter/material.dart' as _i9;
 import 'package:fortune_client/view/common/bottom_navigation_bar/bottom_navigation_bar.dart'
     as _i3;
+import 'package:fortune_client/view/pages/account/account/account_page.dart'
+    as _i7;
 import 'package:fortune_client/view/pages/auth/sign_in/sign_in_page.dart'
     as _i1;
 import 'package:fortune_client/view/pages/message/message_room_list/message_room_list_page.dart'
@@ -25,21 +27,21 @@ import 'package:fortune_client/view/pages/rooms/participating_room_list/particip
     as _i5;
 import 'package:fortune_client/view/pages/rooms/room_list/room_list_page.dart'
     as _i4;
-import 'package:fortune_client/view/routes/route_guard.dart' as _i9;
+import 'package:fortune_client/view/routes/route_guard.dart' as _i10;
 
-class AppRouter extends _i7.RootStackRouter {
+class AppRouter extends _i8.RootStackRouter {
   AppRouter({
-    _i8.GlobalKey<_i8.NavigatorState>? navigatorKey,
+    _i9.GlobalKey<_i9.NavigatorState>? navigatorKey,
     required this.authGuard,
   }) : super(navigatorKey);
 
-  final _i9.AuthGuard authGuard;
+  final _i10.AuthGuard authGuard;
 
   @override
-  final Map<String, _i7.PageFactory> pagesMap = {
+  final Map<String, _i8.PageFactory> pagesMap = {
     SignInRoute.name: (routeData) {
       final args = routeData.argsAs<SignInRouteArgs>();
-      return _i7.AdaptivePage<dynamic>(
+      return _i8.AdaptivePage<dynamic>(
         routeData: routeData,
         child: _i1.SignInPage(
           key: args.key,
@@ -50,65 +52,76 @@ class AppRouter extends _i7.RootStackRouter {
     ProfileCreateRoute.name: (routeData) {
       final args = routeData.argsAs<ProfileCreateRouteArgs>(
           orElse: () => const ProfileCreateRouteArgs());
-      return _i7.AdaptivePage<dynamic>(
+      return _i8.AdaptivePage<dynamic>(
         routeData: routeData,
         child: _i2.ProfileCreatePage(key: args.key),
       );
     },
     MyBottomNavigationBar.name: (routeData) {
-      return _i7.AdaptivePage<dynamic>(
+      return _i8.AdaptivePage<dynamic>(
         routeData: routeData,
         child: const _i3.MyBottomNavigationBar(),
       );
     },
     RoomListRoute.name: (routeData) {
-      return _i7.AdaptivePage<dynamic>(
+      return _i8.AdaptivePage<dynamic>(
         routeData: routeData,
         child: const _i4.RoomListPage(),
       );
     },
     ParticipatingRoomListRoute.name: (routeData) {
-      return _i7.AdaptivePage<dynamic>(
+      return _i8.AdaptivePage<dynamic>(
         routeData: routeData,
         child: const _i5.ParticipatingRoomListPage(),
       );
     },
     MessageRoomListRoute.name: (routeData) {
-      return _i7.AdaptivePage<dynamic>(
+      return _i8.AdaptivePage<dynamic>(
         routeData: routeData,
         child: const _i6.MessageRoomListPage(),
+      );
+    },
+    AccountRoute.name: (routeData) {
+      return _i8.AdaptivePage<dynamic>(
+        routeData: routeData,
+        child: const _i7.AccountPage(),
       );
     },
   };
 
   @override
-  List<_i7.RouteConfig> get routes => [
-        _i7.RouteConfig(
+  List<_i8.RouteConfig> get routes => [
+        _i8.RouteConfig(
           SignInRoute.name,
           path: '/sign_in',
         ),
-        _i7.RouteConfig(
+        _i8.RouteConfig(
           ProfileCreateRoute.name,
           path: '/profile_create',
         ),
-        _i7.RouteConfig(
+        _i8.RouteConfig(
           MyBottomNavigationBar.name,
           path: '/',
           guards: [authGuard],
           children: [
-            _i7.RouteConfig(
+            _i8.RouteConfig(
               RoomListRoute.name,
               path: 'rooms_search',
               parent: MyBottomNavigationBar.name,
             ),
-            _i7.RouteConfig(
+            _i8.RouteConfig(
               ParticipatingRoomListRoute.name,
               path: 'rooms',
               parent: MyBottomNavigationBar.name,
             ),
-            _i7.RouteConfig(
+            _i8.RouteConfig(
               MessageRoomListRoute.name,
               path: 'message_rooms',
+              parent: MyBottomNavigationBar.name,
+            ),
+            _i8.RouteConfig(
+              AccountRoute.name,
+              path: 'account',
               parent: MyBottomNavigationBar.name,
             ),
           ],
@@ -118,9 +131,9 @@ class AppRouter extends _i7.RootStackRouter {
 
 /// generated route for
 /// [_i1.SignInPage]
-class SignInRoute extends _i7.PageRouteInfo<SignInRouteArgs> {
+class SignInRoute extends _i8.PageRouteInfo<SignInRouteArgs> {
   SignInRoute({
-    _i8.Key? key,
+    _i9.Key? key,
     required dynamic Function(bool) onResult,
   }) : super(
           SignInRoute.name,
@@ -140,7 +153,7 @@ class SignInRouteArgs {
     required this.onResult,
   });
 
-  final _i8.Key? key;
+  final _i9.Key? key;
 
   final dynamic Function(bool) onResult;
 
@@ -152,8 +165,8 @@ class SignInRouteArgs {
 
 /// generated route for
 /// [_i2.ProfileCreatePage]
-class ProfileCreateRoute extends _i7.PageRouteInfo<ProfileCreateRouteArgs> {
-  ProfileCreateRoute({_i8.Key? key})
+class ProfileCreateRoute extends _i8.PageRouteInfo<ProfileCreateRouteArgs> {
+  ProfileCreateRoute({_i9.Key? key})
       : super(
           ProfileCreateRoute.name,
           path: '/profile_create',
@@ -166,7 +179,7 @@ class ProfileCreateRoute extends _i7.PageRouteInfo<ProfileCreateRouteArgs> {
 class ProfileCreateRouteArgs {
   const ProfileCreateRouteArgs({this.key});
 
-  final _i8.Key? key;
+  final _i9.Key? key;
 
   @override
   String toString() {
@@ -176,8 +189,8 @@ class ProfileCreateRouteArgs {
 
 /// generated route for
 /// [_i3.MyBottomNavigationBar]
-class MyBottomNavigationBar extends _i7.PageRouteInfo<void> {
-  const MyBottomNavigationBar({List<_i7.PageRouteInfo>? children})
+class MyBottomNavigationBar extends _i8.PageRouteInfo<void> {
+  const MyBottomNavigationBar({List<_i8.PageRouteInfo>? children})
       : super(
           MyBottomNavigationBar.name,
           path: '/',
@@ -189,7 +202,7 @@ class MyBottomNavigationBar extends _i7.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i4.RoomListPage]
-class RoomListRoute extends _i7.PageRouteInfo<void> {
+class RoomListRoute extends _i8.PageRouteInfo<void> {
   const RoomListRoute()
       : super(
           RoomListRoute.name,
@@ -201,7 +214,7 @@ class RoomListRoute extends _i7.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i5.ParticipatingRoomListPage]
-class ParticipatingRoomListRoute extends _i7.PageRouteInfo<void> {
+class ParticipatingRoomListRoute extends _i8.PageRouteInfo<void> {
   const ParticipatingRoomListRoute()
       : super(
           ParticipatingRoomListRoute.name,
@@ -213,7 +226,7 @@ class ParticipatingRoomListRoute extends _i7.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i6.MessageRoomListPage]
-class MessageRoomListRoute extends _i7.PageRouteInfo<void> {
+class MessageRoomListRoute extends _i8.PageRouteInfo<void> {
   const MessageRoomListRoute()
       : super(
           MessageRoomListRoute.name,
@@ -221,4 +234,16 @@ class MessageRoomListRoute extends _i7.PageRouteInfo<void> {
         );
 
   static const String name = 'MessageRoomListRoute';
+}
+
+/// generated route for
+/// [_i7.AccountPage]
+class AccountRoute extends _i8.PageRouteInfo<void> {
+  const AccountRoute()
+      : super(
+          AccountRoute.name,
+          path: 'account',
+        );
+
+  static const String name = 'AccountRoute';
 }
