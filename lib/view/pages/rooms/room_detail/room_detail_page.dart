@@ -76,24 +76,26 @@ class RoomDetailPage extends ConsumerWidget {
                         physics: ClampingScrollPhysics(),
                         child: RoomInfoContainer(),
                       ),
-                      Expanded(
-                        child: Align(
-                          alignment: Alignment.bottomCenter,
-                          child: Padding(
-                            padding: const EdgeInsets.only(
-                              bottom: 30,
-                              left: 50,
-                              right: 50,
-                            ),
-                            child: _requestBtn(theme),
+                      Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Padding(
+                          padding: const EdgeInsets.only(
+                            bottom: 30,
+                            left: 50,
+                            right: 50,
                           ),
+                          child: _requestBtn(theme),
                         ),
                       ),
                     ],
                   ),
-                  const SingleChildScrollView(
-                      physics: ClampingScrollPhysics(),
-                      child: RoomMembersContainer()),
+                  SingleChildScrollView(
+                    physics: const ClampingScrollPhysics(),
+                    child: RoomMembersContainer(
+                      data.members,
+                      viewModel.onTapProfile,
+                    ),
+                  ),
                 ],
               ),
             ),

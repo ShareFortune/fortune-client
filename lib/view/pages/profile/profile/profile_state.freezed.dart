@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'profile.dart';
+part of 'profile_state.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,14 +14,8 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-Profile _$ProfileFromJson(Map<String, dynamic> json) {
-  return _Profile.fromJson(json);
-}
-
 /// @nodoc
-mixin _$Profile {
-  String get id => throw _privateConstructorUsedError;
-  String get username => throw _privateConstructorUsedError;
+mixin _$ProfileState {
   String get name => throw _privateConstructorUsedError;
   String get gender => throw _privateConstructorUsedError;
   int get height => throw _privateConstructorUsedError;
@@ -30,10 +24,9 @@ mixin _$Profile {
       throw _privateConstructorUsedError; // タバコをよく吸うか
   String get selfIntroduction =>
       throw _privateConstructorUsedError; // 自己紹介文(nullalble)
+  Map<dynamic, dynamic> get adress => throw _privateConstructorUsedError; // 居住地
   String get occupation => throw _privateConstructorUsedError; // 職業ID
-  Map<dynamic, dynamic> get address =>
-      throw _privateConstructorUsedError; // 居住地
-  List<dynamic> get tags => throw _privateConstructorUsedError; // 居住地
+  List<dynamic> get tags => throw _privateConstructorUsedError; // 職業ID
   /// プロフィール画像
   String get mainImageURL => throw _privateConstructorUsedError;
   String get secondImageURL => throw _privateConstructorUsedError;
@@ -42,27 +35,26 @@ mixin _$Profile {
   String get fifthImageURL => throw _privateConstructorUsedError;
   String get sixthImageURL => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $ProfileCopyWith<Profile> get copyWith => throw _privateConstructorUsedError;
+  $ProfileStateCopyWith<ProfileState> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ProfileCopyWith<$Res> {
-  factory $ProfileCopyWith(Profile value, $Res Function(Profile) then) =
-      _$ProfileCopyWithImpl<$Res, Profile>;
+abstract class $ProfileStateCopyWith<$Res> {
+  factory $ProfileStateCopyWith(
+          ProfileState value, $Res Function(ProfileState) then) =
+      _$ProfileStateCopyWithImpl<$Res, ProfileState>;
   @useResult
   $Res call(
-      {String id,
-      String username,
-      String name,
+      {String name,
       String gender,
       int height,
       String drinkFrequency,
       String cigaretteFrequency,
       String selfIntroduction,
+      Map<dynamic, dynamic> adress,
       String occupation,
-      Map<dynamic, dynamic> address,
       List<dynamic> tags,
       String mainImageURL,
       String secondImageURL,
@@ -73,9 +65,9 @@ abstract class $ProfileCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ProfileCopyWithImpl<$Res, $Val extends Profile>
-    implements $ProfileCopyWith<$Res> {
-  _$ProfileCopyWithImpl(this._value, this._then);
+class _$ProfileStateCopyWithImpl<$Res, $Val extends ProfileState>
+    implements $ProfileStateCopyWith<$Res> {
+  _$ProfileStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -85,16 +77,14 @@ class _$ProfileCopyWithImpl<$Res, $Val extends Profile>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? username = null,
     Object? name = null,
     Object? gender = null,
     Object? height = null,
     Object? drinkFrequency = null,
     Object? cigaretteFrequency = null,
     Object? selfIntroduction = null,
+    Object? adress = null,
     Object? occupation = null,
-    Object? address = null,
     Object? tags = null,
     Object? mainImageURL = null,
     Object? secondImageURL = null,
@@ -104,14 +94,6 @@ class _$ProfileCopyWithImpl<$Res, $Val extends Profile>
     Object? sixthImageURL = null,
   }) {
     return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      username: null == username
-          ? _value.username
-          : username // ignore: cast_nullable_to_non_nullable
-              as String,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -136,14 +118,14 @@ class _$ProfileCopyWithImpl<$Res, $Val extends Profile>
           ? _value.selfIntroduction
           : selfIntroduction // ignore: cast_nullable_to_non_nullable
               as String,
+      adress: null == adress
+          ? _value.adress
+          : adress // ignore: cast_nullable_to_non_nullable
+              as Map<dynamic, dynamic>,
       occupation: null == occupation
           ? _value.occupation
           : occupation // ignore: cast_nullable_to_non_nullable
               as String,
-      address: null == address
-          ? _value.address
-          : address // ignore: cast_nullable_to_non_nullable
-              as Map<dynamic, dynamic>,
       tags: null == tags
           ? _value.tags
           : tags // ignore: cast_nullable_to_non_nullable
@@ -177,23 +159,22 @@ class _$ProfileCopyWithImpl<$Res, $Val extends Profile>
 }
 
 /// @nodoc
-abstract class _$$_ProfileCopyWith<$Res> implements $ProfileCopyWith<$Res> {
-  factory _$$_ProfileCopyWith(
-          _$_Profile value, $Res Function(_$_Profile) then) =
-      __$$_ProfileCopyWithImpl<$Res>;
+abstract class _$$_ProfileStateCopyWith<$Res>
+    implements $ProfileStateCopyWith<$Res> {
+  factory _$$_ProfileStateCopyWith(
+          _$_ProfileState value, $Res Function(_$_ProfileState) then) =
+      __$$_ProfileStateCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
-      {String id,
-      String username,
-      String name,
+      {String name,
       String gender,
       int height,
       String drinkFrequency,
       String cigaretteFrequency,
       String selfIntroduction,
+      Map<dynamic, dynamic> adress,
       String occupation,
-      Map<dynamic, dynamic> address,
       List<dynamic> tags,
       String mainImageURL,
       String secondImageURL,
@@ -204,25 +185,24 @@ abstract class _$$_ProfileCopyWith<$Res> implements $ProfileCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_ProfileCopyWithImpl<$Res>
-    extends _$ProfileCopyWithImpl<$Res, _$_Profile>
-    implements _$$_ProfileCopyWith<$Res> {
-  __$$_ProfileCopyWithImpl(_$_Profile _value, $Res Function(_$_Profile) _then)
+class __$$_ProfileStateCopyWithImpl<$Res>
+    extends _$ProfileStateCopyWithImpl<$Res, _$_ProfileState>
+    implements _$$_ProfileStateCopyWith<$Res> {
+  __$$_ProfileStateCopyWithImpl(
+      _$_ProfileState _value, $Res Function(_$_ProfileState) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? username = null,
     Object? name = null,
     Object? gender = null,
     Object? height = null,
     Object? drinkFrequency = null,
     Object? cigaretteFrequency = null,
     Object? selfIntroduction = null,
+    Object? adress = null,
     Object? occupation = null,
-    Object? address = null,
     Object? tags = null,
     Object? mainImageURL = null,
     Object? secondImageURL = null,
@@ -231,15 +211,7 @@ class __$$_ProfileCopyWithImpl<$Res>
     Object? fifthImageURL = null,
     Object? sixthImageURL = null,
   }) {
-    return _then(_$_Profile(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      username: null == username
-          ? _value.username
-          : username // ignore: cast_nullable_to_non_nullable
-              as String,
+    return _then(_$_ProfileState(
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -264,14 +236,14 @@ class __$$_ProfileCopyWithImpl<$Res>
           ? _value.selfIntroduction
           : selfIntroduction // ignore: cast_nullable_to_non_nullable
               as String,
+      adress: null == adress
+          ? _value._adress
+          : adress // ignore: cast_nullable_to_non_nullable
+              as Map<dynamic, dynamic>,
       occupation: null == occupation
           ? _value.occupation
           : occupation // ignore: cast_nullable_to_non_nullable
               as String,
-      address: null == address
-          ? _value._address
-          : address // ignore: cast_nullable_to_non_nullable
-              as Map<dynamic, dynamic>,
       tags: null == tags
           ? _value._tags
           : tags // ignore: cast_nullable_to_non_nullable
@@ -305,19 +277,17 @@ class __$$_ProfileCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
-class _$_Profile implements _Profile {
-  _$_Profile(
-      {required this.id,
-      required this.username,
-      required this.name,
+
+class _$_ProfileState implements _ProfileState {
+  const _$_ProfileState(
+      {required this.name,
       required this.gender,
       required this.height,
       required this.drinkFrequency,
       required this.cigaretteFrequency,
       required this.selfIntroduction,
+      required final Map<dynamic, dynamic> adress,
       required this.occupation,
-      required final Map<dynamic, dynamic> address,
       required final List<dynamic> tags,
       required this.mainImageURL,
       required this.secondImageURL,
@@ -325,16 +295,9 @@ class _$_Profile implements _Profile {
       required this.fourthImageURL,
       required this.fifthImageURL,
       required this.sixthImageURL})
-      : _address = address,
+      : _adress = adress,
         _tags = tags;
 
-  factory _$_Profile.fromJson(Map<String, dynamic> json) =>
-      _$$_ProfileFromJson(json);
-
-  @override
-  final String id;
-  @override
-  final String username;
   @override
   final String name;
   @override
@@ -350,27 +313,27 @@ class _$_Profile implements _Profile {
   @override
   final String selfIntroduction;
 // 自己紹介文(nullalble)
+  final Map<dynamic, dynamic> _adress;
+// 自己紹介文(nullalble)
   @override
-  final String occupation;
-// 職業ID
-  final Map<dynamic, dynamic> _address;
-// 職業ID
-  @override
-  Map<dynamic, dynamic> get address {
+  Map<dynamic, dynamic> get adress {
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableMapView(_address);
+    return EqualUnmodifiableMapView(_adress);
   }
 
 // 居住地
+  @override
+  final String occupation;
+// 職業ID
   final List<dynamic> _tags;
-// 居住地
+// 職業ID
   @override
   List<dynamic> get tags {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_tags);
   }
 
-// 居住地
+// 職業ID
   /// プロフィール画像
   @override
   final String mainImageURL;
@@ -387,17 +350,14 @@ class _$_Profile implements _Profile {
 
   @override
   String toString() {
-    return 'Profile(id: $id, username: $username, name: $name, gender: $gender, height: $height, drinkFrequency: $drinkFrequency, cigaretteFrequency: $cigaretteFrequency, selfIntroduction: $selfIntroduction, occupation: $occupation, address: $address, tags: $tags, mainImageURL: $mainImageURL, secondImageURL: $secondImageURL, thirdImageURL: $thirdImageURL, fourthImageURL: $fourthImageURL, fifthImageURL: $fifthImageURL, sixthImageURL: $sixthImageURL)';
+    return 'ProfileState(name: $name, gender: $gender, height: $height, drinkFrequency: $drinkFrequency, cigaretteFrequency: $cigaretteFrequency, selfIntroduction: $selfIntroduction, adress: $adress, occupation: $occupation, tags: $tags, mainImageURL: $mainImageURL, secondImageURL: $secondImageURL, thirdImageURL: $thirdImageURL, fourthImageURL: $fourthImageURL, fifthImageURL: $fifthImageURL, sixthImageURL: $sixthImageURL)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Profile &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.username, username) ||
-                other.username == username) &&
+            other is _$_ProfileState &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.gender, gender) || other.gender == gender) &&
             (identical(other.height, height) || other.height == height) &&
@@ -407,9 +367,9 @@ class _$_Profile implements _Profile {
                 other.cigaretteFrequency == cigaretteFrequency) &&
             (identical(other.selfIntroduction, selfIntroduction) ||
                 other.selfIntroduction == selfIntroduction) &&
+            const DeepCollectionEquality().equals(other._adress, _adress) &&
             (identical(other.occupation, occupation) ||
                 other.occupation == occupation) &&
-            const DeepCollectionEquality().equals(other._address, _address) &&
             const DeepCollectionEquality().equals(other._tags, _tags) &&
             (identical(other.mainImageURL, mainImageURL) ||
                 other.mainImageURL == mainImageURL) &&
@@ -425,20 +385,17 @@ class _$_Profile implements _Profile {
                 other.sixthImageURL == sixthImageURL));
   }
 
-  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      id,
-      username,
       name,
       gender,
       height,
       drinkFrequency,
       cigaretteFrequency,
       selfIntroduction,
+      const DeepCollectionEquality().hash(_adress),
       occupation,
-      const DeepCollectionEquality().hash(_address),
       const DeepCollectionEquality().hash(_tags),
       mainImageURL,
       secondImageURL,
@@ -450,43 +407,28 @@ class _$_Profile implements _Profile {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ProfileCopyWith<_$_Profile> get copyWith =>
-      __$$_ProfileCopyWithImpl<_$_Profile>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_ProfileToJson(
-      this,
-    );
-  }
+  _$$_ProfileStateCopyWith<_$_ProfileState> get copyWith =>
+      __$$_ProfileStateCopyWithImpl<_$_ProfileState>(this, _$identity);
 }
 
-abstract class _Profile implements Profile {
-  factory _Profile(
-      {required final String id,
-      required final String username,
-      required final String name,
+abstract class _ProfileState implements ProfileState {
+  const factory _ProfileState(
+      {required final String name,
       required final String gender,
       required final int height,
       required final String drinkFrequency,
       required final String cigaretteFrequency,
       required final String selfIntroduction,
+      required final Map<dynamic, dynamic> adress,
       required final String occupation,
-      required final Map<dynamic, dynamic> address,
       required final List<dynamic> tags,
       required final String mainImageURL,
       required final String secondImageURL,
       required final String thirdImageURL,
       required final String fourthImageURL,
       required final String fifthImageURL,
-      required final String sixthImageURL}) = _$_Profile;
+      required final String sixthImageURL}) = _$_ProfileState;
 
-  factory _Profile.fromJson(Map<String, dynamic> json) = _$_Profile.fromJson;
-
-  @override
-  String get id;
-  @override
-  String get username;
   @override
   String get name;
   @override
@@ -500,12 +442,12 @@ abstract class _Profile implements Profile {
   @override // タバコをよく吸うか
   String get selfIntroduction;
   @override // 自己紹介文(nullalble)
+  Map<dynamic, dynamic> get adress;
+  @override // 居住地
   String get occupation;
   @override // 職業ID
-  Map<dynamic, dynamic> get address;
-  @override // 居住地
   List<dynamic> get tags;
-  @override // 居住地
+  @override // 職業ID
   /// プロフィール画像
   String get mainImageURL;
   @override
@@ -520,6 +462,6 @@ abstract class _Profile implements Profile {
   String get sixthImageURL;
   @override
   @JsonKey(ignore: true)
-  _$$_ProfileCopyWith<_$_Profile> get copyWith =>
+  _$$_ProfileStateCopyWith<_$_ProfileState> get copyWith =>
       throw _privateConstructorUsedError;
 }
