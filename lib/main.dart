@@ -22,6 +22,7 @@ void main() async {
     Fimber.plantTree(DebugTree());
   } else {
     debugPrint = (message, {wrapWidth}) {
+      print("message");
       print(message);
     };
   }
@@ -50,32 +51,4 @@ void main() async {
       Fimber.e(error.toString());
     },
   );
-
-  // runApp(
-  //   ProviderScope(
-  //     overrides: [
-  //       DataSource.room.overrideWithValue(StubRoomDataSource()),
-  //     ],
-  //     child: const MyApp(),
-  //   ),
-  // );
 }
-
-// class MyApp extends ConsumerWidget {
-//   const MyApp({super.key});
-
-//   @override
-//   Widget build(BuildContext context, WidgetRef ref) {
-//     final authGuard = ref.watch(authGuardProvider);
-//     final appRouter = AppRouter(authGuard: authGuard);
-
-//     return MaterialApp.router(
-//       title: 'Flutter Demo',
-//       theme: ThemeData(
-//         primarySwatch: Colors.blue,
-//       ),
-//       routerDelegate: appRouter.delegate(),
-//       routeInformationParser: appRouter.defaultRouteParser(),
-//     );
-//   }
-// }

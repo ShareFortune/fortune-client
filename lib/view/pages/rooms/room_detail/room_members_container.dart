@@ -75,7 +75,7 @@ class RoomMembersContainer extends ConsumerWidget {
         children: [
           Container(
             height: 150,
-            width: 170,
+            width: 150,
             decoration: BoxDecoration(
               image: DecorationImage(
                 fit: BoxFit.cover,
