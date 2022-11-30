@@ -1,8 +1,12 @@
+import 'dart:ui';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:fortune_client/gen/assets.gen.dart';
 import 'package:fortune_client/view/pages/profile/profile/profile_view_model.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
+import 'package:gap/gap.dart';
 
 class ProfilePage extends ConsumerWidget {
   const ProfilePage({
@@ -20,27 +24,71 @@ class ProfilePage extends ConsumerWidget {
 
     return state.when(
       data: (data) {
-        print(data.adress);
         return Scaffold(
-          body: Center(child: Text("test")),
+          appBar: AppBar(
+            elevation: 0,
+            backgroundColor: Colors.transparent,
+          ),
+          extendBodyBehindAppBar: true,
+          body: Stack(
+            children: [
+              Container(
+                width: double.infinity,
+                height:
+                    MediaQuery.of(context).size.width + (kToolbarHeight * 2),
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    fit: BoxFit.cover,
+                    image: Assets.images.insta2.provider(),
+                  ),
+                ),
+                child: BackdropFilter(
+                  filter: ImageFilter.blur(
+                    sigmaX: 10,
+                    sigmaY: 10,
+                  ),
+                  child: Container(),
+                ),
+              ),
+              Column(
+                children: [
+                  const Gap(kToolbarHeight),
+                  Expanded(
+                    child: Container(
+                      padding: const EdgeInsets.all(60),
+                      child: FractionallySizedBox(
+                        widthFactor: 1,
+                        child: AspectRatio(
+                          aspectRatio: 2 / 1,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                fit: BoxFit.cover,
+                                image: Assets.images.insta2.provider(),
+                              ),
+                              borderRadius: BorderRadius.circular(30),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
         );
       },
-      error: (e, msg) => Scaffold(
-        body: SafeArea(
-          child: Center(
-            child: Text(
-              e.toString(),
-            ),
-          ),
-        ),
-      ),
-      loading: () => const Scaffold(
-        body: SafeArea(
-          child: Center(
-            child: CircularProgressIndicator(),
-          ),
-        ),
-      ),
+      error: (e, msg) => Center(child: Text(e.toString())),
+      loading: () => const Center(child: CircularProgressIndicator()),
     );
   }
 }
