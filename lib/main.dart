@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:fortune_client/data/datasource/remote/go/profile/stub_profile_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/go/room/stub_room_data_source.dart';
 import 'package:fortune_client/foundation/constants.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -38,6 +39,7 @@ void main() async {
       ProviderScope(
         overrides: [
           DataSource.room.overrideWithValue(StubRoomDataSource()),
+          DataSource.profile.overrideWithValue(StubProfileDataSource()),
         ],
         child: DevicePreview(
           enabled: !kReleaseMode && Constants.enablePreview,

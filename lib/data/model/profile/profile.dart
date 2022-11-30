@@ -1,30 +1,34 @@
-import 'package:fortune_client/data/model/address/address.dart';
-import 'package:fortune_client/data/model/enum/cigarette_frequency.dart';
-import 'package:fortune_client/data/model/enum/drink_frequency.dart';
-import 'package:fortune_client/data/model/enum/gender.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'profile.freezed.dart';
+part 'profile.g.dart';
 
 @freezed
 class Profile with _$Profile {
-  @Assert('name.length > 3', 'ユーザ名は3文字以上です。')
-  @Assert('name.length < 10', 'ユーザ名は10文字以下です。')
+  // @Assert('name.length > 3', 'ユーザ名は3文字以上です。')
+  // @Assert('name.length < 10', 'ユーザ名は10文字以下です。')
   factory Profile({
+    required String id,
+    required String username,
     required String name,
-    required Gender gender,
-    required double height,
-    required DrinkFrequency drinkFrequency, // お酒をよく飲むか
-    required CigaretteFrequency cigaretteFrequency, // タバコをよく吸うか
+    required String gender,
+    required int height,
+    required String drinkFrequency, // お酒をよく飲むか
+    required String cigaretteFrequency, // タバコをよく吸うか
     required String selfIntroduction, // 自己紹介文(nullalble)
-    required Address adress, // 居住地
-    required String occupationId, // 職業ID
+    required String occupation, // 職業ID
+    required Map address, // 居住地
+    required List tags, // 居住地
+
     /// プロフィール画像
-    required String mainImagePath,
-    required String secondImagePath,
-    required String thirdImagePath,
-    required String fourthImagePath,
-    required String fifthImagePath,
-    required String sixthImagePath,
+    required String mainImageURL,
+    required String secondImageURL,
+    required String thirdImageURL,
+    required String fourthImageURL,
+    required String fifthImageURL,
+    required String sixthImageURL,
   }) = _Profile;
+
+  factory Profile.fromJson(Map<String, dynamic> json) =>
+      _$ProfileFromJson(json);
 }

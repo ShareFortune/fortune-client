@@ -1,5 +1,9 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fortune_client/view/pages/rooms/room_detail/room_detail_state.dart';
+import 'package:fortune_client/view/routes/app_router.dart';
+import 'package:fortune_client/view/routes/route_path.dart';
 
 final roomDetailViewModelProvider =
     StateNotifierProvider<RoomDetailViewModel, AsyncValue<RoomDetailState>>(
@@ -23,4 +27,8 @@ class RoomDetailViewModel extends StateNotifier<AsyncValue<RoomDetailState>> {
   }
 
   Future<void> joinRequest() async {}
+
+  onTapProfile(BuildContext context, String id) async {
+    await context.router.push(ProfileRoute(id: id));
+  }
 }
