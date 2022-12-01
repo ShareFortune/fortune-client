@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fortune_client/gen/assets.gen.dart';
 import 'package:fortune_client/view/pages/rooms/room_list/room_list_state.dart';
@@ -107,7 +108,13 @@ class RoomCardWidget extends ConsumerWidget {
           ],
         ),
         IconButton(
-          onPressed: () {},
+          onPressed: () {
+            // HapticFeedback.heavyImpact();
+            // HapticFeedback.lightImpact();
+            // HapticFeedback.mediumImpact();
+            // HapticFeedback.selectionClick();
+            // HapticFeedback.vibrate();
+          },
           padding: EdgeInsets.zero,
           constraints: const BoxConstraints(),
           icon: Icon(

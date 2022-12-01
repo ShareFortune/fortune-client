@@ -29,6 +29,7 @@ class RoomMembersContainer extends ConsumerWidget {
                 info: "23歳・東京",
                 onTap: (id) => onTap(context, id),
               ),
+              const Gap(20),
               _memberCard(
                 theme,
                 image: Assets.images.insta3,
@@ -38,7 +39,7 @@ class RoomMembersContainer extends ConsumerWidget {
               ),
             ],
           ),
-          Gap(20),
+          const Gap(20),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
@@ -49,6 +50,7 @@ class RoomMembersContainer extends ConsumerWidget {
                 info: "21歳・千葉",
                 onTap: (id) => onTap(context, id),
               ),
+              const Gap(20),
               _memberCard(
                 theme,
                 image: Assets.images.insta5,
@@ -65,50 +67,52 @@ class RoomMembersContainer extends ConsumerWidget {
     );
   }
 
-  _memberCard(
+  Widget _memberCard(
     AppTheme theme, {
     required AssetGenImage image,
     required String name,
     required String info,
     required Function(String id) onTap,
   }) {
-    return InkWell(
-      onTap: () => onTap("id"),
-      child: Card(
-        elevation: 4,
-        color: Colors.white,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(30),
-        ),
-        clipBehavior: Clip.antiAlias,
-        child: Column(
-          children: [
-            Container(
-              height: 150,
-              width: 150,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  fit: BoxFit.cover,
-                  image: image.provider(),
+    return Expanded(
+      child: InkWell(
+        onTap: () => onTap("id"),
+        child: Card(
+          elevation: 4,
+          color: Colors.white,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(30),
+          ),
+          clipBehavior: Clip.antiAlias,
+          child: Column(
+            children: [
+              Container(
+                height: 150,
+                // width: double.infinity,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    fit: BoxFit.cover,
+                    image: image.provider(),
+                  ),
                 ),
               ),
-            ),
-            Column(
-              children: [
-                const Gap(10),
-                Text(
-                  name,
-                  style: theme.textTheme.h40.bold(),
-                ),
-                const Gap(10),
-                Text(
-                  info,
-                  style: theme.textTheme.h30,
-                ),
-                const Gap(10),
-              ],
-            ),
-          ],
+              Column(
+                children: [
+                  const Gap(10),
+                  Text(
+                    name,
+                    style: theme.textTheme.h40.bold(),
+                  ),
+                  const Gap(10),
+                  Text(
+                    info,
+                    style: theme.textTheme.h30,
+                  ),
+                  const Gap(10),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

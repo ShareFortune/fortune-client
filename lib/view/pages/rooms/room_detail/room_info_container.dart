@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
+import 'package:fortune_client/view/widgets/tag_widget.dart';
 import 'package:gap/gap.dart';
 
 class RoomInfoContainer extends ConsumerWidget {
@@ -56,32 +57,16 @@ class RoomInfoContainer extends ConsumerWidget {
           spacing: 10,
           runSpacing: 10,
           children: [
-            _tag("テスト"),
-            _tag("ゲーム"),
-            _tag("大学生"),
-            _tag("大学生"),
-            _tag("プログラミング"),
-            _tag("読書"),
-            _tag("映画"),
+            tagWidget("テスト"),
+            tagWidget("ゲーム"),
+            tagWidget("大学生"),
+            tagWidget("大学生"),
+            tagWidget("プログラミング"),
+            tagWidget("読書"),
+            tagWidget("映画"),
           ],
         ),
       ],
-    );
-  }
-
-  _tag(String value) {
-    return Container(
-      decoration: BoxDecoration(
-        color: const Color.fromRGBO(0, 0, 0, 0.08),
-        borderRadius: BorderRadius.circular(30),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
-        child: Text(
-          value,
-          style: const TextStyle(fontSize: 16),
-        ),
-      ),
     );
   }
 
