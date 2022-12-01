@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fortune_client/view/pages/rooms/participating_room_list/participating_room_list_state.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
-import 'package:fortune_client/view/widgets/member_icons.dart';
+import 'package:fortune_client/view/widgets/members_widget.dart';
 import 'package:gap/gap.dart';
 
 class HostRoomCardWidget extends ConsumerWidget {
@@ -35,7 +35,7 @@ class HostRoomCardWidget extends ConsumerWidget {
         children: [
           title(theme),
           const Gap(10),
-          members(theme),
+          membersWidget(theme, ["", ""]),
           room.actinon < 1 ? const Gap(0) : const Gap(15),
           room.actinon < 1 ? const Gap(0) : content(theme),
         ],
@@ -56,21 +56,6 @@ class HostRoomCardWidget extends ConsumerWidget {
           constraints: const BoxConstraints(),
           onPressed: () {},
           icon: const Icon(Icons.more_vert_outlined),
-        ),
-      ],
-    );
-  }
-
-  members(AppTheme theme) {
-    return Row(
-      children: [
-        memberIconsWidget(15, room.memberIcons),
-
-        /// 半径分開ける
-        const Gap(15),
-        Text(
-          "残り3人",
-          style: theme.textTheme.h20.auxiliary(),
         ),
       ],
     );

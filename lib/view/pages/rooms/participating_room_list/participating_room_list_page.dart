@@ -21,7 +21,7 @@ class ParticipatingRoomListPage extends ConsumerWidget {
     return state.when(
       data: (data) {
         return Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 30),
           child: DefaultTabController(
             length: 2,
             child: NestedScrollView(

@@ -4,7 +4,7 @@ import 'package:fortune_client/gen/assets.gen.dart';
 import 'package:fortune_client/view/pages/rooms/room_list/room_list_state.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
-import 'package:fortune_client/view/widgets/member_icons.dart';
+import 'package:fortune_client/view/widgets/members_widget.dart';
 import 'package:gap/gap.dart';
 
 class RoomCardWidget extends ConsumerWidget {
@@ -56,7 +56,6 @@ class RoomCardWidget extends ConsumerWidget {
         /// ホスト
         CircleAvatar(
           radius: 30,
-          // backgroundColor: theme.appColors.primary,
           backgroundImage: Assets.images.thinder.provider(),
         ),
         const Gap(15),
@@ -69,18 +68,7 @@ class RoomCardWidget extends ConsumerWidget {
               style: theme.textTheme.h40.bold(),
             ),
             const Gap(10),
-            Row(
-              children: [
-                memberIconsWidget(15, room.memberIcons),
-
-                /// 半径分開ける
-                const Gap(15),
-                Text(
-                  "残り3人",
-                  style: theme.textTheme.h20.auxiliary(),
-                ),
-              ],
-            ),
+            membersWidget(theme, room.memberIcons),
           ],
         ),
       ],
