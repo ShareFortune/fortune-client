@@ -15,7 +15,7 @@ class MyBottomNavigationBar extends ConsumerWidget {
       routes: const [
         RoomListRoute(),
         ParticipatingRoomListRoute(),
-        MessageRoomListRoute(),
+        RoomCreateRoute(),
         MessageRoomListRoute(),
         AccountRoute(),
       ],

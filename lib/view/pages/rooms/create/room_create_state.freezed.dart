@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'room_create_state.dart';
 
@@ -16,7 +16,12 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$RoomCreateState {
-  String get test => throw _privateConstructorUsedError;
+  String get title => throw _privateConstructorUsedError;
+  int get membersNum => throw _privateConstructorUsedError;
+  String get ageGroup => throw _privateConstructorUsedError;
+  String get address => throw _privateConstructorUsedError;
+  String get explanation => throw _privateConstructorUsedError;
+  String get tags => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $RoomCreateStateCopyWith<RoomCreateState> get copyWith =>
@@ -29,7 +34,13 @@ abstract class $RoomCreateStateCopyWith<$Res> {
           RoomCreateState value, $Res Function(RoomCreateState) then) =
       _$RoomCreateStateCopyWithImpl<$Res, RoomCreateState>;
   @useResult
-  $Res call({String test});
+  $Res call(
+      {String title,
+      int membersNum,
+      String ageGroup,
+      String address,
+      String explanation,
+      String tags});
 }
 
 /// @nodoc
@@ -45,12 +56,37 @@ class _$RoomCreateStateCopyWithImpl<$Res, $Val extends RoomCreateState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? test = null,
+    Object? title = null,
+    Object? membersNum = null,
+    Object? ageGroup = null,
+    Object? address = null,
+    Object? explanation = null,
+    Object? tags = null,
   }) {
     return _then(_value.copyWith(
-      test: null == test
-          ? _value.test
-          : test // ignore: cast_nullable_to_non_nullable
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      membersNum: null == membersNum
+          ? _value.membersNum
+          : membersNum // ignore: cast_nullable_to_non_nullable
+              as int,
+      ageGroup: null == ageGroup
+          ? _value.ageGroup
+          : ageGroup // ignore: cast_nullable_to_non_nullable
+              as String,
+      address: null == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as String,
+      explanation: null == explanation
+          ? _value.explanation
+          : explanation // ignore: cast_nullable_to_non_nullable
+              as String,
+      tags: null == tags
+          ? _value.tags
+          : tags // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -64,7 +100,13 @@ abstract class _$$_RoomCreateStateCopyWith<$Res>
       __$$_RoomCreateStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String test});
+  $Res call(
+      {String title,
+      int membersNum,
+      String ageGroup,
+      String address,
+      String explanation,
+      String tags});
 }
 
 /// @nodoc
@@ -78,12 +120,37 @@ class __$$_RoomCreateStateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? test = null,
+    Object? title = null,
+    Object? membersNum = null,
+    Object? ageGroup = null,
+    Object? address = null,
+    Object? explanation = null,
+    Object? tags = null,
   }) {
     return _then(_$_RoomCreateState(
-      test: null == test
-          ? _value.test
-          : test // ignore: cast_nullable_to_non_nullable
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      membersNum: null == membersNum
+          ? _value.membersNum
+          : membersNum // ignore: cast_nullable_to_non_nullable
+              as int,
+      ageGroup: null == ageGroup
+          ? _value.ageGroup
+          : ageGroup // ignore: cast_nullable_to_non_nullable
+              as String,
+      address: null == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as String,
+      explanation: null == explanation
+          ? _value.explanation
+          : explanation // ignore: cast_nullable_to_non_nullable
+              as String,
+      tags: null == tags
+          ? _value.tags
+          : tags // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -92,15 +159,36 @@ class __$$_RoomCreateStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_RoomCreateState implements _RoomCreateState {
-  const _$_RoomCreateState({this.test = ""});
+  const _$_RoomCreateState(
+      {this.title = "",
+      this.membersNum = 4,
+      this.ageGroup = "",
+      this.address = "",
+      this.explanation = "",
+      this.tags = ""});
 
   @override
   @JsonKey()
-  final String test;
+  final String title;
+  @override
+  @JsonKey()
+  final int membersNum;
+  @override
+  @JsonKey()
+  final String ageGroup;
+  @override
+  @JsonKey()
+  final String address;
+  @override
+  @JsonKey()
+  final String explanation;
+  @override
+  @JsonKey()
+  final String tags;
 
   @override
   String toString() {
-    return 'RoomCreateState(test: $test)';
+    return 'RoomCreateState(title: $title, membersNum: $membersNum, ageGroup: $ageGroup, address: $address, explanation: $explanation, tags: $tags)';
   }
 
   @override
@@ -108,11 +196,20 @@ class _$_RoomCreateState implements _RoomCreateState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_RoomCreateState &&
-            (identical(other.test, test) || other.test == test));
+            (identical(other.title, title) || other.title == title) &&
+            (identical(other.membersNum, membersNum) ||
+                other.membersNum == membersNum) &&
+            (identical(other.ageGroup, ageGroup) ||
+                other.ageGroup == ageGroup) &&
+            (identical(other.address, address) || other.address == address) &&
+            (identical(other.explanation, explanation) ||
+                other.explanation == explanation) &&
+            (identical(other.tags, tags) || other.tags == tags));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, test);
+  int get hashCode => Object.hash(
+      runtimeType, title, membersNum, ageGroup, address, explanation, tags);
 
   @JsonKey(ignore: true)
   @override
@@ -122,10 +219,26 @@ class _$_RoomCreateState implements _RoomCreateState {
 }
 
 abstract class _RoomCreateState implements RoomCreateState {
-  const factory _RoomCreateState({final String test}) = _$_RoomCreateState;
+  const factory _RoomCreateState(
+      {final String title,
+      final int membersNum,
+      final String ageGroup,
+      final String address,
+      final String explanation,
+      final String tags}) = _$_RoomCreateState;
 
   @override
-  String get test;
+  String get title;
+  @override
+  int get membersNum;
+  @override
+  String get ageGroup;
+  @override
+  String get address;
+  @override
+  String get explanation;
+  @override
+  String get tags;
   @override
   @JsonKey(ignore: true)
   _$$_RoomCreateStateCopyWith<_$_RoomCreateState> get copyWith =>
