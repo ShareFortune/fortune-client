@@ -7,9 +7,14 @@ import 'package:fortune_client/view/widgets/members_widget.dart';
 import 'package:gap/gap.dart';
 
 class HostRoomCardWidget extends ConsumerWidget {
-  const HostRoomCardWidget(this.room, {super.key});
+  const HostRoomCardWidget({
+    super.key,
+    required this.room,
+    required this.onPressedRequestConfirmationButton,
+  });
 
   final HostRoomListItemState room;
+  final Function() onPressedRequestConfirmationButton;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -63,7 +68,7 @@ class HostRoomCardWidget extends ConsumerWidget {
 
   content(AppTheme theme) {
     return ElevatedButton(
-      onPressed: () {},
+      onPressed: onPressedRequestConfirmationButton,
       style: ElevatedButton.styleFrom(
         elevation: 0,
         backgroundColor: theme.appColors.primary,

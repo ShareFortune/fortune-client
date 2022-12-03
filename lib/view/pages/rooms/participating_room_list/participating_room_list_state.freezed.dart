@@ -185,6 +185,7 @@ abstract class _ParticipatingRoomListState
 
 /// @nodoc
 mixin _$HostRoomListItemState {
+  int get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   List<String> get memberIcons => throw _privateConstructorUsedError;
   int get actinon => throw _privateConstructorUsedError;
@@ -200,7 +201,7 @@ abstract class $HostRoomListItemStateCopyWith<$Res> {
           $Res Function(HostRoomListItemState) then) =
       _$HostRoomListItemStateCopyWithImpl<$Res, HostRoomListItemState>;
   @useResult
-  $Res call({String title, List<String> memberIcons, int actinon});
+  $Res call({int id, String title, List<String> memberIcons, int actinon});
 }
 
 /// @nodoc
@@ -217,11 +218,16 @@ class _$HostRoomListItemStateCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? title = null,
     Object? memberIcons = null,
     Object? actinon = null,
   }) {
     return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -246,7 +252,7 @@ abstract class _$$_HostRoomListItemStateCopyWith<$Res>
       __$$_HostRoomListItemStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String title, List<String> memberIcons, int actinon});
+  $Res call({int id, String title, List<String> memberIcons, int actinon});
 }
 
 /// @nodoc
@@ -260,11 +266,16 @@ class __$$_HostRoomListItemStateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? title = null,
     Object? memberIcons = null,
     Object? actinon = null,
   }) {
     return _then(_$_HostRoomListItemState(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -285,11 +296,15 @@ class __$$_HostRoomListItemStateCopyWithImpl<$Res>
 
 class _$_HostRoomListItemState implements _HostRoomListItemState {
   const _$_HostRoomListItemState(
-      {this.title = "",
+      {this.id = 0,
+      this.title = "",
       final List<String> memberIcons = const [],
       this.actinon = 0})
       : _memberIcons = memberIcons;
 
+  @override
+  @JsonKey()
+  final int id;
   @override
   @JsonKey()
   final String title;
@@ -308,7 +323,7 @@ class _$_HostRoomListItemState implements _HostRoomListItemState {
 
   @override
   String toString() {
-    return 'HostRoomListItemState(title: $title, memberIcons: $memberIcons, actinon: $actinon)';
+    return 'HostRoomListItemState(id: $id, title: $title, memberIcons: $memberIcons, actinon: $actinon)';
   }
 
   @override
@@ -316,6 +331,7 @@ class _$_HostRoomListItemState implements _HostRoomListItemState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_HostRoomListItemState &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title) &&
             const DeepCollectionEquality()
                 .equals(other._memberIcons, _memberIcons) &&
@@ -323,7 +339,7 @@ class _$_HostRoomListItemState implements _HostRoomListItemState {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, title,
+  int get hashCode => Object.hash(runtimeType, id, title,
       const DeepCollectionEquality().hash(_memberIcons), actinon);
 
   @JsonKey(ignore: true)
@@ -336,10 +352,13 @@ class _$_HostRoomListItemState implements _HostRoomListItemState {
 
 abstract class _HostRoomListItemState implements HostRoomListItemState {
   const factory _HostRoomListItemState(
-      {final String title,
+      {final int id,
+      final String title,
       final List<String> memberIcons,
       final int actinon}) = _$_HostRoomListItemState;
 
+  @override
+  int get id;
   @override
   String get title;
   @override

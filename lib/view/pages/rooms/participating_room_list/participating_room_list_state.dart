@@ -25,6 +25,7 @@ class ParticipatingRoomListState with _$ParticipatingRoomListState {
 @freezed
 class HostRoomListItemState with _$HostRoomListItemState {
   const factory HostRoomListItemState({
+    @Default(0) int id,
     @Default("") String title,
     @Default([]) List<String> memberIcons,
     @Default(0) int actinon,
