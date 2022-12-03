@@ -25,6 +25,8 @@ class AppColors {
     required this.tabIndicator,
     required this.shadow,
     required this.offState,
+    required this.textFieldBorderSide,
+    required this.explanation,
   });
 
   factory AppColors.light() {
@@ -52,6 +54,8 @@ class AppColors {
       tabIndicator: Color.fromRGBO(0, 0, 0, 1),
       shadow: Color.fromRGBO(0, 0, 0, 0.25),
       offState: Color.fromRGBO(0, 0, 0, 0.15),
+      textFieldBorderSide: Color.fromRGBO(0, 0, 0, 0.3),
+      explanation: Color.fromRGBO(0, 0, 0, 0.3),
     );
   }
 
@@ -80,6 +84,8 @@ class AppColors {
       tabIndicator: Color.fromRGBO(0, 0, 0, 0.5),
       shadow: Color.fromRGBO(0, 0, 0, 0.5),
       offState: Color.fromRGBO(0, 0, 0, 0.5),
+      textFieldBorderSide: Color.fromRGBO(0, 0, 0, 0.5),
+      explanation: Color.fromRGBO(0, 0, 0, 0.5),
     );
   }
 
@@ -116,4 +122,9 @@ class AppColors {
 
   /// ボタンカラー
   final Color offState;
+
+  /// インプットフィールド
+  final Color textFieldBorderSide;
+
+  final Color explanation;
 }

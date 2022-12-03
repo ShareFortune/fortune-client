@@ -1,171 +1,163 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:fortune_client/view/pages/rooms/create/room_create_view_model.dart';
+import 'package:fortune_client/view/theme/app_text_theme.dart';
+import 'package:fortune_client/view/theme/app_theme.dart';
+import 'package:gap/gap.dart';
 
-// ignore: must_be_immutable
 class RoomCreatePage extends ConsumerWidget {
-  RoomCreatePage({super.key});
-
-  double textFieldEdgeInsetsHor = 5;
-  double textFieldEdgeInsetsVer = 15;
-  double textFieldFontSize = 15;
+  const RoomCreatePage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(roomCreateViewModelProvider);
-    final viewModel = ref.watch(roomCreateViewModelProvider.notifier);
+    final theme = ref.watch(appThemeProvider);
 
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        leadingWidth: 150,
-        leading: TextButton(
-          onPressed: Navigator.of(context).pop,
-          child: const Text(
-            "キャンセル",
-            style: TextStyle(color: Colors.black87, fontSize: 16),
+        backgroundColor: theme.appColors.background,
+        title: Text(
+          "ルーム作成",
+          style: theme.textTheme.h40
+              .merge(TextStyle(color: theme.appColors.headline1))
+              .bold(),
+        ),
+      ),
+      body: SingleChildScrollView(
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 30),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Gap(30),
+
+              /// タイトル
+              _inputField(theme, "タイトル（必須）", 1, null),
+              const Gap(30),
+
+              /// 募集人数
+              _inputFieldContainer(
+                theme,
+                title: "募集人数",
+                explanation: "募集したい人数を設定して下さい。\n設定可能な人数は4名から10名です。",
+                content: _inputField(
+                  theme,
+                  "募集人数（必須）",
+                  1,
+                  () {},
+                ),
+              ),
+              const Gap(30),
+
+              /// 対象年齢
+              _inputFieldContainer(
+                theme,
+                title: "対象年齢",
+                explanation: "募集したい年齢を選択して下さい。\n未選択でも問題ありません。",
+                content: _inputField(
+                  theme,
+                  "年齢",
+                  1,
+                  () {},
+                ),
+              ),
+              const Gap(30),
+
+              /// 場所
+              _inputField(theme, "場所（必須）", 1, null),
+              const Gap(30),
+
+              /// タグ
+              _inputFieldContainer(
+                theme,
+                title: "対象年齢",
+                explanation: "募集したい年齢を選択して下さい。\n未選択でも問題ありません。",
+                content: _tagSelectionButton(theme),
+              ),
+              const Gap(30),
+
+              /// 詳細説明
+              _inputField(theme, "詳細説明", 10, null),
+            ],
           ),
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
-        child: Stack(
-          children: [
-            Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text(
-                  "ルーム作成",
-                  style: TextStyle(
-                    fontSize: 25,
-                    fontWeight: FontWeight.bold,
-                  ),
+    );
+  }
+
+  Widget _inputFieldContainer(
+    AppTheme theme, {
+    required String title,
+    required String explanation,
+    required Widget content,
+  }) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          title,
+          style: theme.textTheme.h40,
+        ),
+        const Gap(5),
+
+        /// 説明
+        Text(
+          explanation,
+          style: theme.textTheme.h30.merge(
+            TextStyle(color: theme.appColors.explanation),
+          ),
+        ),
+        const Gap(15),
+
+        /// インプットフィールド
+        content,
+      ],
+    );
+  }
+
+  Widget _inputField(
+    AppTheme theme,
+    String hint,
+    int maxLines,
+    void Function()? onPressed,
+  ) {
+    return TextField(
+      maxLines: maxLines,
+      decoration: InputDecoration(
+        hintText: hint,
+        contentPadding:
+            const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+        suffixIcon: onPressed != null
+            ? IconButton(
+                icon: const Icon(
+                  size: 18,
+                  Icons.arrow_forward_ios,
+                  color: Colors.black,
                 ),
-
-                /// 名前
-                const SizedBox(height: 30),
-                _roomNameInputField(),
-
-                /// 電話またはメールアドレス
-                const SizedBox(height: 30),
-                _menberNumInputField(),
-
-                /// 生年月日
-                const SizedBox(height: 30),
-                _ageGroupInputField(),
-
-                /// 開催場所
-                const SizedBox(height: 30),
-                _addressInputField(),
-
-                /// ルーム説明
-                const SizedBox(height: 30),
-                _explanationInputField(),
-
-                /// タグ
-                const SizedBox(height: 30),
-                _tagInputField(),
-              ],
-            ),
-
-            /// プロフィールの入力画面へ遷移
-            Positioned(
-              right: 0,
-              bottom: 30,
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.grey,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                ),
-                onPressed: viewModel.create, // 作成
-                child: const Text("作成"),
-              ),
-            ),
-          ],
+                onPressed: onPressed,
+              )
+            : null,
+        border: OutlineInputBorder(
+          borderRadius: const BorderRadius.all(Radius.circular(10.0)),
+          borderSide: BorderSide(
+            width: 1,
+            color: theme.appColors.textFieldBorderSide,
+          ),
         ),
       ),
     );
   }
 
-  Widget _tagInputField() {
-    return TextField(
-      style: TextStyle(fontSize: textFieldFontSize),
-      decoration: InputDecoration(
-        hintText: 'タグ',
-        contentPadding: EdgeInsets.symmetric(
-          horizontal: textFieldEdgeInsetsHor,
-          vertical: textFieldEdgeInsetsVer,
-        ),
+  Widget _tagSelectionButton(AppTheme theme) {
+    return ElevatedButton.icon(
+      icon: const Icon(
+        Icons.add,
+        color: Colors.white,
       ),
-    );
-  }
-
-  Widget _explanationInputField() {
-    return TextField(
-      style: TextStyle(fontSize: textFieldFontSize),
-      decoration: InputDecoration(
-        hintText: 'ルーム説明',
-        contentPadding: EdgeInsets.symmetric(
-          horizontal: textFieldEdgeInsetsHor,
-          vertical: textFieldEdgeInsetsVer,
-        ),
+      label: const Text('タグを追加'),
+      style: ElevatedButton.styleFrom(
+        backgroundColor: theme.appColors.primary,
       ),
-    );
-  }
-
-  Widget _addressInputField() {
-    return TextField(
-      style: TextStyle(fontSize: textFieldFontSize),
-      decoration: InputDecoration(
-        hintText: '開催場所',
-        contentPadding: EdgeInsets.symmetric(
-          horizontal: textFieldEdgeInsetsHor,
-          vertical: textFieldEdgeInsetsVer,
-        ),
-      ),
-    );
-  }
-
-  Widget _ageGroupInputField() {
-    return TextField(
-      style: TextStyle(fontSize: textFieldFontSize),
-      decoration: InputDecoration(
-        hintText: '募集年齢',
-        contentPadding: EdgeInsets.symmetric(
-          horizontal: textFieldEdgeInsetsHor,
-          vertical: textFieldEdgeInsetsVer,
-        ),
-      ),
-    );
-  }
-
-  Widget _menberNumInputField() {
-    return TextField(
-      style: TextStyle(fontSize: textFieldFontSize),
-      decoration: InputDecoration(
-        hintText: '募集人数',
-        contentPadding: EdgeInsets.symmetric(
-          horizontal: textFieldEdgeInsetsHor,
-          vertical: textFieldEdgeInsetsVer,
-        ),
-      ),
-    );
-  }
-
-  Widget _roomNameInputField() {
-    return TextField(
-      style: TextStyle(fontSize: textFieldFontSize),
-      decoration: InputDecoration(
-        hintText: '名前',
-        contentPadding: EdgeInsets.symmetric(
-          horizontal: textFieldEdgeInsetsHor,
-          vertical: textFieldEdgeInsetsVer,
-        ),
-      ),
+      onPressed: () {},
     );
   }
 }

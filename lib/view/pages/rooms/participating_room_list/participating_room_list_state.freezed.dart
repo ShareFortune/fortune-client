@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'participating_room_list_state.dart';
 
@@ -123,6 +123,7 @@ class _$_ParticipatingRoomListState implements _ParticipatingRoomListState {
   final List<HostRoomListItemState> _hostRooms;
   @override
   List<HostRoomListItemState> get hostRooms {
+    if (_hostRooms is EqualUnmodifiableListView) return _hostRooms;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_hostRooms);
   }
@@ -130,6 +131,7 @@ class _$_ParticipatingRoomListState implements _ParticipatingRoomListState {
   final List<GuestRoomListItemState> _guestRooms;
   @override
   List<GuestRoomListItemState> get guestRooms {
+    if (_guestRooms is EqualUnmodifiableListView) return _guestRooms;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_guestRooms);
   }
@@ -295,6 +297,7 @@ class _$_HostRoomListItemState implements _HostRoomListItemState {
   @override
   @JsonKey()
   List<String> get memberIcons {
+    if (_memberIcons is EqualUnmodifiableListView) return _memberIcons;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_memberIcons);
   }
@@ -518,6 +521,7 @@ class _$_GuestRoomListItemState implements _GuestRoomListItemState {
   @override
   @JsonKey()
   List<String> get memberIcons {
+    if (_memberIcons is EqualUnmodifiableListView) return _memberIcons;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_memberIcons);
   }
