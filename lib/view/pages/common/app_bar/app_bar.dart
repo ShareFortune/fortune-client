@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:fortune_client/view/common/app_bar/app_bar_view_model.dart';
+import 'package:fortune_client/view/pages/common/app_bar/app_bar_view_model.dart';
 
 /// 本アプリの画面上部に表示する
 /// ナビゲーションバーで管理される全ての画面のAppBarには[FortuneAppBar]が適用される。

@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:fortune_client/view/common/bottom_navigation_bar/bottom_navigation_bar.dart';
+import 'package:auto_route/empty_router_widgets.dart';
 import 'package:fortune_client/view/pages/account/account/account_page.dart';
+import 'package:fortune_client/view/pages/common/bottom_navigation_bar/bottom_navigation_bar.dart';
 import 'package:fortune_client/view/pages/message/message_room/message_room_page.dart';
 import 'package:fortune_client/view/pages/message/message_room_list/message_room_list_page.dart';
 import 'package:fortune_client/view/pages/profile/create/profile_create_page.dart';
@@ -28,14 +29,25 @@ export 'app_router.gr.dart';
       page: ProfileCreatePage,
     ),
     AutoRoute(
-      initial: true,
       path: RoutePath.appRouteRoot,
       page: MyBottomNavigationBar,
       guards: [AuthGuard],
       children: [
+        /// ホーム
         AutoRoute(
+          name: 'RoomListRouter',
           path: RoutePath.appRouteRoomsSearchTab,
-          page: RoomListPage,
+          page: EmptyRouterPage,
+          children: [
+            AutoRoute(
+              path: "",
+              page: RoomListPage,
+            ),
+            AutoRoute(
+              path: RoutePath.appRouteRoomDetail,
+              page: RoomDetailPage,
+            ),
+          ],
         ),
         AutoRoute(
           path: RoutePath.appRouteParticipatingRoomsTab,
@@ -48,6 +60,13 @@ export 'app_router.gr.dart';
         AutoRoute(
           path: RoutePath.appRouteMessageRoomsTab,
           page: MessageRoomListPage,
+          children: [
+            /// メッセージ
+            AutoRoute(
+              path: RoutePath.messageRoom,
+              page: MessageRoomPage,
+            )
+          ],
         ),
         AutoRoute(
           path: RoutePath.appRouteAccountTab,
@@ -56,21 +75,15 @@ export 'app_router.gr.dart';
       ],
     ),
     AutoRoute(
-      path: RoutePath.appRouteRoomDetail,
-      page: RoomDetailPage,
+      path: RoutePath.appRouteRequestConfirmationPage,
+      page: RequestConfirmationPage,
     ),
+
+    /// プロフィール
     AutoRoute(
       path: RoutePath.appRouteProfile,
       page: ProfilePage,
     ),
-    AutoRoute(
-      path: RoutePath.appRouteRequestConfirmationPage,
-      page: RequestConfirmationPage,
-    ),
-    AutoRoute(
-      path: RoutePath.messageRoom,
-      page: MessageRoomPage,
-    )
   ],
 )
 class $AppRouter {}

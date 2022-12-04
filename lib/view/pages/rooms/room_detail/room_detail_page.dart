@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fortune_client/gen/assets.gen.dart';
@@ -9,7 +10,9 @@ import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:gap/gap.dart';
 
 class RoomDetailPage extends ConsumerWidget {
-  const RoomDetailPage({super.key});
+  const RoomDetailPage({super.key, @PathParam() required this.id});
+
+  final String id;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
