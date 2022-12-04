@@ -1,6 +1,9 @@
 import 'dart:math' as math;
+import 'package:auto_route/auto_route.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fortune_client/view/pages/message/message_room_list/message_room_list_state.dart';
+import 'package:fortune_client/view/routes/app_router.gr.dart';
 
 final messageRoomListViewModelProvider = StateNotifierProvider<
     MessageRoomListViewModel, AsyncValue<MessageRoomListState>>((ref) {
@@ -36,5 +39,9 @@ class MessageRoomListViewModel
         messageRoomListItem
       ]);
     });
+  }
+
+  pushMessagePage(BuildContext context, String id) async {
+    await context.router.push(MessageRoomRoute(id: id));
   }
 }

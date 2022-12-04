@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:fortune_client/gen/assets.gen.dart';
 import 'package:fortune_client/view/pages/message/message_room/message_room_state.dart';
 import 'package:uuid/uuid.dart';
 import 'package:mime/mime.dart';
@@ -28,9 +29,7 @@ class MessageRoomViewModel extends StateNotifier<AsyncValue<MessageRoomState>> {
 
   final Ref _ref;
 
-  initialize() {
-    fetch();
-  }
+  initialize() => fetch();
 
   fetch() async {
     state = await AsyncValue.guard(() async {
@@ -41,9 +40,8 @@ class MessageRoomViewModel extends StateNotifier<AsyncValue<MessageRoomState>> {
   types.User user() => types.User(id: state.value!.userId);
 
   loadMessages() async {
-    final response =
-        await rootBundle.loadString('assets/messages/message.json');
-    final messages = (jsonDecode(response) as List)
+    final json = await rootBundle.loadString(Assets.stub.message);
+    final messages = (jsonDecode(json) as List)
         .map((e) => types.Message.fromJson(e as Map<String, dynamic>))
         .toList();
 
@@ -172,7 +170,7 @@ class MessageRoomViewModel extends StateNotifier<AsyncValue<MessageRoomState>> {
       previewData: previewData,
     );
 
-    data.messages[index] = updatedMessage;
+    // data.messages[index] = updatedMessage;
     state = AsyncData(data);
   }
 }

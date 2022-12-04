@@ -14,4 +14,5 @@ class RoutePath {
   static const appRouteMessage = '/message';
   static const appRouteSignIn = '/sign_in';
   static const appRouteRequestConfirmationPage = '/request_confirmation';
+  static const messageRoom = '/messageRoom:id';
 }

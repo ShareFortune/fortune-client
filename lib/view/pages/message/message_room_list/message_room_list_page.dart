@@ -44,11 +44,8 @@ class MessageRoomListPage extends ConsumerWidget {
                     return InkWell(
                       onTap: (() {
                         /// メッセージルームに遷移
-                        Navigator.of(context, rootNavigator: true).push(
-                          MaterialPageRoute(
-                            builder: (context) => const MessageRoomPage(),
-                          ),
-                        );
+                        /// IDに修正必要
+                        viewModel.pushMessagePage(context, messageRoom.title);
                       }),
                       child: const Padding(
                         padding: EdgeInsets.only(top: 30),

@@ -27,6 +27,8 @@ class AppColors {
     required this.offState,
     required this.textFieldBorderSide,
     required this.explanation,
+    required this.messageSendingInputFormBg,
+    required this.defaultTextStyle,
   });
 
   factory AppColors.light() {
@@ -56,6 +58,8 @@ class AppColors {
       offState: Color.fromRGBO(0, 0, 0, 0.15),
       textFieldBorderSide: Color.fromRGBO(0, 0, 0, 0.3),
       explanation: Color.fromRGBO(0, 0, 0, 0.3),
+      messageSendingInputFormBg: Color(0xfff5f5f7),
+      defaultTextStyle: Color.fromRGBO(0, 0, 0, 1),
     );
   }
 
@@ -86,6 +90,8 @@ class AppColors {
       offState: Color.fromRGBO(0, 0, 0, 0.5),
       textFieldBorderSide: Color.fromRGBO(0, 0, 0, 0.5),
       explanation: Color.fromRGBO(0, 0, 0, 0.5),
+      messageSendingInputFormBg: Color.fromRGBO(0, 0, 0, 0.5),
+      defaultTextStyle: Color.fromRGBO(0, 0, 0, 0.5),
     );
   }
 
@@ -103,6 +109,9 @@ class AppColors {
   final Color onError;
   final Color divider;
   final Color headline1;
+
+  /// テキスト
+  final Color defaultTextStyle;
 
   /// アイコンボタンカラー
   final Color iconBtn;
@@ -127,4 +136,7 @@ class AppColors {
   final Color textFieldBorderSide;
 
   final Color explanation;
+
+  /// メッセージ入力フォームの背景
+  final Color messageSendingInputFormBg;
 }

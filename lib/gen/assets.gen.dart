@@ -12,6 +12,9 @@ import 'package:flutter/widgets.dart';
 class $StubGen {
   const $StubGen();
 
+  /// File path: stub/message.json
+  String get message => 'stub/message.json';
+
   /// File path: stub/participating_room_list.json
   String get participatingRoomList => 'stub/participating_room_list.json';
 
@@ -22,7 +25,8 @@ class $StubGen {
   String get roomList => 'stub/room_list.json';
 
   /// List of all assets
-  List<String> get values => [participatingRoomList, profile, roomList];
+  List<String> get values =>
+      [message, participatingRoomList, profile, roomList];
 }
 
 class $AssetsImagesGen {
