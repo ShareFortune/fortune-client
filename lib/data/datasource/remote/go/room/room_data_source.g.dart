@@ -12,19 +12,18 @@ class _RoomDataSource implements RoomDataSource {
   _RoomDataSource(
     this._dio, {
     this.baseUrl,
-  }) {
-    baseUrl ??= 'http://api.fortune-dev.net:8080/api/v1';
-  }
+  });
 
   final Dio _dio;
 
   String? baseUrl;
 
   @override
-  Future<RoomList> getList() async {
+  Future<RoomList> getList(token) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': token};
+    _headers.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     final _result =
         await _dio.fetch<Map<String, dynamic>>(_setStreamType<RoomList>(Options(
