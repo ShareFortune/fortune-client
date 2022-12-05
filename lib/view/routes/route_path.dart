@@ -1,18 +1,40 @@
 class RoutePath {
   /// ボトムナビゲーション遷移
   static const appRouteRoot = '/';
-  static const appRouteRoomsSearchTab = 'rooms_search';
-  static const appRouteParticipatingRoomsTab = 'rooms';
-  static const appRouteRoomCreateTab = 'room_create';
-  static const appRouteMessageRoomsTab = 'message_rooms';
-  static const appRouteAccountTab = 'account';
 
   /// ページ遷移
-  static const appRouteRoomDetail = '/rooms/id';
-  static const appRouteProfileCreate = '/profile_create';
+  static const appRouteSignIn = '/sign-in';
+
+  /// プロフィール作成
+  static const appRouteProfileCreate = '/profile-create';
+
+  /// ルームリスト
+  static const appRouteRoomsTab = 'rooms';
+
+  /// ルーム詳細
+  /// [/rooms/:id]
+  static const appRouteRoomDetail = ':id';
+
+  /// 参加ルームリスト
+  static const appRouteParticipatingRoomsTab = 'participating-rooms';
+
+  /// 参加リクエスト
+  /// [/participating-rooms/request-confirmation:id]
+  static const appRouteRequestConfirmationPage = 'request-confirmation:id';
+
+  /// ルーム作成
+  static const appRouteRoomCreationTab = 'room-creation';
+
+  /// メッセージルームリスト
+  static const appRouteMessageRoomsTab = 'message-rooms';
+
+  /// メッセージルーム
+  /// [/message-rooms/:id]
+  static const appRouteMessageRoom = ':id';
+
+  /// アカウント
+  static const appRouteAccountTab = 'account';
+
+  /// プロフィール
   static const appRouteProfile = '/profile/:id';
-  static const appRouteMessage = '/message';
-  static const appRouteSignIn = '/sign_in';
-  static const appRouteRequestConfirmationPage = '/request_confirmation';
-  static const messageRoom = '/messageRoom:id';
 }

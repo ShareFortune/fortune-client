@@ -9,13 +9,10 @@ class Room with _$Room {
   const Room._();
   const factory Room({
     /// ルームID
-    required String? id,
+    required String id,
 
     /// ルームネーム
     required String roomName,
-
-    /// 期限
-    required String applicationDeadline,
 
     /// ホスト画像
     required String hostMainImageURL,
@@ -26,11 +23,11 @@ class Room with _$Room {
     /// 居住地
     required Map<String, dynamic> address,
 
-    /// ホストかどうか
-    required bool isHost,
+    /// お気に入りしているかどうか
+    required bool isFavorite,
 
-    /// 参加者かどうか
-    required bool isParticipant,
+    /// 参加人数
+    required Map<String, dynamic> membersNum,
   }) = _Room;
 
   Address get addressEntity => Address.fromJson(address);

@@ -6,7 +6,7 @@ import 'package:fortune_client/gen/assets.gen.dart';
 
 class StubRoomDataSource extends StubLoader implements RoomDataSource {
   @override
-  Future<RoomList> getList() async {
+  Future<RoomList> getList(String token) async {
     return getEntity(RoomList.fromJson, Assets.stub.roomList);
   }
 

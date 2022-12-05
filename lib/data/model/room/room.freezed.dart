@@ -21,13 +21,10 @@ Room _$RoomFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Room {
   /// ルームID
-  String? get id => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
 
   /// ルームネーム
   String get roomName => throw _privateConstructorUsedError;
-
-  /// 期限
-  String get applicationDeadline => throw _privateConstructorUsedError;
 
   /// ホスト画像
   String get hostMainImageURL => throw _privateConstructorUsedError;
@@ -39,11 +36,11 @@ mixin _$Room {
   /// 居住地
   Map<String, dynamic> get address => throw _privateConstructorUsedError;
 
-  /// ホストかどうか
-  bool get isHost => throw _privateConstructorUsedError;
+  /// お気に入りしているかどうか
+  bool get isFavorite => throw _privateConstructorUsedError;
 
-  /// 参加者かどうか
-  bool get isParticipant => throw _privateConstructorUsedError;
+  /// 参加人数
+  Map<String, dynamic> get membersNum => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -56,14 +53,13 @@ abstract class $RoomCopyWith<$Res> {
       _$RoomCopyWithImpl<$Res, Room>;
   @useResult
   $Res call(
-      {String? id,
+      {String id,
       String roomName,
-      String applicationDeadline,
       String hostMainImageURL,
       List<String> participantMainImageURLs,
       Map<String, dynamic> address,
-      bool isHost,
-      bool isParticipant});
+      bool isFavorite,
+      Map<String, dynamic> membersNum});
 }
 
 /// @nodoc
@@ -79,27 +75,22 @@ class _$RoomCopyWithImpl<$Res, $Val extends Room>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
+    Object? id = null,
     Object? roomName = null,
-    Object? applicationDeadline = null,
     Object? hostMainImageURL = null,
     Object? participantMainImageURLs = null,
     Object? address = null,
-    Object? isHost = null,
-    Object? isParticipant = null,
+    Object? isFavorite = null,
+    Object? membersNum = null,
   }) {
     return _then(_value.copyWith(
-      id: freezed == id
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       roomName: null == roomName
           ? _value.roomName
           : roomName // ignore: cast_nullable_to_non_nullable
-              as String,
-      applicationDeadline: null == applicationDeadline
-          ? _value.applicationDeadline
-          : applicationDeadline // ignore: cast_nullable_to_non_nullable
               as String,
       hostMainImageURL: null == hostMainImageURL
           ? _value.hostMainImageURL
@@ -113,14 +104,14 @@ class _$RoomCopyWithImpl<$Res, $Val extends Room>
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
               as Map<String, dynamic>,
-      isHost: null == isHost
-          ? _value.isHost
-          : isHost // ignore: cast_nullable_to_non_nullable
+      isFavorite: null == isFavorite
+          ? _value.isFavorite
+          : isFavorite // ignore: cast_nullable_to_non_nullable
               as bool,
-      isParticipant: null == isParticipant
-          ? _value.isParticipant
-          : isParticipant // ignore: cast_nullable_to_non_nullable
-              as bool,
+      membersNum: null == membersNum
+          ? _value.membersNum
+          : membersNum // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>,
     ) as $Val);
   }
 }
@@ -132,14 +123,13 @@ abstract class _$$_RoomCopyWith<$Res> implements $RoomCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String? id,
+      {String id,
       String roomName,
-      String applicationDeadline,
       String hostMainImageURL,
       List<String> participantMainImageURLs,
       Map<String, dynamic> address,
-      bool isHost,
-      bool isParticipant});
+      bool isFavorite,
+      Map<String, dynamic> membersNum});
 }
 
 /// @nodoc
@@ -151,27 +141,22 @@ class __$$_RoomCopyWithImpl<$Res> extends _$RoomCopyWithImpl<$Res, _$_Room>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
+    Object? id = null,
     Object? roomName = null,
-    Object? applicationDeadline = null,
     Object? hostMainImageURL = null,
     Object? participantMainImageURLs = null,
     Object? address = null,
-    Object? isHost = null,
-    Object? isParticipant = null,
+    Object? isFavorite = null,
+    Object? membersNum = null,
   }) {
     return _then(_$_Room(
-      id: freezed == id
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       roomName: null == roomName
           ? _value.roomName
           : roomName // ignore: cast_nullable_to_non_nullable
-              as String,
-      applicationDeadline: null == applicationDeadline
-          ? _value.applicationDeadline
-          : applicationDeadline // ignore: cast_nullable_to_non_nullable
               as String,
       hostMainImageURL: null == hostMainImageURL
           ? _value.hostMainImageURL
@@ -185,14 +170,14 @@ class __$$_RoomCopyWithImpl<$Res> extends _$RoomCopyWithImpl<$Res, _$_Room>
           ? _value._address
           : address // ignore: cast_nullable_to_non_nullable
               as Map<String, dynamic>,
-      isHost: null == isHost
-          ? _value.isHost
-          : isHost // ignore: cast_nullable_to_non_nullable
+      isFavorite: null == isFavorite
+          ? _value.isFavorite
+          : isFavorite // ignore: cast_nullable_to_non_nullable
               as bool,
-      isParticipant: null == isParticipant
-          ? _value.isParticipant
-          : isParticipant // ignore: cast_nullable_to_non_nullable
-              as bool,
+      membersNum: null == membersNum
+          ? _value._membersNum
+          : membersNum // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>,
     ));
   }
 }
@@ -203,29 +188,25 @@ class _$_Room extends _Room {
   const _$_Room(
       {required this.id,
       required this.roomName,
-      required this.applicationDeadline,
       required this.hostMainImageURL,
       required final List<String> participantMainImageURLs,
       required final Map<String, dynamic> address,
-      required this.isHost,
-      required this.isParticipant})
+      required this.isFavorite,
+      required final Map<String, dynamic> membersNum})
       : _participantMainImageURLs = participantMainImageURLs,
         _address = address,
+        _membersNum = membersNum,
         super._();
 
   factory _$_Room.fromJson(Map<String, dynamic> json) => _$$_RoomFromJson(json);
 
   /// ルームID
   @override
-  final String? id;
+  final String id;
 
   /// ルームネーム
   @override
   final String roomName;
-
-  /// 期限
-  @override
-  final String applicationDeadline;
 
   /// ホスト画像
   @override
@@ -254,17 +235,24 @@ class _$_Room extends _Room {
     return EqualUnmodifiableMapView(_address);
   }
 
-  /// ホストかどうか
+  /// お気に入りしているかどうか
   @override
-  final bool isHost;
+  final bool isFavorite;
 
-  /// 参加者かどうか
+  /// 参加人数
+  final Map<String, dynamic> _membersNum;
+
+  /// 参加人数
   @override
-  final bool isParticipant;
+  Map<String, dynamic> get membersNum {
+    if (_membersNum is EqualUnmodifiableMapView) return _membersNum;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_membersNum);
+  }
 
   @override
   String toString() {
-    return 'Room(id: $id, roomName: $roomName, applicationDeadline: $applicationDeadline, hostMainImageURL: $hostMainImageURL, participantMainImageURLs: $participantMainImageURLs, address: $address, isHost: $isHost, isParticipant: $isParticipant)';
+    return 'Room(id: $id, roomName: $roomName, hostMainImageURL: $hostMainImageURL, participantMainImageURLs: $participantMainImageURLs, address: $address, isFavorite: $isFavorite, membersNum: $membersNum)';
   }
 
   @override
@@ -275,16 +263,15 @@ class _$_Room extends _Room {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.roomName, roomName) ||
                 other.roomName == roomName) &&
-            (identical(other.applicationDeadline, applicationDeadline) ||
-                other.applicationDeadline == applicationDeadline) &&
             (identical(other.hostMainImageURL, hostMainImageURL) ||
                 other.hostMainImageURL == hostMainImageURL) &&
             const DeepCollectionEquality().equals(
                 other._participantMainImageURLs, _participantMainImageURLs) &&
             const DeepCollectionEquality().equals(other._address, _address) &&
-            (identical(other.isHost, isHost) || other.isHost == isHost) &&
-            (identical(other.isParticipant, isParticipant) ||
-                other.isParticipant == isParticipant));
+            (identical(other.isFavorite, isFavorite) ||
+                other.isFavorite == isFavorite) &&
+            const DeepCollectionEquality()
+                .equals(other._membersNum, _membersNum));
   }
 
   @JsonKey(ignore: true)
@@ -293,12 +280,11 @@ class _$_Room extends _Room {
       runtimeType,
       id,
       roomName,
-      applicationDeadline,
       hostMainImageURL,
       const DeepCollectionEquality().hash(_participantMainImageURLs),
       const DeepCollectionEquality().hash(_address),
-      isHost,
-      isParticipant);
+      isFavorite,
+      const DeepCollectionEquality().hash(_membersNum));
 
   @JsonKey(ignore: true)
   @override
@@ -316,14 +302,13 @@ class _$_Room extends _Room {
 
 abstract class _Room extends Room {
   const factory _Room(
-      {required final String? id,
+      {required final String id,
       required final String roomName,
-      required final String applicationDeadline,
       required final String hostMainImageURL,
       required final List<String> participantMainImageURLs,
       required final Map<String, dynamic> address,
-      required final bool isHost,
-      required final bool isParticipant}) = _$_Room;
+      required final bool isFavorite,
+      required final Map<String, dynamic> membersNum}) = _$_Room;
   const _Room._() : super._();
 
   factory _Room.fromJson(Map<String, dynamic> json) = _$_Room.fromJson;
@@ -331,15 +316,11 @@ abstract class _Room extends Room {
   @override
 
   /// ルームID
-  String? get id;
+  String get id;
   @override
 
   /// ルームネーム
   String get roomName;
-  @override
-
-  /// 期限
-  String get applicationDeadline;
   @override
 
   /// ホスト画像
@@ -354,12 +335,12 @@ abstract class _Room extends Room {
   Map<String, dynamic> get address;
   @override
 
-  /// ホストかどうか
-  bool get isHost;
+  /// お気に入りしているかどうか
+  bool get isFavorite;
   @override
 
-  /// 参加者かどうか
-  bool get isParticipant;
+  /// 参加人数
+  Map<String, dynamic> get membersNum;
   @override
   @JsonKey(ignore: true)
   _$$_RoomCopyWith<_$_Room> get copyWith => throw _privateConstructorUsedError;

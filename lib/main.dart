@@ -28,19 +28,21 @@ void main() async {
     };
   }
 
+  List<Override> overrides = [];
   if (Constants.flavor == Flavor.dev) {
     Fluttertoast.showToast(
       msg: "flavor: ${EnumToString.convertToString(Constants.flavor)}",
     );
+    overrides = [
+      DataSource.room.overrideWithValue(StubRoomDataSource()),
+      DataSource.profile.overrideWithValue(StubProfileDataSource()),
+    ];
   }
 
   runZonedGuarded(
     () => runApp(
       ProviderScope(
-        overrides: [
-          DataSource.room.overrideWithValue(StubRoomDataSource()),
-          DataSource.profile.overrideWithValue(StubProfileDataSource()),
-        ],
+        overrides: overrides,
         child: DevicePreview(
           enabled: !kReleaseMode && Constants.enablePreview,
           builder: (context) {

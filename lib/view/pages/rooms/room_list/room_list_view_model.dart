@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/view/pages/rooms/room_list/room_list_state.dart';
+import 'package:fortune_client/view/routes/app_router.dart';
 import 'package:fortune_client/view/routes/app_router.gr.dart';
 import 'package:fortune_client/view/routes/route_path.dart';
 
@@ -29,5 +30,13 @@ class RoomListViewModel extends StateNotifier<AsyncValue<RoomListState>> {
     });
   }
 
-  onTap(BuildContext context) => context.router.push(const RoomDetailRoute());
+  onTap(BuildContext context) async {
+    // context.navigateTo(
+    //   RoomListRoute(children: [RoomDetailRoute(id: "id")]),
+    // );
+    // context.navigateTo(RoomDetailRoute(id: "id"));
+    await context.router.push(
+      RoomDetailRoute(id: "id"),
+    );
+  }
 }

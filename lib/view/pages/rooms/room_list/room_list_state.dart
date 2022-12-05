@@ -23,7 +23,6 @@ class RoomListItemState with _$RoomListItemState {
   static RoomListItemState fromEntity(Room room) {
     return RoomListItemState(
       title: room.roomName,
-      deadline: room.applicationDeadline,
       hostIcon: room.hostMainImageURL,
       memberIcons: room.participantMainImageURLs,
       place: room.addressEntity.toString(),

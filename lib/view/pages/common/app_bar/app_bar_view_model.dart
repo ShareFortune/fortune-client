@@ -1,5 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:fortune_client/view/common/app_bar/app_bar_state.dart';
+import 'package:fortune_client/view/pages/common/app_bar/app_bar_state.dart';
 
 final fortuneAppBarViewmodelProvider = StateNotifierProvider<
     FortuneAppBarViewmodel, AsyncValue<FortuneAppBarState>>((ref) {
