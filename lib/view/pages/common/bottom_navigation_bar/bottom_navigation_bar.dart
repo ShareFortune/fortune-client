@@ -88,11 +88,11 @@ class MyBottomNavigationBar extends ConsumerWidget {
       //   centerTitle: true,
       // ),
       routes: const [
-        RoomListRouter(),
-        ParticipatingRoomListRoute(),
-        RoomCreateRoute(),
-        MessageRoomListRoute(),
-        AccountRoute(),
+        RoomListTabRoute(),
+        ParticipatingRoomListTabRoute(),
+        RoomCreateTabRoute(),
+        MessageRoomListTabRoute(),
+        AccountTabRoute(),
       ],
       bottomNavigationBuilder: (_, tabsRouter) {
         return BottomNavigationBar(

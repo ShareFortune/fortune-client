@@ -33,10 +33,9 @@ export 'app_router.gr.dart';
       page: MyBottomNavigationBar,
       guards: [AuthGuard],
       children: [
-        /// ホーム
         AutoRoute(
-          name: 'RoomListRouter',
-          path: RoutePath.appRouteRoomsSearchTab,
+          name: 'RoomListTabRoute',
+          path: RoutePath.appRouteRoomsTab,
           page: EmptyRouterPage,
           children: [
             AutoRoute(
@@ -50,25 +49,44 @@ export 'app_router.gr.dart';
           ],
         ),
         AutoRoute(
+          name: 'ParticipatingRoomListTabRoute',
           path: RoutePath.appRouteParticipatingRoomsTab,
-          page: ParticipatingRoomListPage,
-        ),
-        AutoRoute(
-          path: RoutePath.appRouteRoomCreateTab,
-          page: RoomCreatePage,
-        ),
-        AutoRoute(
-          path: RoutePath.appRouteMessageRoomsTab,
-          page: MessageRoomListPage,
+          page: EmptyRouterPage,
           children: [
-            /// メッセージ
             AutoRoute(
-              path: RoutePath.messageRoom,
+              path: "",
+              page: ParticipatingRoomListPage,
+            ),
+          ],
+        ),
+        AutoRoute(
+          name: 'RoomCreateTabRoute',
+          path: RoutePath.appRouteRoomCreationTab,
+          page: EmptyRouterPage,
+          children: [
+            AutoRoute(
+              path: "",
+              page: RoomCreatePage,
+            ),
+          ],
+        ),
+        AutoRoute(
+          name: 'MessageRoomListTabRoute',
+          path: RoutePath.appRouteMessageRoomsTab,
+          page: EmptyRouterPage,
+          children: [
+            AutoRoute(
+              path: "",
+              page: MessageRoomListPage,
+            ),
+            AutoRoute(
+              path: RoutePath.appRouteMessageRoom,
               page: MessageRoomPage,
             )
           ],
         ),
         AutoRoute(
+          name: "AccountTabRoute",
           path: RoutePath.appRouteAccountTab,
           page: AccountPage,
         ),
