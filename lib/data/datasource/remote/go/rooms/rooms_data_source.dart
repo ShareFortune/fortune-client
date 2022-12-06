@@ -4,11 +4,11 @@ import 'package:fortune_client/data/datasource/core/annotations_headers.dart.dar
 import 'package:fortune_client/data/model/host_room/host_room.dart';
 import 'package:fortune_client/data/model/room_list/room_list.dart';
 
-part 'room_data_source.g.dart';
+part 'rooms_data_source.g.dart';
 
 @RestApi()
-abstract class RoomDataSource {
-  factory RoomDataSource(Dio dio) = _RoomDataSource;
+abstract class RoomsDataSource {
+  factory RoomsDataSource(Dio dio) = _RoomsDataSource;
 
   @GET('/rooms')
   @authenticatedRequest

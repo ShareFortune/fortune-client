@@ -4,7 +4,7 @@ import 'package:fortune_client/data/datasource/core/append_token_interceptor.dar
 import 'package:fortune_client/data/datasource/remote/firebase/firebase_auth_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/firebase/firebase_auth_data_source_impl.dart';
 import 'package:fortune_client/data/datasource/remote/go/profile/profile_data_source.dart';
-import 'package:fortune_client/data/datasource/remote/go/room/room_data_source.dart';
+import 'package:fortune_client/data/datasource/remote/go/rooms/rooms_data_source.dart';
 import 'package:fortune_client/data/repository/auth/auth_repository.dart';
 import 'package:fortune_client/data/repository/auth/auth_repository_impl.dart';
 import 'package:fortune_client/data/repository/message/message_repository.dart';
@@ -24,7 +24,7 @@ final appRouterProvider = Provider<AppRouter>((ref) {
 });
 
 class Repository {
-  static final authProvider = Provider<AuthRepository>((ref) {
+  static final auth = Provider<AuthRepository>((ref) {
     return AuthRepositoryImpl(ref.watch(DataSource.firebase));
   });
   static final messageProvider = Provider<MessageRepository>((ref) {
@@ -48,15 +48,15 @@ class DataSource {
       responseType: ResponseType.json,
       validateStatus: (_) => true,
     ))
-      ..interceptors.add(AppendTokenInterceptor(ref.watch(firebase))),
+      ..interceptors.add(AppendTokenInterceptor(ref.watch(Repository.auth))),
   );
 
   static final firebase = Provider<FirebaseAuthDataSource>((ref) {
     return FirebaseAuthDataSourceImpl();
   });
 
-  static final room = Provider<RoomDataSource>((ref) {
-    return RoomDataSource(ref.watch(_dio));
+  static final room = Provider<RoomsDataSource>((ref) {
+    return RoomsDataSource(ref.watch(_dio));
   });
 
   static final profile = Provider<ProfileDataSource>((ref) {

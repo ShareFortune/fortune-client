@@ -8,14 +8,14 @@ class FirebaseAuthDataSourceImpl implements FirebaseAuthDataSource {
 
   final _auth = FirebaseAuth.instance;
 
-  /// ログイン中Firebaseユーザを返す
-  User? get _firebaseUser => _auth.currentUser;
-
   @override
-  bool get isSignIn => _auth.currentUser != null;
+  User? get firebaseUser => _auth.currentUser;
 
-  @override
-  Future<String> getToken() async => await _firebaseUser!.getIdToken();
+  // @override
+  // bool get isSignIn => _auth.currentUser != null;
+
+  // @override
+  // Future<String> getToken() async => await _firebaseUser!.getIdToken();
 
   @override
   Future<UserCredential?> sigInWithGoogle() async {

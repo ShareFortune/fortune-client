@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'user_data_source.dart';
+part of 'users_data_source.dart';
 
 // **************************************************************************
 // RetrofitGenerator
@@ -8,8 +8,8 @@ part of 'user_data_source.dart';
 
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers
 
-class _UserDataSource implements UserDataSource {
-  _UserDataSource(
+class _UsersDataSource implements UsersDataSource {
+  _UsersDataSource(
     this._dio, {
     this.baseUrl,
   }) {
@@ -21,32 +21,16 @@ class _UserDataSource implements UserDataSource {
   String? baseUrl;
 
   @override
-  Future<String> create(
-    firebaseId,
-    username,
-    birthda,
-  ) async {
-    const _extra = <String, dynamic>{};
+  Future<String> create(body) async {
+    const _extra = <String, dynamic>{'append-token': true};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = FormData();
-    _data.fields.add(MapEntry(
-      'firebaseId',
-      firebaseId,
-    ));
-    _data.fields.add(MapEntry(
-      'username',
-      username,
-    ));
-    _data.fields.add(MapEntry(
-      'birthda',
-      birthda,
-    ));
+    final _data = <String, dynamic>{};
+    _data.addAll(body);
     final _result = await _dio.fetch<String>(_setStreamType<String>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
-      contentType: 'multipart/form-data',
     )
         .compose(
           _dio.options,

@@ -1,10 +1,10 @@
 import 'package:dio/dio.dart';
-import 'package:fortune_client/data/datasource/remote/firebase/firebase_auth_data_source.dart';
+import 'package:fortune_client/data/repository/auth/auth_repository.dart';
 
 class AppendTokenInterceptor extends Interceptor {
-  AppendTokenInterceptor(this._authDataSource);
+  AppendTokenInterceptor(this._authRepository);
 
-  final FirebaseAuthDataSource _authDataSource;
+  final AuthRepository _authRepository;
 
   /// オプションに[append-token]が存在したらtokenをヘッダーに含めるようにする
   static const _appendTokenExtraKey = 'append-token';
@@ -16,7 +16,7 @@ class AppendTokenInterceptor extends Interceptor {
   ) async {
     final appendToken = options.extra[_appendTokenExtraKey] ?? false;
     if (appendToken) {
-      final token = await _authDataSource.getToken();
+      final token = await _authRepository.idToken();
       options.headers['Authorization'] = 'Bearer $token';
       options.extra.remove(_appendTokenExtraKey);
 

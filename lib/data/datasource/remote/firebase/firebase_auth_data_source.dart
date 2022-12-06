@@ -1,11 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 
 abstract class FirebaseAuthDataSource {
-  /// ログイン中かどうかを返す
-  bool get isSignIn;
+  // /// Token取得
+  // Future<String> getToken();
 
-  /// Token取得
-  Future<String> getToken();
+  /// ログイン中Firebaseユーザを返す
+  User? get firebaseUser;
 
   logout();
   update();
