@@ -12,7 +12,13 @@ abstract class RoomDataSource {
 
   @GET('/rooms')
   @authenticatedRequest
-  Future<RoomList> getRooms();
+  Future<RoomList> getRooms(
+    @Query("addressId") String? addressId,
+    @Query("applicationDeadline") String? applicationDeadline,
+    @Query("memberNum") int? memberNum,
+    @Query("nextToken") String? nextToken,
+    @Query("perPage") int? perPage,
+  );
 
   @GET('/rooms/host')
   Future<HostRoomList> getHostList();

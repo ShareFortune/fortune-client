@@ -19,9 +19,22 @@ class _RoomDataSource implements RoomDataSource {
   String? baseUrl;
 
   @override
-  Future<RoomList> getRooms() async {
+  Future<RoomList> getRooms(
+    addressId,
+    applicationDeadline,
+    memberNum,
+    nextToken,
+    perPage,
+  ) async {
     const _extra = <String, dynamic>{'append-token': true};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{
+      r'addressId': addressId,
+      r'applicationDeadline': applicationDeadline,
+      r'memberNum': memberNum,
+      r'nextToken': nextToken,
+      r'perPage': perPage,
+    };
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     final _result =

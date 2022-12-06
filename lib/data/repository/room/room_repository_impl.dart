@@ -26,7 +26,7 @@ class RoomRepositoryImpl implements RoomRepository {
   @override
   Future<List<Room>> fetchList() async {
     try {
-      final result = await _dataSource.getRooms();
+      final result = await _dataSource.getRooms(null, null, null, null, null);
       return result.roomsEntity;
     } catch (e) {
       print(e.toString());
