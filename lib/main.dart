@@ -34,7 +34,7 @@ void main() async {
       msg: "flavor: ${EnumToString.convertToString(Constants.flavor)}",
     );
     overrides = [
-      DataSource.room.overrideWithValue(StubRoomDataSource()),
+      // DataSource.room.overrideWithValue(StubRoomDataSource()),
       DataSource.profile.overrideWithValue(StubProfileDataSource()),
     ];
   }

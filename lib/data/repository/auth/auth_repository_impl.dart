@@ -25,4 +25,12 @@ class AuthRepositoryImpl implements AuthRepository {
     // TODO: implement logout
     throw UnimplementedError();
   }
+
+  // @override
+  // Future<void> getToken() {
+  //   return _dataSource.idToken();
+
+  //   /// Todo: 取得できなかったら再ログイン
+  // }
+
 }

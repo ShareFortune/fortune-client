@@ -13,7 +13,7 @@ class RoomRepositoryImpl implements RoomRepository {
 
   @override
   Future<String> create() {
-    // TODO: implement create
+    // TODO: implement update
     throw UnimplementedError();
   }
 
@@ -26,7 +26,7 @@ class RoomRepositoryImpl implements RoomRepository {
   @override
   Future<List<Room>> fetchList() async {
     try {
-      final result = await _dataSource.getList(token);
+      final result = await _dataSource.getRooms();
       return result.roomsEntity;
     } catch (e) {
       print(e.toString());

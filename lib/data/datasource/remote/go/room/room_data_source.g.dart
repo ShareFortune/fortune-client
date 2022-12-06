@@ -19,11 +19,10 @@ class _RoomDataSource implements RoomDataSource {
   String? baseUrl;
 
   @override
-  Future<RoomList> getList(token) async {
-    const _extra = <String, dynamic>{};
+  Future<RoomList> getRooms() async {
+    const _extra = <String, dynamic>{'append-token': true};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{r'Authorization': token};
-    _headers.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     final _result =
         await _dio.fetch<Map<String, dynamic>>(_setStreamType<RoomList>(Options(

@@ -1,11 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:fortune_client/data/datasource/core/append_token_interceptor.dart';
 import 'package:fortune_client/data/datasource/remote/firebase/firebase_auth_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/firebase/firebase_auth_data_source_impl.dart';
 import 'package:fortune_client/data/datasource/remote/go/profile/profile_data_source.dart';
-import 'package:fortune_client/data/datasource/remote/go/profile/stub_profile_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/go/room/room_data_source.dart';
-import 'package:fortune_client/data/datasource/remote/go/room/stub_room_data_source.dart';
 import 'package:fortune_client/data/repository/auth/auth_repository.dart';
 import 'package:fortune_client/data/repository/auth/auth_repository_impl.dart';
 import 'package:fortune_client/data/repository/message/message_repository.dart';
@@ -43,13 +42,15 @@ class Repository {
 
 class DataSource {
   static final _dio = Provider<Dio>(
-    (_) => Dio(BaseOptions(
+    (ref) => Dio(BaseOptions(
       baseUrl: Constants.of().baseUrl,
       contentType: Headers.jsonContentType,
       responseType: ResponseType.json,
       validateStatus: (_) => true,
-    )),
+    ))
+      ..interceptors.add(AppendTokenInterceptor(ref.watch(firebase))),
   );
+
   static final firebase = Provider<FirebaseAuthDataSource>((ref) {
     return FirebaseAuthDataSourceImpl();
   });
