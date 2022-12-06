@@ -36,6 +36,8 @@ dependencies:
   fluttertoast: ^8.1.1
   fimber: ^0.6.6
   device_preview: ^1.1.0
+  # util
+  json_serializable: ^6.5.4
 
 dev_dependencies:
   flutter_test:
@@ -44,7 +46,6 @@ dev_dependencies:
   build_runner: ^2.3.2
   flutter_lints: ^2.0.0
   freezed: ^2.2.0
-  json_serializable: ^6.5.3
   auto_route_generator: ^5.0.3
   retrofit_generator: ^4.2.0
   dependency_validator: any
@@ -62,4 +63,3 @@ flutter:
   assets:
     - assets/images/
     - stub/
-

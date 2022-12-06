@@ -14,7 +14,7 @@ class ParticipatingRoomListViewModel
   ParticipatingRoomListViewModel(this._ref) : super(const AsyncLoading());
 
   final Ref _ref;
-  late final roomRepository = _ref.watch(Repository.roomProvider);
+  late final roomRepository = _ref.watch(Repository.room);
 
   // Future<void> initialize() async => ParticipatingRoomListState(
   //       hostRooms: [HostRoomListItemState()],

@@ -55,6 +55,29 @@ class _RoomsDataSource implements RoomsDataSource {
   }
 
   @override
+  Future<RoomDetail> getDetail(id) async {
+    const _extra = <String, dynamic>{'append-token': true};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<RoomDetail>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/rooms/${id}',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = RoomDetail.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
   Future<HostRoomList> getHostList() async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};

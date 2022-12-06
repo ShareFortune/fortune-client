@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:fortune_client/data/model/room_detail/room_detail.dart';
 import 'package:retrofit/retrofit.dart';
 import 'package:fortune_client/data/datasource/core/annotations_headers.dart.dart';
 import 'package:fortune_client/data/model/host_room/host_room.dart';
@@ -18,6 +19,12 @@ abstract class RoomsDataSource {
     @Query("memberNum") int? memberNum,
     @Query("nextToken") String? nextToken,
     @Query("perPage") int? perPage,
+  );
+
+  @GET('/rooms/{id}')
+  @authenticatedRequest
+  Future<RoomDetail> getDetail(
+    @Path('id') String id,
   );
 
   @GET('/rooms/host')

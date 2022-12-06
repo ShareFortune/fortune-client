@@ -35,7 +35,7 @@ class Repository {
       ref.watch(DataSource.profile),
     );
   });
-  static final roomProvider = Provider<RoomRepository>((ref) {
+  static final room = Provider<RoomRepository>((ref) {
     return RoomRepositoryImpl(ref.watch(DataSource.room));
   });
 }

@@ -21,12 +21,15 @@ class $StubGen {
   /// File path: stub/profile.json
   String get profile => 'stub/profile.json';
 
+  /// File path: stub/room_detail.json
+  String get roomDetail => 'stub/room_detail.json';
+
   /// File path: stub/room_list.json
   String get roomList => 'stub/room_list.json';
 
   /// List of all assets
   List<String> get values =>
-      [message, participatingRoomList, profile, roomList];
+      [message, participatingRoomList, profile, roomDetail, roomList];
 }
 
 class $AssetsImagesGen {
