@@ -20,7 +20,11 @@ import 'package:fortune_client/view/routes/route_guard.dart';
 /// Route
 final appRouterProvider = Provider<AppRouter>((ref) {
   final authGuard = ref.watch(authGuardProvider);
-  return AppRouter(authGuard: authGuard);
+  final checkIfMyProfileExists = ref.watch(checkIfMyProfileExistsProvider);
+  return AppRouter(
+    authGuard: authGuard,
+    checkIfMyProfileExists: checkIfMyProfileExists,
+  );
 });
 
 class Repository {
@@ -30,7 +34,7 @@ class Repository {
   static final messageProvider = Provider<MessageRepository>((ref) {
     return MessageRepositoryImpl();
   });
-  static final profileProvider = Provider<ProfileRepository>((ref) {
+  static final profile = Provider<ProfileRepository>((ref) {
     return ProfileRepositoryImpl(
       ref.watch(DataSource.profile),
     );
