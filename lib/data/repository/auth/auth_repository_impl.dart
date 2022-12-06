@@ -8,8 +8,16 @@ class AuthRepositoryImpl implements AuthRepository {
 
   final FirebaseAuthDataSource _dataSource;
 
+  User? get _user => _dataSource.firebaseUser;
+
   @override
-  bool get isSignIn => _dataSource.isSignIn;
+  bool get isSignIn => _user != null;
+
+  @override
+  String get firebaseId => _user!.uid;
+
+  @override
+  Future<String> idToken() async => await _user!.getIdToken();
 
   @override
   Future<UserCredential?> signInWithGoogle() async {

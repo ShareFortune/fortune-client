@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'room_data_source.dart';
+part of 'rooms_data_source.dart';
 
 // **************************************************************************
 // RetrofitGenerator
@@ -8,8 +8,8 @@ part of 'room_data_source.dart';
 
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers
 
-class _RoomDataSource implements RoomDataSource {
-  _RoomDataSource(
+class _RoomsDataSource implements RoomsDataSource {
+  _RoomsDataSource(
     this._dio, {
     this.baseUrl,
   });
@@ -19,11 +19,23 @@ class _RoomDataSource implements RoomDataSource {
   String? baseUrl;
 
   @override
-  Future<RoomList> getList(token) async {
-    const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{r'Authorization': token};
-    _headers.removeWhere((k, v) => v == null);
+  Future<RoomList> getRooms(
+    addressId,
+    applicationDeadline,
+    memberNum,
+    nextToken,
+    perPage,
+  ) async {
+    const _extra = <String, dynamic>{'append-token': true};
+    final queryParameters = <String, dynamic>{
+      r'addressId': addressId,
+      r'applicationDeadline': applicationDeadline,
+      r'memberNum': memberNum,
+      r'nextToken': nextToken,
+      r'perPage': perPage,
+    };
+    queryParameters.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     final _result =
         await _dio.fetch<Map<String, dynamic>>(_setStreamType<RoomList>(Options(
@@ -39,6 +51,29 @@ class _RoomDataSource implements RoomDataSource {
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = RoomList.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<RoomDetail> getDetail(id) async {
+    const _extra = <String, dynamic>{'append-token': true};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<RoomDetail>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/rooms/${id}',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = RoomDetail.fromJson(_result.data!);
     return value;
   }
 

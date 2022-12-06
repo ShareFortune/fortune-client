@@ -9,7 +9,7 @@ class AuthGuard extends AutoRouteGuard {
   AuthGuard(this._ref);
 
   final Ref _ref;
-  late final authRepository = _ref.watch(Repository.authProvider);
+  late final authRepository = _ref.watch(Repository.auth);
 
   _isAuthenticated() => authRepository.isSignIn;
 

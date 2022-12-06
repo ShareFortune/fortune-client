@@ -1,0 +1,22 @@
+{
+    "address": {
+        "city": "岩見沢市",
+        "country": "日本",
+        "prefecture": "北海道"
+    },
+    "applicationDeadline": "2022-10-22",
+    "hostUser": {
+        "gender": "MAN",
+        "id": "fce1b7a8-acbc-43b1-968d-e5973d326412",
+        "mainImageURL": "https://fortune-s3-bucket.s3.ap-northeast-1.amazonaws.com/userImage/20221027/709a82d0-b2c5-4332-b46e-65bd19585f1f.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQB3D6IMBEFXWBFW7%2F20221206%2Fap-northeast-1%2Fs3%2Faws4_request&X-Amz-Date=20221206T093116Z&X-Amz-Expires=900&X-Amz-SignedHeaders=host&X-Amz-Signature=d692b92a9f4b32cae67616200a75187d71784559ab31c4d887a9e26a7d1f646e",
+        "name": "kosuke"
+    },
+    "id": "df08f3f8-1f32-477d-947c-4bc8b6ae4f58",
+    "isHost": false,
+    "isMember": false,
+    "membersNum": 0,
+    "participants": [],
+    "roomName": "飲み会",
+    "status": "PENDING",
+    "tags": []
+}

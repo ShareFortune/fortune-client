@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:fortune_client/data/datasource/remote/go/profile/stub_profile_data_source.dart';
-import 'package:fortune_client/data/datasource/remote/go/room/stub_room_data_source.dart';
+import 'package:fortune_client/data/datasource/remote/go/rooms/stub_rooms_data_source.dart';
 import 'package:fortune_client/foundation/constants.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:fimber/fimber.dart';
@@ -34,7 +34,7 @@ void main() async {
       msg: "flavor: ${EnumToString.convertToString(Constants.flavor)}",
     );
     overrides = [
-      DataSource.room.overrideWithValue(StubRoomDataSource()),
+      // DataSource.room.overrideWithValue(StubRoomDataSource()),
       DataSource.profile.overrideWithValue(StubProfileDataSource()),
     ];
   }

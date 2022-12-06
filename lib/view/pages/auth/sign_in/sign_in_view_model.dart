@@ -13,7 +13,7 @@ class SignInViewModel extends StateNotifier<AsyncValue<SignInState>> {
   final Ref _ref;
 
   /// Repository
-  late final authRepository = _ref.watch(Repository.authProvider);
+  late final authRepository = _ref.watch(Repository.auth);
 
   initialize() => state = const AsyncValue.data(SignInState());
 
