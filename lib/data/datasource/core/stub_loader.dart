@@ -3,9 +3,9 @@ import 'dart:convert';
 import 'package:flutter/services.dart';
 
 class StubLoader {
-  Future<T> getEntity<T>(
-      T Function(Map<String, dynamic>) func, String path) async {
-    return func(await loadJson(path));
+  Future<T> entity<T>(
+      T Function(Map<String, dynamic>) from, String path) async {
+    return from(await loadJson(path));
   }
 
   Future<Map<String, dynamic>> loadJson(String path) async {

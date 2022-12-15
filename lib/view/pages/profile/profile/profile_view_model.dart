@@ -11,7 +11,7 @@ class ProfileViewModel extends StateNotifier<AsyncValue<ProfileState>> {
   ProfileViewModel(this._ref) : super(const AsyncLoading());
 
   final Ref _ref;
-  late final repository = _ref.watch(Repository.profileProvider);
+  late final repository = _ref.watch(Repository.profile);
 
   Future<void> initialize(String id) async => await fetch(id);
 

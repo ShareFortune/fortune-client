@@ -14,17 +14,22 @@ class StubRoomDataSource extends StubLoader implements RoomsDataSource {
     String? nextToken,
     int? perPage,
   ) async {
-    return getEntity(RoomList.fromJson, Assets.stub.roomList);
+    return RoomList.fromJson(
+      await loadJson(Assets.stub.roomList),
+    );
   }
 
   @override
   Future<HostRoomList> getHostList() async {
-    return getEntity(HostRoomList.fromJson, Assets.stub.participatingRoomList);
+    return HostRoomList.fromJson(
+      await loadJson(Assets.stub.participatingRoomList),
+    );
   }
 
   @override
-  Future<RoomDetail> getDetail(String id) {
-    // TODO: implement getDetail
-    throw UnimplementedError();
+  Future<RoomDetail> getDetail(String id) async {
+    return RoomDetail.fromJson(
+      await loadJson(Assets.stub.roomDetail),
+    );
   }
 }

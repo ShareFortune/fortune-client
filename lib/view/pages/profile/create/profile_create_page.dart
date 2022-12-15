@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:fortune_client/view/hooks/use_router.dart';
 import 'package:fortune_client/view/pages/profile/create/profile_create_view_model.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 // ignore: must_be_immutable
-class ProfileCreatePage extends ConsumerWidget {
+class ProfileCreatePage extends HookConsumerWidget {
   ProfileCreatePage({super.key});
 
   double textFieldEdgeInsetsHor = 5;
@@ -14,6 +15,7 @@ class ProfileCreatePage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(profileCreateViewModelProvider);
     final viewModel = ref.watch(profileCreateViewModelProvider.notifier);
+    final router = useRouter();
 
     return Scaffold(
       appBar: AppBar(
@@ -78,7 +80,9 @@ class ProfileCreatePage extends ConsumerWidget {
                     borderRadius: BorderRadius.circular(30),
                   ),
                 ),
-                onPressed: viewModel.onNext,
+                onPressed: () {
+                  viewModel.pushNext(router);
+                },
                 child: const Text("次へ"),
               ),
             ),

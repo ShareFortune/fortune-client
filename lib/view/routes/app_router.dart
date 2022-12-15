@@ -20,87 +20,79 @@ export 'app_router.gr.dart';
 @AdaptiveAutoRouter(
   replaceInRouteName: 'Page,Route',
   routes: <AutoRoute>[
+    /// サインイン
     AutoRoute(
-      path: RoutePath.appRouteSignIn,
+      path: RoutePath.signIn,
       page: SignInPage,
+      initial: true,
     ),
+
+    /// プロフィール作成
     AutoRoute(
-      path: RoutePath.appRouteProfileCreate,
+      path: RoutePath.createProfile,
       page: ProfileCreatePage,
-    ),
-    AutoRoute(
-      path: RoutePath.appRouteRoot,
-      page: MyBottomNavigationBar,
       guards: [AuthGuard],
-      children: [
-        AutoRoute(
-          name: 'RoomListTabRoute',
-          path: RoutePath.appRouteRoomsTab,
-          page: EmptyRouterPage,
-          children: [
-            AutoRoute(
-              path: "",
-              page: RoomListPage,
-            ),
-            AutoRoute(
-              path: RoutePath.appRouteRoomDetail,
-              page: RoomDetailPage,
-            ),
-          ],
-        ),
-        AutoRoute(
-          name: 'ParticipatingRoomListTabRoute',
-          path: RoutePath.appRouteParticipatingRoomsTab,
-          page: EmptyRouterPage,
-          children: [
-            AutoRoute(
-              path: "",
-              page: ParticipatingRoomListPage,
-            ),
-          ],
-        ),
-        AutoRoute(
-          name: 'RoomCreateTabRoute',
-          path: RoutePath.appRouteRoomCreationTab,
-          page: EmptyRouterPage,
-          children: [
-            AutoRoute(
-              path: "",
-              page: RoomCreatePage,
-            ),
-          ],
-        ),
-        AutoRoute(
-          name: 'MessageRoomListTabRoute',
-          path: RoutePath.appRouteMessageRoomsTab,
-          page: EmptyRouterPage,
-          children: [
-            AutoRoute(
-              path: "",
-              page: MessageRoomListPage,
-            ),
-            AutoRoute(
-              path: RoutePath.appRouteMessageRoom,
-              page: MessageRoomPage,
-            )
-          ],
-        ),
-        AutoRoute(
-          name: "AccountTabRoute",
-          path: RoutePath.appRouteAccountTab,
-          page: AccountPage,
-        ),
-      ],
-    ),
-    AutoRoute(
-      path: RoutePath.appRouteRequestConfirmationPage,
-      page: RequestConfirmationPage,
     ),
 
     /// プロフィール
     AutoRoute(
-      path: RoutePath.appRouteProfile,
+      path: RoutePath.profile,
       page: ProfilePage,
+      guards: [AuthGuard, CheckIfMyProfileExists],
+    ),
+
+    /// ナビゲーションタブ
+    AutoRoute(
+      name: "HomeRoute",
+      path: RoutePath.root,
+      page: MyBottomNavigationBar,
+      guards: [AuthGuard, CheckIfMyProfileExists],
+      children: [
+        AutoRoute(
+          name: 'RoomsRoute',
+          path: RoutePath.rooms,
+          page: EmptyRouterPage,
+          children: [
+            AutoRoute(path: "", page: RoomListPage),
+            AutoRoute(path: RoutePath.roomDetail, page: RoomDetailPage),
+          ],
+        ),
+        AutoRoute(
+          name: 'ParticipatingRoomsRoute',
+          path: RoutePath.participatingRooms,
+          page: EmptyRouterPage,
+          children: [
+            AutoRoute(path: "", page: ParticipatingRoomListPage),
+            AutoRoute(
+              path: RoutePath.requestConfirmation,
+              page: RequestConfirmationPage,
+              guards: [AuthGuard],
+            ),
+          ],
+        ),
+        AutoRoute(
+          name: 'CreateRoomRoute',
+          path: RoutePath.createRoom,
+          page: EmptyRouterPage,
+          children: [
+            AutoRoute(path: "", page: RoomCreatePage),
+          ],
+        ),
+        AutoRoute(
+          name: 'MessageRoomsRoute',
+          path: RoutePath.messageRooms,
+          page: EmptyRouterPage,
+          children: [
+            AutoRoute(path: "", page: MessageRoomListPage),
+            AutoRoute(path: RoutePath.messageRoom, page: MessageRoomPage)
+          ],
+        ),
+        AutoRoute(
+          name: "AccountRoute",
+          path: RoutePath.account,
+          page: AccountPage,
+        ),
+      ],
     ),
   ],
 )

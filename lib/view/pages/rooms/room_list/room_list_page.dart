@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import 'package:fortune_client/view/hooks/use_router.dart';
 import 'package:fortune_client/view/pages/rooms/room_list/room_card_widget.dart';
 import 'package:fortune_client/view/pages/rooms/room_list/room_list_view_model.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class RoomListPage extends ConsumerWidget {
+class RoomListPage extends HookConsumerWidget {
   const RoomListPage({super.key});
 
   @override
@@ -14,6 +15,7 @@ class RoomListPage extends ConsumerWidget {
     final theme = ref.watch(appThemeProvider);
     final state = ref.watch(roomListViewModelProvider);
     final viewModel = ref.watch(roomListViewModelProvider.notifier);
+    final router = useRouter();
 
     return state.when(
       data: (data) {
@@ -61,7 +63,9 @@ class RoomListPage extends ConsumerWidget {
                                     const EdgeInsets.symmetric(vertical: 10),
                                 child: RoomCardWidget(
                                   room: data.rooms[index],
-                                  onTap: viewModel.onTap,
+                                  onTap: () {
+                                    viewModel.pushRoomDetail(router);
+                                  },
                                 ),
                               ),
                             ),

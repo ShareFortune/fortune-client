@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fortune_client/gen/assets.gen.dart';
 import 'package:fortune_client/view/pages/rooms/room_list/room_list_state.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/members_widget.dart';
 import 'package:gap/gap.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class RoomCardWidget extends ConsumerWidget {
+class RoomCardWidget extends HookConsumerWidget {
   const RoomCardWidget({
     super.key,
     required this.room,
@@ -15,14 +15,14 @@ class RoomCardWidget extends ConsumerWidget {
   });
 
   final RoomListItemState room;
-  final Function(BuildContext) onTap;
+  final Function() onTap;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = ref.watch(appThemeProvider);
 
     return InkWell(
-      onTap: () => onTap(context),
+      onTap: onTap,
       child: Container(
         padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(

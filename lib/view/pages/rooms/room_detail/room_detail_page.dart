@@ -1,6 +1,5 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fortune_client/gen/assets.gen.dart';
 import 'package:fortune_client/view/pages/rooms/room_detail/room_detail_view_model.dart';
 import 'package:fortune_client/view/pages/rooms/room_detail/room_info_container.dart';
@@ -8,8 +7,9 @@ import 'package:fortune_client/view/pages/rooms/room_detail/room_members_contain
 import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:gap/gap.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class RoomDetailPage extends ConsumerWidget {
+class RoomDetailPage extends HookConsumerWidget {
   const RoomDetailPage({super.key, @PathParam() required this.id});
 
   final String id;
@@ -105,7 +105,7 @@ class RoomDetailPage extends ConsumerWidget {
           ),
         );
       },
-      error: (error, stackTrace) => const Center(child: Text("error")),
+      error: (e, _) => Center(child: Text(e.toString())),
       loading: () => const CircularProgressIndicator(),
     );
   }
