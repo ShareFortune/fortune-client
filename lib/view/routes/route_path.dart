@@ -3,7 +3,7 @@ class RoutePath {
   static const root = '/';
 
   /// ページ遷移
-  static const signIn = '/sign-in';
+  static const login = '/login';
 
   /// プロフィール作成
   static const createProfile = '/create-profile';

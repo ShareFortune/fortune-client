@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_route/empty_router_widgets.dart';
 import 'package:fortune_client/view/pages/account/account/account_page.dart';
+import 'package:fortune_client/view/pages/auth/login/login_page.dart';
 import 'package:fortune_client/view/pages/common/bottom_navigation_bar/bottom_navigation_bar.dart';
 import 'package:fortune_client/view/pages/message/message_room/message_room_page.dart';
 import 'package:fortune_client/view/pages/message/message_room_list/message_room_list_page.dart';
@@ -20,10 +21,10 @@ export 'app_router.gr.dart';
 @AdaptiveAutoRouter(
   replaceInRouteName: 'Page,Route',
   routes: <AutoRoute>[
-    /// サインイン
+    /// ログイン
     AutoRoute(
-      path: RoutePath.signIn,
-      page: SignInPage,
+      path: RoutePath.login,
+      page: LoginPage,
       initial: true,
     ),
 

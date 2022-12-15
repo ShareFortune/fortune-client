@@ -16,8 +16,7 @@ import 'package:auto_route/empty_router_widgets.dart' as _i5;
 import 'package:flutter/material.dart' as _i15;
 import 'package:fortune_client/view/pages/account/account/account_page.dart'
     as _i6;
-import 'package:fortune_client/view/pages/auth/sign_in/sign_in_page.dart'
-    as _i1;
+import 'package:fortune_client/view/pages/auth/login/login_page.dart' as _i1;
 import 'package:fortune_client/view/pages/common/bottom_navigation_bar/bottom_navigation_bar.dart'
     as _i4;
 import 'package:fortune_client/view/pages/message/message_room/message_room_page.dart'
@@ -53,14 +52,10 @@ class AppRouter extends _i14.RootStackRouter {
 
   @override
   final Map<String, _i14.PageFactory> pagesMap = {
-    SignInRoute.name: (routeData) {
-      final args = routeData.argsAs<SignInRouteArgs>();
+    LoginRoute.name: (routeData) {
       return _i14.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: _i1.SignInPage(
-          key: args.key,
-          onResult: args.onResult,
-        ),
+        child: const _i1.LoginPage(),
       );
     },
     ProfileCreateRoute.name: (routeData) {
@@ -178,8 +173,8 @@ class AppRouter extends _i14.RootStackRouter {
   @override
   List<_i14.RouteConfig> get routes => [
         _i14.RouteConfig(
-          SignInRoute.name,
-          path: '/sign-in',
+          LoginRoute.name,
+          path: '/',
         ),
         _i14.RouteConfig(
           ProfileCreateRoute.name,
@@ -277,37 +272,15 @@ class AppRouter extends _i14.RootStackRouter {
 }
 
 /// generated route for
-/// [_i1.SignInPage]
-class SignInRoute extends _i14.PageRouteInfo<SignInRouteArgs> {
-  SignInRoute({
-    _i15.Key? key,
-    required dynamic Function(bool) onResult,
-  }) : super(
-          SignInRoute.name,
-          path: '/sign-in',
-          args: SignInRouteArgs(
-            key: key,
-            onResult: onResult,
-          ),
+/// [_i1.LoginPage]
+class LoginRoute extends _i14.PageRouteInfo<void> {
+  const LoginRoute()
+      : super(
+          LoginRoute.name,
+          path: '/',
         );
 
-  static const String name = 'SignInRoute';
-}
-
-class SignInRouteArgs {
-  const SignInRouteArgs({
-    this.key,
-    required this.onResult,
-  });
-
-  final _i15.Key? key;
-
-  final dynamic Function(bool) onResult;
-
-  @override
-  String toString() {
-    return 'SignInRouteArgs{key: $key, onResult: $onResult}';
-  }
+  static const String name = 'LoginRoute';
 }
 
 /// generated route for
