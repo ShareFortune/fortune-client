@@ -12,7 +12,6 @@ dependencies:
   intl: ^0.17.0
   flutter_signin_button: ^2.0.0
   badges: ^2.0.3
-  flutter_riverpod: ^2.0.2
   flutter_staggered_animations: ^1.1.1
   flutter_chat_ui: ^1.6.5
   file_picker: ^5.2.1
@@ -38,6 +37,8 @@ dependencies:
   device_preview: ^1.1.0
   # util
   json_serializable: ^6.5.4
+  flutter_hooks: ^0.18.5+1
+  hooks_riverpod: ^2.1.1
 
 dev_dependencies:
   flutter_test:

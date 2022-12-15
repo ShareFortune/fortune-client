@@ -6,7 +6,8 @@ import 'package:fortune_client/gen/assets.gen.dart';
 class StubProfileDataSource extends StubLoader implements ProfileDataSource {
   @override
   Future<Profile> get(String id) async {
-    print(id);
-    return await getEntity(Profile.fromJson, Assets.stub.profile);
+    return Profile.fromJson(
+      await loadJson(Assets.stub.profile),
+    );
   }
 }

@@ -24,6 +24,7 @@ class RoomDetailViewModel extends StateNotifier<AsyncValue<RoomDetailState>> {
   Future<void> fetch() async {
     state = await AsyncValue.guard(() async {
       final _result = await _repository.fetchDetail();
+      print(_result);
       return const RoomDetailState();
     });
   }

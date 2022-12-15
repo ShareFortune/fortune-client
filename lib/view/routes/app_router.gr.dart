@@ -83,7 +83,7 @@ class AppRouter extends _i14.RootStackRouter {
         ),
       );
     },
-    MyBottomNavigationBar.name: (routeData) {
+    HomeRoute.name: (routeData) {
       return _i14.AdaptivePage<dynamic>(
         routeData: routeData,
         child: const _i4.MyBottomNavigationBar(),
@@ -195,7 +195,7 @@ class AppRouter extends _i14.RootStackRouter {
           ],
         ),
         _i14.RouteConfig(
-          MyBottomNavigationBar.name,
+          HomeRoute.name,
           path: '/',
           guards: [
             authGuard,
@@ -205,7 +205,7 @@ class AppRouter extends _i14.RootStackRouter {
             _i14.RouteConfig(
               RoomsRoute.name,
               path: 'rooms',
-              parent: MyBottomNavigationBar.name,
+              parent: HomeRoute.name,
               children: [
                 _i14.RouteConfig(
                   RoomListRoute.name,
@@ -222,7 +222,7 @@ class AppRouter extends _i14.RootStackRouter {
             _i14.RouteConfig(
               ParticipatingRoomsRoute.name,
               path: 'participating-rooms',
-              parent: MyBottomNavigationBar.name,
+              parent: HomeRoute.name,
               children: [
                 _i14.RouteConfig(
                   ParticipatingRoomListRoute.name,
@@ -240,7 +240,7 @@ class AppRouter extends _i14.RootStackRouter {
             _i14.RouteConfig(
               CreateRoomRoute.name,
               path: 'create-room',
-              parent: MyBottomNavigationBar.name,
+              parent: HomeRoute.name,
               children: [
                 _i14.RouteConfig(
                   RoomCreateRoute.name,
@@ -252,7 +252,7 @@ class AppRouter extends _i14.RootStackRouter {
             _i14.RouteConfig(
               MessageRoomsRoute.name,
               path: 'message-rooms',
-              parent: MyBottomNavigationBar.name,
+              parent: HomeRoute.name,
               children: [
                 _i14.RouteConfig(
                   MessageRoomListRoute.name,
@@ -269,7 +269,7 @@ class AppRouter extends _i14.RootStackRouter {
             _i14.RouteConfig(
               AccountRoute.name,
               path: 'account',
-              parent: MyBottomNavigationBar.name,
+              parent: HomeRoute.name,
             ),
           ],
         ),
@@ -371,15 +371,15 @@ class ProfileRouteArgs {
 
 /// generated route for
 /// [_i4.MyBottomNavigationBar]
-class MyBottomNavigationBar extends _i14.PageRouteInfo<void> {
-  const MyBottomNavigationBar({List<_i14.PageRouteInfo>? children})
+class HomeRoute extends _i14.PageRouteInfo<void> {
+  const HomeRoute({List<_i14.PageRouteInfo>? children})
       : super(
-          MyBottomNavigationBar.name,
+          HomeRoute.name,
           path: '/',
           initialChildren: children,
         );
 
-  static const String name = 'MyBottomNavigationBar';
+  static const String name = 'HomeRoute';
 }
 
 /// generated route for

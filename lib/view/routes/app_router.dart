@@ -43,6 +43,7 @@ export 'app_router.gr.dart';
 
     /// ナビゲーションタブ
     AutoRoute(
+      name: "HomeRoute",
       path: RoutePath.root,
       page: MyBottomNavigationBar,
       guards: [AuthGuard, CheckIfMyProfileExists],

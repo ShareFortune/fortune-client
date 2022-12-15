@@ -1,5 +1,8 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fortune_client/view/pages/profile/create/profile_create_state.dart';
+import 'package:fortune_client/view/routes/app_router.gr.dart';
 
 final profileCreateViewModelProvider =
     StateNotifierProvider<ProfileCreateViewModel, ProfileCreateState>((ref) {
@@ -15,5 +18,7 @@ class ProfileCreateViewModel extends StateNotifier<ProfileCreateState> {
 
   Future<void> create() async {}
 
-  onNext() {}
+  pushNext(StackRouter router) async {
+    // await router.push(const HomeRoute());
+  }
 }

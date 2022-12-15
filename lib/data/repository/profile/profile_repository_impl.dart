@@ -8,7 +8,7 @@ class ProfileRepositoryImpl implements ProfileRepository {
   ProfileRepositoryImpl(this._dataSource);
 
   @override
-  bool get isCreated => false;
+  bool get isCreated => true;
 
   @override
   Future<String> create() {
