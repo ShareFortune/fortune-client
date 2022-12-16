@@ -33,10 +33,9 @@ final appRouterProvider = Provider<AppRouter>((ref) {
 
 class Repository {
   static final auth = Provider<AuthRepository>((ref) {
-    if (ref.watch(debugUseDummyLoginApiProvider)) {
-      return FakeAuthRepository();
-    }
-    return AuthRepositoryImpl(ref.watch(DataSource.firebase));
+    return ref.watch(debugUseDummyLoginApiProvider)
+        ? FakeAuthRepository()
+        : AuthRepositoryImpl(ref.watch(DataSource.firebase));
   });
   static final messageProvider = Provider<MessageRepository>((ref) {
     return MessageRepositoryImpl();

@@ -15,7 +15,7 @@ class FakeAuthRepository implements AuthRepository {
   String get firebaseId => throw UnimplementedError();
 
   @override
-  bool get isLogin => automaticLogin ? _loginState : automaticLogin;
+  bool get isLogin => automaticLogin ? automaticLogin : _loginState;
 
   @override
   Future<String> idToken() {
@@ -29,12 +29,12 @@ class FakeAuthRepository implements AuthRepository {
 
   @override
   Future<void> signInWithApple() async {
-    print("object");
     _loginState = true;
   }
 
   @override
   Future<void> signInWithGoogle() async {
+    print("debug");
     _loginState = true;
   }
 
