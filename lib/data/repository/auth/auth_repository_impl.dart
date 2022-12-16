@@ -5,13 +5,12 @@ import 'auth_repository.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
   AuthRepositoryImpl(this._dataSource);
-
   final FirebaseAuthDataSource _dataSource;
 
-  User? get _user => _dataSource.firebaseUser;
+  User? get _user => _dataSource.user;
 
   @override
-  bool get isSignIn => _user != null;
+  bool get isLogin => _user != null;
 
   @override
   String get firebaseId => _user!.uid;
@@ -20,17 +19,29 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<String> idToken() async => await _user!.getIdToken();
 
   @override
-  Future<UserCredential?> signInWithGoogle() async {
+  Future<bool> logout() {
+    // TODO: implement logout
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<void> signInWithGoogle() async {
     try {
-      return await _dataSource.sigInWithGoogle();
+      await _dataSource.sigInWithGoogle();
     } catch (e) {
       rethrow;
     }
   }
 
   @override
-  Future<bool> logout() {
-    // TODO: implement logout
+  Future<void> signInWithApple() {
+    // TODO: implement signInWithApple
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<void> signInWithTwitter() {
+    // TODO: implement signInWithTwitter
     throw UnimplementedError();
   }
 }

@@ -74,21 +74,16 @@ class $AssetsImagesIconsGen {
   SvgGenImage get iconApple =>
       const SvgGenImage('assets/images/icons/icon_apple.svg');
 
-  /// File path: assets/images/icons/icon_apple_set.svg
-  SvgGenImage get iconAppleSet =>
-      const SvgGenImage('assets/images/icons/icon_apple_set.svg');
+  /// File path: assets/images/icons/icon_google.svg
+  SvgGenImage get iconGoogle =>
+      const SvgGenImage('assets/images/icons/icon_google.svg');
 
-  /// File path: assets/images/icons/icon_google_set.svg
-  SvgGenImage get iconGoogleSet =>
-      const SvgGenImage('assets/images/icons/icon_google_set.svg');
-
-  /// File path: assets/images/icons/icon_line.svg
-  SvgGenImage get iconLine =>
-      const SvgGenImage('assets/images/icons/icon_line.svg');
+  /// File path: assets/images/icons/icon_twitter.svg
+  SvgGenImage get iconTwitter =>
+      const SvgGenImage('assets/images/icons/icon_twitter.svg');
 
   /// List of all assets
-  List<SvgGenImage> get values =>
-      [iconApple, iconAppleSet, iconGoogleSet, iconLine];
+  List<SvgGenImage> get values => [iconApple, iconGoogle, iconTwitter];
 }
 
 class Assets {

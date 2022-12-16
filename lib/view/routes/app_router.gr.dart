@@ -174,7 +174,7 @@ class AppRouter extends _i14.RootStackRouter {
   List<_i14.RouteConfig> get routes => [
         _i14.RouteConfig(
           LoginRoute.name,
-          path: '/',
+          path: '/login',
         ),
         _i14.RouteConfig(
           ProfileCreateRoute.name,
@@ -277,7 +277,7 @@ class LoginRoute extends _i14.PageRouteInfo<void> {
   const LoginRoute()
       : super(
           LoginRoute.name,
-          path: '/',
+          path: '/login',
         );
 
   static const String name = 'LoginRoute';

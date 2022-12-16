@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:fortune_client/gen/assets.gen.dart';
 
-class LoginState {}
-
 enum AuthType {
-  line,
   apple,
   google,
+  twitter,
 }
 
 extension AuthTypeColor on AuthType {
@@ -16,8 +14,8 @@ extension AuthTypeColor on AuthType {
         return Colors.black;
       case AuthType.google:
         return const Color(0xFFF8F8F8);
-      case AuthType.line:
-        return const Color(0xFF06C755);
+      case AuthType.twitter:
+        return const Color(0xFF1B93E3);
     }
   }
 
@@ -27,8 +25,8 @@ extension AuthTypeColor on AuthType {
         return "Appleでログインする";
       case AuthType.google:
         return "Googleでログインする";
-      case AuthType.line:
-        return "Lineでログインする";
+      case AuthType.twitter:
+        return "Twitterでログインする";
     }
   }
 
@@ -38,7 +36,7 @@ extension AuthTypeColor on AuthType {
         return const Color(0xFFFEFEFE);
       case AuthType.google:
         return Colors.black;
-      case AuthType.line:
+      case AuthType.twitter:
         return const Color(0xFFFFFFFF);
     }
   }
@@ -48,9 +46,9 @@ extension AuthTypeColor on AuthType {
       case AuthType.apple:
         return Assets.images.icons.iconApple.path;
       case AuthType.google:
-        return Assets.images.icons.iconGoogleSet.path;
-      case AuthType.line:
-        return Assets.images.icons.iconLine.path;
+        return Assets.images.icons.iconGoogle.path;
+      case AuthType.twitter:
+        return Assets.images.icons.iconTwitter.path;
     }
   }
 }

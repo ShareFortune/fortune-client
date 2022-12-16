@@ -9,18 +9,10 @@ class FirebaseAuthDataSourceImpl implements FirebaseAuthDataSource {
   final _auth = FirebaseAuth.instance;
 
   @override
-  User? get firebaseUser => _auth.currentUser;
-
-  // @override
-  // bool get isSignIn => _auth.currentUser != null;
-
-  // @override
-  // Future<String> getToken() async => await _firebaseUser!.getIdToken();
+  User? get user => _auth.currentUser;
 
   @override
-  Future<UserCredential?> sigInWithGoogle() async {
-    UserCredential? response;
-
+  Future<void> sigInWithGoogle() async {
     try {
       final googleUser = await GoogleSignIn().signIn();
       final googleAuth = await googleUser?.authentication;
@@ -31,13 +23,11 @@ class FirebaseAuthDataSourceImpl implements FirebaseAuthDataSource {
           idToken: googleAuth.idToken,
         );
 
-        response = await _auth.signInWithCredential(credential);
+        UserCredential? response = await _auth.signInWithCredential(credential);
       }
     } catch (e) {
       rethrow;
     }
-
-    return response;
   }
 
   @override

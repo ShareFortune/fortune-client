@@ -39,7 +39,7 @@ class AuthButton extends HookConsumerWidget {
                 ),
               ),
               Positioned(
-                left: 13,
+                left: 20,
                 child: SvgPicture.asset(
                   authType.iconPath,
                   fit: BoxFit.contain,
