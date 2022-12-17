@@ -24,8 +24,6 @@ dependencies:
   google_sign_in: ^5.4.2
   freezed_annotation: ^2.2.0
   auto_route: ^5.0.2
-  dio: ^4.0.6
-  retrofit: ^3.3.1
   image_picker: ^0.8.6
   flutter_svg: ^1.1.6
   gap: ^2.0.1
@@ -37,8 +35,15 @@ dependencies:
   device_preview: ^1.1.0
   # util
   json_serializable: ^6.5.4
+
+  # state management
   flutter_hooks: ^0.18.5+1
   hooks_riverpod: ^2.1.1
+
+  # networking
+  dio: ^4.0.6
+  retrofit: ^3.3.1
+  flutter_platform_widgets: ^2.0.0
 
 dev_dependencies:
   flutter_test:
@@ -62,5 +67,6 @@ flutter_gen:
 flutter:
   uses-material-design: true
   assets:
-    - assets/images/
     - stub/
+    - assets/images/
+    - assets/images/icons/
