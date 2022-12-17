@@ -17,7 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$BasicProfileEntryState {
   String get name => throw _privateConstructorUsedError;
-  String get gender => throw _privateConstructorUsedError;
+  GenderType get gender => throw _privateConstructorUsedError;
   String get adress => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -31,7 +31,7 @@ abstract class $BasicProfileEntryStateCopyWith<$Res> {
           $Res Function(BasicProfileEntryState) then) =
       _$BasicProfileEntryStateCopyWithImpl<$Res, BasicProfileEntryState>;
   @useResult
-  $Res call({String name, String gender, String adress});
+  $Res call({String name, GenderType gender, String adress});
 }
 
 /// @nodoc
@@ -60,7 +60,7 @@ class _$BasicProfileEntryStateCopyWithImpl<$Res,
       gender: null == gender
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
-              as String,
+              as GenderType,
       adress: null == adress
           ? _value.adress
           : adress // ignore: cast_nullable_to_non_nullable
@@ -77,7 +77,7 @@ abstract class _$$_BasicProfileEntryStateCopyWith<$Res>
       __$$_BasicProfileEntryStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String name, String gender, String adress});
+  $Res call({String name, GenderType gender, String adress});
 }
 
 /// @nodoc
@@ -104,7 +104,7 @@ class __$$_BasicProfileEntryStateCopyWithImpl<$Res>
       gender: null == gender
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
-              as String,
+              as GenderType,
       adress: null == adress
           ? _value.adress
           : adress // ignore: cast_nullable_to_non_nullable
@@ -115,16 +115,17 @@ class __$$_BasicProfileEntryStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_BasicProfileEntryState implements _BasicProfileEntryState {
+class _$_BasicProfileEntryState extends _BasicProfileEntryState {
   const _$_BasicProfileEntryState(
-      {this.name = "", this.gender = "未選択", this.adress = "東京都"});
+      {this.name = "", this.gender = GenderType.unknown, this.adress = ""})
+      : super._();
 
   @override
   @JsonKey()
   final String name;
   @override
   @JsonKey()
-  final String gender;
+  final GenderType gender;
   @override
   @JsonKey()
   final String adress;
@@ -155,16 +156,17 @@ class _$_BasicProfileEntryState implements _BasicProfileEntryState {
           this, _$identity);
 }
 
-abstract class _BasicProfileEntryState implements BasicProfileEntryState {
+abstract class _BasicProfileEntryState extends BasicProfileEntryState {
   const factory _BasicProfileEntryState(
       {final String name,
-      final String gender,
+      final GenderType gender,
       final String adress}) = _$_BasicProfileEntryState;
+  const _BasicProfileEntryState._() : super._();
 
   @override
   String get name;
   @override
-  String get gender;
+  GenderType get gender;
   @override
   String get adress;
   @override

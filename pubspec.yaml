@@ -36,7 +36,6 @@ dependencies:
   # util
   json_serializable: ^6.5.4
   bottom_picker: ^2.0.1
-  flutter_platform_widgets: ^2.0.0
 
   # state management
   flutter_hooks: ^0.18.5+1
