@@ -18,24 +18,34 @@ class BasicProfileEntryPage extends HookConsumerWidget {
     );
   }
 
+// Expanded
   PreferredSizeWidget _appBar() {
-    return const BasicAppbar(
-      widget: Text(
-        "はじめる",
-        style: TextStyle(
-          fontSize: 26,
-          fontWeight: FontWeight.bold,
+    return BasicAppbar(
+      widget: Expanded(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            const Text(
+              "はじめる",
+              style: TextStyle(
+                fontSize: 26,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            nextButton(),
+          ],
         ),
       ),
-      centerTitle: false,
     );
   }
 
   Widget _body(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 30,
-        vertical: 20,
+      padding: const EdgeInsets.only(
+        top: 20,
+        left: 30,
+        right: 30,
+        bottom: 50,
       ),
       child: Column(
         children: [
@@ -71,6 +81,27 @@ class BasicProfileEntryPage extends HookConsumerWidget {
             onSaved: (value) {},
           ),
         ],
+      ),
+    );
+  }
+
+  Widget nextButton() {
+    return ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        elevation: 0,
+        backgroundColor: const Color(0xFFF5F5F5),
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(50),
+        ),
+      ),
+      onPressed: () {},
+      child: const Text(
+        "次へ",
+        style: TextStyle(
+          fontSize: 16,
+          color: Colors.black,
+        ),
       ),
     );
   }
