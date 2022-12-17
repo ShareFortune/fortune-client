@@ -35,6 +35,8 @@ dependencies:
   device_preview: ^1.1.0
   # util
   json_serializable: ^6.5.4
+  bottom_picker: ^2.0.1
+  flutter_platform_widgets: ^2.0.0
 
   # state management
   flutter_hooks: ^0.18.5+1
@@ -43,7 +45,6 @@ dependencies:
   # networking
   dio: ^4.0.6
   retrofit: ^3.3.1
-  flutter_platform_widgets: ^2.0.0
 
 dev_dependencies:
   flutter_test:
