@@ -12,7 +12,7 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i14;
-import 'package:auto_route/empty_router_widgets.dart' as _i5;
+import 'package:auto_route/empty_router_widgets.dart' as _i2;
 import 'package:flutter/material.dart' as _i15;
 import 'package:fortune_client/view/pages/account/account/account_page.dart'
     as _i6;
@@ -23,8 +23,8 @@ import 'package:fortune_client/view/pages/message/message_room/message_room_page
     as _i13;
 import 'package:fortune_client/view/pages/message/message_room_list/message_room_list_page.dart'
     as _i12;
-import 'package:fortune_client/view/pages/profile/create/profile_create_page.dart'
-    as _i2;
+import 'package:fortune_client/view/pages/profile/create/entry_basic_profile/basic_profile_entry_page.dart'
+    as _i5;
 import 'package:fortune_client/view/pages/profile/profile/profile_page.dart'
     as _i3;
 import 'package:fortune_client/view/pages/request/request_confirmation/request_confirmation_page.dart'
@@ -59,11 +59,9 @@ class AppRouter extends _i14.RootStackRouter {
       );
     },
     ProfileCreateRoute.name: (routeData) {
-      final args = routeData.argsAs<ProfileCreateRouteArgs>(
-          orElse: () => const ProfileCreateRouteArgs());
       return _i14.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: _i2.ProfileCreatePage(key: args.key),
+        child: const _i2.EmptyRouterPage(),
       );
     },
     ProfileRoute.name: (routeData) {
@@ -84,28 +82,34 @@ class AppRouter extends _i14.RootStackRouter {
         child: const _i4.MyBottomNavigationBar(),
       );
     },
+    BasicProfileEntryRoute.name: (routeData) {
+      return _i14.AdaptivePage<dynamic>(
+        routeData: routeData,
+        child: const _i5.BasicProfileEntryPage(),
+      );
+    },
     RoomsRoute.name: (routeData) {
       return _i14.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i5.EmptyRouterPage(),
+        child: const _i2.EmptyRouterPage(),
       );
     },
     ParticipatingRoomsRoute.name: (routeData) {
       return _i14.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i5.EmptyRouterPage(),
+        child: const _i2.EmptyRouterPage(),
       );
     },
     CreateRoomRoute.name: (routeData) {
       return _i14.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i5.EmptyRouterPage(),
+        child: const _i2.EmptyRouterPage(),
       );
     },
     MessageRoomsRoute.name: (routeData) {
       return _i14.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i5.EmptyRouterPage(),
+        child: const _i2.EmptyRouterPage(),
       );
     },
     AccountRoute.name: (routeData) {
@@ -180,6 +184,13 @@ class AppRouter extends _i14.RootStackRouter {
           ProfileCreateRoute.name,
           path: '/create-profile',
           guards: [authGuard],
+          children: [
+            _i14.RouteConfig(
+              BasicProfileEntryRoute.name,
+              path: '',
+              parent: ProfileCreateRoute.name,
+            )
+          ],
         ),
         _i14.RouteConfig(
           ProfileRoute.name,
@@ -284,27 +295,16 @@ class LoginRoute extends _i14.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i2.ProfileCreatePage]
-class ProfileCreateRoute extends _i14.PageRouteInfo<ProfileCreateRouteArgs> {
-  ProfileCreateRoute({_i15.Key? key})
+/// [_i2.EmptyRouterPage]
+class ProfileCreateRoute extends _i14.PageRouteInfo<void> {
+  const ProfileCreateRoute({List<_i14.PageRouteInfo>? children})
       : super(
           ProfileCreateRoute.name,
           path: '/create-profile',
-          args: ProfileCreateRouteArgs(key: key),
+          initialChildren: children,
         );
 
   static const String name = 'ProfileCreateRoute';
-}
-
-class ProfileCreateRouteArgs {
-  const ProfileCreateRouteArgs({this.key});
-
-  final _i15.Key? key;
-
-  @override
-  String toString() {
-    return 'ProfileCreateRouteArgs{key: $key}';
-  }
 }
 
 /// generated route for
@@ -356,7 +356,19 @@ class HomeRoute extends _i14.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i5.EmptyRouterPage]
+/// [_i5.BasicProfileEntryPage]
+class BasicProfileEntryRoute extends _i14.PageRouteInfo<void> {
+  const BasicProfileEntryRoute()
+      : super(
+          BasicProfileEntryRoute.name,
+          path: '',
+        );
+
+  static const String name = 'BasicProfileEntryRoute';
+}
+
+/// generated route for
+/// [_i2.EmptyRouterPage]
 class RoomsRoute extends _i14.PageRouteInfo<void> {
   const RoomsRoute({List<_i14.PageRouteInfo>? children})
       : super(
@@ -369,7 +381,7 @@ class RoomsRoute extends _i14.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i5.EmptyRouterPage]
+/// [_i2.EmptyRouterPage]
 class ParticipatingRoomsRoute extends _i14.PageRouteInfo<void> {
   const ParticipatingRoomsRoute({List<_i14.PageRouteInfo>? children})
       : super(
@@ -382,7 +394,7 @@ class ParticipatingRoomsRoute extends _i14.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i5.EmptyRouterPage]
+/// [_i2.EmptyRouterPage]
 class CreateRoomRoute extends _i14.PageRouteInfo<void> {
   const CreateRoomRoute({List<_i14.PageRouteInfo>? children})
       : super(
@@ -395,7 +407,7 @@ class CreateRoomRoute extends _i14.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i5.EmptyRouterPage]
+/// [_i2.EmptyRouterPage]
 class MessageRoomsRoute extends _i14.PageRouteInfo<void> {
   const MessageRoomsRoute({List<_i14.PageRouteInfo>? children})
       : super(
