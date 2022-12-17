@@ -89,7 +89,9 @@ class BasicProfileEntryPage extends HookConsumerWidget {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
         elevation: 0,
-        backgroundColor: const Color(0xFFF5F5F5),
+        backgroundColor: const Color(0xFFC782E4),
+        // C782E4
+        // 0xFFF5F5F5
         padding: const EdgeInsets.symmetric(horizontal: 20),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(50),
@@ -100,7 +102,8 @@ class BasicProfileEntryPage extends HookConsumerWidget {
         "次へ",
         style: TextStyle(
           fontSize: 16,
-          color: Colors.black,
+          color: Colors.white,
+          // color: Colors.black,
         ),
       ),
     );
