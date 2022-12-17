@@ -5,17 +5,6 @@ import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-enum City {
-  ueno('上野'),
-  shinjuku('新宿'),
-  akihabara('秋葉原'),
-  ikebukuro('池袋'),
-  shibuya('渋谷');
-
-  final String displayName;
-  const City(this.displayName);
-}
-
 class BasicProfileEntryPage extends HookConsumerWidget {
   const BasicProfileEntryPage({super.key});
 
@@ -43,8 +32,6 @@ class BasicProfileEntryPage extends HookConsumerWidget {
   }
 
   Widget _body(BuildContext context) {
-    City? _city = City.ueno;
-
     return Container(
       padding: const EdgeInsets.symmetric(
         horizontal: 30,
