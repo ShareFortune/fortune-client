@@ -90,10 +90,12 @@ class AppRouter extends _i15.RootStackRouter {
         child: const _i5.BasicProfileEntryPage(),
       );
     },
-    DetailedProfileEntryRoute.name: (routeData) {
+    ProfileCreationManagementRoute.name: (routeData) {
+      final args = routeData.argsAs<ProfileCreationManagementRouteArgs>(
+          orElse: () => const ProfileCreationManagementRouteArgs());
       return _i15.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i6.DetailedProfileEntryPage(),
+        child: _i6.DetailedProfileEntryPage(key: args.key),
       );
     },
     RoomsRoute.name: (routeData) {
@@ -199,8 +201,8 @@ class AppRouter extends _i15.RootStackRouter {
               parent: ProfileCreateRoute.name,
             ),
             _i15.RouteConfig(
-              DetailedProfileEntryRoute.name,
-              path: 'detail',
+              ProfileCreationManagementRoute.name,
+              path: 'management',
               parent: ProfileCreateRoute.name,
             ),
           ],
@@ -381,15 +383,28 @@ class BasicProfileEntryRoute extends _i15.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i6.DetailedProfileEntryPage]
-class DetailedProfileEntryRoute extends _i15.PageRouteInfo<void> {
-  const DetailedProfileEntryRoute()
+/// [_i6.ProfileCreationManagementPage]
+class ProfileCreationManagementRoute
+    extends _i15.PageRouteInfo<ProfileCreationManagementRouteArgs> {
+  ProfileCreationManagementRoute({_i16.Key? key})
       : super(
-          DetailedProfileEntryRoute.name,
-          path: 'detail',
+          ProfileCreationManagementRoute.name,
+          path: 'management',
+          args: ProfileCreationManagementRouteArgs(key: key),
         );
 
-  static const String name = 'DetailedProfileEntryRoute';
+  static const String name = 'ProfileCreationManagementRoute';
+}
+
+class ProfileCreationManagementRouteArgs {
+  const ProfileCreationManagementRouteArgs({this.key});
+
+  final _i16.Key? key;
+
+  @override
+  String toString() {
+    return 'ProfileCreationManagementRouteArgs{key: $key}';
+  }
 }
 
 /// generated route for

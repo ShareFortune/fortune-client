@@ -4,15 +4,17 @@ import 'package:fortune_client/view/pages/profile/profile/gender_type.dart';
 import 'package:fortune_client/view/routes/app_router.gr.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-final basicProfileEntryViewModelProvider =
-    StateNotifierProvider<BasicProfileEntryViewModel, BasicProfileEntryState>(
+final detailedProfileEntryViewModelProvider = StateNotifierProvider<
+    DetailedProfileEntryViewModel, BasicProfileEntryState>(
   (ref) {
-    return BasicProfileEntryViewModel(ref);
+    return DetailedProfileEntryViewModel(ref);
   },
 );
 
-class BasicProfileEntryViewModel extends StateNotifier<BasicProfileEntryState> {
-  BasicProfileEntryViewModel(this._ref) : super(const BasicProfileEntryState());
+class DetailedProfileEntryViewModel
+    extends StateNotifier<BasicProfileEntryState> {
+  DetailedProfileEntryViewModel(this._ref)
+      : super(const BasicProfileEntryState());
 
   final Ref _ref;
 
