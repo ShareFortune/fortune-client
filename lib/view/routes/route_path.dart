@@ -6,7 +6,8 @@ class RoutePath {
   static const login = '/login';
 
   /// プロフィール作成
-  static const createProfile = '/create-profile';
+  static const createProfile = '/create-profile'; // 基本情報
+  static const createProfileDetail = 'detail'; // 詳細
 
   /// ルームリスト
   static const rooms = 'rooms';

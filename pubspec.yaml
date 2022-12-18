@@ -33,9 +33,11 @@ dependencies:
   fluttertoast: ^8.1.1
   fimber: ^0.6.6
   device_preview: ^1.1.0
+
   # util
   json_serializable: ^6.5.4
   bottom_picker: ^2.0.1
+  page_indicator: ^0.4.1
 
   # state management
   flutter_hooks: ^0.18.5+1

@@ -6,6 +6,7 @@ import 'package:fortune_client/view/pages/common/bottom_navigation_bar/bottom_na
 import 'package:fortune_client/view/pages/message/message_room/message_room_page.dart';
 import 'package:fortune_client/view/pages/message/message_room_list/message_room_list_page.dart';
 import 'package:fortune_client/view/pages/profile/create/entry_basic_profile/basic_profile_entry_page.dart';
+import 'package:fortune_client/view/pages/profile/create/entry_detailed_profile/detailed_profile_entry_page.dart';
 import 'package:fortune_client/view/pages/profile/create/profile_create_page.dart';
 import 'package:fortune_client/view/pages/profile/profile/profile_page.dart';
 import 'package:fortune_client/view/pages/request/request_confirmation/request_confirmation_page.dart';
@@ -38,6 +39,10 @@ export 'app_router.gr.dart';
         AutoRoute(
           path: "",
           page: BasicProfileEntryPage,
+        ),
+        AutoRoute(
+          path: RoutePath.createProfileDetail,
+          page: DetailedProfileEntryPage,
         ),
       ],
     ),
