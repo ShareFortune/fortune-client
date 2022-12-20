@@ -44,7 +44,7 @@ PODS:
     - FirebaseAuth (~> 10.3.0)
   - Firebase/CoreOnly (10.3.0):
     - FirebaseCore (= 10.3.0)
-  - firebase_auth (4.2.0):
+  - firebase_auth (4.2.1):
     - Firebase/Auth (= 10.3.0)
     - firebase_core
     - Flutter
@@ -170,7 +170,7 @@ SPEC CHECKSUMS:
   DKPhotoGallery: fdfad5125a9fdda9cc57df834d49df790dbb4179
   file_picker: 817ab1d8cd2da9d2da412a417162deee3500fc95
   Firebase: f92fc551ead69c94168d36c2b26188263860acd9
-  firebase_auth: 579a0dc15451491cc83fccaa5102296635f24938
+  firebase_auth: 30cbdb28d5c38f572c331a8590a93e2a1201d75c
   firebase_core: 6f2f753e316765799d88568232ed59e300ff53db
   FirebaseAuth: 0e415d29d846c1dce2fb641e46f35e9888d9bec6
   FirebaseCore: 988754646ab3bd4bdcb740f1bfe26b9f6c0d5f2a

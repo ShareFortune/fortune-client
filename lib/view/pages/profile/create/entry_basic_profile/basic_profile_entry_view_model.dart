@@ -39,6 +39,6 @@ class BasicProfileEntryViewModel extends StateNotifier<BasicProfileEntryState> {
   }
 
   _pushNext(StackRouter router) async {
-    await router.push(ProfileCreationManagementRoute());
+    await router.push(const DetailedProfileEntryRoute());
   }
 }

@@ -5,6 +5,7 @@ import 'package:fortune_client/view/pages/common/basic_app_bar/basic_app_bar.dar
 import 'package:fortune_client/view/pages/profile/create/entry_basic_profile/basic_profile_entry_view_model.dart';
 import 'package:fortune_client/view/pages/profile/profile/gender_type.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
+import 'package:fortune_client/view/widgets/bottom_picker.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -63,7 +64,12 @@ class BasicProfileEntryPage extends HookConsumerWidget {
                 labelText: '性別',
               ),
               onTap: () {
-                final sheet = genderPicker(viewModel.changeGender);
+                final sheet = bottomPicker(
+                  GenderType.values,
+                  GenderType.values.map((e) => e.text).toList(),
+                  viewModel.changeGender,
+                );
+                // final sheet = genderPicker(viewModel.changeGender);
                 sheet.show(context);
               },
             ),
@@ -105,23 +111,23 @@ class BasicProfileEntryPage extends HookConsumerWidget {
     );
   }
 
-  BottomPicker genderPicker(Function(GenderType) changeGender) {
-    const items = GenderType.values;
-    return BottomPicker(
-      items: items.map((e) => Text(e.text)).toList(),
-      title: "",
-      buttonText: '完了',
-      buttonTextStyle: const TextStyle(
-        color: Colors.white,
-      ),
-      buttonSingleColor: Colors.pink,
-      pickerTextStyle: const TextStyle(
-        color: Colors.black,
-        fontSize: 20,
-      ),
-      onSubmit: (p0) {
-        changeGender(items[p0]);
-      },
-    );
-  }
+  // BottomPicker genderPicker(Function(GenderType) changeGender) {
+  //   const items = GenderType.values;
+  //   return BottomPicker(
+  //     items: items.map((e) => Text(e.text)).toList(),
+  //     title: "",
+  //     buttonText: '完了',
+  //     buttonTextStyle: const TextStyle(
+  //       color: Colors.white,
+  //     ),
+  //     buttonSingleColor: Colors.pink,
+  //     pickerTextStyle: const TextStyle(
+  //       color: Colors.black,
+  //       fontSize: 20,
+  //     ),
+  //     onSubmit: (p0) {
+  //       changeGender(items[p0]);
+  //     },
+  //   );
+  // }
 }

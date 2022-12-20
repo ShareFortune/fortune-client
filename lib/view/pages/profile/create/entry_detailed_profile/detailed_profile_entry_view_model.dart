@@ -41,6 +41,6 @@ class DetailedProfileEntryViewModel
   }
 
   _pushNext(StackRouter router) async {
-    await router.push(ProfileCreationManagementRoute());
+    // await router.push(ProfileCreationManagementRoute());
   }
 }

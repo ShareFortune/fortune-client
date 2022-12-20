@@ -18,9 +18,9 @@ class DetailedProfileEntryPage extends HookConsumerWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: const [
               Text(
-                "はじめる",
+                "プロフィール作成",
                 style: TextStyle(
-                  fontSize: 26,
+                  fontSize: 20,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -40,37 +40,40 @@ class DetailedProfileEntryPage extends HookConsumerWidget {
           children: [
             Column(
               children: [
-                _inputField("身長"),
-                Gap(30),
-                _inputField("職業"),
-                Gap(30),
-                _inputField("居住地"),
-                Gap(30),
-                _inputField("出身地"),
-                Gap(30),
-                _inputField("お酒"),
-                Gap(30),
-                _inputField("タバコ"),
+                _inputField("身長", ""),
+                const Gap(30),
+                _inputField("職業", ""),
+                const Gap(30),
+                _inputField("居住地", ""),
+                const Gap(30),
+                _inputField("出身地", ""),
+                const Gap(30),
+                _inputField("お酒", ""),
+                const Gap(30),
+                _inputField("タバコ", ""),
               ],
             ),
-            _nextButton(true, () => null),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  "なんか入力した方がいいですよとか入力必須ではないとかの注釈を入れる。居住地とかのデータがどのように利用されるかはログイン画面の利用規約に表示するが、他のユーザーにどのように表示されるかについてはここで注釈入れた方がいいかも。",
+                  style: TextStyle(color: Color(0xFF6C6C6C)),
+                ),
+                const Gap(30),
+                _nextButton(true, () => null),
+              ],
+            ),
           ],
         ),
       ),
     );
   }
 
-  _title() {
-    return const Text(
-      "プロフィールを作ろう！",
-      style: TextStyle(
-        fontSize: 20,
-        fontWeight: FontWeight.bold,
-      ),
-    );
-  }
-
-  _inputField(String title) {
+  _inputField(
+    String title,
+    String value,
+  ) {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 10),
       decoration: const BoxDecoration(
@@ -86,16 +89,24 @@ class DetailedProfileEntryPage extends HookConsumerWidget {
         children: [
           Text(title, style: const TextStyle(fontSize: 16)),
           Row(
-            children: const [
-              Text(
-                "未設定",
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Color(0xFF969696),
-                ),
-              ),
-              Gap(10),
-              Icon(
+            children: [
+              value.isNotEmpty
+                  ? Text(
+                      value,
+                      style: const TextStyle(
+                        fontSize: 16,
+                        color: Color(0xFFC782E4),
+                      ),
+                    )
+                  : const Text(
+                      "未設定",
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: Color(0xFF969696),
+                      ),
+                    ),
+              const Gap(10),
+              const Icon(
                 size: 16,
                 Icons.arrow_forward_ios,
                 color: Color(0xFFD9D9D9),
