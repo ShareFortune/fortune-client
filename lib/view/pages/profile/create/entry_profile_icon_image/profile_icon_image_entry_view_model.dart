@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:fortune_client/view/pages/profile/create/entry_profile_icon_image/profile_icon_image_entry_state.dart';
+import 'package:fortune_client/view/routes/app_router.gr.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -34,7 +35,6 @@ class ProfileIconImageEntryViewModel
   }
 
   _pushNext(StackRouter router) async {
-    print("push");
-    // await router.push(const ProfileIconImageEntryRoute());
+    await router.push(const EntryProfileSubImageRoute());
   }
 }

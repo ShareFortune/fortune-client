@@ -96,8 +96,8 @@ class __$$_ProfileIconImageEntryStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_ProfileIconImageEntryState extends _ProfileIconImageEntryState {
-  const _$_ProfileIconImageEntryState({this.imageFile = null}) : super._();
+class _$_ProfileIconImageEntryState implements _ProfileIconImageEntryState {
+  const _$_ProfileIconImageEntryState({this.imageFile = null});
 
   @override
   @JsonKey()
@@ -128,10 +128,10 @@ class _$_ProfileIconImageEntryState extends _ProfileIconImageEntryState {
           _$_ProfileIconImageEntryState>(this, _$identity);
 }
 
-abstract class _ProfileIconImageEntryState extends ProfileIconImageEntryState {
+abstract class _ProfileIconImageEntryState
+    implements ProfileIconImageEntryState {
   const factory _ProfileIconImageEntryState({final File? imageFile}) =
       _$_ProfileIconImageEntryState;
-  const _ProfileIconImageEntryState._() : super._();
 
   @override
   File? get imageFile;

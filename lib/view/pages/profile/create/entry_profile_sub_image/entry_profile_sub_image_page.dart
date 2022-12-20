@@ -1,22 +1,22 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:fortune_client/view/hooks/use_media_query.dart';
 import 'package:fortune_client/view/hooks/use_router.dart';
 import 'package:fortune_client/view/pages/common/basic_app_bar/basic_app_bar.dart';
-import 'package:fortune_client/view/pages/profile/create/entry_profile_icon_image/profile_icon_image_entry_view_model.dart';
+import 'package:fortune_client/view/pages/profile/create/entry_profile_sub_image/entry_profile_sub_image_view_model.dart';
 import 'package:fortune_client/view/widgets/next_button.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class ProfileIconImageEntryPage extends HookConsumerWidget {
-  const ProfileIconImageEntryPage({super.key});
+class EntryProfileSubImagePage extends HookConsumerWidget {
+  const EntryProfileSubImagePage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final router = useRouter();
-    final state = ref.watch(profileIconImageEntryViewModelProvider);
-    final viewModel =
-        ref.watch(profileIconImageEntryViewModelProvider.notifier);
+    final state = ref.watch(entryProfileSubImageViewModelProvider);
+    final viewModel = ref.watch(entryProfileSubImageViewModelProvider.notifier);
 
     return Scaffold(
       appBar: BasicAppbar(
@@ -25,7 +25,7 @@ class ProfileIconImageEntryPage extends HookConsumerWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: const [
               Text(
-                "アイコン写真を登録しよう！",
+                "サブ写真を登録しよう！",
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
@@ -39,8 +39,8 @@ class ProfileIconImageEntryPage extends HookConsumerWidget {
         child: Container(
           padding: const EdgeInsets.only(
             top: 30,
-            left: 60,
-            right: 60,
+            left: 40,
+            right: 40,
             bottom: 50,
           ),
           child: Column(
@@ -48,21 +48,41 @@ class ProfileIconImageEntryPage extends HookConsumerWidget {
             children: [
               Column(
                 children: [
-                  _iconImageInputField(
-                    file: state.imageFile,
-                    onTap: () async {
-                      await viewModel.pickImage();
-                    },
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      _iconImageInputField(
+                        file: state.firstImageFile,
+                        onTap: () => viewModel.pickImageFirst(),
+                      ),
+                      const Gap(30),
+                      _iconImageInputField(
+                        file: state.secondImageFile,
+                        onTap: () => viewModel.pickImageSecond(),
+                      ),
+                    ],
+                  ),
+                  const Gap(30),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      _iconImageInputField(
+                        file: state.thirdImageFile,
+                        onTap: () => viewModel.pickImageThird(),
+                      ),
+                      const Gap(30),
+                      _iconImageInputField(
+                        file: state.fourthImageFile,
+                        onTap: () => viewModel.pickImageFourth(),
+                      ),
+                    ],
                   ),
                   const Gap(80),
                   const Text("こんな画像を設定したら、"),
                   const Text("マッチしやすくなるよ的なやつを入れる。"),
                 ],
               ),
-              nextButton(
-                state.imageFile != null,
-                () => viewModel.onTapNextBtn(router),
-              ),
+              nextButton(true, () => null),
             ],
           ),
         ),
@@ -77,8 +97,8 @@ class ProfileIconImageEntryPage extends HookConsumerWidget {
     return InkWell(
       onTap: onTap,
       child: Container(
-        width: 300,
-        height: 300,
+        width: 150,
+        height: 150,
         decoration: BoxDecoration(
           image: file != null
               ? DecorationImage(
