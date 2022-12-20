@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:fortune_client/view/hooks/use_media_query.dart';
+import 'package:fortune_client/view/hooks/use_router.dart';
 import 'package:fortune_client/view/pages/common/basic_app_bar/basic_app_bar.dart';
+import 'package:fortune_client/view/pages/profile/create/entry_detailed_profile/detailed_profile_entry_view_model.dart';
+import 'package:fortune_client/view/widgets/next_button.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -9,7 +11,8 @@ class DetailedProfileEntryPage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final mediaQuery = useMediaQuery();
+    final router = useRouter();
+    final viewModel = ref.watch(detailedProfileEntryViewModelProvider.notifier);
 
     return Scaffold(
       appBar: BasicAppbar(
@@ -61,7 +64,7 @@ class DetailedProfileEntryPage extends HookConsumerWidget {
                   style: TextStyle(color: Color(0xFF6C6C6C)),
                 ),
                 const Gap(30),
-                _nextButton(true, () => null),
+                nextButton(true, () => viewModel.onTapNextBtn(router)),
               ],
             ),
           ],
@@ -114,33 +117,6 @@ class DetailedProfileEntryPage extends HookConsumerWidget {
             ],
           ),
         ],
-      ),
-    );
-  }
-
-  Widget _nextButton(bool clickable, Function() onPressed) {
-    final bgColor =
-        clickable ? const Color(0xFFC782E4) : const Color(0xFFF5F5F5);
-    final textColor = clickable ? Colors.white : Colors.black;
-
-    return ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        elevation: 0,
-        backgroundColor: bgColor,
-        padding: const EdgeInsets.symmetric(vertical: 20),
-        fixedSize: const Size.fromWidth(double.maxFinite),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(50),
-        ),
-      ),
-      onPressed: onPressed,
-      child: Text(
-        "次へ",
-        style: TextStyle(
-          fontSize: 16,
-          color: textColor,
-          fontWeight: FontWeight.bold,
-        ),
       ),
     );
   }

@@ -14,7 +14,6 @@ dependencies:
   badges: ^2.0.3
   flutter_staggered_animations: ^1.1.1
   flutter_chat_ui: ^1.6.5
-  file_picker: ^5.2.1
   uuid: ^3.0.6
   mime: ^1.0.2
   path_provider: ^2.0.11
@@ -22,7 +21,6 @@ dependencies:
   google_sign_in: ^5.4.2
   freezed_annotation: ^2.2.0
   auto_route: ^5.0.2
-  image_picker: ^0.8.6
   flutter_svg: ^1.1.6
   gap: ^2.0.1
   google_fonts: ^3.0.1
@@ -35,7 +33,8 @@ dependencies:
   # util
   json_serializable: ^6.5.4
   bottom_picker: ^2.0.1
-  status_change: ^2.0.0
+  image_picker: ^0.8.6
+  file_picker: ^5.2.4
 
   # state management
   flutter_hooks: ^0.18.5+1

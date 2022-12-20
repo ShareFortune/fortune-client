@@ -7,6 +7,7 @@ import 'package:fortune_client/view/pages/message/message_room/message_room_page
 import 'package:fortune_client/view/pages/message/message_room_list/message_room_list_page.dart';
 import 'package:fortune_client/view/pages/profile/create/entry_basic_profile/basic_profile_entry_page.dart';
 import 'package:fortune_client/view/pages/profile/create/entry_detailed_profile/detailed_profile_entry_page.dart';
+import 'package:fortune_client/view/pages/profile/create/entry_profile_icon_image/profile_icon_image_entry_page.dart';
 import 'package:fortune_client/view/pages/profile/profile/profile_page.dart';
 import 'package:fortune_client/view/pages/request/request_confirmation/request_confirmation_page.dart';
 import 'package:fortune_client/view/pages/rooms/create/room_create_page.dart';
@@ -40,8 +41,12 @@ export 'app_router.gr.dart';
           page: BasicProfileEntryPage,
         ),
         AutoRoute(
-          path: RoutePath.profileCreationManagement,
+          path: RoutePath.createProfileDetail,
           page: DetailedProfileEntryPage,
+        ),
+        AutoRoute(
+          path: RoutePath.createProfileIconImage,
+          page: ProfileIconImageEntryPage,
         ),
       ],
     ),

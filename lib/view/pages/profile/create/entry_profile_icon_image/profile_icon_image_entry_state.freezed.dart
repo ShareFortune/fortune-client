@@ -1,0 +1,142 @@
+// coverage:ignore-file
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
+
+part of 'profile_icon_image_entry_state.dart';
+
+// **************************************************************************
+// FreezedGenerator
+// **************************************************************************
+
+T _$identity<T>(T value) => value;
+
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
+/// @nodoc
+mixin _$ProfileIconImageEntryState {
+  File? get imageFile => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $ProfileIconImageEntryStateCopyWith<ProfileIconImageEntryState>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ProfileIconImageEntryStateCopyWith<$Res> {
+  factory $ProfileIconImageEntryStateCopyWith(ProfileIconImageEntryState value,
+          $Res Function(ProfileIconImageEntryState) then) =
+      _$ProfileIconImageEntryStateCopyWithImpl<$Res,
+          ProfileIconImageEntryState>;
+  @useResult
+  $Res call({File? imageFile});
+}
+
+/// @nodoc
+class _$ProfileIconImageEntryStateCopyWithImpl<$Res,
+        $Val extends ProfileIconImageEntryState>
+    implements $ProfileIconImageEntryStateCopyWith<$Res> {
+  _$ProfileIconImageEntryStateCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? imageFile = freezed,
+  }) {
+    return _then(_value.copyWith(
+      imageFile: freezed == imageFile
+          ? _value.imageFile
+          : imageFile // ignore: cast_nullable_to_non_nullable
+              as File?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_ProfileIconImageEntryStateCopyWith<$Res>
+    implements $ProfileIconImageEntryStateCopyWith<$Res> {
+  factory _$$_ProfileIconImageEntryStateCopyWith(
+          _$_ProfileIconImageEntryState value,
+          $Res Function(_$_ProfileIconImageEntryState) then) =
+      __$$_ProfileIconImageEntryStateCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({File? imageFile});
+}
+
+/// @nodoc
+class __$$_ProfileIconImageEntryStateCopyWithImpl<$Res>
+    extends _$ProfileIconImageEntryStateCopyWithImpl<$Res,
+        _$_ProfileIconImageEntryState>
+    implements _$$_ProfileIconImageEntryStateCopyWith<$Res> {
+  __$$_ProfileIconImageEntryStateCopyWithImpl(
+      _$_ProfileIconImageEntryState _value,
+      $Res Function(_$_ProfileIconImageEntryState) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? imageFile = freezed,
+  }) {
+    return _then(_$_ProfileIconImageEntryState(
+      imageFile: freezed == imageFile
+          ? _value.imageFile
+          : imageFile // ignore: cast_nullable_to_non_nullable
+              as File?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_ProfileIconImageEntryState extends _ProfileIconImageEntryState {
+  const _$_ProfileIconImageEntryState({this.imageFile = null}) : super._();
+
+  @override
+  @JsonKey()
+  final File? imageFile;
+
+  @override
+  String toString() {
+    return 'ProfileIconImageEntryState(imageFile: $imageFile)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_ProfileIconImageEntryState &&
+            (identical(other.imageFile, imageFile) ||
+                other.imageFile == imageFile));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, imageFile);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_ProfileIconImageEntryStateCopyWith<_$_ProfileIconImageEntryState>
+      get copyWith => __$$_ProfileIconImageEntryStateCopyWithImpl<
+          _$_ProfileIconImageEntryState>(this, _$identity);
+}
+
+abstract class _ProfileIconImageEntryState extends ProfileIconImageEntryState {
+  const factory _ProfileIconImageEntryState({final File? imageFile}) =
+      _$_ProfileIconImageEntryState;
+  const _ProfileIconImageEntryState._() : super._();
+
+  @override
+  File? get imageFile;
+  @override
+  @JsonKey(ignore: true)
+  _$$_ProfileIconImageEntryStateCopyWith<_$_ProfileIconImageEntryState>
+      get copyWith => throw _privateConstructorUsedError;
+}
