@@ -17,7 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$DetailedProfileEntryState {
   /// 身長
-  double get height => throw _privateConstructorUsedError;
+  int get height => throw _privateConstructorUsedError;
 
   /// 職業
   String get occupation => throw _privateConstructorUsedError;
@@ -46,7 +46,7 @@ abstract class $DetailedProfileEntryStateCopyWith<$Res> {
       _$DetailedProfileEntryStateCopyWithImpl<$Res, DetailedProfileEntryState>;
   @useResult
   $Res call(
-      {double height,
+      {int height,
       String occupation,
       String residence,
       String birthPlace,
@@ -79,7 +79,7 @@ class _$DetailedProfileEntryStateCopyWithImpl<$Res,
       height: null == height
           ? _value.height
           : height // ignore: cast_nullable_to_non_nullable
-              as double,
+              as int,
       occupation: null == occupation
           ? _value.occupation
           : occupation // ignore: cast_nullable_to_non_nullable
@@ -114,7 +114,7 @@ abstract class _$$_DetailedProfileEntryStateCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {double height,
+      {int height,
       String occupation,
       String residence,
       String birthPlace,
@@ -146,7 +146,7 @@ class __$$_DetailedProfileEntryStateCopyWithImpl<$Res>
       height: null == height
           ? _value.height
           : height // ignore: cast_nullable_to_non_nullable
-              as double,
+              as int,
       occupation: null == occupation
           ? _value.occupation
           : occupation // ignore: cast_nullable_to_non_nullable
@@ -186,7 +186,7 @@ class _$_DetailedProfileEntryState extends _DetailedProfileEntryState {
   /// 身長
   @override
   @JsonKey()
-  final double height;
+  final int height;
 
   /// 職業
   @override
@@ -250,7 +250,7 @@ class _$_DetailedProfileEntryState extends _DetailedProfileEntryState {
 
 abstract class _DetailedProfileEntryState extends DetailedProfileEntryState {
   const factory _DetailedProfileEntryState(
-      {final double height,
+      {final int height,
       final String occupation,
       final String residence,
       final String birthPlace,
@@ -261,7 +261,7 @@ abstract class _DetailedProfileEntryState extends DetailedProfileEntryState {
   @override
 
   /// 身長
-  double get height;
+  int get height;
   @override
 
   /// 職業

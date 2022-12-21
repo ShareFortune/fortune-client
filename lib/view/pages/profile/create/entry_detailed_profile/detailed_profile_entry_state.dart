@@ -7,7 +7,7 @@ class DetailedProfileEntryState with _$DetailedProfileEntryState {
   const DetailedProfileEntryState._();
   const factory DetailedProfileEntryState({
     /// 身長
-    @Default(170) double height,
+    @Default(170) int height,
 
     /// 職業
     @Default("未選択") String occupation,

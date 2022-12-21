@@ -1,19 +1,19 @@
+import 'dart:io';
+
 import 'package:fortune_client/data/datasource/remote/go/profile/profile_data_source.dart';
 import 'package:fortune_client/data/model/profile/profile.dart';
 import 'package:fortune_client/data/repository/profile/profile_repository.dart';
+import 'package:fortune_client/data/model/gender_type.dart';
 
 class ProfileRepositoryImpl implements ProfileRepository {
   final ProfileDataSource _dataSource;
 
   ProfileRepositoryImpl(this._dataSource);
 
-  @override
-  bool get isCreated => false;
+  bool cretest = false;
 
   @override
-  Future<String> create() {
-    throw UnimplementedError();
-  }
+  bool get isCreated => cretest;
 
   @override
   Future<String> update() {
@@ -23,5 +23,22 @@ class ProfileRepositoryImpl implements ProfileRepository {
   @override
   Future<Profile> get(String id) async {
     return await _dataSource.get(id);
+  }
+
+  @override
+  Future<String> create({
+    required File? iconImage,
+    required File? mainImage,
+    required File? secondImage,
+    required File? thirdImage,
+    required File? fourthImage,
+    required String name,
+    required GenderType gender,
+    required int height,
+    required String drinkFrequency,
+    required String cigaretteFrequency,
+  }) async {
+    cretest = true;
+    return await _dataSource.create();
   }
 }

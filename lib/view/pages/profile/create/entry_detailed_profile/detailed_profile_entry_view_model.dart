@@ -17,8 +17,6 @@ class DetailedProfileEntryViewModel
 
   final Ref _ref;
 
-  Future<void> create() async {}
-
   onTapNextBtn(StackRouter router) async {
     /// Stateを親ウィジットのViewModelに保存
     ///

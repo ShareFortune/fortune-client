@@ -10,4 +10,7 @@ abstract class ProfileDataSource {
 
   @GET('/profiles')
   Future<Profile> get(String id);
+
+  @POST("/profiles")
+  Future<String> create();
 }

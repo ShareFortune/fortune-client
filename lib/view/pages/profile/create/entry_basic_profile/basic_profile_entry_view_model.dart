@@ -1,6 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:fortune_client/view/pages/profile/create/entry_basic_profile/basic_profile_entry_state.dart';
-import 'package:fortune_client/view/pages/profile/profile/gender_type.dart';
+import 'package:fortune_client/data/model/gender_type.dart';
 import 'package:fortune_client/view/routes/app_router.gr.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 

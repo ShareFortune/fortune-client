@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:fortune_client/view/hooks/use_media_query.dart';
 import 'package:fortune_client/view/hooks/use_router.dart';
 import 'package:fortune_client/view/pages/common/basic_app_bar/basic_app_bar.dart';
 import 'package:fortune_client/view/pages/profile/create/entry_profile_sub_image/entry_profile_sub_image_view_model.dart';
@@ -82,7 +81,7 @@ class EntryProfileSubImagePage extends HookConsumerWidget {
                   const Text("マッチしやすくなるよ的なやつを入れる。"),
                 ],
               ),
-              nextButton(true, () => null),
+              nextButton(true, () => viewModel.onTapNextBtn(router)),
             ],
           ),
         ),
