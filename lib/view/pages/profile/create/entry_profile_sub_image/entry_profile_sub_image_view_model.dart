@@ -12,32 +12,44 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 
 final entryProfileSubImageViewModelProvider = StateNotifierProvider<
-    EntryProfileSubImageViewModel, EntryProfileSubImageState>(
+    EntryProfileSubImageViewModel, AsyncValue<EntryProfileSubImageState>>(
   (ref) => EntryProfileSubImageViewModel(ref, ref.watch(Repository.profile)),
 );
 
 class EntryProfileSubImageViewModel
-    extends StateNotifier<EntryProfileSubImageState> {
+    extends StateNotifier<AsyncValue<EntryProfileSubImageState>> {
   EntryProfileSubImageViewModel(this._ref, this.repository)
-      : super(const EntryProfileSubImageState());
+      : super(const AsyncData(EntryProfileSubImageState()));
 
   final Ref _ref;
   final ProfileRepository repository;
 
   Future<void> pickImageFirst() async {
-    state = state.copyWith(firstImageFile: await _pickImage());
+    final data = state.value;
+    if (data != null) {
+      state = AsyncData(data.copyWith(firstImageFile: await _pickImage()));
+    }
   }
 
   Future<void> pickImageSecond() async {
-    state = state.copyWith(secondImageFile: await _pickImage());
+    final data = state.value;
+    if (data != null) {
+      state = AsyncData(data.copyWith(secondImageFile: await _pickImage()));
+    }
   }
 
   Future<void> pickImageThird() async {
-    state = state.copyWith(thirdImageFile: await _pickImage());
+    final data = state.value;
+    if (data != null) {
+      state = AsyncData(data.copyWith(thirdImageFile: await _pickImage()));
+    }
   }
 
   Future<void> pickImageFourth() async {
-    state = state.copyWith(fourthImageFile: await _pickImage());
+    final data = state.value;
+    if (data != null) {
+      state = AsyncData(data.copyWith(fourthImageFile: await _pickImage()));
+    }
   }
 
   Future<File?> _pickImage() async {
@@ -46,17 +58,17 @@ class EntryProfileSubImageViewModel
     return File(image.path);
   }
 
-  create() async {
+  Future<String> _create(EntryProfileSubImageState data) async {
     final basic = _ref.read(basicProfileEntryViewModelProvider);
     final detail = _ref.read(detailedProfileEntryViewModelProvider);
     final icon = _ref.read(profileIconImageEntryViewModelProvider);
 
-    await repository.create(
+    return await repository.create(
       iconImage: icon.imageFile,
-      mainImage: state.firstImageFile,
-      secondImage: state.secondImageFile,
-      thirdImage: state.thirdImageFile,
-      fourthImage: state.fourthImageFile,
+      mainImage: data.firstImageFile,
+      secondImage: data.secondImageFile,
+      thirdImage: data.thirdImageFile,
+      fourthImage: data.fourthImageFile,
       name: basic.name,
       gender: basic.gender,
       height: detail.height,
@@ -66,14 +78,17 @@ class EntryProfileSubImageViewModel
   }
 
   onTapNextBtn(StackRouter router) async {
-    /// ステートに不足あればエラーを返す。
-    ///
-    /// 作成
-    AsyncValue.guard(() async => await create());
+    state =
+        const AsyncLoading<EntryProfileSubImageState>().copyWithPrevious(state);
+    state = await AsyncValue.guard(() async {
+      final result = await _create(state.value!);
 
-    /// プロフィールが存在すれば遷移
-    /// オートガードでガードで制御できるか検証
-    await _pushNext(router);
+      /// エラーチェック
+      if (result.isNotEmpty) {
+        return await _pushNext(router);
+      }
+      return state.value!;
+    });
   }
 
   _pushNext(StackRouter router) async {

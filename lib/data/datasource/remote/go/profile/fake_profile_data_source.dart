@@ -13,6 +13,7 @@ class FakeProfileDataSource extends StubLoader implements ProfileDataSource {
 
   @override
   Future<String> create() async {
-    return "";
+    await Future.delayed(const Duration(seconds: 3));
+    return "test api";
   }
 }

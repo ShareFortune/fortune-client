@@ -23,7 +23,6 @@ void main() async {
     Fimber.plantTree(DebugTree());
   } else {
     debugPrint = (message, {wrapWidth}) {
-      print("message");
       print(message);
     };
   }

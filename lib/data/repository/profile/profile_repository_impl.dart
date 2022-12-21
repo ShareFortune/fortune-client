@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:fortune_client/data/datasource/remote/go/profile/profile_data_source.dart';
 import 'package:fortune_client/data/model/profile/profile.dart';
 import 'package:fortune_client/data/repository/profile/profile_repository.dart';
-import 'package:fortune_client/data/model/gender_type.dart';
+import 'package:fortune_client/data/model/enum/gender_type.dart';
 
 class ProfileRepositoryImpl implements ProfileRepository {
   final ProfileDataSource _dataSource;
@@ -38,7 +38,8 @@ class ProfileRepositoryImpl implements ProfileRepository {
     required String drinkFrequency,
     required String cigaretteFrequency,
   }) async {
+    final result = await _dataSource.create();
     cretest = true;
-    return await _dataSource.create();
+    return result;
   }
 }
