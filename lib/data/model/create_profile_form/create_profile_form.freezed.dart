@@ -14,28 +14,49 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+CreateProfileForm _$CreateProfileFormFromJson(Map<String, dynamic> json) {
+  return _CreateProfileForm.fromJson(json);
+}
+
 /// @nodoc
 mixin _$CreateProfileForm {
+  @JsonKey(name: 'name')
   String get name => throw _privateConstructorUsedError;
+  @JsonKey(name: 'gender')
   String get gender => throw _privateConstructorUsedError;
+  @JsonKey(name: 'height')
   int get height => throw _privateConstructorUsedError;
+  @JsonKey(name: 'drinkFrequency')
   String get drinkFrequency => throw _privateConstructorUsedError; // お酒をよく飲むか
+  @JsonKey(name: 'cigaretteFrequency')
   String get cigaretteFrequency =>
       throw _privateConstructorUsedError; // タバコをよく吸うか
+  @JsonKey(name: 'selfIntroduction')
   String get selfIntroduction =>
       throw _privateConstructorUsedError; // 自己紹介文(nullalble)
+  @JsonKey(name: 'occupationId')
   int get occupationId => throw _privateConstructorUsedError; // 職業ID
+  @JsonKey(name: 'addressId')
   int get addressId => throw _privateConstructorUsedError; // 居住地
+  @JsonKey(name: 'tagIds')
   List<String> get tags => throw _privateConstructorUsedError; // 居住地
   /// アイコン画像
+  @JsonKey(name: 'mainImage')
   String get iconImage => throw _privateConstructorUsedError;
 
   /// サブ画像
+  @JsonKey(name: 'secondImage')
   String get firstImage => throw _privateConstructorUsedError;
+  @JsonKey(name: 'thirdImage')
   String get secondImage => throw _privateConstructorUsedError;
+  @JsonKey(name: 'fourthImage')
   String get thirdImage => throw _privateConstructorUsedError;
+  @JsonKey(name: 'fifthImage')
   String get fourthImage => throw _privateConstructorUsedError;
+  @JsonKey(name: 'sixthImage')
+  String get fifthImage => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $CreateProfileFormCopyWith<CreateProfileForm> get copyWith =>
       throw _privateConstructorUsedError;
@@ -48,20 +69,21 @@ abstract class $CreateProfileFormCopyWith<$Res> {
       _$CreateProfileFormCopyWithImpl<$Res, CreateProfileForm>;
   @useResult
   $Res call(
-      {String name,
-      String gender,
-      int height,
-      String drinkFrequency,
-      String cigaretteFrequency,
-      String selfIntroduction,
-      int occupationId,
-      int addressId,
-      List<String> tags,
-      String iconImage,
-      String firstImage,
-      String secondImage,
-      String thirdImage,
-      String fourthImage});
+      {@JsonKey(name: 'name') String name,
+      @JsonKey(name: 'gender') String gender,
+      @JsonKey(name: 'height') int height,
+      @JsonKey(name: 'drinkFrequency') String drinkFrequency,
+      @JsonKey(name: 'cigaretteFrequency') String cigaretteFrequency,
+      @JsonKey(name: 'selfIntroduction') String selfIntroduction,
+      @JsonKey(name: 'occupationId') int occupationId,
+      @JsonKey(name: 'addressId') int addressId,
+      @JsonKey(name: 'tagIds') List<String> tags,
+      @JsonKey(name: 'mainImage') String iconImage,
+      @JsonKey(name: 'secondImage') String firstImage,
+      @JsonKey(name: 'thirdImage') String secondImage,
+      @JsonKey(name: 'fourthImage') String thirdImage,
+      @JsonKey(name: 'fifthImage') String fourthImage,
+      @JsonKey(name: 'sixthImage') String fifthImage});
 }
 
 /// @nodoc
@@ -91,6 +113,7 @@ class _$CreateProfileFormCopyWithImpl<$Res, $Val extends CreateProfileForm>
     Object? secondImage = null,
     Object? thirdImage = null,
     Object? fourthImage = null,
+    Object? fifthImage = null,
   }) {
     return _then(_value.copyWith(
       name: null == name
@@ -149,6 +172,10 @@ class _$CreateProfileFormCopyWithImpl<$Res, $Val extends CreateProfileForm>
           ? _value.fourthImage
           : fourthImage // ignore: cast_nullable_to_non_nullable
               as String,
+      fifthImage: null == fifthImage
+          ? _value.fifthImage
+          : fifthImage // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -162,20 +189,21 @@ abstract class _$$_CreateProfileFormCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String name,
-      String gender,
-      int height,
-      String drinkFrequency,
-      String cigaretteFrequency,
-      String selfIntroduction,
-      int occupationId,
-      int addressId,
-      List<String> tags,
-      String iconImage,
-      String firstImage,
-      String secondImage,
-      String thirdImage,
-      String fourthImage});
+      {@JsonKey(name: 'name') String name,
+      @JsonKey(name: 'gender') String gender,
+      @JsonKey(name: 'height') int height,
+      @JsonKey(name: 'drinkFrequency') String drinkFrequency,
+      @JsonKey(name: 'cigaretteFrequency') String cigaretteFrequency,
+      @JsonKey(name: 'selfIntroduction') String selfIntroduction,
+      @JsonKey(name: 'occupationId') int occupationId,
+      @JsonKey(name: 'addressId') int addressId,
+      @JsonKey(name: 'tagIds') List<String> tags,
+      @JsonKey(name: 'mainImage') String iconImage,
+      @JsonKey(name: 'secondImage') String firstImage,
+      @JsonKey(name: 'thirdImage') String secondImage,
+      @JsonKey(name: 'fourthImage') String thirdImage,
+      @JsonKey(name: 'fifthImage') String fourthImage,
+      @JsonKey(name: 'sixthImage') String fifthImage});
 }
 
 /// @nodoc
@@ -203,6 +231,7 @@ class __$$_CreateProfileFormCopyWithImpl<$Res>
     Object? secondImage = null,
     Object? thirdImage = null,
     Object? fourthImage = null,
+    Object? fifthImage = null,
   }) {
     return _then(_$_CreateProfileForm(
       name: null == name
@@ -261,63 +290,71 @@ class __$$_CreateProfileFormCopyWithImpl<$Res>
           ? _value.fourthImage
           : fourthImage // ignore: cast_nullable_to_non_nullable
               as String,
+      fifthImage: null == fifthImage
+          ? _value.fifthImage
+          : fifthImage // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$_CreateProfileForm implements _CreateProfileForm {
   _$_CreateProfileForm(
-      {this.name = "",
-      this.gender = "",
-      this.height = 170,
-      this.drinkFrequency = "",
-      this.cigaretteFrequency = "",
-      this.selfIntroduction = "",
-      this.occupationId = 0,
-      this.addressId = 0,
-      final List<String> tags = const [],
-      this.iconImage = "",
-      this.firstImage = "",
-      this.secondImage = "",
-      this.thirdImage = "",
-      this.fourthImage = ""})
+      {@JsonKey(name: 'name') required this.name,
+      @JsonKey(name: 'gender') required this.gender,
+      @JsonKey(name: 'height') required this.height,
+      @JsonKey(name: 'drinkFrequency') required this.drinkFrequency,
+      @JsonKey(name: 'cigaretteFrequency') required this.cigaretteFrequency,
+      @JsonKey(name: 'selfIntroduction') required this.selfIntroduction,
+      @JsonKey(name: 'occupationId') required this.occupationId,
+      @JsonKey(name: 'addressId') required this.addressId,
+      @JsonKey(name: 'tagIds') required final List<String> tags,
+      @JsonKey(name: 'mainImage') required this.iconImage,
+      @JsonKey(name: 'secondImage') required this.firstImage,
+      @JsonKey(name: 'thirdImage') required this.secondImage,
+      @JsonKey(name: 'fourthImage') required this.thirdImage,
+      @JsonKey(name: 'fifthImage') required this.fourthImage,
+      @JsonKey(name: 'sixthImage') required this.fifthImage})
       : _tags = tags;
 
+  factory _$_CreateProfileForm.fromJson(Map<String, dynamic> json) =>
+      _$$_CreateProfileFormFromJson(json);
+
   @override
-  @JsonKey()
+  @JsonKey(name: 'name')
   final String name;
   @override
-  @JsonKey()
+  @JsonKey(name: 'gender')
   final String gender;
   @override
-  @JsonKey()
+  @JsonKey(name: 'height')
   final int height;
   @override
-  @JsonKey()
+  @JsonKey(name: 'drinkFrequency')
   final String drinkFrequency;
 // お酒をよく飲むか
   @override
-  @JsonKey()
+  @JsonKey(name: 'cigaretteFrequency')
   final String cigaretteFrequency;
 // タバコをよく吸うか
   @override
-  @JsonKey()
+  @JsonKey(name: 'selfIntroduction')
   final String selfIntroduction;
 // 自己紹介文(nullalble)
   @override
-  @JsonKey()
+  @JsonKey(name: 'occupationId')
   final int occupationId;
 // 職業ID
   @override
-  @JsonKey()
+  @JsonKey(name: 'addressId')
   final int addressId;
 // 居住地
   final List<String> _tags;
 // 居住地
   @override
-  @JsonKey()
+  @JsonKey(name: 'tagIds')
   List<String> get tags {
     if (_tags is EqualUnmodifiableListView) return _tags;
     // ignore: implicit_dynamic_type
@@ -327,26 +364,29 @@ class _$_CreateProfileForm implements _CreateProfileForm {
 // 居住地
   /// アイコン画像
   @override
-  @JsonKey()
+  @JsonKey(name: 'mainImage')
   final String iconImage;
 
   /// サブ画像
   @override
-  @JsonKey()
+  @JsonKey(name: 'secondImage')
   final String firstImage;
   @override
-  @JsonKey()
+  @JsonKey(name: 'thirdImage')
   final String secondImage;
   @override
-  @JsonKey()
+  @JsonKey(name: 'fourthImage')
   final String thirdImage;
   @override
-  @JsonKey()
+  @JsonKey(name: 'fifthImage')
   final String fourthImage;
+  @override
+  @JsonKey(name: 'sixthImage')
+  final String fifthImage;
 
   @override
   String toString() {
-    return 'CreateProfileForm(name: $name, gender: $gender, height: $height, drinkFrequency: $drinkFrequency, cigaretteFrequency: $cigaretteFrequency, selfIntroduction: $selfIntroduction, occupationId: $occupationId, addressId: $addressId, tags: $tags, iconImage: $iconImage, firstImage: $firstImage, secondImage: $secondImage, thirdImage: $thirdImage, fourthImage: $fourthImage)';
+    return 'CreateProfileForm(name: $name, gender: $gender, height: $height, drinkFrequency: $drinkFrequency, cigaretteFrequency: $cigaretteFrequency, selfIntroduction: $selfIntroduction, occupationId: $occupationId, addressId: $addressId, tags: $tags, iconImage: $iconImage, firstImage: $firstImage, secondImage: $secondImage, thirdImage: $thirdImage, fourthImage: $fourthImage, fifthImage: $fifthImage)';
   }
 
   @override
@@ -377,9 +417,12 @@ class _$_CreateProfileForm implements _CreateProfileForm {
             (identical(other.thirdImage, thirdImage) ||
                 other.thirdImage == thirdImage) &&
             (identical(other.fourthImage, fourthImage) ||
-                other.fourthImage == fourthImage));
+                other.fourthImage == fourthImage) &&
+            (identical(other.fifthImage, fifthImage) ||
+                other.fifthImage == fifthImage));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -396,7 +439,8 @@ class _$_CreateProfileForm implements _CreateProfileForm {
       firstImage,
       secondImage,
       thirdImage,
-      fourthImage);
+      fourthImage,
+      fifthImage);
 
   @JsonKey(ignore: true)
   @override
@@ -404,56 +448,99 @@ class _$_CreateProfileForm implements _CreateProfileForm {
   _$$_CreateProfileFormCopyWith<_$_CreateProfileForm> get copyWith =>
       __$$_CreateProfileFormCopyWithImpl<_$_CreateProfileForm>(
           this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_CreateProfileFormToJson(
+      this,
+    );
+  }
 }
 
 abstract class _CreateProfileForm implements CreateProfileForm {
   factory _CreateProfileForm(
-      {final String name,
-      final String gender,
-      final int height,
-      final String drinkFrequency,
-      final String cigaretteFrequency,
-      final String selfIntroduction,
-      final int occupationId,
-      final int addressId,
-      final List<String> tags,
-      final String iconImage,
-      final String firstImage,
-      final String secondImage,
-      final String thirdImage,
-      final String fourthImage}) = _$_CreateProfileForm;
+      {@JsonKey(name: 'name')
+          required final String name,
+      @JsonKey(name: 'gender')
+          required final String gender,
+      @JsonKey(name: 'height')
+          required final int height,
+      @JsonKey(name: 'drinkFrequency')
+          required final String drinkFrequency,
+      @JsonKey(name: 'cigaretteFrequency')
+          required final String cigaretteFrequency,
+      @JsonKey(name: 'selfIntroduction')
+          required final String selfIntroduction,
+      @JsonKey(name: 'occupationId')
+          required final int occupationId,
+      @JsonKey(name: 'addressId')
+          required final int addressId,
+      @JsonKey(name: 'tagIds')
+          required final List<String> tags,
+      @JsonKey(name: 'mainImage')
+          required final String iconImage,
+      @JsonKey(name: 'secondImage')
+          required final String firstImage,
+      @JsonKey(name: 'thirdImage')
+          required final String secondImage,
+      @JsonKey(name: 'fourthImage')
+          required final String thirdImage,
+      @JsonKey(name: 'fifthImage')
+          required final String fourthImage,
+      @JsonKey(name: 'sixthImage')
+          required final String fifthImage}) = _$_CreateProfileForm;
+
+  factory _CreateProfileForm.fromJson(Map<String, dynamic> json) =
+      _$_CreateProfileForm.fromJson;
 
   @override
+  @JsonKey(name: 'name')
   String get name;
   @override
+  @JsonKey(name: 'gender')
   String get gender;
   @override
+  @JsonKey(name: 'height')
   int get height;
   @override
+  @JsonKey(name: 'drinkFrequency')
   String get drinkFrequency;
   @override // お酒をよく飲むか
+  @JsonKey(name: 'cigaretteFrequency')
   String get cigaretteFrequency;
   @override // タバコをよく吸うか
+  @JsonKey(name: 'selfIntroduction')
   String get selfIntroduction;
   @override // 自己紹介文(nullalble)
+  @JsonKey(name: 'occupationId')
   int get occupationId;
   @override // 職業ID
+  @JsonKey(name: 'addressId')
   int get addressId;
   @override // 居住地
+  @JsonKey(name: 'tagIds')
   List<String> get tags;
   @override // 居住地
   /// アイコン画像
+  @JsonKey(name: 'mainImage')
   String get iconImage;
   @override
 
   /// サブ画像
+  @JsonKey(name: 'secondImage')
   String get firstImage;
   @override
+  @JsonKey(name: 'thirdImage')
   String get secondImage;
   @override
+  @JsonKey(name: 'fourthImage')
   String get thirdImage;
   @override
+  @JsonKey(name: 'fifthImage')
   String get fourthImage;
+  @override
+  @JsonKey(name: 'sixthImage')
+  String get fifthImage;
   @override
   @JsonKey(ignore: true)
   _$$_CreateProfileFormCopyWith<_$_CreateProfileForm> get copyWith =>

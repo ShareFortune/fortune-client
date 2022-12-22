@@ -9,19 +9,19 @@ part of 'member.dart';
 _$_Member _$$_MemberFromJson(Map<String, dynamic> json) => _$_Member(
       id: json['id'] as String,
       name: json['name'] as String,
-      gender: $enumDecode(_$GenderEnumMap, json['gender']),
+      gender: $enumDecode(_$GenderTypeEnumMap, json['gender']),
       mainImageUrl: json['mainImageUrl'] as String,
     );
 
 Map<String, dynamic> _$$_MemberToJson(_$_Member instance) => <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
-      'gender': _$GenderEnumMap[instance.gender]!,
+      'gender': _$GenderTypeEnumMap[instance.gender]!,
       'mainImageUrl': instance.mainImageUrl,
     };
 
-const _$GenderEnumMap = {
-  Gender.man: 'man',
-  Gender.woman: 'woman',
-  Gender.another: 'another',
+const _$GenderTypeEnumMap = {
+  GenderType.man: 'man',
+  GenderType.woman: 'woman',
+  GenderType.unknown: 'unknown',
 };

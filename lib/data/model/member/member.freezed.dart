@@ -22,7 +22,7 @@ Member _$MemberFromJson(Map<String, dynamic> json) {
 mixin _$Member {
   String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
-  Gender get gender => throw _privateConstructorUsedError;
+  GenderType get gender => throw _privateConstructorUsedError;
   String get mainImageUrl => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -35,7 +35,7 @@ abstract class $MemberCopyWith<$Res> {
   factory $MemberCopyWith(Member value, $Res Function(Member) then) =
       _$MemberCopyWithImpl<$Res, Member>;
   @useResult
-  $Res call({String id, String name, Gender gender, String mainImageUrl});
+  $Res call({String id, String name, GenderType gender, String mainImageUrl});
 }
 
 /// @nodoc
@@ -68,7 +68,7 @@ class _$MemberCopyWithImpl<$Res, $Val extends Member>
       gender: null == gender
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
-              as Gender,
+              as GenderType,
       mainImageUrl: null == mainImageUrl
           ? _value.mainImageUrl
           : mainImageUrl // ignore: cast_nullable_to_non_nullable
@@ -83,7 +83,7 @@ abstract class _$$_MemberCopyWith<$Res> implements $MemberCopyWith<$Res> {
       __$$_MemberCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, String name, Gender gender, String mainImageUrl});
+  $Res call({String id, String name, GenderType gender, String mainImageUrl});
 }
 
 /// @nodoc
@@ -113,7 +113,7 @@ class __$$_MemberCopyWithImpl<$Res>
       gender: null == gender
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
-              as Gender,
+              as GenderType,
       mainImageUrl: null == mainImageUrl
           ? _value.mainImageUrl
           : mainImageUrl // ignore: cast_nullable_to_non_nullable
@@ -139,7 +139,7 @@ class _$_Member implements _Member {
   @override
   final String name;
   @override
-  final Gender gender;
+  final GenderType gender;
   @override
   final String mainImageUrl;
 
@@ -182,7 +182,7 @@ abstract class _Member implements Member {
   const factory _Member(
       {required final String id,
       required final String name,
-      required final Gender gender,
+      required final GenderType gender,
       required final String mainImageUrl}) = _$_Member;
 
   factory _Member.fromJson(Map<String, dynamic> json) = _$_Member.fromJson;
@@ -192,7 +192,7 @@ abstract class _Member implements Member {
   @override
   String get name;
   @override
-  Gender get gender;
+  GenderType get gender;
   @override
   String get mainImageUrl;
   @override

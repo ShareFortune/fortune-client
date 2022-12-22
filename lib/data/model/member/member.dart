@@ -1,4 +1,4 @@
-import 'package:fortune_client/data/model/enum/gender.dart';
+import 'package:fortune_client/data/model/enum/gender_type.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'member.freezed.dart';
@@ -9,7 +9,7 @@ class Member with _$Member {
   const factory Member({
     required String id,
     required String name,
-    required Gender gender,
+    required GenderType gender,
     required String mainImageUrl,
   }) = _Member;
 

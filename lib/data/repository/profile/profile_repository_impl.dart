@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:fortune_client/data/datasource/remote/go/profile/profile_data_source.dart';
+import 'package:fortune_client/data/model/create_profile_form/create_profile_form.dart';
 import 'package:fortune_client/data/model/profile/profile.dart';
 import 'package:fortune_client/data/repository/profile/profile_repository.dart';
 import 'package:fortune_client/data/model/enum/gender_type.dart';
@@ -10,10 +11,11 @@ class ProfileRepositoryImpl implements ProfileRepository {
 
   ProfileRepositoryImpl(this._dataSource);
 
-  bool cretest = false;
+  /// ローカル保存する
+  bool isCreatedShe = false;
 
   @override
-  bool get isCreated => cretest;
+  bool get isCreated => isCreatedShe;
 
   @override
   Future<String> update() {
@@ -38,8 +40,34 @@ class ProfileRepositoryImpl implements ProfileRepository {
     required String drinkFrequency,
     required String cigaretteFrequency,
   }) async {
-    final result = await _dataSource.create();
-    cretest = true;
-    return result;
+    ///
+    final form = CreateProfileForm(
+      name: name,
+      gender: gender.sendValue,
+      height: height,
+      drinkFrequency: drinkFrequency,
+      cigaretteFrequency: cigaretteFrequency,
+      selfIntroduction: "selfIntroduction",
+      occupationId: 0,
+      addressId: 0,
+      tags: [],
+      iconImage: iconImage?.path ?? "",
+      firstImage: mainImage?.path ?? "",
+      secondImage: secondImage?.path ?? "",
+      thirdImage: thirdImage?.path ?? "",
+      fourthImage: fourthImage?.path ?? "",
+      fifthImage: "",
+    );
+
+    /// ローカル保存したIDを取り出す
+    /// [id] ユーザー作成時のID
+    try {
+      final result = await _dataSource.create("id", form.toJson());
+      isCreatedShe = true;
+      return result;
+    } catch (e) {
+      /// Dio error
+      rethrow;
+    }
   }
 }

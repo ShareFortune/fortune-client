@@ -5,15 +5,15 @@ import 'package:fortune_client/gen/assets.gen.dart';
 
 class FakeProfileDataSource extends StubLoader implements ProfileDataSource {
   @override
+  Future<String> create(String id, Map<String, dynamic> body) async {
+    await Future.delayed(const Duration(seconds: 3));
+    return "test api";
+  }
+
+  @override
   Future<Profile> get(String id) async {
     return Profile.fromJson(
       await loadJson(Assets.stub.profile),
     );
-  }
-
-  @override
-  Future<String> create() async {
-    await Future.delayed(const Duration(seconds: 3));
-    return "test api";
   }
 }

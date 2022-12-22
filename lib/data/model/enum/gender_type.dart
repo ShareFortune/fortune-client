@@ -15,4 +15,15 @@ extension GenderTypeEx on GenderType {
         return "未選択";
     }
   }
+
+  String get sendValue {
+    switch (this) {
+      case GenderType.man:
+        return "MAN";
+      case GenderType.woman:
+        return "WOMAN";
+      case GenderType.unknown:
+        return "ANOTHER";
+    }
+  }
 }
