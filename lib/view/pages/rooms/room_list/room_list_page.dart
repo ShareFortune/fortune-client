@@ -25,6 +25,7 @@ class RoomListPage extends HookConsumerWidget {
           slivers: [
             const BasicAppBar(
               title: "見つける",
+              border: 1,
             ),
             // SliverAppBar(
             //   backgroundColor: Colors.transparent,
