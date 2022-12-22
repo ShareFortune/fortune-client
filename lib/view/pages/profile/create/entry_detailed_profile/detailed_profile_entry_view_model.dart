@@ -18,8 +18,6 @@ class DetailedProfileEntryViewModel
   final Ref _ref;
 
   onTapNextBtn(StackRouter router) async {
-    /// Stateを親ウィジットのViewModelに保存
-    ///
     await _pushNext(router);
   }
 

@@ -28,12 +28,8 @@ class BasicProfileEntryViewModel extends StateNotifier<BasicProfileEntryState> {
     state = state.copyWith(adress: value);
   }
 
-  Future<void> create() async {}
-
   onTapNextBtn(StackRouter router) async {
     if (state.isEntered()) {
-      /// Stateを親ウィジットのViewModelに保存
-      ///
       await _pushNext(router);
     }
   }

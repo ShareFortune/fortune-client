@@ -23,5 +23,5 @@ Map<String, dynamic> _$$_MemberToJson(_$_Member instance) => <String, dynamic>{
 const _$GenderTypeEnumMap = {
   GenderType.man: 'man',
   GenderType.woman: 'woman',
-  GenderType.unknown: 'unknown',
+  GenderType.another: 'another',
 };

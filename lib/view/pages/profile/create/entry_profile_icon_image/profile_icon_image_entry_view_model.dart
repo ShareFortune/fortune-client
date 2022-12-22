@@ -28,8 +28,6 @@ class ProfileIconImageEntryViewModel
 
   onTapNextBtn(StackRouter router) async {
     if (state.imageFile != null) {
-      /// Stateを親ウィジットのViewModelに保存
-      ///
       await _pushNext(router);
     }
   }

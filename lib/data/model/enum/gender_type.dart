@@ -1,7 +1,7 @@
 enum GenderType {
   man,
   woman,
-  unknown,
+  another,
 }
 
 extension GenderTypeEx on GenderType {
@@ -11,8 +11,8 @@ extension GenderTypeEx on GenderType {
         return "男性";
       case GenderType.woman:
         return "女性";
-      case GenderType.unknown:
-        return "未選択";
+      case GenderType.another:
+        return "その他";
     }
   }
 
@@ -22,7 +22,7 @@ extension GenderTypeEx on GenderType {
         return "MAN";
       case GenderType.woman:
         return "WOMAN";
-      case GenderType.unknown:
+      case GenderType.another:
         return "ANOTHER";
     }
   }

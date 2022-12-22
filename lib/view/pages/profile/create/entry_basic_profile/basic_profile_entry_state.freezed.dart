@@ -117,7 +117,7 @@ class __$$_BasicProfileEntryStateCopyWithImpl<$Res>
 
 class _$_BasicProfileEntryState extends _BasicProfileEntryState {
   const _$_BasicProfileEntryState(
-      {this.name = "", this.gender = GenderType.unknown, this.adress = ""})
+      {this.name = "", this.gender = GenderType.another, this.adress = ""})
       : super._();
 
   @override
