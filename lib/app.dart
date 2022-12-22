@@ -13,8 +13,8 @@ class MyApp extends HookConsumerWidget {
     final themeMode = ref.watch(appThemeModeProvider);
     final appRouter = ref.watch(appRouterProvider);
 
-    return Sizer(
-      builder: (context, orientation, deviceType) => MaterialApp.router(
+    return Sizer(builder: (context, orientation, deviceType) {
+      return MaterialApp.router(
         debugShowCheckedModeBanner: false,
         useInheritedMediaQuery: true,
         theme: theme.data,
@@ -25,7 +25,7 @@ class MyApp extends HookConsumerWidget {
         // supportedLocales: L10n.supportedLocales,
         routeInformationParser: appRouter.defaultRouteParser(),
         routerDelegate: appRouter.delegate(),
-      ),
-    );
+      );
+    });
   }
 }

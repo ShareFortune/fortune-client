@@ -5,7 +5,10 @@ import 'package:fortune_client/view/pages/auth/login/login_page.dart';
 import 'package:fortune_client/view/pages/common/bottom_navigation_bar/bottom_navigation_bar.dart';
 import 'package:fortune_client/view/pages/message/message_room/message_room_page.dart';
 import 'package:fortune_client/view/pages/message/message_room_list/message_room_list_page.dart';
-import 'package:fortune_client/view/pages/profile/create/profile_create_page.dart';
+import 'package:fortune_client/view/pages/profile/create/entry_basic_profile/basic_profile_entry_page.dart';
+import 'package:fortune_client/view/pages/profile/create/entry_detailed_profile/detailed_profile_entry_page.dart';
+import 'package:fortune_client/view/pages/profile/create/entry_profile_icon_image/profile_icon_image_entry_page.dart';
+import 'package:fortune_client/view/pages/profile/create/entry_profile_sub_image/entry_profile_sub_image_page.dart';
 import 'package:fortune_client/view/pages/profile/profile/profile_page.dart';
 import 'package:fortune_client/view/pages/request/request_confirmation/request_confirmation_page.dart';
 import 'package:fortune_client/view/pages/rooms/create/room_create_page.dart';
@@ -29,9 +32,28 @@ export 'app_router.gr.dart';
 
     /// プロフィール作成
     AutoRoute(
+      name: "ProfileCreateRoute",
       path: RoutePath.createProfile,
-      page: ProfileCreatePage,
+      page: EmptyRouterPage,
       guards: [AuthGuard],
+      children: [
+        AutoRoute(
+          path: "",
+          page: BasicProfileEntryPage,
+        ),
+        AutoRoute(
+          path: RoutePath.createProfileDetail,
+          page: DetailedProfileEntryPage,
+        ),
+        AutoRoute(
+          path: RoutePath.createProfileIconImage,
+          page: ProfileIconImageEntryPage,
+        ),
+        AutoRoute(
+          path: RoutePath.createProfileSubImage,
+          page: EntryProfileSubImagePage,
+        ),
+      ],
     ),
 
     /// プロフィール

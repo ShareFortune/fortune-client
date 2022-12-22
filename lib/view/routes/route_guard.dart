@@ -34,14 +34,13 @@ class CheckIfMyProfileExists extends AutoRouteGuard {
   CheckIfMyProfileExists(this._ref);
 
   final Ref _ref;
-  late final profileRepository = _ref.watch(Repository.profile);
 
   @override
   void onNavigation(NavigationResolver resolver, StackRouter router) async {
-    if (profileRepository.isCreated) {
+    if (_ref.watch(Repository.profile).isCreated) {
       resolver.next(true);
     } else {
-      router.push(ProfileCreateRoute());
+      router.push(const ProfileCreateRoute());
     }
   }
 }

@@ -1,25 +1,22 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 
 Future<void> showInfoDialog(
   BuildContext context,
   String content, {
   VoidCallback? onPressed,
 }) async {
-  await showPlatformDialog(
+  showCupertinoDialog(
     context: context,
-    builder: (_) => WillPopScope(
-      child: PlatformAlertDialog(
+    builder: (context) {
+      return CupertinoAlertDialog(
         content: Text(content),
-        actions: <Widget>[
-          PlatformDialogAction(
+        actions: [
+          CupertinoDialogAction(
             onPressed: onPressed,
-            child: PlatformText("OK"),
+            child: const Text('OK'),
           ),
         ],
-      ),
-      onWillPop: () async => false,
-    ),
+      );
+    },
   );
 }

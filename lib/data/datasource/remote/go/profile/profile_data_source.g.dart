@@ -12,9 +12,7 @@ class _ProfileDataSource implements ProfileDataSource {
   _ProfileDataSource(
     this._dio, {
     this.baseUrl,
-  }) {
-    baseUrl ??= 'http://api.fortune-dev.net:8080/api/v1';
-  }
+  });
 
   final Dio _dio;
 
@@ -22,7 +20,7 @@ class _ProfileDataSource implements ProfileDataSource {
 
   @override
   Future<Profile> get(id) async {
-    const _extra = <String, dynamic>{};
+    const _extra = <String, dynamic>{'append-token': true};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -40,6 +38,32 @@ class _ProfileDataSource implements ProfileDataSource {
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = Profile.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<String> create(
+    id,
+    body,
+  ) async {
+    const _extra = <String, dynamic>{'append-token': true};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(body);
+    final _result = await _dio.fetch<String>(_setStreamType<String>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+        .compose(
+          _dio.options,
+          '/users/${id}/profiles',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = _result.data!;
     return value;
   }
 
