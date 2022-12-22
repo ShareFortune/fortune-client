@@ -12,7 +12,7 @@ class ProfileRepositoryImpl implements ProfileRepository {
   ProfileRepositoryImpl(this._dataSource);
 
   /// ローカル保存する
-  bool isCreatedShe = false;
+  bool isCreatedShe = true;
 
   @override
   bool get isCreated => isCreatedShe;

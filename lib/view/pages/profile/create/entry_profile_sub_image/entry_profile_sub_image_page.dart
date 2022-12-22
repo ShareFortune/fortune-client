@@ -23,21 +23,22 @@ class EntryProfileSubImagePage extends HookConsumerWidget {
         return Stack(
           children: [
             Scaffold(
-              appBar: BasicAppbar(
-                widget: Expanded(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
-                      Text(
-                        "サブ写真を登録しよう！",
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+              appBar: BasicAppBar(
+                title: "アイコン写真を登録しよう！",
+                // widget: Expanded(
+                //   child: Row(
+                //     mainAxisAlignment: MainAxisAlignment.center,
+                //     children: const [
+                //       Text(
+                //         "サブ写真を登録しよう！",
+                //         style: TextStyle(
+                //           fontSize: 20,
+                //           fontWeight: FontWeight.bold,
+                //         ),
+                //       ),
+                //     ],
+                //   ),
+                // ),
               ),
               body: Center(
                 child: Container(

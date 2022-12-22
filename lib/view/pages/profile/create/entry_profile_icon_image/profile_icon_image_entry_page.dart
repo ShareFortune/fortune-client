@@ -19,22 +19,7 @@ class ProfileIconImageEntryPage extends HookConsumerWidget {
         ref.watch(profileIconImageEntryViewModelProvider.notifier);
 
     return Scaffold(
-      appBar: BasicAppbar(
-        widget: Expanded(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
-              Text(
-                "アイコン写真を登録しよう！",
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
+      appBar: const BasicAppBar(title: "アイコン写真を登録しよう！"),
       body: Center(
         child: Container(
           padding: const EdgeInsets.only(

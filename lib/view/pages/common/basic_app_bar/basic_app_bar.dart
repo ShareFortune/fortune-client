@@ -1,65 +1,34 @@
 import 'package:flutter/material.dart';
-import 'package:fortune_client/view/pages/common/basic_app_bar/basic_app_bar_state.dart';
-import 'package:fortune_client/view/pages/debug/debug_page.dart';
+import 'package:fortune_client/view/theme/app_text_theme.dart';
+import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class BasicAppbar extends HookConsumerWidget implements PreferredSizeWidget {
-  final Widget widget;
-  final Widget? leading;
-  final List<Widget>? actions;
-  final bool automaticallyImplyLeading;
-  final double? titleSpacing;
-  final double? leadingWidth;
-  final bool centerTitle;
+class BasicAppBar extends HookConsumerWidget implements PreferredSizeWidget {
+  const BasicAppBar({
+    super.key,
+    required this.title,
+    this.hieght = 140,
+  });
 
-  final double hieght = 140;
-
-  const BasicAppbar({
-    Key? key,
-    required this.widget,
-    this.leading,
-    this.actions,
-    this.automaticallyImplyLeading = true,
-    this.titleSpacing,
-    this.leadingWidth,
-    this.centerTitle = true,
-  }) : super(key: key);
+  final String title;
+  final double hieght;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final state = BasicAppBarState();
+    final theme = ref.watch(appThemeProvider);
 
-    return AppBar(
-      bottom: bottom(context),
-      backgroundColor: Colors.white,
-      titleSpacing: titleSpacing,
-      leadingWidth: leadingWidth,
-      elevation: 0,
-      centerTitle: centerTitle,
-      leading: leading,
-      actions: actions,
-      automaticallyImplyLeading: automaticallyImplyLeading,
-      toolbarHeight: hieght,
-    );
-  }
-
-  bottom(BuildContext context) {
-    return PreferredSize(
-      preferredSize: Size.fromHeight(hieght),
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
-        width: double.infinity,
-        child: widget,
-        // child: GestureDetector(
-        //   onDoubleTap: () {
-        //     Navigator.of(context).push(
-        //       MaterialPageRoute(
-        //         builder: (context) => const DebugPage(),
-        //       ),
-        //     );
-        //   },
-        //   child: widget,
-        // ),
+    return SliverAppBar(
+      backgroundColor: Colors.transparent,
+      expandedHeight: hieght,
+      flexibleSpace: FlexibleSpaceBar(
+        centerTitle: false,
+        titlePadding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+        title: Text(
+          title,
+          style: theme.textTheme.h60
+              .merge(const TextStyle(color: Colors.black))
+              .bold(),
+        ),
       ),
     );
   }

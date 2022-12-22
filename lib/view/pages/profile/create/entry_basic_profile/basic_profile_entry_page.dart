@@ -19,26 +19,7 @@ class BasicProfileEntryPage extends HookConsumerWidget {
     final router = useRouter();
 
     return Scaffold(
-      appBar: BasicAppbar(
-        widget: Expanded(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const Text(
-                "はじめる",
-                style: TextStyle(
-                  fontSize: 26,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              nextButton(
-                state.isEntered(),
-                () => viewModel.onTapNextBtn(router),
-              ),
-            ],
-          ),
-        ),
-      ),
+      appBar: const BasicAppBar(title: "はじめる"),
       body: Container(
         padding: const EdgeInsets.only(
           top: 20,

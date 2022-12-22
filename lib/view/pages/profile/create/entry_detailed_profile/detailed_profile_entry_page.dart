@@ -15,22 +15,7 @@ class DetailedProfileEntryPage extends HookConsumerWidget {
     final viewModel = ref.watch(detailedProfileEntryViewModelProvider.notifier);
 
     return Scaffold(
-      appBar: BasicAppbar(
-        widget: Expanded(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: const [
-              Text(
-                "プロフィール作成",
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
+      appBar: const BasicAppBar(title: "プロフィール作成"),
       body: Container(
         padding: const EdgeInsets.only(
           top: 20,
