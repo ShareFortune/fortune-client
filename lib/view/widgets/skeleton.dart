@@ -27,8 +27,10 @@ class Skeleton extends StatelessWidget {
       child: Container(
         height: height,
         width: width,
-        decoration:
-            ShapeDecoration(color: Colors.grey[400], shape: shapeBorder),
+        decoration: ShapeDecoration(
+          color: Colors.grey[400],
+          shape: shapeBorder,
+        ),
       ),
     );
   }
