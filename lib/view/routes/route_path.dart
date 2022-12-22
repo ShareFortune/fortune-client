@@ -2,6 +2,9 @@ class RoutePath {
   /// ボトムナビゲーション遷移
   static const root = '/';
 
+  /// Debug
+  static const debug = '/debug';
+
   /// ページ遷移
   static const login = '/login';
 

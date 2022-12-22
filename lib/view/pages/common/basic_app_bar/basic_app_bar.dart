@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fortune_client/view/pages/common/basic_app_bar/basic_app_bar_state.dart';
+import 'package:fortune_client/view/pages/debug/debug_page.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class BasicAppbar extends HookConsumerWidget implements PreferredSizeWidget {
@@ -29,7 +30,7 @@ class BasicAppbar extends HookConsumerWidget implements PreferredSizeWidget {
     final state = BasicAppBarState();
 
     return AppBar(
-      bottom: bottom(),
+      bottom: bottom(context),
       backgroundColor: Colors.white,
       titleSpacing: titleSpacing,
       leadingWidth: leadingWidth,
@@ -42,17 +43,23 @@ class BasicAppbar extends HookConsumerWidget implements PreferredSizeWidget {
     );
   }
 
-  bottom() {
+  bottom(BuildContext context) {
     return PreferredSize(
       preferredSize: Size.fromHeight(hieght),
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
         width: double.infinity,
-        child: Row(
-          children: [
-            widget,
-          ],
-        ),
+        child: widget,
+        // child: GestureDetector(
+        //   onDoubleTap: () {
+        //     Navigator.of(context).push(
+        //       MaterialPageRoute(
+        //         builder: (context) => const DebugPage(),
+        //       ),
+        //     );
+        //   },
+        //   child: widget,
+        // ),
       ),
     );
   }

@@ -35,6 +35,8 @@ dependencies:
   bottom_picker: ^2.0.1
   image_picker: ^0.8.6
   file_picker: ^5.2.4
+  package_info_plus: ^3.0.2
+  # package_info_plus: ^3.0.2 # バージョン管理
 
   # state management
   flutter_hooks: ^0.18.5+1

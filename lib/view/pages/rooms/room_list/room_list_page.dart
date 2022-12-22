@@ -3,6 +3,7 @@ import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:fortune_client/view/hooks/use_router.dart';
 import 'package:fortune_client/view/pages/rooms/room_list/room_card_widget.dart';
 import 'package:fortune_client/view/pages/rooms/room_list/room_list_view_model.dart';
+import 'package:fortune_client/view/routes/app_router.gr.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -25,11 +26,16 @@ class RoomListPage extends HookConsumerWidget {
             slivers: [
               SliverAppBar(
                 backgroundColor: Colors.transparent,
-                title: Text(
-                  "ルーム",
-                  style: theme.textTheme.h40
-                      .merge(TextStyle(color: theme.appColors.headline1))
-                      .bold(),
+                title: GestureDetector(
+                  onDoubleTap: () {
+                    router.push(const DebugRoute());
+                  },
+                  child: Text(
+                    "ルーム",
+                    style: theme.textTheme.h40
+                        .merge(TextStyle(color: theme.appColors.headline1))
+                        .bold(),
+                  ),
                 ),
                 actions: [
                   CircleAvatar(
