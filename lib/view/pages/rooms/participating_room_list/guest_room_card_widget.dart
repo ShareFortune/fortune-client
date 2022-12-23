@@ -4,7 +4,7 @@ import 'package:fortune_client/gen/assets.gen.dart';
 import 'package:fortune_client/view/pages/rooms/participating_room_list/participating_room_list_state.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
-import 'package:fortune_client/view/widgets/members_widget.dart';
+import 'package:fortune_client/view/widgets/member_icons.dart';
 import 'package:gap/gap.dart';
 
 class GuestRoomCardWidget extends ConsumerWidget {
@@ -48,7 +48,7 @@ class GuestRoomCardWidget extends ConsumerWidget {
                     const Gap(10),
 
                     /// メンバー
-                    membersWidget(theme, ["", ""]),
+                    memberIconsWidget(15, ["", ""]),
                   ],
                 ),
               )

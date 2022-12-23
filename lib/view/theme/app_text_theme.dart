@@ -30,12 +30,12 @@ class AppTextTheme {
       h20: const TextStyle(fontSize: FontSize.pt12).merge(_normalRegular),
       h30: const TextStyle(fontSize: FontSize.pt14).merge(_normalRegular),
       h40: const TextStyle(fontSize: FontSize.pt16).merge(_normalRegular),
-      h50: const TextStyle(fontSize: FontSize.pt20).merge(_normalRegular),
-      h60: const TextStyle(fontSize: FontSize.pt24).merge(_normalRegular),
-      h70: const TextStyle(fontSize: FontSize.pt32).merge(_normalRegular),
-      h80: const TextStyle(fontSize: FontSize.pt40).merge(_normalRegular),
-      h90: const TextStyle(fontSize: FontSize.pt48).merge(_normalRegular),
-      h100: const TextStyle(fontSize: FontSize.pt60).merge(_normalRegular),
+      h50: const TextStyle(fontSize: FontSize.pt18).merge(_normalRegular),
+      h60: const TextStyle(fontSize: FontSize.pt20).merge(_normalRegular),
+      h70: const TextStyle(fontSize: FontSize.pt24).merge(_normalRegular),
+      h80: const TextStyle(fontSize: FontSize.pt28).merge(_normalRegular),
+      h90: const TextStyle(fontSize: FontSize.pt32).merge(_normalRegular),
+      h100: const TextStyle(fontSize: FontSize.pt40).merge(_normalRegular),
     );
   }
 
@@ -51,22 +51,22 @@ class AppTextTheme {
   /// pt16
   final TextStyle h40;
 
-  /// pt20
+  /// pt18
   final TextStyle h50;
 
-  /// pt24
+  /// pt20
   final TextStyle h60;
 
-  /// pt32
+  /// pt24
   final TextStyle h70;
 
-  /// pt40
+  /// pt28
   final TextStyle h80;
 
-  /// pt48
+  /// pt32
   final TextStyle h90;
 
-  /// pt60
+  /// pt40
   final TextStyle h100;
 }
 

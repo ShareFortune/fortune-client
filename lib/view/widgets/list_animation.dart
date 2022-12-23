@@ -6,10 +6,12 @@ class ListAnimationWidget<T> extends StatelessWidget {
     super.key,
     required this.items,
     required this.container,
+    required this.spacing,
   });
 
   final List<T> items;
   final Widget Function(T) container;
+  final double spacing;
 
   @override
   Widget build(BuildContext context) {
@@ -24,15 +26,20 @@ class ListAnimationWidget<T> extends StatelessWidget {
               child: SlideAnimation(
                 verticalOffset: 50.0,
                 child: FadeInAnimation(
-                  child: container(
-                    items[index],
-                  ),
+                  child: _content(container(items[index])),
                 ),
               ),
             );
           },
         ),
       ),
+    );
+  }
+
+  _content(Widget child) {
+    return Container(
+      padding: EdgeInsets.only(bottom: spacing),
+      child: child,
     );
   }
 }

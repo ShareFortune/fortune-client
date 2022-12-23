@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fortune_client/view/pages/rooms/participating_room_list/participating_room_list_state.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
-import 'package:fortune_client/view/widgets/members_widget.dart';
+import 'package:fortune_client/view/widgets/member_icons.dart';
 import 'package:gap/gap.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class HostRoomCardWidget extends ConsumerWidget {
+class HostRoomCardWidget extends HookConsumerWidget {
   const HostRoomCardWidget({
     super.key,
     required this.room,
@@ -40,7 +40,7 @@ class HostRoomCardWidget extends ConsumerWidget {
         children: [
           title(theme),
           const Gap(10),
-          membersWidget(theme, ["", ""]),
+          memberIconsWidget(15, ["", ""]),
           room.actinon < 1 ? const Gap(0) : const Gap(15),
           room.actinon < 1 ? const Gap(0) : content(theme),
         ],
