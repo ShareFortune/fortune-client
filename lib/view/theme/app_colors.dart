@@ -55,7 +55,7 @@ class AppColors {
       navigationBarSelectedIcon: Color.fromRGBO(0, 0, 0, 1),
       navigationBarUnSelectedIcon: Color.fromRGBO(0, 0, 0, 0.5),
       tabIndicator: Color.fromRGBO(0, 0, 0, 1),
-      shadow: Color.fromRGBO(0, 0, 0, 0.05),
+      shadow: Color.fromRGBO(0, 0, 0, 0.1),
       offState: Color.fromRGBO(0, 0, 0, 0.15),
       textFieldBorderSide: Color.fromRGBO(0, 0, 0, 0.3),
       explanation: Color.fromRGBO(0, 0, 0, 0.3),

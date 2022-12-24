@@ -33,17 +33,38 @@ class RoomCardWidget extends HookConsumerWidget {
           ),
           const Gap(15),
           const Divider(height: 1),
-          const Gap(20),
-          ElevatedButton(
-            onPressed: () {},
-            style: ElevatedButton.styleFrom(
-              backgroundColor: theme.appColors.primary,
-              textStyle: theme.textTheme.h30.bold(),
-              shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(10)),
+          const Gap(15),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              // ElevatedButton(
+              //   onPressed: () {},
+              //   style: ElevatedButton.styleFrom(
+              //     elevation: 0,
+              //     backgroundColor: const Color(0xFFF5F5F5),
+              //     textStyle: theme.textTheme.h30.bold(),
+              //     shape: const RoundedRectangleBorder(
+              //       borderRadius: BorderRadius.all(Radius.circular(10)),
+              //     ),
+              //   ),
+              //   child: const Text(
+              //     "リクエスト一覧",
+              //     style: TextStyle(color: Color(0xFF969696)),
+              //   ),
+              // ),
+              ElevatedButton(
+                onPressed: () {},
+                style: ElevatedButton.styleFrom(
+                  elevation: 0,
+                  backgroundColor: theme.appColors.primary,
+                  textStyle: theme.textTheme.h30.bold(),
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                  ),
+                ),
+                child: const Text("メッセージ"),
               ),
-            ),
-            child: const Text("メッセージ"),
+            ],
           ),
         ],
       ),
