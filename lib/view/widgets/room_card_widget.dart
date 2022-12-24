@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fortune_client/gen/assets.gen.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/member_icons.dart';
@@ -12,16 +13,20 @@ class RoomCardWidget extends HookConsumerWidget {
     required this.title,
     required this.location,
     required this.members,
-    required this.messageRoomExist,
+    this.bottomExist = false,
+    this.messageRoomExist = false,
     this.requestExist,
+    required this.onTap,
   });
 
   final String? hostIconPath;
   final String title;
   final String location;
   final List members;
+  final bool bottomExist;
   final bool messageRoomExist;
   final bool? requestExist;
+  final Function() onTap;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -32,7 +37,8 @@ class RoomCardWidget extends HookConsumerWidget {
     if (hostIconPath != null) {
       leadingIcon = CircleAvatar(
         radius: 30,
-        backgroundImage: AssetImage(hostIconPath!),
+        // backgroundImage: AssetImage(hostIconPath!),
+        backgroundImage: Assets.images.thinder.provider(),
       );
     }
 
@@ -72,14 +78,20 @@ class RoomCardWidget extends HookConsumerWidget {
       onTap: () {},
     );
 
+    /// 下部ボタン
+    List<Widget> bottom = [];
+    if (bottomExist) {
+      if (requestBtn != null) bottom.add(requestBtn);
+      bottom.add(messageBtn);
+    }
+
     return _build(
       theme: theme,
       leading: leadingIcon,
       title: titleText,
       location: locationText,
       members: membersIcon,
-      requestBtn: requestBtn,
-      messageBtn: messageBtn,
+      bottom: bottom,
     );
   }
 
@@ -89,8 +101,7 @@ class RoomCardWidget extends HookConsumerWidget {
     required Text title,
     required Text location,
     required Widget members,
-    required Widget? requestBtn,
-    required Widget messageBtn,
+    required List<Widget> bottom,
   }) {
     return _room(
       theme,
@@ -112,11 +123,20 @@ class RoomCardWidget extends HookConsumerWidget {
               ),
             ],
           ),
-          const Divider(thickness: 1, height: 30),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [if (requestBtn != null) requestBtn, messageBtn],
-          ),
+          if (bottom.isNotEmpty)
+            Column(
+              children: [
+                const Divider(
+                  height: 30,
+                  thickness: 1,
+                  color: Color(0xFFF3F3F3),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: bottom,
+                ),
+              ],
+            ),
         ],
       ),
     );
@@ -200,8 +220,6 @@ class RoomCardWidget extends HookConsumerWidget {
     required Color textColor,
     required Function() onTap,
   }) {
-    // final bg = clickable ? theme.appColors.primary : const Color(0xFFF5F5F5);
-    // final textColor = clickable ? Colors.white : const Color(0xFF969696);
     return ElevatedButton(
       onPressed: onTap,
       style: ElevatedButton.styleFrom(

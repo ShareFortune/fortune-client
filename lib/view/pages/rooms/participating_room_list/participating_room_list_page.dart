@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fortune_client/gen/assets.gen.dart';
 import 'package:fortune_client/view/hooks/use_media_query.dart';
 import 'package:fortune_client/view/pages/common/basic_app_bar/basic_app_bar.dart';
-import 'package:fortune_client/view/pages/rooms/participating_room_list/components/room_card_widget.dart';
+import 'package:fortune_client/view/widgets/room_card_widget.dart';
 import 'package:fortune_client/view/pages/rooms/participating_room_list/participating_room_list_view_model.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
@@ -99,8 +99,10 @@ class ParticipatingRoomListPage extends HookConsumerWidget {
                   title: "渋谷で飲み会しませんか？",
                   location: "日本・北海道・岩見沢市",
                   members: const ["", ""],
+                  bottomExist: true,
                   messageRoomExist: true,
                   requestExist: null,
+                  onTap: () {},
                 ),
               ),
               _page(
@@ -110,8 +112,10 @@ class ParticipatingRoomListPage extends HookConsumerWidget {
                   title: "渋谷で飲み会しませんか？",
                   location: "日本・北海道・岩見沢市",
                   members: const ["", ""],
+                  bottomExist: true,
                   messageRoomExist: true,
                   requestExist: true,
+                  onTap: () {},
                 ),
               ),
               _page(
@@ -121,8 +125,10 @@ class ParticipatingRoomListPage extends HookConsumerWidget {
                   title: "渋谷で飲み会しませんか？",
                   location: "日本・北海道・岩見沢市",
                   members: const ["", ""],
+                  bottomExist: true,
                   messageRoomExist: false,
                   requestExist: true,
+                  onTap: () {},
                 ),
               ),
             ],

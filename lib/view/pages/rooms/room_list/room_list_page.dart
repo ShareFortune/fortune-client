@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:fortune_client/view/hooks/use_router.dart';
 import 'package:fortune_client/view/pages/common/basic_app_bar/basic_app_bar.dart';
-import 'package:fortune_client/view/pages/rooms/room_list/components/room_card_widget.dart';
 import 'package:fortune_client/view/pages/rooms/room_list/room_list_view_model.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/list_animation.dart';
+import 'package:fortune_client/view/widgets/room_card_widget.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class RoomListPage extends HookConsumerWidget {
@@ -52,7 +52,12 @@ class RoomListPage extends HookConsumerWidget {
                 spacing: 30,
                 container: (state) {
                   return RoomCardWidget(
-                    room: state,
+                    hostIconPath: state.hostIcon,
+                    title: state.title,
+                    // location: state.place,
+                    location: "日本・北海道・岩見沢市",
+                    members: state.memberIcons,
+                    messageRoomExist: false,
                     onTap: () {
                       viewModel.pushRoomDetail(router);
                     },

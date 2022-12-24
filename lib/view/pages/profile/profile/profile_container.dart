@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fortune_client/gen/assets.gen.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/circle_icon.dart';
 import 'package:fortune_client/view/widgets/tag_widget.dart';
-import 'package:fortune_client/view/widgets/tag_wrapper.dart';
 import 'package:gap/gap.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class ProfileContainer extends ConsumerWidget {
+class ProfileContainer extends HookConsumerWidget {
   const ProfileContainer({super.key});
 
   @override

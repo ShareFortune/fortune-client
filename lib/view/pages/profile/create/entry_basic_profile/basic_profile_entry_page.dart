@@ -4,7 +4,7 @@ import 'package:fortune_client/view/pages/common/basic_app_bar/basic_app_bar.dar
 import 'package:fortune_client/view/pages/profile/create/entry_basic_profile/basic_profile_entry_view_model.dart';
 import 'package:fortune_client/data/model/enum/gender_type.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
-import 'package:fortune_client/view/widgets/bottom_picker.dart';
+import 'package:fortune_client/view/pages/profile/create/components/bottom_picker.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
