@@ -54,7 +54,7 @@ class BasicAppBar extends HookConsumerWidget implements PreferredSizeWidget {
               ],
             ),
             const Gap(15),
-            const Divider(height: 1),
+            Divider(height: border),
           ],
         ),
       ),

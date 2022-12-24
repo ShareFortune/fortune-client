@@ -3,7 +3,6 @@ import 'package:fortune_client/view/hooks/use_router.dart';
 import 'package:fortune_client/view/pages/common/basic_app_bar/basic_app_bar.dart';
 import 'package:fortune_client/view/pages/rooms/room_list/components/room_card_widget.dart';
 import 'package:fortune_client/view/pages/rooms/room_list/room_list_view_model.dart';
-import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/list_animation.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
