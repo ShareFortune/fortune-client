@@ -9,17 +9,6 @@ class ParticipatingRoomListState with _$ParticipatingRoomListState {
     required List<HostRoomListItemState> hostRooms,
     required List<GuestRoomListItemState> guestRooms,
   }) = _ParticipatingRoomListState;
-
-  // static ParticipatingRoomListState fromEntity(
-  //   HostRoomList rooms,
-  // ) {
-  //   return ParticipatingRoomListState(
-  //     guestRooms: [],
-  //     hostRooms: rooms.roomsEntity.map((e) {
-  //       return HostRoomListItemState.fromEntity(e);
-  //     }).toList(),
-  //   );
-  // }
 }
 
 @freezed
