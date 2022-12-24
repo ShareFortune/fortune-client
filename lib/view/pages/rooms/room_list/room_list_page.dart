@@ -21,7 +21,7 @@ class RoomListPage extends HookConsumerWidget {
       data: (data) {
         return CustomScrollView(
           slivers: [
-            const BasicAppBar(title: "見つける", border: 1),
+            const BasicAppBar(title: "見つける", isBorder: false),
             SliverToBoxAdapter(
                 child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 20),

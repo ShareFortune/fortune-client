@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fortune_client/gen/assets.gen.dart';
+import 'package:fortune_client/view/hooks/use_media_query.dart';
 import 'package:fortune_client/view/pages/common/basic_app_bar/basic_app_bar.dart';
 import 'package:fortune_client/view/pages/rooms/participating_room_list/components/room_card_widget.dart';
 import 'package:fortune_client/view/pages/rooms/participating_room_list/participating_room_list_view_model.dart';
@@ -23,7 +24,43 @@ class ParticipatingRoomListPage extends HookConsumerWidget {
 
     return CustomScrollView(
       slivers: [
-        const BasicAppBar(title: "参加する"),
+        const BasicAppBar(title: "参加する", isBorder: false),
+        SliverToBoxAdapter(
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 30),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                const Icon(Icons.event, size: 26),
+                const Gap(10),
+                Expanded(
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(vertical: 10),
+                    decoration: const BoxDecoration(
+                      border: Border(
+                        bottom: BorderSide(width: 1, color: Color(0xFFF3F3F3)),
+                      ),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "ルームを作成する",
+                          style: theme.textTheme.h50,
+                        ),
+                        const Icon(
+                          size: 16,
+                          Icons.arrow_forward_ios,
+                          color: Color(0xFFD9D9D9),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
         SliverToBoxAdapter(
           child: state.maybeWhen(
             orElse: () {
@@ -32,6 +69,7 @@ class ParticipatingRoomListPage extends HookConsumerWidget {
             data: (data) {
               return Column(
                 children: [
+                  const Gap(20),
                   _pageView(theme, "ホストで参加"),
                   _pageView(theme, "ゲストで参加"),
                 ],
@@ -46,7 +84,7 @@ class ParticipatingRoomListPage extends HookConsumerWidget {
   Widget _pageView(AppTheme theme, String title) {
     return Column(
       children: [
-        const Gap(15),
+        const Gap(10),
         _pageTitle(theme, title),
         const Gap(10),
         SizedBox(
@@ -123,7 +161,7 @@ class ParticipatingRoomListPage extends HookConsumerWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(title, style: theme.textTheme.h70.bold()),
+          Text(title, style: theme.textTheme.h60.bold()),
           Text(
             "全て表示",
             style: theme.textTheme.h40.merge(

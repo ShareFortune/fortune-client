@@ -12,11 +12,6 @@ class MyBottomNavigationBar extends ConsumerWidget {
     final theme = ref.watch(appThemeProvider);
 
     return AutoTabsScaffold(
-      // appBarBuilder: (_, tabsRouter) => AppBar(
-      //   backgroundColor: Colors.indigo,
-      //   title: const Text('FlutterBottomNav'),
-      //   centerTitle: true,
-      // ),
       routes: const [
         RoomsRoute(),
         ParticipatingRoomsRoute(),
