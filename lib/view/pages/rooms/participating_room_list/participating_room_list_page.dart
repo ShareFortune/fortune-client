@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:fortune_client/gen/assets.gen.dart';
-import 'package:fortune_client/view/hooks/use_media_query.dart';
 import 'package:fortune_client/view/pages/common/basic_app_bar/basic_app_bar.dart';
 import 'package:fortune_client/view/widgets/room_card_widget.dart';
 import 'package:fortune_client/view/pages/rooms/participating_room_list/participating_room_list_view_model.dart';
@@ -70,8 +69,8 @@ class ParticipatingRoomListPage extends HookConsumerWidget {
               return Column(
                 children: [
                   const Gap(20),
-                  _pageView(theme, "ホストで参加"),
-                  _pageView(theme, "ゲストで参加"),
+                  _pageView(theme, "ホストで参加", true),
+                  _pageView(theme, "ゲストで参加", false),
                 ],
               );
             },
@@ -81,7 +80,7 @@ class ParticipatingRoomListPage extends HookConsumerWidget {
     );
   }
 
-  Widget _pageView(AppTheme theme, String title) {
+  Widget _pageView(AppTheme theme, String title, bool isHost) {
     return Column(
       children: [
         const Gap(10),
@@ -95,7 +94,7 @@ class ParticipatingRoomListPage extends HookConsumerWidget {
               _page(
                 theme,
                 RoomCardWidget(
-                  hostIconPath: Assets.images.thinder.path,
+                  hostIconPath: isHost ? null : Assets.images.thinder.path,
                   title: "渋谷で飲み会しませんか？",
                   location: "日本・北海道・岩見沢市",
                   members: const ["", ""],
@@ -108,7 +107,7 @@ class ParticipatingRoomListPage extends HookConsumerWidget {
               _page(
                 theme,
                 RoomCardWidget(
-                  hostIconPath: Assets.images.thinder.path,
+                  hostIconPath: isHost ? null : Assets.images.thinder.path,
                   title: "渋谷で飲み会しませんか？",
                   location: "日本・北海道・岩見沢市",
                   members: const ["", ""],
@@ -121,7 +120,7 @@ class ParticipatingRoomListPage extends HookConsumerWidget {
               _page(
                 theme,
                 RoomCardWidget(
-                  hostIconPath: Assets.images.thinder.path,
+                  hostIconPath: isHost ? null : Assets.images.thinder.path,
                   title: "渋谷で飲み会しませんか？",
                   location: "日本・北海道・岩見沢市",
                   members: const ["", ""],

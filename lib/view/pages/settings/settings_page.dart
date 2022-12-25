@@ -57,7 +57,7 @@ class SettingsPage extends HookConsumerWidget {
             TextButton(
               child: Text(
                 "Ver 1.0.0",
-                style: theme.textTheme.h50.merge(
+                style: theme.textTheme.h40.merge(
                   const TextStyle(color: Colors.grey),
                 ),
               ),

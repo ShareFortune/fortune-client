@@ -34,6 +34,7 @@ class AccountPage extends HookConsumerWidget {
             _profileTags(theme),
             const Divider(height: 1),
             _profileDetail(theme),
+            const Gap(100),
           ],
         ),
       ),
@@ -165,7 +166,6 @@ class AccountPage extends HookConsumerWidget {
         Text(
           "22歳・女性",
           style: theme.textTheme.h40
-              .bold()
               .merge(const TextStyle(color: Color(0xFF6C6C6C))),
         ),
       ],
