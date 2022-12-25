@@ -38,9 +38,12 @@ class RoutePath {
   /// [/message-rooms/:id]
   static const messageRoom = ':id';
 
+  /// プロフィール
+  static const profile = '/profile/:id';
+
   /// アカウント
   static const account = 'account';
 
-  /// プロフィール
-  static const profile = '/profile/:id';
+  /// 設定
+  static const setting = 'setting';
 }

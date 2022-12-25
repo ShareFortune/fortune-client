@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fortune_client/view/hooks/use_router.dart';
 import 'package:fortune_client/view/pages/account/account/account_view_model.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
@@ -14,9 +15,13 @@ class AccountPage extends HookConsumerWidget {
     final theme = ref.watch(appThemeProvider);
     final state = ref.watch(accountViewModelProvider);
     final viewModel = ref.watch(accountViewModelProvider.notifier);
+    final router = useRouter();
 
     return Scaffold(
-      appBar: _appBar(theme),
+      appBar: _appBar(
+        theme,
+        () => viewModel.navigateToSettingPage(router),
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -167,7 +172,7 @@ class AccountPage extends HookConsumerWidget {
     );
   }
 
-  AppBar _appBar(AppTheme theme) {
+  AppBar _appBar(AppTheme theme, Function() settingBtnOnTap) {
     const color = Colors.black;
 
     return AppBar(
@@ -180,7 +185,7 @@ class AccountPage extends HookConsumerWidget {
       leading: const BackButton(color: color),
       actions: [
         IconButton(
-          onPressed: () {},
+          onPressed: settingBtnOnTap,
           icon: const Icon(Icons.settings, size: 28, color: color),
         ),
       ],
