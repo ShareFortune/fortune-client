@@ -10,13 +10,13 @@ class BasicAppBar extends HookConsumerWidget implements PreferredSizeWidget {
   const BasicAppBar({
     super.key,
     required this.title,
-    this.border = 0,
+    this.isBorder = true,
     this.hieght = 140,
   });
 
   final String title;
   final double hieght;
-  final double border;
+  final bool isBorder;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -54,7 +54,12 @@ class BasicAppBar extends HookConsumerWidget implements PreferredSizeWidget {
               ],
             ),
             const Gap(15),
-            const Divider(height: 1),
+            if (isBorder)
+              const Divider(
+                height: 1,
+                thickness: 1,
+                color: Color(0xFFF3F3F3),
+              ),
           ],
         ),
       ),

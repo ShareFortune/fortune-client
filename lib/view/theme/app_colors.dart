@@ -36,7 +36,7 @@ class AppColors {
       primary: Color.fromRGBO(199, 130, 228, 1),
       primaryVariant: Color(0xFF3700B3),
       onPrimary: Color(0xFFFFFFFF),
-      secondary: Color(0xFF03DAC6),
+      secondary: Color(0xFF43C6B5),
       secondaryVariant: Color(0xFF018786),
       onSecondary: Color(0xFF000000),
       // background: Color.fromARGB(255, 255, 250, 255),
