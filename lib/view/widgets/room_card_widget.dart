@@ -105,7 +105,7 @@ class RoomCardWidget extends HookConsumerWidget {
   }) {
     return _room(
       theme,
-      onTap: () {},
+      onTap: onTap,
       child: Column(
         children: [
           Row(
