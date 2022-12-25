@@ -15,35 +15,35 @@ import 'package:auto_route/auto_route.dart' as _i18;
 import 'package:auto_route/empty_router_widgets.dart' as _i3;
 import 'package:flutter/material.dart' as _i19;
 import 'package:fortune_client/view/pages/account/account/account_page.dart'
-    as _i10;
+    as _i5;
 import 'package:fortune_client/view/pages/auth/login/login_page.dart' as _i1;
 import 'package:fortune_client/view/pages/common/bottom_navigation_bar/bottom_navigation_bar.dart'
-    as _i5;
+    as _i6;
 import 'package:fortune_client/view/pages/debug/debug_page.dart' as _i2;
 import 'package:fortune_client/view/pages/message/message_room/message_room_page.dart'
     as _i17;
 import 'package:fortune_client/view/pages/message/message_room_list/message_room_list_page.dart'
     as _i16;
 import 'package:fortune_client/view/pages/profile/create/entry_basic_profile/basic_profile_entry_page.dart'
-    as _i6;
-import 'package:fortune_client/view/pages/profile/create/entry_detailed_profile/detailed_profile_entry_page.dart'
     as _i7;
-import 'package:fortune_client/view/pages/profile/create/entry_profile_icon_image/profile_icon_image_entry_page.dart'
+import 'package:fortune_client/view/pages/profile/create/entry_detailed_profile/detailed_profile_entry_page.dart'
     as _i8;
-import 'package:fortune_client/view/pages/profile/create/entry_profile_sub_image/entry_profile_sub_image_page.dart'
+import 'package:fortune_client/view/pages/profile/create/entry_profile_icon_image/profile_icon_image_entry_page.dart'
     as _i9;
+import 'package:fortune_client/view/pages/profile/create/entry_profile_sub_image/entry_profile_sub_image_page.dart'
+    as _i10;
 import 'package:fortune_client/view/pages/profile/profile/profile_page.dart'
     as _i4;
 import 'package:fortune_client/view/pages/request/request_confirmation/request_confirmation_page.dart'
-    as _i14;
-import 'package:fortune_client/view/pages/rooms/create/room_create_page.dart'
     as _i15;
-import 'package:fortune_client/view/pages/rooms/participating_room_list/participating_room_list_page.dart'
-    as _i13;
-import 'package:fortune_client/view/pages/rooms/room_detail/room_detail_page.dart'
-    as _i12;
-import 'package:fortune_client/view/pages/rooms/room_list/room_list_page.dart'
+import 'package:fortune_client/view/pages/rooms/create/room_create_page.dart'
     as _i11;
+import 'package:fortune_client/view/pages/rooms/participating_room_list/participating_room_list_page.dart'
+    as _i14;
+import 'package:fortune_client/view/pages/rooms/room_detail/room_detail_page.dart'
+    as _i13;
+import 'package:fortune_client/view/pages/rooms/room_list/room_list_page.dart'
+    as _i12;
 import 'package:fortune_client/view/routes/route_guard.dart' as _i20;
 
 class AppRouter extends _i18.RootStackRouter {
@@ -89,34 +89,52 @@ class AppRouter extends _i18.RootStackRouter {
         ),
       );
     },
+    AccountRoute.name: (routeData) {
+      return _i18.AdaptivePage<dynamic>(
+        routeData: routeData,
+        child: const _i5.AccountPage(),
+      );
+    },
+    CreateRoomRoute.name: (routeData) {
+      return _i18.AdaptivePage<dynamic>(
+        routeData: routeData,
+        child: const _i3.EmptyRouterPage(),
+      );
+    },
     HomeRoute.name: (routeData) {
       return _i18.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i5.MyBottomNavigationBar(),
+        child: const _i6.MyBottomNavigationBar(),
       );
     },
     BasicProfileEntryRoute.name: (routeData) {
       return _i18.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i6.BasicProfileEntryPage(),
+        child: const _i7.BasicProfileEntryPage(),
       );
     },
     DetailedProfileEntryRoute.name: (routeData) {
       return _i18.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i7.DetailedProfileEntryPage(),
+        child: const _i8.DetailedProfileEntryPage(),
       );
     },
     ProfileIconImageEntryRoute.name: (routeData) {
       return _i18.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i8.ProfileIconImageEntryPage(),
+        child: const _i9.ProfileIconImageEntryPage(),
       );
     },
     EntryProfileSubImageRoute.name: (routeData) {
       return _i18.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i9.EntryProfileSubImagePage(),
+        child: const _i10.EntryProfileSubImagePage(),
+      );
+    },
+    RoomCreateRoute.name: (routeData) {
+      return _i18.AdaptivePage<dynamic>(
+        routeData: routeData,
+        child: const _i11.RoomCreatePage(),
       );
     },
     RoomsRoute.name: (routeData) {
@@ -131,28 +149,16 @@ class AppRouter extends _i18.RootStackRouter {
         child: const _i3.EmptyRouterPage(),
       );
     },
-    CreateRoomRoute.name: (routeData) {
-      return _i18.AdaptivePage<dynamic>(
-        routeData: routeData,
-        child: const _i3.EmptyRouterPage(),
-      );
-    },
     MessageRoomsRoute.name: (routeData) {
       return _i18.AdaptivePage<dynamic>(
         routeData: routeData,
         child: const _i3.EmptyRouterPage(),
       );
     },
-    AccountRoute.name: (routeData) {
-      return _i18.AdaptivePage<dynamic>(
-        routeData: routeData,
-        child: const _i10.AccountPage(),
-      );
-    },
     RoomListRoute.name: (routeData) {
       return _i18.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i11.RoomListPage(),
+        child: const _i12.RoomListPage(),
       );
     },
     RoomDetailRoute.name: (routeData) {
@@ -161,7 +167,7 @@ class AppRouter extends _i18.RootStackRouter {
           orElse: () => RoomDetailRouteArgs(id: pathParams.getString('id')));
       return _i18.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: _i12.RoomDetailPage(
+        child: _i13.RoomDetailPage(
           key: args.key,
           id: args.id,
         ),
@@ -170,19 +176,13 @@ class AppRouter extends _i18.RootStackRouter {
     ParticipatingRoomListRoute.name: (routeData) {
       return _i18.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i13.ParticipatingRoomListPage(),
+        child: const _i14.ParticipatingRoomListPage(),
       );
     },
     RequestConfirmationRoute.name: (routeData) {
       return _i18.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i14.RequestConfirmationPage(),
-      );
-    },
-    RoomCreateRoute.name: (routeData) {
-      return _i18.AdaptivePage<dynamic>(
-        routeData: routeData,
-        child: const _i15.RoomCreatePage(),
+        child: const _i15.RequestConfirmationPage(),
       );
     },
     MessageRoomListRoute.name: (routeData) {
@@ -251,6 +251,21 @@ class AppRouter extends _i18.RootStackRouter {
           ],
         ),
         _i18.RouteConfig(
+          AccountRoute.name,
+          path: 'account',
+        ),
+        _i18.RouteConfig(
+          CreateRoomRoute.name,
+          path: 'create-room',
+          children: [
+            _i18.RouteConfig(
+              RoomCreateRoute.name,
+              path: '',
+              parent: CreateRoomRoute.name,
+            )
+          ],
+        ),
+        _i18.RouteConfig(
           HomeRoute.name,
           path: '/',
           guards: [
@@ -294,18 +309,6 @@ class AppRouter extends _i18.RootStackRouter {
               ],
             ),
             _i18.RouteConfig(
-              CreateRoomRoute.name,
-              path: 'create-room',
-              parent: HomeRoute.name,
-              children: [
-                _i18.RouteConfig(
-                  RoomCreateRoute.name,
-                  path: '',
-                  parent: CreateRoomRoute.name,
-                )
-              ],
-            ),
-            _i18.RouteConfig(
               MessageRoomsRoute.name,
               path: 'message-rooms',
               parent: HomeRoute.name,
@@ -321,11 +324,6 @@ class AppRouter extends _i18.RootStackRouter {
                   parent: MessageRoomsRoute.name,
                 ),
               ],
-            ),
-            _i18.RouteConfig(
-              AccountRoute.name,
-              path: 'account',
-              parent: HomeRoute.name,
             ),
           ],
         ),
@@ -405,7 +403,32 @@ class ProfileRouteArgs {
 }
 
 /// generated route for
-/// [_i5.MyBottomNavigationBar]
+/// [_i5.AccountPage]
+class AccountRoute extends _i18.PageRouteInfo<void> {
+  const AccountRoute()
+      : super(
+          AccountRoute.name,
+          path: 'account',
+        );
+
+  static const String name = 'AccountRoute';
+}
+
+/// generated route for
+/// [_i3.EmptyRouterPage]
+class CreateRoomRoute extends _i18.PageRouteInfo<void> {
+  const CreateRoomRoute({List<_i18.PageRouteInfo>? children})
+      : super(
+          CreateRoomRoute.name,
+          path: 'create-room',
+          initialChildren: children,
+        );
+
+  static const String name = 'CreateRoomRoute';
+}
+
+/// generated route for
+/// [_i6.MyBottomNavigationBar]
 class HomeRoute extends _i18.PageRouteInfo<void> {
   const HomeRoute({List<_i18.PageRouteInfo>? children})
       : super(
@@ -418,7 +441,7 @@ class HomeRoute extends _i18.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i6.BasicProfileEntryPage]
+/// [_i7.BasicProfileEntryPage]
 class BasicProfileEntryRoute extends _i18.PageRouteInfo<void> {
   const BasicProfileEntryRoute()
       : super(
@@ -430,7 +453,7 @@ class BasicProfileEntryRoute extends _i18.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i7.DetailedProfileEntryPage]
+/// [_i8.DetailedProfileEntryPage]
 class DetailedProfileEntryRoute extends _i18.PageRouteInfo<void> {
   const DetailedProfileEntryRoute()
       : super(
@@ -442,7 +465,7 @@ class DetailedProfileEntryRoute extends _i18.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i8.ProfileIconImageEntryPage]
+/// [_i9.ProfileIconImageEntryPage]
 class ProfileIconImageEntryRoute extends _i18.PageRouteInfo<void> {
   const ProfileIconImageEntryRoute()
       : super(
@@ -454,7 +477,7 @@ class ProfileIconImageEntryRoute extends _i18.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i9.EntryProfileSubImagePage]
+/// [_i10.EntryProfileSubImagePage]
 class EntryProfileSubImageRoute extends _i18.PageRouteInfo<void> {
   const EntryProfileSubImageRoute()
       : super(
@@ -463,6 +486,18 @@ class EntryProfileSubImageRoute extends _i18.PageRouteInfo<void> {
         );
 
   static const String name = 'EntryProfileSubImageRoute';
+}
+
+/// generated route for
+/// [_i11.RoomCreatePage]
+class RoomCreateRoute extends _i18.PageRouteInfo<void> {
+  const RoomCreateRoute()
+      : super(
+          RoomCreateRoute.name,
+          path: '',
+        );
+
+  static const String name = 'RoomCreateRoute';
 }
 
 /// generated route for
@@ -493,19 +528,6 @@ class ParticipatingRoomsRoute extends _i18.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i3.EmptyRouterPage]
-class CreateRoomRoute extends _i18.PageRouteInfo<void> {
-  const CreateRoomRoute({List<_i18.PageRouteInfo>? children})
-      : super(
-          CreateRoomRoute.name,
-          path: 'create-room',
-          initialChildren: children,
-        );
-
-  static const String name = 'CreateRoomRoute';
-}
-
-/// generated route for
-/// [_i3.EmptyRouterPage]
 class MessageRoomsRoute extends _i18.PageRouteInfo<void> {
   const MessageRoomsRoute({List<_i18.PageRouteInfo>? children})
       : super(
@@ -518,19 +540,7 @@ class MessageRoomsRoute extends _i18.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i10.AccountPage]
-class AccountRoute extends _i18.PageRouteInfo<void> {
-  const AccountRoute()
-      : super(
-          AccountRoute.name,
-          path: 'account',
-        );
-
-  static const String name = 'AccountRoute';
-}
-
-/// generated route for
-/// [_i11.RoomListPage]
+/// [_i12.RoomListPage]
 class RoomListRoute extends _i18.PageRouteInfo<void> {
   const RoomListRoute()
       : super(
@@ -542,7 +552,7 @@ class RoomListRoute extends _i18.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i12.RoomDetailPage]
+/// [_i13.RoomDetailPage]
 class RoomDetailRoute extends _i18.PageRouteInfo<RoomDetailRouteArgs> {
   RoomDetailRoute({
     _i19.Key? key,
@@ -577,7 +587,7 @@ class RoomDetailRouteArgs {
 }
 
 /// generated route for
-/// [_i13.ParticipatingRoomListPage]
+/// [_i14.ParticipatingRoomListPage]
 class ParticipatingRoomListRoute extends _i18.PageRouteInfo<void> {
   const ParticipatingRoomListRoute()
       : super(
@@ -589,7 +599,7 @@ class ParticipatingRoomListRoute extends _i18.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i14.RequestConfirmationPage]
+/// [_i15.RequestConfirmationPage]
 class RequestConfirmationRoute extends _i18.PageRouteInfo<void> {
   const RequestConfirmationRoute()
       : super(
@@ -598,18 +608,6 @@ class RequestConfirmationRoute extends _i18.PageRouteInfo<void> {
         );
 
   static const String name = 'RequestConfirmationRoute';
-}
-
-/// generated route for
-/// [_i15.RoomCreatePage]
-class RoomCreateRoute extends _i18.PageRouteInfo<void> {
-  const RoomCreateRoute()
-      : super(
-          RoomCreateRoute.name,
-          path: '',
-        );
-
-  static const String name = 'RoomCreateRoute';
 }
 
 /// generated route for

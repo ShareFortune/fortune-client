@@ -70,6 +70,23 @@ export 'app_router.gr.dart';
       guards: [AuthGuard, CheckIfMyProfileExists],
     ),
 
+    /// アカウント
+    AutoRoute(
+      name: "AccountRoute",
+      path: RoutePath.account,
+      page: AccountPage,
+    ),
+
+    /// ルーム作成
+    AutoRoute(
+      name: 'CreateRoomRoute',
+      path: RoutePath.createRoom,
+      page: EmptyRouterPage,
+      children: [
+        AutoRoute(path: "", page: RoomCreatePage),
+      ],
+    ),
+
     /// ナビゲーションタブ
     AutoRoute(
       name: "HomeRoute",
@@ -100,14 +117,6 @@ export 'app_router.gr.dart';
           ],
         ),
         AutoRoute(
-          name: 'CreateRoomRoute',
-          path: RoutePath.createRoom,
-          page: EmptyRouterPage,
-          children: [
-            AutoRoute(path: "", page: RoomCreatePage),
-          ],
-        ),
-        AutoRoute(
           name: 'MessageRoomsRoute',
           path: RoutePath.messageRooms,
           page: EmptyRouterPage,
@@ -115,11 +124,6 @@ export 'app_router.gr.dart';
             AutoRoute(path: "", page: MessageRoomListPage),
             AutoRoute(path: RoutePath.messageRoom, page: MessageRoomPage)
           ],
-        ),
-        AutoRoute(
-          name: "AccountRoute",
-          path: RoutePath.account,
-          page: AccountPage,
         ),
       ],
     ),
