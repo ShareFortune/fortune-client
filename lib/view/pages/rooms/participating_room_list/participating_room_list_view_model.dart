@@ -1,20 +1,22 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:fortune_client/data/repository/room/room_repository.dart';
 import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/view/pages/rooms/participating_room_list/participating_room_list_state.dart';
 import 'package:fortune_client/view/routes/app_router.gr.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final participatingRoomListViewModelProvider = StateNotifierProvider<
         ParticipatingRoomListViewModel, AsyncValue<ParticipatingRoomListState>>(
-    (ref) => ParticipatingRoomListViewModel(ref)..initialize());
+    (ref) => ParticipatingRoomListViewModel(ref, sl())..initialize());
 
 class ParticipatingRoomListViewModel
     extends StateNotifier<AsyncValue<ParticipatingRoomListState>> {
-  ParticipatingRoomListViewModel(this._ref) : super(const AsyncLoading());
+  ParticipatingRoomListViewModel(this._ref, this.roomRepository)
+      : super(const AsyncLoading());
 
   final Ref _ref;
-  late final roomRepository = _ref.watch(Repository.room);
+  final RoomRepository roomRepository;
 
   // Future<void> initialize() async => ParticipatingRoomListState(
   //       hostRooms: [HostRoomListItemState()],

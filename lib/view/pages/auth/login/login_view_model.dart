@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:fortune_client/data/repository/auth/auth_repository.dart';
 import 'package:fortune_client/foundation/constants.dart';
 import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/view/pages/auth/login/login_state.dart';
@@ -7,14 +8,15 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final loginViewModelProvider =
     StateNotifierProvider<LoginViewModel, AsyncValue<void>>((ref) {
-  return LoginViewModel(ref);
+  return LoginViewModel(ref, sl());
 });
 
 class LoginViewModel extends StateNotifier<AsyncValue<void>> {
-  LoginViewModel(this._ref) : super(const AsyncData(null));
+  LoginViewModel(this._ref, this._authRepository)
+      : super(const AsyncData(null));
 
   final Ref _ref;
-  late final _authRepository = _ref.watch(Repository.auth);
+  final AuthRepository _authRepository;
 
   /// デバッグモードオンオフ
   bool? toggleDebugMode() {

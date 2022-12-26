@@ -1,23 +1,25 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:fortune_client/data/repository/auth/auth_repository.dart';
+import 'package:fortune_client/data/repository/profile/profile_repository.dart';
 import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/view/routes/app_router.gr.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 ///
 /// サインインしているかどうか
-final authGuardProvider = Provider((ref) => AuthGuard(ref));
+// final authGuardProvider = Provider((ref) => AuthGuard(ref));
 
 class AuthGuard extends AutoRouteGuard {
-  AuthGuard(this._ref);
+  AuthGuard(this._authRepository);
 
-  final Ref _ref;
+  final AuthRepository _authRepository;
 
   @override
   Future<void> onNavigation(
     NavigationResolver resolver,
     StackRouter router,
   ) async {
-    if (_ref.read(Repository.auth).isLogin) {
+    if (_authRepository.isLogin) {
       resolver.next(true);
     } else {
       router.push(const LoginRoute());
@@ -27,17 +29,17 @@ class AuthGuard extends AutoRouteGuard {
 
 ///
 /// プロフィールを作成済みかどうか
-final checkIfMyProfileExistsProvider =
-    Provider((ref) => CheckIfMyProfileExists(ref));
+// final checkIfMyProfileExistsProvider =
+//     Provider((ref) => CheckIfMyProfileExists(ref));
 
 class CheckIfMyProfileExists extends AutoRouteGuard {
-  CheckIfMyProfileExists(this._ref);
+  CheckIfMyProfileExists(this._profileRepository);
 
-  final Ref _ref;
+  final ProfileRepository _profileRepository;
 
   @override
   void onNavigation(NavigationResolver resolver, StackRouter router) async {
-    if (_ref.watch(Repository.profile).isCreated) {
+    if (_profileRepository.isCreated) {
       resolver.next(true);
     } else {
       router.push(const ProfileCreateRoute());

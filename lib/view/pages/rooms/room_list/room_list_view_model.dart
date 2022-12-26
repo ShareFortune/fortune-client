@@ -1,20 +1,22 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:fortune_client/data/repository/room/room_repository.dart';
 import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/view/pages/rooms/room_list/room_list_state.dart';
 import 'package:fortune_client/view/routes/app_router.dart';
 import 'package:fortune_client/view/routes/app_router.gr.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final roomListViewModelProvider =
     StateNotifierProvider<RoomListViewModel, AsyncValue<RoomListState>>((ref) {
-  return RoomListViewModel(ref)..initialize();
+  return RoomListViewModel(ref, sl())..initialize();
 });
 
 class RoomListViewModel extends StateNotifier<AsyncValue<RoomListState>> {
-  RoomListViewModel(this._ref) : super(const AsyncLoading());
+  RoomListViewModel(this._ref, this.roomRepository)
+      : super(const AsyncLoading());
 
   final Ref _ref;
-  late final roomRepository = _ref.watch(Repository.room);
+  final RoomRepository roomRepository;
 
   Future<void> initialize() async => await fetchList();
 
