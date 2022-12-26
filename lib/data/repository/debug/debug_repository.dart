@@ -1,13 +1,13 @@
 abstract class DebugRepository {
-  /// 自動ログイン
-  bool isAutomaticLogin();
-
-  /// 自動ログイン切り替え
-  toggleAutomaticLogin();
-
   /// ダミーログインAPI
-  isDummyRoginApi();
+  Future<bool> getDummyRoginApi();
 
   /// ダミーログインAPI切り替え
-  togglDummyRoginApi();
+  Future<void> setDummyRoginApi(bool value);
+
+  /// 自動ログイン
+  Future<bool> getAutomaticLogin();
+
+  /// 自動ログイン切り替え
+  Future<void> setAutomaticLogin(bool value);
 }

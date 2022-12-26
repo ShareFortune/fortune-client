@@ -30,8 +30,9 @@ class LoginPage extends HookConsumerWidget {
                   GestureDetector(
                     /// DEBUG: ダミーログインAPI
                     onDoubleTap: () async {
-                      final result = viewModel.toggleDebugMode();
+                      final result = await viewModel.toggleDebugMode();
                       if (result != null) {
+                        // ignore: use_build_context_synchronously
                         await showDebugDialog(context, result);
                       }
                     },

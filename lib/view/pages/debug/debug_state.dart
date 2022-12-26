@@ -7,6 +7,7 @@ part 'debug_state.freezed.dart';
 class DebugState with _$DebugState {
   const factory DebugState({
     required PackageInfo debugInfo,
+    required bool isDummyRoginApi,
     required bool isAutomaticLogin,
   }) = _DebugState;
 }

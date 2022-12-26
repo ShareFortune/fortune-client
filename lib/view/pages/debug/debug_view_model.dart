@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:fortune_client/data/repository/debug/debug_repository.dart';
 import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/view/pages/debug/debug_state.dart';
@@ -18,8 +19,18 @@ class DebugViewModel extends StateNotifier<AsyncValue<DebugState>> {
     state = await AsyncValue.guard(() async {
       return DebugState(
         debugInfo: await PackageInfo.fromPlatform(),
-        isAutomaticLogin: _debugRepository.isAutomaticLogin(),
+        isDummyRoginApi: await _debugRepository.getDummyRoginApi(),
+        isAutomaticLogin: await _debugRepository.getAutomaticLogin(),
       );
+    });
+  }
+
+  Future<void> toggleAutomaticLogin(bool value) async {
+    final data = state.value;
+    if (data == null) return;
+    state = await AsyncValue.guard(() async {
+      await _debugRepository.setAutomaticLogin(value);
+      return data.copyWith(isAutomaticLogin: value);
     });
   }
 }

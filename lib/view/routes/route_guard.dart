@@ -17,7 +17,7 @@ class AuthGuard extends AutoRouteGuard {
     NavigationResolver resolver,
     StackRouter router,
   ) async {
-    if (_authRepository.isLogin()) {
+    if (await _authRepository.isLogin()) {
       resolver.next(true);
     } else {
       router.push(const LoginRoute());

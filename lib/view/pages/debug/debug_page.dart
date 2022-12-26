@@ -29,16 +29,15 @@ class DebugPage extends HookConsumerWidget {
                 showTrailing: false,
               ),
               _buildDummyItem(
-                'ダミーログインAPI使用中: ${data.isAutomaticLogin}',
+                'ダミーログインAPI使用中: ${data.isDummyRoginApi}',
                 showTrailing: false,
               ),
               _buildDummyItem(
                 '自動ログイン',
                 showTrailing: true,
-                onTap: () {},
                 trailing: CupertinoSwitch(
-                  value: true,
-                  onChanged: (value) {},
+                  value: data.isAutomaticLogin,
+                  onChanged: viewModel.toggleAutomaticLogin,
                 ),
               ),
               _buildDummyItem(

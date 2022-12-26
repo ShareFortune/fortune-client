@@ -20,22 +20,23 @@ class LoginViewModel extends StateNotifier<AsyncValue<void>> {
   final DebugRepository _debugRepository;
 
   /// デバッグモードオンオフ
-  bool? toggleDebugMode() {
+  Future<bool?> toggleDebugMode() async {
     if (Constants.flavor == Flavor.prod) {
       return null;
     }
 
-    _debugRepository.togglDummyRoginApi();
-    return _debugRepository.isDummyRoginApi();
+    final isDummyRoginApi = await _debugRepository.getDummyRoginApi();
+    _debugRepository.setDummyRoginApi(!isDummyRoginApi);
+    return !isDummyRoginApi;
   }
 
   Future<void> onTapLoginBtn(AuthType type, StackRouter router) async {
     /// DEBUG
-    if (_debugRepository.isDummyRoginApi()) {
+    if (await _debugRepository.getDummyRoginApi()) {
       return await pushHome(router);
     }
     final result = await loginWithSns(type);
-    if (result && _authRepository.isLogin()) {
+    if (result && await _authRepository.isLogin()) {
       await pushHome(router);
     }
   }

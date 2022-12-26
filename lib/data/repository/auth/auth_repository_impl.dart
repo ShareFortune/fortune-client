@@ -9,17 +9,15 @@ class AuthRepositoryImpl implements AuthRepository {
   final DebugRepository _debugRepository;
   final FirebaseAuthDataSource _dataSource;
 
-  bool isAutomaticLogin = false;
-
   User? get _user => _dataSource.user;
 
   @override
   String get firebaseId => _user!.uid;
 
   @override
-  bool isLogin() {
-    if (isAutomaticLogin) return true;
-    return _debugRepository.isDummyRoginApi() ? true : _user != null;
+  Future<bool> isLogin() async {
+    if (await _debugRepository.getAutomaticLogin()) return true;
+    return await _debugRepository.getDummyRoginApi() ? true : _user != null;
   }
 
   @override

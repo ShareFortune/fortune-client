@@ -6,26 +6,26 @@ class DebugRepositoryImpl implements DebugRepository {
   final SharedPrefDataSource _pref;
 
   DebugRepositoryImpl(this._pref) {
-    _pref.setBool(AppPrefKey.dummyLoginApi.keyString, false);
+    setDummyRoginApi(false);
   }
 
   @override
-  bool isAutomaticLogin() {
+  getDummyRoginApi() async {
     return _pref.getBool(AppPrefKey.dummyLoginApi.keyString) ?? false;
   }
 
   @override
-  toggleAutomaticLogin() {
-    _pref.setBool(AppPrefKey.dummyLoginApi.keyString, !isAutomaticLogin());
+  setDummyRoginApi(bool value) async {
+    _pref.setBool(AppPrefKey.dummyLoginApi.keyString, value);
   }
 
   @override
-  isDummyRoginApi() {
-    return _pref.getBool(AppPrefKey.dummyLoginApi.keyString) ?? false;
+  getAutomaticLogin() async {
+    return _pref.getBool(AppPrefKey.automaticLogin.keyString) ?? false;
   }
 
   @override
-  togglDummyRoginApi() {
-    _pref.setBool(AppPrefKey.dummyLoginApi.keyString, !isAutomaticLogin());
+  setAutomaticLogin(bool value) async {
+    _pref.setBool(AppPrefKey.automaticLogin.keyString, value);
   }
 }

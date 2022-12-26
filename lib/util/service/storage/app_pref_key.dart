@@ -1,6 +1,9 @@
 enum AppPrefKey {
   // DummyUseLoginAPi
   dummyLoginApi,
+
+  /// 自動ログイン
+  automaticLogin,
 }
 
 extension AppPrefKeyEx on AppPrefKey {

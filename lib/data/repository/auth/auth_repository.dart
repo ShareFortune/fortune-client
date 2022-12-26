@@ -5,7 +5,7 @@ abstract class AuthRepository {
   /// Firebase ID
   String get firebaseId;
 
-  bool isLogin();
+  Future<bool> isLogin();
 
   /// Token
   Future<String> idToken();

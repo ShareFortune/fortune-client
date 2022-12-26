@@ -17,6 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$DebugState {
   PackageInfo get debugInfo => throw _privateConstructorUsedError;
+  bool get isDummyRoginApi => throw _privateConstructorUsedError;
   bool get isAutomaticLogin => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -30,7 +31,8 @@ abstract class $DebugStateCopyWith<$Res> {
           DebugState value, $Res Function(DebugState) then) =
       _$DebugStateCopyWithImpl<$Res, DebugState>;
   @useResult
-  $Res call({PackageInfo debugInfo, bool isAutomaticLogin});
+  $Res call(
+      {PackageInfo debugInfo, bool isDummyRoginApi, bool isAutomaticLogin});
 }
 
 /// @nodoc
@@ -47,6 +49,7 @@ class _$DebugStateCopyWithImpl<$Res, $Val extends DebugState>
   @override
   $Res call({
     Object? debugInfo = null,
+    Object? isDummyRoginApi = null,
     Object? isAutomaticLogin = null,
   }) {
     return _then(_value.copyWith(
@@ -54,6 +57,10 @@ class _$DebugStateCopyWithImpl<$Res, $Val extends DebugState>
           ? _value.debugInfo
           : debugInfo // ignore: cast_nullable_to_non_nullable
               as PackageInfo,
+      isDummyRoginApi: null == isDummyRoginApi
+          ? _value.isDummyRoginApi
+          : isDummyRoginApi // ignore: cast_nullable_to_non_nullable
+              as bool,
       isAutomaticLogin: null == isAutomaticLogin
           ? _value.isAutomaticLogin
           : isAutomaticLogin // ignore: cast_nullable_to_non_nullable
@@ -70,7 +77,8 @@ abstract class _$$_DebugStateCopyWith<$Res>
       __$$_DebugStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({PackageInfo debugInfo, bool isAutomaticLogin});
+  $Res call(
+      {PackageInfo debugInfo, bool isDummyRoginApi, bool isAutomaticLogin});
 }
 
 /// @nodoc
@@ -85,6 +93,7 @@ class __$$_DebugStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? debugInfo = null,
+    Object? isDummyRoginApi = null,
     Object? isAutomaticLogin = null,
   }) {
     return _then(_$_DebugState(
@@ -92,6 +101,10 @@ class __$$_DebugStateCopyWithImpl<$Res>
           ? _value.debugInfo
           : debugInfo // ignore: cast_nullable_to_non_nullable
               as PackageInfo,
+      isDummyRoginApi: null == isDummyRoginApi
+          ? _value.isDummyRoginApi
+          : isDummyRoginApi // ignore: cast_nullable_to_non_nullable
+              as bool,
       isAutomaticLogin: null == isAutomaticLogin
           ? _value.isAutomaticLogin
           : isAutomaticLogin // ignore: cast_nullable_to_non_nullable
@@ -104,16 +117,20 @@ class __$$_DebugStateCopyWithImpl<$Res>
 
 class _$_DebugState implements _DebugState {
   const _$_DebugState(
-      {required this.debugInfo, required this.isAutomaticLogin});
+      {required this.debugInfo,
+      required this.isDummyRoginApi,
+      required this.isAutomaticLogin});
 
   @override
   final PackageInfo debugInfo;
+  @override
+  final bool isDummyRoginApi;
   @override
   final bool isAutomaticLogin;
 
   @override
   String toString() {
-    return 'DebugState(debugInfo: $debugInfo, isAutomaticLogin: $isAutomaticLogin)';
+    return 'DebugState(debugInfo: $debugInfo, isDummyRoginApi: $isDummyRoginApi, isAutomaticLogin: $isAutomaticLogin)';
   }
 
   @override
@@ -123,12 +140,15 @@ class _$_DebugState implements _DebugState {
             other is _$_DebugState &&
             (identical(other.debugInfo, debugInfo) ||
                 other.debugInfo == debugInfo) &&
+            (identical(other.isDummyRoginApi, isDummyRoginApi) ||
+                other.isDummyRoginApi == isDummyRoginApi) &&
             (identical(other.isAutomaticLogin, isAutomaticLogin) ||
                 other.isAutomaticLogin == isAutomaticLogin));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, debugInfo, isAutomaticLogin);
+  int get hashCode =>
+      Object.hash(runtimeType, debugInfo, isDummyRoginApi, isAutomaticLogin);
 
   @JsonKey(ignore: true)
   @override
@@ -140,10 +160,13 @@ class _$_DebugState implements _DebugState {
 abstract class _DebugState implements DebugState {
   const factory _DebugState(
       {required final PackageInfo debugInfo,
+      required final bool isDummyRoginApi,
       required final bool isAutomaticLogin}) = _$_DebugState;
 
   @override
   PackageInfo get debugInfo;
+  @override
+  bool get isDummyRoginApi;
   @override
   bool get isAutomaticLogin;
   @override
