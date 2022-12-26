@@ -15,7 +15,7 @@ class ScrollAppBarViewModel
 
   fetch() async {
     state = await AsyncValue.guard(() async {
-      await Future.delayed(const Duration(seconds: 5));
+      await Future.delayed(const Duration(seconds: 1));
       return const ScrollAppBarState(
           image: NetworkImage(
         'https://firebasestorage.googleapis.com/v0/b/flutter-labo.appspot.com/o/setting%2Fflutterlabo_sns_image.png?alt=media&token=31f2e8aa-7dae-445e-b673-63286506d661',

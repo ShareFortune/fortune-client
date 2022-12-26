@@ -1,9 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:fortune_client/data/repository/auth/auth_repository.dart';
 import 'package:fortune_client/data/repository/profile/profile_repository.dart';
-import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/view/routes/app_router.gr.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 ///
 /// サインインしているかどうか
@@ -19,7 +17,7 @@ class AuthGuard extends AutoRouteGuard {
     NavigationResolver resolver,
     StackRouter router,
   ) async {
-    if (_authRepository.isLogin) {
+    if (_authRepository.isLogin()) {
       resolver.next(true);
     } else {
       router.push(const LoginRoute());

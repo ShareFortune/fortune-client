@@ -1,27 +1,33 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fortune_client/data/datasource/remote/firebase/firebase_auth_data_source.dart';
+import 'package:fortune_client/data/repository/debug/debug_repository.dart';
 
 import 'auth_repository.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
-  AuthRepositoryImpl(this._dataSource);
+  AuthRepositoryImpl(this._dataSource, this._debugRepository);
+  final DebugRepository _debugRepository;
   final FirebaseAuthDataSource _dataSource;
 
-  User? get _user => _dataSource.user;
+  bool isAutomaticLogin = false;
 
-  @override
-  bool get isLogin => _user != null;
+  User? get _user => _dataSource.user;
 
   @override
   String get firebaseId => _user!.uid;
 
   @override
+  bool isLogin() {
+    if (isAutomaticLogin) return true;
+    return _debugRepository.isDummyRoginApi() ? true : _user != null;
+  }
+
+  @override
   Future<String> idToken() async => await _user!.getIdToken();
 
   @override
-  Future<bool> logout() {
-    // TODO: implement logout
-    throw UnimplementedError();
+  Future<bool> logout() async {
+    return false;
   }
 
   @override
@@ -34,14 +40,20 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<void> signInWithApple() {
-    // TODO: implement signInWithApple
-    throw UnimplementedError();
+  Future<void> signInWithApple() async {
+    try {
+      await _dataSource.sigInWithGoogle();
+    } catch (e) {
+      rethrow;
+    }
   }
 
   @override
-  Future<void> signInWithTwitter() {
-    // TODO: implement signInWithTwitter
-    throw UnimplementedError();
+  Future<void> signInWithTwitter() async {
+    try {
+      await _dataSource.sigInWithGoogle();
+    } catch (e) {
+      rethrow;
+    }
   }
 }

@@ -16,9 +16,7 @@ import 'app.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  await initDependencies();
-
-  if (!kReleaseMode) {}
+  await initDependencies(kReleaseMode);
 
   if (Constants.flavor == Flavor.dev) {
     Fluttertoast.showToast(
