@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fortune_client/view/hooks/use_router.dart';
-import 'package:fortune_client/view/pages/common/basic_app_bar/basic_app_bar.dart';
+import 'package:fortune_client/view/widgets/basic_app_bar.dart';
 import 'package:fortune_client/view/pages/profile/create/entry_detailed_profile/detailed_profile_entry_view_model.dart';
 import 'package:fortune_client/view/pages/profile/create/components/next_button.dart';
 import 'package:gap/gap.dart';

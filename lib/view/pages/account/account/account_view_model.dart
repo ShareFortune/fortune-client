@@ -1,5 +1,7 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:fortune_client/view/pages/account/account/account_state.dart';
+import 'package:fortune_client/view/routes/app_router.gr.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final accountViewModelProvider =
     StateNotifierProvider<AccountViewModel, AsyncValue<AccountState>>((ref) {
@@ -17,5 +19,9 @@ class AccountViewModel extends StateNotifier<AsyncValue<AccountState>> {
     state = await AsyncValue.guard(() async {
       return const AccountState();
     });
+  }
+
+  navigateToSettingPage(StackRouter router) {
+    router.push(const SettingsRoute());
   }
 }

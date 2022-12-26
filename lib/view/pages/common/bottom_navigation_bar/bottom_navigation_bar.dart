@@ -1,11 +1,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fortune_client/view/routes/app_router.dart';
 import 'package:fortune_client/view/routes/app_router.gr.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class MyBottomNavigationBar extends ConsumerWidget {
+class MyBottomNavigationBar extends HookConsumerWidget {
   const MyBottomNavigationBar({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -15,9 +15,7 @@ class MyBottomNavigationBar extends ConsumerWidget {
       routes: const [
         RoomsRoute(),
         ParticipatingRoomsRoute(),
-        CreateRoomRoute(),
         MessageRoomsRoute(),
-        AccountRoute(),
       ],
       bottomNavigationBuilder: (_, tabsRouter) {
         return BottomNavigationBar(
@@ -49,19 +47,8 @@ class MyBottomNavigationBar extends ConsumerWidget {
         icon: Icon(Icons.event),
       ),
       BottomNavigationBarItem(
-        label: "",
-        icon: Icon(
-          size: 32,
-          Icons.add_circle_outline,
-        ),
-      ),
-      BottomNavigationBarItem(
         label: 'メッセージ',
         icon: Icon(Icons.chat),
-      ),
-      BottomNavigationBarItem(
-        label: 'アカウント',
-        icon: Icon(Icons.account_circle_outlined),
       ),
     ];
   }

@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
 
-tagWidget(String value) {
+Widget tagWidget(String value) {
   return Container(
     decoration: BoxDecoration(
-      color: const Color.fromRGBO(0, 0, 0, 0.08),
+      color: const Color(0xFFF5F5F5),
       borderRadius: BorderRadius.circular(30),
     ),
     child: Padding(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
       child: Text(
         value,
-        style: const TextStyle(fontSize: 16),
+        style: const TextStyle(
+          fontSize: 14,
+          fontWeight: FontWeight.bold,
+          color: Color(0xFF969696),
+        ),
       ),
     ),
   );

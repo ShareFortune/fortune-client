@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:fortune_client/gen/assets.gen.dart';
+import 'package:fortune_client/view/hooks/use_router.dart';
 import 'package:fortune_client/view/pages/account/account/account_view_model.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
+import 'package:fortune_client/view/widgets/tag_widget.dart';
 import 'package:gap/gap.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class AccountPage extends ConsumerWidget {
+class AccountPage extends HookConsumerWidget {
   const AccountPage({super.key});
 
   @override
@@ -14,101 +15,178 @@ class AccountPage extends ConsumerWidget {
     final theme = ref.watch(appThemeProvider);
     final state = ref.watch(accountViewModelProvider);
     final viewModel = ref.watch(accountViewModelProvider.notifier);
+    final router = useRouter();
 
-    return state.when(
-      data: (data) {
-        return Scaffold(
-          appBar: AppBar(
-            elevation: 0,
-            backgroundColor: theme.appColors.background,
-            title: Text(
-              "アカウント",
-              style: theme.textTheme.h40
-                  .merge(TextStyle(color: theme.appColors.headline1))
-                  .bold(),
-            ),
-          ),
-          body: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 30),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                _host(theme, image: Assets.images.insta2),
-                const Gap(50),
-                _status(theme),
-              ],
-            ),
-          ),
-        );
-      },
-      error: (e, msg) => Scaffold(
-        body: SafeArea(
-          child: Center(
-            child: Text(
-              e.toString(),
-            ),
-          ),
-        ),
+    return Scaffold(
+      appBar: _appBar(
+        theme,
+        () => viewModel.navigateToSettingPage(router),
       ),
-      loading: () => const Scaffold(
-        body: SafeArea(
-          child: Center(
-            child: CircularProgressIndicator(),
-          ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            const Gap(30),
+            _header(theme),
+            const Gap(30),
+            _adContainer(),
+            _profileSelfIntroduction(theme),
+            const Divider(height: 1),
+            _profileTags(theme),
+            const Divider(height: 1),
+            _profileDetail(theme),
+            const Gap(100),
+          ],
         ),
       ),
     );
   }
 
-  Widget _host(
-    AppTheme theme, {
-    required AssetGenImage image,
-  }) {
-    return Column(
-      children: [
-        CircleAvatar(
-          radius: 50,
-          backgroundImage: image.provider(),
-          // backgroundColor: theme.appColors.primary,
-        ),
-        const Gap(20),
-        Text(
-          "斉藤さん",
-          style: theme.textTheme.h40.bold(),
-        ),
-      ],
-    );
-  }
-
-  Widget _status(AppTheme theme) {
-    return IntrinsicHeight(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+  Widget _profileDetail(AppTheme theme) {
+    return _profileContainer(
+      theme,
+      "プロフィール",
+      Column(
         children: [
-          _state("募集数", "3", theme),
-          const VerticalDivider(thickness: 0.1, color: Colors.black),
-          _state("総募集数", "15", theme),
-          const VerticalDivider(thickness: 0.1, color: Colors.black),
-          _state("参加数", "28", theme),
-          const VerticalDivider(thickness: 0.1, color: Colors.black),
-          _state("いいね", "40", theme),
+          _profileDetailItem(theme, "居住地", "東京都"),
+          _profileDetailItem(theme, "身長", "177cm"),
+          _profileDetailItem(theme, "職業", "東京都"),
+          _profileDetailItem(theme, "お酒", "東京都"),
+          _profileDetailItem(theme, "タバコ", "東京都"),
         ],
       ),
     );
   }
 
-  Widget _state(String title, String value, AppTheme theme) {
+  Widget _profileDetailItem(AppTheme theme, String title, String value) {
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 15),
+      decoration: const BoxDecoration(
+        border: Border(bottom: BorderSide(color: Color(0xFFF3F3F3), width: 1)),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(title, style: const TextStyle(color: Color(0xFF969696))),
+          Row(
+            children: [
+              Text(value),
+              const Gap(10),
+              const Icon(
+                size: 16,
+                Icons.arrow_forward_ios,
+                color: Color(0xFF969696),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _profileTags(AppTheme theme) {
+    return _profileContainer(
+      theme,
+      "設定しているタグ",
+      Wrap(
+        spacing: 10,
+        runSpacing: 10,
+        children: List.generate(7, (index) {
+          String buf = "";
+          List.generate(index, (index) => buf += index.toString());
+          return tagWidget("タグ$buf");
+        }).toList(),
+      ),
+    );
+  }
+
+  Widget _profileSelfIntroduction(AppTheme theme) {
+    return _profileContainer(
+      theme,
+      "自己紹介",
+      Container(
+        padding: const EdgeInsets.symmetric(vertical: 30),
+        child: const Text(
+          "自己紹介文を入力しましょう",
+          style: TextStyle(color: Color(0xFF969696)),
+        ),
+      ),
+    );
+  }
+
+  Widget _profileContainer(AppTheme theme, String title, Widget child) {
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(title, style: theme.textTheme.h40.bold()),
+          const Gap(15),
+          Container(child: child),
+        ],
+      ),
+    );
+  }
+
+  Widget _adContainer() {
+    return Container(
+      color: Colors.blueGrey[100],
+      height: 150,
+      padding: const EdgeInsets.all(20),
+      child: Container(
+        width: double.infinity,
+        color: Colors.white,
+        child: const Text("広告"),
+      ),
+    );
+  }
+
+  Widget _header(AppTheme theme) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: Row(
+        children: [
+          const CircleAvatar(radius: 45),
+          const Gap(20),
+          _headerTitle(theme)
+        ],
+      ),
+    );
+  }
+
+  Widget _headerTitle(AppTheme theme) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          value,
-          style: theme.textTheme.h30.bold(),
+          "Takahashi",
+          style: theme.textTheme.h60.bold(),
         ),
-        const Gap(10),
+        const Gap(5),
         Text(
-          title,
-          style: theme.textTheme.h20,
+          "22歳・女性",
+          style: theme.textTheme.h40
+              .merge(const TextStyle(color: Color(0xFF6C6C6C))),
+        ),
+      ],
+    );
+  }
+
+  AppBar _appBar(AppTheme theme, Function() settingBtnOnTap) {
+    const color = Colors.black;
+
+    return AppBar(
+      elevation: 0,
+      backgroundColor: Colors.transparent,
+      title: Text(
+        "アカウント",
+        style: theme.textTheme.h60.bold().merge(const TextStyle(color: color)),
+      ),
+      leading: const BackButton(color: color),
+      actions: [
+        IconButton(
+          onPressed: settingBtnOnTap,
+          icon: const Icon(Icons.settings, size: 28, color: color),
         ),
       ],
     );

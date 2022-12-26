@@ -1,9 +1,8 @@
 import 'dart:io';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fortune_client/view/hooks/use_router.dart';
-import 'package:fortune_client/view/pages/common/basic_app_bar/basic_app_bar.dart';
+import 'package:fortune_client/view/widgets/basic_app_bar.dart';
 import 'package:fortune_client/view/pages/profile/create/entry_profile_sub_image/entry_profile_sub_image_view_model.dart';
 import 'package:fortune_client/view/pages/profile/create/components/next_button.dart';
 import 'package:gap/gap.dart';
@@ -23,27 +22,14 @@ class EntryProfileSubImagePage extends HookConsumerWidget {
         return Stack(
           children: [
             Scaffold(
-              appBar: BasicAppBar(
-                title: "アイコン写真を登録しよう！",
-                // widget: Expanded(
-                //   child: Row(
-                //     mainAxisAlignment: MainAxisAlignment.center,
-                //     children: const [
-                //       Text(
-                //         "サブ写真を登録しよう！",
-                //         style: TextStyle(
-                //           fontSize: 20,
-                //           fontWeight: FontWeight.bold,
-                //         ),
-                //       ),
-                //     ],
-                //   ),
-                // ),
+              appBar: const BasicAppBar(
+                title: "サブ写真を登録しよう！",
+                centerTitle: true,
               ),
               body: Center(
                 child: Container(
                   padding: const EdgeInsets.only(
-                    top: 30,
+                    top: 50,
                     left: 40,
                     right: 40,
                     bottom: 50,
@@ -106,13 +92,7 @@ class EntryProfileSubImagePage extends HookConsumerWidget {
           ),
         ),
       ),
-      loading: () => const Scaffold(
-        body: SafeArea(
-          child: Center(
-            child: CircularProgressIndicator(),
-          ),
-        ),
-      ),
+      loading: () => loading(),
     );
   }
 
@@ -127,8 +107,8 @@ class EntryProfileSubImagePage extends HookConsumerWidget {
     return InkWell(
       onTap: onTap,
       child: Container(
-        width: 150,
-        height: 150,
+        width: 140,
+        height: 140,
         decoration: BoxDecoration(
           image: file != null
               ? DecorationImage(

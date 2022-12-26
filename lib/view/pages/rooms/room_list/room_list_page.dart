@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fortune_client/view/hooks/use_router.dart';
-import 'package:fortune_client/view/pages/common/basic_app_bar/basic_app_bar.dart';
+import 'package:fortune_client/view/pages/common/scroll_app_bar/scroll_app_bar.dart';
 import 'package:fortune_client/view/pages/rooms/room_list/room_list_view_model.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/list_animation.dart';
@@ -21,7 +21,7 @@ class RoomListPage extends HookConsumerWidget {
       data: (data) {
         return CustomScrollView(
           slivers: [
-            const BasicAppBar(title: "見つける", isBorder: false),
+            const ScrollAppBar(title: "見つける", isBorder: false),
             SliverToBoxAdapter(
                 child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 20),
