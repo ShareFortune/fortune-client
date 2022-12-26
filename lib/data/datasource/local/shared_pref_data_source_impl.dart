@@ -1,5 +1,5 @@
-import 'package:fimber/fimber.dart';
 import 'package:fortune_client/data/datasource/local/shared_pref_data_source.dart';
+import 'package:fortune_client/util/logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SharedPrefDataSourceImpl implements SharedPrefDataSource {
@@ -10,8 +10,9 @@ class SharedPrefDataSourceImpl implements SharedPrefDataSource {
 
   Future<bool> _logger<T>(
       Future<bool> Function(String, T) setter, String key, T value) {
+    // developer.log('\x1B[33m$value\x1B[0m');
     return setter(key, value).whenComplete(
-      () => Fimber.i('[$_prefix] set ${T.runtimeType} for key: $key'),
+      () => logger.i('[$_prefix] set ${T.runtimeType} for key: $key'),
     );
   }
 
@@ -69,13 +70,13 @@ class SharedPrefDataSourceImpl implements SharedPrefDataSource {
   Future<bool> remove(String key) {
     return _sharedPreferences
         .remove(key)
-        .whenComplete(() => Fimber.i('[$_prefix] removed value for key: $key'));
+        .whenComplete(() => logger.i('[$_prefix] removed value for key: $key'));
   }
 
   @override
   Future<bool> clear() async {
     return _sharedPreferences.clear().whenComplete(
-          () => Fimber.i('[$_prefix] cleared all sharedPreferences.'),
+          () => logger.i('[$_prefix] cleared all sharedPreferences.'),
         );
   }
 

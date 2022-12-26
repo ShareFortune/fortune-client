@@ -1,8 +1,6 @@
 import 'dart:io';
 
-import 'package:fortune_client/data/datasource/local/profile_state.dart';
 import 'package:fortune_client/data/datasource/local/shared_pref_data_source.dart';
-import 'package:fortune_client/data/datasource/local/shared_pref_data_source_impl.dart';
 import 'package:fortune_client/data/datasource/remote/go/profile/profile_data_source.dart';
 import 'package:fortune_client/data/model/create_profile_form/create_profile_form.dart';
 import 'package:fortune_client/data/model/profile/profile.dart';

@@ -7,6 +7,8 @@ import 'package:fortune_client/data/datasource/remote/go/profile/profile_data_so
 import 'package:fortune_client/data/datasource/remote/go/rooms/rooms_data_source.dart';
 import 'package:fortune_client/data/repository/auth/auth_repository.dart';
 import 'package:fortune_client/data/repository/auth/auth_repository_impl.dart';
+import 'package:fortune_client/data/repository/debug/debug_repository.dart';
+import 'package:fortune_client/data/repository/debug/debug_repository_impl.dart';
 import 'package:fortune_client/data/repository/message/message_repository_impl.dart';
 import 'package:fortune_client/data/repository/profile/profile_repository.dart';
 import 'package:fortune_client/data/repository/profile/profile_repository_impl.dart';
@@ -15,13 +17,9 @@ import 'package:fortune_client/foundation/constants.dart';
 import 'package:fortune_client/view/routes/app_router.gr.dart';
 import 'package:fortune_client/view/routes/route_guard.dart';
 import 'package:get_it/get_it.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 final sl = GetIt.instance;
-
-/// ダミーログインAPI
-final debugUseDummyLoginApiProvider = StateProvider((_) => false);
 
 Future<void> initDependencies() async {
   final sharedPreferences = await SharedPreferences.getInstance();
@@ -44,6 +42,7 @@ Future<void> initDependencies() async {
   sl.registerSingleton(MessageRepositoryImpl());
   sl.registerSingleton<ProfileRepository>(ProfileRepositoryImpl(sl(), sl()));
   sl.registerSingleton(RoomRepositoryImpl(sl()));
+  sl.registerSingleton<DebugRepository>(DebugRepositoryImpl(sl()));
 
   ///  Router
   sl.registerSingleton(AuthGuard(sl()));

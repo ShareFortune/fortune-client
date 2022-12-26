@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:fortune_client/data/repository/auth/auth_repository.dart';
+import 'package:fortune_client/data/repository/debug/debug_repository.dart';
 import 'package:fortune_client/foundation/constants.dart';
 import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/view/pages/auth/login/login_state.dart';
@@ -8,25 +9,23 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final loginViewModelProvider =
     StateNotifierProvider<LoginViewModel, AsyncValue<void>>((ref) {
-  return LoginViewModel(ref, sl());
+  return LoginViewModel(sl(), sl());
 });
 
 class LoginViewModel extends StateNotifier<AsyncValue<void>> {
-  LoginViewModel(this._ref, this._authRepository)
+  LoginViewModel(this._authRepository, this._debugRepository)
       : super(const AsyncData(null));
 
-  final Ref _ref;
   final AuthRepository _authRepository;
+  final DebugRepository _debugRepository;
 
   /// デバッグモードオンオフ
   bool? toggleDebugMode() {
     if (Constants.flavor == Flavor.prod) {
       return null;
     }
-
-    final debugUse = _ref.watch(debugUseDummyLoginApiProvider.notifier);
-    debugUse.state = !debugUse.state;
-    return debugUse.state;
+    _debugRepository.toggleAutomaticLogin();
+    return _debugRepository.isAutomaticLogin();
   }
 
   Future<void> onTapLoginBtn(AuthType type, StackRouter router) async {

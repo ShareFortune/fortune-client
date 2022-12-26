@@ -6,9 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:fortune_client/foundation/constants.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:fimber/fimber.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:fortune_client/injector.dart';
+import 'package:fortune_client/util/logger.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'app.dart';
@@ -18,22 +18,12 @@ void main() async {
   await Firebase.initializeApp();
   await initDependencies();
 
-  if (!kReleaseMode) {
-    Fimber.plantTree(DebugTree());
-  } else {
-    debugPrint = (message, {wrapWidth}) {
-      print(message);
-    };
-  }
+  if (!kReleaseMode) {}
 
   if (Constants.flavor == Flavor.dev) {
     Fluttertoast.showToast(
       msg: "flavor: ${EnumToString.convertToString(Constants.flavor)}",
     );
-    // overrides = [
-    //   DataSource.room.overrideWithValue(StubRoomDataSource()),
-    //   DataSource.profile.overrideWithValue(FakeProfileDataSource()),
-    // ];
   }
 
   runZonedGuarded(
@@ -48,7 +38,7 @@ void main() async {
       ),
     ),
     (error, stackTrace) {
-      Fimber.e(error.toString());
+      logger.e(error, stackTrace);
     },
   );
 }
