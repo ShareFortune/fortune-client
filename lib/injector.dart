@@ -41,9 +41,7 @@ class Repository {
     return MessageRepositoryImpl();
   });
   static final profile = Provider<ProfileRepository>((ref) {
-    return ProfileRepositoryImpl(
-      ref.watch(DataSource.profile),
-    );
+    return ProfileRepositoryImpl(ref.watch(DataSource.profile));
   });
   static final room = Provider<RoomRepository>((ref) {
     return RoomRepositoryImpl(ref.watch(DataSource.room));

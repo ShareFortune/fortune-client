@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:fortune_client/data/datasource/local/profile_state.dart';
 import 'package:fortune_client/data/datasource/remote/go/profile/profile_data_source.dart';
 import 'package:fortune_client/data/model/create_profile_form/create_profile_form.dart';
 import 'package:fortune_client/data/model/profile/profile.dart';
@@ -11,11 +12,8 @@ class ProfileRepositoryImpl implements ProfileRepository {
 
   ProfileRepositoryImpl(this._dataSource);
 
-  /// ローカル保存する
-  bool isCreatedShe = true;
-
   @override
-  bool get isCreated => isCreatedShe;
+  bool get isCreated => profileIsCreated;
 
   @override
   Future<String> update() {
@@ -63,7 +61,7 @@ class ProfileRepositoryImpl implements ProfileRepository {
     /// [id] ユーザー作成時のID
     try {
       final result = await _dataSource.create("id", form.toJson());
-      isCreatedShe = true;
+      profileIsCreated = true;
       return result;
     } catch (e) {
       /// Dio error

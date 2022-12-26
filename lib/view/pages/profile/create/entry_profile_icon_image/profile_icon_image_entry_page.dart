@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:fortune_client/view/hooks/use_router.dart';
-import 'package:fortune_client/view/pages/common/basic_app_bar/basic_app_bar.dart';
+import 'package:fortune_client/view/widgets/basic_app_bar.dart';
 import 'package:fortune_client/view/pages/profile/create/entry_profile_icon_image/profile_icon_image_entry_view_model.dart';
 import 'package:fortune_client/view/pages/profile/create/components/next_button.dart';
 import 'package:gap/gap.dart';
@@ -19,11 +19,14 @@ class ProfileIconImageEntryPage extends HookConsumerWidget {
         ref.watch(profileIconImageEntryViewModelProvider.notifier);
 
     return Scaffold(
-      appBar: const BasicAppBar(title: "アイコン写真を登録しよう！"),
+      appBar: const BasicAppBar(
+        title: "アイコン写真を登録しよう！",
+        centerTitle: true,
+      ),
       body: Center(
         child: Container(
           padding: const EdgeInsets.only(
-            top: 30,
+            top: 50,
             left: 60,
             right: 60,
             bottom: 50,

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:fortune_client/view/hooks/use_router.dart';
-import 'package:fortune_client/view/pages/common/basic_app_bar/basic_app_bar.dart';
 import 'package:fortune_client/view/pages/profile/create/entry_basic_profile/basic_profile_entry_view_model.dart';
 import 'package:fortune_client/data/model/enum/gender_type.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/pages/profile/create/components/bottom_picker.dart';
+import 'package:fortune_client/view/widgets/basic_app_bar.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -19,7 +19,12 @@ class BasicProfileEntryPage extends HookConsumerWidget {
     final router = useRouter();
 
     return Scaffold(
-      appBar: const BasicAppBar(title: "はじめる"),
+      appBar: BasicAppBar(
+        title: "はじめる",
+        action: [
+          nextButton(state.isEntered(), () => viewModel.onTapNextBtn(router)),
+        ],
+      ),
       body: Container(
         padding: const EdgeInsets.only(
           top: 20,
