@@ -58,6 +58,6 @@ class LoginViewModel extends StateNotifier<AsyncValue<void>> {
   }
 
   Future pushHome(StackRouter router) async {
-    await router.push(const HomeRoute());
+    await router.push(const HomeRouter());
   }
 }

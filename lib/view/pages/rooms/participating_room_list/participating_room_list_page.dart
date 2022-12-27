@@ -71,12 +71,24 @@ class ParticipatingRoomListPage extends HookConsumerWidget {
               return Column(
                 children: [
                   const Gap(20),
-                  _pageView(theme, "ホストで参加", true, () {
-                    viewModel.pushRequestConfirmation(router, 0);
-                  }),
-                  _pageView(theme, "ゲストで参加", false, () {
-                    viewModel.pushRequestConfirmation(router, 0);
-                  }),
+                  _pageView(
+                    theme,
+                    "ホストで参加",
+                    true,
+                    navMessage: () => viewModel.navigateToMessage(router),
+                    navRequest: () =>
+                        viewModel.navigateToRequestConfirmation(router, 0),
+                    navDetail: () => viewModel.navigateToRoomDetail(router),
+                  ),
+                  _pageView(
+                    theme,
+                    "ゲストで参加",
+                    false,
+                    navMessage: () => viewModel.navigateToMessage(router),
+                    navRequest: () =>
+                        viewModel.navigateToRequestConfirmation(router, 0),
+                    navDetail: () => viewModel.navigateToRoomDetail(router),
+                  ),
                 ],
               );
             },
@@ -89,9 +101,11 @@ class ParticipatingRoomListPage extends HookConsumerWidget {
   Widget _pageView(
     AppTheme theme,
     String title,
-    bool isHost,
-    Function() onTap,
-  ) {
+    bool isHost, {
+    required Function() navMessage,
+    required Function() navRequest,
+    required Function() navDetail,
+  }) {
     return Column(
       children: [
         const Gap(10),
@@ -101,47 +115,30 @@ class ParticipatingRoomListPage extends HookConsumerWidget {
           height: 310.0,
           child: PageView(
             controller: PageController(viewportFraction: 0.9),
-            children: [
-              _page(
+            children: List.generate(10, (index) {
+              Widget bottom;
+              if (index % 2 == 0) {
+                bottom = _bottomButton(
+                    theme, "メッセージ", theme.appColors.primary, navMessage);
+              } else if (index % 3 == 0) {
+                bottom = _bottomButton(
+                    theme, "リクエスト一覧", theme.appColors.secondary, null);
+              } else {
+                bottom = _bottomButton(
+                    theme, "リクエスト一覧", theme.appColors.secondary, navRequest);
+              }
+              return _page(
                 theme,
                 RoomCardWidget(
                   hostIconPath: isHost ? null : Assets.images.thinder.path,
                   title: "渋谷で飲み会しませんか？",
                   location: "日本・北海道・岩見沢市",
                   members: const ["", ""],
-                  bottomExist: true,
-                  messageRoomExist: true,
-                  requestExist: null,
-                  onTap: onTap,
+                  onTap: navDetail,
+                  bottom: bottom,
                 ),
-              ),
-              _page(
-                theme,
-                RoomCardWidget(
-                  hostIconPath: isHost ? null : Assets.images.thinder.path,
-                  title: "渋谷で飲み会しませんか？",
-                  location: "日本・北海道・岩見沢市",
-                  members: const ["", ""],
-                  bottomExist: true,
-                  messageRoomExist: true,
-                  requestExist: true,
-                  onTap: onTap,
-                ),
-              ),
-              _page(
-                theme,
-                RoomCardWidget(
-                  hostIconPath: isHost ? null : Assets.images.thinder.path,
-                  title: "渋谷で飲み会しませんか？",
-                  location: "日本・北海道・岩見沢市",
-                  members: const ["", ""],
-                  bottomExist: true,
-                  messageRoomExist: false,
-                  requestExist: true,
-                  onTap: onTap,
-                ),
-              ),
-            ],
+              );
+            }).toList(),
           ),
         ),
         const Divider(),
@@ -185,6 +182,39 @@ class ParticipatingRoomListPage extends HookConsumerWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  _bottomButton(
+    AppTheme theme,
+    String title,
+    Color color,
+    Function()? onTap,
+  ) {
+    Color bgOff = const Color(0xFFF5F5F5);
+    Color textOff = const Color(0xFF969696);
+
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 50),
+      width: double.infinity,
+      child: ElevatedButton(
+        onPressed: onTap,
+        style: ElevatedButton.styleFrom(
+          elevation: 0,
+          padding: const EdgeInsets.symmetric(vertical: 15),
+          backgroundColor: onTap != null ? color : bgOff,
+          textStyle: theme.textTheme.h30.bold(),
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(30)),
+          ),
+        ),
+        child: Text(
+          title,
+          style: theme.textTheme.h30
+              .bold()
+              .merge(TextStyle(color: onTap != null ? Colors.white : textOff)),
+        ),
       ),
     );
   }

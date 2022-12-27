@@ -1,6 +1,8 @@
 class RoutePath {
-  /// ボトムナビゲーション遷移
   static const root = '/';
+
+  /// ボトムナビゲーション遷移
+  static const tabs = '/tab';
 
   /// Debug
   static const debug = '/debug';
@@ -9,7 +11,8 @@ class RoutePath {
   static const login = '/login';
 
   /// プロフィール作成
-  static const createProfile = '/create-profile'; // 基本情報
+  static const createProfile = 'create-profile';
+  static const createProfileBasic = 'basic'; // 基本情報
   static const createProfileDetail = 'detail'; // 詳細
   static const createProfileIconImage = 'icon-image'; // 詳細
   static const createProfileSubImage = 'sub-image'; // 詳細
@@ -18,15 +21,15 @@ class RoutePath {
   static const rooms = 'rooms';
 
   /// ルーム詳細
-  /// [/rooms/:id]
-  static const roomDetail = ':id';
+  /// [/room:id]
+  static const roomDetail = 'room/:id';
 
   /// 参加ルームリスト
   static const participatingRooms = 'participating-rooms';
 
   /// 参加リクエスト
   /// [/participating-rooms/request-confirmation:id]
-  static const requestConfirmation = 'request-confirmation:id';
+  static const requestConfirmation = 'request-confirmation/:id';
 
   /// ルーム作成
   static const createRoom = 'create-room';
@@ -36,10 +39,10 @@ class RoutePath {
 
   /// メッセージルーム
   /// [/message-rooms/:id]
-  static const messageRoom = ':id';
+  static const messageRoom = 'message-room/:id';
 
   /// プロフィール
-  static const profile = '/profile/:id';
+  static const profile = 'profile/:id';
 
   /// アカウント
   static const account = 'account';

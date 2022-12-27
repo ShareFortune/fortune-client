@@ -29,7 +29,7 @@ class RoomListViewModel extends StateNotifier<AsyncValue<RoomListState>> {
     });
   }
 
-  pushRoomDetail(StackRouter router) async {
+  navigateToRoomDetail(StackRouter router) async {
     await router.push(RoomDetailRoute(id: "id"));
   }
 }

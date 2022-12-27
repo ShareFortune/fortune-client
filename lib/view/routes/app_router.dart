@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_route/empty_router_widgets.dart';
+import 'package:fortune_client/data/model/room_detail/room_detail.dart';
 import 'package:fortune_client/view/pages/account/account/account_page.dart';
 import 'package:fortune_client/view/pages/auth/login/login_page.dart';
 import 'package:fortune_client/view/pages/common/bottom_navigation_bar/bottom_navigation_bar.dart';
@@ -22,117 +23,144 @@ import 'package:fortune_client/view/routes/route_path.dart';
 
 export 'app_router.gr.dart';
 
+/// ボトムナビゲータで管理するページ
+const homeRouter = AutoRoute(
+  initial: true,
+  name: "HomeRouter",
+  page: MyBottomNavigationBar,
+  guards: [AuthGuard, CheckIfMyProfileExists],
+  children: [
+    /// ルームリスト
+    AutoRoute(
+      name: "RoomsTab",
+      path: RoutePath.rooms,
+      page: EmptyRouterPage,
+      children: [
+        roomDetailRoute,
+        AutoRoute(path: '', page: RoomListPage),
+      ],
+    ),
+
+    /// 参加ルームリスト
+    AutoRoute(
+      name: "ParticipatingTab",
+      path: RoutePath.participatingRooms,
+      page: EmptyRouterPage,
+      children: [
+        roomDetailRoute,
+        messageRoomRoute,
+
+        /// 参加ルーム
+        AutoRoute(path: '', page: ParticipatingRoomListPage),
+
+        /// 参加リクエスト
+        AutoRoute(
+            path: RoutePath.requestConfirmation, page: RequestConfirmationPage),
+      ],
+    ),
+
+    /// メッセージルームリスト
+    AutoRoute(
+      name: "MessagesTab",
+      path: RoutePath.rooms,
+      page: EmptyRouterPage,
+      children: [
+        messageRoomRoute,
+        AutoRoute(path: '', page: MessageRoomListPage),
+      ],
+    ),
+  ],
+);
+
+/// ルーム詳細
+const roomDetailRoute = AutoRoute(
+  path: RoutePath.roomDetail,
+  page: RoomDetailPage,
+);
+
+/// メッセージ
+const messageRoomRoute = AutoRoute(
+  path: RoutePath.messageRoom,
+  page: MessageRoomPage,
+);
+
+/// ログインページ
+const loginRouter = AutoRoute(
+  path: RoutePath.login,
+  page: LoginPage,
+);
+
+/// デバッグ
+const debugRouter = AutoRoute(
+  path: RoutePath.debug,
+  page: DebugPage,
+);
+
+/// プロフィール作成
+const createProfileRoute = AutoRoute(
+  name: "CreateProfileRoute",
+  path: RoutePath.createProfile,
+  page: EmptyRouterPage,
+  guards: [AuthGuard],
+  children: [
+    RedirectRoute(
+      path: "*",
+      redirectTo: RoutePath.createProfileBasic,
+    ),
+    AutoRoute(
+      path: RoutePath.createProfileBasic,
+      page: BasicProfileEntryPage,
+    ),
+    AutoRoute(
+      path: RoutePath.createProfileDetail,
+      page: DetailedProfileEntryPage,
+    ),
+    AutoRoute(
+      path: RoutePath.createProfileIconImage,
+      page: ProfileIconImageEntryPage,
+    ),
+    AutoRoute(
+      path: RoutePath.createProfileSubImage,
+      page: EntryProfileSubImagePage,
+    ),
+  ],
+);
+
+/// プロフィール
+const profileRoute = AutoRoute(
+  path: RoutePath.profile,
+  page: ProfilePage,
+);
+
+/// ルーム作成
+const createRoom = AutoRoute(
+  path: RoutePath.createRoom,
+  page: RoomCreatePage,
+);
+
+/// アカウント
+const accountRoute = AutoRoute(
+  path: RoutePath.account,
+  page: AccountPage,
+);
+
+/// 設定
+const settingsRoute = AutoRoute(
+  path: RoutePath.account,
+  page: SettingsPage,
+);
+
 @AdaptiveAutoRouter(
   replaceInRouteName: 'Page,Route',
   routes: <AutoRoute>[
-    /// ログイン
-    AutoRoute(
-      path: RoutePath.login,
-      page: LoginPage,
-      initial: true,
-    ),
-
-    /// Debug
-    AutoRoute(
-      path: RoutePath.debug,
-      page: DebugPage,
-    ),
-
-    /// プロフィール作成
-    AutoRoute(
-      name: "ProfileCreateRoute",
-      path: RoutePath.createProfile,
-      page: EmptyRouterPage,
-      guards: [AuthGuard],
-      children: [
-        AutoRoute(
-          path: "",
-          page: BasicProfileEntryPage,
-        ),
-        AutoRoute(
-          path: RoutePath.createProfileDetail,
-          page: DetailedProfileEntryPage,
-        ),
-        AutoRoute(
-          path: RoutePath.createProfileIconImage,
-          page: ProfileIconImageEntryPage,
-        ),
-        AutoRoute(
-          path: RoutePath.createProfileSubImage,
-          page: EntryProfileSubImagePage,
-        ),
-      ],
-    ),
-
-    /// プロフィール
-    AutoRoute(
-      path: RoutePath.profile,
-      page: ProfilePage,
-      guards: [AuthGuard, CheckIfMyProfileExists],
-    ),
-
-    /// アカウント
-    AutoRoute(
-      path: RoutePath.account,
-      page: AccountPage,
-    ),
-
-    /// 設定
-    AutoRoute(
-      path: RoutePath.account,
-      page: SettingsPage,
-    ),
-
-    /// ルーム作成
-    AutoRoute(
-      name: 'CreateRoomRoute',
-      path: RoutePath.createRoom,
-      page: EmptyRouterPage,
-      children: [
-        AutoRoute(path: "", page: RoomCreatePage),
-      ],
-    ),
-
-    /// ナビゲーションタブ
-    AutoRoute(
-      name: "HomeRoute",
-      path: RoutePath.root,
-      page: MyBottomNavigationBar,
-      guards: [AuthGuard, CheckIfMyProfileExists],
-      children: [
-        AutoRoute(
-          name: 'RoomsRoute',
-          path: RoutePath.rooms,
-          page: EmptyRouterPage,
-          children: [
-            AutoRoute(path: "", page: RoomListPage),
-            AutoRoute(path: RoutePath.roomDetail, page: RoomDetailPage),
-          ],
-        ),
-        AutoRoute(
-          name: 'ParticipatingRoomsRoute',
-          path: RoutePath.participatingRooms,
-          page: EmptyRouterPage,
-          children: [
-            AutoRoute(path: "", page: ParticipatingRoomListPage),
-            AutoRoute(
-              path: RoutePath.requestConfirmation,
-              page: RequestConfirmationPage,
-              guards: [AuthGuard],
-            ),
-          ],
-        ),
-        AutoRoute(
-          name: 'MessageRoomsRoute',
-          path: RoutePath.messageRooms,
-          page: EmptyRouterPage,
-          children: [
-            AutoRoute(path: "", page: MessageRoomListPage),
-            AutoRoute(path: RoutePath.messageRoom, page: MessageRoomPage)
-          ],
-        ),
-      ],
-    ),
+    homeRouter,
+    loginRouter,
+    debugRouter,
+    createRoom,
+    createProfileRoute,
+    profileRoute,
+    accountRoute,
+    settingsRoute,
   ],
 )
 class $AppRouter {}

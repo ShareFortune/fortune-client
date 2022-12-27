@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:fortune_client/view/hooks/use_router.dart';
 import 'package:fortune_client/view/pages/auth/login/components/auth_button.dart';
@@ -32,7 +33,6 @@ class LoginPage extends HookConsumerWidget {
                     onDoubleTap: () async {
                       final result = await viewModel.toggleDebugMode();
                       if (result != null) {
-                        // ignore: use_build_context_synchronously
                         await showDebugDialog(context, result);
                       }
                     },
@@ -81,7 +81,8 @@ class LoginPage extends HookConsumerWidget {
       context,
       'ダミーログインAPIを使用: $result',
       onPressed: () {
-        Navigator.of(context).pop();
+        context.router.pop();
+        // Navigator.of(context).pop();
       },
     );
   }

@@ -13,9 +13,9 @@ class MyBottomNavigationBar extends HookConsumerWidget {
 
     return AutoTabsScaffold(
       routes: const [
-        RoomsRoute(),
-        ParticipatingRoomsRoute(),
-        MessageRoomsRoute(),
+        RoomsTab(),
+        ParticipatingTab(),
+        MessagesTab(),
       ],
       bottomNavigationBuilder: (_, tabsRouter) {
         return BottomNavigationBar(

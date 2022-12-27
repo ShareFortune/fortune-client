@@ -40,7 +40,7 @@ class CheckIfMyProfileExists extends AutoRouteGuard {
     if (await _profileRepository.isCreated()) {
       resolver.next(true);
     } else {
-      router.push(const ProfileCreateRoute());
+      router.push(const CreateProfileRoute());
     }
   }
 }

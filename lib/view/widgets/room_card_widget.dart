@@ -13,9 +13,7 @@ class RoomCardWidget extends HookConsumerWidget {
     required this.title,
     required this.location,
     required this.members,
-    this.bottomExist = false,
-    this.messageRoomExist = false,
-    this.requestExist,
+    this.bottom,
     required this.onTap,
   });
 
@@ -23,9 +21,7 @@ class RoomCardWidget extends HookConsumerWidget {
   final String title;
   final String location;
   final List members;
-  final bool bottomExist;
-  final bool messageRoomExist;
-  final bool? requestExist;
+  final Widget? bottom;
   final Function() onTap;
 
   @override
@@ -55,36 +51,6 @@ class RoomCardWidget extends HookConsumerWidget {
     Widget membersIcon;
     membersIcon = memberIconsWidget(15, members);
 
-    /// 下部ボタンスタイル
-    Color bgOff = const Color(0xFFF5F5F5);
-    Color textOff = const Color(0xFF969696);
-
-    /// リクエストボタン
-    Widget? requestBtn;
-    if (requestExist != null) {
-      requestBtn = _requestBtn(
-        theme,
-        bgColor: requestExist! ? theme.appColors.secondary : bgOff,
-        textColor: requestExist! ? Colors.white : textOff,
-        onTap: () {},
-      );
-    }
-
-    /// メッセージボタン
-    Widget messageBtn = _messageBtn(
-      theme,
-      bgColor: messageRoomExist ? theme.appColors.primary : bgOff,
-      textColor: messageRoomExist ? Colors.white : textOff,
-      onTap: () {},
-    );
-
-    /// 下部ボタン
-    List<Widget> bottom = [];
-    if (bottomExist) {
-      if (requestBtn != null) bottom.add(requestBtn);
-      bottom.add(messageBtn);
-    }
-
     return _build(
       theme: theme,
       leading: leadingIcon,
@@ -101,7 +67,7 @@ class RoomCardWidget extends HookConsumerWidget {
     required Text title,
     required Text location,
     required Widget members,
-    required List<Widget> bottom,
+    required Widget? bottom,
   }) {
     return _room(
       theme,
@@ -123,20 +89,8 @@ class RoomCardWidget extends HookConsumerWidget {
               ),
             ],
           ),
-          if (bottom.isNotEmpty)
-            Column(
-              children: [
-                const Divider(
-                  height: 30,
-                  thickness: 1,
-                  color: Color(0xFFF3F3F3),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: bottom,
-                ),
-              ],
-            ),
+          if (bottom != null)
+            Container(padding: const EdgeInsets.only(top: 20), child: bottom),
         ],
       ),
     );
@@ -210,51 +164,6 @@ class RoomCardWidget extends HookConsumerWidget {
         size: 24,
         Icons.favorite_border,
         color: theme.appColors.divider,
-      ),
-    );
-  }
-
-  Widget _messageBtn(
-    AppTheme theme, {
-    required Color bgColor,
-    required Color textColor,
-    required Function() onTap,
-  }) {
-    return ElevatedButton(
-      onPressed: onTap,
-      style: ElevatedButton.styleFrom(
-        elevation: 0,
-        backgroundColor: bgColor,
-        textStyle: theme.textTheme.h30.bold(),
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(10)),
-        ),
-      ),
-      child: Text(
-        "メッセージ",
-        style: theme.textTheme.h30.bold().merge(TextStyle(color: textColor)),
-      ),
-    );
-  }
-
-  Widget _requestBtn(
-    AppTheme theme, {
-    required Color bgColor,
-    required Color textColor,
-    required Function() onTap,
-  }) {
-    return ElevatedButton(
-      onPressed: onTap,
-      style: ElevatedButton.styleFrom(
-        elevation: 0,
-        backgroundColor: bgColor,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(10)),
-        ),
-      ),
-      child: Text(
-        "リクエスト一覧",
-        style: theme.textTheme.h30.bold().merge(TextStyle(color: textColor)),
       ),
     );
   }

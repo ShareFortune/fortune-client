@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter/material.dart';
 import 'package:fortune_client/data/repository/room/room_repository.dart';
 import 'package:fortune_client/injector.dart';
+import 'package:fortune_client/util/service/log/logger.dart';
 import 'package:fortune_client/view/pages/rooms/participating_room_list/participating_room_list_state.dart';
 import 'package:fortune_client/view/routes/app_router.gr.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -17,11 +17,6 @@ class ParticipatingRoomListViewModel
 
   final RoomRepository _roomRepository;
 
-  // Future<void> initialize() async => ParticipatingRoomListState(
-  //       hostRooms: [HostRoomListItemState()],
-  //       guestRooms: [GuestRoomListItemState()],
-  //     );
-
   Future<void> initialize() async => await fetchList();
 
   Future<void> fetchList() async {
@@ -32,10 +27,6 @@ class ParticipatingRoomListViewModel
         return HostRoomListItemState.fromEntity(e);
       }).toList();
 
-      final gestRooms = result.map((e) {
-        return [];
-      }).toList();
-
       return ParticipatingRoomListState(
         hostRooms: hostRooms,
         guestRooms: [],
@@ -43,7 +34,30 @@ class ParticipatingRoomListViewModel
     });
   }
 
-  pushRequestConfirmation(StackRouter router, int id) async {
-    await router.push(RequestConfirmationRoute(id: 0));
+  Future<void> navigateToRequestConfirmation(StackRouter router, int id) async {
+    await router.push(
+      RequestConfirmationRoute(id: 0),
+      onFailure: (failure) {
+        logger.e(failure.toString());
+      },
+    );
+  }
+
+  Future<void> navigateToMessage(StackRouter router) async {
+    await router.push(
+      MessageRoomRoute(id: "id"),
+      onFailure: (failure) {
+        logger.e(failure.toString());
+      },
+    );
+  }
+
+  Future<void> navigateToRoomDetail(StackRouter router) async {
+    await router.push(
+      RoomDetailRoute(id: "id"),
+      onFailure: (failure) {
+        logger.e(failure.toString());
+      },
+    );
   }
 }

@@ -16,7 +16,9 @@ class AuthRepositoryImpl implements AuthRepository {
 
   @override
   Future<bool> isLogin() async {
-    if (await _debugRepository.getAutomaticLogin()) return true;
+    final isAutomaticLogin = await _debugRepository.getAutomaticLogin();
+    print(isAutomaticLogin);
+    if (isAutomaticLogin) return true;
     return await _debugRepository.getDummyRoginApi() ? true : _user != null;
   }
 
