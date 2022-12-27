@@ -33,4 +33,8 @@ class DebugViewModel extends StateNotifier<AsyncValue<DebugState>> {
       return data.copyWith(isAutomaticLogin: value);
     });
   }
+
+  Future<bool> clearIsProfile() async {
+    return await _debugRepository.clearIsProfile();
+  }
 }

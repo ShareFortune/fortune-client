@@ -3,6 +3,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fortune_client/view/pages/debug/debug_view_model.dart';
+import 'package:fortune_client/view/widgets/dialog.dart';
 import 'package:fortune_client/view/widgets/error_widget.dart';
 import 'package:fortune_client/view/widgets/loading_widget.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -43,7 +44,10 @@ class DebugPage extends HookConsumerWidget {
               _buildDummyItem(
                 'プロフィール作成フラグをクリア',
                 showTrailing: true,
-                onTap: () {},
+                onTap: () {
+                  viewModel.clearIsProfile();
+                  showDebugDialog(context, "プロフィール作成フラグをクリアしました。");
+                },
               ),
             ],
           );
@@ -77,6 +81,14 @@ class DebugPage extends HookConsumerWidget {
       title: Text(title),
       trailing: widget,
       onTap: onTap,
+    );
+  }
+
+  showDebugDialog(BuildContext context, String title) async {
+    await showInfoDialog(
+      context,
+      title,
+      onPressed: Navigator.of(context).pop,
     );
   }
 }

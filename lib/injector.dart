@@ -49,8 +49,8 @@ Future<void> initDependencies(bool isRelease) async {
   sl.registerLazySingleton<DebugRepository>(() => DebugRepositoryImpl(sl()));
 
   /// DataSource
-  sl.registerLazySingleton<SharedPrefDataSource>(
-      () => SharedPrefDataSourceImpl(sharedPreferences));
+  sl.registerLazySingleton<SharedPreferencesDataSource>(
+      () => SharedPreferencesDataSourceImpl(sharedPreferences));
   sl.registerLazySingleton<FirebaseAuthDataSource>(
       () => FirebaseAuthDataSourceImpl());
   sl.registerLazySingleton<RoomsDataSource>(() => FakeRoomDataSource());

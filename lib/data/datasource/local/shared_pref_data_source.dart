@@ -1,4 +1,4 @@
-abstract class SharedPrefDataSource {
+abstract class SharedPreferencesDataSource {
   /// Bool
   Future<bool> setBool(String key, bool value);
   bool? getBool(String key);

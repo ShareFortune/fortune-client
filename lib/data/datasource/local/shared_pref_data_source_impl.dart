@@ -2,8 +2,8 @@ import 'package:fortune_client/data/datasource/local/shared_pref_data_source.dar
 import 'package:fortune_client/util/logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class SharedPrefDataSourceImpl implements SharedPrefDataSource {
-  SharedPrefDataSourceImpl(this._sharedPreferences);
+class SharedPreferencesDataSourceImpl implements SharedPreferencesDataSource {
+  SharedPreferencesDataSourceImpl(this._sharedPreferences);
 
   static const _prefix = 'SharedPrefService';
   final SharedPreferences _sharedPreferences;

@@ -37,7 +37,7 @@ class CheckIfMyProfileExists extends AutoRouteGuard {
 
   @override
   void onNavigation(NavigationResolver resolver, StackRouter router) async {
-    if (_profileRepository.isCreated) {
+    if (await _profileRepository.isCreated()) {
       resolver.next(true);
     } else {
       router.push(const ProfileCreateRoute());

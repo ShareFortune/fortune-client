@@ -5,7 +5,7 @@ import 'package:fortune_client/data/model/enum/gender_type.dart';
 
 abstract class ProfileRepository {
   /// 作成済みかどうか
-  bool get isCreated;
+  Future<bool> isCreated();
 
   /// 作成
   Future<String> create({
