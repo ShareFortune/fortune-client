@@ -304,8 +304,8 @@ class AppRouter extends _i19.RootStackRouter {
           guards: [authGuard],
           children: [
             _i19.RouteConfig(
-              '*#redirect',
-              path: '*',
+              '#redirect',
+              path: '',
               parent: CreateProfileRoute.name,
               redirectTo: 'basic',
               fullMatch: true,

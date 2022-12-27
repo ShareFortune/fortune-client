@@ -103,10 +103,7 @@ const createProfileRoute = AutoRoute(
   page: EmptyRouterPage,
   guards: [AuthGuard],
   children: [
-    RedirectRoute(
-      path: "*",
-      redirectTo: RoutePath.createProfileBasic,
-    ),
+    RedirectRoute(path: "", redirectTo: RoutePath.createProfileBasic),
     AutoRoute(
       path: RoutePath.createProfileBasic,
       page: BasicProfileEntryPage,
