@@ -5,13 +5,13 @@ import 'package:fortune_client/view/theme/app_theme.dart';
 class BackAppBar extends StatelessWidget implements PreferredSizeWidget {
   final AppTheme theme;
   final String title;
-  final List<Widget> action;
+  final List<Widget>? action;
 
   const BackAppBar({
     super.key,
     required this.theme,
     required this.title,
-    required this.action,
+    this.action,
   });
 
   @override

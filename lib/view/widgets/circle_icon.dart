@@ -11,13 +11,14 @@ final images = [
   Assets.images.thinder,
 ];
 
-Widget circleIconWidget(double radius) {
+Widget circleIconWidget(double radius, bool isMan) {
   return CircleAvatar(
     radius: radius,
     backgroundColor: Colors.white,
-    child: CircleAvatar(
-      radius: radius - 1,
-      backgroundImage: images[math.Random().nextInt(images.length)].provider(),
+    child: circleIcon(
+      radius: radius,
+      isMan: isMan,
+      image: images[math.Random().nextInt(images.length)].provider(),
     ),
   );
 }
@@ -50,4 +51,39 @@ Widget circleIcon({
       ),
     ),
   );
+}
+
+class CircleIconWidget extends StatelessWidget {
+  final double radius;
+  final bool isMan;
+  final ImageProvider? image;
+
+  const CircleIconWidget({
+    super.key,
+    this.isMan = false,
+    this.image,
+    required this.radius,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    const lineWidth = 1;
+    const manColor = Colors.blue;
+    const womanColor = Colors.purple;
+    final Color outsideColor = isMan ? manColor : womanColor;
+
+    return CircleAvatar(
+      radius: radius,
+      backgroundColor: outsideColor,
+      child: CircleAvatar(
+        radius: radius - lineWidth,
+        backgroundColor: Colors.white,
+        child: CircleAvatar(
+          radius: radius - lineWidth * 2,
+          backgroundImage:
+              images[math.Random().nextInt(images.length)].provider(),
+        ),
+      ),
+    );
+  }
 }

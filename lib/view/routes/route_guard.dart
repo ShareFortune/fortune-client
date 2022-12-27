@@ -5,8 +5,6 @@ import 'package:fortune_client/view/routes/app_router.gr.dart';
 
 ///
 /// サインインしているかどうか
-// final authGuardProvider = Provider((ref) => AuthGuard(ref));
-
 class AuthGuard extends AutoRouteGuard {
   AuthGuard(this._authRepository);
 
@@ -27,20 +25,20 @@ class AuthGuard extends AutoRouteGuard {
 
 ///
 /// プロフィールを作成済みかどうか
-// final checkIfMyProfileExistsProvider =
-//     Provider((ref) => CheckIfMyProfileExists(ref));
-
 class CheckIfMyProfileExists extends AutoRouteGuard {
   CheckIfMyProfileExists(this._profileRepository);
 
   final ProfileRepository _profileRepository;
 
   @override
-  void onNavigation(NavigationResolver resolver, StackRouter router) async {
+  void onNavigation(
+    NavigationResolver resolver,
+    StackRouter router,
+  ) async {
     if (await _profileRepository.isCreated()) {
       resolver.next(true);
     } else {
-      router.push(const ProfileCreateRoute());
+      router.push(const CreateProfileRoute());
     }
   }
 }

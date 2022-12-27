@@ -54,12 +54,10 @@ class RoomListPage extends HookConsumerWidget {
                   return RoomCardWidget(
                     hostIconPath: state.hostIcon,
                     title: state.title,
-                    // location: state.place,
                     location: "日本・北海道・岩見沢市",
                     members: state.memberIcons,
-                    messageRoomExist: false,
                     onTap: () {
-                      viewModel.pushRoomDetail(router);
+                      viewModel.navigateToRoomDetail(router);
                     },
                   );
                 },

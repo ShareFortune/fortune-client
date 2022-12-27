@@ -12,6 +12,7 @@ class MyApp extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = ref.watch(appThemeProvider);
     final themeMode = ref.watch(appThemeModeProvider);
+    final appRouter = sl<AppRouter>();
 
     return Sizer(builder: (context, orientation, deviceType) {
       return MaterialApp.router(
@@ -23,8 +24,8 @@ class MyApp extends HookConsumerWidget {
         // locale: DevicePreview.locale(context),
         // localizationsDelegates: L10n.localizationsDelegates,
         // supportedLocales: L10n.supportedLocales,
-        routeInformationParser: sl<AppRouter>().defaultRouteParser(),
-        routerDelegate: sl<AppRouter>().delegate(),
+        routeInformationParser: appRouter.defaultRouteParser(),
+        routerDelegate: appRouter.delegate(),
       );
     });
   }
