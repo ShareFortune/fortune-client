@@ -13,7 +13,7 @@ import 'package:image_picker/image_picker.dart';
 
 final entryProfileSubImageViewModelProvider = StateNotifierProvider<
     EntryProfileSubImageViewModel, AsyncValue<EntryProfileSubImageState>>(
-  (ref) => EntryProfileSubImageViewModel(ref, ref.watch(Repository.profile)),
+  (ref) => EntryProfileSubImageViewModel(ref, sl()),
 );
 
 class EntryProfileSubImageViewModel

@@ -5,7 +5,7 @@ import 'package:fortune_client/data/model/room_detail/room_detail.dart';
 import 'package:fortune_client/data/model/room_list/room_list.dart';
 import 'package:fortune_client/gen/assets.gen.dart';
 
-class StubRoomDataSource extends StubLoader implements RoomsDataSource {
+class FakeRoomDataSource extends StubLoader implements RoomsDataSource {
   @override
   Future<RoomList> getRooms(
     String? addressId,

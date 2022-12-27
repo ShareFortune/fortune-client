@@ -1,19 +1,23 @@
 import 'dart:io';
 
-import 'package:fortune_client/data/datasource/local/profile_state.dart';
+import 'package:fortune_client/data/datasource/local/shared_pref_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/go/profile/profile_data_source.dart';
 import 'package:fortune_client/data/model/create_profile_form/create_profile_form.dart';
 import 'package:fortune_client/data/model/profile/profile.dart';
 import 'package:fortune_client/data/repository/profile/profile_repository.dart';
 import 'package:fortune_client/data/model/enum/gender_type.dart';
+import 'package:fortune_client/util/service/storage/app_pref_key.dart';
 
 class ProfileRepositoryImpl implements ProfileRepository {
-  final ProfileDataSource _dataSource;
+  final ProfileDataSource _profileDataSource;
+  final SharedPreferencesDataSource _sharedPreferences;
 
-  ProfileRepositoryImpl(this._dataSource);
+  ProfileRepositoryImpl(this._profileDataSource, this._sharedPreferences);
 
   @override
-  bool get isCreated => profileIsCreated;
+  Future<bool> isCreated() async {
+    return _sharedPreferences.getBool(AppPrefKey.isProfile.keyString) ?? false;
+  }
 
   @override
   Future<String> update() {
@@ -22,7 +26,7 @@ class ProfileRepositoryImpl implements ProfileRepository {
 
   @override
   Future<Profile> get(String id) async {
-    return await _dataSource.get(id);
+    return await _profileDataSource.get(id);
   }
 
   @override
@@ -60,8 +64,8 @@ class ProfileRepositoryImpl implements ProfileRepository {
     /// ローカル保存したIDを取り出す
     /// [id] ユーザー作成時のID
     try {
-      final result = await _dataSource.create("id", form.toJson());
-      profileIsCreated = true;
+      final result = await _profileDataSource.create("id", form.toJson());
+      await _sharedPreferences.setBool(AppPrefKey.isProfile.keyString, true);
       return result;
     } catch (e) {
       /// Dio error

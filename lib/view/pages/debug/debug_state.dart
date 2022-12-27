@@ -1,16 +1,13 @@
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
-final debugInfoProvider = FutureProvider<PackageInfo>((_) async {
-  final info = await PackageInfo.fromPlatform();
-  return info;
-});
+part 'debug_state.freezed.dart';
 
-final debugInfoBuildNumberProvider = Provider<String>((ref) {
-  final debugInfo = ref.watch(debugInfoProvider);
-  return debugInfo.when<String>(
-    data: (data) => data.buildNumber,
-    error: ((e, stk) => "Error occurred"),
-    loading: () => "Loading...",
-  );
-});
+@freezed
+class DebugState with _$DebugState {
+  const factory DebugState({
+    required PackageInfo debugInfo,
+    required bool isDummyRoginApi,
+    required bool isAutomaticLogin,
+  }) = _DebugState;
+}

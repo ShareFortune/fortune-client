@@ -4,6 +4,8 @@ import 'package:fortune_client/view/pages/auth/login/components/auth_button.dart
 import 'package:fortune_client/view/pages/auth/login/login_state.dart';
 import 'package:fortune_client/view/pages/auth/login/login_view_model.dart';
 import 'package:fortune_client/view/widgets/dialog.dart';
+import 'package:fortune_client/view/widgets/error_widget.dart';
+import 'package:fortune_client/view/widgets/loading_widget.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -28,8 +30,9 @@ class LoginPage extends HookConsumerWidget {
                   GestureDetector(
                     /// DEBUG: ダミーログインAPI
                     onDoubleTap: () async {
-                      final result = viewModel.toggleDebugMode();
+                      final result = await viewModel.toggleDebugMode();
                       if (result != null) {
+                        // ignore: use_build_context_synchronously
                         await showDebugDialog(context, result);
                       }
                     },
@@ -68,22 +71,8 @@ class LoginPage extends HookConsumerWidget {
           ),
         );
       },
-      error: (e, msg) => Scaffold(
-        body: SafeArea(
-          child: Center(
-            child: Text(
-              e.toString(),
-            ),
-          ),
-        ),
-      ),
-      loading: () => const Scaffold(
-        body: SafeArea(
-          child: Center(
-            child: CircularProgressIndicator(),
-          ),
-        ),
-      ),
+      error: errorWidget,
+      loading: loadingWidget,
     );
   }
 

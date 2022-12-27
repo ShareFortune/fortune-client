@@ -1,17 +1,18 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:fortune_client/data/repository/profile/profile_repository.dart';
 import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/view/pages/profile/profile/profile_state.dart';
 
 final profileViewModelProvider = StateNotifierProvider.family<ProfileViewModel,
     AsyncValue<ProfileState>, String>((ref, id) {
-  return ProfileViewModel(ref)..initialize(id);
+  return ProfileViewModel(ref, sl())..initialize(id);
 });
 
 class ProfileViewModel extends StateNotifier<AsyncValue<ProfileState>> {
-  ProfileViewModel(this._ref) : super(const AsyncLoading());
+  ProfileViewModel(this._ref, this.repository) : super(const AsyncLoading());
 
   final Ref _ref;
-  late final repository = _ref.watch(Repository.profile);
+  final ProfileRepository repository;
 
   Future<void> initialize(String id) async => await fetch(id);
 
