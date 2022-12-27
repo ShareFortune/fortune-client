@@ -23,36 +23,38 @@ class DetailedProfileEntryPage extends HookConsumerWidget {
           right: 30,
           bottom: 50,
         ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Column(
-              children: [
-                _inputField("身長", ""),
-                const Gap(30),
-                _inputField("職業", ""),
-                const Gap(30),
-                _inputField("居住地", ""),
-                const Gap(30),
-                _inputField("出身地", ""),
-                const Gap(30),
-                _inputField("お酒", ""),
-                const Gap(30),
-                _inputField("タバコ", ""),
-              ],
-            ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text(
-                  "なんか入力した方がいいですよとか入力必須ではないとかの注釈を入れる。居住地とかのデータがどのように利用されるかはログイン画面の利用規約に表示するが、他のユーザーにどのように表示されるかについてはここで注釈入れた方がいいかも。",
-                  style: TextStyle(color: Color(0xFF6C6C6C)),
-                ),
-                const Gap(30),
-                nextButton(true, () => viewModel.onTapNextBtn(router)),
-              ],
-            ),
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Column(
+                children: [
+                  _inputField("身長", ""),
+                  const Gap(30),
+                  _inputField("職業", ""),
+                  const Gap(30),
+                  _inputField("居住地", ""),
+                  const Gap(30),
+                  _inputField("出身地", ""),
+                  const Gap(30),
+                  _inputField("お酒", ""),
+                  const Gap(30),
+                  _inputField("タバコ", ""),
+                ],
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    "なんか入力した方がいいですよとか入力必須ではないとかの注釈を入れる。居住地とかのデータがどのように利用されるかはログイン画面の利用規約に表示するが、他のユーザーにどのように表示されるかについてはここで注釈入れた方がいいかも。",
+                    style: TextStyle(color: Color(0xFF6C6C6C)),
+                  ),
+                  const Gap(30),
+                  nextButton(true, () => viewModel.onTapNextBtn(router)),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

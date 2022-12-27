@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:fortune_client/view/pages/common/scroll_app_bar/scroll_app_bar.dart';
 import 'package:fortune_client/view/pages/message/message_room_list/message_room_list_tile_widget.dart';
 import 'package:fortune_client/view/pages/message/message_room_list/message_room_list_view_model.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class MessageRoomListPage extends ConsumerWidget {
+class MessageRoomListPage extends HookConsumerWidget {
   const MessageRoomListPage({super.key});
 
   @override
@@ -14,47 +15,35 @@ class MessageRoomListPage extends ConsumerWidget {
     final state = ref.watch(messageRoomListViewModelProvider);
     final viewModel = ref.watch(messageRoomListViewModelProvider.notifier);
 
-    const textStyleTitle = TextStyle(fontSize: 16, color: Colors.black);
-    const textStyleSubTitle = TextStyle(fontSize: 15, color: Colors.black54);
-
-    const double tileHieght = 80;
-
     return state.when(
       data: (data) {
-        return Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: CustomScrollView(
-            slivers: [
-              SliverAppBar(
-                backgroundColor: Colors.transparent,
-                title: Text(
-                  "メッセージ",
-                  style: theme.textTheme.h40
-                      .merge(TextStyle(color: theme.appColors.headline1))
-                      .bold(),
-                ),
-              ),
-              SliverList(
+        return CustomScrollView(
+          slivers: [
+            const ScrollAppBar(title: "メッセージ", isBorder: false),
+            SliverPadding(
+              padding: const EdgeInsets.only(top: 20),
+              sliver: SliverList(
                 delegate: SliverChildBuilderDelegate(
                   childCount: data.messageRooms.length,
                   (context, index) {
                     final messageRoom = data.messageRooms[index];
-                    return InkWell(
-                      onTap: (() {
-                        /// メッセージルームに遷移
-                        /// IDに修正必要
-                        viewModel.pushMessagePage(context, messageRoom.title);
-                      }),
-                      child: const Padding(
-                        padding: EdgeInsets.only(top: 30),
-                        child: MessageRoomListTileWidget(),
+                    return Container(
+                      padding: const EdgeInsets.only(
+                          bottom: 30, left: 20, right: 20),
+                      child: InkWell(
+                        onTap: (() {
+                          /// メッセージルームに遷移
+                          /// IDに修正必要
+                          viewModel.pushMessagePage(context, messageRoom.title);
+                        }),
+                        child: const MessageRoomListTileWidget(),
                       ),
                     );
                   },
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         );
       },
       error: (e, msg) => Scaffold(
