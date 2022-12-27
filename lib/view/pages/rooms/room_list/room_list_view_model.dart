@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:fortune_client/data/repository/room/room_repository.dart';
 import 'package:fortune_client/injector.dart';
-import 'package:fortune_client/util/logger.dart';
+import 'package:fortune_client/util/service/log/logger.dart';
 import 'package:fortune_client/view/pages/rooms/room_list/room_list_state.dart';
 import 'package:fortune_client/view/routes/app_router.dart';
 import 'package:fortune_client/view/routes/app_router.gr.dart';

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fortune_client/gen/assets.gen.dart';
+import 'package:fortune_client/view/hooks/use_router.dart';
 import 'package:fortune_client/view/pages/common/scroll_app_bar/scroll_app_bar.dart';
 import 'package:fortune_client/view/widgets/room_card_widget.dart';
 import 'package:fortune_client/view/pages/rooms/participating_room_list/participating_room_list_view_model.dart';
@@ -20,6 +21,7 @@ class ParticipatingRoomListPage extends HookConsumerWidget {
     final state = ref.watch(participatingRoomListViewModelProvider);
     final viewModel =
         ref.watch(participatingRoomListViewModelProvider.notifier);
+    final router = useRouter();
 
     return CustomScrollView(
       slivers: [
@@ -69,8 +71,12 @@ class ParticipatingRoomListPage extends HookConsumerWidget {
               return Column(
                 children: [
                   const Gap(20),
-                  _pageView(theme, "ホストで参加", true),
-                  _pageView(theme, "ゲストで参加", false),
+                  _pageView(theme, "ホストで参加", true, () {
+                    viewModel.pushRequestConfirmation(router, 0);
+                  }),
+                  _pageView(theme, "ゲストで参加", false, () {
+                    viewModel.pushRequestConfirmation(router, 0);
+                  }),
                 ],
               );
             },
@@ -80,7 +86,12 @@ class ParticipatingRoomListPage extends HookConsumerWidget {
     );
   }
 
-  Widget _pageView(AppTheme theme, String title, bool isHost) {
+  Widget _pageView(
+    AppTheme theme,
+    String title,
+    bool isHost,
+    Function() onTap,
+  ) {
     return Column(
       children: [
         const Gap(10),
@@ -101,7 +112,7 @@ class ParticipatingRoomListPage extends HookConsumerWidget {
                   bottomExist: true,
                   messageRoomExist: true,
                   requestExist: null,
-                  onTap: () {},
+                  onTap: onTap,
                 ),
               ),
               _page(
@@ -114,7 +125,7 @@ class ParticipatingRoomListPage extends HookConsumerWidget {
                   bottomExist: true,
                   messageRoomExist: true,
                   requestExist: true,
-                  onTap: () {},
+                  onTap: onTap,
                 ),
               ),
               _page(
@@ -127,7 +138,7 @@ class ParticipatingRoomListPage extends HookConsumerWidget {
                   bottomExist: true,
                   messageRoomExist: false,
                   requestExist: true,
-                  onTap: () {},
+                  onTap: onTap,
                 ),
               ),
             ],

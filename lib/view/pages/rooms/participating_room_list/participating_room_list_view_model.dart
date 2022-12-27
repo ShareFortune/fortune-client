@@ -8,15 +8,14 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final participatingRoomListViewModelProvider = StateNotifierProvider<
         ParticipatingRoomListViewModel, AsyncValue<ParticipatingRoomListState>>(
-    (ref) => ParticipatingRoomListViewModel(ref, sl())..initialize());
+    (ref) => ParticipatingRoomListViewModel(sl())..initialize());
 
 class ParticipatingRoomListViewModel
     extends StateNotifier<AsyncValue<ParticipatingRoomListState>> {
-  ParticipatingRoomListViewModel(this._ref, this.roomRepository)
+  ParticipatingRoomListViewModel(this._roomRepository)
       : super(const AsyncLoading());
 
-  final Ref _ref;
-  final RoomRepository roomRepository;
+  final RoomRepository _roomRepository;
 
   // Future<void> initialize() async => ParticipatingRoomListState(
   //       hostRooms: [HostRoomListItemState()],
@@ -27,7 +26,7 @@ class ParticipatingRoomListViewModel
 
   Future<void> fetchList() async {
     state = await AsyncValue.guard(() async {
-      final result = await roomRepository.fetchListHost();
+      final result = await _roomRepository.fetchListHost();
 
       final hostRooms = result.map((e) {
         return HostRoomListItemState.fromEntity(e);
@@ -44,9 +43,7 @@ class ParticipatingRoomListViewModel
     });
   }
 
-  onTapRoom() {}
-
-  pushRequestConfirmation(BuildContext context, int id) async {
-    await context.router.push(const RequestConfirmationRoute());
+  pushRequestConfirmation(StackRouter router, int id) async {
+    await router.push(RequestConfirmationRoute(id: 0));
   }
 }

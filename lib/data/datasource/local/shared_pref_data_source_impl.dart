@@ -1,5 +1,5 @@
 import 'package:fortune_client/data/datasource/local/shared_pref_data_source.dart';
-import 'package:fortune_client/util/logger.dart';
+import 'package:fortune_client/util/service/log/logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SharedPreferencesDataSourceImpl implements SharedPreferencesDataSource {

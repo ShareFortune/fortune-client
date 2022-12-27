@@ -15,7 +15,7 @@ Widget memberIconsWidget(double radius, List icons) {
       return Container(
         width: w,
         alignment: Alignment.centerRight,
-        child: circleIconWidget(radius),
+        child: circleIconWidget(radius, false),
       );
     }),
   );

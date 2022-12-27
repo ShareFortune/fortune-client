@@ -187,9 +187,16 @@ class AppRouter extends _i19.RootStackRouter {
       );
     },
     RequestConfirmationRoute.name: (routeData) {
+      final pathParams = routeData.inheritedPathParams;
+      final args = routeData.argsAs<RequestConfirmationRouteArgs>(
+          orElse: () =>
+              RequestConfirmationRouteArgs(id: pathParams.getInt('id')));
       return _i19.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i16.RequestConfirmationPage(),
+        child: _i16.RequestConfirmationPage(
+          key: args.key,
+          id: args.id,
+        ),
       );
     },
     MessageRoomListRoute.name: (routeData) {
@@ -623,14 +630,38 @@ class ParticipatingRoomListRoute extends _i19.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i16.RequestConfirmationPage]
-class RequestConfirmationRoute extends _i19.PageRouteInfo<void> {
-  const RequestConfirmationRoute()
-      : super(
+class RequestConfirmationRoute
+    extends _i19.PageRouteInfo<RequestConfirmationRouteArgs> {
+  RequestConfirmationRoute({
+    _i20.Key? key,
+    required int id,
+  }) : super(
           RequestConfirmationRoute.name,
           path: 'request-confirmation:id',
+          args: RequestConfirmationRouteArgs(
+            key: key,
+            id: id,
+          ),
+          rawPathParams: {'id': id},
         );
 
   static const String name = 'RequestConfirmationRoute';
+}
+
+class RequestConfirmationRouteArgs {
+  const RequestConfirmationRouteArgs({
+    this.key,
+    required this.id,
+  });
+
+  final _i20.Key? key;
+
+  final int id;
+
+  @override
+  String toString() {
+    return 'RequestConfirmationRouteArgs{key: $key, id: $id}';
+  }
 }
 
 /// generated route for
