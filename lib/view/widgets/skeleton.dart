@@ -6,18 +6,28 @@ class Skeleton extends StatelessWidget {
   final double height;
   final ShapeBorder shapeBorder;
 
-  const Skeleton.rectangular({
-    super.key,
-    this.width = double.infinity,
-    required this.height,
-  }) : shapeBorder = const RoundedRectangleBorder();
-
-  const Skeleton.circular({
+  const Skeleton({
     super.key,
     required this.width,
     required this.height,
-    this.shapeBorder = const CircleBorder(),
+    required this.shapeBorder,
   });
+
+  factory Skeleton.rectangular(double height) {
+    return Skeleton(
+      width: double.infinity,
+      height: height,
+      shapeBorder: const RoundedRectangleBorder(),
+    );
+  }
+
+  factory Skeleton.circular(double radius) {
+    return Skeleton(
+      width: radius * 2,
+      height: radius * 2,
+      shapeBorder: const CircleBorder(),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {

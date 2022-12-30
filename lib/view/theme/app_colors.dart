@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:fortune_client/view/theme/app_color.dart';
 
 class AppColors {
-  const AppColors({
+  AppColors({
     required this.primary,
     required this.primaryVariant,
     required this.onPrimary,
@@ -28,11 +29,25 @@ class AppColors {
     required this.textFieldBorderSide,
     required this.explanation,
     required this.messageSendingInputFormBg,
-    required this.defaultTextStyle,
+    required this.mainTextColor,
+    required this.subText1,
+    required this.subText2,
+    required this.subText3,
+    required this.subText4,
+    required this.subText5,
+    required this.subText6,
   });
 
-  factory AppColors.light() {
-    return const AppColors(
+  factory AppColors.light({
+    Color? mainTextColor,
+    Color? textColor1,
+    Color? textColor2,
+    Color? textColor3,
+    Color? textColor4,
+    Color? textColor5,
+    Color? textColor6,
+  }) {
+    return AppColors(
       primary: Color.fromRGBO(199, 130, 228, 1),
       primaryVariant: Color(0xFF3700B3),
       onPrimary: Color(0xFFFFFFFF),
@@ -60,12 +75,26 @@ class AppColors {
       textFieldBorderSide: Color.fromRGBO(0, 0, 0, 0.3),
       explanation: Color.fromRGBO(0, 0, 0, 0.3),
       messageSendingInputFormBg: Color(0xfff5f5f7),
-      defaultTextStyle: Color.fromRGBO(0, 0, 0, 1),
+      mainTextColor: mainTextColor ?? AppColor.black,
+      subText1: textColor1 ?? AppColor.lightTextGrey1,
+      subText2: textColor2 ?? AppColor.lightTextGrey2,
+      subText3: textColor3 ?? AppColor.grayFA,
+      subText4: textColor4 ?? AppColor.black,
+      subText5: textColor5 ?? AppColor.red,
+      subText6: textColor6 ?? AppColor.grey98,
     );
   }
 
-  factory AppColors.dark() {
-    return const AppColors(
+  factory AppColors.dark({
+    Color? mainTextColor,
+    Color? textColor1,
+    Color? textColor2,
+    Color? textColor3,
+    Color? textColor4,
+    Color? textColor5,
+    Color? textColor6,
+  }) {
+    return AppColors(
       primary: Color(0xFF6200EE),
       primaryVariant: Color(0xFF3700B3),
       onPrimary: Color(0xFFFFFFFF),
@@ -92,7 +121,13 @@ class AppColors {
       textFieldBorderSide: Color.fromRGBO(0, 0, 0, 0.5),
       explanation: Color.fromRGBO(0, 0, 0, 0.5),
       messageSendingInputFormBg: Color.fromRGBO(0, 0, 0, 0.5),
-      defaultTextStyle: Color.fromRGBO(0, 0, 0, 0.5),
+      mainTextColor: mainTextColor ?? AppColor.white,
+      subText1: textColor1 ?? AppColor.darkTextGrey1,
+      subText2: textColor2 ?? AppColor.darkTextGrey2,
+      subText3: textColor3 ?? AppColor.grayFA,
+      subText4: textColor4 ?? AppColor.darkTextGrey2,
+      subText5: textColor5 ?? AppColor.darkTextRed,
+      subText6: textColor6 ?? AppColor.darkDisable,
     );
   }
 
@@ -110,9 +145,6 @@ class AppColors {
   final Color onError;
   final Color divider;
   final Color headline1;
-
-  /// テキスト
-  final Color defaultTextStyle;
 
   /// アイコンボタンカラー
   final Color iconBtn;
@@ -140,4 +172,12 @@ class AppColors {
 
   /// メッセージ入力フォームの背景
   final Color messageSendingInputFormBg;
+
+  final Color mainTextColor;
+  final Color subText1;
+  final Color subText2;
+  final Color subText3;
+  final Color subText4;
+  final Color subText5;
+  final Color subText6;
 }

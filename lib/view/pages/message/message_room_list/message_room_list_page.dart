@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:fortune_client/view/pages/common/scroll_app_bar/scroll_app_bar.dart';
-import 'package:fortune_client/view/pages/message/message_room_list/message_room_list_tile_widget.dart';
 import 'package:fortune_client/view/pages/message/message_room_list/message_room_list_view_model.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
+import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class MessageRoomListPage extends HookConsumerWidget {
@@ -15,85 +15,105 @@ class MessageRoomListPage extends HookConsumerWidget {
     final state = ref.watch(messageRoomListViewModelProvider);
     final viewModel = ref.watch(messageRoomListViewModelProvider.notifier);
 
-    return state.when(
-      data: (data) {
-        return CustomScrollView(
-          slivers: [
+    final tabStyle = theme.textTheme.h40.merge(
+      TextStyle(color: theme.appColors.subText4),
+    );
+
+    return DefaultTabController(
+      length: 2,
+      child: NestedScrollView(
+        headerSliverBuilder: (context, innerBoxIsScrolled) {
+          return [
             const ScrollAppBar(title: "メッセージ", isBorder: false),
-            SliverPadding(
-              padding: const EdgeInsets.only(top: 20),
-              sliver: SliverList(
-                delegate: SliverChildBuilderDelegate(
-                  childCount: data.messageRooms.length,
-                  (context, index) {
-                    final messageRoom = data.messageRooms[index];
-                    return Container(
-                      padding: const EdgeInsets.only(
-                          bottom: 30, left: 20, right: 20),
-                      child: InkWell(
-                        onTap: (() {
-                          /// メッセージルームに遷移
-                          /// IDに修正必要
-                          viewModel.pushMessagePage(context, messageRoom.title);
-                        }),
-                        child: const MessageRoomListTileWidget(),
-                      ),
-                    );
-                  },
-                ),
+            SliverToBoxAdapter(
+              child: TabBar(
+                tabs: [
+                  Tab(child: Text("ホスト", style: tabStyle)),
+                  Tab(child: Text("ゲスト", style: tabStyle)),
+                ],
               ),
             ),
+          ];
+        },
+        body: TabBarView(
+          children: [
+            _messagesContainer(theme),
+            _messagesContainer(theme),
           ],
-        );
-      },
-      error: (e, msg) => Scaffold(
-        body: SafeArea(
-          child: Center(
-            child: Text(
-              e.toString(),
-              // style: theme.textTheme.h30,
+        ),
+      ),
+    );
+  }
+
+  Widget _messagesContainer(AppTheme theme) {
+    return ListView(
+      padding: EdgeInsets.zero,
+      physics: const NeverScrollableScrollPhysics(),
+      children: [
+        _listHeader(theme, "新着メッセージ"),
+        _messages(theme),
+        _blank(),
+        _listHeader(theme, "参加中のルーム 5"),
+        _messages(theme),
+      ],
+    );
+  }
+
+  Widget _messages(AppTheme theme) {
+    return Column(
+      children: [
+        _message(theme),
+        const Gap(30),
+        _message(theme),
+        const Gap(30),
+        _message(theme),
+        const Gap(30),
+      ],
+    );
+  }
+
+  Widget _message(AppTheme theme) {
+    return Container(
+      padding: const EdgeInsets.only(left: 20, right: 20),
+      child: Row(
+        children: [
+          const CircleAvatar(radius: 30),
+          const Gap(15),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text("渋谷で飲み会しませんか？", style: theme.textTheme.h40.bold()),
+                    Text("2022/01/01",
+                        style: theme.textTheme.h10.merge(
+                          const TextStyle(color: Color(0xFF969696)),
+                        )),
+                  ],
+                ),
+                const Gap(5),
+                Text("新着メッセージを表示します。", style: theme.textTheme.h30),
+              ],
             ),
           ),
-        ),
-      ),
-      loading: () => const Scaffold(
-        body: SafeArea(
-          child: Center(
-            child: CircularProgressIndicator(
-                // color: theme.appColors.primary,
-                ),
-          ),
-        ),
+        ],
       ),
     );
   }
 
-  Text postedDate(DateTime postedAt) {
-    return const Text(
-      "昨日",
-      style: TextStyle(fontSize: 10),
+  _blank() {
+    return Container(
+      height: 10,
+      color: const Color(0xFFF2F2F6),
     );
   }
 
-  Widget notificationWidget(int notifications) {
-    return Align(
-      alignment: Alignment.center,
-      child: Container(
-        height: 25,
-        padding: const EdgeInsets.only(left: 10, right: 10, top: 4.2),
-        decoration: BoxDecoration(
-          color: Colors.green,
-          borderRadius: BorderRadius.circular(15),
-        ),
-        child: Text(
-          "$notifications",
-          maxLines: 1,
-          style: const TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-      ),
+  _listHeader(AppTheme theme, String title) {
+    return Container(
+      padding: const EdgeInsets.only(left: 30, top: 50, bottom: 50),
+      child: Text(title, style: theme.textTheme.h30.bold()),
     );
   }
 }

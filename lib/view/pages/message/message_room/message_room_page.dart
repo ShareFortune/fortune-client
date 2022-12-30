@@ -49,8 +49,8 @@ class MessageRoomPage extends ConsumerWidget {
                   topRight: Radius.circular(30),
                 ),
               ),
-              inputTextCursorColor: theme.appColors.defaultTextStyle,
-              inputTextColor: theme.appColors.defaultTextStyle,
+              // inputTextCursorColor: theme.appColors.defaultTextStyle,
+              // inputTextColor: theme.appColors.defaultTextStyle,
             ),
             messages: data.messages,
             onAttachmentPressed: () =>
