@@ -41,10 +41,10 @@ class MessageListTile extends HookConsumerWidget {
     final postedDateText = Text(postedDate, style: postedDateTextStyle);
 
     return Container(
-      padding: const EdgeInsets.all(20),
+      padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Row(
         children: [
-          const CircleAvatar(radius: 30),
+          const CircleAvatar(radius: 26),
           const Gap(15),
           Expanded(
             child: Column(
