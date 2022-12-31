@@ -28,7 +28,7 @@ class MessageRoomPage extends ConsumerWidget {
           appBar: AppBar(
             title: const Text("メッセージ"),
             titleTextStyle: theme.textTheme.h40
-                .merge(TextStyle(color: theme.appColors.headline1))
+                .merge(TextStyle(color: theme.appColors.subText1))
                 .bold(),
             iconTheme: const IconThemeData(color: Colors.black),
             elevation: 0,
@@ -38,7 +38,7 @@ class MessageRoomPage extends ConsumerWidget {
             theme: DefaultChatTheme(
               backgroundColor: theme.appColors.background,
               primaryColor: theme.appColors.primary,
-              inputBackgroundColor: theme.appColors.messageSendingInputFormBg,
+              inputBackgroundColor: theme.appColors.onBackground,
               inputBorderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(30),
                 topRight: Radius.circular(30),

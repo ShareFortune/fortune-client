@@ -15,9 +15,7 @@ class MessageRoomListPage extends HookConsumerWidget {
     final state = ref.watch(messageRoomListViewModelProvider);
     final viewModel = ref.watch(messageRoomListViewModelProvider.notifier);
 
-    final tabStyle = theme.textTheme.h40.merge(
-      TextStyle(color: theme.appColors.subText4),
-    );
+    final tabStyle = theme.textTheme.h40;
 
     return DefaultTabController(
       length: 2,

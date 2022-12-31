@@ -60,9 +60,9 @@ class RoomDetailPage extends HookConsumerWidget {
                       indicatorPadding:
                           const EdgeInsets.symmetric(horizontal: 30),
                       labelPadding: const EdgeInsets.only(bottom: 10),
-                      indicatorColor: theme.appColors.tabIndicator,
+                      indicatorColor: theme.appColors.secondary,
                       labelStyle: theme.textTheme.h30.bold(),
-                      labelColor: theme.appColors.tabIndicator,
+                      labelColor: theme.appColors.secondary,
                       tabs: const [
                         Tab(text: '詳細'),
                         Tab(text: 'メンバー'),

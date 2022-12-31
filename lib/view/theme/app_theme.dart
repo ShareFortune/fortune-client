@@ -36,8 +36,13 @@ class AppTheme {
     final appColors = AppColors.light();
     final themeData = ThemeData.light().copyWith(
       scaffoldBackgroundColor: appColors.background,
-      textTheme: GoogleFonts.notoSansTextTheme(ThemeData.light().textTheme),
+      textTheme: GoogleFonts.notoSansTextTheme(
+          ThemeData.light(useMaterial3: true).textTheme),
+      colorScheme: ColorScheme.light(
+        primary: appColors.primary,
+      ),
       snackBarTheme: SnackBarThemeData(
+        actionTextColor: Colors.black,
         backgroundColor: appColors.error,
         behavior: SnackBarBehavior.floating,
       ),
@@ -55,7 +60,8 @@ class AppTheme {
     final appColors = AppColors.dark();
     final themeData = ThemeData.dark().copyWith(
       scaffoldBackgroundColor: appColors.background,
-      textTheme: GoogleFonts.notoSansTextTheme(ThemeData.dark().textTheme),
+      textTheme: GoogleFonts.notoSansTextTheme(
+          ThemeData.dark(useMaterial3: true).textTheme),
       snackBarTheme: SnackBarThemeData(
         backgroundColor: appColors.error,
         behavior: SnackBarBehavior.floating,
