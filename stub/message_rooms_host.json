@@ -1,0 +1,16 @@
+{
+    "nextToken": "aaaaaaaaa",
+    "messageRooms": [
+        {
+            "id": "aaaaaaaaa",
+            "roomName": "fortune",
+            "lastSendAt": "2022-09-20",
+            "lastSendMessage": "こんにちは",
+            "hostMainImageURL": "https://aaa",
+            "participantMainImageURLs": [
+                "https://aaa"
+            ],
+            "unreadCount": 3
+        }
+    ]
+}

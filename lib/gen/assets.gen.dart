@@ -17,6 +17,9 @@ class $StubGen {
   /// File path: stub/message.json
   String get message => 'stub/message.json';
 
+  /// File path: stub/message_rooms_host.json
+  String get messageRoomsHost => 'stub/message_rooms_host.json';
+
   /// File path: stub/participating_room_list.json
   String get participatingRoomList => 'stub/participating_room_list.json';
 
@@ -35,6 +38,7 @@ class $StubGen {
   /// List of all assets
   List<String> get values => [
         message,
+        messageRoomsHost,
         participatingRoomList,
         profile,
         profileCreate,

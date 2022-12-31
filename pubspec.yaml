@@ -62,7 +62,6 @@ dependencies:
 
   # route
   auto_route: ^5.0.2
-  katana_router: ^1.10.8
 
 dev_dependencies:
   flutter_test:
