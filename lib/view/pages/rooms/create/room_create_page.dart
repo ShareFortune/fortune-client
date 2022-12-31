@@ -18,7 +18,7 @@ class RoomCreatePage extends ConsumerWidget {
         title: Text(
           "ルーム作成",
           style: theme.textTheme.h40
-              .merge(TextStyle(color: theme.appColors.headline1))
+              .merge(TextStyle(color: theme.appColors.subText1))
               .bold(),
         ),
       ),
@@ -103,7 +103,7 @@ class RoomCreatePage extends ConsumerWidget {
         Text(
           explanation,
           style: theme.textTheme.h30.merge(
-            TextStyle(color: theme.appColors.explanation),
+            TextStyle(color: theme.appColors.subText1),
           ),
         ),
         const Gap(15),
@@ -140,7 +140,7 @@ class RoomCreatePage extends ConsumerWidget {
           borderRadius: const BorderRadius.all(Radius.circular(10.0)),
           borderSide: BorderSide(
             width: 1,
-            color: theme.appColors.textFieldBorderSide,
+            color: theme.appColors.border1,
           ),
         ),
       ),

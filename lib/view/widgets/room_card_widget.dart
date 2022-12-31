@@ -154,17 +154,4 @@ class RoomCardWidget extends HookConsumerWidget {
       ],
     );
   }
-
-  _fav(AppTheme theme) {
-    return IconButton(
-      onPressed: () {},
-      padding: EdgeInsets.zero,
-      constraints: const BoxConstraints(),
-      icon: Icon(
-        size: 24,
-        Icons.favorite_border,
-        color: theme.appColors.divider,
-      ),
-    );
-  }
 }

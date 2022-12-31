@@ -73,7 +73,7 @@ class AppTextTheme {
 extension TextStyleExt on TextStyle {
   TextStyle bold() => copyWith(fontWeight: FontWeight.w700);
 
-  TextStyle auxiliary() => copyWith(color: const Color.fromRGBO(0, 0, 0, 0.5));
+  TextStyle paint(Color color) => copyWith(color: color);
 
   TextStyle comfort() => copyWith(height: 1.8);
 
