@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fortune_client/view/pages/common/scroll_app_bar/scroll_app_bar.dart';
+import 'package:fortune_client/view/pages/message/message_room_list/components/message_list_tile.dart';
 import 'package:fortune_client/view/pages/message/message_room_list/message_room_list_view_model.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
@@ -15,7 +16,13 @@ class MessageRoomListPage extends HookConsumerWidget {
     final state = ref.watch(messageRoomListViewModelProvider);
     final viewModel = ref.watch(messageRoomListViewModelProvider.notifier);
 
-    final tabStyle = theme.textTheme.h40;
+    /// タブテキスト
+    final tabTextColor = theme.appColors.subText1;
+    final tabTextStyle = theme.textTheme.h40.paint(tabTextColor);
+
+    /// タブテキスト（選択時）
+    final onTabTextColor = theme.appColors.secondary;
+    final onTabTextStyle = theme.textTheme.h40.paint(onTabTextColor);
 
     return DefaultTabController(
       length: 2,
@@ -25,9 +32,13 @@ class MessageRoomListPage extends HookConsumerWidget {
             const ScrollAppBar(title: "メッセージ", isBorder: false),
             SliverToBoxAdapter(
               child: TabBar(
-                tabs: [
-                  Tab(child: Text("ホスト", style: tabStyle)),
-                  Tab(child: Text("ゲスト", style: tabStyle)),
+                labelColor: onTabTextColor,
+                unselectedLabelColor: tabTextColor,
+                labelStyle: onTabTextStyle,
+                unselectedLabelStyle: tabTextStyle,
+                tabs: const [
+                  Tab(text: "ホスト"),
+                  Tab(text: "ゲスト"),
                 ],
               ),
             ),
@@ -59,45 +70,26 @@ class MessageRoomListPage extends HookConsumerWidget {
 
   Widget _messages(AppTheme theme) {
     return Column(
-      children: [
-        _message(theme),
-        const Gap(30),
-        _message(theme),
-        const Gap(30),
-        _message(theme),
-        const Gap(30),
+      children: const [
+        MessageListTile(
+          title: "渋谷で飲み会しませんか？",
+          postedDate: "2022/01/01",
+          body: "新着メッセージを表示します。",
+        ),
+        Gap(30),
+        MessageListTile(
+          title: "渋谷で飲み会しませんか？",
+          postedDate: "2022/01/01",
+          body: "新着メッセージを表示します。",
+        ),
+        Gap(30),
+        MessageListTile(
+          title: "渋谷で飲み会しませんか？",
+          postedDate: "2022/01/01",
+          body: "新着メッセージを表示します。",
+        ),
+        Gap(30),
       ],
-    );
-  }
-
-  Widget _message(AppTheme theme) {
-    return Container(
-      padding: const EdgeInsets.only(left: 20, right: 20),
-      child: Row(
-        children: [
-          const CircleAvatar(radius: 30),
-          const Gap(15),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text("渋谷で飲み会しませんか？", style: theme.textTheme.h40.bold()),
-                    Text("2022/01/01",
-                        style: theme.textTheme.h10.merge(
-                          const TextStyle(color: Color(0xFF969696)),
-                        )),
-                  ],
-                ),
-                const Gap(5),
-                Text("新着メッセージを表示します。", style: theme.textTheme.h30),
-              ],
-            ),
-          ),
-        ],
-      ),
     );
   }
 
