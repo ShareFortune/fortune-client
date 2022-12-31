@@ -3,6 +3,8 @@ import 'package:fortune_client/data/datasource/local/shared_pref_data_source.dar
 import 'package:fortune_client/data/datasource/local/shared_pref_data_source_impl.dart';
 import 'package:fortune_client/data/datasource/remote/firebase/firebase_auth_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/firebase/firebase_auth_data_source_impl.dart';
+import 'package:fortune_client/data/datasource/remote/go/message_rooms/fake_message_rooms_data_source.dart';
+import 'package:fortune_client/data/datasource/remote/go/message_rooms/message_rooms_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/go/profile/fake_profile_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/go/profile/profile_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/go/rooms/fake_rooms_data_source.dart';
@@ -56,4 +58,6 @@ Future<void> initDependencies(bool isRelease) async {
       () => FirebaseAuthDataSourceImpl());
   sl.registerLazySingleton<RoomsDataSource>(() => FakeRoomDataSource());
   sl.registerLazySingleton<ProfileDataSource>(() => FakeProfileDataSource());
+  sl.registerLazySingleton<MessageRoomsDataSource>(
+      () => FakeMessageRoomsDataSource());
 }

@@ -1,5 +1,5 @@
 import 'package:fortune_client/data/datasource/local/shared_pref_data_source.dart';
-import 'package:fortune_client/util/service/log/logger.dart';
+import 'package:fortune_client/util/logger/logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SharedPreferencesDataSourceImpl implements SharedPreferencesDataSource {
@@ -10,7 +10,6 @@ class SharedPreferencesDataSourceImpl implements SharedPreferencesDataSource {
 
   Future<bool> _logger<T>(
       Future<bool> Function(String, T) setter, String key, T value) {
-    // developer.log('\x1B[33m$value\x1B[0m');
     return setter(key, value).whenComplete(
       () => logger.i('[$_prefix] set ${T.runtimeType} for key: $key'),
     );

@@ -8,7 +8,7 @@ import 'package:fortune_client/foundation/constants.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:fortune_client/injector.dart';
-import 'package:fortune_client/util/service/log/logger.dart';
+import 'package:fortune_client/util/logger/logger.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'app.dart';

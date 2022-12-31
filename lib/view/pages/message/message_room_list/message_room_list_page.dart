@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:fortune_client/data/model/message_rooms/host/message_room_host.dart';
 import 'package:fortune_client/view/pages/common/scroll_app_bar/scroll_app_bar.dart';
 import 'package:fortune_client/view/pages/message/message_room_list/components/message_list_tile.dart';
 import 'package:fortune_client/view/pages/message/message_room_list/message_room_list_view_model.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
+import 'package:fortune_client/view/widgets/loading_widget.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class MessageRoomListPage extends HookConsumerWidget {
@@ -26,6 +28,13 @@ class MessageRoomListPage extends HookConsumerWidget {
     /// タイトル（ルームリスト）
     final titleTextColor = theme.appColors.subText1;
     final titleTextStyle = theme.textTheme.h20.paint(titleTextColor).bold();
+
+    /// ホストのメッセージルーム
+    Widget messageRoomsHost;
+    messageRoomsHost = state.maybeWhen(
+      data: (data) => _messagesRooms<MessageRoomHost>(theme, data.host),
+      orElse: () => loadingWidget(),
+    );
 
     return DefaultTabController(
       length: 2,
@@ -55,12 +64,12 @@ class MessageRoomListPage extends HookConsumerWidget {
               children: [
                 _messageRoomsContainer(
                   Text("新着メッセージ", style: titleTextStyle),
-                  _messagesRooms(theme, 1),
+                  messageRoomsHost,
                 ),
                 _blank(),
                 _messageRoomsContainer(
                   Text("参加中のメッセージルーム", style: titleTextStyle),
-                  _messagesRooms(theme, 3),
+                  messageRoomsHost,
                 ),
               ],
             ),
@@ -70,12 +79,12 @@ class MessageRoomListPage extends HookConsumerWidget {
               children: [
                 _messageRoomsContainer(
                   Text("新着メッセージ", style: titleTextStyle),
-                  _messagesRooms(theme, 3),
+                  messageRoomsHost,
                 ),
                 _blank(),
                 _messageRoomsContainer(
                   Text("参加中のメッセージルーム", style: titleTextStyle),
-                  _messagesRooms(theme, 10),
+                  messageRoomsHost,
                 ),
               ],
             ),
@@ -98,9 +107,9 @@ class MessageRoomListPage extends HookConsumerWidget {
     );
   }
 
-  Widget _messagesRooms(AppTheme theme, int length) {
+  Widget _messagesRooms<T>(AppTheme theme, List<T> rooms) {
     return Column(
-      children: List.generate(length, (_) {
+      children: rooms.map((e) {
         return Container(
           padding: const EdgeInsets.only(bottom: 30),
           child: const MessageListTile(
