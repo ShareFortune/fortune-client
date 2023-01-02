@@ -4,8 +4,8 @@ import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class MessageListTile extends HookConsumerWidget {
-  const MessageListTile({
+class MessageRoomListTile extends HookConsumerWidget {
+  const MessageRoomListTile({
     super.key,
     required this.title,
     required this.postedDate,

@@ -8,6 +8,7 @@ class MessageRoomHost with _$MessageRoomHost {
   const factory MessageRoomHost({
     required String id,
     required String roomName,
+    required String lastSendAt,
     required String lastSendMessage,
     required String hostMainImageURL,
     required List<String> participantMainImageURLs,

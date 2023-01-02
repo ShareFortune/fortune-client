@@ -6,15 +6,14 @@ import 'package:fortune_client/view/pages/message/message_room_list/message_room
 import 'package:fortune_client/view/routes/app_router.gr.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-final messageRoomListViewModelProvider = StateNotifierProvider<
-    MessageRoomListViewModel, AsyncValue<MessageRoomListState>>((ref) {
-  return MessageRoomListViewModel(sl())..initialize();
-});
+final messageRoomListViewModelProvider =
+    StateNotifierProvider<MessageRoomListViewModel, MessageRoomListState>(
+  (ref) => MessageRoomListViewModel(sl())..initialize(),
+);
 
-class MessageRoomListViewModel
-    extends StateNotifier<AsyncValue<MessageRoomListState>> {
+class MessageRoomListViewModel extends StateNotifier<MessageRoomListState> {
   MessageRoomListViewModel(this._dataSource)
-      : super(const AsyncValue.loading());
+      : super(const MessageRoomListState());
 
   final MessageRoomsDataSource _dataSource;
 
@@ -23,12 +22,18 @@ class MessageRoomListViewModel
   }
 
   fetchListHost() async {
-    MessageRoomListState? data = state.value;
-    data ??= const MessageRoomListState(host: []);
-    state = await AsyncValue.guard(() async {
+    final host = await AsyncValue.guard<StatusMessageRoomListState>(() async {
       final result = await _dataSource.fetchMessageRoomsHost();
-      return data!.copyWith(host: result.messageRooms);
+      return StatusMessageRoomListState(
+        messageRooms: result.messageRooms.map((e) {
+          return MessageRoomListItemState.fromModel(e);
+        }).toList(),
+        newMessageRooms: result.messageRooms.map((e) {
+          return MessageRoomListItemState.fromModel(e);
+        }).toList(),
+      );
     });
+    state = state.copyWith(host: host, guest: state.guest);
   }
 
   navigateToMessagePage(BuildContext context, String id) async {

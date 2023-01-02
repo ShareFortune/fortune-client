@@ -10,6 +10,7 @@ _$_MessageRoomHost _$$_MessageRoomHostFromJson(Map<String, dynamic> json) =>
     _$_MessageRoomHost(
       id: json['id'] as String,
       roomName: json['roomName'] as String,
+      lastSendAt: json['lastSendAt'] as String,
       lastSendMessage: json['lastSendMessage'] as String,
       hostMainImageURL: json['hostMainImageURL'] as String,
       participantMainImageURLs:
@@ -23,6 +24,7 @@ Map<String, dynamic> _$$_MessageRoomHostToJson(_$_MessageRoomHost instance) =>
     <String, dynamic>{
       'id': instance.id,
       'roomName': instance.roomName,
+      'lastSendAt': instance.lastSendAt,
       'lastSendMessage': instance.lastSendMessage,
       'hostMainImageURL': instance.hostMainImageURL,
       'participantMainImageURLs': instance.participantMainImageURLs,

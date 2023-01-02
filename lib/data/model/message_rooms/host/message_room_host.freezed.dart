@@ -22,6 +22,7 @@ MessageRoomHost _$MessageRoomHostFromJson(Map<String, dynamic> json) {
 mixin _$MessageRoomHost {
   String get id => throw _privateConstructorUsedError;
   String get roomName => throw _privateConstructorUsedError;
+  String get lastSendAt => throw _privateConstructorUsedError;
   String get lastSendMessage => throw _privateConstructorUsedError;
   String get hostMainImageURL => throw _privateConstructorUsedError;
   List<String> get participantMainImageURLs =>
@@ -43,6 +44,7 @@ abstract class $MessageRoomHostCopyWith<$Res> {
   $Res call(
       {String id,
       String roomName,
+      String lastSendAt,
       String lastSendMessage,
       String hostMainImageURL,
       List<String> participantMainImageURLs,
@@ -64,6 +66,7 @@ class _$MessageRoomHostCopyWithImpl<$Res, $Val extends MessageRoomHost>
   $Res call({
     Object? id = null,
     Object? roomName = null,
+    Object? lastSendAt = null,
     Object? lastSendMessage = null,
     Object? hostMainImageURL = null,
     Object? participantMainImageURLs = null,
@@ -77,6 +80,10 @@ class _$MessageRoomHostCopyWithImpl<$Res, $Val extends MessageRoomHost>
       roomName: null == roomName
           ? _value.roomName
           : roomName // ignore: cast_nullable_to_non_nullable
+              as String,
+      lastSendAt: null == lastSendAt
+          ? _value.lastSendAt
+          : lastSendAt // ignore: cast_nullable_to_non_nullable
               as String,
       lastSendMessage: null == lastSendMessage
           ? _value.lastSendMessage
@@ -109,6 +116,7 @@ abstract class _$$_MessageRoomHostCopyWith<$Res>
   $Res call(
       {String id,
       String roomName,
+      String lastSendAt,
       String lastSendMessage,
       String hostMainImageURL,
       List<String> participantMainImageURLs,
@@ -128,6 +136,7 @@ class __$$_MessageRoomHostCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? roomName = null,
+    Object? lastSendAt = null,
     Object? lastSendMessage = null,
     Object? hostMainImageURL = null,
     Object? participantMainImageURLs = null,
@@ -141,6 +150,10 @@ class __$$_MessageRoomHostCopyWithImpl<$Res>
       roomName: null == roomName
           ? _value.roomName
           : roomName // ignore: cast_nullable_to_non_nullable
+              as String,
+      lastSendAt: null == lastSendAt
+          ? _value.lastSendAt
+          : lastSendAt // ignore: cast_nullable_to_non_nullable
               as String,
       lastSendMessage: null == lastSendMessage
           ? _value.lastSendMessage
@@ -168,6 +181,7 @@ class _$_MessageRoomHost implements _MessageRoomHost {
   const _$_MessageRoomHost(
       {required this.id,
       required this.roomName,
+      required this.lastSendAt,
       required this.lastSendMessage,
       required this.hostMainImageURL,
       required final List<String> participantMainImageURLs,
@@ -181,6 +195,8 @@ class _$_MessageRoomHost implements _MessageRoomHost {
   final String id;
   @override
   final String roomName;
+  @override
+  final String lastSendAt;
   @override
   final String lastSendMessage;
   @override
@@ -199,7 +215,7 @@ class _$_MessageRoomHost implements _MessageRoomHost {
 
   @override
   String toString() {
-    return 'MessageRoomHost(id: $id, roomName: $roomName, lastSendMessage: $lastSendMessage, hostMainImageURL: $hostMainImageURL, participantMainImageURLs: $participantMainImageURLs, unreadCount: $unreadCount)';
+    return 'MessageRoomHost(id: $id, roomName: $roomName, lastSendAt: $lastSendAt, lastSendMessage: $lastSendMessage, hostMainImageURL: $hostMainImageURL, participantMainImageURLs: $participantMainImageURLs, unreadCount: $unreadCount)';
   }
 
   @override
@@ -210,6 +226,8 @@ class _$_MessageRoomHost implements _MessageRoomHost {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.roomName, roomName) ||
                 other.roomName == roomName) &&
+            (identical(other.lastSendAt, lastSendAt) ||
+                other.lastSendAt == lastSendAt) &&
             (identical(other.lastSendMessage, lastSendMessage) ||
                 other.lastSendMessage == lastSendMessage) &&
             (identical(other.hostMainImageURL, hostMainImageURL) ||
@@ -226,6 +244,7 @@ class _$_MessageRoomHost implements _MessageRoomHost {
       runtimeType,
       id,
       roomName,
+      lastSendAt,
       lastSendMessage,
       hostMainImageURL,
       const DeepCollectionEquality().hash(_participantMainImageURLs),
@@ -249,6 +268,7 @@ abstract class _MessageRoomHost implements MessageRoomHost {
   const factory _MessageRoomHost(
       {required final String id,
       required final String roomName,
+      required final String lastSendAt,
       required final String lastSendMessage,
       required final String hostMainImageURL,
       required final List<String> participantMainImageURLs,
@@ -261,6 +281,8 @@ abstract class _MessageRoomHost implements MessageRoomHost {
   String get id;
   @override
   String get roomName;
+  @override
+  String get lastSendAt;
   @override
   String get lastSendMessage;
   @override
