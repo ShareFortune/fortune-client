@@ -1,6 +1,6 @@
 import 'package:fortune_client/data/datasource/local/shared_pref_data_source.dart';
 import 'package:fortune_client/data/repository/debug/debug_repository.dart';
-import 'package:fortune_client/util/service/storage/app_pref_key.dart';
+import 'package:fortune_client/util/storage/app_pref_key.dart';
 
 class DebugRepositoryImpl implements DebugRepository {
   final SharedPreferencesDataSource _sharedPreferences;

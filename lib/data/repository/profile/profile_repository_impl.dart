@@ -6,7 +6,7 @@ import 'package:fortune_client/data/model/create_profile_form/create_profile_for
 import 'package:fortune_client/data/model/profile/profile.dart';
 import 'package:fortune_client/data/repository/profile/profile_repository.dart';
 import 'package:fortune_client/data/model/enum/gender_type.dart';
-import 'package:fortune_client/util/service/storage/app_pref_key.dart';
+import 'package:fortune_client/util/storage/app_pref_key.dart';
 
 class ProfileRepositoryImpl implements ProfileRepository {
   final ProfileDataSource _profileDataSource;

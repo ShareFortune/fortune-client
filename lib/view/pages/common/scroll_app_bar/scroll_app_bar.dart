@@ -28,12 +28,10 @@ class ScrollAppBar extends HookConsumerWidget implements PreferredSizeWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = ref.watch(appThemeProvider);
     final state = ref.watch(scrollAppBarViewModelProvider);
-    final viewModel = ref.watch(scrollAppBarViewModelProvider.notifier);
 
     /// タイトル
-    final titleTextStyle = theme.textTheme.h60.bold().merge(
-          TextStyle(color: theme.appColors.subText1),
-        );
+    final titleTextStyle =
+        theme.textTheme.h60.paint(theme.appColors.subText1).bold();
     Widget titleWidget = Text(title, style: titleTextStyle);
 
     /// アイコン

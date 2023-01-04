@@ -19,13 +19,14 @@ class MyBottomNavigationBar extends HookConsumerWidget {
       ],
       bottomNavigationBuilder: (_, tabsRouter) {
         return BottomNavigationBar(
-          type: BottomNavigationBarType.fixed,
           iconSize: 25,
+          type: BottomNavigationBarType.fixed,
           currentIndex: tabsRouter.activeIndex,
           onTap: (index) {
             tabsRouter.setActiveIndex(index);
           },
-          backgroundColor: theme.appColors.background,
+          elevation: 0,
+          backgroundColor: Colors.transparent,
           selectedLabelStyle: theme.textTheme.h10,
           unselectedLabelStyle: theme.textTheme.h10,
           selectedItemColor: theme.appColors.iconBtn,

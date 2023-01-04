@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:fortune_client/view/pages/common/scroll_app_bar/scroll_app_bar.dart';
-import 'package:fortune_client/view/pages/message/message_room_list/components/message_list_tile.dart';
+import 'package:fortune_client/view/pages/message/message_room_list/components/empty_message_room_list_view.dart';
+import 'package:fortune_client/view/pages/message/message_room_list/components/message_room_list_tile.dart';
+import 'package:fortune_client/view/pages/message/message_room_list/message_room_list_state.dart';
 import 'package:fortune_client/view/pages/message/message_room_list/message_room_list_view_model.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
+import 'package:fortune_client/view/widgets/loading_widget.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class MessageRoomListPage extends HookConsumerWidget {
@@ -27,6 +30,22 @@ class MessageRoomListPage extends HookConsumerWidget {
     final titleTextColor = theme.appColors.subText1;
     final titleTextStyle = theme.textTheme.h20.paint(titleTextColor).bold();
 
+    /// メッセージルーム生成
+    Widget asyncMessageRooms(AsyncValue<StatusMessageRoomListState> data) {
+      return data.maybeWhen(
+        data: (data) => data.isEmpty()
+            ? const EmptyMessageRoomListView()
+            : _messageRoomsTabView(theme, data, titleTextStyle),
+        orElse: () => loadingWidget(),
+      );
+    }
+
+    /// メッセージルームホスト
+    final messageRoomsHost = asyncMessageRooms(state.host);
+
+    /// メッセージルームゲスト
+    final messageRoomsGuest = asyncMessageRooms(state.guest);
+
     return DefaultTabController(
       length: 2,
       child: NestedScrollView(
@@ -48,40 +67,36 @@ class MessageRoomListPage extends HookConsumerWidget {
           ];
         },
         body: TabBarView(
-          children: [
-            ListView(
-              padding: EdgeInsets.zero,
-              physics: const NeverScrollableScrollPhysics(),
-              children: [
-                _messageRoomsContainer(
-                  Text("新着メッセージ", style: titleTextStyle),
-                  _messagesRooms(theme, 1),
-                ),
-                _blank(),
-                _messageRoomsContainer(
-                  Text("参加中のメッセージルーム", style: titleTextStyle),
-                  _messagesRooms(theme, 3),
-                ),
-              ],
-            ),
-            ListView(
-              padding: EdgeInsets.zero,
-              physics: const NeverScrollableScrollPhysics(),
-              children: [
-                _messageRoomsContainer(
-                  Text("新着メッセージ", style: titleTextStyle),
-                  _messagesRooms(theme, 3),
-                ),
-                _blank(),
-                _messageRoomsContainer(
-                  Text("参加中のメッセージルーム", style: titleTextStyle),
-                  _messagesRooms(theme, 10),
-                ),
-              ],
-            ),
-          ],
+          children: [messageRoomsHost, messageRoomsGuest],
         ),
       ),
+    );
+  }
+
+  Widget _messageRoomsTabView(
+      AppTheme theme, StatusMessageRoomListState data, TextStyle titleStyle) {
+    return ListView(
+      padding: EdgeInsets.zero,
+      physics: const NeverScrollableScrollPhysics(),
+      children: [
+        _messageRoomsContainer(
+          Text("新着メッセージ", style: titleStyle),
+          Column(
+            children: data.messageRooms.map((e) {
+              return _messagesRooms(theme, data.messageRooms);
+            }).toList(),
+          ),
+        ),
+        _blank(),
+        _messageRoomsContainer(
+          Text("参加中のメッセージルーム", style: titleStyle),
+          Column(
+            children: data.messageRooms.map((e) {
+              return _messagesRooms(theme, data.newMessageRooms);
+            }).toList(),
+          ),
+        ),
+      ],
     );
   }
 
@@ -98,15 +113,15 @@ class MessageRoomListPage extends HookConsumerWidget {
     );
   }
 
-  Widget _messagesRooms(AppTheme theme, int length) {
+  Widget _messagesRooms(AppTheme theme, List<MessageRoomListItemState> rooms) {
     return Column(
-      children: List.generate(length, (_) {
+      children: rooms.map((room) {
         return Container(
           padding: const EdgeInsets.only(bottom: 30),
-          child: const MessageListTile(
-            title: "渋谷で飲み会しませんか？",
-            postedDate: "2022/01/01",
-            body: "新着メッセージを表示します。",
+          child: MessageRoomListTile(
+            title: room.roomName,
+            postedDate: room.lastSendAt,
+            body: room.lastSendMessage,
           ),
         );
       }).toList(),
