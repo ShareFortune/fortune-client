@@ -19,6 +19,7 @@ class MessageRoomListViewModel extends StateNotifier<MessageRoomListState> {
 
   initialize() async {
     await fetchListHost();
+    await fetchListGuest();
   }
 
   fetchListHost() async {
@@ -34,6 +35,14 @@ class MessageRoomListViewModel extends StateNotifier<MessageRoomListState> {
       );
     });
     state = state.copyWith(host: host, guest: state.guest);
+  }
+
+  fetchListGuest() async {
+    final guest = await AsyncValue.guard<StatusMessageRoomListState>(() async {
+      return const StatusMessageRoomListState(
+          messageRooms: [], newMessageRooms: []);
+    });
+    state = state.copyWith(host: state.host, guest: guest);
   }
 
   navigateToMessagePage(BuildContext context, String id) async {

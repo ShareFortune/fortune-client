@@ -261,12 +261,13 @@ class __$$_StatusMessageRoomListStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_StatusMessageRoomListState implements _StatusMessageRoomListState {
+class _$_StatusMessageRoomListState extends _StatusMessageRoomListState {
   const _$_StatusMessageRoomListState(
       {required final List<MessageRoomListItemState> messageRooms,
       required final List<MessageRoomListItemState> newMessageRooms})
       : _messageRooms = messageRooms,
-        _newMessageRooms = newMessageRooms;
+        _newMessageRooms = newMessageRooms,
+        super._();
 
   final List<MessageRoomListItemState> _messageRooms;
   @override
@@ -314,12 +315,12 @@ class _$_StatusMessageRoomListState implements _StatusMessageRoomListState {
           _$_StatusMessageRoomListState>(this, _$identity);
 }
 
-abstract class _StatusMessageRoomListState
-    implements StatusMessageRoomListState {
+abstract class _StatusMessageRoomListState extends StatusMessageRoomListState {
   const factory _StatusMessageRoomListState(
           {required final List<MessageRoomListItemState> messageRooms,
           required final List<MessageRoomListItemState> newMessageRooms}) =
       _$_StatusMessageRoomListState;
+  const _StatusMessageRoomListState._() : super._();
 
   @override
   List<MessageRoomListItemState> get messageRooms;

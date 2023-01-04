@@ -5,7 +5,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 part 'message_room_list_state.freezed.dart';
 
 @freezed
-abstract class MessageRoomListState with _$MessageRoomListState {
+class MessageRoomListState with _$MessageRoomListState {
   const factory MessageRoomListState({
     @Default(AsyncValue.loading()) AsyncValue<StatusMessageRoomListState> host,
     @Default(AsyncValue.loading()) AsyncValue<StatusMessageRoomListState> guest,
@@ -13,15 +13,20 @@ abstract class MessageRoomListState with _$MessageRoomListState {
 }
 
 @freezed
-abstract class StatusMessageRoomListState with _$StatusMessageRoomListState {
+class StatusMessageRoomListState with _$StatusMessageRoomListState {
+  const StatusMessageRoomListState._();
   const factory StatusMessageRoomListState({
     required List<MessageRoomListItemState> messageRooms,
     required List<MessageRoomListItemState> newMessageRooms,
   }) = _StatusMessageRoomListState;
+
+  bool isEmpty() {
+    return messageRooms.isEmpty && newMessageRooms.isEmpty;
+  }
 }
 
 @freezed
-abstract class MessageRoomListItemState with _$MessageRoomListItemState {
+class MessageRoomListItemState with _$MessageRoomListItemState {
   const factory MessageRoomListItemState({
     required String id,
     required String roomName,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:fortune_client/data/model/message_rooms/host/message_room_host.dart';
 import 'package:fortune_client/view/pages/common/scroll_app_bar/scroll_app_bar.dart';
+import 'package:fortune_client/view/pages/message/message_room_list/components/empty_message_room_list_view.dart';
 import 'package:fortune_client/view/pages/message/message_room_list/components/message_room_list_tile.dart';
 import 'package:fortune_client/view/pages/message/message_room_list/message_room_list_state.dart';
 import 'package:fortune_client/view/pages/message/message_room_list/message_room_list_view_model.dart';
@@ -30,11 +30,21 @@ class MessageRoomListPage extends HookConsumerWidget {
     final titleTextColor = theme.appColors.subText1;
     final titleTextStyle = theme.textTheme.h20.paint(titleTextColor).bold();
 
-    /// ホストのメッセージルーム
-    final messageRoomsHost = state.host.maybeWhen(
-      data: (data) => messageRoomsTabView(theme, data, titleTextStyle),
-      orElse: () => loadingWidget(),
-    );
+    /// メッセージルーム生成
+    Widget asyncMessageRooms(AsyncValue<StatusMessageRoomListState> data) {
+      return data.maybeWhen(
+        data: (data) => data.isEmpty()
+            ? const EmptyMessageRoomListView()
+            : _messageRoomsTabView(theme, data, titleTextStyle),
+        orElse: () => loadingWidget(),
+      );
+    }
+
+    /// メッセージルームホスト
+    final messageRoomsHost = asyncMessageRooms(state.host);
+
+    /// メッセージルームゲスト
+    final messageRoomsGuest = asyncMessageRooms(state.guest);
 
     return DefaultTabController(
       length: 2,
@@ -57,30 +67,13 @@ class MessageRoomListPage extends HookConsumerWidget {
           ];
         },
         body: TabBarView(
-          children: [
-            messageRoomsHost,
-            ListView(
-              padding: EdgeInsets.zero,
-              physics: const NeverScrollableScrollPhysics(),
-              children: [
-                _messageRoomsContainer(
-                  Text("新着メッセージ", style: titleTextStyle),
-                  messageRoomsHost,
-                ),
-                _blank(),
-                _messageRoomsContainer(
-                  Text("参加中のメッセージルーム", style: titleTextStyle),
-                  messageRoomsHost,
-                ),
-              ],
-            ),
-          ],
+          children: [messageRoomsHost, messageRoomsGuest],
         ),
       ),
     );
   }
 
-  Widget messageRoomsTabView(
+  Widget _messageRoomsTabView(
       AppTheme theme, StatusMessageRoomListState data, TextStyle titleStyle) {
     return ListView(
       padding: EdgeInsets.zero,
