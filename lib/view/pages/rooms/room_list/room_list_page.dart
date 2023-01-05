@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:fortune_client/view/hooks/use_router.dart';
 import 'package:fortune_client/view/pages/common/scroll_app_bar/scroll_app_bar.dart';
 import 'package:fortune_client/view/pages/rooms/room_list/room_list_view_model.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
@@ -15,7 +14,6 @@ class RoomListPage extends HookConsumerWidget {
     final theme = ref.watch(appThemeProvider);
     final state = ref.watch(roomListViewModelProvider);
     final viewModel = ref.watch(roomListViewModelProvider.notifier);
-    final router = useRouter();
 
     return state.when(
       data: (data) {
@@ -31,16 +29,19 @@ class RoomListPage extends HookConsumerWidget {
                     theme: theme,
                     title: "人数",
                     value: "未設定",
+                    onTap: null,
                   ),
                   searchTile(
                     theme: theme,
                     title: "場所",
                     value: "未設定",
+                    onTap: null,
                   ),
                   searchTile(
                     theme: theme,
                     title: "タグ",
                     value: "未設定",
+                    onTap: () => viewModel.navigateToTagsSelection(),
                   ),
                 ],
               ),
@@ -56,9 +57,7 @@ class RoomListPage extends HookConsumerWidget {
                     title: state.title,
                     location: "日本・北海道・岩見沢市",
                     members: state.memberIcons,
-                    onTap: () {
-                      viewModel.navigateToRoomDetail(router);
-                    },
+                    onTap: () => viewModel.navigateToRoomDetail(),
                   );
                 },
               ),
@@ -89,28 +88,32 @@ class RoomListPage extends HookConsumerWidget {
     required AppTheme theme,
     required String title,
     required String value,
+    required Function()? onTap,
   }) {
-    return Container(
-      padding: const EdgeInsets.symmetric(
-        vertical: 20,
-        horizontal: 10,
-      ),
-      decoration: const BoxDecoration(
-        border: Border(
-          bottom: BorderSide(width: 1, color: Color(0xFFF3F3F3)),
+    return InkWell(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.symmetric(
+          vertical: 20,
+          horizontal: 10,
         ),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(title, style: theme.textTheme.h50),
-          Text(
-            value,
-            style: theme.textTheme.h50.merge(
-              const TextStyle(color: Color(0xFFC9C9CB)),
-            ),
+        decoration: const BoxDecoration(
+          border: Border(
+            bottom: BorderSide(width: 1, color: Color(0xFFF3F3F3)),
           ),
-        ],
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(title, style: theme.textTheme.h50),
+            Text(
+              value,
+              style: theme.textTheme.h50.merge(
+                const TextStyle(color: Color(0xFFC9C9CB)),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

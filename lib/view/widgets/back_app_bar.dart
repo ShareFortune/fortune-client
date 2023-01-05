@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class BackAppBar extends StatelessWidget implements PreferredSizeWidget {
-  final AppTheme theme;
+class BackAppBar extends HookConsumerWidget implements PreferredSizeWidget {
   final String title;
   final List<Widget>? action;
 
   const BackAppBar({
     super.key,
-    required this.theme,
     required this.title,
     this.action,
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final theme = ref.watch(appThemeProvider);
     const color = Colors.black;
 
     return AppBar(

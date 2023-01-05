@@ -17,7 +17,6 @@ class SettingsPage extends HookConsumerWidget {
     return Scaffold(
       backgroundColor: const Color(0xFFF2F2F6),
       appBar: BackAppBar(
-        theme: theme,
         title: "設定",
         action: List.empty(),
       ),

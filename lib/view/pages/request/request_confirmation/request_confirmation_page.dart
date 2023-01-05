@@ -16,7 +16,7 @@ class RequestConfirmationPage extends HookConsumerWidget {
     final theme = ref.watch(appThemeProvider);
 
     return Scaffold(
-      appBar: BackAppBar(theme: theme, title: "リクエスト"),
+      appBar: const BackAppBar(title: "リクエスト"),
       body: ListView(
         children: [
           requestTile(theme, "あんな", "22歳・女性", () {}),
