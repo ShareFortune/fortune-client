@@ -18,7 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$BasicProfileEntryState {
   String get name => throw _privateConstructorUsedError;
   GenderType get gender => throw _privateConstructorUsedError;
-  String get adress => throw _privateConstructorUsedError;
+  DateTime? get birthday => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $BasicProfileEntryStateCopyWith<BasicProfileEntryState> get copyWith =>
@@ -31,7 +31,7 @@ abstract class $BasicProfileEntryStateCopyWith<$Res> {
           $Res Function(BasicProfileEntryState) then) =
       _$BasicProfileEntryStateCopyWithImpl<$Res, BasicProfileEntryState>;
   @useResult
-  $Res call({String name, GenderType gender, String adress});
+  $Res call({String name, GenderType gender, DateTime? birthday});
 }
 
 /// @nodoc
@@ -50,7 +50,7 @@ class _$BasicProfileEntryStateCopyWithImpl<$Res,
   $Res call({
     Object? name = null,
     Object? gender = null,
-    Object? adress = null,
+    Object? birthday = freezed,
   }) {
     return _then(_value.copyWith(
       name: null == name
@@ -61,10 +61,10 @@ class _$BasicProfileEntryStateCopyWithImpl<$Res,
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
               as GenderType,
-      adress: null == adress
-          ? _value.adress
-          : adress // ignore: cast_nullable_to_non_nullable
-              as String,
+      birthday: freezed == birthday
+          ? _value.birthday
+          : birthday // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ) as $Val);
   }
 }
@@ -77,7 +77,7 @@ abstract class _$$_BasicProfileEntryStateCopyWith<$Res>
       __$$_BasicProfileEntryStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String name, GenderType gender, String adress});
+  $Res call({String name, GenderType gender, DateTime? birthday});
 }
 
 /// @nodoc
@@ -94,7 +94,7 @@ class __$$_BasicProfileEntryStateCopyWithImpl<$Res>
   $Res call({
     Object? name = null,
     Object? gender = null,
-    Object? adress = null,
+    Object? birthday = freezed,
   }) {
     return _then(_$_BasicProfileEntryState(
       name: null == name
@@ -105,10 +105,10 @@ class __$$_BasicProfileEntryStateCopyWithImpl<$Res>
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
               as GenderType,
-      adress: null == adress
-          ? _value.adress
-          : adress // ignore: cast_nullable_to_non_nullable
-              as String,
+      birthday: freezed == birthday
+          ? _value.birthday
+          : birthday // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ));
   }
 }
@@ -117,7 +117,7 @@ class __$$_BasicProfileEntryStateCopyWithImpl<$Res>
 
 class _$_BasicProfileEntryState extends _BasicProfileEntryState {
   const _$_BasicProfileEntryState(
-      {this.name = "", this.gender = GenderType.another, this.adress = ""})
+      {this.name = "", this.gender = GenderType.another, this.birthday})
       : super._();
 
   @override
@@ -127,12 +127,11 @@ class _$_BasicProfileEntryState extends _BasicProfileEntryState {
   @JsonKey()
   final GenderType gender;
   @override
-  @JsonKey()
-  final String adress;
+  final DateTime? birthday;
 
   @override
   String toString() {
-    return 'BasicProfileEntryState(name: $name, gender: $gender, adress: $adress)';
+    return 'BasicProfileEntryState(name: $name, gender: $gender, birthday: $birthday)';
   }
 
   @override
@@ -142,11 +141,12 @@ class _$_BasicProfileEntryState extends _BasicProfileEntryState {
             other is _$_BasicProfileEntryState &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.gender, gender) || other.gender == gender) &&
-            (identical(other.adress, adress) || other.adress == adress));
+            (identical(other.birthday, birthday) ||
+                other.birthday == birthday));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, name, gender, adress);
+  int get hashCode => Object.hash(runtimeType, name, gender, birthday);
 
   @JsonKey(ignore: true)
   @override
@@ -160,7 +160,7 @@ abstract class _BasicProfileEntryState extends BasicProfileEntryState {
   const factory _BasicProfileEntryState(
       {final String name,
       final GenderType gender,
-      final String adress}) = _$_BasicProfileEntryState;
+      final DateTime? birthday}) = _$_BasicProfileEntryState;
   const _BasicProfileEntryState._() : super._();
 
   @override
@@ -168,7 +168,7 @@ abstract class _BasicProfileEntryState extends BasicProfileEntryState {
   @override
   GenderType get gender;
   @override
-  String get adress;
+  DateTime? get birthday;
   @override
   @JsonKey(ignore: true)
   _$$_BasicProfileEntryStateCopyWith<_$_BasicProfileEntryState> get copyWith =>

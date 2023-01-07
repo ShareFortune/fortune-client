@@ -1,11 +1,11 @@
 import 'package:bottom_picker/bottom_picker.dart';
 import 'package:flutter/material.dart';
 
-BottomPicker bottomPicker<T extends Enum>(
-  List<T> items,
-  List<String> itemsText,
-  Function(T) changeGender,
-) {
+BottomPicker bottomPicker<T extends Enum>({
+  required List<T> items,
+  required List<String> itemsText,
+  required Function(T) onChange,
+}) {
   return BottomPicker(
     items: itemsText.map((e) => Text(e)).toList(),
     title: "",
@@ -19,7 +19,7 @@ BottomPicker bottomPicker<T extends Enum>(
       fontSize: 20,
     ),
     onSubmit: (p0) {
-      changeGender(items[p0]);
+      onChange(items[p0]);
     },
   );
 }

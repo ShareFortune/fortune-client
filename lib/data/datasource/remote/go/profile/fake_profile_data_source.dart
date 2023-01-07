@@ -1,7 +1,7 @@
 import 'package:fortune_client/data/datasource/remote/go/profile/profile_data_source.dart';
 import 'package:fortune_client/data/model/profile/profile.dart';
 import 'package:fortune_client/gen/assets.gen.dart';
-import 'package:fortune_client/util/common/json.dart';
+import 'package:fortune_client/util/common/json_roader.dart';
 
 class FakeProfileDataSource implements ProfileDataSource {
   @override

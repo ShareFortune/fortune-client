@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:fortune_client/view/hooks/use_router.dart';
+import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
+import 'package:fortune_client/util/converter/datetime_format_converter.dart';
+import 'package:fortune_client/view/pages/profile/create/components/date_picker.dart';
 import 'package:fortune_client/view/pages/profile/create/entry_basic_profile/basic_profile_entry_view_model.dart';
 import 'package:fortune_client/data/model/enum/gender_type.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
@@ -16,13 +18,18 @@ class BasicProfileEntryPage extends HookConsumerWidget {
     final theme = ref.watch(appThemeProvider);
     final state = ref.watch(basicProfileEntryViewModelProvider);
     final viewModel = ref.watch(basicProfileEntryViewModelProvider.notifier);
-    final router = useRouter();
+
+    /// 誕生日フォーマッター
+    String? birthdayStr;
+    const birthdayFormater = DateTimeFormatConverter.convertDateTimeYYYYMMDD;
+    if (state.birthday != null) birthdayStr = birthdayFormater(state.birthday!);
 
     return Scaffold(
       appBar: BasicAppBar(
         title: "はじめる",
         action: [
-          nextButton(state.isEntered(), () => viewModel.onTapNextBtn(router)),
+          _nextButton(state.isEntered(),
+              () => viewModel.navigateToEntryDetailedProfile()),
         ],
       ),
       body: Container(
@@ -36,33 +43,22 @@ class BasicProfileEntryPage extends HookConsumerWidget {
           children: [
             TextFormField(
               maxLength: 20,
-              decoration: const InputDecoration(
-                labelText: '名前',
-              ),
+              decoration: const InputDecoration(labelText: '名前'),
               onChanged: viewModel.changeName,
             ),
             const Gap(10),
             TextFormField(
-              controller: TextEditingController(text: state.gender.text),
               readOnly: true,
-              decoration: const InputDecoration(
-                labelText: '性別',
-              ),
-              onTap: () {
-                final sheet = bottomPicker(
-                  GenderType.values,
-                  GenderType.values.map((e) => e.text).toList(),
-                  viewModel.changeGender,
-                );
-                sheet.show(context);
-              },
+              controller: TextEditingController(text: state.gender.text),
+              decoration: const InputDecoration(labelText: '性別'),
+              onTap: () => _genderPicker(context, viewModel.changeGender),
             ),
             const Gap(30),
             TextFormField(
-              decoration: const InputDecoration(
-                labelText: '住所',
-              ),
-              onChanged: viewModel.changeAddress,
+              readOnly: true,
+              controller: TextEditingController(text: birthdayStr),
+              decoration: const InputDecoration(labelText: '誕生日'),
+              onTap: () => birthdayPicker(context, viewModel.changeBirthday),
             ),
           ],
         ),
@@ -70,7 +66,20 @@ class BasicProfileEntryPage extends HookConsumerWidget {
     );
   }
 
-  Widget nextButton(bool clickable, Function() onPressed) {
+  birthdayPicker(BuildContext context, Function(DateTime?) onChange) async {
+    onChange(await datePicker(context));
+  }
+
+  _genderPicker(BuildContext context, Function(GenderType) onChange) {
+    final sheet = bottomPicker(
+      items: GenderType.values,
+      itemsText: GenderType.values.map((e) => e.text).toList(),
+      onChange: onChange,
+    );
+    sheet.show(context);
+  }
+
+  Widget _nextButton(bool clickable, Function() onPressed) {
     final bgColor =
         clickable ? const Color(0xFFC782E4) : const Color(0xFFF5F5F5);
     final textColor = clickable ? Colors.white : Colors.black;
@@ -84,7 +93,9 @@ class BasicProfileEntryPage extends HookConsumerWidget {
           borderRadius: BorderRadius.circular(50),
         ),
       ),
-      onPressed: onPressed,
+      onPressed: () {
+        if (clickable) onPressed();
+      },
       child: Text(
         "次へ",
         style: TextStyle(

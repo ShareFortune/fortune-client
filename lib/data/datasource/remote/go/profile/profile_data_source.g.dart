@@ -51,8 +51,6 @@ class _ProfileDataSource implements ProfileDataSource {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(body);
-
-    print(_data);
     final _result = await _dio.fetch<String>(_setStreamType<String>(Options(
       method: 'POST',
       headers: _headers,
@@ -65,7 +63,6 @@ class _ProfileDataSource implements ProfileDataSource {
           data: _data,
         )
         .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    print(_result.data);
     final value = _result.data!;
     return value;
   }
