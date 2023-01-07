@@ -63,8 +63,6 @@ class EntryProfileSubImageViewModel
     final detail = _ref.read(detailedProfileEntryViewModelProvider);
     final icon = _ref.read(profileIconImageEntryViewModelProvider);
 
-    print("作成前");
-
     return await repository.create(
       iconImage: icon.imageFile,
       mainImage: data.firstImageFile,

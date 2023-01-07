@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:fortune_client/data/datasource/remote/firebase/firebase_auth_data_source.dart';
 import 'package:fortune_client/data/repository/debug/debug_repository.dart';
 
@@ -15,12 +16,7 @@ class AuthRepositoryImpl implements AuthRepository {
   String get firebaseId => _user!.uid;
 
   @override
-  Future<bool> isLogin() async {
-    final isAutomaticLogin = await _debugRepository.getAutomaticLogin();
-    print(isAutomaticLogin);
-    if (isAutomaticLogin) return true;
-    return await _debugRepository.getDummyRoginApi() ? true : _user != null;
-  }
+  bool get isLogin => _user != null;
 
   @override
   Future<String> idToken() async => await _user!.getIdToken();

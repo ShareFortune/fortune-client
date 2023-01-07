@@ -52,7 +52,7 @@ class _ProfileDataSource implements ProfileDataSource {
     final _data = <String, dynamic>{};
     _data.addAll(body);
 
-    print("${_dio.options.baseUrl}/users/${id}/profiles");
+    print(_data);
     final _result = await _dio.fetch<String>(_setStreamType<String>(Options(
       method: 'POST',
       headers: _headers,

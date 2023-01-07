@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:fortune_client/data/datasource/local/shared_pref_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/go/profile/profile_data_source.dart';
-import 'package:fortune_client/data/model/create_profile_form/create_profile_form.dart';
+import 'package:fortune_client/data/model/form/create_profile_form/create_profile_form.dart';
 import 'package:fortune_client/data/model/profile/profile.dart';
 import 'package:fortune_client/data/repository/auth/auth_repository.dart';
 import 'package:fortune_client/data/repository/profile/profile_repository.dart';
@@ -49,35 +49,29 @@ class ProfileRepositoryImpl implements ProfileRepository {
     required String drinkFrequency,
     required String cigaretteFrequency,
   }) async {
-    ///
-    final form = CreateProfileForm(
-      name: name,
-      gender: gender.sendValue,
-      height: height,
-      drinkFrequency: drinkFrequency,
-      cigaretteFrequency: cigaretteFrequency,
-      selfIntroduction: "selfIntroduction",
-      occupationId: 0,
-      addressId: 0,
-      tags: [],
-      // iconImage: iconImage!.path,
-      iconImage: base64,
-      firstImage: mainImage?.path ?? "",
-      secondImage: secondImage?.path ?? "",
-      thirdImage: thirdImage?.path ?? "",
-      fourthImage: fourthImage?.path ?? "",
-      fifthImage: "",
-    );
-
-    /// ローカル保存したIDを取り出す
-    /// [id] ユーザー作成時のID
     try {
-      logger
-          .i("[ProfileRepositoryImpl] create : ${_authRepository.firebaseId}");
+      /// 作成フォーム画像
+      final profileFormImage = ProfileFormImages(mainImage: base64);
+
+      /// 作成フォーム
+      final profileForm = ProfileForm(
+        name: name,
+        gender: gender.sendValue,
+        addressId: 1,
+        height: height,
+        drinkFrequency: "OFTEN",
+        cigaretteFrequency: "OFTEN",
+        images: profileFormImage.toJson(),
+      );
+
+      /// ローカル保存したIDを取り出す
+      /// [id] ユーザー作成時のID
+      logger.i(
+          "[ProfileRepositoryImpl] create: a82d2785-56f8-4739-b192-1efe44ebd695");
 
       final result = await _profileDataSource.create(
-        _authRepository.firebaseId,
-        form.toJson(),
+        "a82d2785-56f8-4739-b192-1efe44ebd695",
+        profileForm.toJson(),
       );
       await _sharedPreferences.setBool(AppPrefKey.isProfile.keyString, true);
       return result;
