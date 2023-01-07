@@ -44,9 +44,9 @@ import 'package:fortune_client/view/pages/rooms/room_detail/room_detail_page.dar
     as _i12;
 import 'package:fortune_client/view/pages/rooms/room_list/room_list_page.dart'
     as _i11;
-import 'package:fortune_client/view/pages/search/tags/tags_selection_page.dart'
-    as _i10;
 import 'package:fortune_client/view/pages/settings/settings_page.dart' as _i9;
+import 'package:fortune_client/view/pages/tags/select/tags_selection_page.dart'
+    as _i10;
 import 'package:fortune_client/view/routes/route_guard.dart' as _i22;
 
 class AppRouter extends _i20.RootStackRouter {

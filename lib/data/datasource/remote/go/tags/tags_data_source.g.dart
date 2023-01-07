@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'profile_data_source.dart';
+part of 'tags_data_source.dart';
 
 // **************************************************************************
 // RetrofitGenerator
@@ -8,8 +8,8 @@ part of 'profile_data_source.dart';
 
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers
 
-class _ProfileDataSource implements ProfileDataSource {
-  _ProfileDataSource(
+class _TagsDataSource implements TagsDataSource {
+  _TagsDataSource(
     this._dio, {
     this.baseUrl,
   });
@@ -19,54 +19,37 @@ class _ProfileDataSource implements ProfileDataSource {
   String? baseUrl;
 
   @override
-  Future<Profile> get(id) async {
+  Future<Tags<Tag>> search(
+    name,
+    nextToken,
+    perPage,
+  ) async {
     const _extra = <String, dynamic>{'append-token': true};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{
+      r'name': name,
+      r'nextToken': nextToken,
+      r'perPage': perPage,
+    };
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<Profile>(Options(
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<Tags<Tag>>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
             .compose(
               _dio.options,
-              '/profiles',
+              '/tags',
               queryParameters: queryParameters,
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = Profile.fromJson(_result.data!);
-    return value;
-  }
-
-  @override
-  Future<String> create(
-    id,
-    body,
-  ) async {
-    const _extra = <String, dynamic>{'append-token': true};
-    final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
-    _data.addAll(body);
-
-    print("${_dio.options.baseUrl}/users/${id}/profiles");
-    final _result = await _dio.fetch<String>(_setStreamType<String>(Options(
-      method: 'POST',
-      headers: _headers,
-      extra: _extra,
-    )
-        .compose(
-          _dio.options,
-          '/users/${id}/profiles',
-          queryParameters: queryParameters,
-          data: _data,
-        )
-        .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    print(_result.data);
-    final value = _result.data!;
+    final value = Tags<Tag>.fromJson(
+      _result.data!,
+      (json) => Tag.fromJson(json as Map<String, dynamic>),
+    );
     return value;
   }
 

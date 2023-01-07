@@ -9,6 +9,7 @@ import 'package:fortune_client/data/datasource/remote/go/profile/fake_profile_da
 import 'package:fortune_client/data/datasource/remote/go/profile/profile_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/go/rooms/fake_rooms_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/go/rooms/rooms_data_source.dart';
+import 'package:fortune_client/data/datasource/remote/go/tags/tags_data_source.dart';
 import 'package:fortune_client/data/repository/auth/auth_repository.dart';
 import 'package:fortune_client/data/repository/auth/auth_repository_impl.dart';
 import 'package:fortune_client/data/repository/debug/debug_repository.dart';
@@ -18,6 +19,8 @@ import 'package:fortune_client/data/repository/profile/profile_repository.dart';
 import 'package:fortune_client/data/repository/profile/profile_repository_impl.dart';
 import 'package:fortune_client/data/repository/room/room_repository.dart';
 import 'package:fortune_client/data/repository/room/room_repository_impl.dart';
+import 'package:fortune_client/data/repository/tags/tags_repository.dart';
+import 'package:fortune_client/data/repository/tags/tags_repository_impl.dart';
 import 'package:fortune_client/foundation/constants.dart';
 import 'package:fortune_client/view/routes/app_router.gr.dart';
 import 'package:fortune_client/view/routes/route_guard.dart';
@@ -47,9 +50,10 @@ Future<void> initDependencies(bool isRelease) async {
       () => AuthRepositoryImpl(sl(), sl()));
   sl.registerLazySingleton(() => MessageRepositoryImpl());
   sl.registerLazySingleton<ProfileRepository>(
-      () => ProfileRepositoryImpl(sl(), sl()));
+      () => ProfileRepositoryImpl(sl(), sl(), sl()));
   sl.registerLazySingleton<RoomRepository>(() => RoomRepositoryImpl(sl()));
   sl.registerLazySingleton<DebugRepository>(() => DebugRepositoryImpl(sl()));
+  sl.registerLazySingleton<TagsRepository>(() => TagsRepositoryImpl(sl()));
 
   /// DataSource
   sl.registerLazySingleton<SharedPreferencesDataSource>(
@@ -57,7 +61,8 @@ Future<void> initDependencies(bool isRelease) async {
   sl.registerLazySingleton<FirebaseAuthDataSource>(
       () => FirebaseAuthDataSourceImpl());
   sl.registerLazySingleton<RoomsDataSource>(() => FakeRoomDataSource());
-  sl.registerLazySingleton<ProfileDataSource>(() => FakeProfileDataSource());
+  sl.registerLazySingleton<ProfileDataSource>(() => ProfileDataSource(dio));
   sl.registerLazySingleton<MessageRoomsDataSource>(
       () => FakeMessageRoomsDataSource());
+  sl.registerLazySingleton<TagsDataSource>(() => TagsDataSource(dio));
 }

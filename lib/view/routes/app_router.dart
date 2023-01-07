@@ -16,7 +16,7 @@ import 'package:fortune_client/view/pages/rooms/create/room_create_page.dart';
 import 'package:fortune_client/view/pages/rooms/participating_room_list/participating_room_list_page.dart';
 import 'package:fortune_client/view/pages/rooms/room_detail/room_detail_page.dart';
 import 'package:fortune_client/view/pages/rooms/room_list/room_list_page.dart';
-import 'package:fortune_client/view/pages/search/tags/tags_selection_page.dart';
+import 'package:fortune_client/view/pages/tags/select/tags_selection_page.dart';
 import 'package:fortune_client/view/pages/settings/settings_page.dart';
 import 'package:fortune_client/view/routes/route_guard.dart';
 import 'package:fortune_client/view/routes/route_path.dart';
