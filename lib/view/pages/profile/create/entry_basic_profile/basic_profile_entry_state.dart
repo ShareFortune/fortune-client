@@ -8,11 +8,10 @@ class BasicProfileEntryState with _$BasicProfileEntryState {
   const BasicProfileEntryState._();
   const factory BasicProfileEntryState({
     @Default("") String name,
-    @Default(GenderType.another) GenderType gender,
     DateTime? birthday,
   }) = _BasicProfileEntryState;
 
   bool isEntered() {
-    return name.isNotEmpty && birthday != null && gender != GenderType.another;
+    return name.isNotEmpty && birthday != null;
   }
 }

@@ -70,10 +70,13 @@ class EntryProfileSubImageViewModel
       thirdImage: data.thirdImageFile,
       fourthImage: data.fourthImageFile,
       name: basic.name,
-      gender: basic.gender,
+      gender: detail.gender!,
       height: detail.height,
       drinkFrequency: detail.drinkFrequency,
       cigaretteFrequency: detail.cigaretteFrequency,
+      addressId: 1,
+      occupationId: null,
+      selfIntroduction: '',
     );
   }
 

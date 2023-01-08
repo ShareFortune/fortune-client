@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:fortune_client/util/converter/datetime_format_converter.dart';
 import 'package:fortune_client/view/pages/profile/create/components/date_picker.dart';
 import 'package:fortune_client/view/pages/profile/create/entry_basic_profile/basic_profile_entry_view_model.dart';
-import 'package:fortune_client/data/model/enum/gender_type.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
-import 'package:fortune_client/view/pages/profile/create/components/bottom_picker.dart';
-import 'package:fortune_client/view/widgets/basic_app_bar.dart';
+import 'package:fortune_client/view/widgets/app_bar/basic_app_bar.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -33,12 +30,7 @@ class BasicProfileEntryPage extends HookConsumerWidget {
         ],
       ),
       body: Container(
-        padding: const EdgeInsets.only(
-          top: 20,
-          left: 30,
-          right: 30,
-          bottom: 50,
-        ),
+        padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 50),
         child: Column(
           children: [
             TextFormField(
@@ -47,13 +39,12 @@ class BasicProfileEntryPage extends HookConsumerWidget {
               onChanged: viewModel.changeName,
             ),
             const Gap(10),
-            TextFormField(
-              readOnly: true,
-              controller: TextEditingController(text: state.gender.text),
-              decoration: const InputDecoration(labelText: '性別'),
-              onTap: () => _genderPicker(context, viewModel.changeGender),
-            ),
-            const Gap(30),
+            // TextFormField(
+            //   readOnly: true,
+            //   controller: TextEditingController(text: state.gender.text),
+            //   decoration: const InputDecoration(labelText: '性別'),
+            //   onTap: () => _genderPicker(context, viewModel.changeGender),
+            // ),
             TextFormField(
               readOnly: true,
               controller: TextEditingController(text: birthdayStr),
@@ -68,15 +59,6 @@ class BasicProfileEntryPage extends HookConsumerWidget {
 
   birthdayPicker(BuildContext context, Function(DateTime?) onChange) async {
     onChange(await datePicker(context));
-  }
-
-  _genderPicker(BuildContext context, Function(GenderType) onChange) {
-    final sheet = bottomPicker(
-      items: GenderType.values,
-      itemsText: GenderType.values.map((e) => e.text).toList(),
-      onChange: onChange,
-    );
-    sheet.show(context);
   }
 
   Widget _nextButton(bool clickable, Function() onPressed) {

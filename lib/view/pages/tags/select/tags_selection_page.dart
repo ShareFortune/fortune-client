@@ -3,9 +3,9 @@ import 'package:fortune_client/view/pages/tags/select/components/tag_text_field.
 import 'package:fortune_client/view/pages/tags/select/components/tags_wraper.dart';
 import 'package:fortune_client/view/pages/tags/select/tags_selection_view_model.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
-import 'package:fortune_client/view/widgets/back_app_bar.dart';
-import 'package:fortune_client/view/widgets/error_widget.dart';
-import 'package:fortune_client/view/widgets/loading_widget.dart';
+import 'package:fortune_client/view/widgets/app_bar/back_app_bar.dart';
+import 'package:fortune_client/view/widgets/other/error_widget.dart';
+import 'package:fortune_client/view/widgets/other/loading_widget.dart';
 import 'package:fortune_client/view/widgets/tag_widget.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';

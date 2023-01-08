@@ -38,16 +38,19 @@ class ProfileRepositoryImpl implements ProfileRepository {
 
   @override
   Future<String> create({
+    required String name,
+    required GenderType gender,
+    required int addressId,
+    required int? height,
+    required String? drinkFrequency,
+    required String? cigaretteFrequency,
+    required String? selfIntroduction,
+    required int? occupationId,
     required File? iconImage,
     required File? mainImage,
     required File? secondImage,
     required File? thirdImage,
     required File? fourthImage,
-    required String name,
-    required GenderType gender,
-    required int height,
-    required String drinkFrequency,
-    required String cigaretteFrequency,
   }) async {
     try {
       /// 作成フォーム画像

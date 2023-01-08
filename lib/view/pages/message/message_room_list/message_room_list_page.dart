@@ -6,7 +6,7 @@ import 'package:fortune_client/view/pages/message/message_room_list/message_room
 import 'package:fortune_client/view/pages/message/message_room_list/message_room_list_view_model.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
-import 'package:fortune_client/view/widgets/loading_widget.dart';
+import 'package:fortune_client/view/widgets/other/loading_widget.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class MessageRoomListPage extends HookConsumerWidget {

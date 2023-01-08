@@ -17,7 +17,6 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$BasicProfileEntryState {
   String get name => throw _privateConstructorUsedError;
-  GenderType get gender => throw _privateConstructorUsedError;
   DateTime? get birthday => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -31,7 +30,7 @@ abstract class $BasicProfileEntryStateCopyWith<$Res> {
           $Res Function(BasicProfileEntryState) then) =
       _$BasicProfileEntryStateCopyWithImpl<$Res, BasicProfileEntryState>;
   @useResult
-  $Res call({String name, GenderType gender, DateTime? birthday});
+  $Res call({String name, DateTime? birthday});
 }
 
 /// @nodoc
@@ -49,7 +48,6 @@ class _$BasicProfileEntryStateCopyWithImpl<$Res,
   @override
   $Res call({
     Object? name = null,
-    Object? gender = null,
     Object? birthday = freezed,
   }) {
     return _then(_value.copyWith(
@@ -57,10 +55,6 @@ class _$BasicProfileEntryStateCopyWithImpl<$Res,
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      gender: null == gender
-          ? _value.gender
-          : gender // ignore: cast_nullable_to_non_nullable
-              as GenderType,
       birthday: freezed == birthday
           ? _value.birthday
           : birthday // ignore: cast_nullable_to_non_nullable
@@ -77,7 +71,7 @@ abstract class _$$_BasicProfileEntryStateCopyWith<$Res>
       __$$_BasicProfileEntryStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String name, GenderType gender, DateTime? birthday});
+  $Res call({String name, DateTime? birthday});
 }
 
 /// @nodoc
@@ -93,7 +87,6 @@ class __$$_BasicProfileEntryStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? name = null,
-    Object? gender = null,
     Object? birthday = freezed,
   }) {
     return _then(_$_BasicProfileEntryState(
@@ -101,10 +94,6 @@ class __$$_BasicProfileEntryStateCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      gender: null == gender
-          ? _value.gender
-          : gender // ignore: cast_nullable_to_non_nullable
-              as GenderType,
       birthday: freezed == birthday
           ? _value.birthday
           : birthday // ignore: cast_nullable_to_non_nullable
@@ -116,22 +105,17 @@ class __$$_BasicProfileEntryStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_BasicProfileEntryState extends _BasicProfileEntryState {
-  const _$_BasicProfileEntryState(
-      {this.name = "", this.gender = GenderType.another, this.birthday})
-      : super._();
+  const _$_BasicProfileEntryState({this.name = "", this.birthday}) : super._();
 
   @override
   @JsonKey()
   final String name;
   @override
-  @JsonKey()
-  final GenderType gender;
-  @override
   final DateTime? birthday;
 
   @override
   String toString() {
-    return 'BasicProfileEntryState(name: $name, gender: $gender, birthday: $birthday)';
+    return 'BasicProfileEntryState(name: $name, birthday: $birthday)';
   }
 
   @override
@@ -140,13 +124,12 @@ class _$_BasicProfileEntryState extends _BasicProfileEntryState {
         (other.runtimeType == runtimeType &&
             other is _$_BasicProfileEntryState &&
             (identical(other.name, name) || other.name == name) &&
-            (identical(other.gender, gender) || other.gender == gender) &&
             (identical(other.birthday, birthday) ||
                 other.birthday == birthday));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, name, gender, birthday);
+  int get hashCode => Object.hash(runtimeType, name, birthday);
 
   @JsonKey(ignore: true)
   @override
@@ -159,14 +142,11 @@ class _$_BasicProfileEntryState extends _BasicProfileEntryState {
 abstract class _BasicProfileEntryState extends BasicProfileEntryState {
   const factory _BasicProfileEntryState(
       {final String name,
-      final GenderType gender,
       final DateTime? birthday}) = _$_BasicProfileEntryState;
   const _BasicProfileEntryState._() : super._();
 
   @override
   String get name;
-  @override
-  GenderType get gender;
   @override
   DateTime? get birthday;
   @override

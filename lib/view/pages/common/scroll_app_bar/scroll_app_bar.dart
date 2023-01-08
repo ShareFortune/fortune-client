@@ -5,7 +5,7 @@ import 'package:fortune_client/view/pages/common/scroll_app_bar/scroll_app_bar_v
 import 'package:fortune_client/view/routes/app_router.gr.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
-import 'package:fortune_client/view/widgets/skeleton.dart';
+import 'package:fortune_client/view/widgets/other/skeleton.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 

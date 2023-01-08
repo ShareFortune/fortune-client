@@ -1,3 +1,4 @@
+import 'package:fortune_client/data/model/enum/gender_type.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'detailed_profile_entry_state.freezed.dart';
@@ -6,22 +7,22 @@ part 'detailed_profile_entry_state.freezed.dart';
 class DetailedProfileEntryState with _$DetailedProfileEntryState {
   const DetailedProfileEntryState._();
   const factory DetailedProfileEntryState({
+    /// 性別
+    GenderType? gender,
+
     /// 身長
-    @Default(170) int height,
-
-    /// 職業
-    @Default("未選択") String occupation,
-
-    /// 居住地
-    @Default("未選択") String residence,
-
-    /// 出身地
-    @Default("未選択") String birthPlace,
+    int? height,
 
     /// お酒
-    @Default("未選択") String drinkFrequency,
+    String? drinkFrequency,
 
     /// タバコ
-    @Default("未選択") String cigaretteFrequency,
+    String? cigaretteFrequency,
+
+    /// 職業
+    String? occupation,
+
+    /// 居住地
+    String? residence,
   }) = _DetailedProfileEntryState;
 }
