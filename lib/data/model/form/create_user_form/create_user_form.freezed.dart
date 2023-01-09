@@ -20,8 +20,11 @@ CreateUserForm _$CreateUserFormFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$CreateUserForm {
+  @JsonKey(name: "firebaseId")
   String get firebaseId => throw _privateConstructorUsedError;
+  @JsonKey(name: "username")
   String get username => throw _privateConstructorUsedError;
+  @JsonKey(name: "birthday")
   String get birthday => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -36,7 +39,10 @@ abstract class $CreateUserFormCopyWith<$Res> {
           CreateUserForm value, $Res Function(CreateUserForm) then) =
       _$CreateUserFormCopyWithImpl<$Res, CreateUserForm>;
   @useResult
-  $Res call({String firebaseId, String username, String birthday});
+  $Res call(
+      {@JsonKey(name: "firebaseId") String firebaseId,
+      @JsonKey(name: "username") String username,
+      @JsonKey(name: "birthday") String birthday});
 }
 
 /// @nodoc
@@ -81,7 +87,10 @@ abstract class _$$_CreateUserFormCopyWith<$Res>
       __$$_CreateUserFormCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String firebaseId, String username, String birthday});
+  $Res call(
+      {@JsonKey(name: "firebaseId") String firebaseId,
+      @JsonKey(name: "username") String username,
+      @JsonKey(name: "birthday") String birthday});
 }
 
 /// @nodoc
@@ -120,18 +129,21 @@ class __$$_CreateUserFormCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_CreateUserForm implements _CreateUserForm {
   const _$_CreateUserForm(
-      {required this.firebaseId,
-      required this.username,
-      required this.birthday});
+      {@JsonKey(name: "firebaseId") required this.firebaseId,
+      @JsonKey(name: "username") required this.username,
+      @JsonKey(name: "birthday") required this.birthday});
 
   factory _$_CreateUserForm.fromJson(Map<String, dynamic> json) =>
       _$$_CreateUserFormFromJson(json);
 
   @override
+  @JsonKey(name: "firebaseId")
   final String firebaseId;
   @override
+  @JsonKey(name: "username")
   final String username;
   @override
+  @JsonKey(name: "birthday")
   final String birthday;
 
   @override
@@ -172,18 +184,22 @@ class _$_CreateUserForm implements _CreateUserForm {
 
 abstract class _CreateUserForm implements CreateUserForm {
   const factory _CreateUserForm(
-      {required final String firebaseId,
-      required final String username,
-      required final String birthday}) = _$_CreateUserForm;
+          {@JsonKey(name: "firebaseId") required final String firebaseId,
+          @JsonKey(name: "username") required final String username,
+          @JsonKey(name: "birthday") required final String birthday}) =
+      _$_CreateUserForm;
 
   factory _CreateUserForm.fromJson(Map<String, dynamic> json) =
       _$_CreateUserForm.fromJson;
 
   @override
+  @JsonKey(name: "firebaseId")
   String get firebaseId;
   @override
+  @JsonKey(name: "username")
   String get username;
   @override
+  @JsonKey(name: "birthday")
   String get birthday;
   @override
   @JsonKey(ignore: true)

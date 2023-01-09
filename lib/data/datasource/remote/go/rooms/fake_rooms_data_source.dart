@@ -8,12 +8,12 @@ import 'package:fortune_client/util/common/json_roader.dart';
 class FakeRoomDataSource implements RoomsDataSource {
   @override
   Future<RoomList> getRooms(
-    String? addressId,
-    String? applicationDeadline,
-    int? memberNum,
-    String? nextToken,
-    int? perPage,
-  ) async {
+      // String? addressId,
+      // String? applicationDeadline,
+      // int? memberNum,
+      // String? nextToken,
+      // int? perPage,
+      ) async {
     return RoomList.fromJson(
       await Json.load(Assets.stub.roomList),
     );

@@ -23,8 +23,11 @@ class DateTimeFormatConverter {
   }
 
   /// dateTime to String YYYY/MM/DD 形式
-  static String convertDateTimeYYYYMMDD(DateTime dateTime) {
-    return DateFormat('yyyy/MM/dd').format(dateTime);
+  static String convertDateTimeYYYYMMDD(
+    DateTime dateTime, {
+    String delimiter = "/",
+  }) {
+    return DateFormat('yyyy${delimiter}MM${delimiter}dd').format(dateTime);
   }
 
   /// dateTime to String YYYY/MM/DD HH:mm 形式

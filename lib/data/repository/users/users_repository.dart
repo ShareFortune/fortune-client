@@ -1,5 +1,5 @@
 abstract class UsersRepository {
-  Future<String> create(
+  Future<bool> create(
     String name,
     String birthday,
   );

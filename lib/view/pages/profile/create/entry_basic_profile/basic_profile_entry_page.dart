@@ -25,8 +25,10 @@ class BasicProfileEntryPage extends HookConsumerWidget {
       appBar: BasicAppBar(
         title: "はじめる",
         action: [
-          _nextButton(state.isEntered(),
-              () => viewModel.navigateToEntryDetailedProfile()),
+          _nextButton(
+            state.isEntered(),
+            () => viewModel.onCreate(),
+          ),
         ],
       ),
       body: Container(
@@ -39,26 +41,17 @@ class BasicProfileEntryPage extends HookConsumerWidget {
               onChanged: viewModel.changeName,
             ),
             const Gap(10),
-            // TextFormField(
-            //   readOnly: true,
-            //   controller: TextEditingController(text: state.gender.text),
-            //   decoration: const InputDecoration(labelText: '性別'),
-            //   onTap: () => _genderPicker(context, viewModel.changeGender),
-            // ),
             TextFormField(
               readOnly: true,
               controller: TextEditingController(text: birthdayStr),
               decoration: const InputDecoration(labelText: '誕生日'),
-              onTap: () => birthdayPicker(context, viewModel.changeBirthday),
+              onTap: () async =>
+                  viewModel.changeBirthday(await datePicker(context)),
             ),
           ],
         ),
       ),
     );
-  }
-
-  birthdayPicker(BuildContext context, Function(DateTime?) onChange) async {
-    onChange(await datePicker(context));
   }
 
   Widget _nextButton(bool clickable, Function() onPressed) {

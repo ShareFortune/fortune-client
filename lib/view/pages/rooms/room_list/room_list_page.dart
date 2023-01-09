@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:fortune_client/view/pages/common/scroll_app_bar/scroll_app_bar.dart';
+import 'package:fortune_client/view/pages/rooms/room_list/room_list_state.dart';
 import 'package:fortune_client/view/pages/rooms/room_list/room_list_view_model.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/list_animation.dart';
+import 'package:fortune_client/view/widgets/other/error_widget.dart';
+import 'package:fortune_client/view/widgets/other/loading_widget.dart';
 import 'package:fortune_client/view/widgets/room_card_widget.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -15,71 +18,62 @@ class RoomListPage extends HookConsumerWidget {
     final state = ref.watch(roomListViewModelProvider);
     final viewModel = ref.watch(roomListViewModelProvider.notifier);
 
-    return state.when(
-      data: (data) {
-        return CustomScrollView(
-          slivers: [
-            const ScrollAppBar(title: "見つける", isBorder: false),
-            SliverToBoxAdapter(
-                child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Column(
-                children: [
-                  searchTile(
-                    theme: theme,
-                    title: "人数",
-                    value: "未設定",
-                    onTap: null,
-                  ),
-                  searchTile(
-                    theme: theme,
-                    title: "場所",
-                    value: "未設定",
-                    onTap: null,
-                  ),
-                  searchTile(
-                    theme: theme,
-                    title: "タグ",
-                    value: "未設定",
-                    onTap: () => viewModel.navigateToTagsSelection(),
-                  ),
-                ],
+    ///
+    /// ルームリスト
+    ///
+    final roomsWidget = state.when(
+      data: (data) => _roomListView(data, viewModel.navigateToRoomDetail),
+      error: (e, msg) => SliverToBoxAdapter(child: errorWidget(e, msg)),
+      loading: () => SliverToBoxAdapter(child: loadingWidget()),
+    );
+
+    return CustomScrollView(
+      slivers: [
+        const ScrollAppBar(title: "見つける", isBorder: false),
+        SliverToBoxAdapter(
+            child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Column(
+            children: [
+              searchTile(
+                theme: theme,
+                title: "人数",
+                value: "未設定",
+                onTap: null,
               ),
-            )),
-            SliverPadding(
-              padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 20),
-              sliver: ListAnimationWidget(
-                items: data.rooms,
-                spacing: 30,
-                container: (state) {
-                  return RoomCardWidget(
-                    hostIconPath: state.hostIcon,
-                    title: state.title,
-                    location: "日本・北海道・岩見沢市",
-                    members: state.memberIcons,
-                    onTap: () => viewModel.navigateToRoomDetail(),
-                  );
-                },
+              searchTile(
+                theme: theme,
+                title: "場所",
+                value: "未設定",
+                onTap: null,
               ),
-            ),
-          ],
-        );
-      },
-      error: (e, msg) => Scaffold(
-        body: SafeArea(
-          child: Center(
-            child: Text(
-              e.toString(),
-            ),
+              searchTile(
+                theme: theme,
+                title: "タグ",
+                value: "未設定",
+                onTap: () => viewModel.navigateToTagsSelection(),
+              ),
+            ],
           ),
+        )),
+        SliverPadding(
+          padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 20),
+          sliver: roomsWidget,
         ),
-      ),
-      loading: () => const Scaffold(
-        body: SafeArea(
-          child: Center(
-            child: CircularProgressIndicator(),
-          ),
-        ),
+      ],
+    );
+  }
+
+  Widget _roomListView(RoomListState data, Function() cardOnTap) {
+    return ListAnimationWidget(
+      items: data.rooms,
+      spacing: 30,
+      container: (state) => RoomCardWidget(
+        hostIconPath: state.hostIcon,
+        title: state.title,
+        location: "日本・北海道・岩見沢市",
+        members: state.memberIcons,
+        onTap: cardOnTap,
       ),
     );
   }

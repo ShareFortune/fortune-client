@@ -19,22 +19,9 @@ class _RoomsDataSource implements RoomsDataSource {
   String? baseUrl;
 
   @override
-  Future<RoomList> getRooms(
-    addressId,
-    applicationDeadline,
-    memberNum,
-    nextToken,
-    perPage,
-  ) async {
+  Future<RoomList> getRooms() async {
     const _extra = <String, dynamic>{'append-token': true};
-    final queryParameters = <String, dynamic>{
-      r'addressId': addressId,
-      r'applicationDeadline': applicationDeadline,
-      r'memberNum': memberNum,
-      r'nextToken': nextToken,
-      r'perPage': perPage,
-    };
-    queryParameters.removeWhere((k, v) => v == null);
+    final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     final _result =
@@ -50,6 +37,8 @@ class _RoomsDataSource implements RoomsDataSource {
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+
+    logger.i(_result.data);
     final value = RoomList.fromJson(_result.data!);
     return value;
   }

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'users_data_source.dart';
+part of 'message_rooms_data_source.dart';
 
 // **************************************************************************
 // RetrofitGenerator
@@ -8,8 +8,8 @@ part of 'users_data_source.dart';
 
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers
 
-class _UsersDataSource implements UsersDataSource {
-  _UsersDataSource(
+class _MessageRoomsDataSource implements MessageRoomsDataSource {
+  _MessageRoomsDataSource(
     this._dio, {
     this.baseUrl,
   });
@@ -19,28 +19,28 @@ class _UsersDataSource implements UsersDataSource {
   String? baseUrl;
 
   @override
-  Future<String> create(body) async {
-    const _extra = <String, dynamic>{};
+  Future<MessageRooms<MessageRoomHost>> fetchMessageRoomsHost() async {
+    const _extra = <String, dynamic>{'append-token': true};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(body);
-    logger.i(_data);
-    logger.i("${_dio.options.baseUrl}/users");
-    final _result = await _dio.fetch<String>(_setStreamType<String>(Options(
-      method: 'POST',
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<MessageRooms<MessageRoomHost>>(Options(
+      method: 'GET',
       headers: _headers,
       extra: _extra,
     )
-        .compose(
-          _dio.options,
-          '/users',
-          queryParameters: queryParameters,
-          data: _data,
-        )
-        .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    logger.i(_result.data);
-    final value = _result.data!;
+            .compose(
+              _dio.options,
+              '/rooms',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = MessageRooms<MessageRoomHost>.fromJson(
+      _result.data!,
+      (json) => MessageRoomHost.fromJson(json as Map<String, dynamic>),
+    );
     return value;
   }
 

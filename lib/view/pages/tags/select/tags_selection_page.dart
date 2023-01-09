@@ -19,7 +19,7 @@ class TagsSelectionPage extends HookConsumerWidget {
     final state = ref.watch(tagsSelectionViewModelProvider);
     final viewModel = ref.watch(tagsSelectionViewModelProvider.notifier);
 
-    final _tagCtrl = TextEditingController();
+    final tagCtrl = TextEditingController();
 
     /// 検索結果
     final searchResult = state.searchResult.when(
@@ -35,7 +35,7 @@ class TagsSelectionPage extends HookConsumerWidget {
           const Gap(30),
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: TagTextField(emailCtrl: _tagCtrl, hintText: "タグを検索"),
+            child: TagTextField(emailCtrl: tagCtrl, hintText: "タグを検索"),
           ),
           const Gap(30),
           Container(
