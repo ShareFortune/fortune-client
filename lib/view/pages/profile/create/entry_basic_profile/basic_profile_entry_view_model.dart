@@ -26,15 +26,16 @@ class BasicProfileEntryViewModel extends StateNotifier<BasicProfileEntryState> {
 
   onCreate() async {
     if (state.birthday == null) return;
-    print("ユーザー作成");
-    final result = await _repository.create(
-      state.name,
-      DateTimeFormatConverter.convertDateTimeYYYYMMDD(
+
+    final birthday = DateTimeFormatConverter.convertDateTimeYYYYMMDD(
         state.birthday!,
-        delimiter: "-",
-      ),
-    );
+        delimiter: "-");
+
+    final result = await _repository.create(state.name, birthday);
     if (result) navigateToEntryDetailedProfile();
+
+    // ignore: todo
+    /// TODO: エラー処理
   }
 
   navigateToEntryDetailedProfile() async {

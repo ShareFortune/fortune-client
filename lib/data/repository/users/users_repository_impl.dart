@@ -1,32 +1,36 @@
+import 'package:fortune_client/data/datasource/local/shared_pref_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/go/users/users_data_source.dart';
 import 'package:fortune_client/data/model/form/create_user_form/create_user_form.dart';
 import 'package:fortune_client/data/repository/auth/auth_repository.dart';
 import 'package:fortune_client/data/repository/users/users_repository.dart';
 import 'package:fortune_client/util/logger/logger.dart';
+import 'package:fortune_client/util/storage/app_pref_key.dart';
 
 class UsersRepositoryImpl implements UsersRepository {
   final UsersDataSource _dataSource;
   final AuthRepository _authRepository;
+  final SharedPreferencesDataSource _sharedPreferences;
 
-  UsersRepositoryImpl(this._dataSource, this._authRepository);
+  UsersRepositoryImpl(
+      this._dataSource, this._authRepository, this._sharedPreferences);
 
   @override
   Future<bool> create(String username, String birthday) async {
-    logger.i("[UsersRepositoryImpl] create");
+    logger.i("[$runtimeType] create");
     try {
-      final String firebaseId = _authRepository.firebaseId;
-      logger.i(firebaseId);
-      final result = await _dataSource.create(
-        CreateUserForm(
-          firebaseId: firebaseId,
-          username: username,
-          birthday: birthday,
-        ).toJson(),
+      final userForm = CreateUserForm(
+        firebaseId: _authRepository.firebaseId,
+        username: username,
+        birthday: birthday,
       );
-      logger.i(result);
+
+      /// 作成
+      final fortuneId = await _dataSource.create(userForm.toJson());
+      logger.i("Fortune ID : $fortuneId");
 
       /// ID 保存
-      return result.isNotEmpty;
+      return await _sharedPreferences.setString(
+          AppPrefKey.fortuneId.keyString, fortuneId.id);
     } catch (e) {
       logger.e(e);
       rethrow;

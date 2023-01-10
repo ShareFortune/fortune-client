@@ -68,11 +68,11 @@ class ProfileFormImages with _$ProfileFormImages {
   factory ProfileFormImages({
     /// プロフィール画像
     @JsonKey(name: 'mainImage') required String mainImage,
-    @JsonKey(name: 'secondImage') String? secondImage,
-    @JsonKey(name: 'thirdImage') String? thirdImage,
-    @JsonKey(name: 'fourthImage') String? fourthImage,
-    @JsonKey(name: 'fifthImage') String? fifthImage,
-    @JsonKey(name: 'sixthImage') String? sixthImage,
+    @JsonKey(name: 'secondImage', nullable: true) String? secondImage,
+    @JsonKey(name: 'thirdImage', nullable: true) String? thirdImage,
+    @JsonKey(name: 'fourthImage', nullable: true) String? fourthImage,
+    @JsonKey(name: 'fifthImage', nullable: true) String? fifthImage,
+    @JsonKey(name: 'sixthImage', nullable: true) String? sixthImage,
   }) = _ProfileFormImages;
 
   factory ProfileFormImages.fromJson(Map<String, dynamic> json) =>

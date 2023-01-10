@@ -1,10 +1,10 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:fortune_client/data/datasource/local/shared_pref_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/go/profile/profile_data_source.dart';
 import 'package:fortune_client/data/model/form/create_profile_form/create_profile_form.dart';
 import 'package:fortune_client/data/model/profile/profile.dart';
-import 'package:fortune_client/data/repository/auth/auth_repository.dart';
 import 'package:fortune_client/data/repository/profile/profile_repository.dart';
 import 'package:fortune_client/data/model/enum/gender_type.dart';
 import 'package:fortune_client/util/logger/logger.dart';
@@ -13,17 +13,15 @@ import 'package:fortune_client/util/storage/app_pref_key.dart';
 class ProfileRepositoryImpl implements ProfileRepository {
   final ProfileDataSource _profileDataSource;
   final SharedPreferencesDataSource _sharedPreferences;
-  final AuthRepository _authRepository;
 
   ProfileRepositoryImpl(
     this._profileDataSource,
-    this._authRepository,
     this._sharedPreferences,
   );
 
   @override
   Future<bool> isCreated() async {
-    return _sharedPreferences.getBool(AppPrefKey.isProfile.keyString) ?? false;
+    return _sharedPreferences.getString(AppPrefKey.profileId.keyString) != null;
   }
 
   @override
@@ -37,22 +35,23 @@ class ProfileRepositoryImpl implements ProfileRepository {
   }
 
   @override
-  Future<String> create({
+  Future<bool> create({
     required String name,
     required GenderType gender,
     required int addressId,
-    required int? height,
-    required String? drinkFrequency,
-    required String? cigaretteFrequency,
-    required String? selfIntroduction,
-    required int? occupationId,
-    required File? iconImage,
-    required File? mainImage,
-    required File? secondImage,
-    required File? thirdImage,
-    required File? fourthImage,
+    int? height,
+    String? drinkFrequency,
+    String? cigaretteFrequency,
+    int? occupationId,
+    File? iconImage,
+    File? mainImage,
+    File? secondImage,
+    File? thirdImage,
+    File? fourthImage,
   }) async {
     try {
+      logger.i("[$runtimeType] create");
+
       /// 作成フォーム画像
       final profileFormImage = ProfileFormImages(mainImage: base64);
 
@@ -61,23 +60,27 @@ class ProfileRepositoryImpl implements ProfileRepository {
         name: name,
         gender: gender.sendValue,
         addressId: 1,
-        height: height,
+        images: profileFormImage.toJson(),
+        height: 170,
         drinkFrequency: "OFTEN",
         cigaretteFrequency: "OFTEN",
-        images: profileFormImage.toJson(),
+        // occupationId: null, // 開発中のためNullにしないとエラー出るよ
+        // selfIntroduction: null,
+        // tagIds: null,
       );
 
-      /// ローカル保存したIDを取り出す
-      /// [id] ユーザー作成時のID
-      logger.i(
-          "[ProfileRepositoryImpl] create: a82d2785-56f8-4739-b192-1efe44ebd695");
+      logger.i(profileForm.toJson());
 
+      /// 作成
       final result = await _profileDataSource.create(
-        "a82d2785-56f8-4739-b192-1efe44ebd695",
+        _sharedPreferences.getString(AppPrefKey.fortuneId.keyString)!,
         profileForm.toJson(),
       );
-      await _sharedPreferences.setBool(AppPrefKey.isProfile.keyString, true);
-      return result;
+      logger.i("Profile ID : $result");
+
+      /// ローカル保存
+      return await _sharedPreferences.setString(
+          AppPrefKey.profileId.keyString, result.id);
     } catch (e) {
       logger.e(e);
       rethrow;

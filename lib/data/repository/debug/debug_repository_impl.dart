@@ -34,6 +34,6 @@ class DebugRepositoryImpl implements DebugRepository {
 
   @override
   Future<bool> clearIsProfile() async {
-    return _sharedPreferences.remove(AppPrefKey.isProfile.keyString);
+    return _sharedPreferences.remove(AppPrefKey.profileId.keyString);
   }
 }

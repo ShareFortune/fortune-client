@@ -51,10 +51,10 @@ Future<void> initDependencies(bool isRelease) async {
   /// Repository
   sl.registerLazySingleton<AuthRepository>(() => AuthRepositoryImpl(sl()));
   sl.registerLazySingleton<UsersRepository>(
-      () => UsersRepositoryImpl(sl(), sl()));
+      () => UsersRepositoryImpl(sl(), sl(), sl()));
   sl.registerLazySingleton(() => MessageRepositoryImpl());
   sl.registerLazySingleton<ProfileRepository>(
-      () => ProfileRepositoryImpl(sl(), sl(), sl()));
+      () => ProfileRepositoryImpl(sl(), sl()));
   sl.registerLazySingleton<RoomRepository>(() => RoomRepositoryImpl(sl()));
   sl.registerLazySingleton<DebugRepository>(() => DebugRepositoryImpl(sl()));
   sl.registerLazySingleton<TagsRepository>(() => TagsRepositoryImpl(sl()));

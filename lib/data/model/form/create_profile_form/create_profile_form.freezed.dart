@@ -529,15 +529,15 @@ mixin _$ProfileFormImages {
   /// プロフィール画像
   @JsonKey(name: 'mainImage')
   String get mainImage => throw _privateConstructorUsedError;
-  @JsonKey(name: 'secondImage')
+  @JsonKey(name: 'secondImage', nullable: true)
   String? get secondImage => throw _privateConstructorUsedError;
-  @JsonKey(name: 'thirdImage')
+  @JsonKey(name: 'thirdImage', nullable: true)
   String? get thirdImage => throw _privateConstructorUsedError;
-  @JsonKey(name: 'fourthImage')
+  @JsonKey(name: 'fourthImage', nullable: true)
   String? get fourthImage => throw _privateConstructorUsedError;
-  @JsonKey(name: 'fifthImage')
+  @JsonKey(name: 'fifthImage', nullable: true)
   String? get fifthImage => throw _privateConstructorUsedError;
-  @JsonKey(name: 'sixthImage')
+  @JsonKey(name: 'sixthImage', nullable: true)
   String? get sixthImage => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -554,11 +554,11 @@ abstract class $ProfileFormImagesCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: 'mainImage') String mainImage,
-      @JsonKey(name: 'secondImage') String? secondImage,
-      @JsonKey(name: 'thirdImage') String? thirdImage,
-      @JsonKey(name: 'fourthImage') String? fourthImage,
-      @JsonKey(name: 'fifthImage') String? fifthImage,
-      @JsonKey(name: 'sixthImage') String? sixthImage});
+      @JsonKey(name: 'secondImage', nullable: true) String? secondImage,
+      @JsonKey(name: 'thirdImage', nullable: true) String? thirdImage,
+      @JsonKey(name: 'fourthImage', nullable: true) String? fourthImage,
+      @JsonKey(name: 'fifthImage', nullable: true) String? fifthImage,
+      @JsonKey(name: 'sixthImage', nullable: true) String? sixthImage});
 }
 
 /// @nodoc
@@ -620,11 +620,11 @@ abstract class _$$_ProfileFormImagesCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(name: 'mainImage') String mainImage,
-      @JsonKey(name: 'secondImage') String? secondImage,
-      @JsonKey(name: 'thirdImage') String? thirdImage,
-      @JsonKey(name: 'fourthImage') String? fourthImage,
-      @JsonKey(name: 'fifthImage') String? fifthImage,
-      @JsonKey(name: 'sixthImage') String? sixthImage});
+      @JsonKey(name: 'secondImage', nullable: true) String? secondImage,
+      @JsonKey(name: 'thirdImage', nullable: true) String? thirdImage,
+      @JsonKey(name: 'fourthImage', nullable: true) String? fourthImage,
+      @JsonKey(name: 'fifthImage', nullable: true) String? fifthImage,
+      @JsonKey(name: 'sixthImage', nullable: true) String? sixthImage});
 }
 
 /// @nodoc
@@ -679,11 +679,11 @@ class __$$_ProfileFormImagesCopyWithImpl<$Res>
 class _$_ProfileFormImages implements _ProfileFormImages {
   _$_ProfileFormImages(
       {@JsonKey(name: 'mainImage') required this.mainImage,
-      @JsonKey(name: 'secondImage') this.secondImage,
-      @JsonKey(name: 'thirdImage') this.thirdImage,
-      @JsonKey(name: 'fourthImage') this.fourthImage,
-      @JsonKey(name: 'fifthImage') this.fifthImage,
-      @JsonKey(name: 'sixthImage') this.sixthImage});
+      @JsonKey(name: 'secondImage', nullable: true) this.secondImage,
+      @JsonKey(name: 'thirdImage', nullable: true) this.thirdImage,
+      @JsonKey(name: 'fourthImage', nullable: true) this.fourthImage,
+      @JsonKey(name: 'fifthImage', nullable: true) this.fifthImage,
+      @JsonKey(name: 'sixthImage', nullable: true) this.sixthImage});
 
   factory _$_ProfileFormImages.fromJson(Map<String, dynamic> json) =>
       _$$_ProfileFormImagesFromJson(json);
@@ -693,19 +693,19 @@ class _$_ProfileFormImages implements _ProfileFormImages {
   @JsonKey(name: 'mainImage')
   final String mainImage;
   @override
-  @JsonKey(name: 'secondImage')
+  @JsonKey(name: 'secondImage', nullable: true)
   final String? secondImage;
   @override
-  @JsonKey(name: 'thirdImage')
+  @JsonKey(name: 'thirdImage', nullable: true)
   final String? thirdImage;
   @override
-  @JsonKey(name: 'fourthImage')
+  @JsonKey(name: 'fourthImage', nullable: true)
   final String? fourthImage;
   @override
-  @JsonKey(name: 'fifthImage')
+  @JsonKey(name: 'fifthImage', nullable: true)
   final String? fifthImage;
   @override
-  @JsonKey(name: 'sixthImage')
+  @JsonKey(name: 'sixthImage', nullable: true)
   final String? sixthImage;
 
   @override
@@ -754,13 +754,18 @@ class _$_ProfileFormImages implements _ProfileFormImages {
 
 abstract class _ProfileFormImages implements ProfileFormImages {
   factory _ProfileFormImages(
-          {@JsonKey(name: 'mainImage') required final String mainImage,
-          @JsonKey(name: 'secondImage') final String? secondImage,
-          @JsonKey(name: 'thirdImage') final String? thirdImage,
-          @JsonKey(name: 'fourthImage') final String? fourthImage,
-          @JsonKey(name: 'fifthImage') final String? fifthImage,
-          @JsonKey(name: 'sixthImage') final String? sixthImage}) =
-      _$_ProfileFormImages;
+      {@JsonKey(name: 'mainImage')
+          required final String mainImage,
+      @JsonKey(name: 'secondImage', nullable: true)
+          final String? secondImage,
+      @JsonKey(name: 'thirdImage', nullable: true)
+          final String? thirdImage,
+      @JsonKey(name: 'fourthImage', nullable: true)
+          final String? fourthImage,
+      @JsonKey(name: 'fifthImage', nullable: true)
+          final String? fifthImage,
+      @JsonKey(name: 'sixthImage', nullable: true)
+          final String? sixthImage}) = _$_ProfileFormImages;
 
   factory _ProfileFormImages.fromJson(Map<String, dynamic> json) =
       _$_ProfileFormImages.fromJson;
@@ -771,19 +776,19 @@ abstract class _ProfileFormImages implements ProfileFormImages {
   @JsonKey(name: 'mainImage')
   String get mainImage;
   @override
-  @JsonKey(name: 'secondImage')
+  @JsonKey(name: 'secondImage', nullable: true)
   String? get secondImage;
   @override
-  @JsonKey(name: 'thirdImage')
+  @JsonKey(name: 'thirdImage', nullable: true)
   String? get thirdImage;
   @override
-  @JsonKey(name: 'fourthImage')
+  @JsonKey(name: 'fourthImage', nullable: true)
   String? get fourthImage;
   @override
-  @JsonKey(name: 'fifthImage')
+  @JsonKey(name: 'fifthImage', nullable: true)
   String? get fifthImage;
   @override
-  @JsonKey(name: 'sixthImage')
+  @JsonKey(name: 'sixthImage', nullable: true)
   String? get sixthImage;
   @override
   @JsonKey(ignore: true)

@@ -1,13 +1,14 @@
 import 'package:fortune_client/data/datasource/remote/go/profile/profile_data_source.dart';
+import 'package:fortune_client/data/model/base/id/response_id.dart';
 import 'package:fortune_client/data/model/profile/profile.dart';
 import 'package:fortune_client/gen/assets.gen.dart';
 import 'package:fortune_client/util/common/json_roader.dart';
 
 class FakeProfileDataSource implements ProfileDataSource {
   @override
-  Future<String> create(String id, Map<String, dynamic> body) async {
+  Future<ResponseID> create(String id, Map<String, dynamic> body) async {
     await Future.delayed(const Duration(seconds: 3));
-    return "test api";
+    return const ResponseID(id: "test api");
   }
 
   @override

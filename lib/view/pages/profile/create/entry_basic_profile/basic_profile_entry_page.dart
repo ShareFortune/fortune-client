@@ -24,12 +24,7 @@ class BasicProfileEntryPage extends HookConsumerWidget {
     return Scaffold(
       appBar: BasicAppBar(
         title: "はじめる",
-        action: [
-          _nextButton(
-            state.isEntered(),
-            () => viewModel.onCreate(),
-          ),
-        ],
+        action: [_nextButton(state.isEntered(), viewModel.onCreate)],
       ),
       body: Container(
         padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 50),

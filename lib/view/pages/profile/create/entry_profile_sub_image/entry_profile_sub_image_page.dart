@@ -13,7 +13,6 @@ class EntryProfileSubImagePage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final router = useRouter();
     final state = ref.watch(entryProfileSubImageViewModelProvider);
     final viewModel = ref.watch(entryProfileSubImageViewModelProvider.notifier);
 
@@ -73,7 +72,7 @@ class EntryProfileSubImagePage extends HookConsumerWidget {
                           const Text("マッチしやすくなるよ的なやつを入れる。"),
                         ],
                       ),
-                      nextButton(true, () => viewModel.onTapNextBtn(router)),
+                      nextButton(true, () => viewModel.onTapNextBtn()),
                     ],
                   ),
                 ),

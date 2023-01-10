@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:auto_route/auto_route.dart';
 import 'package:fortune_client/data/repository/profile/profile_repository.dart';
 import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/view/pages/profile/create/entry_basic_profile/basic_profile_entry_view_model.dart';
@@ -58,7 +57,10 @@ class EntryProfileSubImageViewModel
     return File(image.path);
   }
 
-  Future<String> _create(EntryProfileSubImageState data) async {
+  Future<bool> _create() async {
+    final data = state.value;
+    if (data == null) return false;
+
     final basic = _ref.read(basicProfileEntryViewModelProvider);
     final detail = _ref.read(detailedProfileEntryViewModelProvider);
     final icon = _ref.read(profileIconImageEntryViewModelProvider);
@@ -74,27 +76,21 @@ class EntryProfileSubImageViewModel
       height: detail.height,
       drinkFrequency: detail.drinkFrequency,
       cigaretteFrequency: detail.cigaretteFrequency,
-      addressId: 1,
+      addressId: 10,
       occupationId: null,
-      selfIntroduction: '',
     );
   }
 
-  onTapNextBtn(StackRouter router) async {
+  onTapNextBtn() async {
     state =
         const AsyncLoading<EntryProfileSubImageState>().copyWithPrevious(state);
     state = await AsyncValue.guard(() async {
-      final result = await _create(state.value!);
-
-      /// エラーチェック
-      if (result.isNotEmpty) {
-        return await _pushNext(router);
-      }
+      if (await _create()) return await navigateToHome();
       return state.value!;
     });
   }
 
-  _pushNext(StackRouter router) async {
-    await router.push(const HomeRouter());
+  navigateToHome() async {
+    await sl<AppRouter>().push(const HomeRouter());
   }
 }

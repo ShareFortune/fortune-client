@@ -8,14 +8,13 @@ abstract class ProfileRepository {
   Future<bool> isCreated();
 
   /// 作成
-  Future<String> create({
+  Future<bool> create({
     required String name,
     required GenderType gender,
     required int addressId,
     required int? height,
     required String? drinkFrequency,
     required String? cigaretteFrequency,
-    required String? selfIntroduction,
     required int? occupationId,
 
     ///
