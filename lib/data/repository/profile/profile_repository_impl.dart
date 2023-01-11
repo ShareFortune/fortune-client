@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'dart:io';
 
 import 'package:fortune_client/data/datasource/local/shared_pref_data_source.dart';
@@ -11,17 +10,17 @@ import 'package:fortune_client/util/logger/logger.dart';
 import 'package:fortune_client/util/storage/app_pref_key.dart';
 
 class ProfileRepositoryImpl implements ProfileRepository {
-  final ProfileDataSource _profileDataSource;
-  final SharedPreferencesDataSource _sharedPreferences;
+  final ProfileDataSource _profile;
+  final SharedPreferencesDataSource _prefs;
 
   ProfileRepositoryImpl(
-    this._profileDataSource,
-    this._sharedPreferences,
+    this._profile,
+    this._prefs,
   );
 
   @override
   Future<bool> isCreated() async {
-    return _sharedPreferences.getString(AppPrefKey.profileId.keyString) != null;
+    return _prefs.getString(AppPrefKey.profileId.keyString) != null;
   }
 
   @override
@@ -31,7 +30,7 @@ class ProfileRepositoryImpl implements ProfileRepository {
 
   @override
   Future<Profile> get(String id) async {
-    return await _profileDataSource.get(id);
+    return await _profile.get(id);
   }
 
   @override
@@ -69,18 +68,15 @@ class ProfileRepositoryImpl implements ProfileRepository {
         // tagIds: null,
       );
 
-      logger.i(profileForm.toJson());
-
       /// 作成
-      final result = await _profileDataSource.create(
-        _sharedPreferences.getString(AppPrefKey.fortuneId.keyString)!,
+      final result = await _profile.create(
+        _prefs.getString(AppPrefKey.fortuneId.keyString)!,
         profileForm.toJson(),
       );
       logger.i("Profile ID : $result");
 
       /// ローカル保存
-      return await _sharedPreferences.setString(
-          AppPrefKey.profileId.keyString, result.id);
+      return await _prefs.setString(AppPrefKey.profileId.keyString, result.id);
     } catch (e) {
       logger.e(e);
       rethrow;

@@ -17,8 +17,8 @@ class TagsRepositoryImpl implements TagsRepository {
   @override
   Future<List<Tag>> search() async {
     try {
-      logger.i("[TagsRepositoryImpl] fetch");
-      final result = await _source.search(null, null, 20);
+      logger.i("[$runtimeType] search");
+      final result = await _source.search();
       return result.tags;
     } catch (e) {
       logger.e(e);

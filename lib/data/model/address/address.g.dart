@@ -7,14 +7,14 @@ part of 'address.dart';
 // **************************************************************************
 
 _$_Address _$$_AddressFromJson(Map<String, dynamic> json) => _$_Address(
-      city: json['city'] as String,
       country: json['country'] as String,
       prefecture: json['prefecture'] as String,
+      city: json['city'] as String,
     );
 
 Map<String, dynamic> _$$_AddressToJson(_$_Address instance) =>
     <String, dynamic>{
-      'city': instance.city,
       'country': instance.country,
       'prefecture': instance.prefecture,
+      'city': instance.city,
     };

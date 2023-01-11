@@ -1,4 +1,4 @@
-import 'package:fortune_client/data/model/room/room.dart';
+import 'package:fortune_client/data/model/rooms/rooms.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'room_list_state.freezed.dart';
@@ -20,12 +20,12 @@ class RoomListItemState with _$RoomListItemState {
     @Default("") String place,
   }) = _RoomListItemState;
 
-  static RoomListItemState fromEntity(Room room) {
+  static RoomListItemState from(Room room) {
     return RoomListItemState(
       title: room.roomName,
       hostIcon: room.hostMainImageURL,
-      memberIcons: room.participantMainImageURLs,
-      place: room.addressEntity.toString(),
+      memberIcons: room.participantMainImageURLs ?? [],
+      place: room.address.toString(),
     );
   }
 }

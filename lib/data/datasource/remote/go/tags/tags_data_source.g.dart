@@ -19,18 +19,9 @@ class _TagsDataSource implements TagsDataSource {
   String? baseUrl;
 
   @override
-  Future<Tags<Tag>> search(
-    name,
-    nextToken,
-    perPage,
-  ) async {
+  Future<Tags<Tag>> search() async {
     const _extra = <String, dynamic>{'append-token': true};
-    final queryParameters = <String, dynamic>{
-      r'name': name,
-      r'nextToken': nextToken,
-      r'perPage': perPage,
-    };
-    queryParameters.removeWhere((k, v) => v == null);
+    final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     final _result = await _dio

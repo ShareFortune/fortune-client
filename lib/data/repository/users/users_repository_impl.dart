@@ -9,10 +9,9 @@ import 'package:fortune_client/util/storage/app_pref_key.dart';
 class UsersRepositoryImpl implements UsersRepository {
   final UsersDataSource _dataSource;
   final AuthRepository _authRepository;
-  final SharedPreferencesDataSource _sharedPreferences;
+  final SharedPreferencesDataSource _prefs;
 
-  UsersRepositoryImpl(
-      this._dataSource, this._authRepository, this._sharedPreferences);
+  UsersRepositoryImpl(this._dataSource, this._authRepository, this._prefs);
 
   @override
   Future<bool> create(String username, String birthday) async {
@@ -29,7 +28,7 @@ class UsersRepositoryImpl implements UsersRepository {
       logger.i("Fortune ID : $fortuneId");
 
       /// ID 保存
-      return await _sharedPreferences.setString(
+      return await _prefs.setString(
           AppPrefKey.fortuneId.keyString, fortuneId.id);
     } catch (e) {
       logger.e(e);

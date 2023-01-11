@@ -1,13 +1,11 @@
 import 'package:dio/dio.dart';
+import 'package:fortune_client/data/datasource/core/append_token_interceptor.dart';
 import 'package:fortune_client/data/datasource/local/shared_pref_data_source.dart';
 import 'package:fortune_client/data/datasource/local/shared_pref_data_source_impl.dart';
 import 'package:fortune_client/data/datasource/remote/firebase/firebase_auth_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/firebase/firebase_auth_data_source_impl.dart';
-import 'package:fortune_client/data/datasource/remote/go/message_rooms/fake_message_rooms_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/go/message_rooms/message_rooms_data_source.dart';
-import 'package:fortune_client/data/datasource/remote/go/profile/fake_profile_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/go/profile/profile_data_source.dart';
-import 'package:fortune_client/data/datasource/remote/go/rooms/fake_rooms_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/go/rooms/rooms_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/go/tags/tags_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/go/users/users_data_source.dart';
@@ -33,18 +31,20 @@ import 'package:shared_preferences/shared_preferences.dart';
 final sl = GetIt.instance;
 
 Future<void> initDependencies(bool isRelease) async {
-  final sharedPreferences = await SharedPreferences.getInstance();
-  sl.registerSingleton<Dio>(Dio(BaseOptions(
-    baseUrl: Constants.of().baseUrl,
-    contentType: Headers.jsonContentType,
-    responseType: ResponseType.json,
-    validateStatus: (_) => true,
-  )));
+  sl.registerSingletonAsync<SharedPreferences>(
+      () => SharedPreferences.getInstance());
+  sl.registerLazySingleton(() => Dio(BaseOptions(
+        baseUrl: Constants.of().baseUrl,
+        contentType: Headers.jsonContentType,
+        responseType: ResponseType.json,
+        validateStatus: (_) => true,
+      ))
+        ..interceptors.add(AppendTokenInterceptor(sl())));
 
   ///  Router
   sl.registerLazySingleton(() => AuthGuard(sl()));
   sl.registerLazySingleton(() => CheckIfMyProfileExists(sl()));
-  sl.registerLazySingleton(
+  sl.registerLazySingleton<AppRouter>(
     () => AppRouter(authGuard: sl(), checkIfMyProfileExists: sl()),
   );
 
@@ -61,7 +61,7 @@ Future<void> initDependencies(bool isRelease) async {
 
   /// DataSource
   sl.registerLazySingleton<SharedPreferencesDataSource>(
-      () => SharedPreferencesDataSourceImpl(sharedPreferences));
+      () => SharedPreferencesDataSourceImpl(sl()));
   sl.registerLazySingleton<FirebaseAuthDataSource>(
       () => FirebaseAuthDataSourceImpl());
   sl.registerLazySingleton<UsersDataSource>(() => UsersDataSource(sl()));
@@ -70,4 +70,5 @@ Future<void> initDependencies(bool isRelease) async {
   sl.registerLazySingleton<MessageRoomsDataSource>(
       () => MessageRoomsDataSource(sl()));
   sl.registerLazySingleton<TagsDataSource>(() => TagsDataSource(sl()));
+  return await sl.allReady();
 }

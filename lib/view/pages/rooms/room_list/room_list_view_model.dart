@@ -19,9 +19,9 @@ class RoomListViewModel extends StateNotifier<AsyncValue<RoomListState>> {
 
   Future<void> fetchList() async {
     state = await AsyncValue.guard(() async {
-      final result = await roomRepository.fetchList();
+      final result = await roomRepository.search();
       final rooms = result.map((e) {
-        return RoomListItemState.fromEntity(e);
+        return RoomListItemState.from(e);
       }).toList();
       return RoomListState(rooms: rooms);
     });
