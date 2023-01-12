@@ -19,7 +19,7 @@ class TagsRepositoryImpl implements TagsRepository {
     try {
       logger.i("[$runtimeType] search");
       final result = await _source.search();
-      return result.tags;
+      return result.data;
     } catch (e) {
       logger.e(e);
       rethrow;

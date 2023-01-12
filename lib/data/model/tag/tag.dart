@@ -1,33 +1,25 @@
+// ignore_for_file: invalid_annotation_target
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'tag.freezed.dart';
 part 'tag.g.dart';
 
-@JsonSerializable(genericArgumentFactories: true)
-class Tags<T> {
-  Tags(this.nextToken, this.tags);
+@freezed
+class Tags with _$Tags {
+  const factory Tags({
+    @JsonKey(name: 'nextToken') required String name,
+    @JsonKey(name: 'tags') required List<Tag> data,
+  }) = _Tags;
 
-  @JsonKey(name: 'nextToken')
-  String nextToken;
-
-  @JsonKey(name: 'tags')
-  List<T> tags;
-
-  factory Tags.fromJson(
-          Map<String, dynamic> json, T Function(Object? json) fromJsonT) =>
-      _$TagsFromJson(json, fromJsonT);
-
-  Map<String, dynamic> toJson(Map<String, dynamic> Function(T value) toJsonT) {
-    return _$TagsToJson<T>(this, toJsonT);
-  }
+  factory Tags.fromJson(Map<String, dynamic> json) => _$TagsFromJson(json);
 }
 
 @freezed
 class Tag with _$Tag {
   const factory Tag({
-    required String id,
-    required String name,
-    required String explanation,
+    @JsonKey(name: 'id') required String id,
+    @JsonKey(name: 'name') required String name,
   }) = _Tag;
 
   factory Tag.fromJson(Map<String, dynamic> json) => _$TagFromJson(json);
