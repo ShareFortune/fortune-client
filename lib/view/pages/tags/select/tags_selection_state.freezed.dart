@@ -16,7 +16,8 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$TagsSelectionState {
-  List<TagState> get recommendation => throw _privateConstructorUsedError;
+  AsyncValue<List<TagState>> get recommendation =>
+      throw _privateConstructorUsedError;
   List<TagState> get isSet => throw _privateConstructorUsedError;
   AsyncValue<List<TagState>> get searchResult =>
       throw _privateConstructorUsedError;
@@ -33,7 +34,7 @@ abstract class $TagsSelectionStateCopyWith<$Res> {
       _$TagsSelectionStateCopyWithImpl<$Res, TagsSelectionState>;
   @useResult
   $Res call(
-      {List<TagState> recommendation,
+      {AsyncValue<List<TagState>> recommendation,
       List<TagState> isSet,
       AsyncValue<List<TagState>> searchResult});
 }
@@ -59,7 +60,7 @@ class _$TagsSelectionStateCopyWithImpl<$Res, $Val extends TagsSelectionState>
       recommendation: null == recommendation
           ? _value.recommendation
           : recommendation // ignore: cast_nullable_to_non_nullable
-              as List<TagState>,
+              as AsyncValue<List<TagState>>,
       isSet: null == isSet
           ? _value.isSet
           : isSet // ignore: cast_nullable_to_non_nullable
@@ -81,7 +82,7 @@ abstract class _$$_TagsSelectionStateCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {List<TagState> recommendation,
+      {AsyncValue<List<TagState>> recommendation,
       List<TagState> isSet,
       AsyncValue<List<TagState>> searchResult});
 }
@@ -103,9 +104,9 @@ class __$$_TagsSelectionStateCopyWithImpl<$Res>
   }) {
     return _then(_$_TagsSelectionState(
       recommendation: null == recommendation
-          ? _value._recommendation
+          ? _value.recommendation
           : recommendation // ignore: cast_nullable_to_non_nullable
-              as List<TagState>,
+              as AsyncValue<List<TagState>>,
       isSet: null == isSet
           ? _value._isSet
           : isSet // ignore: cast_nullable_to_non_nullable
@@ -122,20 +123,13 @@ class __$$_TagsSelectionStateCopyWithImpl<$Res>
 
 class _$_TagsSelectionState implements _TagsSelectionState {
   const _$_TagsSelectionState(
-      {required final List<TagState> recommendation,
+      {required this.recommendation,
       required final List<TagState> isSet,
       required this.searchResult})
-      : _recommendation = recommendation,
-        _isSet = isSet;
+      : _isSet = isSet;
 
-  final List<TagState> _recommendation;
   @override
-  List<TagState> get recommendation {
-    if (_recommendation is EqualUnmodifiableListView) return _recommendation;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_recommendation);
-  }
-
+  final AsyncValue<List<TagState>> recommendation;
   final List<TagState> _isSet;
   @override
   List<TagState> get isSet {
@@ -157,19 +151,16 @@ class _$_TagsSelectionState implements _TagsSelectionState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_TagsSelectionState &&
-            const DeepCollectionEquality()
-                .equals(other._recommendation, _recommendation) &&
+            (identical(other.recommendation, recommendation) ||
+                other.recommendation == recommendation) &&
             const DeepCollectionEquality().equals(other._isSet, _isSet) &&
             (identical(other.searchResult, searchResult) ||
                 other.searchResult == searchResult));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(_recommendation),
-      const DeepCollectionEquality().hash(_isSet),
-      searchResult);
+  int get hashCode => Object.hash(runtimeType, recommendation,
+      const DeepCollectionEquality().hash(_isSet), searchResult);
 
   @JsonKey(ignore: true)
   @override
@@ -181,13 +172,13 @@ class _$_TagsSelectionState implements _TagsSelectionState {
 
 abstract class _TagsSelectionState implements TagsSelectionState {
   const factory _TagsSelectionState(
-          {required final List<TagState> recommendation,
+          {required final AsyncValue<List<TagState>> recommendation,
           required final List<TagState> isSet,
           required final AsyncValue<List<TagState>> searchResult}) =
       _$_TagsSelectionState;
 
   @override
-  List<TagState> get recommendation;
+  AsyncValue<List<TagState>> get recommendation;
   @override
   List<TagState> get isSet;
   @override

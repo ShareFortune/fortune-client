@@ -27,7 +27,6 @@ class RoomRepositoryImpl implements RoomRepository {
     try {
       logger.i("$runtimeType fetchList");
       final result = await _roomsDataSource.search(perPage: 10);
-      print(result);
       return result.data;
     } catch (e) {
       logger.e(e);

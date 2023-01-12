@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fortune_client/view/pages/tags/select/components/tag_text_field.dart';
 import 'package:fortune_client/view/pages/tags/select/components/tags_wraper.dart';
+import 'package:fortune_client/view/pages/tags/select/tags_selection_state.dart';
 import 'package:fortune_client/view/pages/tags/select/tags_selection_view_model.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/app_bar/back_app_bar.dart';
@@ -21,12 +22,11 @@ class TagsSelectionPage extends HookConsumerWidget {
 
     final tagCtrl = TextEditingController();
 
+    /// おすすめのタグ
+    final recommendedResults = asyncTagWraper(state.recommendation);
+
     /// 検索結果
-    final searchResult = state.searchResult.when(
-      data: (data) => TagsWraper(tags: data),
-      error: (error, stackTrace) => errorWidget(error, stackTrace),
-      loading: () => loadingWidget(),
-    );
+    final searchResult = asyncTagWraper(state.searchResult);
 
     return Scaffold(
       appBar: const BackAppBar(title: "タグを選択"),
@@ -49,12 +49,20 @@ class TagsSelectionPage extends HookConsumerWidget {
                 const Gap(30),
                 const Text("人気のタグ"),
                 const Gap(20),
-                searchResult,
+                recommendedResults,
               ],
             ),
           ),
         ],
       ),
+    );
+  }
+
+  Widget asyncTagWraper(AsyncValue<List<TagState>> tags) {
+    return tags.when(
+      data: (data) => TagsWraper(tags: data),
+      error: (error, stackTrace) => errorWidget(error, stackTrace),
+      loading: () => loadingWidget(),
     );
   }
 

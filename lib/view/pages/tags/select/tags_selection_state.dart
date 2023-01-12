@@ -7,7 +7,7 @@ part 'tags_selection_state.freezed.dart';
 @freezed
 class TagsSelectionState with _$TagsSelectionState {
   const factory TagsSelectionState({
-    required List<TagState> recommendation,
+    required AsyncValue<List<TagState>> recommendation,
     required List<TagState> isSet,
     required AsyncValue<List<TagState>> searchResult,
   }) = _TagsSelectionState;
