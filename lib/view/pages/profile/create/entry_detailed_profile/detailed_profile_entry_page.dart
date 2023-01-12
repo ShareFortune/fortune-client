@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:fortune_client/view/hooks/use_router.dart';
-import 'package:fortune_client/view/widgets/basic_app_bar.dart';
+import 'package:fortune_client/data/model/enum/gender_type.dart';
+import 'package:fortune_client/view/widgets/picker/bottom_picker.dart';
+import 'package:fortune_client/view/theme/app_theme.dart';
+import 'package:fortune_client/view/widgets/app_bar/basic_app_bar.dart';
 import 'package:fortune_client/view/pages/profile/create/entry_detailed_profile/detailed_profile_entry_view_model.dart';
 import 'package:fortune_client/view/pages/profile/create/components/next_button.dart';
+import 'package:fortune_client/view/widgets/form_field/picker_form_field.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -11,35 +14,71 @@ class DetailedProfileEntryPage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final router = useRouter();
+    final theme = ref.watch(appThemeProvider);
+    final state = ref.watch(detailedProfileEntryViewModelProvider);
     final viewModel = ref.watch(detailedProfileEntryViewModelProvider.notifier);
 
     return Scaffold(
       appBar: const BasicAppBar(title: "プロフィール作成"),
       body: Container(
-        padding: const EdgeInsets.only(
-          top: 20,
-          left: 30,
-          right: 30,
-          bottom: 50,
-        ),
+        padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 30),
         child: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Column(
                 children: [
-                  _inputField("身長", ""),
-                  const Gap(30),
-                  _inputField("職業", ""),
-                  const Gap(30),
-                  _inputField("居住地", ""),
-                  const Gap(30),
-                  _inputField("出身地", ""),
-                  const Gap(30),
-                  _inputField("お酒", ""),
-                  const Gap(30),
-                  _inputField("タバコ", ""),
+                  /// 名前
+                  _nameInputField(theme, "名前"),
+                  const Gap(10),
+
+                  /// 性別
+                  PickerFormField(
+                    title: "性別",
+                    value: state.gender?.text,
+                    ontap: () => _genderPicker(context, viewModel.changeGender),
+                  ),
+                  const Gap(10),
+
+                  /// 身長
+                  PickerFormField(
+                    title: "身長",
+                    value: "",
+                    ontap: () {},
+                  ),
+                  const Gap(10),
+
+                  /// 職業
+                  PickerFormField(
+                    title: "職業",
+                    value: "",
+                    ontap: () {},
+                  ),
+                  const Gap(10),
+
+                  /// 居住地
+                  PickerFormField(
+                    title: "居住地",
+                    value: "",
+                    ontap: () {},
+                  ),
+                  const Gap(10),
+
+                  /// お酒
+                  PickerFormField(
+                    title: "お酒",
+                    value: "",
+                    ontap: () {},
+                  ),
+                  const Gap(10),
+
+                  /// タバコ
+                  PickerFormField(
+                    title: "タバコ",
+                    value: "",
+                    ontap: () {},
+                  ),
+                  const Gap(10),
                 ],
               ),
               Column(
@@ -50,7 +89,8 @@ class DetailedProfileEntryPage extends HookConsumerWidget {
                     style: TextStyle(color: Color(0xFF6C6C6C)),
                   ),
                   const Gap(30),
-                  nextButton(true, () => viewModel.onTapNextBtn(router)),
+                  nextButton(
+                      true, () => viewModel.navigateToEntryProfileicon()),
                 ],
               ),
             ],
@@ -60,51 +100,24 @@ class DetailedProfileEntryPage extends HookConsumerWidget {
     );
   }
 
-  _inputField(
-    String title,
-    String value,
-  ) {
-    return Container(
-      padding: const EdgeInsets.symmetric(vertical: 10),
-      decoration: const BoxDecoration(
-        border: Border(
-          bottom: BorderSide(
-            width: 1,
-            color: Color(0xFFF3F3F3),
-          ),
+  _nameInputField(AppTheme theme, String value) {
+    return TextFormField(
+      controller: TextEditingController(text: value),
+      decoration: InputDecoration(
+        labelText: '名前',
+        enabledBorder: UnderlineInputBorder(
+          borderSide: BorderSide(width: 1, color: theme.appColors.border1),
         ),
       ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(title, style: const TextStyle(fontSize: 16)),
-          Row(
-            children: [
-              value.isNotEmpty
-                  ? Text(
-                      value,
-                      style: const TextStyle(
-                        fontSize: 16,
-                        color: Color(0xFFC782E4),
-                      ),
-                    )
-                  : const Text(
-                      "未設定",
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: Color(0xFF969696),
-                      ),
-                    ),
-              const Gap(10),
-              const Icon(
-                size: 16,
-                Icons.arrow_forward_ios,
-                color: Color(0xFFD9D9D9),
-              ),
-            ],
-          ),
-        ],
-      ),
     );
+  }
+
+  _genderPicker(BuildContext context, Function(GenderType) onChange) {
+    final sheet = bottomPicker(
+      items: GenderType.values,
+      itemsText: GenderType.values.map((e) => e.text).toList(),
+      onChange: onChange,
+    );
+    sheet.show(context);
   }
 }

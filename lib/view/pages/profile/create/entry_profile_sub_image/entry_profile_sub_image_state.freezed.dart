@@ -138,22 +138,18 @@ class __$$_EntryProfileSubImageStateCopyWithImpl<$Res>
 
 class _$_EntryProfileSubImageState implements _EntryProfileSubImageState {
   const _$_EntryProfileSubImageState(
-      {this.firstImageFile = null,
-      this.secondImageFile = null,
-      this.thirdImageFile = null,
-      this.fourthImageFile = null});
+      {this.firstImageFile,
+      this.secondImageFile,
+      this.thirdImageFile,
+      this.fourthImageFile});
 
   @override
-  @JsonKey()
   final File? firstImageFile;
   @override
-  @JsonKey()
   final File? secondImageFile;
   @override
-  @JsonKey()
   final File? thirdImageFile;
   @override
-  @JsonKey()
   final File? fourthImageFile;
 
   @override

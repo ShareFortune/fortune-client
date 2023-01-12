@@ -12,6 +12,7 @@ class AppColors {
     required this.onBackground,
     required this.background2,
     required this.onBackground2,
+    required this.textFieldBackground,
     required this.surface,
     required this.onSurface,
     required this.error,
@@ -39,6 +40,7 @@ class AppColors {
       onBackground: const Color(0xFFFFFFFF),
       background2: const Color(0xFFF2F2F6),
       onBackground2: const Color(0xFFFFFFFF),
+      textFieldBackground: const Color(0xFFF2F8FC),
       surface: const Color(0xFFE5E5E5),
       onSurface: const Color(0xFFE5E5E5),
       error: const Color(0xFFB83231),
@@ -67,6 +69,7 @@ class AppColors {
       onBackground: const Color(0xFFFFFFFF),
       background2: const Color(0xFFFFFFFF),
       onBackground2: const Color(0xFFFFFFFF),
+      textFieldBackground: const Color(0xFFFFFFFF),
       surface: const Color(0xFFE5E5E5),
       onSurface: const Color(0xFFE5E5E5),
       error: const Color(0xFFB83231),
@@ -98,6 +101,7 @@ class AppColors {
   final Color onBackground;
   final Color background2;
   final Color onBackground2;
+  final Color textFieldBackground;
 
   /// Cardなどのウィジェットの背景色
   final Color surface;

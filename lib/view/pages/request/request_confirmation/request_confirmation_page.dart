@@ -2,7 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
-import 'package:fortune_client/view/widgets/back_app_bar.dart';
+import 'package:fortune_client/view/widgets/app_bar/back_app_bar.dart';
 import 'package:fortune_client/view/widgets/circle_icon.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -16,7 +16,7 @@ class RequestConfirmationPage extends HookConsumerWidget {
     final theme = ref.watch(appThemeProvider);
 
     return Scaffold(
-      appBar: BackAppBar(theme: theme, title: "リクエスト"),
+      appBar: const BackAppBar(title: "リクエスト"),
       body: ListView(
         children: [
           requestTile(theme, "あんな", "22歳・女性", () {}),

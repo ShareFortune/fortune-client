@@ -1,7 +1,7 @@
 import 'package:fortune_client/data/datasource/remote/go/rooms/rooms_data_source.dart';
 import 'package:fortune_client/data/model/host_room/host_room.dart';
-import 'package:fortune_client/data/model/room/room.dart';
 import 'package:fortune_client/data/model/room_detail/room_detail.dart';
+import 'package:fortune_client/data/model/rooms/rooms.dart';
 import 'package:fortune_client/data/repository/room/room_repository.dart';
 import 'package:fortune_client/util/logger/logger.dart';
 
@@ -23,11 +23,12 @@ class RoomRepositoryImpl implements RoomRepository {
   }
 
   @override
-  Future<List<Room>> fetchList() async {
+  Future<List<Room>> search() async {
     try {
-      final result =
-          await _roomsDataSource.getRooms(null, null, null, null, null);
-      return result.roomsEntity;
+      logger.i("$runtimeType fetchList");
+      final result = await _roomsDataSource.search(perPage: 10);
+      print(result);
+      return result.data;
     } catch (e) {
       logger.e(e);
       rethrow;

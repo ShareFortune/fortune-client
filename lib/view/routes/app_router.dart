@@ -1,6 +1,5 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_route/empty_router_widgets.dart';
-import 'package:fortune_client/data/model/room_detail/room_detail.dart';
 import 'package:fortune_client/view/pages/account/account/account_page.dart';
 import 'package:fortune_client/view/pages/auth/login/login_page.dart';
 import 'package:fortune_client/view/pages/common/bottom_navigation_bar/bottom_navigation_bar.dart';
@@ -17,6 +16,7 @@ import 'package:fortune_client/view/pages/rooms/create/room_create_page.dart';
 import 'package:fortune_client/view/pages/rooms/participating_room_list/participating_room_list_page.dart';
 import 'package:fortune_client/view/pages/rooms/room_detail/room_detail_page.dart';
 import 'package:fortune_client/view/pages/rooms/room_list/room_list_page.dart';
+import 'package:fortune_client/view/pages/tags/select/tags_selection_page.dart';
 import 'package:fortune_client/view/pages/settings/settings_page.dart';
 import 'package:fortune_client/view/routes/route_guard.dart';
 import 'package:fortune_client/view/routes/route_path.dart';
@@ -36,8 +36,10 @@ const homeRouter = AutoRoute(
       path: RoutePath.rooms,
       page: EmptyRouterPage,
       children: [
-        roomDetailRoute,
         AutoRoute(path: '', page: RoomListPage),
+
+        /// ルーム詳細
+        AutoRoute(path: RoutePath.roomDetail, page: RoomDetailPage),
       ],
     ),
 
@@ -47,11 +49,10 @@ const homeRouter = AutoRoute(
       path: RoutePath.participatingRooms,
       page: EmptyRouterPage,
       children: [
-        roomDetailRoute,
-        messageRoomRoute,
-
-        /// 参加ルーム
         AutoRoute(path: '', page: ParticipatingRoomListPage),
+
+        /// ルーム詳細
+        AutoRoute(path: RoutePath.roomDetail, page: RoomDetailPage),
 
         /// 参加リクエスト
         AutoRoute(
@@ -65,41 +66,18 @@ const homeRouter = AutoRoute(
       path: RoutePath.rooms,
       page: EmptyRouterPage,
       children: [
-        messageRoomRoute,
         AutoRoute(path: '', page: MessageRoomListPage),
+
+        /// ルーム詳細
+        AutoRoute(path: RoutePath.roomDetail, page: RoomDetailPage),
       ],
     ),
   ],
 );
 
-/// ルーム詳細
-const roomDetailRoute = AutoRoute(
-  path: RoutePath.roomDetail,
-  page: RoomDetailPage,
-);
-
-/// メッセージ
-const messageRoomRoute = AutoRoute(
-  path: RoutePath.messageRoom,
-  page: MessageRoomPage,
-);
-
-/// ログインページ
-const loginRouter = AutoRoute(
-  path: RoutePath.login,
-  page: LoginPage,
-);
-
-/// デバッグ
-const debugRouter = AutoRoute(
-  path: RoutePath.debug,
-  page: DebugPage,
-);
-
 /// プロフィール作成
 const createProfileRoute = AutoRoute(
   name: "CreateProfileRoute",
-  path: RoutePath.createProfile,
   page: EmptyRouterPage,
   guards: [AuthGuard],
   children: [
@@ -123,41 +101,35 @@ const createProfileRoute = AutoRoute(
   ],
 );
 
-/// プロフィール
-const profileRoute = AutoRoute(
-  path: RoutePath.profile,
-  page: ProfilePage,
-);
-
-/// ルーム作成
-const createRoom = AutoRoute(
-  path: RoutePath.createRoom,
-  page: RoomCreatePage,
-);
-
-/// アカウント
-const accountRoute = AutoRoute(
-  path: RoutePath.account,
-  page: AccountPage,
-);
-
-/// 設定
-const settingsRoute = AutoRoute(
-  path: RoutePath.account,
-  page: SettingsPage,
-);
-
 @AdaptiveAutoRouter(
   replaceInRouteName: 'Page,Route',
   routes: <AutoRoute>[
     homeRouter,
-    loginRouter,
-    debugRouter,
-    createRoom,
     createProfileRoute,
-    profileRoute,
-    accountRoute,
-    settingsRoute,
+
+    /// メッセージ
+    AutoRoute(path: RoutePath.messageRoom, page: MessageRoomPage),
+
+    /// ログイン
+    AutoRoute(path: RoutePath.login, page: LoginPage),
+
+    /// デバッグ
+    AutoRoute(path: RoutePath.debug, page: DebugPage),
+
+    /// プロフィール
+    AutoRoute(path: RoutePath.profile, page: ProfilePage),
+
+    /// ルーム作成
+    AutoRoute(path: RoutePath.createRoom, page: RoomCreatePage),
+
+    /// アカウント
+    AutoRoute(path: RoutePath.account, page: AccountPage),
+
+    /// 設定
+    AutoRoute(path: RoutePath.setting, page: SettingsPage),
+
+    /// タグ選択
+    AutoRoute(path: RoutePath.tags, page: TagsSelectionPage),
   ],
 )
 class $AppRouter {}

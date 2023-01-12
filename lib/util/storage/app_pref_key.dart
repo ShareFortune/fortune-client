@@ -5,8 +5,11 @@ enum AppPrefKey {
   /// 自動ログイン
   automaticLogin,
 
-  /// プロフィール作成
-  isProfile,
+  /// Fortune ID
+  fortuneId,
+
+  /// プロフィールID
+  profileId,
 }
 
 extension AppPrefKeyEx on AppPrefKey {

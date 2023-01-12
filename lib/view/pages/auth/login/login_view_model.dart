@@ -36,7 +36,7 @@ class LoginViewModel extends StateNotifier<AsyncValue<void>> {
       return await pushHome(router);
     }
     final result = await loginWithSns(type);
-    if (result && await _authRepository.isLogin()) {
+    if (result && _authRepository.isLogin) {
       await pushHome(router);
     }
   }

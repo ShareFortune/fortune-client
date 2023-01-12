@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 String fixture(String name) {
@@ -6,4 +7,8 @@ String fixture(String name) {
     dir = dir.replaceAll('/test', '');
   }
   return File('$dir/test/fixtures/$name').readAsStringSync();
+}
+
+Future<Map<String, dynamic>> jsonReader(String path) async {
+  return jsonDecode(fixture(path));
 }

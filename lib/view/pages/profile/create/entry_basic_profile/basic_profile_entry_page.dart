@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:fortune_client/view/hooks/use_router.dart';
+import 'package:fortune_client/util/converter/datetime_format_converter.dart';
+import 'package:fortune_client/view/pages/profile/create/components/date_picker.dart';
 import 'package:fortune_client/view/pages/profile/create/entry_basic_profile/basic_profile_entry_view_model.dart';
-import 'package:fortune_client/data/model/enum/gender_type.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
-import 'package:fortune_client/view/pages/profile/create/components/bottom_picker.dart';
-import 'package:fortune_client/view/widgets/basic_app_bar.dart';
+import 'package:fortune_client/view/widgets/app_bar/basic_app_bar.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -16,53 +15,33 @@ class BasicProfileEntryPage extends HookConsumerWidget {
     final theme = ref.watch(appThemeProvider);
     final state = ref.watch(basicProfileEntryViewModelProvider);
     final viewModel = ref.watch(basicProfileEntryViewModelProvider.notifier);
-    final router = useRouter();
+
+    /// 誕生日フォーマッター
+    String? birthdayStr;
+    const birthdayFormater = DateTimeFormatConverter.convertDateTimeYYYYMMDD;
+    if (state.birthday != null) birthdayStr = birthdayFormater(state.birthday!);
 
     return Scaffold(
       appBar: BasicAppBar(
         title: "はじめる",
-        action: [
-          nextButton(state.isEntered(), () => viewModel.onTapNextBtn(router)),
-        ],
+        action: [_nextButton(state.isEntered(), viewModel.onCreate)],
       ),
       body: Container(
-        padding: const EdgeInsets.only(
-          top: 20,
-          left: 30,
-          right: 30,
-          bottom: 50,
-        ),
+        padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 50),
         child: Column(
           children: [
             TextFormField(
               maxLength: 20,
-              decoration: const InputDecoration(
-                labelText: '名前',
-              ),
+              decoration: const InputDecoration(labelText: '名前'),
               onChanged: viewModel.changeName,
             ),
             const Gap(10),
             TextFormField(
-              controller: TextEditingController(text: state.gender.text),
               readOnly: true,
-              decoration: const InputDecoration(
-                labelText: '性別',
-              ),
-              onTap: () {
-                final sheet = bottomPicker(
-                  GenderType.values,
-                  GenderType.values.map((e) => e.text).toList(),
-                  viewModel.changeGender,
-                );
-                sheet.show(context);
-              },
-            ),
-            const Gap(30),
-            TextFormField(
-              decoration: const InputDecoration(
-                labelText: '住所',
-              ),
-              onChanged: viewModel.changeAddress,
+              controller: TextEditingController(text: birthdayStr),
+              decoration: const InputDecoration(labelText: '誕生日'),
+              onTap: () async =>
+                  viewModel.changeBirthday(await datePicker(context)),
             ),
           ],
         ),
@@ -70,7 +49,7 @@ class BasicProfileEntryPage extends HookConsumerWidget {
     );
   }
 
-  Widget nextButton(bool clickable, Function() onPressed) {
+  Widget _nextButton(bool clickable, Function() onPressed) {
     final bgColor =
         clickable ? const Color(0xFFC782E4) : const Color(0xFFF5F5F5);
     final textColor = clickable ? Colors.white : Colors.black;
@@ -84,7 +63,9 @@ class BasicProfileEntryPage extends HookConsumerWidget {
           borderRadius: BorderRadius.circular(50),
         ),
       ),
-      onPressed: onPressed,
+      onPressed: () {
+        if (clickable) onPressed();
+      },
       child: Text(
         "次へ",
         style: TextStyle(

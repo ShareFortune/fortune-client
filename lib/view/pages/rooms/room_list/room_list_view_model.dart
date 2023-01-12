@@ -1,4 +1,3 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:fortune_client/data/repository/room/room_repository.dart';
 import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/view/pages/rooms/room_list/room_list_state.dart';
@@ -20,15 +19,19 @@ class RoomListViewModel extends StateNotifier<AsyncValue<RoomListState>> {
 
   Future<void> fetchList() async {
     state = await AsyncValue.guard(() async {
-      final result = await roomRepository.fetchList();
+      final result = await roomRepository.search();
       final rooms = result.map((e) {
-        return RoomListItemState.fromEntity(e);
+        return RoomListItemState.from(e);
       }).toList();
       return RoomListState(rooms: rooms);
     });
   }
 
-  navigateToRoomDetail(StackRouter router) async {
-    await router.push(RoomDetailRoute(id: "id"));
+  navigateToRoomDetail() async {
+    await sl<AppRouter>().push(RoomDetailRoute(id: "id"));
+  }
+
+  navigateToTagsSelection() async {
+    await sl<AppRouter>().push(const TagsSelectionRoute());
   }
 }

@@ -1,6 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:fortune_client/data/datasource/core/annotations_headers.dart.dart';
+import 'package:fortune_client/data/model/base/id/response_id.dart';
 import 'package:fortune_client/data/model/profile/profile.dart';
+import 'package:fortune_client/util/logger/logger.dart';
 import 'package:retrofit/http.dart';
 
 part 'profile_data_source.g.dart';
@@ -15,7 +17,7 @@ abstract class ProfileDataSource {
 
   @POST("/users/{id}/profiles")
   @authenticatedRequest
-  Future<String> create(
+  Future<ResponseID> create(
     @Path('id') String id,
     @Body() Map<String, dynamic> body,
   );

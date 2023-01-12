@@ -1,0 +1,19 @@
+{
+    "files": {
+        "mainImage": "base64",
+        "secondImage": null,
+        "thirdImage": null,
+        "fourthImage": null,
+        "fifthImage": null,
+        "sixthImage": null
+    },
+    "name": "dai",
+    "gender": "MAN",
+    "addressId": 1,
+    "height": 170,
+    "drinkFrequency": "OFTEN",
+    "cigaretteFrequency": "OFTEN",
+    "selfIntroduction": null,
+    "occupationId": null,
+    "tagIds": null
+}

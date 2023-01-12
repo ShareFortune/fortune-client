@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fortune_client/view/hooks/use_router.dart';
 import 'package:fortune_client/view/routes/app_router.gr.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
-import 'package:fortune_client/view/widgets/back_app_bar.dart';
+import 'package:fortune_client/view/widgets/app_bar/back_app_bar.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -17,7 +17,6 @@ class SettingsPage extends HookConsumerWidget {
     return Scaffold(
       backgroundColor: const Color(0xFFF2F2F6),
       appBar: BackAppBar(
-        theme: theme,
         title: "設定",
         action: List.empty(),
       ),

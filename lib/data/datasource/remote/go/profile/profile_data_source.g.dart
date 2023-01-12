@@ -42,7 +42,7 @@ class _ProfileDataSource implements ProfileDataSource {
   }
 
   @override
-  Future<String> create(
+  Future<ResponseID> create(
     id,
     body,
   ) async {
@@ -51,19 +51,20 @@ class _ProfileDataSource implements ProfileDataSource {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(body);
-    final _result = await _dio.fetch<String>(_setStreamType<String>(Options(
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<ResponseID>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
-        .compose(
-          _dio.options,
-          '/users/${id}/profiles',
-          queryParameters: queryParameters,
-          data: _data,
-        )
-        .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = _result.data!;
+            .compose(
+              _dio.options,
+              '/users/${id}/profiles',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = ResponseID.fromJson(_result.data!);
     return value;
   }
 

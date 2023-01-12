@@ -23,7 +23,7 @@ class FirebaseAuthDataSourceImpl implements FirebaseAuthDataSource {
           idToken: googleAuth.idToken,
         );
 
-        UserCredential? response = await _auth.signInWithCredential(credential);
+        await _auth.signInWithCredential(credential);
       }
     } catch (e) {
       rethrow;

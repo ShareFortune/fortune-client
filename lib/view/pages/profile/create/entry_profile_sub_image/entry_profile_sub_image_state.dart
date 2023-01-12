@@ -7,9 +7,9 @@ part 'entry_profile_sub_image_state.freezed.dart';
 @freezed
 class EntryProfileSubImageState with _$EntryProfileSubImageState {
   const factory EntryProfileSubImageState({
-    @Default(null) File? firstImageFile,
-    @Default(null) File? secondImageFile,
-    @Default(null) File? thirdImageFile,
-    @Default(null) File? fourthImageFile,
+    File? firstImageFile,
+    File? secondImageFile,
+    File? thirdImageFile,
+    File? fourthImageFile,
   }) = _EntryProfileSubImageState;
 }

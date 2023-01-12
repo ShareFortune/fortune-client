@@ -2,7 +2,7 @@ import 'package:fortune_client/data/datasource/remote/go/message_rooms/message_r
 import 'package:fortune_client/data/model/message_rooms/base/message_rooms.dart';
 import 'package:fortune_client/data/model/message_rooms/host/message_room_host.dart';
 import 'package:fortune_client/gen/assets.gen.dart';
-import 'package:fortune_client/util/common/json.dart';
+import 'package:fortune_client/util/common/json_roader.dart';
 import 'package:fortune_client/util/logger/logger.dart';
 
 class FakeMessageRoomsDataSource implements MessageRoomsDataSource {
