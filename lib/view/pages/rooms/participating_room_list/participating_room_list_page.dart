@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:fortune_client/gen/assets.gen.dart';
-import 'package:fortune_client/view/hooks/use_router.dart';
 import 'package:fortune_client/view/pages/common/scroll_app_bar/scroll_app_bar.dart';
+import 'package:fortune_client/view/pages/rooms/participating_room_list/participating_room_list_state.dart';
+import 'package:fortune_client/view/widgets/other/error_widget.dart';
+import 'package:fortune_client/view/widgets/other/loading_widget.dart';
 import 'package:fortune_client/view/widgets/room_card_widget.dart';
 import 'package:fortune_client/view/pages/rooms/participating_room_list/participating_room_list_view_model.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
@@ -21,7 +23,13 @@ class ParticipatingRoomListPage extends HookConsumerWidget {
     final state = ref.watch(participatingRoomListViewModelProvider);
     final viewModel =
         ref.watch(participatingRoomListViewModelProvider.notifier);
-    final router = useRouter();
+
+    /// ホストルームコンテナ
+    final hostRoomsContainer = state.hostRooms.when(
+      data: (data) => _hostRooms(theme, data, viewModel),
+      error: (e, msg) => errorWidget(e, msg),
+      loading: () => loadingWidget(),
+    );
 
     return CustomScrollView(
       slivers: [
@@ -63,37 +71,55 @@ class ParticipatingRoomListPage extends HookConsumerWidget {
           ),
         ),
         SliverToBoxAdapter(
-          child: state.maybeWhen(
-            orElse: () {
-              return const Center(child: CircularProgressIndicator());
-            },
-            data: (data) {
-              return Column(
-                children: [
-                  const Gap(20),
-                  _pageView(
-                    theme,
-                    "ホストで参加",
-                    true,
-                    navMessage: () => viewModel.navigateToMessage(router),
-                    navRequest: () =>
-                        viewModel.navigateToRequestConfirmation(router, 0),
-                    navDetail: () => viewModel.navigateToRoomDetail(router),
-                  ),
-                  _pageView(
-                    theme,
-                    "ゲストで参加",
-                    false,
-                    navMessage: () => viewModel.navigateToMessage(router),
-                    navRequest: () =>
-                        viewModel.navigateToRequestConfirmation(router, 0),
-                    navDetail: () => viewModel.navigateToRoomDetail(router),
-                  ),
-                ],
-              );
-            },
+          child: Column(
+            children: [
+              const Gap(20),
+              hostRoomsContainer,
+              _pageView(
+                theme,
+                "ゲストで参加",
+                false,
+                navMessage: () => viewModel.navigateToMessage(),
+                navRequest: () => viewModel.navigateToRequestConfirmation(0),
+                navDetail: () => viewModel.navigateToRoomDetail(),
+              ),
+            ],
           ),
         ),
+      ],
+    );
+  }
+
+  _hostRooms(AppTheme theme, List<HostRoomListItemState> data,
+      ParticipatingRoomListViewModel viewModel) {
+    _roomListView(
+      theme,
+      "title",
+      data.map((room) {
+        return RoomCardWidget(
+          title: room.title,
+          location: "住所",
+          members: room.memberIcons,
+          onTap: viewModel.navigateToRoomDetail,
+        );
+      }).toList(),
+    );
+  }
+
+  _roomListView(AppTheme theme, String title, List<Widget> cards) {
+    return Column(
+      children: [
+        const Gap(10),
+        _pageTitle(theme, title),
+        const Gap(10),
+        SizedBox(
+          height: 310.0,
+          child: PageView(
+            controller: PageController(viewportFraction: 0.9),
+            children: cards,
+          ),
+        ),
+        const Divider(),
       ],
     );
   }

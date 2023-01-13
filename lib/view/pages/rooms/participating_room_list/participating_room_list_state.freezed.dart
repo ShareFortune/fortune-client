@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$ParticipatingRoomListState {
-  List<HostRoomListItemState> get hostRooms =>
+  AsyncValue<List<HostRoomListItemState>> get hostRooms =>
       throw _privateConstructorUsedError;
   List<GuestRoomListItemState> get guestRooms =>
       throw _privateConstructorUsedError;
@@ -34,7 +34,7 @@ abstract class $ParticipatingRoomListStateCopyWith<$Res> {
           ParticipatingRoomListState>;
   @useResult
   $Res call(
-      {List<HostRoomListItemState> hostRooms,
+      {AsyncValue<List<HostRoomListItemState>> hostRooms,
       List<GuestRoomListItemState> guestRooms});
 }
 
@@ -59,7 +59,7 @@ class _$ParticipatingRoomListStateCopyWithImpl<$Res,
       hostRooms: null == hostRooms
           ? _value.hostRooms
           : hostRooms // ignore: cast_nullable_to_non_nullable
-              as List<HostRoomListItemState>,
+              as AsyncValue<List<HostRoomListItemState>>,
       guestRooms: null == guestRooms
           ? _value.guestRooms
           : guestRooms // ignore: cast_nullable_to_non_nullable
@@ -78,7 +78,7 @@ abstract class _$$_ParticipatingRoomListStateCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {List<HostRoomListItemState> hostRooms,
+      {AsyncValue<List<HostRoomListItemState>> hostRooms,
       List<GuestRoomListItemState> guestRooms});
 }
 
@@ -100,9 +100,9 @@ class __$$_ParticipatingRoomListStateCopyWithImpl<$Res>
   }) {
     return _then(_$_ParticipatingRoomListState(
       hostRooms: null == hostRooms
-          ? _value._hostRooms
+          ? _value.hostRooms
           : hostRooms // ignore: cast_nullable_to_non_nullable
-              as List<HostRoomListItemState>,
+              as AsyncValue<List<HostRoomListItemState>>,
       guestRooms: null == guestRooms
           ? _value._guestRooms
           : guestRooms // ignore: cast_nullable_to_non_nullable
@@ -115,21 +115,16 @@ class __$$_ParticipatingRoomListStateCopyWithImpl<$Res>
 
 class _$_ParticipatingRoomListState implements _ParticipatingRoomListState {
   const _$_ParticipatingRoomListState(
-      {required final List<HostRoomListItemState> hostRooms,
-      required final List<GuestRoomListItemState> guestRooms})
-      : _hostRooms = hostRooms,
-        _guestRooms = guestRooms;
+      {this.hostRooms = const AsyncValue.loading(),
+      final List<GuestRoomListItemState> guestRooms = const []})
+      : _guestRooms = guestRooms;
 
-  final List<HostRoomListItemState> _hostRooms;
   @override
-  List<HostRoomListItemState> get hostRooms {
-    if (_hostRooms is EqualUnmodifiableListView) return _hostRooms;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_hostRooms);
-  }
-
+  @JsonKey()
+  final AsyncValue<List<HostRoomListItemState>> hostRooms;
   final List<GuestRoomListItemState> _guestRooms;
   @override
+  @JsonKey()
   List<GuestRoomListItemState> get guestRooms {
     if (_guestRooms is EqualUnmodifiableListView) return _guestRooms;
     // ignore: implicit_dynamic_type
@@ -146,17 +141,15 @@ class _$_ParticipatingRoomListState implements _ParticipatingRoomListState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ParticipatingRoomListState &&
-            const DeepCollectionEquality()
-                .equals(other._hostRooms, _hostRooms) &&
+            (identical(other.hostRooms, hostRooms) ||
+                other.hostRooms == hostRooms) &&
             const DeepCollectionEquality()
                 .equals(other._guestRooms, _guestRooms));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(_hostRooms),
-      const DeepCollectionEquality().hash(_guestRooms));
+      runtimeType, hostRooms, const DeepCollectionEquality().hash(_guestRooms));
 
   @JsonKey(ignore: true)
   @override
@@ -169,12 +162,12 @@ class _$_ParticipatingRoomListState implements _ParticipatingRoomListState {
 abstract class _ParticipatingRoomListState
     implements ParticipatingRoomListState {
   const factory _ParticipatingRoomListState(
-          {required final List<HostRoomListItemState> hostRooms,
-          required final List<GuestRoomListItemState> guestRooms}) =
+          {final AsyncValue<List<HostRoomListItemState>> hostRooms,
+          final List<GuestRoomListItemState> guestRooms}) =
       _$_ParticipatingRoomListState;
 
   @override
-  List<HostRoomListItemState> get hostRooms;
+  AsyncValue<List<HostRoomListItemState>> get hostRooms;
   @override
   List<GuestRoomListItemState> get guestRooms;
   @override
@@ -298,7 +291,7 @@ class _$_HostRoomListItemState implements _HostRoomListItemState {
   const _$_HostRoomListItemState(
       {this.id = 0,
       this.title = "",
-      final List<String> memberIcons = const [],
+      required final List<String> memberIcons,
       this.actinon = 0})
       : _memberIcons = memberIcons;
 
@@ -310,7 +303,6 @@ class _$_HostRoomListItemState implements _HostRoomListItemState {
   final String title;
   final List<String> _memberIcons;
   @override
-  @JsonKey()
   List<String> get memberIcons {
     if (_memberIcons is EqualUnmodifiableListView) return _memberIcons;
     // ignore: implicit_dynamic_type
@@ -354,7 +346,7 @@ abstract class _HostRoomListItemState implements HostRoomListItemState {
   const factory _HostRoomListItemState(
       {final int id,
       final String title,
-      final List<String> memberIcons,
+      required final List<String> memberIcons,
       final int actinon}) = _$_HostRoomListItemState;
 
   @override

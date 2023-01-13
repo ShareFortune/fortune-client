@@ -212,10 +212,8 @@ mixin _$Room {
   @JsonKey(name: "isFavorite")
   bool get isFavorite => throw _privateConstructorUsedError;
 
-  ///
   /// 参加人数
-  ///
-  @JsonKey(name: "membersNum", fromJson: MembersNum.fromJson)
+  @JsonKey(name: "membersNum")
   MembersNum get membersNum => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -241,7 +239,7 @@ abstract class $RoomCopyWith<$Res> {
           Address address,
       @JsonKey(name: "isFavorite")
           bool isFavorite,
-      @JsonKey(name: "membersNum", fromJson: MembersNum.fromJson)
+      @JsonKey(name: "membersNum")
           MembersNum membersNum});
 
   $AddressCopyWith<$Res> get address;
@@ -337,7 +335,7 @@ abstract class _$$_RoomCopyWith<$Res> implements $RoomCopyWith<$Res> {
           Address address,
       @JsonKey(name: "isFavorite")
           bool isFavorite,
-      @JsonKey(name: "membersNum", fromJson: MembersNum.fromJson)
+      @JsonKey(name: "membersNum")
           MembersNum membersNum});
 
   @override
@@ -412,7 +410,7 @@ class _$_Room implements _Room {
           required this.address,
       @JsonKey(name: "isFavorite")
           required this.isFavorite,
-      @JsonKey(name: "membersNum", fromJson: MembersNum.fromJson)
+      @JsonKey(name: "membersNum")
           required this.membersNum})
       : _participantMainImageURLs = participantMainImageURLs;
 
@@ -458,11 +456,9 @@ class _$_Room implements _Room {
   @JsonKey(name: "isFavorite")
   final bool isFavorite;
 
-  ///
   /// 参加人数
-  ///
   @override
-  @JsonKey(name: "membersNum", fromJson: MembersNum.fromJson)
+  @JsonKey(name: "membersNum")
   final MembersNum membersNum;
 
   @override
@@ -529,7 +525,7 @@ abstract class _Room implements Room {
           required final Address address,
       @JsonKey(name: "isFavorite")
           required final bool isFavorite,
-      @JsonKey(name: "membersNum", fromJson: MembersNum.fromJson)
+      @JsonKey(name: "membersNum")
           required final MembersNum membersNum}) = _$_Room;
 
   factory _Room.fromJson(Map<String, dynamic> json) = _$_Room.fromJson;
@@ -566,228 +562,10 @@ abstract class _Room implements Room {
   bool get isFavorite;
   @override
 
-  ///
   /// 参加人数
-  ///
-  @JsonKey(name: "membersNum", fromJson: MembersNum.fromJson)
+  @JsonKey(name: "membersNum")
   MembersNum get membersNum;
   @override
   @JsonKey(ignore: true)
   _$$_RoomCopyWith<_$_Room> get copyWith => throw _privateConstructorUsedError;
-}
-
-MembersNum _$MembersNumFromJson(Map<String, dynamic> json) {
-  return _MembersNum.fromJson(json);
-}
-
-/// @nodoc
-mixin _$MembersNum {
-  @JsonKey(name: "maxMenNum")
-  int get maxMenNum => throw _privateConstructorUsedError;
-  @JsonKey(name: "menNum")
-  int get menNum => throw _privateConstructorUsedError;
-  @JsonKey(name: "maxWomenNum")
-  int get maxWomenNum => throw _privateConstructorUsedError;
-  @JsonKey(name: "womenNum")
-  int get womenNum => throw _privateConstructorUsedError;
-
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $MembersNumCopyWith<MembersNum> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $MembersNumCopyWith<$Res> {
-  factory $MembersNumCopyWith(
-          MembersNum value, $Res Function(MembersNum) then) =
-      _$MembersNumCopyWithImpl<$Res, MembersNum>;
-  @useResult
-  $Res call(
-      {@JsonKey(name: "maxMenNum") int maxMenNum,
-      @JsonKey(name: "menNum") int menNum,
-      @JsonKey(name: "maxWomenNum") int maxWomenNum,
-      @JsonKey(name: "womenNum") int womenNum});
-}
-
-/// @nodoc
-class _$MembersNumCopyWithImpl<$Res, $Val extends MembersNum>
-    implements $MembersNumCopyWith<$Res> {
-  _$MembersNumCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? maxMenNum = null,
-    Object? menNum = null,
-    Object? maxWomenNum = null,
-    Object? womenNum = null,
-  }) {
-    return _then(_value.copyWith(
-      maxMenNum: null == maxMenNum
-          ? _value.maxMenNum
-          : maxMenNum // ignore: cast_nullable_to_non_nullable
-              as int,
-      menNum: null == menNum
-          ? _value.menNum
-          : menNum // ignore: cast_nullable_to_non_nullable
-              as int,
-      maxWomenNum: null == maxWomenNum
-          ? _value.maxWomenNum
-          : maxWomenNum // ignore: cast_nullable_to_non_nullable
-              as int,
-      womenNum: null == womenNum
-          ? _value.womenNum
-          : womenNum // ignore: cast_nullable_to_non_nullable
-              as int,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$_MembersNumCopyWith<$Res>
-    implements $MembersNumCopyWith<$Res> {
-  factory _$$_MembersNumCopyWith(
-          _$_MembersNum value, $Res Function(_$_MembersNum) then) =
-      __$$_MembersNumCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {@JsonKey(name: "maxMenNum") int maxMenNum,
-      @JsonKey(name: "menNum") int menNum,
-      @JsonKey(name: "maxWomenNum") int maxWomenNum,
-      @JsonKey(name: "womenNum") int womenNum});
-}
-
-/// @nodoc
-class __$$_MembersNumCopyWithImpl<$Res>
-    extends _$MembersNumCopyWithImpl<$Res, _$_MembersNum>
-    implements _$$_MembersNumCopyWith<$Res> {
-  __$$_MembersNumCopyWithImpl(
-      _$_MembersNum _value, $Res Function(_$_MembersNum) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? maxMenNum = null,
-    Object? menNum = null,
-    Object? maxWomenNum = null,
-    Object? womenNum = null,
-  }) {
-    return _then(_$_MembersNum(
-      maxMenNum: null == maxMenNum
-          ? _value.maxMenNum
-          : maxMenNum // ignore: cast_nullable_to_non_nullable
-              as int,
-      menNum: null == menNum
-          ? _value.menNum
-          : menNum // ignore: cast_nullable_to_non_nullable
-              as int,
-      maxWomenNum: null == maxWomenNum
-          ? _value.maxWomenNum
-          : maxWomenNum // ignore: cast_nullable_to_non_nullable
-              as int,
-      womenNum: null == womenNum
-          ? _value.womenNum
-          : womenNum // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$_MembersNum implements _MembersNum {
-  const _$_MembersNum(
-      {@JsonKey(name: "maxMenNum") required this.maxMenNum,
-      @JsonKey(name: "menNum") required this.menNum,
-      @JsonKey(name: "maxWomenNum") required this.maxWomenNum,
-      @JsonKey(name: "womenNum") required this.womenNum});
-
-  factory _$_MembersNum.fromJson(Map<String, dynamic> json) =>
-      _$$_MembersNumFromJson(json);
-
-  @override
-  @JsonKey(name: "maxMenNum")
-  final int maxMenNum;
-  @override
-  @JsonKey(name: "menNum")
-  final int menNum;
-  @override
-  @JsonKey(name: "maxWomenNum")
-  final int maxWomenNum;
-  @override
-  @JsonKey(name: "womenNum")
-  final int womenNum;
-
-  @override
-  String toString() {
-    return 'MembersNum(maxMenNum: $maxMenNum, menNum: $menNum, maxWomenNum: $maxWomenNum, womenNum: $womenNum)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_MembersNum &&
-            (identical(other.maxMenNum, maxMenNum) ||
-                other.maxMenNum == maxMenNum) &&
-            (identical(other.menNum, menNum) || other.menNum == menNum) &&
-            (identical(other.maxWomenNum, maxWomenNum) ||
-                other.maxWomenNum == maxWomenNum) &&
-            (identical(other.womenNum, womenNum) ||
-                other.womenNum == womenNum));
-  }
-
-  @JsonKey(ignore: true)
-  @override
-  int get hashCode =>
-      Object.hash(runtimeType, maxMenNum, menNum, maxWomenNum, womenNum);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$_MembersNumCopyWith<_$_MembersNum> get copyWith =>
-      __$$_MembersNumCopyWithImpl<_$_MembersNum>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_MembersNumToJson(
-      this,
-    );
-  }
-}
-
-abstract class _MembersNum implements MembersNum {
-  const factory _MembersNum(
-      {@JsonKey(name: "maxMenNum") required final int maxMenNum,
-      @JsonKey(name: "menNum") required final int menNum,
-      @JsonKey(name: "maxWomenNum") required final int maxWomenNum,
-      @JsonKey(name: "womenNum") required final int womenNum}) = _$_MembersNum;
-
-  factory _MembersNum.fromJson(Map<String, dynamic> json) =
-      _$_MembersNum.fromJson;
-
-  @override
-  @JsonKey(name: "maxMenNum")
-  int get maxMenNum;
-  @override
-  @JsonKey(name: "menNum")
-  int get menNum;
-  @override
-  @JsonKey(name: "maxWomenNum")
-  int get maxWomenNum;
-  @override
-  @JsonKey(name: "womenNum")
-  int get womenNum;
-  @override
-  @JsonKey(ignore: true)
-  _$$_MembersNumCopyWith<_$_MembersNum> get copyWith =>
-      throw _privateConstructorUsedError;
 }

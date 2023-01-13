@@ -1,13 +1,15 @@
-import 'package:fortune_client/data/model/host_room/host_room.dart';
+import 'package:fortune_client/data/model/participant/participant_rooms.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 part 'participating_room_list_state.freezed.dart';
 
 @freezed
 class ParticipatingRoomListState with _$ParticipatingRoomListState {
   const factory ParticipatingRoomListState({
-    required List<HostRoomListItemState> hostRooms,
-    required List<GuestRoomListItemState> guestRooms,
+    @Default(AsyncValue.loading())
+        AsyncValue<List<HostRoomListItemState>> hostRooms,
+    @Default([]) List<GuestRoomListItemState> guestRooms,
   }) = _ParticipatingRoomListState;
 }
 
@@ -16,15 +18,15 @@ class HostRoomListItemState with _$HostRoomListItemState {
   const factory HostRoomListItemState({
     @Default(0) int id,
     @Default("") String title,
-    @Default([]) List<String> memberIcons,
+    required List<String> memberIcons,
     @Default(0) int actinon,
   }) = _HostRoomListItemState;
 
-  static HostRoomListItemState fromEntity(HostRoom room) {
+  static HostRoomListItemState fromEntity(ParticipantRoomAsHost room) {
     return HostRoomListItemState(
       title: room.roomName,
-      actinon: room.action,
-      memberIcons: room.participantMainImageURLs,
+      actinon: 0,
+      memberIcons: room.participantMainImageURLs ?? [],
     );
   }
 }

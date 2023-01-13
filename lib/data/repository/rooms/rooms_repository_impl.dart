@@ -1,14 +1,14 @@
 import 'package:fortune_client/data/datasource/remote/go/rooms/rooms_data_source.dart';
-import 'package:fortune_client/data/model/host_room/host_room.dart';
+import 'package:fortune_client/data/model/participant/participant_rooms.dart';
 import 'package:fortune_client/data/model/room_detail/room_detail.dart';
 import 'package:fortune_client/data/model/rooms/rooms.dart';
-import 'package:fortune_client/data/repository/room/room_repository.dart';
+import 'package:fortune_client/data/repository/rooms/rooms_repository.dart';
 import 'package:fortune_client/util/logger/logger.dart';
 
-class RoomRepositoryImpl implements RoomRepository {
+class RoomsRepositoryImpl implements RoomsRepository {
   final RoomsDataSource _roomsDataSource;
 
-  RoomRepositoryImpl(this._roomsDataSource);
+  RoomsRepositoryImpl(this._roomsDataSource);
 
   @override
   Future<String> create() {
@@ -35,11 +35,13 @@ class RoomRepositoryImpl implements RoomRepository {
   }
 
   @override
-  Future<List<HostRoom>> fetchListHost() async {
+  Future<List<ParticipantRoomAsHost>> fetchHost() async {
     try {
-      final result = await _roomsDataSource.getHostList();
-      return result.roomsEntity;
+      logger.i("$runtimeType fetchHost");
+      final result = await _roomsDataSource.getHost(perPage: 10);
+      return result.rooms;
     } catch (e) {
+      logger.e(e);
       rethrow;
     }
   }

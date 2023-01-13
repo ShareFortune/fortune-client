@@ -1,6 +1,7 @@
 // ignore_for_file: invalid_annotation_target
 
 import 'package:fortune_client/data/model/address/address.dart';
+import 'package:fortune_client/data/model/members_num/members_num.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'rooms.freezed.dart';
@@ -38,25 +39,9 @@ class Room with _$Room {
     /// お気に入りしているかどうか
     @JsonKey(name: "isFavorite") required bool isFavorite,
 
-    ///
     /// 参加人数
-    ///
-    @JsonKey(name: "membersNum", fromJson: MembersNum.fromJson)
-        required MembersNum membersNum,
+    @JsonKey(name: "membersNum") required MembersNum membersNum,
   }) = _Room;
 
   factory Room.fromJson(Map<String, dynamic> json) => _$RoomFromJson(json);
-}
-
-@freezed
-class MembersNum with _$MembersNum {
-  const factory MembersNum({
-    @JsonKey(name: "maxMenNum") required int maxMenNum,
-    @JsonKey(name: "menNum") required int menNum,
-    @JsonKey(name: "maxWomenNum") required int maxWomenNum,
-    @JsonKey(name: "womenNum") required int womenNum,
-  }) = _MembersNum;
-
-  factory MembersNum.fromJson(Map<String, dynamic> json) =>
-      _$MembersNumFromJson(json);
 }

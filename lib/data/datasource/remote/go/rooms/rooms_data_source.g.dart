@@ -80,13 +80,20 @@ class _RoomsDataSource implements RoomsDataSource {
   }
 
   @override
-  Future<HostRoomList> getHostList() async {
-    const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+  Future<ParticipantRooms<ParticipantRoomAsHost>> getHost({
+    nextToken,
+    perPage,
+  }) async {
+    const _extra = <String, dynamic>{'append-token': true};
+    final queryParameters = <String, dynamic>{
+      r'nextToken': nextToken,
+      r'perPage': perPage,
+    };
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<HostRoomList>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<ParticipantRooms<ParticipantRoomAsHost>>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -98,7 +105,10 @@ class _RoomsDataSource implements RoomsDataSource {
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = HostRoomList.fromJson(_result.data!);
+    final value = ParticipantRooms<ParticipantRoomAsHost>.fromJson(
+      _result.data!,
+      (json) => ParticipantRoomAsHost.fromJson(json as Map<String, dynamic>),
+    );
     return value;
   }
 
