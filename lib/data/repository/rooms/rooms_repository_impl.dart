@@ -1,4 +1,8 @@
 import 'package:fortune_client/data/datasource/remote/go/rooms/rooms_data_source.dart';
+import 'package:fortune_client/data/model/address/address.dart';
+import 'package:fortune_client/data/model/enum/room_join_request_status.dart';
+import 'package:fortune_client/data/model/enum/room_status.dart';
+import 'package:fortune_client/data/model/members_num/members_num.dart';
 import 'package:fortune_client/data/model/participant/base/participant_rooms.dart';
 import 'package:fortune_client/data/model/participant/guest/participant_room_as_guest.dart';
 import 'package:fortune_client/data/model/participant/host/participant_room_as_host.dart';
@@ -66,8 +70,70 @@ class RoomsRepositoryImpl implements RoomsRepository {
   Future<List<ParticipantRoomAsGuest>> getRoomsToParticipateAsGuest() async {
     try {
       logger.i("$runtimeType getRoomsToParticipateAsGuest");
-      final result = await _roomsDataSource.getGuest(perPage: 10);
-      return result.rooms;
+
+      /// 本番
+      // final result = await _roomsDataSource.getGuest(perPage: 10);
+      // return result.rooms;
+
+      return [
+        ParticipantRoomAsGuest(
+          id: "id",
+          roomName: "渋谷で飲み会しませんか？",
+          hostMainImageURL: "hostMainImageURL",
+          participantMainImageURLs: ["", "", ""],
+          address: const Address(
+            country: "東京",
+            prefecture: "調布市",
+            city: "御影町",
+          ),
+          membersNum: MembersNum(
+            maxMenNum: 2,
+            menNum: 1,
+            maxWomenNum: 2,
+            womenNum: 0,
+          ),
+          roomStatus: RoomStatus.pending,
+          joinRequestStatus: RoomJoinRequestStatus.pending,
+        ),
+        ParticipantRoomAsGuest(
+          id: "id",
+          roomName: "ゲーム好き集まれ！",
+          hostMainImageURL: "hostMainImageURL",
+          participantMainImageURLs: [""],
+          address: const Address(
+            country: "東京",
+            prefecture: "府中市",
+            city: "幸町",
+          ),
+          membersNum: MembersNum(
+            maxMenNum: 2,
+            menNum: 1,
+            maxWomenNum: 2,
+            womenNum: 2,
+          ),
+          roomStatus: RoomStatus.pending,
+          joinRequestStatus: RoomJoinRequestStatus.pending,
+        ),
+        ParticipantRoomAsGuest(
+          id: "id",
+          roomName: "映画見る会",
+          hostMainImageURL: "hostMainImageURL",
+          participantMainImageURLs: ["", ""],
+          address: const Address(
+            country: "東京",
+            prefecture: "多摩霊園",
+            city: "湯河原町",
+          ),
+          membersNum: MembersNum(
+            maxMenNum: 2,
+            menNum: 1,
+            maxWomenNum: 2,
+            womenNum: 2,
+          ),
+          roomStatus: RoomStatus.pending,
+          joinRequestStatus: RoomJoinRequestStatus.pending,
+        ),
+      ];
     } catch (e) {
       logger.e(e);
       rethrow;
