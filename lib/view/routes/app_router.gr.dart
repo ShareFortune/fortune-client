@@ -38,7 +38,7 @@ import 'package:fortune_client/view/pages/request/request_confirmation/request_c
     as _i14;
 import 'package:fortune_client/view/pages/rooms/create/room_create_page.dart'
     as _i7;
-import 'package:fortune_client/view/pages/rooms/participating_room_list/participating_room_list_page.dart'
+import 'package:fortune_client/view/pages/rooms/participating/participating_room_list_page.dart'
     as _i13;
 import 'package:fortune_client/view/pages/rooms/room_detail/room_detail_page.dart'
     as _i12;

@@ -1,7 +1,7 @@
 import 'package:fortune_client/data/repository/rooms/rooms_repository.dart';
 import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/util/logger/logger.dart';
-import 'package:fortune_client/view/pages/rooms/participating_room_list/participating_room_list_state.dart';
+import 'package:fortune_client/view/pages/rooms/participating/participating_room_list_state.dart';
 import 'package:fortune_client/view/routes/app_router.gr.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -17,17 +17,30 @@ class ParticipatingRoomListViewModel
   final RoomsRepository _roomRepository;
 
   Future<void> initialize() async {
-    await fetchHost();
+    await fetchHostRooms();
+    await fetchGuestRooms();
   }
 
-  Future<void> fetchHost() async {
+  Future<void> fetchHostRooms() async {
     final hostRooms = await AsyncValue.guard(() async {
-      final result = await _roomRepository.fetchHost();
-      return result.map((e) => HostRoomListItemState.fromEntity(e)).toList();
+      final result = await _roomRepository.getRoomsToParticipateAsHost();
+      return result
+          .map((e) => ParticipatingRoomListStateItem.fromHost(e))
+          .toList();
     });
     logger.i(hostRooms);
-    print(hostRooms);
-    state = state.copyWith(hostRooms: hostRooms);
+    state = state.copyWith(host: hostRooms);
+  }
+
+  Future<void> fetchGuestRooms() async {
+    final guestRooms = await AsyncValue.guard(() async {
+      final result = await _roomRepository.getRoomsToParticipateAsGuest();
+      return result
+          .map((e) => ParticipatingRoomListStateItem.fromGuest(e))
+          .toList();
+    });
+    logger.i(guestRooms);
+    state = state.copyWith(guest: guestRooms);
   }
 
   Future<void> navigateToRequestConfirmation(int id) async {

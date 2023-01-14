@@ -13,15 +13,12 @@ extension RoomStatusEx on RoomStatus {
     RoomStatus.closed: "CLOSE",
   };
 
-  // enum -> String へ変換できるようにする
   String get rawValue => rawValues[this]!;
 
-  // String -> enum へ変換できるようにする
   static RoomStatus? from(String rawValue) =>
       rawValues.keys.firstWhere((key) => rawValues[key] == rawValue);
 }
 
-/// Jsonコンバーター
 class RoomStatusEnumConverter implements JsonConverter<RoomStatus?, String?> {
   const RoomStatusEnumConverter();
 

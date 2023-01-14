@@ -1,28 +1,10 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'participant_rooms.dart';
+part of 'participant_room_as_host.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
-
-ParticipantRooms<T> _$ParticipantRoomsFromJson<T>(
-  Map<String, dynamic> json,
-  T Function(Object? json) fromJsonT,
-) =>
-    ParticipantRooms<T>(
-      json['nextToken'] as String,
-      (json['rooms'] as List<dynamic>).map(fromJsonT).toList(),
-    );
-
-Map<String, dynamic> _$ParticipantRoomsToJson<T>(
-  ParticipantRooms<T> instance,
-  Object? Function(T value) toJsonT,
-) =>
-    <String, dynamic>{
-      'nextToken': instance.nextToken,
-      'rooms': instance.rooms.map(toJsonT).toList(),
-    };
 
 _$_ParticipantRoomAsHost _$$_ParticipantRoomAsHostFromJson(
         Map<String, dynamic> json) =>
@@ -36,7 +18,7 @@ _$_ParticipantRoomAsHost _$$_ParticipantRoomAsHostFromJson(
       membersNum:
           MembersNum.fromJson(json['membersNum'] as Map<String, dynamic>),
       joinRequestsCount: json['joinRequestsCount'] as int,
-      status: json['status'] as String,
+      status: $enumDecode(_$RoomStatusEnumMap, json['status']),
     );
 
 Map<String, dynamic> _$$_ParticipantRoomAsHostToJson(
@@ -47,5 +29,11 @@ Map<String, dynamic> _$$_ParticipantRoomAsHostToJson(
       'participantMainImageURLs': instance.participantMainImageURLs,
       'membersNum': instance.membersNum,
       'joinRequestsCount': instance.joinRequestsCount,
-      'status': instance.status,
+      'status': _$RoomStatusEnumMap[instance.status]!,
     };
+
+const _$RoomStatusEnumMap = {
+  RoomStatus.pending: 'pending',
+  RoomStatus.opend: 'opend',
+  RoomStatus.closed: 'closed',
+};

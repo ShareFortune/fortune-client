@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'rooms.dart';
+part of 'participant_room_as_guest.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,179 +14,13 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-Rooms _$RoomsFromJson(Map<String, dynamic> json) {
-  return _Rooms.fromJson(json);
+ParticipantRoomAsGuest _$ParticipantRoomAsGuestFromJson(
+    Map<String, dynamic> json) {
+  return _ParticipantRoomAsGuest.fromJson(json);
 }
 
 /// @nodoc
-mixin _$Rooms {
-  @JsonKey(name: "nextToken")
-  String get nextToken => throw _privateConstructorUsedError;
-  @JsonKey(name: "rooms")
-  List<Room> get data => throw _privateConstructorUsedError;
-
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $RoomsCopyWith<Rooms> get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $RoomsCopyWith<$Res> {
-  factory $RoomsCopyWith(Rooms value, $Res Function(Rooms) then) =
-      _$RoomsCopyWithImpl<$Res, Rooms>;
-  @useResult
-  $Res call(
-      {@JsonKey(name: "nextToken") String nextToken,
-      @JsonKey(name: "rooms") List<Room> data});
-}
-
-/// @nodoc
-class _$RoomsCopyWithImpl<$Res, $Val extends Rooms>
-    implements $RoomsCopyWith<$Res> {
-  _$RoomsCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? nextToken = null,
-    Object? data = null,
-  }) {
-    return _then(_value.copyWith(
-      nextToken: null == nextToken
-          ? _value.nextToken
-          : nextToken // ignore: cast_nullable_to_non_nullable
-              as String,
-      data: null == data
-          ? _value.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as List<Room>,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$_RoomsCopyWith<$Res> implements $RoomsCopyWith<$Res> {
-  factory _$$_RoomsCopyWith(_$_Rooms value, $Res Function(_$_Rooms) then) =
-      __$$_RoomsCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {@JsonKey(name: "nextToken") String nextToken,
-      @JsonKey(name: "rooms") List<Room> data});
-}
-
-/// @nodoc
-class __$$_RoomsCopyWithImpl<$Res> extends _$RoomsCopyWithImpl<$Res, _$_Rooms>
-    implements _$$_RoomsCopyWith<$Res> {
-  __$$_RoomsCopyWithImpl(_$_Rooms _value, $Res Function(_$_Rooms) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? nextToken = null,
-    Object? data = null,
-  }) {
-    return _then(_$_Rooms(
-      nextToken: null == nextToken
-          ? _value.nextToken
-          : nextToken // ignore: cast_nullable_to_non_nullable
-              as String,
-      data: null == data
-          ? _value._data
-          : data // ignore: cast_nullable_to_non_nullable
-              as List<Room>,
-    ));
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$_Rooms implements _Rooms {
-  const _$_Rooms(
-      {@JsonKey(name: "nextToken") required this.nextToken,
-      @JsonKey(name: "rooms") required final List<Room> data})
-      : _data = data;
-
-  factory _$_Rooms.fromJson(Map<String, dynamic> json) =>
-      _$$_RoomsFromJson(json);
-
-  @override
-  @JsonKey(name: "nextToken")
-  final String nextToken;
-  final List<Room> _data;
-  @override
-  @JsonKey(name: "rooms")
-  List<Room> get data {
-    if (_data is EqualUnmodifiableListView) return _data;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_data);
-  }
-
-  @override
-  String toString() {
-    return 'Rooms(nextToken: $nextToken, data: $data)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_Rooms &&
-            (identical(other.nextToken, nextToken) ||
-                other.nextToken == nextToken) &&
-            const DeepCollectionEquality().equals(other._data, _data));
-  }
-
-  @JsonKey(ignore: true)
-  @override
-  int get hashCode => Object.hash(
-      runtimeType, nextToken, const DeepCollectionEquality().hash(_data));
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$_RoomsCopyWith<_$_Rooms> get copyWith =>
-      __$$_RoomsCopyWithImpl<_$_Rooms>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_RoomsToJson(
-      this,
-    );
-  }
-}
-
-abstract class _Rooms implements Rooms {
-  const factory _Rooms(
-      {@JsonKey(name: "nextToken") required final String nextToken,
-      @JsonKey(name: "rooms") required final List<Room> data}) = _$_Rooms;
-
-  factory _Rooms.fromJson(Map<String, dynamic> json) = _$_Rooms.fromJson;
-
-  @override
-  @JsonKey(name: "nextToken")
-  String get nextToken;
-  @override
-  @JsonKey(name: "rooms")
-  List<Room> get data;
-  @override
-  @JsonKey(ignore: true)
-  _$$_RoomsCopyWith<_$_Rooms> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-Room _$RoomFromJson(Map<String, dynamic> json) {
-  return _Room.fromJson(json);
-}
-
-/// @nodoc
-mixin _$Room {
+mixin _$ParticipantRoomAsGuest {
   /// ルームID
   @JsonKey(name: "id")
   String get id => throw _privateConstructorUsedError;
@@ -195,11 +29,11 @@ mixin _$Room {
   @JsonKey(name: "roomName")
   String get roomName => throw _privateConstructorUsedError;
 
-  /// ホスト画像
+  /// ホストアイコン
   @JsonKey(name: "hostMainImageURL")
   String get hostMainImageURL => throw _privateConstructorUsedError;
 
-  /// メンバー画像リスト
+  /// メンバーアイコンリスト
   @JsonKey(name: "participantMainImageURLs")
   List<String>? get participantMainImageURLs =>
       throw _privateConstructorUsedError;
@@ -208,23 +42,32 @@ mixin _$Room {
   @JsonKey(name: "address")
   Address get address => throw _privateConstructorUsedError;
 
-  /// お気に入りしているかどうか
-  @JsonKey(name: "isFavorite")
-  bool get isFavorite => throw _privateConstructorUsedError;
-
   /// 参加人数
   @JsonKey(name: "membersNum")
   MembersNum get membersNum => throw _privateConstructorUsedError;
 
+  /// ステータス
+  @JsonKey(name: "roomStatus")
+  @RoomStatusEnumConverter()
+  RoomStatus get roomStatus => throw _privateConstructorUsedError;
+
+  /// ステータス
+  @JsonKey(name: "joinRequestStatus")
+  @RoomJoinRequestStatusEnumConverter()
+  RoomJoinRequestStatus get joinRequestStatus =>
+      throw _privateConstructorUsedError;
+
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $RoomCopyWith<Room> get copyWith => throw _privateConstructorUsedError;
+  $ParticipantRoomAsGuestCopyWith<ParticipantRoomAsGuest> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $RoomCopyWith<$Res> {
-  factory $RoomCopyWith(Room value, $Res Function(Room) then) =
-      _$RoomCopyWithImpl<$Res, Room>;
+abstract class $ParticipantRoomAsGuestCopyWith<$Res> {
+  factory $ParticipantRoomAsGuestCopyWith(ParticipantRoomAsGuest value,
+          $Res Function(ParticipantRoomAsGuest) then) =
+      _$ParticipantRoomAsGuestCopyWithImpl<$Res, ParticipantRoomAsGuest>;
   @useResult
   $Res call(
       {@JsonKey(name: "id")
@@ -237,19 +80,24 @@ abstract class $RoomCopyWith<$Res> {
           List<String>? participantMainImageURLs,
       @JsonKey(name: "address")
           Address address,
-      @JsonKey(name: "isFavorite")
-          bool isFavorite,
       @JsonKey(name: "membersNum")
-          MembersNum membersNum});
+          MembersNum membersNum,
+      @JsonKey(name: "roomStatus")
+      @RoomStatusEnumConverter()
+          RoomStatus roomStatus,
+      @JsonKey(name: "joinRequestStatus")
+      @RoomJoinRequestStatusEnumConverter()
+          RoomJoinRequestStatus joinRequestStatus});
 
   $AddressCopyWith<$Res> get address;
   $MembersNumCopyWith<$Res> get membersNum;
 }
 
 /// @nodoc
-class _$RoomCopyWithImpl<$Res, $Val extends Room>
-    implements $RoomCopyWith<$Res> {
-  _$RoomCopyWithImpl(this._value, this._then);
+class _$ParticipantRoomAsGuestCopyWithImpl<$Res,
+        $Val extends ParticipantRoomAsGuest>
+    implements $ParticipantRoomAsGuestCopyWith<$Res> {
+  _$ParticipantRoomAsGuestCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -264,8 +112,9 @@ class _$RoomCopyWithImpl<$Res, $Val extends Room>
     Object? hostMainImageURL = null,
     Object? participantMainImageURLs = freezed,
     Object? address = null,
-    Object? isFavorite = null,
     Object? membersNum = null,
+    Object? roomStatus = null,
+    Object? joinRequestStatus = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -288,14 +137,18 @@ class _$RoomCopyWithImpl<$Res, $Val extends Room>
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
               as Address,
-      isFavorite: null == isFavorite
-          ? _value.isFavorite
-          : isFavorite // ignore: cast_nullable_to_non_nullable
-              as bool,
       membersNum: null == membersNum
           ? _value.membersNum
           : membersNum // ignore: cast_nullable_to_non_nullable
               as MembersNum,
+      roomStatus: null == roomStatus
+          ? _value.roomStatus
+          : roomStatus // ignore: cast_nullable_to_non_nullable
+              as RoomStatus,
+      joinRequestStatus: null == joinRequestStatus
+          ? _value.joinRequestStatus
+          : joinRequestStatus // ignore: cast_nullable_to_non_nullable
+              as RoomJoinRequestStatus,
     ) as $Val);
   }
 
@@ -317,9 +170,11 @@ class _$RoomCopyWithImpl<$Res, $Val extends Room>
 }
 
 /// @nodoc
-abstract class _$$_RoomCopyWith<$Res> implements $RoomCopyWith<$Res> {
-  factory _$$_RoomCopyWith(_$_Room value, $Res Function(_$_Room) then) =
-      __$$_RoomCopyWithImpl<$Res>;
+abstract class _$$_ParticipantRoomAsGuestCopyWith<$Res>
+    implements $ParticipantRoomAsGuestCopyWith<$Res> {
+  factory _$$_ParticipantRoomAsGuestCopyWith(_$_ParticipantRoomAsGuest value,
+          $Res Function(_$_ParticipantRoomAsGuest) then) =
+      __$$_ParticipantRoomAsGuestCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -333,10 +188,14 @@ abstract class _$$_RoomCopyWith<$Res> implements $RoomCopyWith<$Res> {
           List<String>? participantMainImageURLs,
       @JsonKey(name: "address")
           Address address,
-      @JsonKey(name: "isFavorite")
-          bool isFavorite,
       @JsonKey(name: "membersNum")
-          MembersNum membersNum});
+          MembersNum membersNum,
+      @JsonKey(name: "roomStatus")
+      @RoomStatusEnumConverter()
+          RoomStatus roomStatus,
+      @JsonKey(name: "joinRequestStatus")
+      @RoomJoinRequestStatusEnumConverter()
+          RoomJoinRequestStatus joinRequestStatus});
 
   @override
   $AddressCopyWith<$Res> get address;
@@ -345,9 +204,12 @@ abstract class _$$_RoomCopyWith<$Res> implements $RoomCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_RoomCopyWithImpl<$Res> extends _$RoomCopyWithImpl<$Res, _$_Room>
-    implements _$$_RoomCopyWith<$Res> {
-  __$$_RoomCopyWithImpl(_$_Room _value, $Res Function(_$_Room) _then)
+class __$$_ParticipantRoomAsGuestCopyWithImpl<$Res>
+    extends _$ParticipantRoomAsGuestCopyWithImpl<$Res,
+        _$_ParticipantRoomAsGuest>
+    implements _$$_ParticipantRoomAsGuestCopyWith<$Res> {
+  __$$_ParticipantRoomAsGuestCopyWithImpl(_$_ParticipantRoomAsGuest _value,
+      $Res Function(_$_ParticipantRoomAsGuest) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -358,10 +220,11 @@ class __$$_RoomCopyWithImpl<$Res> extends _$RoomCopyWithImpl<$Res, _$_Room>
     Object? hostMainImageURL = null,
     Object? participantMainImageURLs = freezed,
     Object? address = null,
-    Object? isFavorite = null,
     Object? membersNum = null,
+    Object? roomStatus = null,
+    Object? joinRequestStatus = null,
   }) {
-    return _then(_$_Room(
+    return _then(_$_ParticipantRoomAsGuest(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -382,22 +245,26 @@ class __$$_RoomCopyWithImpl<$Res> extends _$RoomCopyWithImpl<$Res, _$_Room>
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
               as Address,
-      isFavorite: null == isFavorite
-          ? _value.isFavorite
-          : isFavorite // ignore: cast_nullable_to_non_nullable
-              as bool,
       membersNum: null == membersNum
           ? _value.membersNum
           : membersNum // ignore: cast_nullable_to_non_nullable
               as MembersNum,
+      roomStatus: null == roomStatus
+          ? _value.roomStatus
+          : roomStatus // ignore: cast_nullable_to_non_nullable
+              as RoomStatus,
+      joinRequestStatus: null == joinRequestStatus
+          ? _value.joinRequestStatus
+          : joinRequestStatus // ignore: cast_nullable_to_non_nullable
+              as RoomJoinRequestStatus,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$_Room implements _Room {
-  const _$_Room(
+class _$_ParticipantRoomAsGuest implements _ParticipantRoomAsGuest {
+  const _$_ParticipantRoomAsGuest(
       {@JsonKey(name: "id")
           required this.id,
       @JsonKey(name: "roomName")
@@ -408,13 +275,18 @@ class _$_Room implements _Room {
           required final List<String>? participantMainImageURLs,
       @JsonKey(name: "address")
           required this.address,
-      @JsonKey(name: "isFavorite")
-          required this.isFavorite,
       @JsonKey(name: "membersNum")
-          required this.membersNum})
+          required this.membersNum,
+      @JsonKey(name: "roomStatus")
+      @RoomStatusEnumConverter()
+          required this.roomStatus,
+      @JsonKey(name: "joinRequestStatus")
+      @RoomJoinRequestStatusEnumConverter()
+          required this.joinRequestStatus})
       : _participantMainImageURLs = participantMainImageURLs;
 
-  factory _$_Room.fromJson(Map<String, dynamic> json) => _$$_RoomFromJson(json);
+  factory _$_ParticipantRoomAsGuest.fromJson(Map<String, dynamic> json) =>
+      _$$_ParticipantRoomAsGuestFromJson(json);
 
   /// ルームID
   @override
@@ -426,15 +298,15 @@ class _$_Room implements _Room {
   @JsonKey(name: "roomName")
   final String roomName;
 
-  /// ホスト画像
+  /// ホストアイコン
   @override
   @JsonKey(name: "hostMainImageURL")
   final String hostMainImageURL;
 
-  /// メンバー画像リスト
+  /// メンバーアイコンリスト
   final List<String>? _participantMainImageURLs;
 
-  /// メンバー画像リスト
+  /// メンバーアイコンリスト
   @override
   @JsonKey(name: "participantMainImageURLs")
   List<String>? get participantMainImageURLs {
@@ -451,26 +323,33 @@ class _$_Room implements _Room {
   @JsonKey(name: "address")
   final Address address;
 
-  /// お気に入りしているかどうか
-  @override
-  @JsonKey(name: "isFavorite")
-  final bool isFavorite;
-
   /// 参加人数
   @override
   @JsonKey(name: "membersNum")
   final MembersNum membersNum;
 
+  /// ステータス
+  @override
+  @JsonKey(name: "roomStatus")
+  @RoomStatusEnumConverter()
+  final RoomStatus roomStatus;
+
+  /// ステータス
+  @override
+  @JsonKey(name: "joinRequestStatus")
+  @RoomJoinRequestStatusEnumConverter()
+  final RoomJoinRequestStatus joinRequestStatus;
+
   @override
   String toString() {
-    return 'Room(id: $id, roomName: $roomName, hostMainImageURL: $hostMainImageURL, participantMainImageURLs: $participantMainImageURLs, address: $address, isFavorite: $isFavorite, membersNum: $membersNum)';
+    return 'ParticipantRoomAsGuest(id: $id, roomName: $roomName, hostMainImageURL: $hostMainImageURL, participantMainImageURLs: $participantMainImageURLs, address: $address, membersNum: $membersNum, roomStatus: $roomStatus, joinRequestStatus: $joinRequestStatus)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Room &&
+            other is _$_ParticipantRoomAsGuest &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.roomName, roomName) ||
                 other.roomName == roomName) &&
@@ -479,10 +358,12 @@ class _$_Room implements _Room {
             const DeepCollectionEquality().equals(
                 other._participantMainImageURLs, _participantMainImageURLs) &&
             (identical(other.address, address) || other.address == address) &&
-            (identical(other.isFavorite, isFavorite) ||
-                other.isFavorite == isFavorite) &&
             (identical(other.membersNum, membersNum) ||
-                other.membersNum == membersNum));
+                other.membersNum == membersNum) &&
+            (identical(other.roomStatus, roomStatus) ||
+                other.roomStatus == roomStatus) &&
+            (identical(other.joinRequestStatus, joinRequestStatus) ||
+                other.joinRequestStatus == joinRequestStatus));
   }
 
   @JsonKey(ignore: true)
@@ -494,41 +375,49 @@ class _$_Room implements _Room {
       hostMainImageURL,
       const DeepCollectionEquality().hash(_participantMainImageURLs),
       address,
-      isFavorite,
-      membersNum);
+      membersNum,
+      roomStatus,
+      joinRequestStatus);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_RoomCopyWith<_$_Room> get copyWith =>
-      __$$_RoomCopyWithImpl<_$_Room>(this, _$identity);
+  _$$_ParticipantRoomAsGuestCopyWith<_$_ParticipantRoomAsGuest> get copyWith =>
+      __$$_ParticipantRoomAsGuestCopyWithImpl<_$_ParticipantRoomAsGuest>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_RoomToJson(
+    return _$$_ParticipantRoomAsGuestToJson(
       this,
     );
   }
 }
 
-abstract class _Room implements Room {
-  const factory _Room(
-      {@JsonKey(name: "id")
-          required final String id,
-      @JsonKey(name: "roomName")
-          required final String roomName,
-      @JsonKey(name: "hostMainImageURL")
-          required final String hostMainImageURL,
-      @JsonKey(name: "participantMainImageURLs")
-          required final List<String>? participantMainImageURLs,
-      @JsonKey(name: "address")
-          required final Address address,
-      @JsonKey(name: "isFavorite")
-          required final bool isFavorite,
-      @JsonKey(name: "membersNum")
-          required final MembersNum membersNum}) = _$_Room;
+abstract class _ParticipantRoomAsGuest implements ParticipantRoomAsGuest {
+  const factory _ParticipantRoomAsGuest(
+          {@JsonKey(name: "id")
+              required final String id,
+          @JsonKey(name: "roomName")
+              required final String roomName,
+          @JsonKey(name: "hostMainImageURL")
+              required final String hostMainImageURL,
+          @JsonKey(name: "participantMainImageURLs")
+              required final List<String>? participantMainImageURLs,
+          @JsonKey(name: "address")
+              required final Address address,
+          @JsonKey(name: "membersNum")
+              required final MembersNum membersNum,
+          @JsonKey(name: "roomStatus")
+          @RoomStatusEnumConverter()
+              required final RoomStatus roomStatus,
+          @JsonKey(name: "joinRequestStatus")
+          @RoomJoinRequestStatusEnumConverter()
+              required final RoomJoinRequestStatus joinRequestStatus}) =
+      _$_ParticipantRoomAsGuest;
 
-  factory _Room.fromJson(Map<String, dynamic> json) = _$_Room.fromJson;
+  factory _ParticipantRoomAsGuest.fromJson(Map<String, dynamic> json) =
+      _$_ParticipantRoomAsGuest.fromJson;
 
   @override
 
@@ -542,12 +431,12 @@ abstract class _Room implements Room {
   String get roomName;
   @override
 
-  /// ホスト画像
+  /// ホストアイコン
   @JsonKey(name: "hostMainImageURL")
   String get hostMainImageURL;
   @override
 
-  /// メンバー画像リスト
+  /// メンバーアイコンリスト
   @JsonKey(name: "participantMainImageURLs")
   List<String>? get participantMainImageURLs;
   @override
@@ -557,15 +446,23 @@ abstract class _Room implements Room {
   Address get address;
   @override
 
-  /// お気に入りしているかどうか
-  @JsonKey(name: "isFavorite")
-  bool get isFavorite;
-  @override
-
   /// 参加人数
   @JsonKey(name: "membersNum")
   MembersNum get membersNum;
   @override
+
+  /// ステータス
+  @JsonKey(name: "roomStatus")
+  @RoomStatusEnumConverter()
+  RoomStatus get roomStatus;
+  @override
+
+  /// ステータス
+  @JsonKey(name: "joinRequestStatus")
+  @RoomJoinRequestStatusEnumConverter()
+  RoomJoinRequestStatus get joinRequestStatus;
+  @override
   @JsonKey(ignore: true)
-  _$$_RoomCopyWith<_$_Room> get copyWith => throw _privateConstructorUsedError;
+  _$$_ParticipantRoomAsGuestCopyWith<_$_ParticipantRoomAsGuest> get copyWith =>
+      throw _privateConstructorUsedError;
 }

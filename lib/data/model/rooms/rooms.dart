@@ -33,7 +33,7 @@ class Room with _$Room {
     @JsonKey(name: "participantMainImageURLs")
         required List<String>? participantMainImageURLs,
 
-    /// 居住地
+    /// 開催地
     @JsonKey(name: "address") required Address address,
 
     /// お気に入りしているかどうか

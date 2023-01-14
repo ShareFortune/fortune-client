@@ -1,7 +1,10 @@
 import 'package:dio/dio.dart';
-import 'package:fortune_client/data/model/participant/participant_rooms.dart';
+import 'package:fortune_client/data/model/participant/base/participant_rooms.dart';
+import 'package:fortune_client/data/model/participant/guest/participant_room_as_guest.dart';
+import 'package:fortune_client/data/model/participant/host/participant_room_as_host.dart';
 import 'package:fortune_client/data/model/room_detail/room_detail.dart';
 import 'package:fortune_client/data/model/rooms/rooms.dart';
+import 'package:fortune_client/util/logger/logger.dart';
 import 'package:retrofit/retrofit.dart';
 import 'package:fortune_client/data/datasource/core/annotations_headers.dart.dart';
 
@@ -31,6 +34,13 @@ abstract class RoomsDataSource {
   @GET('/rooms/host')
   @authenticatedRequest
   Future<ParticipantRooms<ParticipantRoomAsHost>> getHost({
+    @Query("nextToken") String? nextToken,
+    @Query("perPage") int? perPage,
+  });
+
+  @GET('/rooms/guest')
+  @authenticatedRequest
+  Future<ParticipantRooms<ParticipantRoomAsGuest>> getGuest({
     @Query("nextToken") String? nextToken,
     @Query("perPage") int? perPage,
   });

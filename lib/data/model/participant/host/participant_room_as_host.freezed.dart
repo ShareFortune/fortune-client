@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'participant_rooms.dart';
+part of 'participant_room_as_host.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -44,7 +44,8 @@ mixin _$ParticipantRoomAsHost {
 
   /// ステータス
   @JsonKey(name: "status")
-  String get status => throw _privateConstructorUsedError;
+  @RoomStatusEnumConverter()
+  RoomStatus get status => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -70,7 +71,8 @@ abstract class $ParticipantRoomAsHostCopyWith<$Res> {
       @JsonKey(name: "joinRequestsCount")
           int joinRequestsCount,
       @JsonKey(name: "status")
-          String status});
+      @RoomStatusEnumConverter()
+          RoomStatus status});
 
   $MembersNumCopyWith<$Res> get membersNum;
 }
@@ -120,7 +122,7 @@ class _$ParticipantRoomAsHostCopyWithImpl<$Res,
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as String,
+              as RoomStatus,
     ) as $Val);
   }
 
@@ -153,7 +155,8 @@ abstract class _$$_ParticipantRoomAsHostCopyWith<$Res>
       @JsonKey(name: "joinRequestsCount")
           int joinRequestsCount,
       @JsonKey(name: "status")
-          String status});
+      @RoomStatusEnumConverter()
+          RoomStatus status});
 
   @override
   $MembersNumCopyWith<$Res> get membersNum;
@@ -201,7 +204,7 @@ class __$$_ParticipantRoomAsHostCopyWithImpl<$Res>
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as String,
+              as RoomStatus,
     ));
   }
 }
@@ -221,6 +224,7 @@ class _$_ParticipantRoomAsHost implements _ParticipantRoomAsHost {
       @JsonKey(name: "joinRequestsCount")
           required this.joinRequestsCount,
       @JsonKey(name: "status")
+      @RoomStatusEnumConverter()
           required this.status})
       : _participantMainImageURLs = participantMainImageURLs;
 
@@ -265,7 +269,8 @@ class _$_ParticipantRoomAsHost implements _ParticipantRoomAsHost {
   /// ステータス
   @override
   @JsonKey(name: "status")
-  final String status;
+  @RoomStatusEnumConverter()
+  final RoomStatus status;
 
   @override
   String toString() {
@@ -328,7 +333,8 @@ abstract class _ParticipantRoomAsHost implements ParticipantRoomAsHost {
       @JsonKey(name: "joinRequestsCount")
           required final int joinRequestsCount,
       @JsonKey(name: "status")
-          required final String status}) = _$_ParticipantRoomAsHost;
+      @RoomStatusEnumConverter()
+          required final RoomStatus status}) = _$_ParticipantRoomAsHost;
 
   factory _ParticipantRoomAsHost.fromJson(Map<String, dynamic> json) =
       _$_ParticipantRoomAsHost.fromJson;
@@ -362,7 +368,8 @@ abstract class _ParticipantRoomAsHost implements ParticipantRoomAsHost {
 
   /// ステータス
   @JsonKey(name: "status")
-  String get status;
+  @RoomStatusEnumConverter()
+  RoomStatus get status;
   @override
   @JsonKey(ignore: true)
   _$$_ParticipantRoomAsHostCopyWith<_$_ParticipantRoomAsHost> get copyWith =>
