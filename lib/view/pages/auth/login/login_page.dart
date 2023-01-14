@@ -1,6 +1,5 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:fortune_client/view/hooks/use_router.dart';
 import 'package:fortune_client/view/pages/auth/login/components/auth_button.dart';
 import 'package:fortune_client/view/pages/auth/login/login_state.dart';
 import 'package:fortune_client/view/pages/auth/login/login_view_model.dart';
@@ -17,7 +16,6 @@ class LoginPage extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(loginViewModelProvider);
     final viewModel = ref.watch(loginViewModelProvider.notifier);
-    final router = useRouter();
 
     return state.when(
       data: (_) {
@@ -32,9 +30,7 @@ class LoginPage extends HookConsumerWidget {
                     /// DEBUG: ダミーログインAPI
                     onDoubleTap: () async {
                       final result = await viewModel.toggleDebugMode();
-                      if (result != null) {
-                        await showDebugDialog(context, result);
-                      }
+                      if (result != null) showDebugDialog(context, result);
                     },
                     child: const Text(
                       "Fortune",
@@ -48,21 +44,21 @@ class LoginPage extends HookConsumerWidget {
                   AuthButton(
                     authType: AuthType.apple,
                     onTap: () async {
-                      await viewModel.onTapLoginBtn(AuthType.apple, router);
+                      await viewModel.onTapLoginBtn(AuthType.apple);
                     },
                   ),
                   const Gap(30),
                   AuthButton(
                     authType: AuthType.google,
                     onTap: () async {
-                      await viewModel.onTapLoginBtn(AuthType.google, router);
+                      await viewModel.onTapLoginBtn(AuthType.google);
                     },
                   ),
                   const Gap(30),
                   AuthButton(
                     authType: AuthType.twitter,
                     onTap: () async {
-                      await viewModel.onTapLoginBtn(AuthType.twitter, router);
+                      await viewModel.onTapLoginBtn(AuthType.twitter);
                     },
                   ),
                 ],

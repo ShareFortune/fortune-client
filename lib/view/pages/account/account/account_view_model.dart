@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/view/pages/account/account/account_state.dart';
 import 'package:fortune_client/view/routes/app_router.gr.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -21,7 +22,7 @@ class AccountViewModel extends StateNotifier<AsyncValue<AccountState>> {
     });
   }
 
-  navigateToSettingPage(StackRouter router) {
-    router.push(const SettingsRoute());
+  navigateToSettingPage() {
+    sl<AppRouter>().push(const SettingsRoute());
   }
 }
