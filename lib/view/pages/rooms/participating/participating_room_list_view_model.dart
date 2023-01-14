@@ -43,6 +43,12 @@ class ParticipatingRoomListViewModel
     state = state.copyWith(guest: guestRooms);
   }
 
+  void showAllRooms() {}
+  void showRequestingRooms() {}
+
+  ///
+  /// 遷移処理
+  ///
   Future<void> navigateToRequestConfirmation(int id) async {
     await sl<AppRouter>().push(
       RequestConfirmationRoute(id: 0),

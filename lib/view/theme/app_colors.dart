@@ -30,7 +30,7 @@ class AppColors {
 
   factory AppColors.light() {
     return AppColors(
-      primary: const Color(0xFFEDCDC3),
+      primary: const Color(0xFFC782E4),
       primaryVariant: const Color(0xFFEDCDC3),
       onPrimary: const Color(0xFFEDCDC3),
       secondary: const Color(0xFF0078FE),

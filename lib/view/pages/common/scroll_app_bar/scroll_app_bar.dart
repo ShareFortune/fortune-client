@@ -78,10 +78,11 @@ class ScrollAppBar extends HookConsumerWidget implements PreferredSizeWidget {
     );
   }
 
-  PreferredSizeWidget _divider() {
-    return const PreferredSize(
-      preferredSize: Size(double.infinity, 1),
-      child: Divider(thickness: 1, color: Color(0xFFF3F3F3)),
+  _divider() {
+    return const Divider(
+      height: 0.1,
+      thickness: 1,
+      color: Color(0xFFF3F3F3),
     );
   }
 

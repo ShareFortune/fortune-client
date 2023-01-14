@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fortune_client/view/pages/common/scroll_app_bar/scroll_app_bar.dart';
+import 'package:fortune_client/view/pages/rooms/participating/components/participating_room_list_filter.dart';
 import 'package:fortune_client/view/pages/rooms/participating/participating_room_list_state.dart';
 import 'package:fortune_client/view/pages/rooms/participating/participating_room_list_view_model.dart';
 import 'package:fortune_client/view/widgets/other/error_widget.dart';
@@ -41,50 +42,23 @@ class ParticipatingRoomListPage extends HookConsumerWidget {
 
     return CustomScrollView(
       slivers: [
-        const ScrollAppBar(title: "参加する", isBorder: false),
+        const ScrollAppBar(title: "参加する"),
         SliverToBoxAdapter(
-          child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 30),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                const Icon(Icons.event, size: 26),
-                const Gap(10),
-                Expanded(
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(vertical: 10),
-                    decoration: const BoxDecoration(
-                      border: Border(
-                        bottom: BorderSide(width: 1, color: Color(0xFFF3F3F3)),
-                      ),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          "ルームを作成する",
-                          style: theme.textTheme.h50,
-                        ),
-                        const Icon(
-                          size: 16,
-                          Icons.arrow_forward_ios,
-                          color: Color(0xFFD9D9D9),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-            ),
+          child: ParticipatingRoomListFilter(
+            showAllRooms: viewModel.showAllRooms,
+            showRequestingRooms: viewModel.showRequestingRooms,
           ),
         ),
         SliverToBoxAdapter(
-          child: Column(
-            children: [
-              const Gap(20),
-              hostRoomListView,
-              guestRoomListView,
-            ],
+          child: Container(
+            color: theme.appColors.background2,
+            child: Column(
+              children: [
+                const Gap(20),
+                hostRoomListView,
+                guestRoomListView,
+              ],
+            ),
           ),
         ),
       ],

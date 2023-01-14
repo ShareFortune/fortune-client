@@ -138,7 +138,6 @@ class _RoomsDataSource implements RoomsDataSource {
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    logger.i(_result.data);
     final value = ParticipantRooms<ParticipantRoomAsGuest>.fromJson(
       _result.data!,
       (json) => ParticipantRoomAsGuest.fromJson(json as Map<String, dynamic>),
