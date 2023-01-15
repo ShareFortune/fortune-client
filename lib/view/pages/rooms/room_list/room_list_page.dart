@@ -27,41 +27,43 @@ class RoomListPage extends HookConsumerWidget {
       loading: () => SliverToBoxAdapter(child: loadingWidget()),
     );
 
-    return CustomScrollView(
-      slivers: [
-        const ScrollAppBar(title: "見つける", isBorder: false),
-        SliverToBoxAdapter(
-          child: Container(
-              color: theme.appColors.onBackground,
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Column(
-                children: [
-                  searchTile(
-                    theme: theme,
-                    title: "人数",
-                    value: "未設定",
-                    onTap: null,
-                  ),
-                  searchTile(
-                    theme: theme,
-                    title: "場所",
-                    value: "未設定",
-                    onTap: null,
-                  ),
-                  searchTile(
-                    theme: theme,
-                    title: "タグ",
-                    value: "未設定",
-                    onTap: () => viewModel.navigateToTagsSelection(),
-                  ),
-                ],
-              )),
-        ),
-        SliverPadding(
-          padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 20),
-          sliver: roomsWidget,
-        ),
-      ],
+    return Container(
+      color: theme.appColors.onBackground,
+      child: CustomScrollView(
+        slivers: [
+          const ScrollAppBar(title: "見つける", isBorder: false),
+          SliverToBoxAdapter(
+            child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Column(
+                  children: [
+                    searchTile(
+                      theme: theme,
+                      title: "人数",
+                      value: "未設定",
+                      onTap: null,
+                    ),
+                    searchTile(
+                      theme: theme,
+                      title: "場所",
+                      value: "未設定",
+                      onTap: null,
+                    ),
+                    searchTile(
+                      theme: theme,
+                      title: "タグ",
+                      value: "未設定",
+                      onTap: () => viewModel.navigateToTagsSelection(),
+                    ),
+                  ],
+                )),
+          ),
+          SliverPadding(
+            padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 20),
+            sliver: roomsWidget,
+          ),
+        ],
+      ),
     );
   }
 
