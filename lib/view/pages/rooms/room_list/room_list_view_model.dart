@@ -1,4 +1,4 @@
-import 'package:fortune_client/data/repository/room/room_repository.dart';
+import 'package:fortune_client/data/repository/rooms/rooms_repository.dart';
 import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/view/pages/rooms/room_list/room_list_state.dart';
 import 'package:fortune_client/view/routes/app_router.dart';
@@ -13,7 +13,7 @@ final roomListViewModelProvider =
 class RoomListViewModel extends StateNotifier<AsyncValue<RoomListState>> {
   RoomListViewModel(this.roomRepository) : super(const AsyncLoading());
 
-  final RoomRepository roomRepository;
+  final RoomsRepository roomRepository;
 
   Future<void> initialize() async => await fetchList();
 

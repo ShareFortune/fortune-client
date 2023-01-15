@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fortune_client/view/hooks/use_router.dart';
+import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/view/routes/app_router.gr.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/app_bar/back_app_bar.dart';
@@ -12,7 +12,6 @@ class SettingsPage extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = ref.watch(appThemeProvider);
-    final router = useRouter();
 
     return Scaffold(
       backgroundColor: const Color(0xFFF2F2F6),
@@ -62,7 +61,7 @@ class SettingsPage extends HookConsumerWidget {
               ),
               onPressed: () {},
               onLongPress: () {
-                router.push(const DebugRoute());
+                sl<AppRouter>().push(const DebugRoute());
               },
             ),
             const Gap(100),

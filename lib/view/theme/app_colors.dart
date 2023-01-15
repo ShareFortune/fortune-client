@@ -3,18 +3,15 @@ import 'package:flutter/material.dart';
 class AppColors {
   AppColors({
     required this.primary,
-    required this.primaryVariant,
     required this.onPrimary,
     required this.secondary,
-    required this.secondaryVariant,
     required this.onSecondary,
     required this.background,
     required this.onBackground,
-    required this.background2,
-    required this.onBackground2,
     required this.textFieldBackground,
     required this.surface,
     required this.onSurface,
+    required this.linkColor,
     required this.error,
     required this.onError,
     required this.subText1,
@@ -30,19 +27,16 @@ class AppColors {
 
   factory AppColors.light() {
     return AppColors(
-      primary: const Color(0xFFEDCDC3),
-      primaryVariant: const Color(0xFFEDCDC3),
+      primary: const Color(0xFFC782E4),
       onPrimary: const Color(0xFFEDCDC3),
-      secondary: const Color(0xFF0078FE),
-      secondaryVariant: const Color(0xFF0078FE),
+      secondary: const Color(0xFF43C6B5),
       onSecondary: const Color(0xFF0078FE),
-      background: const Color(0xFFFFFFFF),
+      background: const Color(0xFFF2F2F6),
       onBackground: const Color(0xFFFFFFFF),
-      background2: const Color(0xFFF2F2F6),
-      onBackground2: const Color(0xFFFFFFFF),
       textFieldBackground: const Color(0xFFF2F8FC),
       surface: const Color(0xFFE5E5E5),
       onSurface: const Color(0xFFE5E5E5),
+      linkColor: const Color(0xFF0078FE),
       error: const Color(0xFFB83231),
       onError: const Color(0xFFB83231),
       subText1: const Color(0xFF000000),
@@ -60,18 +54,15 @@ class AppColors {
   factory AppColors.dark() {
     return AppColors(
       primary: const Color(0xFFEDCDC3),
-      primaryVariant: const Color(0xFFEDCDC3),
       onPrimary: const Color(0xFFEDCDC3),
       secondary: const Color(0xFFA8CCC1),
-      secondaryVariant: const Color(0xFFA8CCC1),
       onSecondary: const Color(0xFFA8CCC1),
       background: const Color(0xFFFFFFFF),
       onBackground: const Color(0xFFFFFFFF),
-      background2: const Color(0xFFFFFFFF),
-      onBackground2: const Color(0xFFFFFFFF),
       textFieldBackground: const Color(0xFFFFFFFF),
       surface: const Color(0xFFE5E5E5),
       onSurface: const Color(0xFFE5E5E5),
+      linkColor: const Color(0xFF0078FE),
       error: const Color(0xFFB83231),
       onError: const Color(0xFFB83231),
       subText1: const Color(0xFF000000),
@@ -88,33 +79,32 @@ class AppColors {
 
   /// メインカラー
   final Color primary;
-  final Color primaryVariant;
   final Color onPrimary;
 
   /// サブカラー
   final Color secondary;
-  final Color secondaryVariant;
   final Color onSecondary;
 
   /// 背景
   final Color background;
   final Color onBackground;
-  final Color background2;
-  final Color onBackground2;
   final Color textFieldBackground;
 
   /// Cardなどのウィジェットの背景色
   final Color surface;
   final Color onSurface;
 
-  /// エラー
-  final Color error;
-  final Color onError;
+  /// リンク
+  final Color linkColor;
 
   /// テキスト
   final Color subText1;
   final Color subText2;
   final Color subText3;
+
+  /// エラー
+  final Color error;
+  final Color onError;
 
   /// アイコンボタンカラー
   final Color iconBtn;

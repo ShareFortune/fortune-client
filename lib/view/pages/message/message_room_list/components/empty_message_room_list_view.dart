@@ -22,7 +22,7 @@ class EmptyMessageRoomListView extends HookConsumerWidget {
     final textWidget = Text("参加中のメッセージルームが存在しません。", style: textStyle);
 
     return Container(
-      color: theme.appColors.background2,
+      // color: theme.appColors.background2,
       child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

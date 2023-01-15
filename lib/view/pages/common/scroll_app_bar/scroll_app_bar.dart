@@ -44,7 +44,7 @@ class ScrollAppBar extends HookConsumerWidget implements PreferredSizeWidget {
     Widget bottomWidget = isBorder ? _divider() : Container();
 
     return SliverAppBar(
-      backgroundColor: Colors.transparent,
+      backgroundColor: theme.appColors.onBackground,
       expandedHeight: hieght,
       flexibleSpace: FlexibleSpaceBar(
         centerTitle: false,
@@ -64,7 +64,6 @@ class ScrollAppBar extends HookConsumerWidget implements PreferredSizeWidget {
           ],
         ),
       ),
-      // bottom: bottomWidget,
     );
   }
 
@@ -78,10 +77,11 @@ class ScrollAppBar extends HookConsumerWidget implements PreferredSizeWidget {
     );
   }
 
-  PreferredSizeWidget _divider() {
-    return const PreferredSize(
-      preferredSize: Size(double.infinity, 1),
-      child: Divider(thickness: 1, color: Color(0xFFF3F3F3)),
+  _divider() {
+    return const Divider(
+      height: 0.1,
+      thickness: 1,
+      color: Color(0xFFF3F3F3),
     );
   }
 

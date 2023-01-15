@@ -16,8 +16,8 @@ import 'package:fortune_client/data/repository/debug/debug_repository_impl.dart'
 import 'package:fortune_client/data/repository/message/message_repository_impl.dart';
 import 'package:fortune_client/data/repository/profile/profile_repository.dart';
 import 'package:fortune_client/data/repository/profile/profile_repository_impl.dart';
-import 'package:fortune_client/data/repository/room/room_repository.dart';
-import 'package:fortune_client/data/repository/room/room_repository_impl.dart';
+import 'package:fortune_client/data/repository/rooms/rooms_repository.dart';
+import 'package:fortune_client/data/repository/rooms/rooms_repository_impl.dart';
 import 'package:fortune_client/data/repository/tags/tags_repository.dart';
 import 'package:fortune_client/data/repository/tags/tags_repository_impl.dart';
 import 'package:fortune_client/data/repository/users/users_repository.dart';
@@ -55,7 +55,7 @@ Future<void> initDependencies(bool isRelease) async {
   sl.registerLazySingleton(() => MessageRepositoryImpl());
   sl.registerLazySingleton<ProfileRepository>(
       () => ProfileRepositoryImpl(sl(), sl()));
-  sl.registerLazySingleton<RoomRepository>(() => RoomRepositoryImpl(sl()));
+  sl.registerLazySingleton<RoomsRepository>(() => RoomsRepositoryImpl(sl()));
   sl.registerLazySingleton<DebugRepository>(() => DebugRepositoryImpl(sl()));
   sl.registerLazySingleton<TagsRepository>(() => TagsRepositoryImpl(sl()));
 

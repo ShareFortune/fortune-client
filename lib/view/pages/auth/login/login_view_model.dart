@@ -30,14 +30,14 @@ class LoginViewModel extends StateNotifier<AsyncValue<void>> {
     return !isDummyRoginApi;
   }
 
-  Future<void> onTapLoginBtn(AuthType type, StackRouter router) async {
+  Future<void> onTapLoginBtn(AuthType type) async {
     /// DEBUG
     if (await _debugRepository.getDummyRoginApi()) {
-      return await pushHome(router);
+      return await navigateToHome();
     }
     final result = await loginWithSns(type);
     if (result && _authRepository.isLogin) {
-      await pushHome(router);
+      await navigateToHome();
     }
   }
 
@@ -57,7 +57,7 @@ class LoginViewModel extends StateNotifier<AsyncValue<void>> {
     return state is AsyncData;
   }
 
-  Future pushHome(StackRouter router) async {
-    await router.push(const HomeRouter());
+  Future navigateToHome() async {
+    await sl<AppRouter>().push(const HomeRouter());
   }
 }

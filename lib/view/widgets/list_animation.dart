@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import 'package:fortune_client/view/theme/app_theme.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class ListAnimationWidget<T> extends StatelessWidget {
+class ListAnimationWidget<T> extends HookConsumerWidget {
   const ListAnimationWidget({
     super.key,
     required this.items,
@@ -14,7 +16,9 @@ class ListAnimationWidget<T> extends StatelessWidget {
   final double spacing;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final theme = ref.watch(appThemeProvider);
+
     return AnimationLimiter(
       child: SliverList(
         delegate: SliverChildBuilderDelegate(
@@ -26,7 +30,7 @@ class ListAnimationWidget<T> extends StatelessWidget {
               child: SlideAnimation(
                 verticalOffset: 50.0,
                 child: FadeInAnimation(
-                  child: _content(container(items[index])),
+                  child: _content(theme, container(items[index])),
                 ),
               ),
             );
@@ -36,8 +40,9 @@ class ListAnimationWidget<T> extends StatelessWidget {
     );
   }
 
-  _content(Widget child) {
+  _content(AppTheme theme, Widget child) {
     return Container(
+      color: theme.appColors.onBackground,
       padding: EdgeInsets.only(bottom: spacing),
       child: child,
     );
