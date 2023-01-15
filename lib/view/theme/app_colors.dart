@@ -31,7 +31,7 @@ class AppColors {
       primary: const Color(0xFFC782E4),
       primaryVariant: const Color(0xFFEDCDC3),
       onPrimary: const Color(0xFFEDCDC3),
-      secondary: const Color(0xFF0078FE),
+      secondary: const Color(0xFF43C6B5),
       secondaryVariant: const Color(0xFF0078FE),
       onSecondary: const Color(0xFF0078FE),
       background: const Color(0xFFF2F2F6),

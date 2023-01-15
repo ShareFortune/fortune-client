@@ -139,8 +139,8 @@ class RoomsRepositoryImpl implements RoomsRepository {
             maxWomenNum: 2,
             womenNum: 2,
           ),
-          roomStatus: RoomStatus.pending,
-          joinRequestStatus: RoomJoinRequestStatus.pending,
+          roomStatus: RoomStatus.opend,
+          joinRequestStatus: RoomJoinRequestStatus.accepted,
         ),
         ParticipantRoomAsGuest(
           id: "id",

@@ -133,6 +133,7 @@ class ParticipatingRoomCard extends HookConsumerWidget {
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
         backgroundColor: color,
+        minimumSize: Size.zero,
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
       ),
       child: Text(title),
