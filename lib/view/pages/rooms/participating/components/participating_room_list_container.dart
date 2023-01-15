@@ -1,3 +1,5 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:flutter/material.dart';
 import 'package:fortune_client/view/pages/rooms/participating/components/participating_room_card.dart';
 import 'package:fortune_client/view/pages/rooms/participating/participating_room_list_state.dart';
@@ -7,15 +9,45 @@ import 'package:fortune_client/view/widgets/other/loading_widget.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class ParticipatingRoomListContainer extends HookConsumerWidget {
-  const ParticipatingRoomListContainer({
-    super.key,
-    required this.title,
-    required this.rooms,
-  });
+enum _RoomType {
+  host,
+  guest,
+}
 
-  final String title;
-  final AsyncValue<List<ParticipatingRoomListStateItem>> rooms;
+extension RoomTypeEx on _RoomType {
+  static final names = {
+    _RoomType.host: 'ホストで参加',
+    _RoomType.guest: 'ゲストで参加',
+  };
+
+  static final adviceTexts = {
+    _RoomType.host: '開催中のルームが存在しません。',
+    _RoomType.guest: '参加中のルームが存在しません。',
+  };
+
+  static final navigationTexts = {
+    _RoomType.host: 'ルームを作ってみよう！',
+    _RoomType.guest: '参加するルームを見つけよう！',
+  };
+
+  String get name => names[this]!;
+  String get navigationText => navigationTexts[this]!;
+  String get adviceText => adviceTexts[this]!;
+}
+
+class ParticipatingRoomListContainer extends HookConsumerWidget {
+  const ParticipatingRoomListContainer._(this.roomType, this.roomsAsync);
+
+  final _RoomType roomType;
+  final AsyncValue<List<ParticipatingRoomListStateItem>> roomsAsync;
+
+  factory ParticipatingRoomListContainer.host(rooms) {
+    return ParticipatingRoomListContainer._(_RoomType.host, rooms);
+  }
+
+  factory ParticipatingRoomListContainer.guest(rooms) {
+    return ParticipatingRoomListContainer._(_RoomType.guest, rooms);
+  }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -30,14 +62,19 @@ class ParticipatingRoomListContainer extends HookConsumerWidget {
     /// 全て表示ボタン
     late Widget showAllButtonAsync;
 
-    rooms.maybeWhen(
+    roomsAsync.maybeWhen(
       data: (data) {
-        titleWidgetAsync = _titleWidget(theme, title, roomsNum: data.length);
-        roomListContainerAsync = _roomListContainer(data);
-        showAllButtonAsync = _showAllButton(theme, null);
+        titleWidgetAsync = _titleWidget(theme, roomType.name, data.length);
+        if (data.isEmpty) {
+          roomListContainerAsync = _roomContainerWithNoRooms(theme);
+          showAllButtonAsync = _showAllButton(theme, null);
+        } else {
+          roomListContainerAsync = _roomListContainer(data);
+          showAllButtonAsync = _showAllButton(theme, () {});
+        }
       },
       orElse: () {
-        titleWidgetAsync = _titleWidget(theme, title);
+        titleWidgetAsync = _titleWidget(theme, roomType.name, 0);
         roomListContainerAsync = loadingWidget();
         showAllButtonAsync = _showAllButton(theme, null);
       },
@@ -64,7 +101,7 @@ class ParticipatingRoomListContainer extends HookConsumerWidget {
     );
   }
 
-  _titleWidget(AppTheme theme, String title, {int? roomsNum}) {
+  _titleWidget(AppTheme theme, String title, int roomsNum) {
     /// タイトルスタイル
     final textStyle = theme.textTheme.h30.paint(theme.appColors.subText1);
 
@@ -80,7 +117,7 @@ class ParticipatingRoomListContainer extends HookConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(title, style: textStyle),
-          Text(roomsNum.toString()),
+          if (roomsNum > 0) Text(roomsNum.toString()),
         ],
       ),
     );
@@ -88,7 +125,9 @@ class ParticipatingRoomListContainer extends HookConsumerWidget {
 
   _showAllButton(AppTheme theme, VoidCallback? onTap) {
     /// タイトルスタイル
-    final textStyle = theme.textTheme.h30.paint(theme.appColors.subText1);
+    final textColor =
+        onTap != null ? theme.appColors.linkColor : theme.appColors.subText3;
+    final textStyle = theme.textTheme.h30.paint(textColor);
 
     return Container(
       height: 50,
@@ -98,16 +137,19 @@ class ParticipatingRoomListContainer extends HookConsumerWidget {
           top: BorderSide(width: 1, color: theme.appColors.border1),
         ),
       ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text("すべて表示", style: textStyle),
-          const Icon(
-            size: 16,
-            Icons.arrow_forward_ios,
-            color: Color(0xFFD9D9D9),
-          ),
-        ],
+      child: InkWell(
+        onTap: onTap,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text("すべて表示", style: textStyle),
+            const Icon(
+              size: 16,
+              Icons.arrow_forward_ios,
+              color: Color(0xFFD9D9D9),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -125,6 +167,29 @@ class ParticipatingRoomListContainer extends HookConsumerWidget {
             ]);
           }).toList(),
         ),
+      ),
+    );
+  }
+
+  _roomContainerWithNoRooms(AppTheme theme) {
+    /// アドバイステキスト
+    final adviceTextColor = theme.appColors.subText3;
+    final adviceTextStyle = theme.textTheme.h30.paint(adviceTextColor);
+
+    /// ナビゲーションテキスト
+    final navigationTextColor = theme.appColors.primary;
+    final navigationTextStyle = theme.textTheme.h30.paint(navigationTextColor);
+
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(roomType.adviceText, style: adviceTextStyle),
+          TextButton(
+            onPressed: () {},
+            child: Text(roomType.navigationText, style: navigationTextStyle),
+          ),
+        ],
       ),
     );
   }

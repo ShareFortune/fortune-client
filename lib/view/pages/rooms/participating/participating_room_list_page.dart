@@ -33,15 +33,9 @@ class ParticipatingRoomListPage extends HookConsumerWidget {
           child: Column(
             children: [
               const Gap(10),
-              ParticipatingRoomListContainer(
-                title: "ホストで参加",
-                rooms: state.host,
-              ),
+              ParticipatingRoomListContainer.host(state.host),
               const Gap(10),
-              ParticipatingRoomListContainer(
-                title: "ゲストで参加",
-                rooms: state.guest,
-              ),
+              ParticipatingRoomListContainer.guest(state.guest),
               const Gap(10),
             ],
           ),
