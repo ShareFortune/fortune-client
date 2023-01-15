@@ -3,6 +3,7 @@ import 'package:fortune_client/view/pages/rooms/participating/components/partici
 import 'package:fortune_client/view/pages/rooms/participating/participating_room_list_state.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
+import 'package:fortune_client/view/widgets/other/loading_widget.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -37,7 +38,7 @@ class ParticipatingRoomListContainer extends HookConsumerWidget {
       },
       orElse: () {
         titleWidgetAsync = _titleWidget(theme, title);
-        roomListContainerAsync = _roomListContainerLoading();
+        roomListContainerAsync = loadingWidget();
         showAllButtonAsync = _showAllButton(theme, null);
       },
     );
@@ -51,7 +52,10 @@ class ParticipatingRoomListContainer extends HookConsumerWidget {
           titleWidgetAsync,
 
           /// ルームリスト
-          roomListContainerAsync,
+          SizedBox(
+            height: 250,
+            child: roomListContainerAsync,
+          ),
 
           /// 全て表示
           showAllButtonAsync,
@@ -123,9 +127,5 @@ class ParticipatingRoomListContainer extends HookConsumerWidget {
         ),
       ),
     );
-  }
-
-  _roomListContainerLoading() {
-    return Container();
   }
 }

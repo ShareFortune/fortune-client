@@ -60,6 +60,8 @@ class RoomsRepositoryImpl implements RoomsRepository {
       // final result = await _roomsDataSource.getHost(perPage: 10);
       // return result.rooms;
 
+      await Future.delayed(const Duration(seconds: 3));
+
       return [
         ParticipantRoomAsHost(
           id: "id",
@@ -102,6 +104,8 @@ class RoomsRepositoryImpl implements RoomsRepository {
       /// 本番
       // final result = await _roomsDataSource.getGuest(perPage: 10);
       // return result.rooms;
+
+      await Future.delayed(const Duration(seconds: 5));
 
       return [
         ParticipantRoomAsGuest(
