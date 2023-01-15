@@ -10,8 +10,6 @@ class AppColors {
     required this.onSecondary,
     required this.background,
     required this.onBackground,
-    required this.background2,
-    required this.onBackground2,
     required this.textFieldBackground,
     required this.surface,
     required this.onSurface,
@@ -36,10 +34,8 @@ class AppColors {
       secondary: const Color(0xFF0078FE),
       secondaryVariant: const Color(0xFF0078FE),
       onSecondary: const Color(0xFF0078FE),
-      background: const Color(0xFFFFFFFF),
+      background: const Color(0xFFF2F2F6),
       onBackground: const Color(0xFFFFFFFF),
-      background2: const Color(0xFFF2F2F6),
-      onBackground2: const Color(0xFFFFFFFF),
       textFieldBackground: const Color(0xFFF2F8FC),
       surface: const Color(0xFFE5E5E5),
       onSurface: const Color(0xFFE5E5E5),
@@ -67,8 +63,6 @@ class AppColors {
       onSecondary: const Color(0xFFA8CCC1),
       background: const Color(0xFFFFFFFF),
       onBackground: const Color(0xFFFFFFFF),
-      background2: const Color(0xFFFFFFFF),
-      onBackground2: const Color(0xFFFFFFFF),
       textFieldBackground: const Color(0xFFFFFFFF),
       surface: const Color(0xFFE5E5E5),
       onSurface: const Color(0xFFE5E5E5),
@@ -99,8 +93,8 @@ class AppColors {
   /// 背景
   final Color background;
   final Color onBackground;
-  final Color background2;
-  final Color onBackground2;
+  // final Color background2;
+  // final Color onBackground2;
   final Color textFieldBackground;
 
   /// Cardなどのウィジェットの背景色

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fortune_client/gen/assets.gen.dart';
+import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class ParticipatingRoomListFilter extends HookConsumerWidget {
@@ -18,6 +19,8 @@ class ParticipatingRoomListFilter extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final theme = ref.watch(appThemeProvider);
+
     /// 全て表示をクリック
     onPressedShowAllRooms() {
       showAllRooms();
@@ -32,6 +35,7 @@ class ParticipatingRoomListFilter extends HookConsumerWidget {
 
     return Container(
       height: 50,
+      color: theme.appColors.onBackground,
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

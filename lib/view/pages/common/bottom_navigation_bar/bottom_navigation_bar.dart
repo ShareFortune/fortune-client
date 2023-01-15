@@ -26,7 +26,7 @@ class MyBottomNavigationBar extends HookConsumerWidget {
             tabsRouter.setActiveIndex(index);
           },
           elevation: 0,
-          backgroundColor: Colors.transparent,
+          backgroundColor: theme.appColors.onBackground,
           selectedLabelStyle: theme.textTheme.h10,
           unselectedLabelStyle: theme.textTheme.h10,
           selectedItemColor: theme.appColors.iconBtn,

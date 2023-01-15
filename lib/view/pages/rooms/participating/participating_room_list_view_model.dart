@@ -49,7 +49,7 @@ class ParticipatingRoomListViewModel
   ///
   /// 遷移処理
   ///
-  Future<void> navigateToRequestConfirmation(int id) async {
+  Future<void> navigateToRequestConfirmation(String id) async {
     await sl<AppRouter>().push(
       RequestConfirmationRoute(id: 0),
       onFailure: (failure) {

@@ -57,9 +57,37 @@ class RoomsRepositoryImpl implements RoomsRepository {
   Future<List<ParticipantRoomAsHost>> getRoomsToParticipateAsHost() async {
     try {
       logger.i("$runtimeType getRoomsToParticipateAsHost");
-      final result = await _roomsDataSource.getHost(perPage: 10);
-      logger.i(result.rooms);
-      return result.rooms;
+      // final result = await _roomsDataSource.getHost(perPage: 10);
+      // return result.rooms;
+
+      return [
+        ParticipantRoomAsHost(
+          id: "id",
+          roomName: "渋谷で飲み会しませんか？",
+          participantMainImageURLs: ["", "", ""],
+          membersNum: MembersNum(
+            maxMenNum: 2,
+            menNum: 1,
+            maxWomenNum: 2,
+            womenNum: 0,
+          ),
+          status: RoomStatus.pending,
+          joinRequestsCount: 3,
+        ),
+        ParticipantRoomAsHost(
+          id: "id",
+          roomName: "映画見る会",
+          participantMainImageURLs: ["", ""],
+          membersNum: MembersNum(
+            maxMenNum: 2,
+            menNum: 1,
+            maxWomenNum: 2,
+            womenNum: 2,
+          ),
+          status: RoomStatus.pending,
+          joinRequestsCount: 3,
+        ),
+      ];
     } catch (e) {
       logger.e(e);
       rethrow;
