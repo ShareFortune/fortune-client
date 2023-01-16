@@ -22,25 +22,48 @@ Profile _$ProfileFromJson(Map<String, dynamic> json) {
 mixin _$Profile {
   @JsonKey(name: "id")
   String get id => throw _privateConstructorUsedError;
+
+  /// 名前
   @JsonKey(name: "username")
-  String get username => throw _privateConstructorUsedError; // 名前
+  String get username => throw _privateConstructorUsedError;
+
+  /// ニックネーム
   @JsonKey(name: "name")
-  String get name => throw _privateConstructorUsedError; // ニックネーム
+  String get name => throw _privateConstructorUsedError;
+
+  /// 性別
   @JsonKey(name: "gender")
-  String get gender => throw _privateConstructorUsedError; // 性別
+  @GenderConverter()
+  Gender get gender => throw _privateConstructorUsedError;
+
+  /// 身長
   @JsonKey(name: "height")
-  int get height => throw _privateConstructorUsedError; // 身長
+  int get height => throw _privateConstructorUsedError;
+
+  /// お酒をよく飲むか
   @JsonKey(name: "drinkFrequency")
-  String get drinkFrequency => throw _privateConstructorUsedError; // お酒をよく飲むか
+  @DrinkFrequencyConverter()
+  DrinkFrequency get drinkFrequency => throw _privateConstructorUsedError;
+
+  /// タバコをよく吸うか
   @JsonKey(name: "cigaretteFrequency")
-  String get cigaretteFrequency =>
-      throw _privateConstructorUsedError; // タバコをよく吸うか
+  @CigaretteFrequencyConverter()
+  CigaretteFrequency get cigaretteFrequency =>
+      throw _privateConstructorUsedError;
+
+  /// 自己紹介文
   @JsonKey(name: "selfIntroduction")
-  String get selfIntroduction => throw _privateConstructorUsedError; // 自己紹介文
+  String get selfIntroduction => throw _privateConstructorUsedError;
+
+  /// 居住地
   @JsonKey(name: "address")
-  Address get address => throw _privateConstructorUsedError; // 居住地
+  Address get address => throw _privateConstructorUsedError;
+
+  /// 居住地
   @JsonKey(name: "tags")
-  List<Tag> get tags => throw _privateConstructorUsedError; // 居住地
+  List<Tag> get tags => throw _privateConstructorUsedError;
+
+  /// プロフィール画像
   @JsonKey(name: "mainImageURL")
   String get mainImageURL => throw _privateConstructorUsedError;
 
@@ -55,17 +78,31 @@ abstract class $ProfileCopyWith<$Res> {
       _$ProfileCopyWithImpl<$Res, Profile>;
   @useResult
   $Res call(
-      {@JsonKey(name: "id") String id,
-      @JsonKey(name: "username") String username,
-      @JsonKey(name: "name") String name,
-      @JsonKey(name: "gender") String gender,
-      @JsonKey(name: "height") int height,
-      @JsonKey(name: "drinkFrequency") String drinkFrequency,
-      @JsonKey(name: "cigaretteFrequency") String cigaretteFrequency,
-      @JsonKey(name: "selfIntroduction") String selfIntroduction,
-      @JsonKey(name: "address") Address address,
-      @JsonKey(name: "tags") List<Tag> tags,
-      @JsonKey(name: "mainImageURL") String mainImageURL});
+      {@JsonKey(name: "id")
+          String id,
+      @JsonKey(name: "username")
+          String username,
+      @JsonKey(name: "name")
+          String name,
+      @JsonKey(name: "gender")
+      @GenderConverter()
+          Gender gender,
+      @JsonKey(name: "height")
+          int height,
+      @JsonKey(name: "drinkFrequency")
+      @DrinkFrequencyConverter()
+          DrinkFrequency drinkFrequency,
+      @JsonKey(name: "cigaretteFrequency")
+      @CigaretteFrequencyConverter()
+          CigaretteFrequency cigaretteFrequency,
+      @JsonKey(name: "selfIntroduction")
+          String selfIntroduction,
+      @JsonKey(name: "address")
+          Address address,
+      @JsonKey(name: "tags")
+          List<Tag> tags,
+      @JsonKey(name: "mainImageURL")
+          String mainImageURL});
 
   $AddressCopyWith<$Res> get address;
 }
@@ -111,7 +148,7 @@ class _$ProfileCopyWithImpl<$Res, $Val extends Profile>
       gender: null == gender
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Gender,
       height: null == height
           ? _value.height
           : height // ignore: cast_nullable_to_non_nullable
@@ -119,11 +156,11 @@ class _$ProfileCopyWithImpl<$Res, $Val extends Profile>
       drinkFrequency: null == drinkFrequency
           ? _value.drinkFrequency
           : drinkFrequency // ignore: cast_nullable_to_non_nullable
-              as String,
+              as DrinkFrequency,
       cigaretteFrequency: null == cigaretteFrequency
           ? _value.cigaretteFrequency
           : cigaretteFrequency // ignore: cast_nullable_to_non_nullable
-              as String,
+              as CigaretteFrequency,
       selfIntroduction: null == selfIntroduction
           ? _value.selfIntroduction
           : selfIntroduction // ignore: cast_nullable_to_non_nullable
@@ -160,17 +197,31 @@ abstract class _$$_ProfileCopyWith<$Res> implements $ProfileCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: "id") String id,
-      @JsonKey(name: "username") String username,
-      @JsonKey(name: "name") String name,
-      @JsonKey(name: "gender") String gender,
-      @JsonKey(name: "height") int height,
-      @JsonKey(name: "drinkFrequency") String drinkFrequency,
-      @JsonKey(name: "cigaretteFrequency") String cigaretteFrequency,
-      @JsonKey(name: "selfIntroduction") String selfIntroduction,
-      @JsonKey(name: "address") Address address,
-      @JsonKey(name: "tags") List<Tag> tags,
-      @JsonKey(name: "mainImageURL") String mainImageURL});
+      {@JsonKey(name: "id")
+          String id,
+      @JsonKey(name: "username")
+          String username,
+      @JsonKey(name: "name")
+          String name,
+      @JsonKey(name: "gender")
+      @GenderConverter()
+          Gender gender,
+      @JsonKey(name: "height")
+          int height,
+      @JsonKey(name: "drinkFrequency")
+      @DrinkFrequencyConverter()
+          DrinkFrequency drinkFrequency,
+      @JsonKey(name: "cigaretteFrequency")
+      @CigaretteFrequencyConverter()
+          CigaretteFrequency cigaretteFrequency,
+      @JsonKey(name: "selfIntroduction")
+          String selfIntroduction,
+      @JsonKey(name: "address")
+          Address address,
+      @JsonKey(name: "tags")
+          List<Tag> tags,
+      @JsonKey(name: "mainImageURL")
+          String mainImageURL});
 
   @override
   $AddressCopyWith<$Res> get address;
@@ -214,7 +265,7 @@ class __$$_ProfileCopyWithImpl<$Res>
       gender: null == gender
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Gender,
       height: null == height
           ? _value.height
           : height // ignore: cast_nullable_to_non_nullable
@@ -222,11 +273,11 @@ class __$$_ProfileCopyWithImpl<$Res>
       drinkFrequency: null == drinkFrequency
           ? _value.drinkFrequency
           : drinkFrequency // ignore: cast_nullable_to_non_nullable
-              as String,
+              as DrinkFrequency,
       cigaretteFrequency: null == cigaretteFrequency
           ? _value.cigaretteFrequency
           : cigaretteFrequency // ignore: cast_nullable_to_non_nullable
-              as String,
+              as CigaretteFrequency,
       selfIntroduction: null == selfIntroduction
           ? _value.selfIntroduction
           : selfIntroduction // ignore: cast_nullable_to_non_nullable
@@ -251,17 +302,31 @@ class __$$_ProfileCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_Profile implements _Profile {
   _$_Profile(
-      {@JsonKey(name: "id") required this.id,
-      @JsonKey(name: "username") required this.username,
-      @JsonKey(name: "name") required this.name,
-      @JsonKey(name: "gender") required this.gender,
-      @JsonKey(name: "height") required this.height,
-      @JsonKey(name: "drinkFrequency") required this.drinkFrequency,
-      @JsonKey(name: "cigaretteFrequency") required this.cigaretteFrequency,
-      @JsonKey(name: "selfIntroduction") required this.selfIntroduction,
-      @JsonKey(name: "address") required this.address,
-      @JsonKey(name: "tags") required final List<Tag> tags,
-      @JsonKey(name: "mainImageURL") required this.mainImageURL})
+      {@JsonKey(name: "id")
+          required this.id,
+      @JsonKey(name: "username")
+          required this.username,
+      @JsonKey(name: "name")
+          required this.name,
+      @JsonKey(name: "gender")
+      @GenderConverter()
+          required this.gender,
+      @JsonKey(name: "height")
+          required this.height,
+      @JsonKey(name: "drinkFrequency")
+      @DrinkFrequencyConverter()
+          required this.drinkFrequency,
+      @JsonKey(name: "cigaretteFrequency")
+      @CigaretteFrequencyConverter()
+          required this.cigaretteFrequency,
+      @JsonKey(name: "selfIntroduction")
+          required this.selfIntroduction,
+      @JsonKey(name: "address")
+          required this.address,
+      @JsonKey(name: "tags")
+          required final List<Tag> tags,
+      @JsonKey(name: "mainImageURL")
+          required this.mainImageURL})
       : _tags = tags;
 
   factory _$_Profile.fromJson(Map<String, dynamic> json) =>
@@ -270,40 +335,54 @@ class _$_Profile implements _Profile {
   @override
   @JsonKey(name: "id")
   final String id;
+
+  /// 名前
   @override
   @JsonKey(name: "username")
   final String username;
-// 名前
+
+  /// ニックネーム
   @override
   @JsonKey(name: "name")
   final String name;
-// ニックネーム
+
+  /// 性別
   @override
   @JsonKey(name: "gender")
-  final String gender;
-// 性別
+  @GenderConverter()
+  final Gender gender;
+
+  /// 身長
   @override
   @JsonKey(name: "height")
   final int height;
-// 身長
+
+  /// お酒をよく飲むか
   @override
   @JsonKey(name: "drinkFrequency")
-  final String drinkFrequency;
-// お酒をよく飲むか
+  @DrinkFrequencyConverter()
+  final DrinkFrequency drinkFrequency;
+
+  /// タバコをよく吸うか
   @override
   @JsonKey(name: "cigaretteFrequency")
-  final String cigaretteFrequency;
-// タバコをよく吸うか
+  @CigaretteFrequencyConverter()
+  final CigaretteFrequency cigaretteFrequency;
+
+  /// 自己紹介文
   @override
   @JsonKey(name: "selfIntroduction")
   final String selfIntroduction;
-// 自己紹介文
+
+  /// 居住地
   @override
   @JsonKey(name: "address")
   final Address address;
-// 居住地
+
+  /// 居住地
   final List<Tag> _tags;
-// 居住地
+
+  /// 居住地
   @override
   @JsonKey(name: "tags")
   List<Tag> get tags {
@@ -312,7 +391,7 @@ class _$_Profile implements _Profile {
     return EqualUnmodifiableListView(_tags);
   }
 
-// 居住地
+  /// プロフィール画像
   @override
   @JsonKey(name: "mainImageURL")
   final String mainImageURL;
@@ -384,13 +463,16 @@ abstract class _Profile implements Profile {
       @JsonKey(name: "name")
           required final String name,
       @JsonKey(name: "gender")
-          required final String gender,
+      @GenderConverter()
+          required final Gender gender,
       @JsonKey(name: "height")
           required final int height,
       @JsonKey(name: "drinkFrequency")
-          required final String drinkFrequency,
+      @DrinkFrequencyConverter()
+          required final DrinkFrequency drinkFrequency,
       @JsonKey(name: "cigaretteFrequency")
-          required final String cigaretteFrequency,
+      @CigaretteFrequencyConverter()
+          required final CigaretteFrequency cigaretteFrequency,
       @JsonKey(name: "selfIntroduction")
           required final String selfIntroduction,
       @JsonKey(name: "address")
@@ -406,33 +488,56 @@ abstract class _Profile implements Profile {
   @JsonKey(name: "id")
   String get id;
   @override
+
+  /// 名前
   @JsonKey(name: "username")
   String get username;
-  @override // 名前
+  @override
+
+  /// ニックネーム
   @JsonKey(name: "name")
   String get name;
-  @override // ニックネーム
+  @override
+
+  /// 性別
   @JsonKey(name: "gender")
-  String get gender;
-  @override // 性別
+  @GenderConverter()
+  Gender get gender;
+  @override
+
+  /// 身長
   @JsonKey(name: "height")
   int get height;
-  @override // 身長
+  @override
+
+  /// お酒をよく飲むか
   @JsonKey(name: "drinkFrequency")
-  String get drinkFrequency;
-  @override // お酒をよく飲むか
+  @DrinkFrequencyConverter()
+  DrinkFrequency get drinkFrequency;
+  @override
+
+  /// タバコをよく吸うか
   @JsonKey(name: "cigaretteFrequency")
-  String get cigaretteFrequency;
-  @override // タバコをよく吸うか
+  @CigaretteFrequencyConverter()
+  CigaretteFrequency get cigaretteFrequency;
+  @override
+
+  /// 自己紹介文
   @JsonKey(name: "selfIntroduction")
   String get selfIntroduction;
-  @override // 自己紹介文
+  @override
+
+  /// 居住地
   @JsonKey(name: "address")
   Address get address;
-  @override // 居住地
+  @override
+
+  /// 居住地
   @JsonKey(name: "tags")
   List<Tag> get tags;
-  @override // 居住地
+  @override
+
+  /// プロフィール画像
   @JsonKey(name: "mainImageURL")
   String get mainImageURL;
   @override

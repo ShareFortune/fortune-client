@@ -1,4 +1,4 @@
-import 'package:fortune_client/data/model/enum/gender_type.dart';
+import 'package:fortune_client/data/model/enum/gender.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'detailed_profile_entry_state.freezed.dart';
@@ -8,7 +8,7 @@ class DetailedProfileEntryState with _$DetailedProfileEntryState {
   const DetailedProfileEntryState._();
   const factory DetailedProfileEntryState({
     /// 性別
-    GenderType? gender,
+    Gender? gender,
 
     /// 身長
     int? height,

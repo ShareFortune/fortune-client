@@ -1,3 +1,6 @@
+import 'package:fortune_client/data/model/enum/cigarette_frequency.dart';
+import 'package:fortune_client/data/model/enum/drink_frequency.dart';
+import 'package:fortune_client/data/model/enum/gender.dart';
 import 'package:fortune_client/data/model/profile/profile.dart';
 import 'package:fortune_client/data/model/tag/tag.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -21,10 +24,10 @@ class MyPageState with _$MyPageState {
   static from(Profile profile) {
     return MyPageState(
       name: profile.name,
-      gender: profile.gender,
+      gender: profile.gender.text,
       height: profile.height,
-      drinkFrequency: profile.drinkFrequency,
-      cigaretteFrequency: profile.cigaretteFrequency,
+      drinkFrequency: profile.drinkFrequency.text,
+      cigaretteFrequency: profile.cigaretteFrequency.text,
       selfIntroduction: profile.selfIntroduction,
       adress: profile.address.text,
       tags: profile.tags,

@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:fortune_client/data/model/profile/profile.dart';
-import 'package:fortune_client/data/model/enum/gender_type.dart';
+import 'package:fortune_client/data/model/enum/gender.dart';
 
 abstract class ProfileRepository {
   /// 作成済みかどうか
@@ -10,7 +10,7 @@ abstract class ProfileRepository {
   /// 作成
   Future<bool> create({
     required String name,
-    required GenderType gender,
+    required Gender gender,
     required int addressId,
     required int? height,
     required String? drinkFrequency,

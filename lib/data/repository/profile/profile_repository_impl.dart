@@ -5,7 +5,7 @@ import 'package:fortune_client/data/datasource/remote/go/profile/profile_data_so
 import 'package:fortune_client/data/model/form/create_profile_form/create_profile_form.dart';
 import 'package:fortune_client/data/model/profile/profile.dart';
 import 'package:fortune_client/data/repository/profile/profile_repository.dart';
-import 'package:fortune_client/data/model/enum/gender_type.dart';
+import 'package:fortune_client/data/model/enum/gender.dart';
 import 'package:fortune_client/util/logger/logger.dart';
 import 'package:fortune_client/util/storage/app_pref_key.dart';
 
@@ -43,7 +43,7 @@ class ProfileRepositoryImpl implements ProfileRepository {
   @override
   Future<bool> create({
     required String name,
-    required GenderType gender,
+    required Gender gender,
     required int addressId,
     int? height,
     String? drinkFrequency,
@@ -64,7 +64,7 @@ class ProfileRepositoryImpl implements ProfileRepository {
       /// 作成フォーム
       final profileForm = ProfileForm(
         name: name,
-        gender: gender.sendValue,
+        gender: gender.rawValue,
         addressId: 1,
         images: profileFormImage.toJson(),
         height: 170,

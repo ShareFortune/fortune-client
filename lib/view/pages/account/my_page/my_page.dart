@@ -129,10 +129,8 @@ class MyPage extends HookConsumerWidget {
       Wrap(
         spacing: 10,
         runSpacing: 10,
-        children: List.generate(7, (index) {
-          String buf = "";
-          List.generate(index, (index) => buf += index.toString());
-          return tagWidget("タグ$buf");
+        children: tags.map((e) {
+          return tagWidget(e.name);
         }).toList(),
       ),
     );
@@ -198,7 +196,7 @@ class MyPage extends HookConsumerWidget {
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Row(
         children: [
-          const CircleAvatar(radius: 45),
+          CircleAvatar(radius: 40, backgroundImage: NetworkImage(image)),
           const Gap(20),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fortune_client/data/model/enum/gender_type.dart';
+import 'package:fortune_client/data/model/enum/gender.dart';
 import 'package:fortune_client/view/widgets/picker/bottom_picker.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/app_bar/basic_app_bar.dart';
@@ -112,10 +112,10 @@ class DetailedProfileEntryPage extends HookConsumerWidget {
     );
   }
 
-  _genderPicker(BuildContext context, Function(GenderType) onChange) {
+  _genderPicker(BuildContext context, Function(Gender) onChange) {
     final sheet = bottomPicker(
-      items: GenderType.values,
-      itemsText: GenderType.values.map((e) => e.text).toList(),
+      items: Gender.values,
+      itemsText: Gender.values.map((e) => e.text).toList(),
       onChange: onChange,
     );
     sheet.show(context);
