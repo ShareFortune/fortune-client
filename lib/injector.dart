@@ -34,13 +34,16 @@ final sl = GetIt.instance;
 Future<void> initDependencies(bool isRelease) async {
   sl.registerSingletonAsync<SharedPreferences>(
       () => SharedPreferences.getInstance());
-  sl.registerLazySingleton(() => Dio(BaseOptions(
-        baseUrl: Constants.of().baseUrl,
-        contentType: Headers.jsonContentType,
-        responseType: ResponseType.json,
-        validateStatus: (_) => true,
-      ))
-        ..interceptors.add(AppendTokenInterceptor(sl())));
+
+  sl.registerLazySingleton(
+    () => Dio(BaseOptions(
+      baseUrl: Constants.of().baseUrl,
+      contentType: Headers.jsonContentType,
+      responseType: ResponseType.json,
+      validateStatus: (_) => true,
+    ))
+      ..interceptors.add(AppendTokenInterceptor(sl())),
+  );
 
   ///  Router
   sl.registerLazySingleton(() => AuthGuard(sl()));
@@ -72,5 +75,6 @@ Future<void> initDependencies(bool isRelease) async {
   sl.registerLazySingleton<MessageRoomsDataSource>(
       () => MessageRoomsDataSource(sl()));
   sl.registerLazySingleton<TagsDataSource>(() => TagsDataSource(sl()));
+
   return await sl.allReady();
 }

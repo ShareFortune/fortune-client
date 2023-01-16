@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'profile_state.dart';
+part of 'my_page_state.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$ProfileState {
+mixin _$MyPageState {
   String get name => throw _privateConstructorUsedError;
   String get gender => throw _privateConstructorUsedError;
   int get height => throw _privateConstructorUsedError;
@@ -29,15 +29,15 @@ mixin _$ProfileState {
   String get mainImageURL => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $ProfileStateCopyWith<ProfileState> get copyWith =>
+  $MyPageStateCopyWith<MyPageState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ProfileStateCopyWith<$Res> {
-  factory $ProfileStateCopyWith(
-          ProfileState value, $Res Function(ProfileState) then) =
-      _$ProfileStateCopyWithImpl<$Res, ProfileState>;
+abstract class $MyPageStateCopyWith<$Res> {
+  factory $MyPageStateCopyWith(
+          MyPageState value, $Res Function(MyPageState) then) =
+      _$MyPageStateCopyWithImpl<$Res, MyPageState>;
   @useResult
   $Res call(
       {String name,
@@ -52,9 +52,9 @@ abstract class $ProfileStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ProfileStateCopyWithImpl<$Res, $Val extends ProfileState>
-    implements $ProfileStateCopyWith<$Res> {
-  _$ProfileStateCopyWithImpl(this._value, this._then);
+class _$MyPageStateCopyWithImpl<$Res, $Val extends MyPageState>
+    implements $MyPageStateCopyWith<$Res> {
+  _$MyPageStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -116,11 +116,11 @@ class _$ProfileStateCopyWithImpl<$Res, $Val extends ProfileState>
 }
 
 /// @nodoc
-abstract class _$$_ProfileStateCopyWith<$Res>
-    implements $ProfileStateCopyWith<$Res> {
-  factory _$$_ProfileStateCopyWith(
-          _$_ProfileState value, $Res Function(_$_ProfileState) then) =
-      __$$_ProfileStateCopyWithImpl<$Res>;
+abstract class _$$_MyPageStateCopyWith<$Res>
+    implements $MyPageStateCopyWith<$Res> {
+  factory _$$_MyPageStateCopyWith(
+          _$_MyPageState value, $Res Function(_$_MyPageState) then) =
+      __$$_MyPageStateCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -136,11 +136,11 @@ abstract class _$$_ProfileStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_ProfileStateCopyWithImpl<$Res>
-    extends _$ProfileStateCopyWithImpl<$Res, _$_ProfileState>
-    implements _$$_ProfileStateCopyWith<$Res> {
-  __$$_ProfileStateCopyWithImpl(
-      _$_ProfileState _value, $Res Function(_$_ProfileState) _then)
+class __$$_MyPageStateCopyWithImpl<$Res>
+    extends _$MyPageStateCopyWithImpl<$Res, _$_MyPageState>
+    implements _$$_MyPageStateCopyWith<$Res> {
+  __$$_MyPageStateCopyWithImpl(
+      _$_MyPageState _value, $Res Function(_$_MyPageState) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -156,7 +156,7 @@ class __$$_ProfileStateCopyWithImpl<$Res>
     Object? tags = null,
     Object? mainImageURL = null,
   }) {
-    return _then(_$_ProfileState(
+    return _then(_$_MyPageState(
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -199,8 +199,8 @@ class __$$_ProfileStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_ProfileState implements _ProfileState {
-  const _$_ProfileState(
+class _$_MyPageState implements _MyPageState {
+  const _$_MyPageState(
       {required this.name,
       required this.gender,
       required this.height,
@@ -245,14 +245,14 @@ class _$_ProfileState implements _ProfileState {
 
   @override
   String toString() {
-    return 'ProfileState(name: $name, gender: $gender, height: $height, drinkFrequency: $drinkFrequency, cigaretteFrequency: $cigaretteFrequency, selfIntroduction: $selfIntroduction, adress: $adress, tags: $tags, mainImageURL: $mainImageURL)';
+    return 'MyPageState(name: $name, gender: $gender, height: $height, drinkFrequency: $drinkFrequency, cigaretteFrequency: $cigaretteFrequency, selfIntroduction: $selfIntroduction, adress: $adress, tags: $tags, mainImageURL: $mainImageURL)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ProfileState &&
+            other is _$_MyPageState &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.gender, gender) || other.gender == gender) &&
             (identical(other.height, height) || other.height == height) &&
@@ -284,12 +284,12 @@ class _$_ProfileState implements _ProfileState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ProfileStateCopyWith<_$_ProfileState> get copyWith =>
-      __$$_ProfileStateCopyWithImpl<_$_ProfileState>(this, _$identity);
+  _$$_MyPageStateCopyWith<_$_MyPageState> get copyWith =>
+      __$$_MyPageStateCopyWithImpl<_$_MyPageState>(this, _$identity);
 }
 
-abstract class _ProfileState implements ProfileState {
-  const factory _ProfileState(
+abstract class _MyPageState implements MyPageState {
+  const factory _MyPageState(
       {required final String name,
       required final String gender,
       required final int height,
@@ -298,7 +298,7 @@ abstract class _ProfileState implements ProfileState {
       required final String selfIntroduction,
       required final String adress,
       required final List<Tag> tags,
-      required final String mainImageURL}) = _$_ProfileState;
+      required final String mainImageURL}) = _$_MyPageState;
 
   @override
   String get name;
@@ -320,6 +320,6 @@ abstract class _ProfileState implements ProfileState {
   String get mainImageURL;
   @override
   @JsonKey(ignore: true)
-  _$$_ProfileStateCopyWith<_$_ProfileState> get copyWith =>
+  _$$_MyPageStateCopyWith<_$_MyPageState> get copyWith =>
       throw _privateConstructorUsedError;
 }

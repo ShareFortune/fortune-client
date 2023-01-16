@@ -26,5 +26,5 @@ abstract class ProfileRepository {
     required File? fourthImage,
   });
   Future<String> update();
-  Future<Profile> get(String id);
+  Future<Profile> get();
 }

@@ -4,21 +4,23 @@ import 'package:fortune_client/view/pages/profile/profile/profile_state.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final profileViewModelProvider = StateNotifierProvider.family<ProfileViewModel,
-    AsyncValue<ProfileState>, String>((ref, id) {
-  return ProfileViewModel(sl())..initialize(id);
-});
+    AsyncValue<ProfileState>, String>(
+  (_, id) => ProfileViewModel(sl())..initialize(id),
+);
 
 class ProfileViewModel extends StateNotifier<AsyncValue<ProfileState>> {
-  ProfileViewModel(this.repository) : super(const AsyncLoading());
+  ProfileViewModel(this._repository) : super(const AsyncLoading());
 
-  final ProfileRepository repository;
+  final ProfileRepository _repository;
 
-  Future<void> initialize(String id) async => await fetch(id);
+  Future<void> initialize(String id) async {
+    await fetchProfile();
+  }
 
-  Future<void> fetch(String id) async {
+  Future<void> fetchProfile() async {
     state = await AsyncValue.guard(() async {
-      final profile = await repository.get(id);
-      return ProfileState.fromEntity(profile);
+      final profile = await _repository.get();
+      return ProfileState.from(profile);
     });
   }
 }

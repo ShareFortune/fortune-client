@@ -12,7 +12,7 @@ class FakeProfileDataSource implements ProfileDataSource {
   }
 
   @override
-  Future<Profile> get(String id) async {
+  Future<Profile> get() async {
     return Profile.fromJson(
       await Json.load(Assets.stub.profile),
     );

@@ -14,8 +14,7 @@
 import 'package:auto_route/auto_route.dart' as _i20;
 import 'package:auto_route/empty_router_widgets.dart' as _i2;
 import 'package:flutter/material.dart' as _i21;
-import 'package:fortune_client/view/pages/account/account/account_page.dart'
-    as _i8;
+import 'package:fortune_client/view/pages/account/my_page/my_page.dart' as _i8;
 import 'package:fortune_client/view/pages/auth/login/login_page.dart' as _i4;
 import 'package:fortune_client/view/pages/common/bottom_navigation_bar/bottom_navigation_bar.dart'
     as _i1;
@@ -116,10 +115,10 @@ class AppRouter extends _i20.RootStackRouter {
         child: const _i7.RoomCreatePage(),
       );
     },
-    AccountRoute.name: (routeData) {
+    MyRoute.name: (routeData) {
       return _i20.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i8.AccountPage(),
+        child: const _i8.MyPage(),
       );
     },
     SettingsRoute.name: (routeData) {
@@ -344,7 +343,7 @@ class AppRouter extends _i20.RootStackRouter {
           path: 'create-room',
         ),
         _i20.RouteConfig(
-          AccountRoute.name,
+          MyRoute.name,
           path: 'account',
         ),
         _i20.RouteConfig(
@@ -491,15 +490,15 @@ class RoomCreateRoute extends _i20.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i8.AccountPage]
-class AccountRoute extends _i20.PageRouteInfo<void> {
-  const AccountRoute()
+/// [_i8.MyPage]
+class MyRoute extends _i20.PageRouteInfo<void> {
+  const MyRoute()
       : super(
-          AccountRoute.name,
+          MyRoute.name,
           path: 'account',
         );
 
-  static const String name = 'AccountRoute';
+  static const String name = 'MyRoute';
 }
 
 /// generated route for

@@ -13,7 +13,7 @@ abstract class ProfileDataSource {
 
   @GET('/profiles')
   @authenticatedRequest
-  Future<Profile> get(String id);
+  Future<Profile> get();
 
   @POST("/users/{id}/profiles")
   @authenticatedRequest

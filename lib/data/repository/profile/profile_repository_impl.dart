@@ -29,8 +29,15 @@ class ProfileRepositoryImpl implements ProfileRepository {
   }
 
   @override
-  Future<Profile> get(String id) async {
-    return await _profile.get(id);
+  Future<Profile> get() async {
+    try {
+      logger.i("[$runtimeType] get");
+      final result = await _profile.get();
+      return result;
+    } catch (e) {
+      logger.e(e);
+      rethrow;
+    }
   }
 
   @override

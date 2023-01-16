@@ -5,14 +5,14 @@ part 'address.g.dart';
 
 @freezed
 class Address with _$Address {
+  const Address._();
   const factory Address({
     required String country,
     required String prefecture,
     required String city,
   }) = _Address;
 
-  @override
-  String toString() => country + prefecture + city;
+  String get text => prefecture + city;
 
   factory Address.fromJson(Map<String, dynamic> json) =>
       _$AddressFromJson(json);

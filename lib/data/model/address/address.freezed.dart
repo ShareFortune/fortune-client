@@ -114,9 +114,10 @@ class __$$_AddressCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Address implements _Address {
+class _$_Address extends _Address {
   const _$_Address(
-      {required this.country, required this.prefecture, required this.city});
+      {required this.country, required this.prefecture, required this.city})
+      : super._();
 
   factory _$_Address.fromJson(Map<String, dynamic> json) =>
       _$$_AddressFromJson(json);
@@ -127,6 +128,11 @@ class _$_Address implements _Address {
   final String prefecture;
   @override
   final String city;
+
+  @override
+  String toString() {
+    return 'Address(country: $country, prefecture: $prefecture, city: $city)';
+  }
 
   @override
   bool operator ==(dynamic other) {
@@ -157,11 +163,12 @@ class _$_Address implements _Address {
   }
 }
 
-abstract class _Address implements Address {
+abstract class _Address extends Address {
   const factory _Address(
       {required final String country,
       required final String prefecture,
       required final String city}) = _$_Address;
+  const _Address._() : super._();
 
   factory _Address.fromJson(Map<String, dynamic> json) = _$_Address.fromJson;
 

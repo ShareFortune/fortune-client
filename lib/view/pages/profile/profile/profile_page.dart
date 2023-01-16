@@ -3,17 +3,14 @@ import 'dart:ui';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:fortune_client/gen/assets.gen.dart';
-import 'package:fortune_client/view/pages/profile/profile/profile_container.dart';
+import 'package:fortune_client/view/pages/profile/profile/components/profile_container.dart';
 import 'package:fortune_client/view/pages/profile/profile/profile_view_model.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class ProfilePage extends HookConsumerWidget {
-  const ProfilePage({
-    super.key,
-    @PathParam() required this.id,
-  });
+  const ProfilePage({super.key, @PathParam() required this.id});
 
   final String id;
 
@@ -25,6 +22,7 @@ class ProfilePage extends HookConsumerWidget {
 
     return state.when(
       data: (data) {
+        print(data);
         return Scaffold(
           appBar: AppBar(
             elevation: 0,
