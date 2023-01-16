@@ -13,6 +13,7 @@ import 'package:fortune_client/data/repository/auth/auth_repository.dart';
 import 'package:fortune_client/data/repository/auth/auth_repository_impl.dart';
 import 'package:fortune_client/data/repository/debug/debug_repository.dart';
 import 'package:fortune_client/data/repository/debug/debug_repository_impl.dart';
+import 'package:fortune_client/data/repository/message/message_repository.dart';
 import 'package:fortune_client/data/repository/message/message_repository_impl.dart';
 import 'package:fortune_client/data/repository/profile/profile_repository.dart';
 import 'package:fortune_client/data/repository/profile/profile_repository_impl.dart';
@@ -52,7 +53,8 @@ Future<void> initDependencies(bool isRelease) async {
   sl.registerLazySingleton<AuthRepository>(() => AuthRepositoryImpl(sl()));
   sl.registerLazySingleton<UsersRepository>(
       () => UsersRepositoryImpl(sl(), sl(), sl()));
-  sl.registerLazySingleton(() => MessageRepositoryImpl());
+  sl.registerLazySingleton<MessageRepository>(
+      () => MessageRepositoryImpl(sl()));
   sl.registerLazySingleton<ProfileRepository>(
       () => ProfileRepositoryImpl(sl(), sl()));
   sl.registerLazySingleton<RoomsRepository>(() => RoomsRepositoryImpl(sl()));

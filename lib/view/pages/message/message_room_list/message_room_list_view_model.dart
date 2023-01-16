@@ -1,6 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:fortune_client/data/datasource/remote/go/message_rooms/message_rooms_data_source.dart';
+import 'package:fortune_client/data/repository/message/message_repository.dart';
 import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/view/pages/message/message_room_list/message_room_list_state.dart';
 import 'package:fortune_client/view/routes/app_router.gr.dart';
@@ -12,10 +12,10 @@ final messageRoomListViewModelProvider =
 );
 
 class MessageRoomListViewModel extends StateNotifier<MessageRoomListState> {
-  MessageRoomListViewModel(this._dataSource)
+  MessageRoomListViewModel(this._repository)
       : super(const MessageRoomListState());
 
-  final MessageRoomsDataSource _dataSource;
+  final MessageRepository _repository;
 
   initialize() async {
     await fetchListHost();
@@ -24,14 +24,13 @@ class MessageRoomListViewModel extends StateNotifier<MessageRoomListState> {
 
   fetchListHost() async {
     final host = await AsyncValue.guard<StatusMessageRoomListState>(() async {
-      final result = await _dataSource.fetchMessageRoomsHost();
+      final result = await _repository.fetchRoomsHost();
+      final messageRooms = result.map((e) {
+        return MessageRoomListItemState.from(e);
+      }).toList();
       return StatusMessageRoomListState(
-        messageRooms: result.messageRooms.map((e) {
-          return MessageRoomListItemState.fromModel(e);
-        }).toList(),
-        newMessageRooms: result.messageRooms.map((e) {
-          return MessageRoomListItemState.fromModel(e);
-        }).toList(),
+        messageRooms: messageRooms,
+        newMessageRooms: messageRooms,
       );
     });
     state = state.copyWith(host: host, guest: state.guest);

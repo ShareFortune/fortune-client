@@ -36,7 +36,7 @@ class MessageRoomListItemState with _$MessageRoomListItemState {
     required int unreadCount,
   }) = _MessageRoomListItemState;
 
-  static MessageRoomListItemState fromModel(MessageRoomHost messageRoom) {
+  static MessageRoomListItemState from(MessageRoomHost messageRoom) {
     return MessageRoomListItemState(
       id: messageRoom.id,
       roomName: messageRoom.roomName,
