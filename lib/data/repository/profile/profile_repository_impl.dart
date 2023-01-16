@@ -33,6 +33,7 @@ class ProfileRepositoryImpl implements ProfileRepository {
     try {
       logger.i("[$runtimeType] get");
       final result = await _profile.get();
+      print(result.selfIntroduction);
       return result;
     } catch (e) {
       logger.e(e);

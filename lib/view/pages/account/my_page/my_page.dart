@@ -45,7 +45,10 @@ class MyPage extends HookConsumerWidget {
     final ad = _adContainer();
 
     /// 自己紹介
-    final selfIntroduction = _profileSelfIntroduction(theme, "");
+    final selfIntroduction = _profileSelfIntroduction(
+      theme,
+      profile.selfIntroduction,
+    );
 
     /// タグ
     final tags = _profileTags(theme, profile.tags);
@@ -137,15 +140,28 @@ class MyPage extends HookConsumerWidget {
   }
 
   Widget _profileSelfIntroduction(AppTheme theme, String selfIntroduction) {
+    /// テキスト
+    Widget text;
+
+    if (selfIntroduction.isEmpty) {
+      text = Text(
+        "自己紹介文を入力しましょう",
+        style: theme.textTheme.h30.paint(theme.appColors.subText3),
+      );
+    } else {
+      text = Text(
+        selfIntroduction,
+        style: theme.textTheme.h30.paint(theme.appColors.subText1),
+      );
+    }
+
     return _profileContainer(
       theme,
       "自己紹介",
       Container(
-        padding: const EdgeInsets.symmetric(vertical: 30),
-        child: const Text(
-          "自己紹介文を入力しましょう",
-          style: TextStyle(color: Color(0xFF969696)),
-        ),
+        padding:
+            EdgeInsets.symmetric(vertical: selfIntroduction.isEmpty ? 30 : 10),
+        child: text,
       ),
     );
   }
@@ -190,7 +206,7 @@ class MyPage extends HookConsumerWidget {
 
     /// サブテキスト
     final subTitleColor = theme.appColors.subText3;
-    final subTitleStyle = theme.textTheme.h40.paint(subTitleColor);
+    final subTitleStyle = theme.textTheme.h30.paint(subTitleColor);
 
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -218,7 +234,7 @@ class MyPage extends HookConsumerWidget {
       elevation: 0,
       backgroundColor: Colors.transparent,
       title: Text(
-        "アカウント",
+        "マイページ",
         style: theme.textTheme.h60.bold().merge(const TextStyle(color: color)),
       ),
       leading: const BackButton(color: color),
