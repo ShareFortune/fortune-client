@@ -18,7 +18,7 @@ _$_ParticipantRoomAsHost _$$_ParticipantRoomAsHostFromJson(
       membersNum:
           MembersNum.fromJson(json['membersNum'] as Map<String, dynamic>),
       joinRequestsCount: json['joinRequestsCount'] as int,
-      status: $enumDecode(_$RoomStatusEnumMap, json['status']),
+      status: const RoomStatusConverter().fromJson(json['status'] as String),
     );
 
 Map<String, dynamic> _$$_ParticipantRoomAsHostToJson(
@@ -29,11 +29,5 @@ Map<String, dynamic> _$$_ParticipantRoomAsHostToJson(
       'participantMainImageURLs': instance.participantMainImageURLs,
       'membersNum': instance.membersNum,
       'joinRequestsCount': instance.joinRequestsCount,
-      'status': _$RoomStatusEnumMap[instance.status]!,
+      'status': const RoomStatusConverter().toJson(instance.status),
     };
-
-const _$RoomStatusEnumMap = {
-  RoomStatus.pending: 'pending',
-  RoomStatus.opend: 'opend',
-  RoomStatus.closed: 'closed',
-};

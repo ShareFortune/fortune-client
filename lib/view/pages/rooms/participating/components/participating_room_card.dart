@@ -116,7 +116,7 @@ class ParticipatingRoomCard extends HookConsumerWidget {
             _titleWidget(theme, title, location),
             const Gap(15),
             _membersWidget(theme, members),
-            const Gap(15),
+            const Spacer(),
             bottom,
           ],
         ),
