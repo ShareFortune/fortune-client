@@ -1,7 +1,6 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 import 'package:fortune_client/view/pages/common/scroll_app_bar/scroll_app_bar.dart';
+import 'package:fortune_client/view/pages/rooms/room_list/components/room_card.dart';
 import 'package:fortune_client/view/pages/rooms/room_list/room_list_state.dart';
 import 'package:fortune_client/view/pages/rooms/room_list/room_list_view_model.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
@@ -9,7 +8,6 @@ import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/list_animation.dart';
 import 'package:fortune_client/view/widgets/other/error_widget.dart';
 import 'package:fortune_client/view/widgets/other/loading_widget.dart';
-import 'package:fortune_client/view/widgets/room_card_widget.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class RoomListPage extends HookConsumerWidget {
@@ -25,7 +23,8 @@ class RoomListPage extends HookConsumerWidget {
     /// ルームリスト
     ///
     final roomsWidget = state.when(
-      data: (data) => _roomListView(data, viewModel.navigateToRoomDetail),
+      data: (data) => _roomListView(
+          data, viewModel.navigateToRoomDetail, viewModel.sendJoinRequest),
       error: (e, msg) => SliverToBoxAdapter(child: errorWidget(e, msg)),
       loading: () => SliverToBoxAdapter(child: loadingWidget()),
     );
@@ -81,16 +80,18 @@ class RoomListPage extends HookConsumerWidget {
     );
   }
 
-  Widget _roomListView(RoomListState data, Function() cardOnTap) {
+  Widget _roomListView(
+    RoomListState data,
+    VoidCallback onTapCard,
+    VoidCallback sendJoinRequest,
+  ) {
     return ListAnimationWidget(
       items: data.rooms,
-      spacing: 30,
-      container: (state) => RoomCardWidget(
-        hostIconPath: state.hostIcon,
-        title: state.title,
-        location: state.address,
-        members: state.memberIcons,
-        onTap: cardOnTap,
+      spacing: 10,
+      container: (room) => RoomCard(
+        room: room,
+        onTapRoom: onTapCard,
+        onTapJoinRequestBtn: sendJoinRequest,
       ),
     );
   }

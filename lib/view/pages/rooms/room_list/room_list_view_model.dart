@@ -27,6 +27,8 @@ class RoomListViewModel extends StateNotifier<AsyncValue<RoomListState>> {
     });
   }
 
+  sendJoinRequest() {}
+
   navigateToRoomDetail() async {
     await sl<AppRouter>().push(RoomDetailRoute(id: "id"));
   }

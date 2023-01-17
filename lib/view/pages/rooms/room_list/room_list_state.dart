@@ -24,7 +24,7 @@ class RoomListItemState with _$RoomListItemState {
     return RoomListItemState(
       title: room.roomName,
       hostIcon: room.hostMainImageURL,
-      memberIcons: room.participantMainImageURLs ?? [],
+      memberIcons: room.participantMainImageURLs ?? ["", ""],
       address: room.address.text,
     );
   }
