@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:fortune_client/view/pages/common/scroll_app_bar/scroll_app_bar.dart';
 import 'package:fortune_client/view/pages/message/message_room_list/components/empty_message_room_list_view.dart';
-import 'package:fortune_client/view/pages/message/message_room_list/components/message_room_list_tile.dart';
+import 'package:fortune_client/view/pages/message/message_room_list/components/message_room_list_view.dart';
 import 'package:fortune_client/view/pages/message/message_room_list/message_room_list_state.dart';
 import 'package:fortune_client/view/pages/message/message_room_list/message_room_list_view_model.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/other/loading_widget.dart';
+import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class MessageRoomListPage extends HookConsumerWidget {
@@ -77,64 +78,10 @@ class MessageRoomListPage extends HookConsumerWidget {
       padding: EdgeInsets.zero,
       physics: const NeverScrollableScrollPhysics(),
       children: [
-        _messageRoomsContainer(
-          theme,
-          "新着メッセージ",
-          Column(
-            children: data.messageRooms.map((e) {
-              return _messagesRooms(theme, e);
-            }).toList(),
-          ),
-        ),
-        _blank(),
-        _messageRoomsContainer(
-          theme,
-          "参加中のメッセージルーム",
-          Column(
-            children: data.newMessageRooms.map((e) {
-              return _messagesRooms(theme, e);
-            }).toList(),
-          ),
-        ),
+        MessageRoomListView("新着メッセージ", data.messageRooms),
+        const Gap(10),
+        MessageRoomListView("参加中のメッセージルーム", data.newMessageRooms),
       ],
-    );
-  }
-
-  Widget _messageRoomsContainer(AppTheme theme, String title, Widget rooms) {
-    /// タイトル（ルームリスト）
-    final titleTextColor = theme.appColors.subText1;
-    final titleTextStyle = theme.textTheme.h20.paint(titleTextColor).bold();
-
-    return Container(
-      color: Colors.white,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            padding: const EdgeInsets.only(left: 30, top: 30, bottom: 30),
-            child: Text(title, style: titleTextStyle),
-          ),
-          rooms,
-        ],
-      ),
-    );
-  }
-
-  Widget _messagesRooms(AppTheme theme, MessageRoomListItemState room) {
-    return Container(
-      padding: const EdgeInsets.only(bottom: 30),
-      child: MessageRoomListTile(
-        title: room.roomName,
-        postedDate: room.lastSendAt,
-        body: room.lastSendMessage,
-      ),
-    );
-  }
-
-  _blank() {
-    return Container(
-      height: 10,
-      color: const Color(0xFFF2F2F6),
     );
   }
 }

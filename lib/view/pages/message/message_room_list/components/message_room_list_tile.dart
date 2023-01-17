@@ -27,7 +27,7 @@ class MessageRoomListTile extends HookConsumerWidget {
 
     /// タイトル
     final titleTextColor = theme.appColors.subText1;
-    final titleTextStyle = theme.textTheme.h40.paint(titleTextColor).bold();
+    final titleTextStyle = theme.textTheme.h40.paint(titleTextColor);
     final titleText = Text(title, style: titleTextStyle);
 
     /// ボディ
