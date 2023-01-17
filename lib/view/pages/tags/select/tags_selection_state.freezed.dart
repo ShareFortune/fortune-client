@@ -18,7 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$TagsSelectionState {
   AsyncValue<List<TagState>> get recommendation =>
       throw _privateConstructorUsedError;
-  List<TagState> get isSet => throw _privateConstructorUsedError;
+  List<TagState> get beingSet => throw _privateConstructorUsedError;
   AsyncValue<List<TagState>> get searchResult =>
       throw _privateConstructorUsedError;
 
@@ -35,7 +35,7 @@ abstract class $TagsSelectionStateCopyWith<$Res> {
   @useResult
   $Res call(
       {AsyncValue<List<TagState>> recommendation,
-      List<TagState> isSet,
+      List<TagState> beingSet,
       AsyncValue<List<TagState>> searchResult});
 }
 
@@ -53,7 +53,7 @@ class _$TagsSelectionStateCopyWithImpl<$Res, $Val extends TagsSelectionState>
   @override
   $Res call({
     Object? recommendation = null,
-    Object? isSet = null,
+    Object? beingSet = null,
     Object? searchResult = null,
   }) {
     return _then(_value.copyWith(
@@ -61,9 +61,9 @@ class _$TagsSelectionStateCopyWithImpl<$Res, $Val extends TagsSelectionState>
           ? _value.recommendation
           : recommendation // ignore: cast_nullable_to_non_nullable
               as AsyncValue<List<TagState>>,
-      isSet: null == isSet
-          ? _value.isSet
-          : isSet // ignore: cast_nullable_to_non_nullable
+      beingSet: null == beingSet
+          ? _value.beingSet
+          : beingSet // ignore: cast_nullable_to_non_nullable
               as List<TagState>,
       searchResult: null == searchResult
           ? _value.searchResult
@@ -83,7 +83,7 @@ abstract class _$$_TagsSelectionStateCopyWith<$Res>
   @useResult
   $Res call(
       {AsyncValue<List<TagState>> recommendation,
-      List<TagState> isSet,
+      List<TagState> beingSet,
       AsyncValue<List<TagState>> searchResult});
 }
 
@@ -99,7 +99,7 @@ class __$$_TagsSelectionStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? recommendation = null,
-    Object? isSet = null,
+    Object? beingSet = null,
     Object? searchResult = null,
   }) {
     return _then(_$_TagsSelectionState(
@@ -107,9 +107,9 @@ class __$$_TagsSelectionStateCopyWithImpl<$Res>
           ? _value.recommendation
           : recommendation // ignore: cast_nullable_to_non_nullable
               as AsyncValue<List<TagState>>,
-      isSet: null == isSet
-          ? _value._isSet
-          : isSet // ignore: cast_nullable_to_non_nullable
+      beingSet: null == beingSet
+          ? _value._beingSet
+          : beingSet // ignore: cast_nullable_to_non_nullable
               as List<TagState>,
       searchResult: null == searchResult
           ? _value.searchResult
@@ -124,20 +124,20 @@ class __$$_TagsSelectionStateCopyWithImpl<$Res>
 class _$_TagsSelectionState implements _TagsSelectionState {
   const _$_TagsSelectionState(
       {this.recommendation = const AsyncValue.loading(),
-      final List<TagState> isSet = const [],
+      final List<TagState> beingSet = const [],
       this.searchResult = const AsyncValue.loading()})
-      : _isSet = isSet;
+      : _beingSet = beingSet;
 
   @override
   @JsonKey()
   final AsyncValue<List<TagState>> recommendation;
-  final List<TagState> _isSet;
+  final List<TagState> _beingSet;
   @override
   @JsonKey()
-  List<TagState> get isSet {
-    if (_isSet is EqualUnmodifiableListView) return _isSet;
+  List<TagState> get beingSet {
+    if (_beingSet is EqualUnmodifiableListView) return _beingSet;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_isSet);
+    return EqualUnmodifiableListView(_beingSet);
   }
 
   @override
@@ -146,7 +146,7 @@ class _$_TagsSelectionState implements _TagsSelectionState {
 
   @override
   String toString() {
-    return 'TagsSelectionState(recommendation: $recommendation, isSet: $isSet, searchResult: $searchResult)';
+    return 'TagsSelectionState(recommendation: $recommendation, beingSet: $beingSet, searchResult: $searchResult)';
   }
 
   @override
@@ -156,14 +156,14 @@ class _$_TagsSelectionState implements _TagsSelectionState {
             other is _$_TagsSelectionState &&
             (identical(other.recommendation, recommendation) ||
                 other.recommendation == recommendation) &&
-            const DeepCollectionEquality().equals(other._isSet, _isSet) &&
+            const DeepCollectionEquality().equals(other._beingSet, _beingSet) &&
             (identical(other.searchResult, searchResult) ||
                 other.searchResult == searchResult));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, recommendation,
-      const DeepCollectionEquality().hash(_isSet), searchResult);
+      const DeepCollectionEquality().hash(_beingSet), searchResult);
 
   @JsonKey(ignore: true)
   @override
@@ -176,13 +176,13 @@ class _$_TagsSelectionState implements _TagsSelectionState {
 abstract class _TagsSelectionState implements TagsSelectionState {
   const factory _TagsSelectionState(
       {final AsyncValue<List<TagState>> recommendation,
-      final List<TagState> isSet,
+      final List<TagState> beingSet,
       final AsyncValue<List<TagState>> searchResult}) = _$_TagsSelectionState;
 
   @override
   AsyncValue<List<TagState>> get recommendation;
   @override
-  List<TagState> get isSet;
+  List<TagState> get beingSet;
   @override
   AsyncValue<List<TagState>> get searchResult;
   @override
@@ -195,6 +195,7 @@ abstract class _TagsSelectionState implements TagsSelectionState {
 mixin _$TagState {
   String get id => throw _privateConstructorUsedError;
   String get tagName => throw _privateConstructorUsedError;
+  bool get isSelected => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $TagStateCopyWith<TagState> get copyWith =>
@@ -206,7 +207,7 @@ abstract class $TagStateCopyWith<$Res> {
   factory $TagStateCopyWith(TagState value, $Res Function(TagState) then) =
       _$TagStateCopyWithImpl<$Res, TagState>;
   @useResult
-  $Res call({String id, String tagName});
+  $Res call({String id, String tagName, bool isSelected});
 }
 
 /// @nodoc
@@ -224,6 +225,7 @@ class _$TagStateCopyWithImpl<$Res, $Val extends TagState>
   $Res call({
     Object? id = null,
     Object? tagName = null,
+    Object? isSelected = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -234,6 +236,10 @@ class _$TagStateCopyWithImpl<$Res, $Val extends TagState>
           ? _value.tagName
           : tagName // ignore: cast_nullable_to_non_nullable
               as String,
+      isSelected: null == isSelected
+          ? _value.isSelected
+          : isSelected // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -245,7 +251,7 @@ abstract class _$$_TagStateCopyWith<$Res> implements $TagStateCopyWith<$Res> {
       __$$_TagStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, String tagName});
+  $Res call({String id, String tagName, bool isSelected});
 }
 
 /// @nodoc
@@ -261,6 +267,7 @@ class __$$_TagStateCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? tagName = null,
+    Object? isSelected = null,
   }) {
     return _then(_$_TagState(
       id: null == id
@@ -271,6 +278,10 @@ class __$$_TagStateCopyWithImpl<$Res>
           ? _value.tagName
           : tagName // ignore: cast_nullable_to_non_nullable
               as String,
+      isSelected: null == isSelected
+          ? _value.isSelected
+          : isSelected // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -278,16 +289,19 @@ class __$$_TagStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_TagState implements _TagState {
-  const _$_TagState({required this.id, required this.tagName});
+  const _$_TagState(
+      {required this.id, required this.tagName, required this.isSelected});
 
   @override
   final String id;
   @override
   final String tagName;
+  @override
+  final bool isSelected;
 
   @override
   String toString() {
-    return 'TagState(id: $id, tagName: $tagName)';
+    return 'TagState(id: $id, tagName: $tagName, isSelected: $isSelected)';
   }
 
   @override
@@ -296,11 +310,13 @@ class _$_TagState implements _TagState {
         (other.runtimeType == runtimeType &&
             other is _$_TagState &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.tagName, tagName) || other.tagName == tagName));
+            (identical(other.tagName, tagName) || other.tagName == tagName) &&
+            (identical(other.isSelected, isSelected) ||
+                other.isSelected == isSelected));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, tagName);
+  int get hashCode => Object.hash(runtimeType, id, tagName, isSelected);
 
   @JsonKey(ignore: true)
   @override
@@ -311,12 +327,16 @@ class _$_TagState implements _TagState {
 
 abstract class _TagState implements TagState {
   const factory _TagState(
-      {required final String id, required final String tagName}) = _$_TagState;
+      {required final String id,
+      required final String tagName,
+      required final bool isSelected}) = _$_TagState;
 
   @override
   String get id;
   @override
   String get tagName;
+  @override
+  bool get isSelected;
   @override
   @JsonKey(ignore: true)
   _$$_TagStateCopyWith<_$_TagState> get copyWith =>

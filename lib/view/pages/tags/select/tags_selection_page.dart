@@ -8,7 +8,6 @@ import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/app_bar/back_app_bar.dart';
 import 'package:fortune_client/view/widgets/other/error_widget.dart';
 import 'package:fortune_client/view/widgets/other/loading_widget.dart';
-import 'package:fortune_client/view/widgets/tag_widget.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -27,6 +26,9 @@ class TagsSelectionPage extends HookConsumerWidget {
 
     /// 表示データ
     final isDisplaySearchResults = ref.watch(isDisplaySearchResultsProvider);
+
+    /// 設定されたタグ
+    final tagsBeingSet = _tagsBeingSet(state.beingSet);
 
     /// おすすめのタグ
     final recommendedResults =
@@ -51,6 +53,7 @@ class TagsSelectionPage extends HookConsumerWidget {
       backgroundColor: theme.appColors.onBackground,
       appBar: const BackAppBar(title: "タグを選択"),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Gap(30),
           Container(
@@ -69,16 +72,26 @@ class TagsSelectionPage extends HookConsumerWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text("設定中のタグ"),
-                const Gap(20),
-                tagWraper(),
-                const Gap(50),
+                tagsBeingSet,
                 isDisplaySearchResults ? searchResult : recommendedResults,
               ],
             ),
           ),
         ],
       ),
+    );
+  }
+
+  _tagsBeingSet(List<TagState> tags) {
+    if (tags.isEmpty) return Container();
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Text("設定中のタグ"),
+        const Gap(20),
+        TagsWraper(tags),
+        const Gap(50),
+      ],
     );
   }
 
@@ -94,9 +107,11 @@ class TagsSelectionPage extends HookConsumerWidget {
         const Gap(20),
         tags.when(
           data: (data) {
-            return data.isEmpty
-                ? emptyTagContainer(theme)
-                : TagsWraper(tags: data);
+            if (data.isEmpty) {
+              return emptyTagContainer(theme);
+            } else {
+              return TagsWraper(data);
+            }
           },
           error: (error, stackTrace) => errorWidget(error, stackTrace),
           loading: () => loadingWidget(),
@@ -125,35 +140,6 @@ class TagsSelectionPage extends HookConsumerWidget {
           ),
         ],
       ),
-    );
-  }
-
-  tagWraper() {
-    List<String> tags = [
-      "進撃の巨人",
-      "ワンピース",
-      "ナルト",
-      "デスノート",
-      "飲み会",
-      "サッカー",
-      "野球",
-    ];
-
-    return Wrap(
-      spacing: 10,
-      runSpacing: 10,
-      children: List.generate(tags.length, (index) {
-        Color backGraundColor = Colors.red;
-        Color borderColor = Colors.red;
-        Color textColor = Colors.white;
-
-        return TagWidget(
-          value: tags[index],
-          backGraundColor: backGraundColor,
-          borderColor: borderColor,
-          textColor: textColor,
-        );
-      }).toList(),
     );
   }
 }
