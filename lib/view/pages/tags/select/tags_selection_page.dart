@@ -64,6 +64,7 @@ class TagsSelectionPage extends HookConsumerWidget {
           ),
           const Gap(30),
           Container(
+            width: double.infinity,
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -71,7 +72,7 @@ class TagsSelectionPage extends HookConsumerWidget {
                 const Text("設定中のタグ"),
                 const Gap(20),
                 tagWraper(),
-                const Gap(30),
+                const Gap(50),
                 isDisplaySearchResults ? searchResult : recommendedResults,
               ],
             ),
@@ -116,7 +117,7 @@ class TagsSelectionPage extends HookConsumerWidget {
     return Center(
       child: Column(
         children: [
-          const Gap(100),
+          const Gap(50),
           Text("タグが存在しません。", style: adviceTextStyle),
           TextButton(
             onPressed: () {},
@@ -130,12 +131,12 @@ class TagsSelectionPage extends HookConsumerWidget {
   tagWraper() {
     List<String> tags = [
       "進撃の巨人",
-      "メイドインアビス",
       "ワンピース",
       "ナルト",
-      "コードギアス",
-      "クラナド",
       "デスノート",
+      "飲み会",
+      "サッカー",
+      "野球",
     ];
 
     return Wrap(
