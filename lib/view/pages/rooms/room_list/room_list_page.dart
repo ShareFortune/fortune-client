@@ -5,6 +5,7 @@ import 'package:fortune_client/view/pages/rooms/room_list/room_list_state.dart';
 import 'package:fortune_client/view/pages/rooms/room_list/room_list_view_model.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
+import 'package:fortune_client/view/widgets/dialog/toast.dart';
 import 'package:fortune_client/view/widgets/list_animation.dart';
 import 'package:fortune_client/view/widgets/other/error_widget.dart';
 import 'package:fortune_client/view/widgets/other/loading_widget.dart';
@@ -23,8 +24,8 @@ class RoomListPage extends HookConsumerWidget {
     /// ルームリスト
     ///
     final roomsWidget = state.when(
-      data: (data) => _roomListView(
-          data, viewModel.navigateToRoomDetail, viewModel.sendJoinRequest),
+      data: (data) => _roomListView(theme, context, data,
+          viewModel.navigateToRoomDetail, viewModel.sendJoinRequest),
       error: (e, msg) => SliverToBoxAdapter(child: errorWidget(e, msg)),
       loading: () => SliverToBoxAdapter(child: loadingWidget()),
     );
@@ -81,6 +82,8 @@ class RoomListPage extends HookConsumerWidget {
   }
 
   Widget _roomListView(
+    AppTheme theme,
+    BuildContext context,
     RoomListState data,
     VoidCallback onTapCard,
     VoidCallback sendJoinRequest,
@@ -89,10 +92,12 @@ class RoomListPage extends HookConsumerWidget {
       items: data.rooms,
       spacing: 10,
       container: (room) => RoomCard(
-        room: room,
-        onTapRoom: onTapCard,
-        onTapJoinRequestBtn: sendJoinRequest,
-      ),
+          room: room,
+          onTapRoom: () => onTapCard,
+          onTapJoinRequestBtn: () {
+            _showJoinRequestToast(context, theme);
+            sendJoinRequest();
+          }),
     );
   }
 
@@ -129,5 +134,9 @@ class RoomListPage extends HookConsumerWidget {
         ),
       ),
     );
+  }
+
+  _showJoinRequestToast(BuildContext context, AppTheme theme) {
+    showToast(context, theme, "参加申請を送信しました。");
   }
 }
