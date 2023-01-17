@@ -146,7 +146,7 @@ mixin _$RoomListItemState {
   String get deadline => throw _privateConstructorUsedError;
   String get hostIcon => throw _privateConstructorUsedError;
   List<String> get memberIcons => throw _privateConstructorUsedError;
-  String get place => throw _privateConstructorUsedError;
+  String get address => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $RoomListItemStateCopyWith<RoomListItemState> get copyWith =>
@@ -164,7 +164,7 @@ abstract class $RoomListItemStateCopyWith<$Res> {
       String deadline,
       String hostIcon,
       List<String> memberIcons,
-      String place});
+      String address});
 }
 
 /// @nodoc
@@ -184,7 +184,7 @@ class _$RoomListItemStateCopyWithImpl<$Res, $Val extends RoomListItemState>
     Object? deadline = null,
     Object? hostIcon = null,
     Object? memberIcons = null,
-    Object? place = null,
+    Object? address = null,
   }) {
     return _then(_value.copyWith(
       title: null == title
@@ -203,9 +203,9 @@ class _$RoomListItemStateCopyWithImpl<$Res, $Val extends RoomListItemState>
           ? _value.memberIcons
           : memberIcons // ignore: cast_nullable_to_non_nullable
               as List<String>,
-      place: null == place
-          ? _value.place
-          : place // ignore: cast_nullable_to_non_nullable
+      address: null == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -224,7 +224,7 @@ abstract class _$$_RoomListItemStateCopyWith<$Res>
       String deadline,
       String hostIcon,
       List<String> memberIcons,
-      String place});
+      String address});
 }
 
 /// @nodoc
@@ -242,7 +242,7 @@ class __$$_RoomListItemStateCopyWithImpl<$Res>
     Object? deadline = null,
     Object? hostIcon = null,
     Object? memberIcons = null,
-    Object? place = null,
+    Object? address = null,
   }) {
     return _then(_$_RoomListItemState(
       title: null == title
@@ -261,9 +261,9 @@ class __$$_RoomListItemStateCopyWithImpl<$Res>
           ? _value._memberIcons
           : memberIcons // ignore: cast_nullable_to_non_nullable
               as List<String>,
-      place: null == place
-          ? _value.place
-          : place // ignore: cast_nullable_to_non_nullable
+      address: null == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -277,7 +277,7 @@ class _$_RoomListItemState implements _RoomListItemState {
       this.deadline = "",
       this.hostIcon = "",
       final List<String> memberIcons = const [],
-      this.place = ""})
+      this.address = ""})
       : _memberIcons = memberIcons;
 
   @override
@@ -300,11 +300,11 @@ class _$_RoomListItemState implements _RoomListItemState {
 
   @override
   @JsonKey()
-  final String place;
+  final String address;
 
   @override
   String toString() {
-    return 'RoomListItemState(title: $title, deadline: $deadline, hostIcon: $hostIcon, memberIcons: $memberIcons, place: $place)';
+    return 'RoomListItemState(title: $title, deadline: $deadline, hostIcon: $hostIcon, memberIcons: $memberIcons, address: $address)';
   }
 
   @override
@@ -319,12 +319,12 @@ class _$_RoomListItemState implements _RoomListItemState {
                 other.hostIcon == hostIcon) &&
             const DeepCollectionEquality()
                 .equals(other._memberIcons, _memberIcons) &&
-            (identical(other.place, place) || other.place == place));
+            (identical(other.address, address) || other.address == address));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, title, deadline, hostIcon,
-      const DeepCollectionEquality().hash(_memberIcons), place);
+      const DeepCollectionEquality().hash(_memberIcons), address);
 
   @JsonKey(ignore: true)
   @override
@@ -340,7 +340,7 @@ abstract class _RoomListItemState implements RoomListItemState {
       final String deadline,
       final String hostIcon,
       final List<String> memberIcons,
-      final String place}) = _$_RoomListItemState;
+      final String address}) = _$_RoomListItemState;
 
   @override
   String get title;
@@ -351,7 +351,7 @@ abstract class _RoomListItemState implements RoomListItemState {
   @override
   List<String> get memberIcons;
   @override
-  String get place;
+  String get address;
   @override
   @JsonKey(ignore: true)
   _$$_RoomListItemStateCopyWith<_$_RoomListItemState> get copyWith =>

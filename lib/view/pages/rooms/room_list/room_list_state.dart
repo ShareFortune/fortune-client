@@ -17,7 +17,7 @@ class RoomListItemState with _$RoomListItemState {
     @Default("") String deadline,
     @Default("") String hostIcon,
     @Default([]) List<String> memberIcons,
-    @Default("") String place,
+    @Default("") String address,
   }) = _RoomListItemState;
 
   static RoomListItemState from(Room room) {
@@ -25,7 +25,7 @@ class RoomListItemState with _$RoomListItemState {
       title: room.roomName,
       hostIcon: room.hostMainImageURL,
       memberIcons: room.participantMainImageURLs ?? [],
-      place: room.address.toString(),
+      address: room.address.text,
     );
   }
 }
