@@ -9,17 +9,20 @@ final tagsSelectionViewModelProvider =
 );
 
 class TagsSelectionViewModel extends StateNotifier<TagsSelectionState> {
-  TagsSelectionViewModel(this._repository)
-      : super(const TagsSelectionState(
-          recommendation: AsyncValue.loading(),
-          isSet: [],
-          searchResult: AsyncValue.loading(),
-        ));
+  TagsSelectionViewModel(this._repository) : super(const TagsSelectionState());
 
   final TagsRepository _repository;
 
   initialize() async {
     await getRecommendedTags();
+  }
+
+  search(String keyword) async {
+    final tags = await AsyncValue.guard<List<TagState>>(() async {
+      final result = await _repository.search(keyword);
+      return result.map((e) => TagState.from(e)).toList();
+    });
+    state = state.copyWith(searchResult: tags);
   }
 
   getRecommendedTags() async {

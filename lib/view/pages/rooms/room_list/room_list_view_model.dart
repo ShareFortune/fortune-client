@@ -45,6 +45,6 @@ class RoomListViewModel
   }
 
   navigateToTagsSelection() async {
-    await sl<AppRouter>().push(const TagsSelectionRoute());
+    await sl<AppRouter>().push(TagsSelectionRoute());
   }
 }

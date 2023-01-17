@@ -128,9 +128,11 @@ class AppRouter extends _i20.RootStackRouter {
       );
     },
     TagsSelectionRoute.name: (routeData) {
+      final args = routeData.argsAs<TagsSelectionRouteArgs>(
+          orElse: () => const TagsSelectionRouteArgs());
       return _i20.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i10.TagsSelectionPage(),
+        child: _i10.TagsSelectionPage(key: args.key),
       );
     },
     RoomsTab.name: (routeData) {
@@ -515,14 +517,26 @@ class SettingsRoute extends _i20.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i10.TagsSelectionPage]
-class TagsSelectionRoute extends _i20.PageRouteInfo<void> {
-  const TagsSelectionRoute()
+class TagsSelectionRoute extends _i20.PageRouteInfo<TagsSelectionRouteArgs> {
+  TagsSelectionRoute({_i21.Key? key})
       : super(
           TagsSelectionRoute.name,
           path: 'tags',
+          args: TagsSelectionRouteArgs(key: key),
         );
 
   static const String name = 'TagsSelectionRoute';
+}
+
+class TagsSelectionRouteArgs {
+  const TagsSelectionRouteArgs({this.key});
+
+  final _i21.Key? key;
+
+  @override
+  String toString() {
+    return 'TagsSelectionRouteArgs{key: $key}';
+  }
 }
 
 /// generated route for

@@ -31,7 +31,7 @@ class TagTextField extends HookConsumerWidget {
 
     return BaseTextField(
       controller: emailCtrl,
-      validator: (validator == null) ? null : (email) => validator!(email),
+      validator: (validator == null) ? null : (value) => validator!(value),
       keyboardType: TextInputType.emailAddress,
       textInputAction: TextInputAction.next,
       hintText: hintText,

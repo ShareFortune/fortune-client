@@ -123,15 +123,17 @@ class __$$_TagsSelectionStateCopyWithImpl<$Res>
 
 class _$_TagsSelectionState implements _TagsSelectionState {
   const _$_TagsSelectionState(
-      {required this.recommendation,
-      required final List<TagState> isSet,
-      required this.searchResult})
+      {this.recommendation = const AsyncValue.loading(),
+      final List<TagState> isSet = const [],
+      this.searchResult = const AsyncValue.loading()})
       : _isSet = isSet;
 
   @override
+  @JsonKey()
   final AsyncValue<List<TagState>> recommendation;
   final List<TagState> _isSet;
   @override
+  @JsonKey()
   List<TagState> get isSet {
     if (_isSet is EqualUnmodifiableListView) return _isSet;
     // ignore: implicit_dynamic_type
@@ -139,6 +141,7 @@ class _$_TagsSelectionState implements _TagsSelectionState {
   }
 
   @override
+  @JsonKey()
   final AsyncValue<List<TagState>> searchResult;
 
   @override
@@ -172,10 +175,9 @@ class _$_TagsSelectionState implements _TagsSelectionState {
 
 abstract class _TagsSelectionState implements TagsSelectionState {
   const factory _TagsSelectionState(
-          {required final AsyncValue<List<TagState>> recommendation,
-          required final List<TagState> isSet,
-          required final AsyncValue<List<TagState>> searchResult}) =
-      _$_TagsSelectionState;
+      {final AsyncValue<List<TagState>> recommendation,
+      final List<TagState> isSet,
+      final AsyncValue<List<TagState>> searchResult}) = _$_TagsSelectionState;
 
   @override
   AsyncValue<List<TagState>> get recommendation;
