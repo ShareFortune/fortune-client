@@ -19,7 +19,7 @@ class RoomCard extends HookConsumerWidget {
 
   final RoomListItemState room;
   final VoidCallback onTapRoom;
-  final VoidCallback onTapJoinRequestBtn;
+  final Function(String) onTapJoinRequestBtn;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -159,7 +159,7 @@ class RoomCard extends HookConsumerWidget {
         ),
         const Spacer(),
         ElevatedButton(
-          onPressed: onTapJoinRequestBtn,
+          onPressed: () => onTapJoinRequestBtn(room.id),
           style: ElevatedButton.styleFrom(
             minimumSize: Size.zero,
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),

@@ -13,6 +13,7 @@ class RoomListState with _$RoomListState {
 @freezed
 class RoomListItemState with _$RoomListItemState {
   const factory RoomListItemState({
+    required String id,
     @Default("") String title,
     @Default("") String deadline,
     @Default("") String hostIcon,
@@ -22,6 +23,7 @@ class RoomListItemState with _$RoomListItemState {
 
   static RoomListItemState from(Room room) {
     return RoomListItemState(
+      id: room.id,
       title: room.roomName,
       hostIcon: room.hostMainImageURL,
       memberIcons: room.participantMainImageURLs ?? ["", ""],

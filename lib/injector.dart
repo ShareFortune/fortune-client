@@ -4,6 +4,7 @@ import 'package:fortune_client/data/datasource/local/shared_pref_data_source.dar
 import 'package:fortune_client/data/datasource/local/shared_pref_data_source_impl.dart';
 import 'package:fortune_client/data/datasource/remote/firebase/firebase_auth_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/firebase/firebase_auth_data_source_impl.dart';
+import 'package:fortune_client/data/datasource/remote/go/join_requests/join_requests_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/go/message_rooms/message_rooms_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/go/profile/profile_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/go/rooms/rooms_data_source.dart';
@@ -13,6 +14,8 @@ import 'package:fortune_client/data/repository/auth/auth_repository.dart';
 import 'package:fortune_client/data/repository/auth/auth_repository_impl.dart';
 import 'package:fortune_client/data/repository/debug/debug_repository.dart';
 import 'package:fortune_client/data/repository/debug/debug_repository_impl.dart';
+import 'package:fortune_client/data/repository/join_requests/join_requests_repository.dart';
+import 'package:fortune_client/data/repository/join_requests/join_requests_repository_impl.dart';
 import 'package:fortune_client/data/repository/message/message_repository.dart';
 import 'package:fortune_client/data/repository/message/message_repository_impl.dart';
 import 'package:fortune_client/data/repository/profile/profile_repository.dart';
@@ -63,6 +66,8 @@ Future<void> initDependencies(bool isRelease) async {
   sl.registerLazySingleton<RoomsRepository>(() => RoomsRepositoryImpl(sl()));
   sl.registerLazySingleton<DebugRepository>(() => DebugRepositoryImpl(sl()));
   sl.registerLazySingleton<TagsRepository>(() => TagsRepositoryImpl(sl()));
+  sl.registerLazySingleton<JoinRequestsRepository>(
+      () => JoinRequestsRepositoryImpl(sl()));
 
   /// DataSource
   sl.registerLazySingleton<SharedPreferencesDataSource>(
@@ -75,6 +80,8 @@ Future<void> initDependencies(bool isRelease) async {
   sl.registerLazySingleton<MessageRoomsDataSource>(
       () => MessageRoomsDataSource(sl()));
   sl.registerLazySingleton<TagsDataSource>(() => TagsDataSource(sl()));
+  sl.registerLazySingleton<JoinRequestsDataSource>(
+      () => JoinRequestsDataSource(sl()));
 
   return await sl.allReady();
 }

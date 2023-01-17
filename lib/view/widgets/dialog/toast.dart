@@ -30,3 +30,31 @@ Future<void> showToast(
     toastDuration: const Duration(seconds: 2),
   );
 }
+
+Future<void> showErrorToast(
+  BuildContext context,
+  AppTheme theme,
+  String msg,
+) async {
+  /// メッセージテキストスタイル
+  final msgTextColor = theme.appColors.onError;
+  final msgTextStyle = theme.textTheme.h30.paint(msgTextColor);
+
+  FToast fToast = FToast();
+  fToast.init(context);
+
+  Widget toast = Container(
+    padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(23),
+      color: theme.appColors.error,
+    ),
+    child: Text(msg, style: msgTextStyle),
+  );
+
+  fToast.showToast(
+    child: toast,
+    gravity: ToastGravity.BOTTOM,
+    toastDuration: const Duration(seconds: 2),
+  );
+}

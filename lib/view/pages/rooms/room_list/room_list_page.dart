@@ -86,7 +86,7 @@ class RoomListPage extends HookConsumerWidget {
     BuildContext context,
     RoomListState data,
     VoidCallback onTapCard,
-    VoidCallback sendJoinRequest,
+    Function(String) sendJoinRequest,
   ) {
     return ListAnimationWidget(
       items: data.rooms,
@@ -94,9 +94,8 @@ class RoomListPage extends HookConsumerWidget {
       container: (room) => RoomCard(
           room: room,
           onTapRoom: () => onTapCard,
-          onTapJoinRequestBtn: () {
-            _showJoinRequestToast(context, theme);
-            sendJoinRequest();
+          onTapJoinRequestBtn: (String id) async {
+            _showJoinRequestToast(context, theme, await sendJoinRequest(id));
           }),
     );
   }
@@ -136,7 +135,9 @@ class RoomListPage extends HookConsumerWidget {
     );
   }
 
-  _showJoinRequestToast(BuildContext context, AppTheme theme) {
-    showToast(context, theme, "参加申請を送信しました。");
+  _showJoinRequestToast(BuildContext context, AppTheme theme, bool isSuccess) {
+    isSuccess
+        ? showToast(context, theme, "参加申請を送信しました。")
+        : showErrorToast(context, theme, "参加申請の送信に失敗しました。");
   }
 }

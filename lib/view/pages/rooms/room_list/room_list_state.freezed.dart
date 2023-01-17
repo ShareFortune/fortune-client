@@ -142,6 +142,7 @@ abstract class _RoomListState implements RoomListState {
 
 /// @nodoc
 mixin _$RoomListItemState {
+  String get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   String get deadline => throw _privateConstructorUsedError;
   String get hostIcon => throw _privateConstructorUsedError;
@@ -160,7 +161,8 @@ abstract class $RoomListItemStateCopyWith<$Res> {
       _$RoomListItemStateCopyWithImpl<$Res, RoomListItemState>;
   @useResult
   $Res call(
-      {String title,
+      {String id,
+      String title,
       String deadline,
       String hostIcon,
       List<String> memberIcons,
@@ -180,6 +182,7 @@ class _$RoomListItemStateCopyWithImpl<$Res, $Val extends RoomListItemState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? title = null,
     Object? deadline = null,
     Object? hostIcon = null,
@@ -187,6 +190,10 @@ class _$RoomListItemStateCopyWithImpl<$Res, $Val extends RoomListItemState>
     Object? address = null,
   }) {
     return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -220,7 +227,8 @@ abstract class _$$_RoomListItemStateCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String title,
+      {String id,
+      String title,
       String deadline,
       String hostIcon,
       List<String> memberIcons,
@@ -238,6 +246,7 @@ class __$$_RoomListItemStateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? title = null,
     Object? deadline = null,
     Object? hostIcon = null,
@@ -245,6 +254,10 @@ class __$$_RoomListItemStateCopyWithImpl<$Res>
     Object? address = null,
   }) {
     return _then(_$_RoomListItemState(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -273,13 +286,16 @@ class __$$_RoomListItemStateCopyWithImpl<$Res>
 
 class _$_RoomListItemState implements _RoomListItemState {
   const _$_RoomListItemState(
-      {this.title = "",
+      {required this.id,
+      this.title = "",
       this.deadline = "",
       this.hostIcon = "",
       final List<String> memberIcons = const [],
       this.address = ""})
       : _memberIcons = memberIcons;
 
+  @override
+  final String id;
   @override
   @JsonKey()
   final String title;
@@ -304,7 +320,7 @@ class _$_RoomListItemState implements _RoomListItemState {
 
   @override
   String toString() {
-    return 'RoomListItemState(title: $title, deadline: $deadline, hostIcon: $hostIcon, memberIcons: $memberIcons, address: $address)';
+    return 'RoomListItemState(id: $id, title: $title, deadline: $deadline, hostIcon: $hostIcon, memberIcons: $memberIcons, address: $address)';
   }
 
   @override
@@ -312,6 +328,7 @@ class _$_RoomListItemState implements _RoomListItemState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_RoomListItemState &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.deadline, deadline) ||
                 other.deadline == deadline) &&
@@ -323,7 +340,7 @@ class _$_RoomListItemState implements _RoomListItemState {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, title, deadline, hostIcon,
+  int get hashCode => Object.hash(runtimeType, id, title, deadline, hostIcon,
       const DeepCollectionEquality().hash(_memberIcons), address);
 
   @JsonKey(ignore: true)
@@ -336,12 +353,15 @@ class _$_RoomListItemState implements _RoomListItemState {
 
 abstract class _RoomListItemState implements RoomListItemState {
   const factory _RoomListItemState(
-      {final String title,
+      {required final String id,
+      final String title,
       final String deadline,
       final String hostIcon,
       final List<String> memberIcons,
       final String address}) = _$_RoomListItemState;
 
+  @override
+  String get id;
   @override
   String get title;
   @override
