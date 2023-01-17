@@ -17,18 +17,19 @@ extension RoomJoinRequestStatusEx on RoomJoinRequestStatus {
 
   String get rawValue => rawValues[this]!;
 
-  static RoomJoinRequestStatus? from(String rawValue) =>
-      rawValues.keys.firstWhere((key) => rawValues[key] == rawValue);
+  static RoomJoinRequestStatus from(String rawValue) {
+    return rawValues.keys.firstWhere((key) => rawValues[key] == rawValue);
+  }
 }
 
-class RoomJoinRequestStatusEnumConverter
-    implements JsonConverter<RoomJoinRequestStatus?, String?> {
-  const RoomJoinRequestStatusEnumConverter();
+class RoomJoinRequestStatusConverter
+    implements JsonConverter<RoomJoinRequestStatus, String> {
+  const RoomJoinRequestStatusConverter();
 
   @override
-  RoomJoinRequestStatus? fromJson(String? rawValue) =>
-      (rawValue == null) ? null : RoomJoinRequestStatusEx.from(rawValue);
+  RoomJoinRequestStatus fromJson(String rawValue) =>
+      RoomJoinRequestStatusEx.from(rawValue);
 
   @override
-  String? toJson(RoomJoinRequestStatus? status) => status?.rawValue;
+  String toJson(RoomJoinRequestStatus status) => status.rawValue;
 }

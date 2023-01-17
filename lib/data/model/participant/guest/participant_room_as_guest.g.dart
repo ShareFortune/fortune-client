@@ -19,9 +19,10 @@ _$_ParticipantRoomAsGuest _$$_ParticipantRoomAsGuestFromJson(
       address: Address.fromJson(json['address'] as Map<String, dynamic>),
       membersNum:
           MembersNum.fromJson(json['membersNum'] as Map<String, dynamic>),
-      roomStatus: $enumDecode(_$RoomStatusEnumMap, json['roomStatus']),
-      joinRequestStatus: $enumDecode(
-          _$RoomJoinRequestStatusEnumMap, json['joinRequestStatus']),
+      roomStatus:
+          const RoomStatusConverter().fromJson(json['roomStatus'] as String),
+      joinRequestStatus: const RoomJoinRequestStatusConverter()
+          .fromJson(json['joinRequestStatus'] as String),
     );
 
 Map<String, dynamic> _$$_ParticipantRoomAsGuestToJson(
@@ -33,20 +34,7 @@ Map<String, dynamic> _$$_ParticipantRoomAsGuestToJson(
       'participantMainImageURLs': instance.participantMainImageURLs,
       'address': instance.address,
       'membersNum': instance.membersNum,
-      'roomStatus': _$RoomStatusEnumMap[instance.roomStatus]!,
-      'joinRequestStatus':
-          _$RoomJoinRequestStatusEnumMap[instance.joinRequestStatus]!,
+      'roomStatus': const RoomStatusConverter().toJson(instance.roomStatus),
+      'joinRequestStatus': const RoomJoinRequestStatusConverter()
+          .toJson(instance.joinRequestStatus),
     };
-
-const _$RoomStatusEnumMap = {
-  RoomStatus.pending: 'pending',
-  RoomStatus.opend: 'opend',
-  RoomStatus.closed: 'closed',
-};
-
-const _$RoomJoinRequestStatusEnumMap = {
-  RoomJoinRequestStatus.accepted: 'accepted',
-  RoomJoinRequestStatus.rejected: 'rejected',
-  RoomJoinRequestStatus.pending: 'pending',
-  RoomJoinRequestStatus.canceled: 'canceled',
-};

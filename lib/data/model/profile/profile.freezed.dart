@@ -20,27 +20,52 @@ Profile _$ProfileFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Profile {
+  @JsonKey(name: "id")
   String get id => throw _privateConstructorUsedError;
+
+  /// 名前
+  @JsonKey(name: "username")
   String get username => throw _privateConstructorUsedError;
+
+  /// ニックネーム
+  @JsonKey(name: "name")
   String get name => throw _privateConstructorUsedError;
-  String get gender => throw _privateConstructorUsedError;
+
+  /// 性別
+  @JsonKey(name: "gender")
+  @GenderConverter()
+  Gender get gender => throw _privateConstructorUsedError;
+
+  /// 身長
+  @JsonKey(name: "height")
   int get height => throw _privateConstructorUsedError;
-  String get drinkFrequency => throw _privateConstructorUsedError; // お酒をよく飲むか
-  String get cigaretteFrequency =>
-      throw _privateConstructorUsedError; // タバコをよく吸うか
-  String get selfIntroduction =>
-      throw _privateConstructorUsedError; // 自己紹介文(nullalble)
-  String get occupation => throw _privateConstructorUsedError; // 職業ID
-  Map<dynamic, dynamic> get address =>
-      throw _privateConstructorUsedError; // 居住地
-  List<dynamic> get tags => throw _privateConstructorUsedError; // 居住地
+
+  /// お酒をよく飲むか
+  @JsonKey(name: "drinkFrequency")
+  @DrinkFrequencyConverter()
+  DrinkFrequency get drinkFrequency => throw _privateConstructorUsedError;
+
+  /// タバコをよく吸うか
+  @JsonKey(name: "cigaretteFrequency")
+  @CigaretteFrequencyConverter()
+  CigaretteFrequency get cigaretteFrequency =>
+      throw _privateConstructorUsedError;
+
+  /// 自己紹介文
+  @JsonKey(name: "selfIntroduction")
+  String get selfIntroduction => throw _privateConstructorUsedError;
+
+  /// 居住地
+  @JsonKey(name: "address")
+  Address get address => throw _privateConstructorUsedError;
+
+  /// 居住地
+  @JsonKey(name: "tags")
+  List<Tag> get tags => throw _privateConstructorUsedError;
+
   /// プロフィール画像
+  @JsonKey(name: "mainImageURL")
   String get mainImageURL => throw _privateConstructorUsedError;
-  String get secondImageURL => throw _privateConstructorUsedError;
-  String get thirdImageURL => throw _privateConstructorUsedError;
-  String get fourthImageURL => throw _privateConstructorUsedError;
-  String get fifthImageURL => throw _privateConstructorUsedError;
-  String get sixthImageURL => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -53,23 +78,33 @@ abstract class $ProfileCopyWith<$Res> {
       _$ProfileCopyWithImpl<$Res, Profile>;
   @useResult
   $Res call(
-      {String id,
-      String username,
-      String name,
-      String gender,
-      int height,
-      String drinkFrequency,
-      String cigaretteFrequency,
-      String selfIntroduction,
-      String occupation,
-      Map<dynamic, dynamic> address,
-      List<dynamic> tags,
-      String mainImageURL,
-      String secondImageURL,
-      String thirdImageURL,
-      String fourthImageURL,
-      String fifthImageURL,
-      String sixthImageURL});
+      {@JsonKey(name: "id")
+          String id,
+      @JsonKey(name: "username")
+          String username,
+      @JsonKey(name: "name")
+          String name,
+      @JsonKey(name: "gender")
+      @GenderConverter()
+          Gender gender,
+      @JsonKey(name: "height")
+          int height,
+      @JsonKey(name: "drinkFrequency")
+      @DrinkFrequencyConverter()
+          DrinkFrequency drinkFrequency,
+      @JsonKey(name: "cigaretteFrequency")
+      @CigaretteFrequencyConverter()
+          CigaretteFrequency cigaretteFrequency,
+      @JsonKey(name: "selfIntroduction")
+          String selfIntroduction,
+      @JsonKey(name: "address")
+          Address address,
+      @JsonKey(name: "tags")
+          List<Tag> tags,
+      @JsonKey(name: "mainImageURL")
+          String mainImageURL});
+
+  $AddressCopyWith<$Res> get address;
 }
 
 /// @nodoc
@@ -93,15 +128,9 @@ class _$ProfileCopyWithImpl<$Res, $Val extends Profile>
     Object? drinkFrequency = null,
     Object? cigaretteFrequency = null,
     Object? selfIntroduction = null,
-    Object? occupation = null,
     Object? address = null,
     Object? tags = null,
     Object? mainImageURL = null,
-    Object? secondImageURL = null,
-    Object? thirdImageURL = null,
-    Object? fourthImageURL = null,
-    Object? fifthImageURL = null,
-    Object? sixthImageURL = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -119,7 +148,7 @@ class _$ProfileCopyWithImpl<$Res, $Val extends Profile>
       gender: null == gender
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Gender,
       height: null == height
           ? _value.height
           : height // ignore: cast_nullable_to_non_nullable
@@ -127,52 +156,36 @@ class _$ProfileCopyWithImpl<$Res, $Val extends Profile>
       drinkFrequency: null == drinkFrequency
           ? _value.drinkFrequency
           : drinkFrequency // ignore: cast_nullable_to_non_nullable
-              as String,
+              as DrinkFrequency,
       cigaretteFrequency: null == cigaretteFrequency
           ? _value.cigaretteFrequency
           : cigaretteFrequency // ignore: cast_nullable_to_non_nullable
-              as String,
+              as CigaretteFrequency,
       selfIntroduction: null == selfIntroduction
           ? _value.selfIntroduction
           : selfIntroduction // ignore: cast_nullable_to_non_nullable
               as String,
-      occupation: null == occupation
-          ? _value.occupation
-          : occupation // ignore: cast_nullable_to_non_nullable
-              as String,
       address: null == address
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
-              as Map<dynamic, dynamic>,
+              as Address,
       tags: null == tags
           ? _value.tags
           : tags // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
+              as List<Tag>,
       mainImageURL: null == mainImageURL
           ? _value.mainImageURL
           : mainImageURL // ignore: cast_nullable_to_non_nullable
               as String,
-      secondImageURL: null == secondImageURL
-          ? _value.secondImageURL
-          : secondImageURL // ignore: cast_nullable_to_non_nullable
-              as String,
-      thirdImageURL: null == thirdImageURL
-          ? _value.thirdImageURL
-          : thirdImageURL // ignore: cast_nullable_to_non_nullable
-              as String,
-      fourthImageURL: null == fourthImageURL
-          ? _value.fourthImageURL
-          : fourthImageURL // ignore: cast_nullable_to_non_nullable
-              as String,
-      fifthImageURL: null == fifthImageURL
-          ? _value.fifthImageURL
-          : fifthImageURL // ignore: cast_nullable_to_non_nullable
-              as String,
-      sixthImageURL: null == sixthImageURL
-          ? _value.sixthImageURL
-          : sixthImageURL // ignore: cast_nullable_to_non_nullable
-              as String,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $AddressCopyWith<$Res> get address {
+    return $AddressCopyWith<$Res>(_value.address, (value) {
+      return _then(_value.copyWith(address: value) as $Val);
+    });
   }
 }
 
@@ -184,23 +197,34 @@ abstract class _$$_ProfileCopyWith<$Res> implements $ProfileCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String id,
-      String username,
-      String name,
-      String gender,
-      int height,
-      String drinkFrequency,
-      String cigaretteFrequency,
-      String selfIntroduction,
-      String occupation,
-      Map<dynamic, dynamic> address,
-      List<dynamic> tags,
-      String mainImageURL,
-      String secondImageURL,
-      String thirdImageURL,
-      String fourthImageURL,
-      String fifthImageURL,
-      String sixthImageURL});
+      {@JsonKey(name: "id")
+          String id,
+      @JsonKey(name: "username")
+          String username,
+      @JsonKey(name: "name")
+          String name,
+      @JsonKey(name: "gender")
+      @GenderConverter()
+          Gender gender,
+      @JsonKey(name: "height")
+          int height,
+      @JsonKey(name: "drinkFrequency")
+      @DrinkFrequencyConverter()
+          DrinkFrequency drinkFrequency,
+      @JsonKey(name: "cigaretteFrequency")
+      @CigaretteFrequencyConverter()
+          CigaretteFrequency cigaretteFrequency,
+      @JsonKey(name: "selfIntroduction")
+          String selfIntroduction,
+      @JsonKey(name: "address")
+          Address address,
+      @JsonKey(name: "tags")
+          List<Tag> tags,
+      @JsonKey(name: "mainImageURL")
+          String mainImageURL});
+
+  @override
+  $AddressCopyWith<$Res> get address;
 }
 
 /// @nodoc
@@ -221,15 +245,9 @@ class __$$_ProfileCopyWithImpl<$Res>
     Object? drinkFrequency = null,
     Object? cigaretteFrequency = null,
     Object? selfIntroduction = null,
-    Object? occupation = null,
     Object? address = null,
     Object? tags = null,
     Object? mainImageURL = null,
-    Object? secondImageURL = null,
-    Object? thirdImageURL = null,
-    Object? fourthImageURL = null,
-    Object? fifthImageURL = null,
-    Object? sixthImageURL = null,
   }) {
     return _then(_$_Profile(
       id: null == id
@@ -247,7 +265,7 @@ class __$$_ProfileCopyWithImpl<$Res>
       gender: null == gender
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Gender,
       height: null == height
           ? _value.height
           : height // ignore: cast_nullable_to_non_nullable
@@ -255,50 +273,26 @@ class __$$_ProfileCopyWithImpl<$Res>
       drinkFrequency: null == drinkFrequency
           ? _value.drinkFrequency
           : drinkFrequency // ignore: cast_nullable_to_non_nullable
-              as String,
+              as DrinkFrequency,
       cigaretteFrequency: null == cigaretteFrequency
           ? _value.cigaretteFrequency
           : cigaretteFrequency // ignore: cast_nullable_to_non_nullable
-              as String,
+              as CigaretteFrequency,
       selfIntroduction: null == selfIntroduction
           ? _value.selfIntroduction
           : selfIntroduction // ignore: cast_nullable_to_non_nullable
               as String,
-      occupation: null == occupation
-          ? _value.occupation
-          : occupation // ignore: cast_nullable_to_non_nullable
-              as String,
       address: null == address
-          ? _value._address
+          ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
-              as Map<dynamic, dynamic>,
+              as Address,
       tags: null == tags
           ? _value._tags
           : tags // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
+              as List<Tag>,
       mainImageURL: null == mainImageURL
           ? _value.mainImageURL
           : mainImageURL // ignore: cast_nullable_to_non_nullable
-              as String,
-      secondImageURL: null == secondImageURL
-          ? _value.secondImageURL
-          : secondImageURL // ignore: cast_nullable_to_non_nullable
-              as String,
-      thirdImageURL: null == thirdImageURL
-          ? _value.thirdImageURL
-          : thirdImageURL // ignore: cast_nullable_to_non_nullable
-              as String,
-      fourthImageURL: null == fourthImageURL
-          ? _value.fourthImageURL
-          : fourthImageURL // ignore: cast_nullable_to_non_nullable
-              as String,
-      fifthImageURL: null == fifthImageURL
-          ? _value.fifthImageURL
-          : fifthImageURL // ignore: cast_nullable_to_non_nullable
-              as String,
-      sixthImageURL: null == sixthImageURL
-          ? _value.sixthImageURL
-          : sixthImageURL // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -308,88 +302,103 @@ class __$$_ProfileCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_Profile implements _Profile {
   _$_Profile(
-      {required this.id,
-      required this.username,
-      required this.name,
-      required this.gender,
-      required this.height,
-      required this.drinkFrequency,
-      required this.cigaretteFrequency,
-      required this.selfIntroduction,
-      required this.occupation,
-      required final Map<dynamic, dynamic> address,
-      required final List<dynamic> tags,
-      required this.mainImageURL,
-      required this.secondImageURL,
-      required this.thirdImageURL,
-      required this.fourthImageURL,
-      required this.fifthImageURL,
-      required this.sixthImageURL})
-      : _address = address,
-        _tags = tags;
+      {@JsonKey(name: "id")
+          required this.id,
+      @JsonKey(name: "username")
+          required this.username,
+      @JsonKey(name: "name")
+          required this.name,
+      @JsonKey(name: "gender")
+      @GenderConverter()
+          required this.gender,
+      @JsonKey(name: "height")
+          required this.height,
+      @JsonKey(name: "drinkFrequency")
+      @DrinkFrequencyConverter()
+          required this.drinkFrequency,
+      @JsonKey(name: "cigaretteFrequency")
+      @CigaretteFrequencyConverter()
+          required this.cigaretteFrequency,
+      @JsonKey(name: "selfIntroduction")
+          required this.selfIntroduction,
+      @JsonKey(name: "address")
+          required this.address,
+      @JsonKey(name: "tags")
+          required final List<Tag> tags,
+      @JsonKey(name: "mainImageURL")
+          required this.mainImageURL})
+      : _tags = tags;
 
   factory _$_Profile.fromJson(Map<String, dynamic> json) =>
       _$$_ProfileFromJson(json);
 
   @override
+  @JsonKey(name: "id")
   final String id;
-  @override
-  final String username;
-  @override
-  final String name;
-  @override
-  final String gender;
-  @override
-  final int height;
-  @override
-  final String drinkFrequency;
-// お酒をよく飲むか
-  @override
-  final String cigaretteFrequency;
-// タバコをよく吸うか
-  @override
-  final String selfIntroduction;
-// 自己紹介文(nullalble)
-  @override
-  final String occupation;
-// 職業ID
-  final Map<dynamic, dynamic> _address;
-// 職業ID
-  @override
-  Map<dynamic, dynamic> get address {
-    if (_address is EqualUnmodifiableMapView) return _address;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableMapView(_address);
-  }
 
-// 居住地
-  final List<dynamic> _tags;
-// 居住地
+  /// 名前
   @override
-  List<dynamic> get tags {
+  @JsonKey(name: "username")
+  final String username;
+
+  /// ニックネーム
+  @override
+  @JsonKey(name: "name")
+  final String name;
+
+  /// 性別
+  @override
+  @JsonKey(name: "gender")
+  @GenderConverter()
+  final Gender gender;
+
+  /// 身長
+  @override
+  @JsonKey(name: "height")
+  final int height;
+
+  /// お酒をよく飲むか
+  @override
+  @JsonKey(name: "drinkFrequency")
+  @DrinkFrequencyConverter()
+  final DrinkFrequency drinkFrequency;
+
+  /// タバコをよく吸うか
+  @override
+  @JsonKey(name: "cigaretteFrequency")
+  @CigaretteFrequencyConverter()
+  final CigaretteFrequency cigaretteFrequency;
+
+  /// 自己紹介文
+  @override
+  @JsonKey(name: "selfIntroduction")
+  final String selfIntroduction;
+
+  /// 居住地
+  @override
+  @JsonKey(name: "address")
+  final Address address;
+
+  /// 居住地
+  final List<Tag> _tags;
+
+  /// 居住地
+  @override
+  @JsonKey(name: "tags")
+  List<Tag> get tags {
     if (_tags is EqualUnmodifiableListView) return _tags;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_tags);
   }
 
-// 居住地
   /// プロフィール画像
   @override
+  @JsonKey(name: "mainImageURL")
   final String mainImageURL;
-  @override
-  final String secondImageURL;
-  @override
-  final String thirdImageURL;
-  @override
-  final String fourthImageURL;
-  @override
-  final String fifthImageURL;
-  @override
-  final String sixthImageURL;
 
   @override
   String toString() {
-    return 'Profile(id: $id, username: $username, name: $name, gender: $gender, height: $height, drinkFrequency: $drinkFrequency, cigaretteFrequency: $cigaretteFrequency, selfIntroduction: $selfIntroduction, occupation: $occupation, address: $address, tags: $tags, mainImageURL: $mainImageURL, secondImageURL: $secondImageURL, thirdImageURL: $thirdImageURL, fourthImageURL: $fourthImageURL, fifthImageURL: $fifthImageURL, sixthImageURL: $sixthImageURL)';
+    return 'Profile(id: $id, username: $username, name: $name, gender: $gender, height: $height, drinkFrequency: $drinkFrequency, cigaretteFrequency: $cigaretteFrequency, selfIntroduction: $selfIntroduction, address: $address, tags: $tags, mainImageURL: $mainImageURL)';
   }
 
   @override
@@ -409,22 +418,10 @@ class _$_Profile implements _Profile {
                 other.cigaretteFrequency == cigaretteFrequency) &&
             (identical(other.selfIntroduction, selfIntroduction) ||
                 other.selfIntroduction == selfIntroduction) &&
-            (identical(other.occupation, occupation) ||
-                other.occupation == occupation) &&
-            const DeepCollectionEquality().equals(other._address, _address) &&
+            (identical(other.address, address) || other.address == address) &&
             const DeepCollectionEquality().equals(other._tags, _tags) &&
             (identical(other.mainImageURL, mainImageURL) ||
-                other.mainImageURL == mainImageURL) &&
-            (identical(other.secondImageURL, secondImageURL) ||
-                other.secondImageURL == secondImageURL) &&
-            (identical(other.thirdImageURL, thirdImageURL) ||
-                other.thirdImageURL == thirdImageURL) &&
-            (identical(other.fourthImageURL, fourthImageURL) ||
-                other.fourthImageURL == fourthImageURL) &&
-            (identical(other.fifthImageURL, fifthImageURL) ||
-                other.fifthImageURL == fifthImageURL) &&
-            (identical(other.sixthImageURL, sixthImageURL) ||
-                other.sixthImageURL == sixthImageURL));
+                other.mainImageURL == mainImageURL));
   }
 
   @JsonKey(ignore: true)
@@ -439,15 +436,9 @@ class _$_Profile implements _Profile {
       drinkFrequency,
       cigaretteFrequency,
       selfIntroduction,
-      occupation,
-      const DeepCollectionEquality().hash(_address),
+      address,
       const DeepCollectionEquality().hash(_tags),
-      mainImageURL,
-      secondImageURL,
-      thirdImageURL,
-      fourthImageURL,
-      fifthImageURL,
-      sixthImageURL);
+      mainImageURL);
 
   @JsonKey(ignore: true)
   @override
@@ -465,61 +456,90 @@ class _$_Profile implements _Profile {
 
 abstract class _Profile implements Profile {
   factory _Profile(
-      {required final String id,
-      required final String username,
-      required final String name,
-      required final String gender,
-      required final int height,
-      required final String drinkFrequency,
-      required final String cigaretteFrequency,
-      required final String selfIntroduction,
-      required final String occupation,
-      required final Map<dynamic, dynamic> address,
-      required final List<dynamic> tags,
-      required final String mainImageURL,
-      required final String secondImageURL,
-      required final String thirdImageURL,
-      required final String fourthImageURL,
-      required final String fifthImageURL,
-      required final String sixthImageURL}) = _$_Profile;
+      {@JsonKey(name: "id")
+          required final String id,
+      @JsonKey(name: "username")
+          required final String username,
+      @JsonKey(name: "name")
+          required final String name,
+      @JsonKey(name: "gender")
+      @GenderConverter()
+          required final Gender gender,
+      @JsonKey(name: "height")
+          required final int height,
+      @JsonKey(name: "drinkFrequency")
+      @DrinkFrequencyConverter()
+          required final DrinkFrequency drinkFrequency,
+      @JsonKey(name: "cigaretteFrequency")
+      @CigaretteFrequencyConverter()
+          required final CigaretteFrequency cigaretteFrequency,
+      @JsonKey(name: "selfIntroduction")
+          required final String selfIntroduction,
+      @JsonKey(name: "address")
+          required final Address address,
+      @JsonKey(name: "tags")
+          required final List<Tag> tags,
+      @JsonKey(name: "mainImageURL")
+          required final String mainImageURL}) = _$_Profile;
 
   factory _Profile.fromJson(Map<String, dynamic> json) = _$_Profile.fromJson;
 
   @override
+  @JsonKey(name: "id")
   String get id;
   @override
+
+  /// 名前
+  @JsonKey(name: "username")
   String get username;
   @override
+
+  /// ニックネーム
+  @JsonKey(name: "name")
   String get name;
   @override
-  String get gender;
+
+  /// 性別
+  @JsonKey(name: "gender")
+  @GenderConverter()
+  Gender get gender;
   @override
+
+  /// 身長
+  @JsonKey(name: "height")
   int get height;
   @override
-  String get drinkFrequency;
-  @override // お酒をよく飲むか
-  String get cigaretteFrequency;
-  @override // タバコをよく吸うか
+
+  /// お酒をよく飲むか
+  @JsonKey(name: "drinkFrequency")
+  @DrinkFrequencyConverter()
+  DrinkFrequency get drinkFrequency;
+  @override
+
+  /// タバコをよく吸うか
+  @JsonKey(name: "cigaretteFrequency")
+  @CigaretteFrequencyConverter()
+  CigaretteFrequency get cigaretteFrequency;
+  @override
+
+  /// 自己紹介文
+  @JsonKey(name: "selfIntroduction")
   String get selfIntroduction;
-  @override // 自己紹介文(nullalble)
-  String get occupation;
-  @override // 職業ID
-  Map<dynamic, dynamic> get address;
-  @override // 居住地
-  List<dynamic> get tags;
-  @override // 居住地
+  @override
+
+  /// 居住地
+  @JsonKey(name: "address")
+  Address get address;
+  @override
+
+  /// 居住地
+  @JsonKey(name: "tags")
+  List<Tag> get tags;
+  @override
+
   /// プロフィール画像
+  @JsonKey(name: "mainImageURL")
   String get mainImageURL;
-  @override
-  String get secondImageURL;
-  @override
-  String get thirdImageURL;
-  @override
-  String get fourthImageURL;
-  @override
-  String get fifthImageURL;
-  @override
-  String get sixthImageURL;
   @override
   @JsonKey(ignore: true)
   _$$_ProfileCopyWith<_$_Profile> get copyWith =>

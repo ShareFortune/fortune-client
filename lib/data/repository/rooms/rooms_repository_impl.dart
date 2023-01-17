@@ -45,7 +45,6 @@ class RoomsRepositoryImpl implements RoomsRepository {
     try {
       final _result = await _roomsDataSource
           .getDetail("df08f3f8-1f32-477d-947c-4bc8b6ae4f58");
-      print(_result);
       return _result;
     } catch (e) {
       print(e.toString());
@@ -57,12 +56,29 @@ class RoomsRepositoryImpl implements RoomsRepository {
   Future<List<ParticipantRoomAsHost>> getRoomsToParticipateAsHost() async {
     try {
       logger.i("$runtimeType getRoomsToParticipateAsHost");
-      // final result = await _roomsDataSource.getHost(perPage: 10);
-      // return result.rooms;
+      final result = await _roomsDataSource.getHost(perPage: 10);
+      return result.rooms;
+    } catch (e) {
+      logger.e(e);
+      rethrow;
+    }
+  }
 
-      await Future.delayed(const Duration(seconds: 3));
+  @override
+  Future<List<ParticipantRoomAsGuest>> getRoomsToParticipateAsGuest() async {
+    try {
+      logger.i("$runtimeType getRoomsToParticipateAsGuest");
 
-      return [];
+      final result = await _roomsDataSource.getGuest(perPage: 10);
+      return result.rooms;
+    } catch (e) {
+      logger.e(e);
+      rethrow;
+    }
+  }
+}
+
+
       // return [
       //   ParticipantRoomAsHost(
       //     id: "id",
@@ -91,87 +107,65 @@ class RoomsRepositoryImpl implements RoomsRepository {
       //     joinRequestsCount: 3,
       //   ),
       // ];
-    } catch (e) {
-      logger.e(e);
-      rethrow;
-    }
-  }
 
-  @override
-  Future<List<ParticipantRoomAsGuest>> getRoomsToParticipateAsGuest() async {
-    try {
-      logger.i("$runtimeType getRoomsToParticipateAsGuest");
 
-      /// 本番
-      // final result = await _roomsDataSource.getGuest(perPage: 10);
-      // return result.rooms;
+      // final datas = [
+      //   ParticipantRoomAsGuest(
+      //     id: "id",
+      //     roomName: "渋谷で飲み会しませんか？",
+      //     hostMainImageURL: "hostMainImageURL",
+      //     participantMainImageURLs: ["", "", ""],
+      //     address: const Address(
+      //       country: "東京",
+      //       prefecture: "調布市",
+      //       city: "御影町",
+      //     ),
+      //     membersNum: MembersNum(
+      //       maxMenNum: 2,
+      //       menNum: 1,
+      //       maxWomenNum: 2,
+      //       womenNum: 0,
+      //     ),
+      //     roomStatus: RoomStatus.pending,
+      //     joinRequestStatus: RoomJoinRequestStatus.pending,
+      //   ),
+      //   ParticipantRoomAsGuest(
+      //     id: "id",
+      //     roomName: "ゲーム好き集まれ！",
+      //     hostMainImageURL: "hostMainImageURL",
+      //     participantMainImageURLs: [""],
+      //     address: const Address(
+      //       country: "東京",
+      //       prefecture: "府中市",
+      //       city: "幸町",
+      //     ),
+      //     membersNum: MembersNum(
+      //       maxMenNum: 2,
+      //       menNum: 1,
+      //       maxWomenNum: 2,
+      //       womenNum: 2,
+      //     ),
+      //     roomStatus: RoomStatus.opend,
+      //     joinRequestStatus: RoomJoinRequestStatus.accepted,
+      //   ),
+      //   ParticipantRoomAsGuest(
+      //     id: "id",
+      //     roomName: "映画見る会",
+      //     hostMainImageURL: "hostMainImageURL",
+      //     participantMainImageURLs: ["", ""],
+      //     address: const Address(
+      //       country: "東京",
+      //       prefecture: "多摩霊園",
+      //       city: "湯河原町",
+      //     ),
+      //     membersNum: MembersNum(
+      //       maxMenNum: 2,
+      //       menNum: 1,
+      //       maxWomenNum: 2,
+      //       womenNum: 2,
+      //     ),
+      //     roomStatus: RoomStatus.pending,
+      //     joinRequestStatus: RoomJoinRequestStatus.pending,
+      //   ),
+      // ];
 
-      await Future.delayed(const Duration(seconds: 5));
-
-      final datas = [
-        ParticipantRoomAsGuest(
-          id: "id",
-          roomName: "渋谷で飲み会しませんか？",
-          hostMainImageURL: "hostMainImageURL",
-          participantMainImageURLs: ["", "", ""],
-          address: const Address(
-            country: "東京",
-            prefecture: "調布市",
-            city: "御影町",
-          ),
-          membersNum: MembersNum(
-            maxMenNum: 2,
-            menNum: 1,
-            maxWomenNum: 2,
-            womenNum: 0,
-          ),
-          roomStatus: RoomStatus.pending,
-          joinRequestStatus: RoomJoinRequestStatus.pending,
-        ),
-        ParticipantRoomAsGuest(
-          id: "id",
-          roomName: "ゲーム好き集まれ！",
-          hostMainImageURL: "hostMainImageURL",
-          participantMainImageURLs: [""],
-          address: const Address(
-            country: "東京",
-            prefecture: "府中市",
-            city: "幸町",
-          ),
-          membersNum: MembersNum(
-            maxMenNum: 2,
-            menNum: 1,
-            maxWomenNum: 2,
-            womenNum: 2,
-          ),
-          roomStatus: RoomStatus.opend,
-          joinRequestStatus: RoomJoinRequestStatus.accepted,
-        ),
-        ParticipantRoomAsGuest(
-          id: "id",
-          roomName: "映画見る会",
-          hostMainImageURL: "hostMainImageURL",
-          participantMainImageURLs: ["", ""],
-          address: const Address(
-            country: "東京",
-            prefecture: "多摩霊園",
-            city: "湯河原町",
-          ),
-          membersNum: MembersNum(
-            maxMenNum: 2,
-            menNum: 1,
-            maxWomenNum: 2,
-            womenNum: 2,
-          ),
-          roomStatus: RoomStatus.pending,
-          joinRequestStatus: RoomJoinRequestStatus.pending,
-        ),
-      ];
-
-      return [];
-    } catch (e) {
-      logger.e(e);
-      rethrow;
-    }
-  }
-}

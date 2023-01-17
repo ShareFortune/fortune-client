@@ -37,6 +37,7 @@ dependencies:
   shimmer: ^2.0.0
   fancy_shimmer_image: ^2.0.2
   flutter_datetime_picker: ^1.5.1
+  favorite_button: ^0.0.4
 
   # state management
   flutter_hooks: ^0.18.5+1

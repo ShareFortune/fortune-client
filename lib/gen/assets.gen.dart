@@ -99,6 +99,10 @@ class $AssetsImagesIconsGen {
   SvgGenImage get iconGoogle =>
       const SvgGenImage('assets/images/icons/icon_google.svg');
 
+  /// File path: assets/images/icons/icon_location.svg
+  SvgGenImage get iconLocation =>
+      const SvgGenImage('assets/images/icons/icon_location.svg');
+
   /// File path: assets/images/icons/icon_swap_vert.svg
   SvgGenImage get iconSwapVert =>
       const SvgGenImage('assets/images/icons/icon_swap_vert.svg');
@@ -113,6 +117,7 @@ class $AssetsImagesIconsGen {
         iconApple,
         iconArrowRight,
         iconGoogle,
+        iconLocation,
         iconSwapVert,
         iconTwitter
       ];

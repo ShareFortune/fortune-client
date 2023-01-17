@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:fortune_client/view/pages/common/scroll_app_bar/scroll_app_bar.dart';
+import 'package:fortune_client/view/pages/rooms/room_list/components/room_card.dart';
 import 'package:fortune_client/view/pages/rooms/room_list/room_list_state.dart';
 import 'package:fortune_client/view/pages/rooms/room_list/room_list_view_model.dart';
+import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
+import 'package:fortune_client/view/widgets/dialog/toast.dart';
 import 'package:fortune_client/view/widgets/list_animation.dart';
 import 'package:fortune_client/view/widgets/other/error_widget.dart';
 import 'package:fortune_client/view/widgets/other/loading_widget.dart';
-import 'package:fortune_client/view/widgets/room_card_widget.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class RoomListPage extends HookConsumerWidget {
@@ -22,7 +24,8 @@ class RoomListPage extends HookConsumerWidget {
     /// ルームリスト
     ///
     final roomsWidget = state.when(
-      data: (data) => _roomListView(data, viewModel.navigateToRoomDetail),
+      data: (data) => _roomListView(theme, context, data,
+          viewModel.navigateToRoomDetail, viewModel.sendJoinRequest),
       error: (e, msg) => SliverToBoxAdapter(child: errorWidget(e, msg)),
       loading: () => SliverToBoxAdapter(child: loadingWidget()),
     );
@@ -34,29 +37,12 @@ class RoomListPage extends HookConsumerWidget {
           const ScrollAppBar(title: "見つける", isBorder: false),
           SliverToBoxAdapter(
             child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: Column(
-                  children: [
-                    searchTile(
-                      theme: theme,
-                      title: "人数",
-                      value: "未設定",
-                      onTap: null,
-                    ),
-                    searchTile(
-                      theme: theme,
-                      title: "場所",
-                      value: "未設定",
-                      onTap: null,
-                    ),
-                    searchTile(
-                      theme: theme,
-                      title: "タグ",
-                      value: "未設定",
-                      onTap: () => viewModel.navigateToTagsSelection(),
-                    ),
-                  ],
-                )),
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: _searchListTile(
+                theme,
+                navigateToTagsSelection: viewModel.navigateToTagsSelection,
+              ),
+            ),
           ),
           SliverPadding(
             padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 20),
@@ -67,17 +53,50 @@ class RoomListPage extends HookConsumerWidget {
     );
   }
 
-  Widget _roomListView(RoomListState data, Function() cardOnTap) {
+  _searchListTile(
+    AppTheme theme, {
+    required Function() navigateToTagsSelection,
+  }) {
+    return Column(
+      children: [
+        searchTile(
+          theme: theme,
+          title: "人数",
+          value: "未設定",
+          onTap: null,
+        ),
+        searchTile(
+          theme: theme,
+          title: "場所",
+          value: "未設定",
+          onTap: null,
+        ),
+        searchTile(
+          theme: theme,
+          title: "タグ",
+          value: "未設定",
+          onTap: navigateToTagsSelection,
+        ),
+      ],
+    );
+  }
+
+  Widget _roomListView(
+    AppTheme theme,
+    BuildContext context,
+    List<RoomListStateItem> data,
+    VoidCallback onTapCard,
+    Function(String) sendJoinRequest,
+  ) {
     return ListAnimationWidget(
-      items: data.rooms,
-      spacing: 30,
-      container: (state) => RoomCardWidget(
-        hostIconPath: state.hostIcon,
-        title: state.title,
-        location: "日本・北海道・岩見沢市",
-        members: state.memberIcons,
-        onTap: cardOnTap,
-      ),
+      items: data,
+      spacing: 10,
+      container: (room) => RoomCard(
+          room: room,
+          onTapRoom: () => onTapCard,
+          onTapJoinRequestBtn: (String id) async {
+            _showJoinRequestToast(context, theme, await sendJoinRequest(id));
+          }),
     );
   }
 
@@ -87,13 +106,19 @@ class RoomListPage extends HookConsumerWidget {
     required String value,
     required Function()? onTap,
   }) {
+    /// 検索項目
+    final searchItemTextColor = theme.appColors.subText3;
+    final searchItemTextStyle = theme.textTheme.h40.paint(searchItemTextColor);
+
+    /// 検索結果
+    final searchResultTextColor = theme.appColors.subText1;
+    final searchResultTextStyle =
+        theme.textTheme.h40.paint(searchResultTextColor);
+
     return InkWell(
       onTap: onTap,
       child: Container(
-        padding: const EdgeInsets.symmetric(
-          vertical: 20,
-          horizontal: 10,
-        ),
+        padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
         decoration: const BoxDecoration(
           border: Border(
             bottom: BorderSide(width: 1, color: Color(0xFFF3F3F3)),
@@ -102,16 +127,17 @@ class RoomListPage extends HookConsumerWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(title, style: theme.textTheme.h50),
-            Text(
-              value,
-              style: theme.textTheme.h50.merge(
-                const TextStyle(color: Color(0xFFC9C9CB)),
-              ),
-            ),
+            Text(title, style: searchResultTextStyle),
+            Text(value, style: searchItemTextStyle),
           ],
         ),
       ),
     );
+  }
+
+  _showJoinRequestToast(BuildContext context, AppTheme theme, bool isSuccess) {
+    isSuccess
+        ? showToast(context, theme, "参加申請を送信しました。")
+        : showErrorToast(context, theme, "参加申請の送信に失敗しました。");
   }
 }

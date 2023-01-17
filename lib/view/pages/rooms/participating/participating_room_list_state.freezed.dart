@@ -185,7 +185,6 @@ mixin _$ParticipatingRoomListStateItem {
             String id,
             String title,
             String address,
-            String hostIcon,
             List<String> memberIcons,
             MembersNum membersNum,
             RoomStatus roomStatus,
@@ -208,7 +207,6 @@ mixin _$ParticipatingRoomListStateItem {
             String id,
             String title,
             String address,
-            String hostIcon,
             List<String> memberIcons,
             MembersNum membersNum,
             RoomStatus roomStatus,
@@ -231,7 +229,6 @@ mixin _$ParticipatingRoomListStateItem {
             String id,
             String title,
             String address,
-            String hostIcon,
             List<String> memberIcons,
             MembersNum membersNum,
             RoomStatus roomStatus,
@@ -506,7 +503,6 @@ class _$HostState implements HostState {
             String id,
             String title,
             String address,
-            String hostIcon,
             List<String> memberIcons,
             MembersNum membersNum,
             RoomStatus roomStatus,
@@ -533,7 +529,6 @@ class _$HostState implements HostState {
             String id,
             String title,
             String address,
-            String hostIcon,
             List<String> memberIcons,
             MembersNum membersNum,
             RoomStatus roomStatus,
@@ -560,7 +555,6 @@ class _$HostState implements HostState {
             String id,
             String title,
             String address,
-            String hostIcon,
             List<String> memberIcons,
             MembersNum membersNum,
             RoomStatus roomStatus,
@@ -648,7 +642,6 @@ abstract class _$$GuestStateCopyWith<$Res>
       {String id,
       String title,
       String address,
-      String hostIcon,
       List<String> memberIcons,
       MembersNum membersNum,
       RoomStatus roomStatus,
@@ -672,7 +665,6 @@ class __$$GuestStateCopyWithImpl<$Res>
     Object? id = null,
     Object? title = null,
     Object? address = null,
-    Object? hostIcon = null,
     Object? memberIcons = null,
     Object? membersNum = null,
     Object? roomStatus = null,
@@ -690,10 +682,6 @@ class __$$GuestStateCopyWithImpl<$Res>
       address: null == address
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
-              as String,
-      hostIcon: null == hostIcon
-          ? _value.hostIcon
-          : hostIcon // ignore: cast_nullable_to_non_nullable
               as String,
       memberIcons: null == memberIcons
           ? _value._memberIcons
@@ -722,7 +710,6 @@ class _$GuestState implements GuestState {
       {required this.id,
       required this.title,
       required this.address,
-      required this.hostIcon,
       required final List<String> memberIcons,
       required this.membersNum,
       required this.roomStatus,
@@ -735,8 +722,6 @@ class _$GuestState implements GuestState {
   final String title;
   @override
   final String address;
-  @override
-  final String hostIcon;
   final List<String> _memberIcons;
   @override
   List<String> get memberIcons {
@@ -754,7 +739,7 @@ class _$GuestState implements GuestState {
 
   @override
   String toString() {
-    return 'ParticipatingRoomListStateItem.guest(id: $id, title: $title, address: $address, hostIcon: $hostIcon, memberIcons: $memberIcons, membersNum: $membersNum, roomStatus: $roomStatus, requestStatus: $requestStatus)';
+    return 'ParticipatingRoomListStateItem.guest(id: $id, title: $title, address: $address, memberIcons: $memberIcons, membersNum: $membersNum, roomStatus: $roomStatus, requestStatus: $requestStatus)';
   }
 
   @override
@@ -765,8 +750,6 @@ class _$GuestState implements GuestState {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.address, address) || other.address == address) &&
-            (identical(other.hostIcon, hostIcon) ||
-                other.hostIcon == hostIcon) &&
             const DeepCollectionEquality()
                 .equals(other._memberIcons, _memberIcons) &&
             (identical(other.membersNum, membersNum) ||
@@ -783,7 +766,6 @@ class _$GuestState implements GuestState {
       id,
       title,
       address,
-      hostIcon,
       const DeepCollectionEquality().hash(_memberIcons),
       membersNum,
       roomStatus,
@@ -811,15 +793,14 @@ class _$GuestState implements GuestState {
             String id,
             String title,
             String address,
-            String hostIcon,
             List<String> memberIcons,
             MembersNum membersNum,
             RoomStatus roomStatus,
             RoomJoinRequestStatus requestStatus)
         guest,
   }) {
-    return guest(id, title, address, hostIcon, memberIcons, membersNum,
-        roomStatus, requestStatus);
+    return guest(
+        id, title, address, memberIcons, membersNum, roomStatus, requestStatus);
   }
 
   @override
@@ -838,15 +819,14 @@ class _$GuestState implements GuestState {
             String id,
             String title,
             String address,
-            String hostIcon,
             List<String> memberIcons,
             MembersNum membersNum,
             RoomStatus roomStatus,
             RoomJoinRequestStatus requestStatus)?
         guest,
   }) {
-    return guest?.call(id, title, address, hostIcon, memberIcons, membersNum,
-        roomStatus, requestStatus);
+    return guest?.call(
+        id, title, address, memberIcons, membersNum, roomStatus, requestStatus);
   }
 
   @override
@@ -865,7 +845,6 @@ class _$GuestState implements GuestState {
             String id,
             String title,
             String address,
-            String hostIcon,
             List<String> memberIcons,
             MembersNum membersNum,
             RoomStatus roomStatus,
@@ -874,8 +853,8 @@ class _$GuestState implements GuestState {
     required TResult orElse(),
   }) {
     if (guest != null) {
-      return guest(id, title, address, hostIcon, memberIcons, membersNum,
-          roomStatus, requestStatus);
+      return guest(id, title, address, memberIcons, membersNum, roomStatus,
+          requestStatus);
     }
     return orElse();
   }
@@ -917,7 +896,6 @@ abstract class GuestState implements ParticipatingRoomListStateItem {
       {required final String id,
       required final String title,
       required final String address,
-      required final String hostIcon,
       required final List<String> memberIcons,
       required final MembersNum membersNum,
       required final RoomStatus roomStatus,
@@ -929,7 +907,6 @@ abstract class GuestState implements ParticipatingRoomListStateItem {
   String get title;
   @override
   String get address;
-  String get hostIcon;
   @override
   List<String> get memberIcons;
   @override

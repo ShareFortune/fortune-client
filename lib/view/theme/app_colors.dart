@@ -28,7 +28,7 @@ class AppColors {
   factory AppColors.light() {
     return AppColors(
       primary: const Color(0xFFC782E4),
-      onPrimary: const Color(0xFFEDCDC3),
+      onPrimary: const Color(0xFFFFFFFF),
       secondary: const Color(0xFF43C6B5),
       onSecondary: const Color(0xFF0078FE),
       background: const Color(0xFFF2F2F6),
@@ -38,7 +38,7 @@ class AppColors {
       onSurface: const Color(0xFFE5E5E5),
       linkColor: const Color(0xFF0078FE),
       error: const Color(0xFFB83231),
-      onError: const Color(0xFFB83231),
+      onError: const Color(0xFFFFFFFF),
       subText1: const Color(0xFF000000),
       subText2: const Color(0xFF6C6C6C),
       subText3: const Color(0xFF969696),

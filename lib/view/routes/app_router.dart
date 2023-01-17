@@ -1,6 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_route/empty_router_widgets.dart';
-import 'package:fortune_client/view/pages/account/account/account_page.dart';
+import 'package:fortune_client/view/pages/account/my_page/my_page.dart';
 import 'package:fortune_client/view/pages/auth/login/login_page.dart';
 import 'package:fortune_client/view/pages/common/bottom_navigation_bar/bottom_navigation_bar.dart';
 import 'package:fortune_client/view/pages/debug/debug_page.dart';
@@ -123,7 +123,7 @@ const createProfileRoute = AutoRoute(
     AutoRoute(path: RoutePath.createRoom, page: RoomCreatePage),
 
     /// アカウント
-    AutoRoute(path: RoutePath.account, page: AccountPage),
+    AutoRoute(path: RoutePath.account, page: MyPage),
 
     /// 設定
     AutoRoute(path: RoutePath.setting, page: SettingsPage),

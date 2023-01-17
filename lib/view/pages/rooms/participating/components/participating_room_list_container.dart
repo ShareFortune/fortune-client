@@ -5,6 +5,7 @@ import 'package:fortune_client/view/pages/rooms/participating/components/partici
 import 'package:fortune_client/view/pages/rooms/participating/participating_room_list_state.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
+import 'package:fortune_client/view/widgets/other/error_widget.dart';
 import 'package:fortune_client/view/widgets/other/loading_widget.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -62,7 +63,7 @@ class ParticipatingRoomListContainer extends HookConsumerWidget {
     /// 全て表示ボタン
     late Widget showAllButtonAsync;
 
-    roomsAsync.maybeWhen(
+    roomsAsync.when(
       data: (data) {
         titleWidgetAsync = _titleWidget(theme, roomType.name, data.length);
         if (data.isEmpty) {
@@ -73,7 +74,12 @@ class ParticipatingRoomListContainer extends HookConsumerWidget {
           showAllButtonAsync = _showAllButton(theme, () {});
         }
       },
-      orElse: () {
+      error: (e, stk) {
+        titleWidgetAsync = _titleWidget(theme, roomType.name, 0);
+        roomListContainerAsync = errorWidget(e, stk);
+        showAllButtonAsync = _showAllButton(theme, null);
+      },
+      loading: () {
         titleWidgetAsync = _titleWidget(theme, roomType.name, 0);
         roomListContainerAsync = loadingWidget();
         showAllButtonAsync = _showAllButton(theme, null);

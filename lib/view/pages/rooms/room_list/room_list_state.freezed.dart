@@ -15,162 +15,40 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$RoomListState {
-  List<RoomListItemState> get rooms => throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $RoomListStateCopyWith<RoomListState> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $RoomListStateCopyWith<$Res> {
-  factory $RoomListStateCopyWith(
-          RoomListState value, $Res Function(RoomListState) then) =
-      _$RoomListStateCopyWithImpl<$Res, RoomListState>;
-  @useResult
-  $Res call({List<RoomListItemState> rooms});
-}
-
-/// @nodoc
-class _$RoomListStateCopyWithImpl<$Res, $Val extends RoomListState>
-    implements $RoomListStateCopyWith<$Res> {
-  _$RoomListStateCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? rooms = null,
-  }) {
-    return _then(_value.copyWith(
-      rooms: null == rooms
-          ? _value.rooms
-          : rooms // ignore: cast_nullable_to_non_nullable
-              as List<RoomListItemState>,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$_RoomListStateCopyWith<$Res>
-    implements $RoomListStateCopyWith<$Res> {
-  factory _$$_RoomListStateCopyWith(
-          _$_RoomListState value, $Res Function(_$_RoomListState) then) =
-      __$$_RoomListStateCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({List<RoomListItemState> rooms});
-}
-
-/// @nodoc
-class __$$_RoomListStateCopyWithImpl<$Res>
-    extends _$RoomListStateCopyWithImpl<$Res, _$_RoomListState>
-    implements _$$_RoomListStateCopyWith<$Res> {
-  __$$_RoomListStateCopyWithImpl(
-      _$_RoomListState _value, $Res Function(_$_RoomListState) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? rooms = null,
-  }) {
-    return _then(_$_RoomListState(
-      rooms: null == rooms
-          ? _value._rooms
-          : rooms // ignore: cast_nullable_to_non_nullable
-              as List<RoomListItemState>,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$_RoomListState implements _RoomListState {
-  const _$_RoomListState({final List<RoomListItemState> rooms = const []})
-      : _rooms = rooms;
-
-  final List<RoomListItemState> _rooms;
-  @override
-  @JsonKey()
-  List<RoomListItemState> get rooms {
-    if (_rooms is EqualUnmodifiableListView) return _rooms;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_rooms);
-  }
-
-  @override
-  String toString() {
-    return 'RoomListState(rooms: $rooms)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_RoomListState &&
-            const DeepCollectionEquality().equals(other._rooms, _rooms));
-  }
-
-  @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_rooms));
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$_RoomListStateCopyWith<_$_RoomListState> get copyWith =>
-      __$$_RoomListStateCopyWithImpl<_$_RoomListState>(this, _$identity);
-}
-
-abstract class _RoomListState implements RoomListState {
-  const factory _RoomListState({final List<RoomListItemState> rooms}) =
-      _$_RoomListState;
-
-  @override
-  List<RoomListItemState> get rooms;
-  @override
-  @JsonKey(ignore: true)
-  _$$_RoomListStateCopyWith<_$_RoomListState> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-mixin _$RoomListItemState {
+mixin _$RoomListStateItem {
+  String get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
-  String get deadline => throw _privateConstructorUsedError;
+  String get address => throw _privateConstructorUsedError;
   String get hostIcon => throw _privateConstructorUsedError;
   List<String> get memberIcons => throw _privateConstructorUsedError;
-  String get place => throw _privateConstructorUsedError;
+  bool get isFavorite => throw _privateConstructorUsedError;
+  bool get isRequested => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $RoomListItemStateCopyWith<RoomListItemState> get copyWith =>
+  $RoomListStateItemCopyWith<RoomListStateItem> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $RoomListItemStateCopyWith<$Res> {
-  factory $RoomListItemStateCopyWith(
-          RoomListItemState value, $Res Function(RoomListItemState) then) =
-      _$RoomListItemStateCopyWithImpl<$Res, RoomListItemState>;
+abstract class $RoomListStateItemCopyWith<$Res> {
+  factory $RoomListStateItemCopyWith(
+          RoomListStateItem value, $Res Function(RoomListStateItem) then) =
+      _$RoomListStateItemCopyWithImpl<$Res, RoomListStateItem>;
   @useResult
   $Res call(
-      {String title,
-      String deadline,
+      {String id,
+      String title,
+      String address,
       String hostIcon,
       List<String> memberIcons,
-      String place});
+      bool isFavorite,
+      bool isRequested});
 }
 
 /// @nodoc
-class _$RoomListItemStateCopyWithImpl<$Res, $Val extends RoomListItemState>
-    implements $RoomListItemStateCopyWith<$Res> {
-  _$RoomListItemStateCopyWithImpl(this._value, this._then);
+class _$RoomListStateItemCopyWithImpl<$Res, $Val extends RoomListStateItem>
+    implements $RoomListStateItemCopyWith<$Res> {
+  _$RoomListStateItemCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -180,20 +58,26 @@ class _$RoomListItemStateCopyWithImpl<$Res, $Val extends RoomListItemState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? title = null,
-    Object? deadline = null,
+    Object? address = null,
     Object? hostIcon = null,
     Object? memberIcons = null,
-    Object? place = null,
+    Object? isFavorite = null,
+    Object? isRequested = null,
   }) {
     return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
-      deadline: null == deadline
-          ? _value.deadline
-          : deadline // ignore: cast_nullable_to_non_nullable
+      address: null == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
               as String,
       hostIcon: null == hostIcon
           ? _value.hostIcon
@@ -203,55 +87,67 @@ class _$RoomListItemStateCopyWithImpl<$Res, $Val extends RoomListItemState>
           ? _value.memberIcons
           : memberIcons // ignore: cast_nullable_to_non_nullable
               as List<String>,
-      place: null == place
-          ? _value.place
-          : place // ignore: cast_nullable_to_non_nullable
-              as String,
+      isFavorite: null == isFavorite
+          ? _value.isFavorite
+          : isFavorite // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isRequested: null == isRequested
+          ? _value.isRequested
+          : isRequested // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$_RoomListItemStateCopyWith<$Res>
-    implements $RoomListItemStateCopyWith<$Res> {
-  factory _$$_RoomListItemStateCopyWith(_$_RoomListItemState value,
-          $Res Function(_$_RoomListItemState) then) =
-      __$$_RoomListItemStateCopyWithImpl<$Res>;
+abstract class _$$_RoomListStateItemCopyWith<$Res>
+    implements $RoomListStateItemCopyWith<$Res> {
+  factory _$$_RoomListStateItemCopyWith(_$_RoomListStateItem value,
+          $Res Function(_$_RoomListStateItem) then) =
+      __$$_RoomListStateItemCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
-      {String title,
-      String deadline,
+      {String id,
+      String title,
+      String address,
       String hostIcon,
       List<String> memberIcons,
-      String place});
+      bool isFavorite,
+      bool isRequested});
 }
 
 /// @nodoc
-class __$$_RoomListItemStateCopyWithImpl<$Res>
-    extends _$RoomListItemStateCopyWithImpl<$Res, _$_RoomListItemState>
-    implements _$$_RoomListItemStateCopyWith<$Res> {
-  __$$_RoomListItemStateCopyWithImpl(
-      _$_RoomListItemState _value, $Res Function(_$_RoomListItemState) _then)
+class __$$_RoomListStateItemCopyWithImpl<$Res>
+    extends _$RoomListStateItemCopyWithImpl<$Res, _$_RoomListStateItem>
+    implements _$$_RoomListStateItemCopyWith<$Res> {
+  __$$_RoomListStateItemCopyWithImpl(
+      _$_RoomListStateItem _value, $Res Function(_$_RoomListStateItem) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? title = null,
-    Object? deadline = null,
+    Object? address = null,
     Object? hostIcon = null,
     Object? memberIcons = null,
-    Object? place = null,
+    Object? isFavorite = null,
+    Object? isRequested = null,
   }) {
-    return _then(_$_RoomListItemState(
+    return _then(_$_RoomListStateItem(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
-      deadline: null == deadline
-          ? _value.deadline
-          : deadline // ignore: cast_nullable_to_non_nullable
+      address: null == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
               as String,
       hostIcon: null == hostIcon
           ? _value.hostIcon
@@ -261,37 +157,41 @@ class __$$_RoomListItemStateCopyWithImpl<$Res>
           ? _value._memberIcons
           : memberIcons // ignore: cast_nullable_to_non_nullable
               as List<String>,
-      place: null == place
-          ? _value.place
-          : place // ignore: cast_nullable_to_non_nullable
-              as String,
+      isFavorite: null == isFavorite
+          ? _value.isFavorite
+          : isFavorite // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isRequested: null == isRequested
+          ? _value.isRequested
+          : isRequested // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
 
 /// @nodoc
 
-class _$_RoomListItemState implements _RoomListItemState {
-  const _$_RoomListItemState(
-      {this.title = "",
-      this.deadline = "",
-      this.hostIcon = "",
-      final List<String> memberIcons = const [],
-      this.place = ""})
+class _$_RoomListStateItem implements _RoomListStateItem {
+  const _$_RoomListStateItem(
+      {required this.id,
+      required this.title,
+      required this.address,
+      required this.hostIcon,
+      required final List<String> memberIcons,
+      required this.isFavorite,
+      required this.isRequested})
       : _memberIcons = memberIcons;
 
   @override
-  @JsonKey()
+  final String id;
+  @override
   final String title;
   @override
-  @JsonKey()
-  final String deadline;
+  final String address;
   @override
-  @JsonKey()
   final String hostIcon;
   final List<String> _memberIcons;
   @override
-  @JsonKey()
   List<String> get memberIcons {
     if (_memberIcons is EqualUnmodifiableListView) return _memberIcons;
     // ignore: implicit_dynamic_type
@@ -299,61 +199,78 @@ class _$_RoomListItemState implements _RoomListItemState {
   }
 
   @override
-  @JsonKey()
-  final String place;
+  final bool isFavorite;
+  @override
+  final bool isRequested;
 
   @override
   String toString() {
-    return 'RoomListItemState(title: $title, deadline: $deadline, hostIcon: $hostIcon, memberIcons: $memberIcons, place: $place)';
+    return 'RoomListStateItem(id: $id, title: $title, address: $address, hostIcon: $hostIcon, memberIcons: $memberIcons, isFavorite: $isFavorite, isRequested: $isRequested)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_RoomListItemState &&
+            other is _$_RoomListStateItem &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title) &&
-            (identical(other.deadline, deadline) ||
-                other.deadline == deadline) &&
+            (identical(other.address, address) || other.address == address) &&
             (identical(other.hostIcon, hostIcon) ||
                 other.hostIcon == hostIcon) &&
             const DeepCollectionEquality()
                 .equals(other._memberIcons, _memberIcons) &&
-            (identical(other.place, place) || other.place == place));
+            (identical(other.isFavorite, isFavorite) ||
+                other.isFavorite == isFavorite) &&
+            (identical(other.isRequested, isRequested) ||
+                other.isRequested == isRequested));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, title, deadline, hostIcon,
-      const DeepCollectionEquality().hash(_memberIcons), place);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      title,
+      address,
+      hostIcon,
+      const DeepCollectionEquality().hash(_memberIcons),
+      isFavorite,
+      isRequested);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_RoomListItemStateCopyWith<_$_RoomListItemState> get copyWith =>
-      __$$_RoomListItemStateCopyWithImpl<_$_RoomListItemState>(
+  _$$_RoomListStateItemCopyWith<_$_RoomListStateItem> get copyWith =>
+      __$$_RoomListStateItemCopyWithImpl<_$_RoomListStateItem>(
           this, _$identity);
 }
 
-abstract class _RoomListItemState implements RoomListItemState {
-  const factory _RoomListItemState(
-      {final String title,
-      final String deadline,
-      final String hostIcon,
-      final List<String> memberIcons,
-      final String place}) = _$_RoomListItemState;
+abstract class _RoomListStateItem implements RoomListStateItem {
+  const factory _RoomListStateItem(
+      {required final String id,
+      required final String title,
+      required final String address,
+      required final String hostIcon,
+      required final List<String> memberIcons,
+      required final bool isFavorite,
+      required final bool isRequested}) = _$_RoomListStateItem;
 
+  @override
+  String get id;
   @override
   String get title;
   @override
-  String get deadline;
+  String get address;
   @override
   String get hostIcon;
   @override
   List<String> get memberIcons;
   @override
-  String get place;
+  bool get isFavorite;
+  @override
+  bool get isRequested;
   @override
   @JsonKey(ignore: true)
-  _$$_RoomListItemStateCopyWith<_$_RoomListItemState> get copyWith =>
+  _$$_RoomListStateItemCopyWith<_$_RoomListStateItem> get copyWith =>
       throw _privateConstructorUsedError;
 }

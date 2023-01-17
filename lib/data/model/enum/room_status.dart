@@ -15,17 +15,17 @@ extension RoomStatusEx on RoomStatus {
 
   String get rawValue => rawValues[this]!;
 
-  static RoomStatus? from(String rawValue) =>
-      rawValues.keys.firstWhere((key) => rawValues[key] == rawValue);
+  static RoomStatus from(String rawValue) {
+    return rawValues.keys.firstWhere((key) => rawValues[key] == rawValue);
+  }
 }
 
-class RoomStatusEnumConverter implements JsonConverter<RoomStatus?, String?> {
-  const RoomStatusEnumConverter();
+class RoomStatusConverter implements JsonConverter<RoomStatus, String> {
+  const RoomStatusConverter();
 
   @override
-  RoomStatus? fromJson(String? rawValue) =>
-      (rawValue == null) ? null : RoomStatusEx.from(rawValue);
+  RoomStatus fromJson(String rawValue) => RoomStatusEx.from(rawValue);
 
   @override
-  String? toJson(RoomStatus? status) => status?.rawValue;
+  String toJson(RoomStatus status) => status.rawValue;
 }

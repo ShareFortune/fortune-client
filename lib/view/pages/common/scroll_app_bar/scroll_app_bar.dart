@@ -69,7 +69,7 @@ class ScrollAppBar extends HookConsumerWidget implements PreferredSizeWidget {
 
   Widget _icon(ScrollAppBarState data) {
     return InkWell(
-      onTap: () => sl<AppRouter>().push(const AccountRoute()),
+      onTap: () => sl<AppRouter>().push(const MyRoute()),
       child: CircleAvatar(
         radius: iconSize,
         backgroundImage: data.image,

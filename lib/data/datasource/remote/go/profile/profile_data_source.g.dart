@@ -19,7 +19,7 @@ class _ProfileDataSource implements ProfileDataSource {
   String? baseUrl;
 
   @override
-  Future<Profile> get(id) async {
+  Future<Profile> get() async {
     const _extra = <String, dynamic>{'append-token': true};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};

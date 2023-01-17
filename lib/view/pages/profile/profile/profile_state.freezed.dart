@@ -24,16 +24,9 @@ mixin _$ProfileState {
       throw _privateConstructorUsedError; // タバコをよく吸うか
   String get selfIntroduction =>
       throw _privateConstructorUsedError; // 自己紹介文(nullalble)
-  Map<dynamic, dynamic> get adress => throw _privateConstructorUsedError; // 居住地
-  String get occupation => throw _privateConstructorUsedError; // 職業ID
-  List<dynamic> get tags => throw _privateConstructorUsedError; // 職業ID
-  /// プロフィール画像
+  String get adress => throw _privateConstructorUsedError; // 居住地
+  List<Tag> get tags => throw _privateConstructorUsedError; // 職業ID
   String get mainImageURL => throw _privateConstructorUsedError;
-  String get secondImageURL => throw _privateConstructorUsedError;
-  String get thirdImageURL => throw _privateConstructorUsedError;
-  String get fourthImageURL => throw _privateConstructorUsedError;
-  String get fifthImageURL => throw _privateConstructorUsedError;
-  String get sixthImageURL => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ProfileStateCopyWith<ProfileState> get copyWith =>
@@ -53,15 +46,9 @@ abstract class $ProfileStateCopyWith<$Res> {
       String drinkFrequency,
       String cigaretteFrequency,
       String selfIntroduction,
-      Map<dynamic, dynamic> adress,
-      String occupation,
-      List<dynamic> tags,
-      String mainImageURL,
-      String secondImageURL,
-      String thirdImageURL,
-      String fourthImageURL,
-      String fifthImageURL,
-      String sixthImageURL});
+      String adress,
+      List<Tag> tags,
+      String mainImageURL});
 }
 
 /// @nodoc
@@ -84,14 +71,8 @@ class _$ProfileStateCopyWithImpl<$Res, $Val extends ProfileState>
     Object? cigaretteFrequency = null,
     Object? selfIntroduction = null,
     Object? adress = null,
-    Object? occupation = null,
     Object? tags = null,
     Object? mainImageURL = null,
-    Object? secondImageURL = null,
-    Object? thirdImageURL = null,
-    Object? fourthImageURL = null,
-    Object? fifthImageURL = null,
-    Object? sixthImageURL = null,
   }) {
     return _then(_value.copyWith(
       name: null == name
@@ -121,38 +102,14 @@ class _$ProfileStateCopyWithImpl<$Res, $Val extends ProfileState>
       adress: null == adress
           ? _value.adress
           : adress // ignore: cast_nullable_to_non_nullable
-              as Map<dynamic, dynamic>,
-      occupation: null == occupation
-          ? _value.occupation
-          : occupation // ignore: cast_nullable_to_non_nullable
               as String,
       tags: null == tags
           ? _value.tags
           : tags // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
+              as List<Tag>,
       mainImageURL: null == mainImageURL
           ? _value.mainImageURL
           : mainImageURL // ignore: cast_nullable_to_non_nullable
-              as String,
-      secondImageURL: null == secondImageURL
-          ? _value.secondImageURL
-          : secondImageURL // ignore: cast_nullable_to_non_nullable
-              as String,
-      thirdImageURL: null == thirdImageURL
-          ? _value.thirdImageURL
-          : thirdImageURL // ignore: cast_nullable_to_non_nullable
-              as String,
-      fourthImageURL: null == fourthImageURL
-          ? _value.fourthImageURL
-          : fourthImageURL // ignore: cast_nullable_to_non_nullable
-              as String,
-      fifthImageURL: null == fifthImageURL
-          ? _value.fifthImageURL
-          : fifthImageURL // ignore: cast_nullable_to_non_nullable
-              as String,
-      sixthImageURL: null == sixthImageURL
-          ? _value.sixthImageURL
-          : sixthImageURL // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -173,15 +130,9 @@ abstract class _$$_ProfileStateCopyWith<$Res>
       String drinkFrequency,
       String cigaretteFrequency,
       String selfIntroduction,
-      Map<dynamic, dynamic> adress,
-      String occupation,
-      List<dynamic> tags,
-      String mainImageURL,
-      String secondImageURL,
-      String thirdImageURL,
-      String fourthImageURL,
-      String fifthImageURL,
-      String sixthImageURL});
+      String adress,
+      List<Tag> tags,
+      String mainImageURL});
 }
 
 /// @nodoc
@@ -202,14 +153,8 @@ class __$$_ProfileStateCopyWithImpl<$Res>
     Object? cigaretteFrequency = null,
     Object? selfIntroduction = null,
     Object? adress = null,
-    Object? occupation = null,
     Object? tags = null,
     Object? mainImageURL = null,
-    Object? secondImageURL = null,
-    Object? thirdImageURL = null,
-    Object? fourthImageURL = null,
-    Object? fifthImageURL = null,
-    Object? sixthImageURL = null,
   }) {
     return _then(_$_ProfileState(
       name: null == name
@@ -237,40 +182,16 @@ class __$$_ProfileStateCopyWithImpl<$Res>
           : selfIntroduction // ignore: cast_nullable_to_non_nullable
               as String,
       adress: null == adress
-          ? _value._adress
+          ? _value.adress
           : adress // ignore: cast_nullable_to_non_nullable
-              as Map<dynamic, dynamic>,
-      occupation: null == occupation
-          ? _value.occupation
-          : occupation // ignore: cast_nullable_to_non_nullable
               as String,
       tags: null == tags
           ? _value._tags
           : tags // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
+              as List<Tag>,
       mainImageURL: null == mainImageURL
           ? _value.mainImageURL
           : mainImageURL // ignore: cast_nullable_to_non_nullable
-              as String,
-      secondImageURL: null == secondImageURL
-          ? _value.secondImageURL
-          : secondImageURL // ignore: cast_nullable_to_non_nullable
-              as String,
-      thirdImageURL: null == thirdImageURL
-          ? _value.thirdImageURL
-          : thirdImageURL // ignore: cast_nullable_to_non_nullable
-              as String,
-      fourthImageURL: null == fourthImageURL
-          ? _value.fourthImageURL
-          : fourthImageURL // ignore: cast_nullable_to_non_nullable
-              as String,
-      fifthImageURL: null == fifthImageURL
-          ? _value.fifthImageURL
-          : fifthImageURL // ignore: cast_nullable_to_non_nullable
-              as String,
-      sixthImageURL: null == sixthImageURL
-          ? _value.sixthImageURL
-          : sixthImageURL // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -286,17 +207,10 @@ class _$_ProfileState implements _ProfileState {
       required this.drinkFrequency,
       required this.cigaretteFrequency,
       required this.selfIntroduction,
-      required final Map<dynamic, dynamic> adress,
-      required this.occupation,
-      required final List<dynamic> tags,
-      required this.mainImageURL,
-      required this.secondImageURL,
-      required this.thirdImageURL,
-      required this.fourthImageURL,
-      required this.fifthImageURL,
-      required this.sixthImageURL})
-      : _adress = adress,
-        _tags = tags;
+      required this.adress,
+      required final List<Tag> tags,
+      required this.mainImageURL})
+      : _tags = tags;
 
   @override
   final String name;
@@ -313,46 +227,25 @@ class _$_ProfileState implements _ProfileState {
   @override
   final String selfIntroduction;
 // 自己紹介文(nullalble)
-  final Map<dynamic, dynamic> _adress;
-// 自己紹介文(nullalble)
   @override
-  Map<dynamic, dynamic> get adress {
-    if (_adress is EqualUnmodifiableMapView) return _adress;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableMapView(_adress);
-  }
-
+  final String adress;
+// 居住地
+  final List<Tag> _tags;
 // 居住地
   @override
-  final String occupation;
-// 職業ID
-  final List<dynamic> _tags;
-// 職業ID
-  @override
-  List<dynamic> get tags {
+  List<Tag> get tags {
     if (_tags is EqualUnmodifiableListView) return _tags;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_tags);
   }
 
 // 職業ID
-  /// プロフィール画像
   @override
   final String mainImageURL;
-  @override
-  final String secondImageURL;
-  @override
-  final String thirdImageURL;
-  @override
-  final String fourthImageURL;
-  @override
-  final String fifthImageURL;
-  @override
-  final String sixthImageURL;
 
   @override
   String toString() {
-    return 'ProfileState(name: $name, gender: $gender, height: $height, drinkFrequency: $drinkFrequency, cigaretteFrequency: $cigaretteFrequency, selfIntroduction: $selfIntroduction, adress: $adress, occupation: $occupation, tags: $tags, mainImageURL: $mainImageURL, secondImageURL: $secondImageURL, thirdImageURL: $thirdImageURL, fourthImageURL: $fourthImageURL, fifthImageURL: $fifthImageURL, sixthImageURL: $sixthImageURL)';
+    return 'ProfileState(name: $name, gender: $gender, height: $height, drinkFrequency: $drinkFrequency, cigaretteFrequency: $cigaretteFrequency, selfIntroduction: $selfIntroduction, adress: $adress, tags: $tags, mainImageURL: $mainImageURL)';
   }
 
   @override
@@ -369,22 +262,10 @@ class _$_ProfileState implements _ProfileState {
                 other.cigaretteFrequency == cigaretteFrequency) &&
             (identical(other.selfIntroduction, selfIntroduction) ||
                 other.selfIntroduction == selfIntroduction) &&
-            const DeepCollectionEquality().equals(other._adress, _adress) &&
-            (identical(other.occupation, occupation) ||
-                other.occupation == occupation) &&
+            (identical(other.adress, adress) || other.adress == adress) &&
             const DeepCollectionEquality().equals(other._tags, _tags) &&
             (identical(other.mainImageURL, mainImageURL) ||
-                other.mainImageURL == mainImageURL) &&
-            (identical(other.secondImageURL, secondImageURL) ||
-                other.secondImageURL == secondImageURL) &&
-            (identical(other.thirdImageURL, thirdImageURL) ||
-                other.thirdImageURL == thirdImageURL) &&
-            (identical(other.fourthImageURL, fourthImageURL) ||
-                other.fourthImageURL == fourthImageURL) &&
-            (identical(other.fifthImageURL, fifthImageURL) ||
-                other.fifthImageURL == fifthImageURL) &&
-            (identical(other.sixthImageURL, sixthImageURL) ||
-                other.sixthImageURL == sixthImageURL));
+                other.mainImageURL == mainImageURL));
   }
 
   @override
@@ -396,15 +277,9 @@ class _$_ProfileState implements _ProfileState {
       drinkFrequency,
       cigaretteFrequency,
       selfIntroduction,
-      const DeepCollectionEquality().hash(_adress),
-      occupation,
+      adress,
       const DeepCollectionEquality().hash(_tags),
-      mainImageURL,
-      secondImageURL,
-      thirdImageURL,
-      fourthImageURL,
-      fifthImageURL,
-      sixthImageURL);
+      mainImageURL);
 
   @JsonKey(ignore: true)
   @override
@@ -421,15 +296,9 @@ abstract class _ProfileState implements ProfileState {
       required final String drinkFrequency,
       required final String cigaretteFrequency,
       required final String selfIntroduction,
-      required final Map<dynamic, dynamic> adress,
-      required final String occupation,
-      required final List<dynamic> tags,
-      required final String mainImageURL,
-      required final String secondImageURL,
-      required final String thirdImageURL,
-      required final String fourthImageURL,
-      required final String fifthImageURL,
-      required final String sixthImageURL}) = _$_ProfileState;
+      required final String adress,
+      required final List<Tag> tags,
+      required final String mainImageURL}) = _$_ProfileState;
 
   @override
   String get name;
@@ -444,24 +313,11 @@ abstract class _ProfileState implements ProfileState {
   @override // タバコをよく吸うか
   String get selfIntroduction;
   @override // 自己紹介文(nullalble)
-  Map<dynamic, dynamic> get adress;
+  String get adress;
   @override // 居住地
-  String get occupation;
+  List<Tag> get tags;
   @override // 職業ID
-  List<dynamic> get tags;
-  @override // 職業ID
-  /// プロフィール画像
   String get mainImageURL;
-  @override
-  String get secondImageURL;
-  @override
-  String get thirdImageURL;
-  @override
-  String get fourthImageURL;
-  @override
-  String get fifthImageURL;
-  @override
-  String get sixthImageURL;
   @override
   @JsonKey(ignore: true)
   _$$_ProfileStateCopyWith<_$_ProfileState> get copyWith =>

@@ -17,7 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$DetailedProfileEntryState {
   /// 性別
-  GenderType? get gender => throw _privateConstructorUsedError;
+  Gender? get gender => throw _privateConstructorUsedError;
 
   /// 身長
   int? get height => throw _privateConstructorUsedError;
@@ -46,7 +46,7 @@ abstract class $DetailedProfileEntryStateCopyWith<$Res> {
       _$DetailedProfileEntryStateCopyWithImpl<$Res, DetailedProfileEntryState>;
   @useResult
   $Res call(
-      {GenderType? gender,
+      {Gender? gender,
       int? height,
       String? drinkFrequency,
       String? cigaretteFrequency,
@@ -79,7 +79,7 @@ class _$DetailedProfileEntryStateCopyWithImpl<$Res,
       gender: freezed == gender
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
-              as GenderType?,
+              as Gender?,
       height: freezed == height
           ? _value.height
           : height // ignore: cast_nullable_to_non_nullable
@@ -114,7 +114,7 @@ abstract class _$$_DetailedProfileEntryStateCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {GenderType? gender,
+      {Gender? gender,
       int? height,
       String? drinkFrequency,
       String? cigaretteFrequency,
@@ -146,7 +146,7 @@ class __$$_DetailedProfileEntryStateCopyWithImpl<$Res>
       gender: freezed == gender
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
-              as GenderType?,
+              as Gender?,
       height: freezed == height
           ? _value.height
           : height // ignore: cast_nullable_to_non_nullable
@@ -185,7 +185,7 @@ class _$_DetailedProfileEntryState extends _DetailedProfileEntryState {
 
   /// 性別
   @override
-  final GenderType? gender;
+  final Gender? gender;
 
   /// 身長
   @override
@@ -243,7 +243,7 @@ class _$_DetailedProfileEntryState extends _DetailedProfileEntryState {
 
 abstract class _DetailedProfileEntryState extends DetailedProfileEntryState {
   const factory _DetailedProfileEntryState(
-      {final GenderType? gender,
+      {final Gender? gender,
       final int? height,
       final String? drinkFrequency,
       final String? cigaretteFrequency,
@@ -254,7 +254,7 @@ abstract class _DetailedProfileEntryState extends DetailedProfileEntryState {
   @override
 
   /// 性別
-  GenderType? get gender;
+  Gender? get gender;
   @override
 
   /// 身長

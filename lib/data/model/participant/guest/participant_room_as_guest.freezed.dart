@@ -48,12 +48,12 @@ mixin _$ParticipantRoomAsGuest {
 
   /// ステータス
   @JsonKey(name: "roomStatus")
-  @RoomStatusEnumConverter()
+  @RoomStatusConverter()
   RoomStatus get roomStatus => throw _privateConstructorUsedError;
 
   /// ステータス
   @JsonKey(name: "joinRequestStatus")
-  @RoomJoinRequestStatusEnumConverter()
+  @RoomJoinRequestStatusConverter()
   RoomJoinRequestStatus get joinRequestStatus =>
       throw _privateConstructorUsedError;
 
@@ -83,10 +83,10 @@ abstract class $ParticipantRoomAsGuestCopyWith<$Res> {
       @JsonKey(name: "membersNum")
           MembersNum membersNum,
       @JsonKey(name: "roomStatus")
-      @RoomStatusEnumConverter()
+      @RoomStatusConverter()
           RoomStatus roomStatus,
       @JsonKey(name: "joinRequestStatus")
-      @RoomJoinRequestStatusEnumConverter()
+      @RoomJoinRequestStatusConverter()
           RoomJoinRequestStatus joinRequestStatus});
 
   $AddressCopyWith<$Res> get address;
@@ -191,10 +191,10 @@ abstract class _$$_ParticipantRoomAsGuestCopyWith<$Res>
       @JsonKey(name: "membersNum")
           MembersNum membersNum,
       @JsonKey(name: "roomStatus")
-      @RoomStatusEnumConverter()
+      @RoomStatusConverter()
           RoomStatus roomStatus,
       @JsonKey(name: "joinRequestStatus")
-      @RoomJoinRequestStatusEnumConverter()
+      @RoomJoinRequestStatusConverter()
           RoomJoinRequestStatus joinRequestStatus});
 
   @override
@@ -278,10 +278,10 @@ class _$_ParticipantRoomAsGuest implements _ParticipantRoomAsGuest {
       @JsonKey(name: "membersNum")
           required this.membersNum,
       @JsonKey(name: "roomStatus")
-      @RoomStatusEnumConverter()
+      @RoomStatusConverter()
           required this.roomStatus,
       @JsonKey(name: "joinRequestStatus")
-      @RoomJoinRequestStatusEnumConverter()
+      @RoomJoinRequestStatusConverter()
           required this.joinRequestStatus})
       : _participantMainImageURLs = participantMainImageURLs;
 
@@ -331,13 +331,13 @@ class _$_ParticipantRoomAsGuest implements _ParticipantRoomAsGuest {
   /// ステータス
   @override
   @JsonKey(name: "roomStatus")
-  @RoomStatusEnumConverter()
+  @RoomStatusConverter()
   final RoomStatus roomStatus;
 
   /// ステータス
   @override
   @JsonKey(name: "joinRequestStatus")
-  @RoomJoinRequestStatusEnumConverter()
+  @RoomJoinRequestStatusConverter()
   final RoomJoinRequestStatus joinRequestStatus;
 
   @override
@@ -409,10 +409,10 @@ abstract class _ParticipantRoomAsGuest implements ParticipantRoomAsGuest {
           @JsonKey(name: "membersNum")
               required final MembersNum membersNum,
           @JsonKey(name: "roomStatus")
-          @RoomStatusEnumConverter()
+          @RoomStatusConverter()
               required final RoomStatus roomStatus,
           @JsonKey(name: "joinRequestStatus")
-          @RoomJoinRequestStatusEnumConverter()
+          @RoomJoinRequestStatusConverter()
               required final RoomJoinRequestStatus joinRequestStatus}) =
       _$_ParticipantRoomAsGuest;
 
@@ -453,13 +453,13 @@ abstract class _ParticipantRoomAsGuest implements ParticipantRoomAsGuest {
 
   /// ステータス
   @JsonKey(name: "roomStatus")
-  @RoomStatusEnumConverter()
+  @RoomStatusConverter()
   RoomStatus get roomStatus;
   @override
 
   /// ステータス
   @JsonKey(name: "joinRequestStatus")
-  @RoomJoinRequestStatusEnumConverter()
+  @RoomJoinRequestStatusConverter()
   RoomJoinRequestStatus get joinRequestStatus;
   @override
   @JsonKey(ignore: true)

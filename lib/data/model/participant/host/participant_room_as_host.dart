@@ -27,9 +27,7 @@ class ParticipantRoomAsHost with _$ParticipantRoomAsHost {
     @JsonKey(name: "joinRequestsCount") required int joinRequestsCount,
 
     /// ステータス
-    @JsonKey(name: "status")
-    @RoomStatusEnumConverter()
-        required RoomStatus status,
+    @JsonKey(name: "status") @RoomStatusConverter() required RoomStatus status,
   }) = _ParticipantRoomAsHost;
 
   factory ParticipantRoomAsHost.fromJson(Map<String, dynamic> json) =>

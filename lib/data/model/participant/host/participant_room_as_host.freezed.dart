@@ -44,7 +44,7 @@ mixin _$ParticipantRoomAsHost {
 
   /// ステータス
   @JsonKey(name: "status")
-  @RoomStatusEnumConverter()
+  @RoomStatusConverter()
   RoomStatus get status => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -71,7 +71,7 @@ abstract class $ParticipantRoomAsHostCopyWith<$Res> {
       @JsonKey(name: "joinRequestsCount")
           int joinRequestsCount,
       @JsonKey(name: "status")
-      @RoomStatusEnumConverter()
+      @RoomStatusConverter()
           RoomStatus status});
 
   $MembersNumCopyWith<$Res> get membersNum;
@@ -155,7 +155,7 @@ abstract class _$$_ParticipantRoomAsHostCopyWith<$Res>
       @JsonKey(name: "joinRequestsCount")
           int joinRequestsCount,
       @JsonKey(name: "status")
-      @RoomStatusEnumConverter()
+      @RoomStatusConverter()
           RoomStatus status});
 
   @override
@@ -224,7 +224,7 @@ class _$_ParticipantRoomAsHost implements _ParticipantRoomAsHost {
       @JsonKey(name: "joinRequestsCount")
           required this.joinRequestsCount,
       @JsonKey(name: "status")
-      @RoomStatusEnumConverter()
+      @RoomStatusConverter()
           required this.status})
       : _participantMainImageURLs = participantMainImageURLs;
 
@@ -269,7 +269,7 @@ class _$_ParticipantRoomAsHost implements _ParticipantRoomAsHost {
   /// ステータス
   @override
   @JsonKey(name: "status")
-  @RoomStatusEnumConverter()
+  @RoomStatusConverter()
   final RoomStatus status;
 
   @override
@@ -333,7 +333,7 @@ abstract class _ParticipantRoomAsHost implements ParticipantRoomAsHost {
       @JsonKey(name: "joinRequestsCount")
           required final int joinRequestsCount,
       @JsonKey(name: "status")
-      @RoomStatusEnumConverter()
+      @RoomStatusConverter()
           required final RoomStatus status}) = _$_ParticipantRoomAsHost;
 
   factory _ParticipantRoomAsHost.fromJson(Map<String, dynamic> json) =
@@ -368,7 +368,7 @@ abstract class _ParticipantRoomAsHost implements ParticipantRoomAsHost {
 
   /// ステータス
   @JsonKey(name: "status")
-  @RoomStatusEnumConverter()
+  @RoomStatusConverter()
   RoomStatus get status;
   @override
   @JsonKey(ignore: true)

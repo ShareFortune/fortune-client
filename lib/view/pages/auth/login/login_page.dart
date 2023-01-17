@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:fortune_client/view/pages/auth/login/components/auth_button.dart';
 import 'package:fortune_client/view/pages/auth/login/login_state.dart';
 import 'package:fortune_client/view/pages/auth/login/login_view_model.dart';
-import 'package:fortune_client/view/widgets/dialog.dart';
+import 'package:fortune_client/view/widgets/dialog/dialog.dart';
 import 'package:fortune_client/view/widgets/other/error_widget.dart';
 import 'package:fortune_client/view/widgets/other/loading_widget.dart';
 import 'package:gap/gap.dart';

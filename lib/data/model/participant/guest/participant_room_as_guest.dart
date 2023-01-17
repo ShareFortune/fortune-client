@@ -33,12 +33,12 @@ class ParticipantRoomAsGuest with _$ParticipantRoomAsGuest {
 
     /// ステータス
     @JsonKey(name: "roomStatus")
-    @RoomStatusEnumConverter()
+    @RoomStatusConverter()
         required RoomStatus roomStatus,
 
     /// ステータス
     @JsonKey(name: "joinRequestStatus")
-    @RoomJoinRequestStatusEnumConverter()
+    @RoomJoinRequestStatusConverter()
         required RoomJoinRequestStatus joinRequestStatus,
   }) = _ParticipantRoomAsGuest;
 

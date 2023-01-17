@@ -1,4 +1,8 @@
+import 'package:fortune_client/data/model/enum/cigarette_frequency.dart';
+import 'package:fortune_client/data/model/enum/drink_frequency.dart';
+import 'package:fortune_client/data/model/enum/gender.dart';
 import 'package:fortune_client/data/model/profile/profile.dart';
+import 'package:fortune_client/data/model/tag/tag.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'profile_state.freezed.dart';
@@ -12,36 +16,22 @@ class ProfileState with _$ProfileState {
     required String drinkFrequency, // お酒をよく飲むか
     required String cigaretteFrequency, // タバコをよく吸うか
     required String selfIntroduction, // 自己紹介文(nullalble)
-    required Map adress, // 居住地
-    required String occupation, // 職業ID
-    required List tags, // 職業ID
-
-    /// プロフィール画像
-    required String mainImageURL,
-    required String secondImageURL,
-    required String thirdImageURL,
-    required String fourthImageURL,
-    required String fifthImageURL,
-    required String sixthImageURL,
+    required String adress, // 居住地
+    required List<Tag> tags, // 職業ID
+    required String mainImageURL, // プロフィール画像
   }) = _ProfileState;
 
-  static fromEntity(Profile profile) {
+  static from(Profile profile) {
     return ProfileState(
       name: profile.name,
-      gender: profile.gender,
+      gender: profile.gender.text,
       height: profile.height,
-      drinkFrequency: profile.drinkFrequency,
-      cigaretteFrequency: profile.cigaretteFrequency,
+      drinkFrequency: profile.drinkFrequency.text,
+      cigaretteFrequency: profile.cigaretteFrequency.text,
       selfIntroduction: profile.selfIntroduction,
-      adress: profile.address,
+      adress: profile.address.toString(),
       tags: profile.tags,
-      occupation: profile.occupation,
       mainImageURL: profile.mainImageURL,
-      secondImageURL: profile.secondImageURL,
-      thirdImageURL: profile.thirdImageURL,
-      fourthImageURL: profile.fourthImageURL,
-      fifthImageURL: profile.fifthImageURL,
-      sixthImageURL: profile.sixthImageURL,
     );
   }
 }
