@@ -17,7 +17,7 @@ class RoomCard extends HookConsumerWidget {
     required this.onTapJoinRequestBtn,
   });
 
-  final RoomListItemState room;
+  final RoomListStateItem room;
   final VoidCallback onTapRoom;
   final Function(String) onTapJoinRequestBtn;
 
@@ -139,6 +139,17 @@ class RoomCard extends HookConsumerWidget {
     final joinBtnTextColor = theme.appColors.onPrimary;
     final joinBtnTextStyle = theme.textTheme.h20.paint(joinBtnTextColor).bold();
 
+    // /// 参加ボタン
+    Color joinBtnColor;
+    VoidCallback? onPressedJoinBtn;
+    if (room.isRequested) {
+      joinBtnColor = theme.appColors.disable;
+      onPressedJoinBtn = null;
+    } else {
+      joinBtnColor = theme.appColors.primary;
+      onPressedJoinBtn = () => onTapJoinRequestBtn(room.id);
+    }
+
     return Row(
       children: [
         leading,
@@ -159,8 +170,9 @@ class RoomCard extends HookConsumerWidget {
         ),
         const Spacer(),
         ElevatedButton(
-          onPressed: () => onTapJoinRequestBtn(room.id),
+          onPressed: onPressedJoinBtn,
           style: ElevatedButton.styleFrom(
+            backgroundColor: joinBtnColor,
             minimumSize: Size.zero,
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
           ),

@@ -84,12 +84,12 @@ class RoomListPage extends HookConsumerWidget {
   Widget _roomListView(
     AppTheme theme,
     BuildContext context,
-    RoomListState data,
+    List<RoomListStateItem> data,
     VoidCallback onTapCard,
     Function(String) sendJoinRequest,
   ) {
     return ListAnimationWidget(
-      items: data.rooms,
+      items: data,
       spacing: 10,
       container: (room) => RoomCard(
           room: room,

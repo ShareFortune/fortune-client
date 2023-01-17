@@ -6,12 +6,13 @@ import 'package:fortune_client/view/routes/app_router.dart';
 import 'package:fortune_client/view/routes/app_router.gr.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-final roomListViewModelProvider =
-    StateNotifierProvider<RoomListViewModel, AsyncValue<RoomListState>>((ref) {
+final roomListViewModelProvider = StateNotifierProvider<RoomListViewModel,
+    AsyncValue<List<RoomListStateItem>>>((ref) {
   return RoomListViewModel(sl(), sl())..initialize();
 });
 
-class RoomListViewModel extends StateNotifier<AsyncValue<RoomListState>> {
+class RoomListViewModel
+    extends StateNotifier<AsyncValue<List<RoomListStateItem>>> {
   RoomListViewModel(this._roomRepository, this._joinRequestsRepository)
       : super(const AsyncLoading());
 
@@ -23,14 +24,19 @@ class RoomListViewModel extends StateNotifier<AsyncValue<RoomListState>> {
   Future<void> fetchList() async {
     state = await AsyncValue.guard(() async {
       final result = await _roomRepository.search();
-      final rooms = result.map((e) {
-        return RoomListItemState.from(e);
+      return result.map((e) {
+        return RoomListStateItem.from(e);
       }).toList();
-      return RoomListState(rooms: rooms);
     });
   }
 
   Future<bool> sendJoinRequest(String roomId) async {
+    final data = state.value!;
+    state = await AsyncValue.guard(() async {
+      final index = data.indexWhere((room) => room.id == roomId);
+      data[index] = data[index].copyWith(isRequested: true);
+      return data;
+    });
     return await _joinRequestsRepository.send(roomId);
   }
 
