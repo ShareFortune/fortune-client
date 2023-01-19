@@ -19,6 +19,7 @@ class DetailedProfileEntryPage extends HookConsumerWidget {
     final viewModel = ref.watch(detailedProfileEntryViewModelProvider.notifier);
 
     return Scaffold(
+      backgroundColor: theme.appColors.onBackground,
       appBar: const BasicAppBar(title: "プロフィール作成"),
       body: Container(
         padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 30),
