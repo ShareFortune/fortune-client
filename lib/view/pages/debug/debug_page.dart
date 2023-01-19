@@ -2,7 +2,11 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/view/pages/debug/debug_view_model.dart';
+import 'package:fortune_client/view/routes/app_router.gr.dart';
+import 'package:fortune_client/view/theme/app_theme.dart';
+import 'package:fortune_client/view/widgets/app_bar/back_app_bar.dart';
 import 'package:fortune_client/view/widgets/dialog/dialog.dart';
 import 'package:fortune_client/view/widgets/other/error_widget.dart';
 import 'package:fortune_client/view/widgets/other/loading_widget.dart';
@@ -13,14 +17,13 @@ class DebugPage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final theme = ref.watch(appThemeProvider);
     final state = ref.watch(debugViewModelProvider);
     final viewModel = ref.watch(debugViewModelProvider.notifier);
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('デバッグ'),
-        elevation: 0,
-      ),
+      backgroundColor: theme.appColors.onBackground,
+      appBar: const BackAppBar(title: "デバッグ"),
       body: state.when(
         data: (data) {
           return ListView(
@@ -47,6 +50,13 @@ class DebugPage extends HookConsumerWidget {
                 onTap: () {
                   viewModel.clearIsProfile();
                   showDebugDialog(context, "プロフィール作成フラグをクリアしました。");
+                },
+              ),
+              _buildDummyItem(
+                'プロフィール作成ページ',
+                showTrailing: true,
+                onTap: () {
+                  sl<AppRouter>().push(const CreateProfileRoute());
                 },
               ),
             ],

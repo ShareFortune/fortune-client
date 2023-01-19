@@ -4,7 +4,6 @@ import 'package:fortune_client/data/model/participant/guest/participant_room_as_
 import 'package:fortune_client/data/model/participant/host/participant_room_as_host.dart';
 import 'package:fortune_client/data/model/room_detail/room_detail.dart';
 import 'package:fortune_client/data/model/rooms/rooms.dart';
-import 'package:fortune_client/util/logger/logger.dart';
 import 'package:retrofit/retrofit.dart';
 import 'package:fortune_client/data/datasource/core/annotations_headers.dart.dart';
 

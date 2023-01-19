@@ -31,13 +31,14 @@ class RoomListViewModel
   }
 
   Future<bool> sendJoinRequest(String roomId) async {
+    if (!await _joinRequestsRepository.request(roomId)) return false;
     final data = state.value!;
     state = await AsyncValue.guard(() async {
       final index = data.indexWhere((room) => room.id == roomId);
       data[index] = data[index].copyWith(isRequested: true);
       return data;
     });
-    return await _joinRequestsRepository.send(roomId);
+    return true;
   }
 
   navigateToRoomDetail() async {

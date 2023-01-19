@@ -526,7 +526,6 @@ ProfileFormImages _$ProfileFormImagesFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ProfileFormImages {
-  /// プロフィール画像
   @JsonKey(name: 'mainImage')
   String get mainImage => throw _privateConstructorUsedError;
   @JsonKey(name: 'secondImage', nullable: true)
@@ -688,7 +687,6 @@ class _$_ProfileFormImages implements _ProfileFormImages {
   factory _$_ProfileFormImages.fromJson(Map<String, dynamic> json) =>
       _$$_ProfileFormImagesFromJson(json);
 
-  /// プロフィール画像
   @override
   @JsonKey(name: 'mainImage')
   final String mainImage;
@@ -771,8 +769,6 @@ abstract class _ProfileFormImages implements ProfileFormImages {
       _$_ProfileFormImages.fromJson;
 
   @override
-
-  /// プロフィール画像
   @JsonKey(name: 'mainImage')
   String get mainImage;
   @override

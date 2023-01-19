@@ -17,7 +17,6 @@ abstract class ProfileRepository {
     required String? cigaretteFrequency,
     required int? occupationId,
 
-    ///
     /// Images
     required File? iconImage,
     required File? mainImage,
@@ -25,6 +24,10 @@ abstract class ProfileRepository {
     required File? thirdImage,
     required File? fourthImage,
   });
+
+  /// アップデート
   Future<String> update();
+
+  /// 取得
   Future<Profile> get();
 }
