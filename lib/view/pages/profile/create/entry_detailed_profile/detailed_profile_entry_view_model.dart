@@ -31,6 +31,10 @@ class DetailedProfileEntryViewModel
     state = state.copyWith(cigaretteFrequency: value);
   }
 
+  navigateToEntryAddress() async {
+    await sl<AppRouter>().push(const EntryAddressRoute());
+  }
+
   navigateToEntryProfileicon() async {
     await sl<AppRouter>().push(const ProfileIconImageEntryRoute());
   }

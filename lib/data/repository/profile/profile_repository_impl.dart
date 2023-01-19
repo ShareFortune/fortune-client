@@ -64,7 +64,6 @@ class ProfileRepositoryImpl implements ProfileRepository {
 
       /// 作成フォーム画像
       const toBase64 = ImageConverter.convertImageForBase64;
-      logger.i(await toBase64(iconImage!));
       final profileFormImage = ProfileFormImages(
         mainImage: await toBase64(iconImage!),
         secondImage: mainImage != null ? await toBase64(mainImage) : null,

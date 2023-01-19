@@ -3,11 +3,11 @@ import 'package:fortune_client/data/model/enum/cigarette_frequency.dart';
 import 'package:fortune_client/data/model/enum/drink_frequency.dart';
 import 'package:fortune_client/data/model/enum/gender.dart';
 import 'package:fortune_client/view/pages/profile/create/components/entry_profile_expanded_tile_picker.dart';
+import 'package:fortune_client/view/pages/profile/create/components/entry_profile_tile.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/app_bar/basic_app_bar.dart';
 import 'package:fortune_client/view/pages/profile/create/entry_detailed_profile/detailed_profile_entry_view_model.dart';
 import 'package:fortune_client/view/pages/profile/create/components/next_button.dart';
-import 'package:fortune_client/view/widgets/form_field/picker_form_field.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -94,10 +94,12 @@ class DetailedProfileEntryPage extends HookConsumerWidget {
                   const Gap(10),
 
                   /// 居住地
-                  PickerFormField(
+                  EntryProfileTile(
                     title: "居住地",
-                    value: "",
-                    ontap: () {},
+                    value: "test",
+                    ontap: () {
+                      viewModel.navigateToEntryAddress();
+                    },
                   ),
                   const Gap(10),
 
