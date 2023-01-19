@@ -30,7 +30,7 @@ class DetailedProfileEntryPage extends HookConsumerWidget {
               Column(
                 children: [
                   /// 名前
-                  _nameInputField(theme, "名前"),
+                  _nameInputField(theme, state.name),
                   const Gap(10),
 
                   /// 性別

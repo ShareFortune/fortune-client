@@ -16,6 +16,9 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$DetailedProfileEntryState {
+  /// 名前
+  String get name => throw _privateConstructorUsedError;
+
   /// 性別
   Gender? get gender => throw _privateConstructorUsedError;
 
@@ -46,7 +49,8 @@ abstract class $DetailedProfileEntryStateCopyWith<$Res> {
       _$DetailedProfileEntryStateCopyWithImpl<$Res, DetailedProfileEntryState>;
   @useResult
   $Res call(
-      {Gender? gender,
+      {String name,
+      Gender? gender,
       int? height,
       String? drinkFrequency,
       String? cigaretteFrequency,
@@ -68,6 +72,7 @@ class _$DetailedProfileEntryStateCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? name = null,
     Object? gender = freezed,
     Object? height = freezed,
     Object? drinkFrequency = freezed,
@@ -76,6 +81,10 @@ class _$DetailedProfileEntryStateCopyWithImpl<$Res,
     Object? residence = freezed,
   }) {
     return _then(_value.copyWith(
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
       gender: freezed == gender
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
@@ -114,7 +123,8 @@ abstract class _$$_DetailedProfileEntryStateCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {Gender? gender,
+      {String name,
+      Gender? gender,
       int? height,
       String? drinkFrequency,
       String? cigaretteFrequency,
@@ -135,6 +145,7 @@ class __$$_DetailedProfileEntryStateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? name = null,
     Object? gender = freezed,
     Object? height = freezed,
     Object? drinkFrequency = freezed,
@@ -143,6 +154,10 @@ class __$$_DetailedProfileEntryStateCopyWithImpl<$Res>
     Object? residence = freezed,
   }) {
     return _then(_$_DetailedProfileEntryState(
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
       gender: freezed == gender
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
@@ -173,15 +188,20 @@ class __$$_DetailedProfileEntryStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_DetailedProfileEntryState extends _DetailedProfileEntryState {
+class _$_DetailedProfileEntryState implements _DetailedProfileEntryState {
   const _$_DetailedProfileEntryState(
-      {this.gender,
+      {this.name = "",
+      this.gender,
       this.height,
       this.drinkFrequency,
       this.cigaretteFrequency,
       this.occupation,
-      this.residence})
-      : super._();
+      this.residence});
+
+  /// 名前
+  @override
+  @JsonKey()
+  final String name;
 
   /// 性別
   @override
@@ -209,7 +229,7 @@ class _$_DetailedProfileEntryState extends _DetailedProfileEntryState {
 
   @override
   String toString() {
-    return 'DetailedProfileEntryState(gender: $gender, height: $height, drinkFrequency: $drinkFrequency, cigaretteFrequency: $cigaretteFrequency, occupation: $occupation, residence: $residence)';
+    return 'DetailedProfileEntryState(name: $name, gender: $gender, height: $height, drinkFrequency: $drinkFrequency, cigaretteFrequency: $cigaretteFrequency, occupation: $occupation, residence: $residence)';
   }
 
   @override
@@ -217,6 +237,7 @@ class _$_DetailedProfileEntryState extends _DetailedProfileEntryState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_DetailedProfileEntryState &&
+            (identical(other.name, name) || other.name == name) &&
             (identical(other.gender, gender) || other.gender == gender) &&
             (identical(other.height, height) || other.height == height) &&
             (identical(other.drinkFrequency, drinkFrequency) ||
@@ -230,8 +251,8 @@ class _$_DetailedProfileEntryState extends _DetailedProfileEntryState {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, gender, height, drinkFrequency,
-      cigaretteFrequency, occupation, residence);
+  int get hashCode => Object.hash(runtimeType, name, gender, height,
+      drinkFrequency, cigaretteFrequency, occupation, residence);
 
   @JsonKey(ignore: true)
   @override
@@ -241,16 +262,20 @@ class _$_DetailedProfileEntryState extends _DetailedProfileEntryState {
           _$_DetailedProfileEntryState>(this, _$identity);
 }
 
-abstract class _DetailedProfileEntryState extends DetailedProfileEntryState {
+abstract class _DetailedProfileEntryState implements DetailedProfileEntryState {
   const factory _DetailedProfileEntryState(
-      {final Gender? gender,
+      {final String name,
+      final Gender? gender,
       final int? height,
       final String? drinkFrequency,
       final String? cigaretteFrequency,
       final String? occupation,
       final String? residence}) = _$_DetailedProfileEntryState;
-  const _DetailedProfileEntryState._() : super._();
 
+  @override
+
+  /// 名前
+  String get name;
   @override
 
   /// 性別
