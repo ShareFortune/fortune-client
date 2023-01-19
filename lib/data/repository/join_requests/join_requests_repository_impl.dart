@@ -8,11 +8,11 @@ class JoinRequestsRepositoryImpl implements JoinRequestsRepository {
   final JoinRequestsDataSource _dataSource;
 
   @override
-  Future<bool> send(String roomId) async {
+  Future<bool> request(String roomId) async {
     try {
       logger.i("[$runtimeType] send");
-      await _dataSource.sendJoinRequest(roomId);
-      return true;
+      final result = await _dataSource.sendJoinRequest(roomId);
+      return result.isNotEmpty;
     } catch (e) {
       logger.e(e);
       return false;
