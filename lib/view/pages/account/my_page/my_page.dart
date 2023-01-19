@@ -133,7 +133,7 @@ class MyPage extends HookConsumerWidget {
         spacing: 10,
         runSpacing: 10,
         children: tags.map((e) {
-          return tagWidget(e.name);
+          return TagWidget(value: e.name);
         }).toList(),
       ),
     );

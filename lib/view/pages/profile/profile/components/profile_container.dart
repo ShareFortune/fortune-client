@@ -97,14 +97,14 @@ class ProfileContainer extends HookConsumerWidget {
           Wrap(
             spacing: 10,
             runSpacing: 10,
-            children: [
-              tagWidget("テスト"),
-              tagWidget("ゲーム"),
-              tagWidget("大学生"),
-              tagWidget("大学生"),
-              tagWidget("プログラミング"),
-              tagWidget("読書"),
-              tagWidget("映画"),
+            children: const [
+              TagWidget(value: "テスト"),
+              TagWidget(value: "ゲーム"),
+              TagWidget(value: "大学生"),
+              TagWidget(value: "大学生"),
+              TagWidget(value: "プログラミング"),
+              TagWidget(value: "読書"),
+              TagWidget(value: "映画"),
             ],
           ),
         ],

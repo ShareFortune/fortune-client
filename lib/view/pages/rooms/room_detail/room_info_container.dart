@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/tag_widget.dart';
 import 'package:gap/gap.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class RoomInfoContainer extends ConsumerWidget {
+class RoomInfoContainer extends HookConsumerWidget {
   const RoomInfoContainer({super.key});
 
   @override
@@ -56,14 +57,14 @@ class RoomInfoContainer extends ConsumerWidget {
         Wrap(
           spacing: 10,
           runSpacing: 10,
-          children: [
-            tagWidget("テスト"),
-            tagWidget("ゲーム"),
-            tagWidget("大学生"),
-            tagWidget("大学生"),
-            tagWidget("プログラミング"),
-            tagWidget("読書"),
-            tagWidget("映画"),
+          children: const [
+            TagWidget(value: "テスト"),
+            TagWidget(value: "ゲーム"),
+            TagWidget(value: "大学生"),
+            TagWidget(value: "大学生"),
+            TagWidget(value: "プログラミング"),
+            TagWidget(value: "読書"),
+            TagWidget(value: "映画"),
           ],
         ),
       ],
