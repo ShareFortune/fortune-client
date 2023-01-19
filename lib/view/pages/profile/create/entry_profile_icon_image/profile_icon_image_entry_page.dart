@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/app_bar/basic_app_bar.dart';
 import 'package:fortune_client/view/pages/profile/create/entry_profile_icon_image/profile_icon_image_entry_view_model.dart';
 import 'package:fortune_client/view/pages/profile/create/components/next_button.dart';
@@ -12,11 +13,13 @@ class ProfileIconImageEntryPage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final theme = ref.watch(appThemeProvider);
     final state = ref.watch(profileIconImageEntryViewModelProvider);
     final viewModel =
         ref.watch(profileIconImageEntryViewModelProvider.notifier);
 
     return Scaffold(
+      backgroundColor: theme.appColors.onBackground,
       appBar: const BasicAppBar(
         title: "アイコン写真を登録しよう！",
         centerTitle: true,
