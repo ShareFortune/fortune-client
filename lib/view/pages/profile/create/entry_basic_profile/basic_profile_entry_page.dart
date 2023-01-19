@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fortune_client/util/converter/datetime_format_converter.dart';
+import 'package:fortune_client/util/converter/datetime_converter.dart';
 import 'package:fortune_client/view/pages/profile/create/components/date_picker.dart';
 import 'package:fortune_client/view/pages/profile/create/entry_basic_profile/basic_profile_entry_view_model.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
@@ -18,10 +18,11 @@ class BasicProfileEntryPage extends HookConsumerWidget {
 
     /// 誕生日フォーマッター
     String? birthdayStr;
-    const birthdayFormater = DateTimeFormatConverter.convertDateTimeYYYYMMDD;
+    const birthdayFormater = DateTimeConverter.convertDateTimeYYYYMMDD;
     if (state.birthday != null) birthdayStr = birthdayFormater(state.birthday!);
 
     return Scaffold(
+      backgroundColor: theme.appColors.onBackground,
       appBar: BasicAppBar(
         title: "はじめる",
         action: [_nextButton(state.isEntered(), viewModel.onCreate)],
