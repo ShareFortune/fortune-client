@@ -1,7 +1,10 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_expanded_tile/flutter_expanded_tile.dart';
 import 'package:fortune_client/data/model/enum/gender.dart';
+import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/widgets/form_field/base_expanded_tile.dart';
+import 'package:fortune_client/view/widgets/picker/base_cupertino_picker.dart';
 import 'package:fortune_client/view/widgets/picker/bottom_picker.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/app_bar/basic_app_bar.dart';
@@ -20,7 +23,8 @@ class DetailedProfileEntryPage extends HookConsumerWidget {
     final state = ref.watch(detailedProfileEntryViewModelProvider);
     final viewModel = ref.watch(detailedProfileEntryViewModelProvider.notifier);
 
-    final _controller = ExpandedTileController(isExpanded: true);
+    final titleTextColor = theme.appColors.subText2;
+    final titleTextStyle = theme.textTheme.h40.paint(titleTextColor);
 
     return Scaffold(
       backgroundColor: theme.appColors.onBackground,
@@ -49,23 +53,13 @@ class DetailedProfileEntryPage extends HookConsumerWidget {
                   ///
                   ///
                   ///
-
                   BaseExpandedTile(
-                    title: "title",
-                    content: Column(
-                      children: [
-                        const Center(child: Text("text")),
-                        const Center(child: Text("text")),
-                        const Center(child: Text("text")),
-                        MaterialButton(
-                          onPressed: () => _controller.collapse(),
-                          child: const Text("close it!"),
-                        )
-                      ],
+                    title: "性別",
+                    titleStyle: titleTextStyle,
+                    content: const BaseCupertinoPicker(
+                      items: ["aaa", "bbb", "ccc", "ddd", "eee"],
                     ),
                   ),
-
-                  const Gap(50),
 
                   ///
                   ///

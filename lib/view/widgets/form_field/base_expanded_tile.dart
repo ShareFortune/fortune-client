@@ -106,6 +106,7 @@ class _BaseExpandedTileState extends ConsumerState<BaseExpandedTile> {
         contentBackgroundColor:
             widget.contentBackgroundColor ?? theme.appColors.onBackground,
         titlePadding: EdgeInsets.zero,
+        contentPadding: EdgeInsets.zero,
         headerPadding: const EdgeInsets.symmetric(vertical: 15),
       ),
       title: Row(
@@ -113,7 +114,7 @@ class _BaseExpandedTileState extends ConsumerState<BaseExpandedTile> {
         children: [
           Text(
             widget.title,
-            style: textStyle(
+            style: _textStyle(
               widget.titleStyle,
               widget.titleColor,
               defaultTextStyle,
@@ -124,7 +125,7 @@ class _BaseExpandedTileState extends ConsumerState<BaseExpandedTile> {
             widget.value != null
                 ? Text(
                     widget.value!,
-                    style: textStyle(
+                    style: _textStyle(
                       widget.valueStyle,
                       widget.valueColor,
                       defaultTextStyle,
@@ -133,7 +134,7 @@ class _BaseExpandedTileState extends ConsumerState<BaseExpandedTile> {
                   )
                 : Text(
                     widget.textWhenUnset,
-                    style: textStyle(
+                    style: _textStyle(
                       widget.textWhenUnsetStyle,
                       widget.textWhenUnsetColor,
                       defaultTextStyle,
@@ -153,7 +154,7 @@ class _BaseExpandedTileState extends ConsumerState<BaseExpandedTile> {
     );
   }
 
-  TextStyle textStyle(
+  TextStyle _textStyle(
     TextStyle? textStyle,
     Color? color,
     TextStyle defaultTextStyle,
