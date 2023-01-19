@@ -1,22 +1,43 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:fortune_client/data/model/address/address.dart';
 import 'package:fortune_client/gen/assets.gen.dart';
 import 'package:fortune_client/view/pages/common/entry_page/components/entry_address_text_field.dart';
 import 'package:fortune_client/view/pages/common/entry_page/entry_address_view_model.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/app_bar/back_app_bar.dart';
+import 'package:fortune_client/view/widgets/other/loading_widget.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class EntryAddressPage extends HookConsumerWidget {
-  const EntryAddressPage({super.key});
+  EntryAddressPage({super.key});
+
+  final controller = TextEditingController();
+  final isDisplay = StateProvider((_) => false);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = ref.watch(appThemeProvider);
     final state = ref.watch(entryAddressViewModelProvider);
     final viewModel = ref.watch(entryAddressViewModelProvider.notifier);
+
+    /// 検索結果
+    final searchResults = state.searchResults.maybeWhen(
+      data: (data) => Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            "候補",
+            style: theme.textTheme.h40.paint(theme.appColors.subText1).bold(),
+          ),
+          const Gap(20),
+          Column(children: data.map((e) => _addressTile(theme, e)).toList()),
+        ],
+      ),
+      orElse: () => loadingWidget(),
+    );
 
     return Scaffold(
       backgroundColor: theme.appColors.onBackground,
@@ -35,28 +56,31 @@ class EntryAddressPage extends HookConsumerWidget {
           const Gap(50),
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 30),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "候補",
-                  style: theme.textTheme.h40
-                      .paint(theme.appColors.subText1)
-                      .bold(),
-                ),
-                const Gap(20),
-                _addressTile(theme),
-                _addressTile(theme),
-                _addressTile(theme),
-              ],
-            ),
+            child: controller.text.isEmpty ? _annotation(theme) : searchResults,
           )
         ],
       ),
     );
   }
 
-  Widget _addressTile(AppTheme theme) {
+  Column _annotation(AppTheme theme) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          "入力された情報の取り扱いについて",
+          style: theme.textTheme.h40.paint(theme.appColors.subText1).bold(),
+        ),
+        const Gap(20),
+        Text(
+          "入力された情報がどのように扱われるのか?\n他のユーザーに対して表示されるのかについて?",
+          style: theme.textTheme.h40.paint(theme.appColors.subText1),
+        ),
+      ],
+    );
+  }
+
+  Widget _addressTile(AppTheme theme, Address address) {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 15),
       child: Row(
@@ -69,7 +93,7 @@ class EntryAddressPage extends HookConsumerWidget {
           ),
           const Gap(10),
           Text(
-            "東京都・渋谷区",
+            address.text,
             style: theme.textTheme.h40.paint(theme.appColors.subText2),
           ),
         ],

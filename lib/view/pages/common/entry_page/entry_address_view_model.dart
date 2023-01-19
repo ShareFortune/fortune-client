@@ -9,7 +9,7 @@ final entryAddressViewModelProvider =
 class EntryAddressViewModel extends StateNotifier<EntryAddressState> {
   EntryAddressViewModel()
       : super(const EntryAddressState(
-            adress: null, searchResults: AsyncLoading()));
+            adress: null, searchResults: AsyncData([])));
 
   search() {}
 }

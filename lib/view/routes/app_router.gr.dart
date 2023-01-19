@@ -120,7 +120,7 @@ class AppRouter extends _i21.RootStackRouter {
     EntryAddressRoute.name: (routeData) {
       return _i21.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i8.EntryAddressPage(),
+        child: _i8.EntryAddressPage(),
       );
     },
     MyRoute.name: (routeData) {
