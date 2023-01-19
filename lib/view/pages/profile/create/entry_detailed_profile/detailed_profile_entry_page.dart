@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_expanded_tile/flutter_expanded_tile.dart';
 import 'package:fortune_client/data/model/enum/gender.dart';
+import 'package:fortune_client/view/widgets/form_field/base_expanded_tile.dart';
 import 'package:fortune_client/view/widgets/picker/bottom_picker.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/app_bar/basic_app_bar.dart';
@@ -17,6 +19,8 @@ class DetailedProfileEntryPage extends HookConsumerWidget {
     final theme = ref.watch(appThemeProvider);
     final state = ref.watch(detailedProfileEntryViewModelProvider);
     final viewModel = ref.watch(detailedProfileEntryViewModelProvider.notifier);
+
+    final _controller = ExpandedTileController(isExpanded: true);
 
     return Scaffold(
       backgroundColor: theme.appColors.onBackground,
@@ -40,6 +44,33 @@ class DetailedProfileEntryPage extends HookConsumerWidget {
                     ontap: () => _genderPicker(context, viewModel.changeGender),
                   ),
                   const Gap(10),
+
+                  ///
+                  ///
+                  ///
+                  ///
+
+                  BaseExpandedTile(
+                    title: "title",
+                    content: Column(
+                      children: [
+                        const Center(child: Text("text")),
+                        const Center(child: Text("text")),
+                        const Center(child: Text("text")),
+                        MaterialButton(
+                          onPressed: () => _controller.collapse(),
+                          child: const Text("close it!"),
+                        )
+                      ],
+                    ),
+                  ),
+
+                  const Gap(50),
+
+                  ///
+                  ///
+                  ///
+                  ///
 
                   /// 身長
                   PickerFormField(

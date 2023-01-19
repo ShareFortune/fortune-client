@@ -29,7 +29,7 @@ class MyBottomNavigationBar extends HookConsumerWidget {
           backgroundColor: theme.appColors.onBackground,
           selectedLabelStyle: theme.textTheme.h10,
           unselectedLabelStyle: theme.textTheme.h10,
-          selectedItemColor: theme.appColors.iconBtn,
+          selectedItemColor: theme.appColors.iconBtn1,
           unselectedItemColor: theme.appColors.disable,
           items: _items,
         );
