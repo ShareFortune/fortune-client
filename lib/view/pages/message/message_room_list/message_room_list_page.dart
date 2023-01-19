@@ -24,7 +24,7 @@ class MessageRoomListPage extends HookConsumerWidget {
     final tabTextStyle = theme.textTheme.h20.paint(tabTextColor).bold();
 
     /// タブテキスト（選択時）
-    final onTabTextColor = theme.appColors.secondary;
+    final onTabTextColor = theme.appColors.onSecondary;
     final onTabTextStyle = theme.textTheme.h20.paint(onTabTextColor).bold();
 
     /// メッセージルーム生成
