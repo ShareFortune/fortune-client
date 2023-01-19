@@ -1,11 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_expanded_tile/flutter_expanded_tile.dart';
+import 'package:fortune_client/data/model/enum/cigarette_frequency.dart';
+import 'package:fortune_client/data/model/enum/drink_frequency.dart';
 import 'package:fortune_client/data/model/enum/gender.dart';
-import 'package:fortune_client/view/theme/app_text_theme.dart';
-import 'package:fortune_client/view/widgets/form_field/base_expanded_tile.dart';
-import 'package:fortune_client/view/widgets/picker/base_cupertino_picker.dart';
-import 'package:fortune_client/view/widgets/picker/bottom_picker.dart';
+import 'package:fortune_client/view/pages/profile/create/components/entry_profile_expanded_tile_picker.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/app_bar/basic_app_bar.dart';
 import 'package:fortune_client/view/pages/profile/create/entry_detailed_profile/detailed_profile_entry_view_model.dart';
@@ -23,8 +20,55 @@ class DetailedProfileEntryPage extends HookConsumerWidget {
     final state = ref.watch(detailedProfileEntryViewModelProvider);
     final viewModel = ref.watch(detailedProfileEntryViewModelProvider.notifier);
 
-    final titleTextColor = theme.appColors.subText2;
-    final titleTextStyle = theme.textTheme.h40.paint(titleTextColor);
+    /// 性別ピッカー
+    final genderPicker = EntryProfileExpandedTilePicker(
+      title: "性別",
+      value: state.gender?.text,
+      items: Gender.values.map((e) => e.text).toList(),
+      onSelect: (value) {
+        viewModel.changeGender(
+          Gender.values.firstWhere((e) => e.text == value),
+        );
+      },
+    );
+
+    /// 身長ピッカー
+    final staturePicker = EntryProfileExpandedTilePicker(
+      title: "身長",
+      value: state.stature != null ? "${state.stature}cm" : null,
+      items: List.generate(100, (index) => "${index + 100}").toList(),
+      onSelect: (value) {
+        viewModel.changeStature(int.parse(value));
+      },
+    );
+
+    /// お酒ピッカー
+    final drinkFrequencyPicker = EntryProfileExpandedTilePicker(
+      title: "お酒",
+      value: state.drinkFrequency?.text,
+      items: DrinkFrequency.values.map((e) => e.text).toList(),
+      onSelect: (value) {
+        viewModel.changeDrinkFrequency(
+          DrinkFrequency.values.firstWhere(
+            (e) => e.text == value,
+          ),
+        );
+      },
+    );
+
+    /// タバコピッカー
+    final cigaretteFrequencyPicker = EntryProfileExpandedTilePicker(
+      title: "タバコ",
+      value: state.cigaretteFrequency?.text,
+      items: CigaretteFrequency.values.map((e) => e.text).toList(),
+      onSelect: (value) {
+        viewModel.changeCigaretteFrequency(
+          CigaretteFrequency.values.firstWhere(
+            (e) => e.text == value,
+          ),
+        );
+      },
+    );
 
     return Scaffold(
       backgroundColor: theme.appColors.onBackground,
@@ -42,44 +86,11 @@ class DetailedProfileEntryPage extends HookConsumerWidget {
                   const Gap(10),
 
                   /// 性別
-                  PickerFormField(
-                    title: "性別",
-                    value: state.gender?.text,
-                    ontap: () => _genderPicker(context, viewModel.changeGender),
-                  ),
+                  genderPicker,
                   const Gap(10),
-
-                  ///
-                  ///
-                  ///
-                  ///
-                  BaseExpandedTile(
-                    title: "性別",
-                    titleStyle: titleTextStyle,
-                    content: const BaseCupertinoPicker(
-                      items: ["aaa", "bbb", "ccc", "ddd", "eee"],
-                    ),
-                  ),
-
-                  ///
-                  ///
-                  ///
-                  ///
 
                   /// 身長
-                  PickerFormField(
-                    title: "身長",
-                    value: "",
-                    ontap: () {},
-                  ),
-                  const Gap(10),
-
-                  /// 職業
-                  PickerFormField(
-                    title: "職業",
-                    value: "",
-                    ontap: () {},
-                  ),
+                  staturePicker,
                   const Gap(10),
 
                   /// 居住地
@@ -91,19 +102,11 @@ class DetailedProfileEntryPage extends HookConsumerWidget {
                   const Gap(10),
 
                   /// お酒
-                  PickerFormField(
-                    title: "お酒",
-                    value: "",
-                    ontap: () {},
-                  ),
+                  drinkFrequencyPicker,
                   const Gap(10),
 
                   /// タバコ
-                  PickerFormField(
-                    title: "タバコ",
-                    value: "",
-                    ontap: () {},
-                  ),
+                  cigaretteFrequencyPicker,
                   const Gap(10),
                 ],
               ),
@@ -136,14 +139,5 @@ class DetailedProfileEntryPage extends HookConsumerWidget {
         ),
       ),
     );
-  }
-
-  _genderPicker(BuildContext context, Function(Gender) onChange) {
-    final sheet = bottomPicker(
-      items: Gender.values,
-      itemsText: Gender.values.map((e) => e.text).toList(),
-      onChange: onChange,
-    );
-    sheet.show(context);
   }
 }

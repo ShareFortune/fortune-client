@@ -12,6 +12,7 @@ class BaseCupertinoPicker extends HookConsumerWidget {
     this.textStyle,
     this.backgroundColor,
     this.itemExtent = 30,
+    required this.onSelectedItemChanged,
   });
 
   final List<String> items;
@@ -30,6 +31,8 @@ class BaseCupertinoPicker extends HookConsumerWidget {
   /// 初期値 30
   final double itemExtent;
 
+  final Function(int) onSelectedItemChanged;
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = ref.watch(appThemeProvider);
@@ -39,7 +42,7 @@ class BaseCupertinoPicker extends HookConsumerWidget {
       child: CupertinoPicker(
         backgroundColor: backgroundColor ?? theme.appColors.onBackground,
         itemExtent: itemExtent,
-        onSelectedItemChanged: (int value) {},
+        onSelectedItemChanged: onSelectedItemChanged,
         children: items
             .map((itemText) => Text(
                   itemText,

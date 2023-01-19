@@ -23,19 +23,17 @@ mixin _$DetailedProfileEntryState {
   Gender? get gender => throw _privateConstructorUsedError;
 
   /// 身長
-  int? get height => throw _privateConstructorUsedError;
+  int? get stature => throw _privateConstructorUsedError;
 
   /// お酒
-  String? get drinkFrequency => throw _privateConstructorUsedError;
+  DrinkFrequency? get drinkFrequency => throw _privateConstructorUsedError;
 
   /// タバコ
-  String? get cigaretteFrequency => throw _privateConstructorUsedError;
-
-  /// 職業
-  String? get occupation => throw _privateConstructorUsedError;
+  CigaretteFrequency? get cigaretteFrequency =>
+      throw _privateConstructorUsedError;
 
   /// 居住地
-  String? get residence => throw _privateConstructorUsedError;
+  Address? get adress => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $DetailedProfileEntryStateCopyWith<DetailedProfileEntryState> get copyWith =>
@@ -51,11 +49,12 @@ abstract class $DetailedProfileEntryStateCopyWith<$Res> {
   $Res call(
       {String name,
       Gender? gender,
-      int? height,
-      String? drinkFrequency,
-      String? cigaretteFrequency,
-      String? occupation,
-      String? residence});
+      int? stature,
+      DrinkFrequency? drinkFrequency,
+      CigaretteFrequency? cigaretteFrequency,
+      Address? adress});
+
+  $AddressCopyWith<$Res>? get adress;
 }
 
 /// @nodoc
@@ -74,11 +73,10 @@ class _$DetailedProfileEntryStateCopyWithImpl<$Res,
   $Res call({
     Object? name = null,
     Object? gender = freezed,
-    Object? height = freezed,
+    Object? stature = freezed,
     Object? drinkFrequency = freezed,
     Object? cigaretteFrequency = freezed,
-    Object? occupation = freezed,
-    Object? residence = freezed,
+    Object? adress = freezed,
   }) {
     return _then(_value.copyWith(
       name: null == name
@@ -89,27 +87,35 @@ class _$DetailedProfileEntryStateCopyWithImpl<$Res,
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
               as Gender?,
-      height: freezed == height
-          ? _value.height
-          : height // ignore: cast_nullable_to_non_nullable
+      stature: freezed == stature
+          ? _value.stature
+          : stature // ignore: cast_nullable_to_non_nullable
               as int?,
       drinkFrequency: freezed == drinkFrequency
           ? _value.drinkFrequency
           : drinkFrequency // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as DrinkFrequency?,
       cigaretteFrequency: freezed == cigaretteFrequency
           ? _value.cigaretteFrequency
           : cigaretteFrequency // ignore: cast_nullable_to_non_nullable
-              as String?,
-      occupation: freezed == occupation
-          ? _value.occupation
-          : occupation // ignore: cast_nullable_to_non_nullable
-              as String?,
-      residence: freezed == residence
-          ? _value.residence
-          : residence // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as CigaretteFrequency?,
+      adress: freezed == adress
+          ? _value.adress
+          : adress // ignore: cast_nullable_to_non_nullable
+              as Address?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $AddressCopyWith<$Res>? get adress {
+    if (_value.adress == null) {
+      return null;
+    }
+
+    return $AddressCopyWith<$Res>(_value.adress!, (value) {
+      return _then(_value.copyWith(adress: value) as $Val);
+    });
   }
 }
 
@@ -125,11 +131,13 @@ abstract class _$$_DetailedProfileEntryStateCopyWith<$Res>
   $Res call(
       {String name,
       Gender? gender,
-      int? height,
-      String? drinkFrequency,
-      String? cigaretteFrequency,
-      String? occupation,
-      String? residence});
+      int? stature,
+      DrinkFrequency? drinkFrequency,
+      CigaretteFrequency? cigaretteFrequency,
+      Address? adress});
+
+  @override
+  $AddressCopyWith<$Res>? get adress;
 }
 
 /// @nodoc
@@ -147,11 +155,10 @@ class __$$_DetailedProfileEntryStateCopyWithImpl<$Res>
   $Res call({
     Object? name = null,
     Object? gender = freezed,
-    Object? height = freezed,
+    Object? stature = freezed,
     Object? drinkFrequency = freezed,
     Object? cigaretteFrequency = freezed,
-    Object? occupation = freezed,
-    Object? residence = freezed,
+    Object? adress = freezed,
   }) {
     return _then(_$_DetailedProfileEntryState(
       name: null == name
@@ -162,26 +169,22 @@ class __$$_DetailedProfileEntryStateCopyWithImpl<$Res>
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
               as Gender?,
-      height: freezed == height
-          ? _value.height
-          : height // ignore: cast_nullable_to_non_nullable
+      stature: freezed == stature
+          ? _value.stature
+          : stature // ignore: cast_nullable_to_non_nullable
               as int?,
       drinkFrequency: freezed == drinkFrequency
           ? _value.drinkFrequency
           : drinkFrequency // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as DrinkFrequency?,
       cigaretteFrequency: freezed == cigaretteFrequency
           ? _value.cigaretteFrequency
           : cigaretteFrequency // ignore: cast_nullable_to_non_nullable
-              as String?,
-      occupation: freezed == occupation
-          ? _value.occupation
-          : occupation // ignore: cast_nullable_to_non_nullable
-              as String?,
-      residence: freezed == residence
-          ? _value.residence
-          : residence // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as CigaretteFrequency?,
+      adress: freezed == adress
+          ? _value.adress
+          : adress // ignore: cast_nullable_to_non_nullable
+              as Address?,
     ));
   }
 }
@@ -192,11 +195,10 @@ class _$_DetailedProfileEntryState implements _DetailedProfileEntryState {
   const _$_DetailedProfileEntryState(
       {this.name = "",
       this.gender,
-      this.height,
+      this.stature,
       this.drinkFrequency,
       this.cigaretteFrequency,
-      this.occupation,
-      this.residence});
+      this.adress});
 
   /// 名前
   @override
@@ -209,27 +211,23 @@ class _$_DetailedProfileEntryState implements _DetailedProfileEntryState {
 
   /// 身長
   @override
-  final int? height;
+  final int? stature;
 
   /// お酒
   @override
-  final String? drinkFrequency;
+  final DrinkFrequency? drinkFrequency;
 
   /// タバコ
   @override
-  final String? cigaretteFrequency;
-
-  /// 職業
-  @override
-  final String? occupation;
+  final CigaretteFrequency? cigaretteFrequency;
 
   /// 居住地
   @override
-  final String? residence;
+  final Address? adress;
 
   @override
   String toString() {
-    return 'DetailedProfileEntryState(name: $name, gender: $gender, height: $height, drinkFrequency: $drinkFrequency, cigaretteFrequency: $cigaretteFrequency, occupation: $occupation, residence: $residence)';
+    return 'DetailedProfileEntryState(name: $name, gender: $gender, stature: $stature, drinkFrequency: $drinkFrequency, cigaretteFrequency: $cigaretteFrequency, adress: $adress)';
   }
 
   @override
@@ -239,20 +237,17 @@ class _$_DetailedProfileEntryState implements _DetailedProfileEntryState {
             other is _$_DetailedProfileEntryState &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.gender, gender) || other.gender == gender) &&
-            (identical(other.height, height) || other.height == height) &&
+            (identical(other.stature, stature) || other.stature == stature) &&
             (identical(other.drinkFrequency, drinkFrequency) ||
                 other.drinkFrequency == drinkFrequency) &&
             (identical(other.cigaretteFrequency, cigaretteFrequency) ||
                 other.cigaretteFrequency == cigaretteFrequency) &&
-            (identical(other.occupation, occupation) ||
-                other.occupation == occupation) &&
-            (identical(other.residence, residence) ||
-                other.residence == residence));
+            (identical(other.adress, adress) || other.adress == adress));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, name, gender, height,
-      drinkFrequency, cigaretteFrequency, occupation, residence);
+  int get hashCode => Object.hash(runtimeType, name, gender, stature,
+      drinkFrequency, cigaretteFrequency, adress);
 
   @JsonKey(ignore: true)
   @override
@@ -266,11 +261,10 @@ abstract class _DetailedProfileEntryState implements DetailedProfileEntryState {
   const factory _DetailedProfileEntryState(
       {final String name,
       final Gender? gender,
-      final int? height,
-      final String? drinkFrequency,
-      final String? cigaretteFrequency,
-      final String? occupation,
-      final String? residence}) = _$_DetailedProfileEntryState;
+      final int? stature,
+      final DrinkFrequency? drinkFrequency,
+      final CigaretteFrequency? cigaretteFrequency,
+      final Address? adress}) = _$_DetailedProfileEntryState;
 
   @override
 
@@ -283,23 +277,19 @@ abstract class _DetailedProfileEntryState implements DetailedProfileEntryState {
   @override
 
   /// 身長
-  int? get height;
+  int? get stature;
   @override
 
   /// お酒
-  String? get drinkFrequency;
+  DrinkFrequency? get drinkFrequency;
   @override
 
   /// タバコ
-  String? get cigaretteFrequency;
-  @override
-
-  /// 職業
-  String? get occupation;
+  CigaretteFrequency? get cigaretteFrequency;
   @override
 
   /// 居住地
-  String? get residence;
+  Address? get adress;
   @override
   @JsonKey(ignore: true)
   _$$_DetailedProfileEntryStateCopyWith<_$_DetailedProfileEntryState>

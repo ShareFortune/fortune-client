@@ -16,6 +16,7 @@ class BaseExpandedTile extends StatefulHookConsumerWidget {
     this.valueColor,
     this.valueStyle,
     this.controller,
+    this.isExpanded,
     this.onTap,
     this.headerColor,
     this.contentBackgroundColor,
@@ -74,6 +75,8 @@ class BaseExpandedTile extends StatefulHookConsumerWidget {
   final double? trailingRotation;
   final ExpandedTileController? controller;
 
+  final bool? isExpanded;
+
   /// [trailing]のカラー
   final Color? trailingColor;
   final Duration? expansionDuration;
@@ -88,7 +91,10 @@ class _BaseExpandedTileState extends ConsumerState<BaseExpandedTile> {
   @override
   void initState() {
     super.initState();
-    _controller = widget.controller ?? ExpandedTileController(isExpanded: true);
+    _controller = widget.controller ??
+        ExpandedTileController(
+          isExpanded: widget.isExpanded ?? false,
+        );
   }
 
   @override
@@ -107,6 +113,7 @@ class _BaseExpandedTileState extends ConsumerState<BaseExpandedTile> {
             widget.contentBackgroundColor ?? theme.appColors.onBackground,
         titlePadding: EdgeInsets.zero,
         contentPadding: EdgeInsets.zero,
+        trailingPadding: EdgeInsets.zero,
         headerPadding: const EdgeInsets.symmetric(vertical: 15),
       ),
       title: Row(

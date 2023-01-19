@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:fortune_client/data/model/address/address.dart';
 import 'package:fortune_client/data/repository/profile/profile_repository.dart';
 import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/view/pages/profile/create/entry_basic_profile/basic_profile_entry_view_model.dart';
@@ -73,10 +74,11 @@ class EntryProfileSubImageViewModel
       fourthImage: data.fourthImageFile,
       name: basic.name,
       gender: detail.gender!,
-      height: detail.height,
+      height: detail.stature,
       drinkFrequency: detail.drinkFrequency,
       cigaretteFrequency: detail.cigaretteFrequency,
-      addressId: 10,
+      addressId: const Address(
+          country: "country", prefecture: "prefecture", city: "city"),
       occupationId: null,
     );
   }
