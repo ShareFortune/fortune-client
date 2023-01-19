@@ -20,6 +20,7 @@ ResponseID _$ResponseIDFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ResponseID {
+  @JsonKey(name: 'id')
   String get id => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -34,7 +35,7 @@ abstract class $ResponseIDCopyWith<$Res> {
           ResponseID value, $Res Function(ResponseID) then) =
       _$ResponseIDCopyWithImpl<$Res, ResponseID>;
   @useResult
-  $Res call({String id});
+  $Res call({@JsonKey(name: 'id') String id});
 }
 
 /// @nodoc
@@ -69,7 +70,7 @@ abstract class _$$_ResponseIDCopyWith<$Res>
       __$$_ResponseIDCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id});
+  $Res call({@JsonKey(name: 'id') String id});
 }
 
 /// @nodoc
@@ -97,12 +98,13 @@ class __$$_ResponseIDCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_ResponseID implements _ResponseID {
-  const _$_ResponseID({required this.id});
+  const _$_ResponseID({@JsonKey(name: 'id') required this.id});
 
   factory _$_ResponseID.fromJson(Map<String, dynamic> json) =>
       _$$_ResponseIDFromJson(json);
 
   @override
+  @JsonKey(name: 'id')
   final String id;
 
   @override
@@ -137,12 +139,14 @@ class _$_ResponseID implements _ResponseID {
 }
 
 abstract class _ResponseID implements ResponseID {
-  const factory _ResponseID({required final String id}) = _$_ResponseID;
+  const factory _ResponseID({@JsonKey(name: 'id') required final String id}) =
+      _$_ResponseID;
 
   factory _ResponseID.fromJson(Map<String, dynamic> json) =
       _$_ResponseID.fromJson;
 
   @override
+  @JsonKey(name: 'id')
   String get id;
   @override
   @JsonKey(ignore: true)

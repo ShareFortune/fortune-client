@@ -1,5 +1,6 @@
 // ignore_for_file: invalid_annotation_target
 
+import 'package:fortune_client/util/converter/enumeration_converter.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'create_profile_form.freezed.dart';
@@ -63,10 +64,12 @@ class ProfileForm with _$ProfileForm {
       _$ProfileFormFromJson(json);
 }
 
+///
+/// プロフィール画像
+///
 @freezed
 class ProfileFormImages with _$ProfileFormImages {
   factory ProfileFormImages({
-    /// プロフィール画像
     @JsonKey(name: 'mainImage') required String mainImage,
     @JsonKey(name: 'secondImage', nullable: true) String? secondImage,
     @JsonKey(name: 'thirdImage', nullable: true) String? thirdImage,

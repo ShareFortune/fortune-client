@@ -1,7 +1,7 @@
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 
-class DateTimeFormatConverter {
+class DateTimeConverter {
   /// dateTime to String
   /// [dateTime] 変換前の日時
   static Future<String> dateTimeToString(

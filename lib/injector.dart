@@ -39,13 +39,15 @@ Future<void> initDependencies(bool isRelease) async {
       () => SharedPreferences.getInstance());
 
   sl.registerLazySingleton(
-    () => Dio(BaseOptions(
-      baseUrl: Constants.of().baseUrl,
-      contentType: Headers.jsonContentType,
-      responseType: ResponseType.json,
-      validateStatus: (_) => true,
-    ))
-      ..interceptors.add(AppendTokenInterceptor(sl())),
+    () => Dio(
+      BaseOptions(
+          baseUrl: Constants.of().baseUrl,
+          contentType: Headers.jsonContentType,
+          responseType: ResponseType.json,
+          connectTimeout: 30 * 1000, // 30 seconds
+          receiveTimeout: 30 * 1000 // 30 seconds
+          ),
+    )..interceptors.add(AppendTokenInterceptor(sl())),
   );
 
   ///  Router

@@ -7,30 +7,38 @@ import 'package:fortune_client/util/logger/logger.dart';
 import 'package:fortune_client/util/storage/app_pref_key.dart';
 
 class UsersRepositoryImpl implements UsersRepository {
-  final UsersDataSource _dataSource;
+  final UsersDataSource _usersDataSource;
   final AuthRepository _authRepository;
   final SharedPreferencesDataSource _prefs;
 
-  UsersRepositoryImpl(this._dataSource, this._authRepository, this._prefs);
+  UsersRepositoryImpl(this._usersDataSource, this._authRepository, this._prefs);
 
   @override
   Future<bool> create(String username, String birthday) async {
     logger.i("[$runtimeType] create");
     try {
-      final userForm = CreateUserForm(
+      logger.i("終わった？");
+
+      final form = CreateUserForm(
         firebaseId: _authRepository.firebaseId,
         username: username,
         birthday: birthday,
       );
 
+      logger.i("CreateUserForm 作成");
+
       /// 作成
-      final fortuneId = await _dataSource.create(userForm.toJson());
+      final fortuneId = await _usersDataSource.create(form.toJson());
+      logger.i("終わった！");
       logger.i("Fortune ID : $fortuneId");
 
       /// ID 保存
       return await _prefs.setString(
-          AppPrefKey.fortuneId.keyString, fortuneId.id);
+        AppPrefKey.fortuneId.keyString,
+        fortuneId.id,
+      );
     } catch (e) {
+      logger.i("エラー出たっぽい");
       logger.e(e);
       rethrow;
     }
