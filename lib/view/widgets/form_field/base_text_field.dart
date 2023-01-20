@@ -111,10 +111,7 @@ class _BaseTextFieldState extends ConsumerState<BaseTextField> {
                   onTap: () {
                     widget.controller.clear();
                     setState(() => _isNotEmpty = false);
-
-                    if (widget.clearCallBack != null) {
-                      widget.clearCallBack!();
-                    }
+                    if (widget.clearCallBack != null) widget.clearCallBack!();
                   },
                   child: IconButton(
                     onPressed: widget.clearCallBack,
@@ -122,10 +119,7 @@ class _BaseTextFieldState extends ConsumerState<BaseTextField> {
                   ),
                 )
               : Container(),
-          if (isDisplaySecondSuffixIcon) ...[
-            const Gap(20),
-            widget.suffixIcon!,
-          ],
+          if (isDisplaySecondSuffixIcon) ...[const Gap(20), widget.suffixIcon!],
         ],
       ),
     );

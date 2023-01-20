@@ -2,6 +2,9 @@ import 'dart:io';
 
 import 'package:fortune_client/data/datasource/local/shared_pref_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/go/profile/profile_data_source.dart';
+import 'package:fortune_client/data/model/address/address.dart';
+import 'package:fortune_client/data/model/enum/cigarette_frequency.dart';
+import 'package:fortune_client/data/model/enum/drink_frequency.dart';
 import 'package:fortune_client/data/model/form/create_profile_form/create_profile_form.dart';
 import 'package:fortune_client/data/model/profile/profile.dart';
 import 'package:fortune_client/data/repository/profile/profile_repository.dart';
@@ -45,10 +48,10 @@ class ProfileRepositoryImpl implements ProfileRepository {
   Future<bool> create({
     required String name,
     required Gender gender,
-    required int addressId,
+    required Address addressId,
     int? height,
-    String? drinkFrequency,
-    String? cigaretteFrequency,
+    DrinkFrequency? drinkFrequency,
+    CigaretteFrequency? cigaretteFrequency,
     int? occupationId,
     File? iconImage,
     File? mainImage,
@@ -61,7 +64,6 @@ class ProfileRepositoryImpl implements ProfileRepository {
 
       /// 作成フォーム画像
       const toBase64 = ImageConverter.convertImageForBase64;
-      logger.i(await toBase64(iconImage!));
       final profileFormImage = ProfileFormImages(
         mainImage: await toBase64(iconImage!),
         secondImage: mainImage != null ? await toBase64(mainImage) : null,

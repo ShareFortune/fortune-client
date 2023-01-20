@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:fortune_client/data/datasource/core/annotations_headers.dart.dart';
-import 'package:fortune_client/util/logger/logger.dart';
 import 'package:retrofit/retrofit.dart';
 
 part 'join_requests_data_source.g.dart';

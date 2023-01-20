@@ -17,8 +17,8 @@ class AppColors {
     required this.subText1,
     required this.subText2,
     required this.subText3,
-    required this.iconBtn,
-    required this.iconBtnBg,
+    required this.iconBtn1,
+    required this.iconBtn2,
     required this.shadow,
     required this.border1,
     required this.border2,
@@ -42,8 +42,8 @@ class AppColors {
       subText1: const Color(0xFF000000),
       subText2: const Color(0xFF6C6C6C),
       subText3: const Color(0xFF969696),
-      iconBtn: const Color(0xFF000000),
-      iconBtnBg: const Color(0xFFF2F2F6),
+      iconBtn1: const Color(0xFF000000),
+      iconBtn2: const Color(0xFFD9D9D9),
       shadow: const Color(0xFFF3F3F3),
       border1: const Color(0xFFF3F3F3),
       border2: const Color(0xFFF3F3F3),
@@ -68,8 +68,8 @@ class AppColors {
       subText1: const Color(0xFF000000),
       subText2: const Color(0xFF6C6C6C),
       subText3: const Color(0xFF969696),
-      iconBtn: const Color(0xFF000000),
-      iconBtnBg: const Color(0xFFF2F2F6),
+      iconBtn1: const Color(0xFF000000),
+      iconBtn2: const Color(0xFFD9D9D9),
       shadow: const Color(0xFFF3F3F3),
       border1: const Color(0xFFF3F3F3),
       border2: const Color(0xFFF3F3F3),
@@ -107,8 +107,8 @@ class AppColors {
   final Color onError;
 
   /// アイコンボタンカラー
-  final Color iconBtn;
-  final Color iconBtnBg;
+  final Color iconBtn1;
+  final Color iconBtn2;
 
   /// 影
   final Color shadow;

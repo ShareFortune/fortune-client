@@ -3,6 +3,7 @@ import 'package:auto_route/empty_router_widgets.dart';
 import 'package:fortune_client/view/pages/account/my_page/my_page.dart';
 import 'package:fortune_client/view/pages/auth/login/login_page.dart';
 import 'package:fortune_client/view/pages/common/bottom_navigation_bar/bottom_navigation_bar.dart';
+import 'package:fortune_client/view/pages/common/entry_page/entry_address_page.dart';
 import 'package:fortune_client/view/pages/debug/debug_page.dart';
 import 'package:fortune_client/view/pages/message/message_room/message_room_page.dart';
 import 'package:fortune_client/view/pages/message/message_room_list/message_room_list_page.dart';
@@ -121,6 +122,9 @@ const createProfileRoute = AutoRoute(
 
     /// ルーム作成
     AutoRoute(path: RoutePath.createRoom, page: RoomCreatePage),
+
+    /// 住所検索
+    AutoRoute(path: RoutePath.enterAddress, page: EntryAddressPage),
 
     /// アカウント
     AutoRoute(path: RoutePath.account, page: MyPage),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fortune_client/view/widgets/circle_icon.dart';
+import 'package:fortune_client/view/widgets/icon/circle_icon.dart';
 
 Widget memberIconsWidget(double radius, List icons) {
   final diameter = radius * 2;

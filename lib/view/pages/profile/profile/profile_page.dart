@@ -22,7 +22,6 @@ class ProfilePage extends HookConsumerWidget {
 
     return state.when(
       data: (data) {
-        print(data);
         return Scaffold(
           appBar: AppBar(
             elevation: 0,

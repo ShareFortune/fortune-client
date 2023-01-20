@@ -51,7 +51,15 @@ class TagsSelectionPage extends HookConsumerWidget {
 
     return Scaffold(
       backgroundColor: theme.appColors.onBackground,
-      appBar: const BackAppBar(title: "タグを選択"),
+      appBar: BackAppBar(
+        title: "タグを選択",
+        action: [
+          TextButton(
+            onPressed: () => viewModel.saveSetData(),
+            child: Text("保存", style: theme.textTheme.h40.bold()),
+          )
+        ],
+      ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

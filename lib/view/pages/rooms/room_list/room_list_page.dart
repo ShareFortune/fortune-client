@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:fortune_client/view/pages/common/scroll_app_bar/scroll_app_bar.dart';
 import 'package:fortune_client/view/pages/rooms/room_list/components/room_card.dart';
+import 'package:fortune_client/view/pages/rooms/room_list/components/rooms_filter_expanded_tile.dart';
+import 'package:fortune_client/view/pages/rooms/room_list/components/rooms_filter_tile.dart';
 import 'package:fortune_client/view/pages/rooms/room_list/room_list_state.dart';
 import 'package:fortune_client/view/pages/rooms/room_list/room_list_view_model.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/dialog/toast.dart';
-import 'package:fortune_client/view/widgets/list_animation.dart';
+import 'package:fortune_client/view/widgets/other/list_animation.dart';
 import 'package:fortune_client/view/widgets/other/error_widget.dart';
 import 'package:fortune_client/view/widgets/other/loading_widget.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -20,10 +22,34 @@ class RoomListPage extends HookConsumerWidget {
     final state = ref.watch(roomListViewModelProvider);
     final viewModel = ref.watch(roomListViewModelProvider.notifier);
 
+    /// 人数検索
+    final membersNumSearchTile = RoomsFilterExpandedTile(
+      title: "人数",
+      value: state.memberNum != null ? "${state.memberNum}人" : null,
+      items: List.generate(7, (index) => "${index + 4}").toList(),
+      onSelect: (value) {
+        viewModel.changeMemberNum(int.parse(value));
+      },
+    );
+
+    /// アドレス検索
+    final addressesSearchTile = RoomsFilterTile(
+      title: "場所",
+      value: state.address?.text,
+      onTap: viewModel.navigateToEntryAddress,
+    );
+
+    /// タグ検索
+    final tagsSearchTile = RoomsFilterTile(
+      title: "タグ",
+      value: state.tags?.map((e) => e.name).toList().join("、"),
+      onTap: viewModel.navigateToTagsSelection,
+    );
+
     ///
     /// ルームリスト
     ///
-    final roomsWidget = state.when(
+    final roomsWidget = state.rooms.when(
       data: (data) => _roomListView(theme, context, data,
           viewModel.navigateToRoomDetail, viewModel.sendJoinRequest),
       error: (e, msg) => SliverToBoxAdapter(child: errorWidget(e, msg)),
@@ -38,9 +64,12 @@ class RoomListPage extends HookConsumerWidget {
           SliverToBoxAdapter(
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: _searchListTile(
-                theme,
-                navigateToTagsSelection: viewModel.navigateToTagsSelection,
+              child: Column(
+                children: [
+                  membersNumSearchTile,
+                  addressesSearchTile,
+                  tagsSearchTile,
+                ],
               ),
             ),
           ),
@@ -50,34 +79,6 @@ class RoomListPage extends HookConsumerWidget {
           ),
         ],
       ),
-    );
-  }
-
-  _searchListTile(
-    AppTheme theme, {
-    required Function() navigateToTagsSelection,
-  }) {
-    return Column(
-      children: [
-        searchTile(
-          theme: theme,
-          title: "人数",
-          value: "未設定",
-          onTap: null,
-        ),
-        searchTile(
-          theme: theme,
-          title: "場所",
-          value: "未設定",
-          onTap: null,
-        ),
-        searchTile(
-          theme: theme,
-          title: "タグ",
-          value: "未設定",
-          onTap: navigateToTagsSelection,
-        ),
-      ],
     );
   }
 
@@ -103,17 +104,19 @@ class RoomListPage extends HookConsumerWidget {
   Widget searchTile({
     required AppTheme theme,
     required String title,
-    required String value,
+    String? value,
     required Function()? onTap,
   }) {
     /// 検索項目
-    final searchItemTextColor = theme.appColors.subText3;
+    final searchItemTextColor = theme.appColors.subText1;
     final searchItemTextStyle = theme.textTheme.h40.paint(searchItemTextColor);
 
     /// 検索結果
-    final searchResultTextColor = theme.appColors.subText1;
-    final searchResultTextStyle =
-        theme.textTheme.h40.paint(searchResultTextColor);
+    final onSearchResultTextColor = theme.appColors.primary;
+    final offSearchResultTextColor = theme.appColors.subText3;
+    final searchResultTextStyle = theme.textTheme.h40.paint(
+      value != null ? onSearchResultTextColor : offSearchResultTextColor,
+    );
 
     return InkWell(
       onTap: onTap,
@@ -127,13 +130,26 @@ class RoomListPage extends HookConsumerWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(title, style: searchResultTextStyle),
-            Text(value, style: searchItemTextStyle),
+            Text(title, style: searchItemTextStyle),
+            Text(value ?? "未設定", style: searchResultTextStyle),
           ],
         ),
       ),
     );
   }
+
+  // _filterTile({
+  //   required AppTheme theme,
+  //   required String title,
+  //   String? value,
+  //   required Function()? onTap,
+  // }) {
+  //   return BaseTransitionTile(
+  //     title: title,
+  //     value: value,
+  //     ontap: ontap,
+  //   );
+  // }
 
   _showJoinRequestToast(BuildContext context, AppTheme theme, bool isSuccess) {
     isSuccess

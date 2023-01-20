@@ -53,10 +53,21 @@ class DebugPage extends HookConsumerWidget {
                 },
               ),
               _buildDummyItem(
-                'プロフィール作成ページ',
+                'ユーザー作成',
                 showTrailing: true,
                 onTap: () {
                   sl<AppRouter>().push(const CreateProfileRoute());
+                },
+              ),
+              _buildDummyItem(
+                'プロフィール作成',
+                showTrailing: true,
+                onTap: () {
+                  sl<AppRouter>().push(
+                    const CreateProfileRoute(
+                      children: [DetailedProfileEntryRoute()],
+                    ),
+                  );
                 },
               ),
             ],

@@ -4,7 +4,7 @@ class RoutePath {
   /// Debug
   static const debug = 'debug';
 
-  /// ページ遷移
+  /// ログイン
   static const login = 'login';
 
   /// プロフィール作成
@@ -12,6 +12,8 @@ class RoutePath {
   static const createProfileDetail = 'create-profile-detail'; // 詳細
   static const createProfileIconImage = 'create-profile-icon-image'; // アイコン
   static const createProfileSubImage = 'create-profile-sub-image'; // サブイメージ
+
+  static const enterAddress = 'enter-address';
 
   /// ルームリスト
   static const rooms = 'rooms';
