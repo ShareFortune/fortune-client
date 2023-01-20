@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:fortune_client/data/model/enum/room_status.dart';
 import 'package:fortune_client/view/pages/rooms/room_detail/room_detail_view_model.dart';
 import 'package:fortune_client/view/pages/rooms/room_detail/components/room_detail_container.dart';
 import 'package:fortune_client/view/pages/rooms/room_detail/components/room_members_container.dart';
@@ -23,6 +24,7 @@ class RoomDetailPage extends HookConsumerWidget {
     Widget hostIconAsync = Container();
     Widget roomDetailContainerAsync = Container();
     Widget membersContainerAsync = Container();
+    Widget bottomWidgetAsync = Container();
 
     state.detail.maybeWhen(
       data: (roomDetail) {
@@ -32,10 +34,26 @@ class RoomDetailPage extends HookConsumerWidget {
           roomDetail.host.mainImageURL,
         );
         roomDetailContainerAsync = RoomDetailContainer(roomDetail);
-        membersContainerAsync = RoomMembersContainer(
-          roomDetail.members,
-          (c, v) {},
-        );
+        membersContainerAsync =
+            RoomMembersContainer(roomDetail.members, (c, v) {});
+
+        /// ホストなら表示しない
+        if (roomDetail.isHost) return;
+
+        /// ゲストならリクエスト中 or 参加中
+        if (roomDetail.isMember) {
+          if (roomDetail.status == RoomStatus.pending) {
+            bottomWidgetAsync = bottomButton(theme, "参加しています", null);
+          } else {
+            bottomWidgetAsync = bottomButton(theme, "メッセージ", () {});
+          }
+          return;
+        }
+
+        ///
+        if (roomDetail.status == RoomStatus.pending) {
+          bottomWidgetAsync = bottomButton(theme, "参加する", () {});
+        }
       },
       orElse: () => loadingWidget(),
     );
@@ -87,7 +105,7 @@ class RoomDetailPage extends HookConsumerWidget {
                 alignment: Alignment.bottomCenter,
                 child: Container(
                   padding: const EdgeInsets.fromLTRB(50, 0, 50, 30),
-                  child: _requestBtn(theme),
+                  child: bottomWidgetAsync,
                 ),
               ),
             ],
@@ -97,21 +115,20 @@ class RoomDetailPage extends HookConsumerWidget {
     );
   }
 
-  Widget _requestBtn(AppTheme theme) {
+  bottomButton(AppTheme theme, String text, VoidCallback? onPressed) {
     return ElevatedButton(
-      onPressed: () {},
+      onPressed: onPressed,
       style: ElevatedButton.styleFrom(
         elevation: 0,
         minimumSize: const Size.fromHeight(60),
-        backgroundColor: theme.appColors.primary,
+        backgroundColor: onPressed != null
+            ? theme.appColors.primary
+            : theme.appColors.disable,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15),
         ),
       ),
-      child: Text(
-        "リクエスト",
-        style: theme.textTheme.h40.bold(),
-      ),
+      child: Text(text, style: theme.textTheme.h40.bold()),
     );
   }
 
