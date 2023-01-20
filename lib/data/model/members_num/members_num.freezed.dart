@@ -141,12 +141,13 @@ class __$$_MembersNumCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_MembersNum implements _MembersNum {
+class _$_MembersNum extends _MembersNum {
   _$_MembersNum(
       {@JsonKey(name: "maxMenNum") required this.maxMenNum,
       @JsonKey(name: "menNum") required this.menNum,
       @JsonKey(name: "maxWomenNum") required this.maxWomenNum,
-      @JsonKey(name: "womenNum") required this.womenNum});
+      @JsonKey(name: "womenNum") required this.womenNum})
+      : super._();
 
   factory _$_MembersNum.fromJson(Map<String, dynamic> json) =>
       _$$_MembersNumFromJson(json);
@@ -202,12 +203,13 @@ class _$_MembersNum implements _MembersNum {
   }
 }
 
-abstract class _MembersNum implements MembersNum {
+abstract class _MembersNum extends MembersNum {
   factory _MembersNum(
       {@JsonKey(name: "maxMenNum") required final int maxMenNum,
       @JsonKey(name: "menNum") required final int menNum,
       @JsonKey(name: "maxWomenNum") required final int maxWomenNum,
       @JsonKey(name: "womenNum") required final int womenNum}) = _$_MembersNum;
+  _MembersNum._() : super._();
 
   factory _MembersNum.fromJson(Map<String, dynamic> json) =
       _$_MembersNum.fromJson;

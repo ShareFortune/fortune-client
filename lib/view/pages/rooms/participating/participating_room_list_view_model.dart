@@ -69,7 +69,7 @@ class ParticipatingRoomListViewModel
 
   Future<void> navigateToRoomDetail() async {
     await sl<AppRouter>().push(
-      RoomDetailRoute(id: "id"),
+      RoomDetailRoute(roomId: "id"),
       onFailure: (failure) {
         logger.e(failure.toString());
       },

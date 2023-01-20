@@ -1,112 +1,94 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:fortune_client/gen/assets.gen.dart';
 import 'package:fortune_client/view/pages/rooms/room_detail/room_detail_view_model.dart';
-import 'package:fortune_client/view/pages/rooms/room_detail/room_info_container.dart';
-import 'package:fortune_client/view/pages/rooms/room_detail/room_members_container.dart';
+import 'package:fortune_client/view/pages/rooms/room_detail/components/room_detail_container.dart';
+import 'package:fortune_client/view/pages/rooms/room_detail/components/room_members_container.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
+import 'package:fortune_client/view/widgets/other/loading_widget.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class RoomDetailPage extends HookConsumerWidget {
-  const RoomDetailPage({super.key, @PathParam() required this.id});
+  const RoomDetailPage(@PathParam("roomId") this.roomId, {super.key});
 
-  final String id;
+  final String roomId;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = ref.watch(appThemeProvider);
-    final state = ref.watch(roomDetailViewModelProvider);
-    final viewModel = ref.watch(roomDetailViewModelProvider.notifier);
+    final state = ref.watch(roomDetailViewModelProvider(roomId));
+    final viewModel = ref.watch(roomDetailViewModelProvider(roomId).notifier);
 
-    return state.when(
-      data: (data) {
-        return Scaffold(
-          appBar: AppBar(
-            elevation: 0,
-            backgroundColor: Colors.transparent,
-            leading: IconButton(
-              padding: const EdgeInsets.symmetric(horizontal: 30),
-              onPressed: Navigator.of(context).pop,
-              icon: const Icon(
-                Icons.arrow_back_ios,
-                color: Colors.black,
-                size: 25,
-              ),
-            ),
-          ),
-          extendBodyBehindAppBar: true,
-          body: DefaultTabController(
-            length: 2,
-            child: NestedScrollView(
-              headerSliverBuilder: (context, innerBoxIsScrolled) {
-                return <Widget>[
-                  SliverToBoxAdapter(
-                    child: Padding(
-                      padding: const EdgeInsets.only(
-                          top: kToolbarHeight + 80, bottom: 0),
-                      child: _title(
-                        theme,
-                        image: Assets.images.insta2,
-                      ),
-                    ),
-                  ),
-                  SliverAppBar(
-                    primary: false,
-                    backgroundColor: Colors.transparent,
-                    bottom: TabBar(
-                      indicatorWeight: 3,
-                      indicatorPadding:
-                          const EdgeInsets.symmetric(horizontal: 30),
-                      labelPadding: const EdgeInsets.only(bottom: 10),
-                      indicatorColor: theme.appColors.secondary,
-                      labelStyle: theme.textTheme.h30.bold(),
-                      labelColor: theme.appColors.secondary,
-                      tabs: const [
-                        Tab(text: '詳細'),
-                        Tab(text: 'メンバー'),
-                      ],
-                    ),
-                  ),
-                ];
-              },
-              body: TabBarView(
-                children: [
-                  Stack(
-                    children: [
-                      const SingleChildScrollView(
-                        physics: ClampingScrollPhysics(),
-                        child: RoomInfoContainer(),
-                      ),
-                      Align(
-                        alignment: Alignment.bottomCenter,
-                        child: Padding(
-                          padding: const EdgeInsets.only(
-                            bottom: 30,
-                            left: 50,
-                            right: 50,
-                          ),
-                          child: _requestBtn(theme),
-                        ),
-                      ),
-                    ],
-                  ),
-                  SingleChildScrollView(
-                    physics: const ClampingScrollPhysics(),
-                    child: RoomMembersContainer(
-                      data.members,
-                      viewModel.onTapProfile,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
+    Widget hostIconAsync = Container();
+    Widget roomDetailContainerAsync = Container();
+    Widget membersContainerAsync = Container();
+
+    state.detail.maybeWhen(
+      data: (roomDetail) {
+        hostIconAsync = _header(
+          theme,
+          roomDetail.title,
+          roomDetail.host.mainImageURL,
+        );
+        roomDetailContainerAsync = RoomDetailContainer(roomDetail);
+        membersContainerAsync = RoomMembersContainer(
+          roomDetail.members,
+          (c, v) {},
         );
       },
-      error: (e, _) => Center(child: Text(e.toString())),
-      loading: () => const CircularProgressIndicator(),
+      orElse: () => loadingWidget(),
+    );
+
+    return Container(
+      color: theme.appColors.onBackground,
+      child: DefaultTabController(
+        length: 2,
+        child: NestedScrollView(
+          physics: const BouncingScrollPhysics(),
+          headerSliverBuilder: (context, innerBoxIsScrolled) {
+            return <Widget>[
+              SliverAppBar(
+                backgroundColor: Colors.transparent,
+                iconTheme: IconThemeData(color: theme.appColors.iconBtn1),
+              ),
+              SliverToBoxAdapter(child: hostIconAsync),
+              SliverToBoxAdapter(
+                child: TabBar(
+                  padding: const EdgeInsets.only(top: 50),
+                  indicatorWeight: 3,
+                  indicatorPadding: const EdgeInsets.symmetric(horizontal: 30),
+                  labelPadding: const EdgeInsets.only(bottom: 10),
+                  indicatorColor: theme.appColors.secondary,
+                  labelStyle: theme.textTheme.h30.bold(),
+                  labelColor: theme.appColors.secondary,
+                  tabs: const [
+                    Tab(text: '詳細'),
+                    Tab(text: 'メンバー'),
+                  ],
+                ),
+              ),
+            ];
+          },
+          body: Stack(
+            children: [
+              TabBarView(
+                children: [
+                  SingleChildScrollView(child: roomDetailContainerAsync),
+                  SingleChildScrollView(child: membersContainerAsync),
+                ],
+              ),
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: Container(
+                  padding: const EdgeInsets.fromLTRB(50, 0, 50, 30),
+                  child: _requestBtn(theme),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 
@@ -128,21 +110,16 @@ class RoomDetailPage extends HookConsumerWidget {
     );
   }
 
-  Widget _title(
-    AppTheme theme, {
-    required AssetGenImage image,
-  }) {
+  Widget _header(AppTheme theme, String title, String image) {
     return Column(
       children: [
         CircleAvatar(
-          radius: 60,
-          backgroundImage: image.provider(),
+          radius: 40,
+          backgroundColor: Colors.black12,
+          // backgroundImage: NetworkImage(image),
         ),
         const Gap(30),
-        Text(
-          "渋谷で飲み会しませんか？",
-          style: theme.textTheme.h40.bold(),
-        ),
+        Text(title, style: theme.textTheme.h40.bold()),
       ],
     );
   }

@@ -3,9 +3,7 @@ import 'package:fortune_client/view/pages/common/scroll_app_bar/scroll_app_bar.d
 import 'package:fortune_client/view/pages/rooms/room_list/components/room_card.dart';
 import 'package:fortune_client/view/pages/rooms/room_list/components/rooms_filter_expanded_tile.dart';
 import 'package:fortune_client/view/pages/rooms/room_list/components/rooms_filter_tile.dart';
-import 'package:fortune_client/view/pages/rooms/room_list/room_list_state.dart';
 import 'package:fortune_client/view/pages/rooms/room_list/room_list_view_model.dart';
-import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/dialog/toast.dart';
 import 'package:fortune_client/view/widgets/other/list_animation.dart';
@@ -50,8 +48,20 @@ class RoomListPage extends HookConsumerWidget {
     /// ルームリスト
     ///
     final roomsWidget = state.rooms.when(
-      data: (data) => _roomListView(theme, context, data,
-          viewModel.navigateToRoomDetail, viewModel.sendJoinRequest),
+      data: (data) {
+        return ListAnimationWidget(
+          items: data,
+          spacing: 10,
+          container: (room) => RoomCard(
+              room: room,
+              onTapRoom: () => viewModel.navigateToRoomDetail(room.id),
+              onTapJoinRequestBtn: (String id) async {
+                final result = await viewModel.sendJoinRequest(id);
+                // ignore: use_build_context_synchronously
+                _showJoinRequestToast(context, theme, result);
+              }),
+        );
+      },
       error: (e, msg) => SliverToBoxAdapter(child: errorWidget(e, msg)),
       loading: () => SliverToBoxAdapter(child: loadingWidget()),
     );
@@ -82,78 +92,11 @@ class RoomListPage extends HookConsumerWidget {
     );
   }
 
-  Widget _roomListView(
-    AppTheme theme,
-    BuildContext context,
-    List<RoomListStateItem> data,
-    VoidCallback onTapCard,
-    Function(String) sendJoinRequest,
-  ) {
-    return ListAnimationWidget(
-      items: data,
-      spacing: 10,
-      container: (room) => RoomCard(
-          room: room,
-          onTapRoom: () => onTapCard,
-          onTapJoinRequestBtn: (String id) async {
-            _showJoinRequestToast(context, theme, await sendJoinRequest(id));
-          }),
-    );
-  }
-
-  Widget searchTile({
-    required AppTheme theme,
-    required String title,
-    String? value,
-    required Function()? onTap,
-  }) {
-    /// 検索項目
-    final searchItemTextColor = theme.appColors.subText1;
-    final searchItemTextStyle = theme.textTheme.h40.paint(searchItemTextColor);
-
-    /// 検索結果
-    final onSearchResultTextColor = theme.appColors.primary;
-    final offSearchResultTextColor = theme.appColors.subText3;
-    final searchResultTextStyle = theme.textTheme.h40.paint(
-      value != null ? onSearchResultTextColor : offSearchResultTextColor,
-    );
-
-    return InkWell(
-      onTap: onTap,
-      child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
-        decoration: const BoxDecoration(
-          border: Border(
-            bottom: BorderSide(width: 1, color: Color(0xFFF3F3F3)),
-          ),
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(title, style: searchItemTextStyle),
-            Text(value ?? "未設定", style: searchResultTextStyle),
-          ],
-        ),
-      ),
-    );
-  }
-
-  // _filterTile({
-  //   required AppTheme theme,
-  //   required String title,
-  //   String? value,
-  //   required Function()? onTap,
-  // }) {
-  //   return BaseTransitionTile(
-  //     title: title,
-  //     value: value,
-  //     ontap: ontap,
-  //   );
-  // }
-
   _showJoinRequestToast(BuildContext context, AppTheme theme, bool isSuccess) {
-    isSuccess
-        ? showToast(context, theme, "参加申請を送信しました。")
-        : showErrorToast(context, theme, "参加申請の送信に失敗しました。");
+    if (isSuccess) {
+      showToast(context, theme, "参加申請を送信しました。");
+    } else {
+      showErrorToast(context, theme, "参加申請の送信に失敗しました。");
+    }
   }
 }

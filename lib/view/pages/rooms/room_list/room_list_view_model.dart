@@ -55,8 +55,8 @@ class RoomListViewModel extends StateNotifier<RoomListState> {
     state = state.copyWith(address: result ?? state.address);
   }
 
-  navigateToRoomDetail() async {
-    await sl<AppRouter>().push(RoomDetailRoute(id: "id"));
+  navigateToRoomDetail(String id) async {
+    await sl<AppRouter>().push(RoomDetailRoute(roomId: id));
   }
 
   navigateToTagsSelection() async {

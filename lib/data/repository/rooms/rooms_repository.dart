@@ -11,5 +11,5 @@ abstract class RoomsRepository {
   Future<List<ParticipantRoomAsGuest>> getRoomsToParticipateAsGuest();
 
   /// 詳細取得
-  Future<RoomDetail> fetchDetail();
+  Future<RoomDetail> fetchDetail(String roomId);
 }

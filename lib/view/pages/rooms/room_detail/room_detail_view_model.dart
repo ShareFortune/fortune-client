@@ -1,32 +1,33 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fortune_client/data/repository/rooms/rooms_repository.dart';
 import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/view/pages/rooms/room_detail/room_detail_state.dart';
 import 'package:fortune_client/view/routes/app_router.gr.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final roomDetailViewModelProvider =
-    StateNotifierProvider<RoomDetailViewModel, AsyncValue<RoomDetailState>>(
-        (ref) {
-  return RoomDetailViewModel(ref, sl())..initialize();
-});
+    StateNotifierProvider.family<RoomDetailViewModel, RoomDetailState, String>(
+  (ref, roomId) => RoomDetailViewModel(roomId, sl())..initialize(),
+);
 
-class RoomDetailViewModel extends StateNotifier<AsyncValue<RoomDetailState>> {
-  RoomDetailViewModel(this._ref, this._repository)
-      : super(const AsyncLoading());
+class RoomDetailViewModel extends StateNotifier<RoomDetailState> {
+  RoomDetailViewModel(String roomId, this._roomsRepository)
+      : super(RoomDetailState(roomId: roomId));
 
-  final Ref _ref;
-  final RoomsRepository _repository;
+  final RoomsRepository _roomsRepository;
 
-  Future<void> initialize() async => await fetch();
+  Future<void> initialize() async {
+    await fetch();
+  }
 
   Future<void> fetch() async {
-    state = await AsyncValue.guard(() async {
-      final _result = await _repository.fetchDetail();
-      print(_result);
-      return const RoomDetailState();
-    });
+    state = state.copyWith(
+      detail: await AsyncValue.guard(() async {
+        final result = await _roomsRepository.fetchDetail(state.roomId);
+        return RoomDetailStateInfo.from(result);
+      }),
+    );
   }
 
   Future<void> joinRequest() async {}

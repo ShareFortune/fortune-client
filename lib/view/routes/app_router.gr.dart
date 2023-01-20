@@ -172,12 +172,13 @@ class AppRouter extends _i21.RootStackRouter {
     RoomDetailRoute.name: (routeData) {
       final pathParams = routeData.inheritedPathParams;
       final args = routeData.argsAs<RoomDetailRouteArgs>(
-          orElse: () => RoomDetailRouteArgs(id: pathParams.getString('id')));
+          orElse: () =>
+              RoomDetailRouteArgs(roomId: pathParams.getString('roomId')));
       return _i21.AdaptivePage<dynamic>(
         routeData: routeData,
         child: _i13.RoomDetailPage(
+          args.roomId,
           key: args.key,
-          id: args.id,
         ),
       );
     },
@@ -254,7 +255,7 @@ class AppRouter extends _i21.RootStackRouter {
                 ),
                 _i21.RouteConfig(
                   RoomDetailRoute.name,
-                  path: 'room/:id',
+                  path: 'room/:roomId',
                   parent: RoomsTab.name,
                 ),
               ],
@@ -271,7 +272,7 @@ class AppRouter extends _i21.RootStackRouter {
                 ),
                 _i21.RouteConfig(
                   RoomDetailRoute.name,
-                  path: 'room/:id',
+                  path: 'room/:roomId',
                   parent: ParticipatingTab.name,
                 ),
                 _i21.RouteConfig(
@@ -293,7 +294,7 @@ class AppRouter extends _i21.RootStackRouter {
                 ),
                 _i21.RouteConfig(
                   RoomDetailRoute.name,
-                  path: 'room/:id',
+                  path: 'room/:roomId',
                   parent: MessagesTab.name,
                 ),
               ],
@@ -632,16 +633,16 @@ class RoomListRoute extends _i21.PageRouteInfo<void> {
 /// [_i13.RoomDetailPage]
 class RoomDetailRoute extends _i21.PageRouteInfo<RoomDetailRouteArgs> {
   RoomDetailRoute({
+    required String roomId,
     _i22.Key? key,
-    required String id,
   }) : super(
           RoomDetailRoute.name,
-          path: 'room/:id',
+          path: 'room/:roomId',
           args: RoomDetailRouteArgs(
+            roomId: roomId,
             key: key,
-            id: id,
           ),
-          rawPathParams: {'id': id},
+          rawPathParams: {'roomId': roomId},
         );
 
   static const String name = 'RoomDetailRoute';
@@ -649,17 +650,17 @@ class RoomDetailRoute extends _i21.PageRouteInfo<RoomDetailRouteArgs> {
 
 class RoomDetailRouteArgs {
   const RoomDetailRouteArgs({
+    required this.roomId,
     this.key,
-    required this.id,
   });
+
+  final String roomId;
 
   final _i22.Key? key;
 
-  final String id;
-
   @override
   String toString() {
-    return 'RoomDetailRouteArgs{key: $key, id: $id}';
+    return 'RoomDetailRouteArgs{roomId: $roomId, key: $key}';
   }
 }
 

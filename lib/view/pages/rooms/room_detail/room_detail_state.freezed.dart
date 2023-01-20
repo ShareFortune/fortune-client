@@ -16,11 +16,9 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$RoomDetailState {
-  String get title => throw _privateConstructorUsedError;
-  String get hostIcon => throw _privateConstructorUsedError;
-  String get explanation => throw _privateConstructorUsedError;
-  List<dynamic> get tags => throw _privateConstructorUsedError;
-  List<dynamic> get members => throw _privateConstructorUsedError;
+  String get roomId => throw _privateConstructorUsedError;
+  AsyncValue<RoomDetailStateInfo> get detail =>
+      throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $RoomDetailStateCopyWith<RoomDetailState> get copyWith =>
@@ -33,12 +31,7 @@ abstract class $RoomDetailStateCopyWith<$Res> {
           RoomDetailState value, $Res Function(RoomDetailState) then) =
       _$RoomDetailStateCopyWithImpl<$Res, RoomDetailState>;
   @useResult
-  $Res call(
-      {String title,
-      String hostIcon,
-      String explanation,
-      List<dynamic> tags,
-      List<dynamic> members});
+  $Res call({String roomId, AsyncValue<RoomDetailStateInfo> detail});
 }
 
 /// @nodoc
@@ -54,33 +47,18 @@ class _$RoomDetailStateCopyWithImpl<$Res, $Val extends RoomDetailState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? title = null,
-    Object? hostIcon = null,
-    Object? explanation = null,
-    Object? tags = null,
-    Object? members = null,
+    Object? roomId = null,
+    Object? detail = null,
   }) {
     return _then(_value.copyWith(
-      title: null == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
+      roomId: null == roomId
+          ? _value.roomId
+          : roomId // ignore: cast_nullable_to_non_nullable
               as String,
-      hostIcon: null == hostIcon
-          ? _value.hostIcon
-          : hostIcon // ignore: cast_nullable_to_non_nullable
-              as String,
-      explanation: null == explanation
-          ? _value.explanation
-          : explanation // ignore: cast_nullable_to_non_nullable
-              as String,
-      tags: null == tags
-          ? _value.tags
-          : tags // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
-      members: null == members
-          ? _value.members
-          : members // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
+      detail: null == detail
+          ? _value.detail
+          : detail // ignore: cast_nullable_to_non_nullable
+              as AsyncValue<RoomDetailStateInfo>,
     ) as $Val);
   }
 }
@@ -93,12 +71,7 @@ abstract class _$$_RoomDetailStateCopyWith<$Res>
       __$$_RoomDetailStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {String title,
-      String hostIcon,
-      String explanation,
-      List<dynamic> tags,
-      List<dynamic> members});
+  $Res call({String roomId, AsyncValue<RoomDetailStateInfo> detail});
 }
 
 /// @nodoc
@@ -112,33 +85,18 @@ class __$$_RoomDetailStateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? title = null,
-    Object? hostIcon = null,
-    Object? explanation = null,
-    Object? tags = null,
-    Object? members = null,
+    Object? roomId = null,
+    Object? detail = null,
   }) {
     return _then(_$_RoomDetailState(
-      title: null == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
+      roomId: null == roomId
+          ? _value.roomId
+          : roomId // ignore: cast_nullable_to_non_nullable
               as String,
-      hostIcon: null == hostIcon
-          ? _value.hostIcon
-          : hostIcon // ignore: cast_nullable_to_non_nullable
-              as String,
-      explanation: null == explanation
-          ? _value.explanation
-          : explanation // ignore: cast_nullable_to_non_nullable
-              as String,
-      tags: null == tags
-          ? _value._tags
-          : tags // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
-      members: null == members
-          ? _value._members
-          : members // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
+      detail: null == detail
+          ? _value.detail
+          : detail // ignore: cast_nullable_to_non_nullable
+              as AsyncValue<RoomDetailStateInfo>,
     ));
   }
 }
@@ -147,44 +105,17 @@ class __$$_RoomDetailStateCopyWithImpl<$Res>
 
 class _$_RoomDetailState implements _RoomDetailState {
   const _$_RoomDetailState(
-      {this.title = "",
-      this.hostIcon = "",
-      this.explanation = "",
-      final List<dynamic> tags = const [],
-      final List<dynamic> members = const []})
-      : _tags = tags,
-        _members = members;
+      {required this.roomId, this.detail = const AsyncLoading()});
 
   @override
-  @JsonKey()
-  final String title;
+  final String roomId;
   @override
   @JsonKey()
-  final String hostIcon;
-  @override
-  @JsonKey()
-  final String explanation;
-  final List<dynamic> _tags;
-  @override
-  @JsonKey()
-  List<dynamic> get tags {
-    if (_tags is EqualUnmodifiableListView) return _tags;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_tags);
-  }
-
-  final List<dynamic> _members;
-  @override
-  @JsonKey()
-  List<dynamic> get members {
-    if (_members is EqualUnmodifiableListView) return _members;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_members);
-  }
+  final AsyncValue<RoomDetailStateInfo> detail;
 
   @override
   String toString() {
-    return 'RoomDetailState(title: $title, hostIcon: $hostIcon, explanation: $explanation, tags: $tags, members: $members)';
+    return 'RoomDetailState(roomId: $roomId, detail: $detail)';
   }
 
   @override
@@ -192,23 +123,12 @@ class _$_RoomDetailState implements _RoomDetailState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_RoomDetailState &&
-            (identical(other.title, title) || other.title == title) &&
-            (identical(other.hostIcon, hostIcon) ||
-                other.hostIcon == hostIcon) &&
-            (identical(other.explanation, explanation) ||
-                other.explanation == explanation) &&
-            const DeepCollectionEquality().equals(other._tags, _tags) &&
-            const DeepCollectionEquality().equals(other._members, _members));
+            (identical(other.roomId, roomId) || other.roomId == roomId) &&
+            (identical(other.detail, detail) || other.detail == detail));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      title,
-      hostIcon,
-      explanation,
-      const DeepCollectionEquality().hash(_tags),
-      const DeepCollectionEquality().hash(_members));
+  int get hashCode => Object.hash(runtimeType, roomId, detail);
 
   @JsonKey(ignore: true)
   @override
@@ -219,24 +139,369 @@ class _$_RoomDetailState implements _RoomDetailState {
 
 abstract class _RoomDetailState implements RoomDetailState {
   const factory _RoomDetailState(
-      {final String title,
-      final String hostIcon,
-      final String explanation,
-      final List<dynamic> tags,
-      final List<dynamic> members}) = _$_RoomDetailState;
+      {required final String roomId,
+      final AsyncValue<RoomDetailStateInfo> detail}) = _$_RoomDetailState;
+
+  @override
+  String get roomId;
+  @override
+  AsyncValue<RoomDetailStateInfo> get detail;
+  @override
+  @JsonKey(ignore: true)
+  _$$_RoomDetailStateCopyWith<_$_RoomDetailState> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$RoomDetailStateInfo {
+  String get title => throw _privateConstructorUsedError;
+  ParticipatingUser get host => throw _privateConstructorUsedError;
+  String get explanation => throw _privateConstructorUsedError;
+  List<ParticipatingUser> get members => throw _privateConstructorUsedError;
+  List<Tag> get tags => throw _privateConstructorUsedError;
+  Address get address => throw _privateConstructorUsedError;
+  int get membersNum => throw _privateConstructorUsedError;
+  bool get isHost => throw _privateConstructorUsedError;
+  bool get isMember => throw _privateConstructorUsedError;
+  RoomStatus get status => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $RoomDetailStateInfoCopyWith<RoomDetailStateInfo> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $RoomDetailStateInfoCopyWith<$Res> {
+  factory $RoomDetailStateInfoCopyWith(
+          RoomDetailStateInfo value, $Res Function(RoomDetailStateInfo) then) =
+      _$RoomDetailStateInfoCopyWithImpl<$Res, RoomDetailStateInfo>;
+  @useResult
+  $Res call(
+      {String title,
+      ParticipatingUser host,
+      String explanation,
+      List<ParticipatingUser> members,
+      List<Tag> tags,
+      Address address,
+      int membersNum,
+      bool isHost,
+      bool isMember,
+      RoomStatus status});
+
+  $ParticipatingUserCopyWith<$Res> get host;
+  $AddressCopyWith<$Res> get address;
+}
+
+/// @nodoc
+class _$RoomDetailStateInfoCopyWithImpl<$Res, $Val extends RoomDetailStateInfo>
+    implements $RoomDetailStateInfoCopyWith<$Res> {
+  _$RoomDetailStateInfoCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? title = null,
+    Object? host = null,
+    Object? explanation = null,
+    Object? members = null,
+    Object? tags = null,
+    Object? address = null,
+    Object? membersNum = null,
+    Object? isHost = null,
+    Object? isMember = null,
+    Object? status = null,
+  }) {
+    return _then(_value.copyWith(
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      host: null == host
+          ? _value.host
+          : host // ignore: cast_nullable_to_non_nullable
+              as ParticipatingUser,
+      explanation: null == explanation
+          ? _value.explanation
+          : explanation // ignore: cast_nullable_to_non_nullable
+              as String,
+      members: null == members
+          ? _value.members
+          : members // ignore: cast_nullable_to_non_nullable
+              as List<ParticipatingUser>,
+      tags: null == tags
+          ? _value.tags
+          : tags // ignore: cast_nullable_to_non_nullable
+              as List<Tag>,
+      address: null == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as Address,
+      membersNum: null == membersNum
+          ? _value.membersNum
+          : membersNum // ignore: cast_nullable_to_non_nullable
+              as int,
+      isHost: null == isHost
+          ? _value.isHost
+          : isHost // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isMember: null == isMember
+          ? _value.isMember
+          : isMember // ignore: cast_nullable_to_non_nullable
+              as bool,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as RoomStatus,
+    ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ParticipatingUserCopyWith<$Res> get host {
+    return $ParticipatingUserCopyWith<$Res>(_value.host, (value) {
+      return _then(_value.copyWith(host: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $AddressCopyWith<$Res> get address {
+    return $AddressCopyWith<$Res>(_value.address, (value) {
+      return _then(_value.copyWith(address: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$_RoomDetailStateInfoCopyWith<$Res>
+    implements $RoomDetailStateInfoCopyWith<$Res> {
+  factory _$$_RoomDetailStateInfoCopyWith(_$_RoomDetailStateInfo value,
+          $Res Function(_$_RoomDetailStateInfo) then) =
+      __$$_RoomDetailStateInfoCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {String title,
+      ParticipatingUser host,
+      String explanation,
+      List<ParticipatingUser> members,
+      List<Tag> tags,
+      Address address,
+      int membersNum,
+      bool isHost,
+      bool isMember,
+      RoomStatus status});
+
+  @override
+  $ParticipatingUserCopyWith<$Res> get host;
+  @override
+  $AddressCopyWith<$Res> get address;
+}
+
+/// @nodoc
+class __$$_RoomDetailStateInfoCopyWithImpl<$Res>
+    extends _$RoomDetailStateInfoCopyWithImpl<$Res, _$_RoomDetailStateInfo>
+    implements _$$_RoomDetailStateInfoCopyWith<$Res> {
+  __$$_RoomDetailStateInfoCopyWithImpl(_$_RoomDetailStateInfo _value,
+      $Res Function(_$_RoomDetailStateInfo) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? title = null,
+    Object? host = null,
+    Object? explanation = null,
+    Object? members = null,
+    Object? tags = null,
+    Object? address = null,
+    Object? membersNum = null,
+    Object? isHost = null,
+    Object? isMember = null,
+    Object? status = null,
+  }) {
+    return _then(_$_RoomDetailStateInfo(
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      host: null == host
+          ? _value.host
+          : host // ignore: cast_nullable_to_non_nullable
+              as ParticipatingUser,
+      explanation: null == explanation
+          ? _value.explanation
+          : explanation // ignore: cast_nullable_to_non_nullable
+              as String,
+      members: null == members
+          ? _value._members
+          : members // ignore: cast_nullable_to_non_nullable
+              as List<ParticipatingUser>,
+      tags: null == tags
+          ? _value._tags
+          : tags // ignore: cast_nullable_to_non_nullable
+              as List<Tag>,
+      address: null == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as Address,
+      membersNum: null == membersNum
+          ? _value.membersNum
+          : membersNum // ignore: cast_nullable_to_non_nullable
+              as int,
+      isHost: null == isHost
+          ? _value.isHost
+          : isHost // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isMember: null == isMember
+          ? _value.isMember
+          : isMember // ignore: cast_nullable_to_non_nullable
+              as bool,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as RoomStatus,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_RoomDetailStateInfo implements _RoomDetailStateInfo {
+  const _$_RoomDetailStateInfo(
+      {required this.title,
+      required this.host,
+      required this.explanation,
+      required final List<ParticipatingUser> members,
+      required final List<Tag> tags,
+      required this.address,
+      required this.membersNum,
+      required this.isHost,
+      required this.isMember,
+      required this.status})
+      : _members = members,
+        _tags = tags;
+
+  @override
+  final String title;
+  @override
+  final ParticipatingUser host;
+  @override
+  final String explanation;
+  final List<ParticipatingUser> _members;
+  @override
+  List<ParticipatingUser> get members {
+    if (_members is EqualUnmodifiableListView) return _members;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_members);
+  }
+
+  final List<Tag> _tags;
+  @override
+  List<Tag> get tags {
+    if (_tags is EqualUnmodifiableListView) return _tags;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_tags);
+  }
+
+  @override
+  final Address address;
+  @override
+  final int membersNum;
+  @override
+  final bool isHost;
+  @override
+  final bool isMember;
+  @override
+  final RoomStatus status;
+
+  @override
+  String toString() {
+    return 'RoomDetailStateInfo(title: $title, host: $host, explanation: $explanation, members: $members, tags: $tags, address: $address, membersNum: $membersNum, isHost: $isHost, isMember: $isMember, status: $status)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_RoomDetailStateInfo &&
+            (identical(other.title, title) || other.title == title) &&
+            (identical(other.host, host) || other.host == host) &&
+            (identical(other.explanation, explanation) ||
+                other.explanation == explanation) &&
+            const DeepCollectionEquality().equals(other._members, _members) &&
+            const DeepCollectionEquality().equals(other._tags, _tags) &&
+            (identical(other.address, address) || other.address == address) &&
+            (identical(other.membersNum, membersNum) ||
+                other.membersNum == membersNum) &&
+            (identical(other.isHost, isHost) || other.isHost == isHost) &&
+            (identical(other.isMember, isMember) ||
+                other.isMember == isMember) &&
+            (identical(other.status, status) || other.status == status));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      title,
+      host,
+      explanation,
+      const DeepCollectionEquality().hash(_members),
+      const DeepCollectionEquality().hash(_tags),
+      address,
+      membersNum,
+      isHost,
+      isMember,
+      status);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_RoomDetailStateInfoCopyWith<_$_RoomDetailStateInfo> get copyWith =>
+      __$$_RoomDetailStateInfoCopyWithImpl<_$_RoomDetailStateInfo>(
+          this, _$identity);
+}
+
+abstract class _RoomDetailStateInfo implements RoomDetailStateInfo {
+  const factory _RoomDetailStateInfo(
+      {required final String title,
+      required final ParticipatingUser host,
+      required final String explanation,
+      required final List<ParticipatingUser> members,
+      required final List<Tag> tags,
+      required final Address address,
+      required final int membersNum,
+      required final bool isHost,
+      required final bool isMember,
+      required final RoomStatus status}) = _$_RoomDetailStateInfo;
 
   @override
   String get title;
   @override
-  String get hostIcon;
+  ParticipatingUser get host;
   @override
   String get explanation;
   @override
-  List<dynamic> get tags;
+  List<ParticipatingUser> get members;
   @override
-  List<dynamic> get members;
+  List<Tag> get tags;
+  @override
+  Address get address;
+  @override
+  int get membersNum;
+  @override
+  bool get isHost;
+  @override
+  bool get isMember;
+  @override
+  RoomStatus get status;
   @override
   @JsonKey(ignore: true)
-  _$$_RoomDetailStateCopyWith<_$_RoomDetailState> get copyWith =>
+  _$$_RoomDetailStateInfoCopyWith<_$_RoomDetailStateInfo> get copyWith =>
       throw _privateConstructorUsedError;
 }

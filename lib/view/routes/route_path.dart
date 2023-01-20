@@ -19,7 +19,7 @@ class RoutePath {
   static const rooms = 'rooms';
 
   /// ルーム詳細
-  static const roomDetail = 'room/:id';
+  static const roomDetail = 'room/:roomId';
 
   /// 参加ルームリスト
   static const participatingRooms = 'participating-rooms';
