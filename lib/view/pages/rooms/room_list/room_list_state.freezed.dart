@@ -15,6 +15,160 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
+mixin _$RoomListState {
+  Address? get address => throw _privateConstructorUsedError;
+  AsyncValue<List<RoomListStateItem>> get rooms =>
+      throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $RoomListStateCopyWith<RoomListState> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $RoomListStateCopyWith<$Res> {
+  factory $RoomListStateCopyWith(
+          RoomListState value, $Res Function(RoomListState) then) =
+      _$RoomListStateCopyWithImpl<$Res, RoomListState>;
+  @useResult
+  $Res call({Address? address, AsyncValue<List<RoomListStateItem>> rooms});
+
+  $AddressCopyWith<$Res>? get address;
+}
+
+/// @nodoc
+class _$RoomListStateCopyWithImpl<$Res, $Val extends RoomListState>
+    implements $RoomListStateCopyWith<$Res> {
+  _$RoomListStateCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? address = freezed,
+    Object? rooms = null,
+  }) {
+    return _then(_value.copyWith(
+      address: freezed == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as Address?,
+      rooms: null == rooms
+          ? _value.rooms
+          : rooms // ignore: cast_nullable_to_non_nullable
+              as AsyncValue<List<RoomListStateItem>>,
+    ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $AddressCopyWith<$Res>? get address {
+    if (_value.address == null) {
+      return null;
+    }
+
+    return $AddressCopyWith<$Res>(_value.address!, (value) {
+      return _then(_value.copyWith(address: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$_RoomListStateCopyWith<$Res>
+    implements $RoomListStateCopyWith<$Res> {
+  factory _$$_RoomListStateCopyWith(
+          _$_RoomListState value, $Res Function(_$_RoomListState) then) =
+      __$$_RoomListStateCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({Address? address, AsyncValue<List<RoomListStateItem>> rooms});
+
+  @override
+  $AddressCopyWith<$Res>? get address;
+}
+
+/// @nodoc
+class __$$_RoomListStateCopyWithImpl<$Res>
+    extends _$RoomListStateCopyWithImpl<$Res, _$_RoomListState>
+    implements _$$_RoomListStateCopyWith<$Res> {
+  __$$_RoomListStateCopyWithImpl(
+      _$_RoomListState _value, $Res Function(_$_RoomListState) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? address = freezed,
+    Object? rooms = null,
+  }) {
+    return _then(_$_RoomListState(
+      address: freezed == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as Address?,
+      rooms: null == rooms
+          ? _value.rooms
+          : rooms // ignore: cast_nullable_to_non_nullable
+              as AsyncValue<List<RoomListStateItem>>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_RoomListState implements _RoomListState {
+  const _$_RoomListState({this.address, this.rooms = const AsyncLoading()});
+
+  @override
+  final Address? address;
+  @override
+  @JsonKey()
+  final AsyncValue<List<RoomListStateItem>> rooms;
+
+  @override
+  String toString() {
+    return 'RoomListState(address: $address, rooms: $rooms)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_RoomListState &&
+            (identical(other.address, address) || other.address == address) &&
+            (identical(other.rooms, rooms) || other.rooms == rooms));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, address, rooms);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_RoomListStateCopyWith<_$_RoomListState> get copyWith =>
+      __$$_RoomListStateCopyWithImpl<_$_RoomListState>(this, _$identity);
+}
+
+abstract class _RoomListState implements RoomListState {
+  const factory _RoomListState(
+      {final Address? address,
+      final AsyncValue<List<RoomListStateItem>> rooms}) = _$_RoomListState;
+
+  @override
+  Address? get address;
+  @override
+  AsyncValue<List<RoomListStateItem>> get rooms;
+  @override
+  @JsonKey(ignore: true)
+  _$$_RoomListStateCopyWith<_$_RoomListState> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$RoomListStateItem {
   String get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;

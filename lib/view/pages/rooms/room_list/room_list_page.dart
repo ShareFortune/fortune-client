@@ -24,7 +24,6 @@ class RoomListPage extends HookConsumerWidget {
     final membersNumSearchTile = searchTile(
       theme: theme,
       title: "人数",
-      value: "未設定",
       onTap: null,
     );
 
@@ -32,7 +31,7 @@ class RoomListPage extends HookConsumerWidget {
     final addressesSearchTile = searchTile(
       theme: theme,
       title: "場所",
-      value: "未設定",
+      value: state.address?.text,
       onTap: viewModel.navigateToEntryAddress,
     );
 
@@ -40,14 +39,13 @@ class RoomListPage extends HookConsumerWidget {
     final tagsSearchTile = searchTile(
       theme: theme,
       title: "タグ",
-      value: "未設定",
       onTap: viewModel.navigateToTagsSelection,
     );
 
     ///
     /// ルームリスト
     ///
-    final roomsWidget = state.when(
+    final roomsWidget = state.rooms.when(
       data: (data) => _roomListView(theme, context, data,
           viewModel.navigateToRoomDetail, viewModel.sendJoinRequest),
       error: (e, msg) => SliverToBoxAdapter(child: errorWidget(e, msg)),
@@ -102,17 +100,19 @@ class RoomListPage extends HookConsumerWidget {
   Widget searchTile({
     required AppTheme theme,
     required String title,
-    required String value,
+    String? value,
     required Function()? onTap,
   }) {
     /// 検索項目
-    final searchItemTextColor = theme.appColors.subText3;
+    final searchItemTextColor = theme.appColors.subText1;
     final searchItemTextStyle = theme.textTheme.h40.paint(searchItemTextColor);
 
     /// 検索結果
-    final searchResultTextColor = theme.appColors.subText1;
-    final searchResultTextStyle =
-        theme.textTheme.h40.paint(searchResultTextColor);
+    final onSearchResultTextColor = theme.appColors.primary;
+    final offSearchResultTextColor = theme.appColors.subText3;
+    final searchResultTextStyle = theme.textTheme.h40.paint(
+      value != null ? onSearchResultTextColor : offSearchResultTextColor,
+    );
 
     return InkWell(
       onTap: onTap,
@@ -126,8 +126,8 @@ class RoomListPage extends HookConsumerWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(title, style: searchResultTextStyle),
-            Text(value, style: searchItemTextStyle),
+            Text(title, style: searchItemTextStyle),
+            Text(value ?? "未設定", style: searchResultTextStyle),
           ],
         ),
       ),
