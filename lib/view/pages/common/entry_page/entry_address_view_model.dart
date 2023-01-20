@@ -1,3 +1,4 @@
+import 'package:fortune_client/data/model/address/address.dart';
 import 'package:fortune_client/data/repository/addresses/addresses_repository.dart';
 import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/view/pages/common/entry_page/entry_address_state.dart';
@@ -27,7 +28,11 @@ class EntryAddressViewModel extends StateNotifier<EntryAddressState> {
   }
 
   search(String keyword) async {
-    final result = await _addressesRepository.search(keyword);
-    print(result);
+    final result = await AsyncValue.guard(() async {
+      return await _addressesRepository.search(keyword).then((value) {
+        return value.addresses;
+      });
+    });
+    state = state.copyWith(searchResults: result);
   }
 }

@@ -41,35 +41,38 @@ class EntryAddressPage extends HookConsumerWidget {
     return Scaffold(
       backgroundColor: theme.appColors.onBackground,
       appBar: const BackAppBar(title: "居住地を入力する"),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Gap(30),
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: EntryAddressTextField(
-                controller: controller,
-                hintText: "市や区で検索",
-                clearCallBack: () {
-                  viewModel.displaySearchResults(false);
-                  controller.clear();
-                },
-                onChanged: (p0) {
-                  if (p0.isEmpty) viewModel.displaySearchResults(false);
-                },
-                onEditingComplete: () {
-                  viewModel.displaySearchResults(true);
-                  viewModel.search(controller.text);
-                }),
-          ),
-          const Gap(50),
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 30),
-            child: viewModel.isDisplaySearchResults()
-                ? searchResults
-                : _annotation(theme),
-          )
-        ],
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.only(bottom: 50),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Gap(30),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: EntryAddressTextField(
+                  controller: controller,
+                  hintText: "市や区で検索",
+                  clearCallBack: () {
+                    viewModel.displaySearchResults(false);
+                    controller.clear();
+                  },
+                  onChanged: (p0) {
+                    if (p0.isEmpty) viewModel.displaySearchResults(false);
+                  },
+                  onEditingComplete: () {
+                    viewModel.displaySearchResults(true);
+                    viewModel.search(controller.text);
+                  }),
+            ),
+            const Gap(50),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 30),
+              child: viewModel.isDisplaySearchResults()
+                  ? searchResults
+                  : _annotation(theme),
+            )
+          ],
+        ),
       ),
     );
   }
