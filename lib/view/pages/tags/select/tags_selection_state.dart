@@ -16,15 +16,13 @@ class TagsSelectionState with _$TagsSelectionState {
 @freezed
 class TagState with _$TagState {
   const factory TagState({
-    required String id,
-    required String tagName,
+    required Tag data,
     required bool isSelected,
   }) = _TagState;
 
   static TagState from(Tag tag) {
     return TagState(
-      id: tag.id,
-      tagName: tag.name,
+      data: tag,
       isSelected: false,
     );
   }

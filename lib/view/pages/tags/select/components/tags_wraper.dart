@@ -30,7 +30,7 @@ class TagsWraper extends HookConsumerWidget {
       runSpacing: 10,
       children: tags.map((tag) {
         return TagWidget(
-          value: tag.tagName,
+          value: tag.data.name,
           backGraundColor:
               tag.isSelected ? onBackGraundColor : offBackGraundColor,
           borderColor: tag.isSelected ? onBorderColor : offBorderColor,

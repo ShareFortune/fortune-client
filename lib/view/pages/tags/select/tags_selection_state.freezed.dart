@@ -193,8 +193,7 @@ abstract class _TagsSelectionState implements TagsSelectionState {
 
 /// @nodoc
 mixin _$TagState {
-  String get id => throw _privateConstructorUsedError;
-  String get tagName => throw _privateConstructorUsedError;
+  Tag get data => throw _privateConstructorUsedError;
   bool get isSelected => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -207,7 +206,9 @@ abstract class $TagStateCopyWith<$Res> {
   factory $TagStateCopyWith(TagState value, $Res Function(TagState) then) =
       _$TagStateCopyWithImpl<$Res, TagState>;
   @useResult
-  $Res call({String id, String tagName, bool isSelected});
+  $Res call({Tag data, bool isSelected});
+
+  $TagCopyWith<$Res> get data;
 }
 
 /// @nodoc
@@ -223,24 +224,27 @@ class _$TagStateCopyWithImpl<$Res, $Val extends TagState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? tagName = null,
+    Object? data = null,
     Object? isSelected = null,
   }) {
     return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      tagName: null == tagName
-          ? _value.tagName
-          : tagName // ignore: cast_nullable_to_non_nullable
-              as String,
+      data: null == data
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as Tag,
       isSelected: null == isSelected
           ? _value.isSelected
           : isSelected // ignore: cast_nullable_to_non_nullable
               as bool,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $TagCopyWith<$Res> get data {
+    return $TagCopyWith<$Res>(_value.data, (value) {
+      return _then(_value.copyWith(data: value) as $Val);
+    });
   }
 }
 
@@ -251,7 +255,10 @@ abstract class _$$_TagStateCopyWith<$Res> implements $TagStateCopyWith<$Res> {
       __$$_TagStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, String tagName, bool isSelected});
+  $Res call({Tag data, bool isSelected});
+
+  @override
+  $TagCopyWith<$Res> get data;
 }
 
 /// @nodoc
@@ -265,19 +272,14 @@ class __$$_TagStateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? tagName = null,
+    Object? data = null,
     Object? isSelected = null,
   }) {
     return _then(_$_TagState(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      tagName: null == tagName
-          ? _value.tagName
-          : tagName // ignore: cast_nullable_to_non_nullable
-              as String,
+      data: null == data
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as Tag,
       isSelected: null == isSelected
           ? _value.isSelected
           : isSelected // ignore: cast_nullable_to_non_nullable
@@ -289,19 +291,16 @@ class __$$_TagStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_TagState implements _TagState {
-  const _$_TagState(
-      {required this.id, required this.tagName, required this.isSelected});
+  const _$_TagState({required this.data, required this.isSelected});
 
   @override
-  final String id;
-  @override
-  final String tagName;
+  final Tag data;
   @override
   final bool isSelected;
 
   @override
   String toString() {
-    return 'TagState(id: $id, tagName: $tagName, isSelected: $isSelected)';
+    return 'TagState(data: $data, isSelected: $isSelected)';
   }
 
   @override
@@ -309,14 +308,13 @@ class _$_TagState implements _TagState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_TagState &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.tagName, tagName) || other.tagName == tagName) &&
+            (identical(other.data, data) || other.data == data) &&
             (identical(other.isSelected, isSelected) ||
                 other.isSelected == isSelected));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, tagName, isSelected);
+  int get hashCode => Object.hash(runtimeType, data, isSelected);
 
   @JsonKey(ignore: true)
   @override
@@ -327,14 +325,10 @@ class _$_TagState implements _TagState {
 
 abstract class _TagState implements TagState {
   const factory _TagState(
-      {required final String id,
-      required final String tagName,
-      required final bool isSelected}) = _$_TagState;
+      {required final Tag data, required final bool isSelected}) = _$_TagState;
 
   @override
-  String get id;
-  @override
-  String get tagName;
+  Tag get data;
   @override
   bool get isSelected;
   @override

@@ -1,6 +1,9 @@
+import 'package:fortune_client/data/model/address/address.dart';
+import 'package:fortune_client/data/model/tag/tag.dart';
 import 'package:fortune_client/data/repository/tags/tags_repository.dart';
 import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/view/pages/tags/select/tags_selection_state.dart';
+import 'package:fortune_client/view/routes/app_router.gr.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final tagsSelectionViewModelProvider =
@@ -22,12 +25,12 @@ class TagsSelectionViewModel extends StateNotifier<TagsSelectionState> {
   }
 
   clearTag(TagState tag) {
-    final data = state.beingSet.where((e) => e.id != tag.id).toList();
+    final data = state.beingSet.where((e) => e.data.id != tag.data.id).toList();
     state = state.copyWith(beingSet: data);
   }
 
   setTag(TagState tag) {
-    if (state.beingSet.any((e) => e.id == tag.id)) return;
+    if (state.beingSet.any((e) => e.data.id == tag.data.id)) return;
     state = state.copyWith(
       beingSet: [tag.copyWith(isSelected: true), ...state.beingSet],
     );
@@ -47,5 +50,9 @@ class TagsSelectionViewModel extends StateNotifier<TagsSelectionState> {
       return result.map((e) => TagState.from(e)).toList();
     });
     state = state.copyWith(recommendation: tags);
+  }
+
+  saveSetData() {
+    sl<AppRouter>().pop(state.beingSet.map((e) => e.data).toList());
   }
 }

@@ -42,6 +42,7 @@ class RoomListPage extends HookConsumerWidget {
     /// タグ検索
     final tagsSearchTile = RoomsFilterTile(
       title: "タグ",
+      value: state.tags?.map((e) => e.name).toList().join("、"),
       onTap: viewModel.navigateToTagsSelection,
     );
 

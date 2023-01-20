@@ -1,4 +1,5 @@
 import 'package:fortune_client/data/model/address/address.dart';
+import 'package:fortune_client/data/model/tag/tag.dart';
 import 'package:fortune_client/data/repository/join_requests/join_requests_repository.dart';
 import 'package:fortune_client/data/repository/rooms/rooms_repository.dart';
 import 'package:fortune_client/injector.dart';
@@ -59,6 +60,8 @@ class RoomListViewModel extends StateNotifier<RoomListState> {
   }
 
   navigateToTagsSelection() async {
-    await sl<AppRouter>().push(TagsSelectionRoute());
+    final result =
+        await sl<AppRouter>().push(TagsSelectionRoute()) as List<Tag>?;
+    state = state.copyWith(tags: result ?? state.tags);
   }
 }
