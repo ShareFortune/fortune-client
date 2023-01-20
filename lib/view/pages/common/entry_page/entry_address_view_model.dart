@@ -1,3 +1,5 @@
+import 'package:fortune_client/data/repository/addresses/addresses_repository.dart';
+import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/view/pages/common/entry_page/entry_address_state.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -6,13 +8,15 @@ final _searchResultsIsDisplay = StateProvider((_) => false);
 
 final entryAddressViewModelProvider =
     StateNotifierProvider<EntryAddressViewModel, EntryAddressState>(
-  (ref) => EntryAddressViewModel(ref),
+  (ref) => EntryAddressViewModel(ref, sl()),
 );
 
 class EntryAddressViewModel extends StateNotifier<EntryAddressState> {
-  EntryAddressViewModel(this._ref) : super(const EntryAddressState());
+  EntryAddressViewModel(this._ref, this._addressesRepository)
+      : super(const EntryAddressState());
 
   final Ref _ref;
+  final AddressesRepository _addressesRepository;
 
   isDisplaySearchResults() {
     return _ref.watch(_searchResultsIsDisplay);
@@ -22,5 +26,8 @@ class EntryAddressViewModel extends StateNotifier<EntryAddressState> {
     _ref.watch(_searchResultsIsDisplay.notifier).state = isDisplay;
   }
 
-  search(String keyword) {}
+  search(String keyword) async {
+    final result = await _addressesRepository.search(keyword);
+    print(result);
+  }
 }

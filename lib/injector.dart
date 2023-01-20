@@ -4,12 +4,15 @@ import 'package:fortune_client/data/datasource/local/shared_pref_data_source.dar
 import 'package:fortune_client/data/datasource/local/shared_pref_data_source_impl.dart';
 import 'package:fortune_client/data/datasource/remote/firebase/firebase_auth_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/firebase/firebase_auth_data_source_impl.dart';
+import 'package:fortune_client/data/datasource/remote/go/addresses/addresses_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/go/join_requests/join_requests_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/go/message_rooms/message_rooms_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/go/profile/profile_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/go/rooms/rooms_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/go/tags/tags_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/go/users/users_data_source.dart';
+import 'package:fortune_client/data/repository/addresses/addresses_repository.dart';
+import 'package:fortune_client/data/repository/addresses/addresses_repository_impl.dart';
 import 'package:fortune_client/data/repository/auth/auth_repository.dart';
 import 'package:fortune_client/data/repository/auth/auth_repository_impl.dart';
 import 'package:fortune_client/data/repository/debug/debug_repository.dart';
@@ -38,7 +41,7 @@ Future<void> initDependencies(bool isRelease) async {
   sl.registerSingletonAsync<SharedPreferences>(
       () => SharedPreferences.getInstance());
 
-  sl.registerLazySingleton(
+  sl.registerLazySingleton<Dio>(
     () => Dio(
       BaseOptions(
           baseUrl: Constants.of().baseUrl,
@@ -51,39 +54,73 @@ Future<void> initDependencies(bool isRelease) async {
   );
 
   ///  Router
-  sl.registerLazySingleton(() => AuthGuard(sl()));
-  sl.registerLazySingleton(() => CheckIfMyProfileExists(sl()));
+  sl.registerLazySingleton<AuthGuard>(
+    () => AuthGuard(sl()),
+  );
+  sl.registerLazySingleton<CheckIfMyProfileExists>(
+    () => CheckIfMyProfileExists(sl()),
+  );
   sl.registerLazySingleton<AppRouter>(
     () => AppRouter(authGuard: sl(), checkIfMyProfileExists: sl()),
   );
 
   /// Repository
-  sl.registerLazySingleton<AuthRepository>(() => AuthRepositoryImpl(sl()));
+  sl.registerLazySingleton<AuthRepository>(
+    () => AuthRepositoryImpl(sl()),
+  );
   sl.registerLazySingleton<UsersRepository>(
-      () => UsersRepositoryImpl(sl(), sl(), sl()));
+    () => UsersRepositoryImpl(sl(), sl(), sl()),
+  );
   sl.registerLazySingleton<MessageRepository>(
-      () => MessageRepositoryImpl(sl()));
+    () => MessageRepositoryImpl(sl()),
+  );
   sl.registerLazySingleton<ProfileRepository>(
-      () => ProfileRepositoryImpl(sl(), sl()));
-  sl.registerLazySingleton<RoomsRepository>(() => RoomsRepositoryImpl(sl()));
-  sl.registerLazySingleton<DebugRepository>(() => DebugRepositoryImpl(sl()));
-  sl.registerLazySingleton<TagsRepository>(() => TagsRepositoryImpl(sl()));
+    () => ProfileRepositoryImpl(sl(), sl()),
+  );
+  sl.registerLazySingleton<RoomsRepository>(
+    () => RoomsRepositoryImpl(sl()),
+  );
+  sl.registerLazySingleton<DebugRepository>(
+    () => DebugRepositoryImpl(sl()),
+  );
+  sl.registerLazySingleton<TagsRepository>(
+    () => TagsRepositoryImpl(sl()),
+  );
   sl.registerLazySingleton<JoinRequestsRepository>(
-      () => JoinRequestsRepositoryImpl(sl()));
+    () => JoinRequestsRepositoryImpl(sl()),
+  );
+  sl.registerLazySingleton<AddressesRepository>(
+    () => AddressesRepositoryImpl(sl()),
+  );
 
   /// DataSource
   sl.registerLazySingleton<SharedPreferencesDataSource>(
-      () => SharedPreferencesDataSourceImpl(sl()));
+    () => SharedPreferencesDataSourceImpl(sl()),
+  );
   sl.registerLazySingleton<FirebaseAuthDataSource>(
-      () => FirebaseAuthDataSourceImpl());
-  sl.registerLazySingleton<UsersDataSource>(() => UsersDataSource(sl()));
-  sl.registerLazySingleton<RoomsDataSource>(() => RoomsDataSource(sl()));
-  sl.registerLazySingleton<ProfileDataSource>(() => ProfileDataSource(sl()));
+    () => FirebaseAuthDataSourceImpl(),
+  );
+  sl.registerLazySingleton<UsersDataSource>(
+    () => UsersDataSource(sl()),
+  );
+  sl.registerLazySingleton<RoomsDataSource>(
+    () => RoomsDataSource(sl()),
+  );
+  sl.registerLazySingleton<ProfileDataSource>(
+    () => ProfileDataSource(sl()),
+  );
   sl.registerLazySingleton<MessageRoomsDataSource>(
-      () => MessageRoomsDataSource(sl()));
-  sl.registerLazySingleton<TagsDataSource>(() => TagsDataSource(sl()));
+    () => MessageRoomsDataSource(sl()),
+  );
+  sl.registerLazySingleton<TagsDataSource>(
+    () => TagsDataSource(sl()),
+  );
   sl.registerLazySingleton<JoinRequestsDataSource>(
-      () => JoinRequestsDataSource(sl()));
+    () => JoinRequestsDataSource(sl()),
+  );
+  sl.registerLazySingleton<AddressesDataSource>(
+    () => AddressesDataSource(sl()),
+  );
 
   return await sl.allReady();
 }
