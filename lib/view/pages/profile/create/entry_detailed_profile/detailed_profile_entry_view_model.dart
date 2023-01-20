@@ -32,7 +32,7 @@ class DetailedProfileEntryViewModel
   }
 
   navigateToEntryAddress() async {
-    await sl<AppRouter>().push(const EntryAddressRoute());
+    await sl<AppRouter>().push(EntryAddressRoute());
   }
 
   navigateToEntryProfileicon() async {

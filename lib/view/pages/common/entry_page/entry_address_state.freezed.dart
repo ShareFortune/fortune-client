@@ -122,11 +122,13 @@ class __$$_EntryAddresStateCopyWithImpl<$Res>
 
 class _$_EntryAddresState implements _EntryAddresState {
   const _$_EntryAddresState(
-      {required this.adress, required this.searchResults});
+      {this.adress = null, this.searchResults = const AsyncData([])});
 
   @override
+  @JsonKey()
   final Address? adress;
   @override
+  @JsonKey()
   final AsyncValue<List<Address>> searchResults;
 
   @override
@@ -156,9 +158,8 @@ class _$_EntryAddresState implements _EntryAddresState {
 
 abstract class _EntryAddresState implements EntryAddressState {
   const factory _EntryAddresState(
-          {required final Address? adress,
-          required final AsyncValue<List<Address>> searchResults}) =
-      _$_EntryAddresState;
+      {final Address? adress,
+      final AsyncValue<List<Address>> searchResults}) = _$_EntryAddresState;
 
   @override
   Address? get adress;

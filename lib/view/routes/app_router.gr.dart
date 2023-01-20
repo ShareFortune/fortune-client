@@ -118,9 +118,11 @@ class AppRouter extends _i21.RootStackRouter {
       );
     },
     EntryAddressRoute.name: (routeData) {
+      final args = routeData.argsAs<EntryAddressRouteArgs>(
+          orElse: () => const EntryAddressRouteArgs());
       return _i21.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: _i8.EntryAddressPage(),
+        child: _i8.EntryAddressPage(key: args.key),
       );
     },
     MyRoute.name: (routeData) {
@@ -505,14 +507,26 @@ class RoomCreateRoute extends _i21.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i8.EntryAddressPage]
-class EntryAddressRoute extends _i21.PageRouteInfo<void> {
-  const EntryAddressRoute()
+class EntryAddressRoute extends _i21.PageRouteInfo<EntryAddressRouteArgs> {
+  EntryAddressRoute({_i22.Key? key})
       : super(
           EntryAddressRoute.name,
           path: 'enter-address',
+          args: EntryAddressRouteArgs(key: key),
         );
 
   static const String name = 'EntryAddressRoute';
+}
+
+class EntryAddressRouteArgs {
+  const EntryAddressRouteArgs({this.key});
+
+  final _i22.Key? key;
+
+  @override
+  String toString() {
+    return 'EntryAddressRouteArgs{key: $key}';
+  }
 }
 
 /// generated route for

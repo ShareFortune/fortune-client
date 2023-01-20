@@ -15,7 +15,6 @@ class EntryAddressPage extends HookConsumerWidget {
   EntryAddressPage({super.key});
 
   final controller = TextEditingController();
-  final isDisplay = StateProvider((_) => false);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -49,14 +48,26 @@ class EntryAddressPage extends HookConsumerWidget {
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: EntryAddressTextField(
-              controller: TextEditingController(),
-              hintText: "市や区で検索",
-            ),
+                controller: controller,
+                hintText: "市や区で検索",
+                clearCallBack: () {
+                  viewModel.displaySearchResults(false);
+                  controller.clear();
+                },
+                onChanged: (p0) {
+                  if (p0.isEmpty) viewModel.displaySearchResults(false);
+                },
+                onEditingComplete: () {
+                  viewModel.displaySearchResults(true);
+                  viewModel.search(controller.text);
+                }),
           ),
           const Gap(50),
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 30),
-            child: controller.text.isEmpty ? _annotation(theme) : searchResults,
+            child: viewModel.isDisplaySearchResults()
+                ? searchResults
+                : _annotation(theme),
           )
         ],
       ),
