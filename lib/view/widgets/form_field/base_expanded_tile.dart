@@ -14,7 +14,7 @@ class BaseExpandedTile extends StatefulHookConsumerWidget {
     this.value,
     this.valueStyle,
     this.controller,
-    this.isExpanded,
+    this.isExpanded = false,
     this.onTap,
     this.titlePadding,
     this.headerPadding,
@@ -71,7 +71,7 @@ class BaseExpandedTile extends StatefulHookConsumerWidget {
 
   /// [content]を表示するか
   /// 真の場合表示された状態になる
-  final bool? isExpanded;
+  final bool isExpanded;
 
   /// [trailing]のカラー
   final Color? trailingColor;
@@ -88,9 +88,7 @@ class _BaseExpandedTileState extends ConsumerState<BaseExpandedTile> {
   void initState() {
     super.initState();
     _controller = widget.controller ??
-        ExpandedTileController(
-          isExpanded: widget.isExpanded ?? false,
-        );
+        ExpandedTileController(isExpanded: widget.isExpanded);
   }
 
   @override
