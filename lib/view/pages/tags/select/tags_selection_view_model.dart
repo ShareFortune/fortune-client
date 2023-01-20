@@ -1,13 +1,11 @@
-import 'package:fortune_client/data/model/address/address.dart';
-import 'package:fortune_client/data/model/tag/tag.dart';
 import 'package:fortune_client/data/repository/tags/tags_repository.dart';
 import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/view/pages/tags/select/tags_selection_state.dart';
 import 'package:fortune_client/view/routes/app_router.gr.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-final tagsSelectionViewModelProvider =
-    StateNotifierProvider<TagsSelectionViewModel, TagsSelectionState>(
+final tagsSelectionViewModelProvider = StateNotifierProvider.autoDispose<
+    TagsSelectionViewModel, TagsSelectionState>(
   (ref) => TagsSelectionViewModel(sl())..initialize(),
 );
 
@@ -53,6 +51,8 @@ class TagsSelectionViewModel extends StateNotifier<TagsSelectionState> {
   }
 
   saveSetData() {
-    sl<AppRouter>().pop(state.beingSet.map((e) => e.data).toList());
+    sl<AppRouter>().pop(state.beingSet.isEmpty
+        ? null
+        : state.beingSet.map((e) => e.data).toList());
   }
 }
