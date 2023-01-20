@@ -40,6 +40,14 @@ class RoomDetailPage extends HookConsumerWidget {
       orElse: () => loadingWidget(),
     );
 
+    /// タブテキスト
+    final tabTextColor = theme.appColors.subText1;
+    final tabTextStyle = theme.textTheme.h20.paint(tabTextColor).bold();
+
+    /// タブテキスト（選択時）
+    final onTabTextColor = theme.appColors.onSecondary;
+    final onTabTextStyle = theme.textTheme.h20.paint(onTabTextColor).bold();
+
     return Container(
       color: theme.appColors.onBackground,
       child: DefaultTabController(
@@ -55,17 +63,14 @@ class RoomDetailPage extends HookConsumerWidget {
               SliverToBoxAdapter(child: hostIconAsync),
               SliverToBoxAdapter(
                 child: TabBar(
+                  labelColor: onTabTextColor,
+                  unselectedLabelColor: tabTextColor,
+                  labelStyle: onTabTextStyle,
+                  unselectedLabelStyle: tabTextStyle,
                   padding: const EdgeInsets.only(top: 50),
-                  indicatorWeight: 3,
                   indicatorPadding: const EdgeInsets.symmetric(horizontal: 30),
-                  labelPadding: const EdgeInsets.only(bottom: 10),
-                  indicatorColor: theme.appColors.secondary,
-                  labelStyle: theme.textTheme.h30.bold(),
-                  labelColor: theme.appColors.secondary,
-                  tabs: const [
-                    Tab(text: '詳細'),
-                    Tab(text: 'メンバー'),
-                  ],
+                  labelPadding: const EdgeInsets.only(bottom: 5),
+                  tabs: const [Tab(text: '詳細'), Tab(text: 'メンバー')],
                 ),
               ),
             ];
