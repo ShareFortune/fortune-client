@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:fortune_client/view/pages/common/scroll_app_bar/scroll_app_bar.dart';
 import 'package:fortune_client/view/pages/rooms/room_list/components/room_card.dart';
+import 'package:fortune_client/view/pages/rooms/room_list/components/rooms_filter_expanded_tile.dart';
+import 'package:fortune_client/view/pages/rooms/room_list/components/rooms_filter_tile.dart';
 import 'package:fortune_client/view/pages/rooms/room_list/room_list_state.dart';
 import 'package:fortune_client/view/pages/rooms/room_list/room_list_view_model.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/dialog/toast.dart';
-import 'package:fortune_client/view/widgets/list_animation.dart';
+import 'package:fortune_client/view/widgets/other/list_animation.dart';
 import 'package:fortune_client/view/widgets/other/error_widget.dart';
 import 'package:fortune_client/view/widgets/other/loading_widget.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -21,23 +23,24 @@ class RoomListPage extends HookConsumerWidget {
     final viewModel = ref.watch(roomListViewModelProvider.notifier);
 
     /// 人数検索
-    final membersNumSearchTile = searchTile(
-      theme: theme,
+    final membersNumSearchTile = RoomsFilterExpandedTile(
       title: "人数",
-      onTap: null,
+      value: state.memberNum != null ? "${state.memberNum}人" : null,
+      items: List.generate(7, (index) => "${index + 4}").toList(),
+      onSelect: (value) {
+        viewModel.changeMemberNum(int.parse(value));
+      },
     );
 
     /// アドレス検索
-    final addressesSearchTile = searchTile(
-      theme: theme,
+    final addressesSearchTile = RoomsFilterTile(
       title: "場所",
       value: state.address?.text,
       onTap: viewModel.navigateToEntryAddress,
     );
 
     /// タグ検索
-    final tagsSearchTile = searchTile(
-      theme: theme,
+    final tagsSearchTile = RoomsFilterTile(
       title: "タグ",
       onTap: viewModel.navigateToTagsSelection,
     );
@@ -133,6 +136,19 @@ class RoomListPage extends HookConsumerWidget {
       ),
     );
   }
+
+  // _filterTile({
+  //   required AppTheme theme,
+  //   required String title,
+  //   String? value,
+  //   required Function()? onTap,
+  // }) {
+  //   return BaseTransitionTile(
+  //     title: title,
+  //     value: value,
+  //     ontap: ontap,
+  //   );
+  // }
 
   _showJoinRequestToast(BuildContext context, AppTheme theme, bool isSuccess) {
     isSuccess

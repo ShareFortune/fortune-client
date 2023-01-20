@@ -32,6 +32,10 @@ class RoomListViewModel extends StateNotifier<RoomListState> {
     );
   }
 
+  changeMemberNum(int value) {
+    state = state.copyWith(memberNum: value);
+  }
+
   Future<bool> sendJoinRequest(String roomId) async {
     if (!await _joinRequestsRepository.request(roomId)) return false;
     final data = state.rooms.value!;

@@ -5,7 +5,7 @@ import 'package:fortune_client/view/pages/account/my_page/my_page_view_model.dar
 import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/other/loading_widget.dart';
-import 'package:fortune_client/view/widgets/tag_widget.dart';
+import 'package:fortune_client/view/widgets/other/tag_widget.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 

@@ -8,20 +8,18 @@ class BaseExpandedTile extends StatefulHookConsumerWidget {
   const BaseExpandedTile({
     super.key,
     required this.title,
-    this.titleColor,
     this.titleStyle,
     required this.content,
     this.isDisplayValue = true,
     this.value,
-    this.valueColor,
     this.valueStyle,
     this.controller,
     this.isExpanded,
     this.onTap,
+    this.titlePadding,
     this.headerColor,
     this.contentBackgroundColor,
     this.textWhenUnset = "未設定",
-    this.textWhenUnsetColor,
     this.textWhenUnsetStyle,
     this.trailingRotation = 90,
     this.trailingColor,
@@ -30,9 +28,6 @@ class BaseExpandedTile extends StatefulHookConsumerWidget {
 
   /// タイトル
   final String title;
-
-  /// タイトルテキストカラー
-  final Color? titleColor;
 
   /// タイトルテキストスタイル
   final TextStyle? titleStyle;
@@ -48,9 +43,6 @@ class BaseExpandedTile extends StatefulHookConsumerWidget {
   /// [isDisplayValue]がfalseの場合は表示しない
   final String? value;
 
-  /// [value]のテキストカラー
-  final Color? valueColor;
-
   /// [value] のテキストスタイル
   final TextStyle? valueStyle;
 
@@ -63,18 +55,20 @@ class BaseExpandedTile extends StatefulHookConsumerWidget {
   /// タイルタップ時の処理
   final VoidCallback? onTap;
 
+  /// Padding
+  final EdgeInsetsGeometry? titlePadding;
+
   /// [value]未設定時のテキスト
   /// [isDisplayValue]がfalseの場合は表示しない
   final String textWhenUnset;
-
-  /// [value]未設定時のテキストカラー
-  final Color? textWhenUnsetColor;
 
   /// [value]未設定時のテキストスタイル
   final TextStyle? textWhenUnsetStyle;
   final double? trailingRotation;
   final ExpandedTileController? controller;
 
+  /// [content]を表示するか
+  /// 真の場合表示された状態になる
   final bool? isExpanded;
 
   /// [trailing]のカラー
@@ -101,17 +95,13 @@ class _BaseExpandedTileState extends ConsumerState<BaseExpandedTile> {
   Widget build(BuildContext context) {
     final theme = ref.watch(appThemeProvider);
 
-    /// デフォルトテキストスタイル
-    /// pt14
-    final defaultTextStyle = theme.textTheme.h30;
-
     return ExpandedTile(
       controller: _controller,
       theme: ExpandedTileThemeData(
         headerColor: widget.headerColor ?? theme.appColors.onBackground,
         contentBackgroundColor:
             widget.contentBackgroundColor ?? theme.appColors.onBackground,
-        titlePadding: EdgeInsets.zero,
+        titlePadding: widget.titlePadding,
         contentPadding: EdgeInsets.zero,
         trailingPadding: const EdgeInsets.only(left: 5),
         headerPadding: const EdgeInsets.symmetric(vertical: 15),
@@ -121,32 +111,20 @@ class _BaseExpandedTileState extends ConsumerState<BaseExpandedTile> {
         children: [
           Text(
             widget.title,
-            style: _textStyle(
-              widget.titleStyle,
-              widget.titleColor,
-              defaultTextStyle,
-              theme.appColors.subText1,
-            ),
+            style: widget.titleStyle ??
+                theme.textTheme.h40.paint(theme.appColors.subText1),
           ),
           if (widget.isDisplayValue)
             widget.value != null
                 ? Text(
                     widget.value!,
-                    style: _textStyle(
-                      widget.valueStyle,
-                      widget.valueColor,
-                      defaultTextStyle,
-                      theme.appColors.primary,
-                    ),
+                    style: widget.valueStyle ??
+                        theme.textTheme.h40.paint(theme.appColors.primary),
                   )
                 : Text(
                     widget.textWhenUnset,
-                    style: _textStyle(
-                      widget.textWhenUnsetStyle,
-                      widget.textWhenUnsetColor,
-                      defaultTextStyle,
-                      theme.appColors.subText3,
-                    ),
+                    style: widget.textWhenUnsetStyle ??
+                        theme.textTheme.h40.paint(theme.appColors.subText3),
                   ),
         ],
       ),
@@ -159,14 +137,5 @@ class _BaseExpandedTileState extends ConsumerState<BaseExpandedTile> {
       trailingRotation: widget.trailingRotation,
       expansionDuration: widget.expansionDuration,
     );
-  }
-
-  TextStyle _textStyle(
-    TextStyle? textStyle,
-    Color? color,
-    TextStyle defaultTextStyle,
-    Color defaultColor,
-  ) {
-    return textStyle ?? defaultTextStyle.paint(color ?? defaultColor);
   }
 }

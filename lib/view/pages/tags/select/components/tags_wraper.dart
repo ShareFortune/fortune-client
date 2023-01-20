@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fortune_client/view/pages/tags/select/tags_selection_state.dart';
 import 'package:fortune_client/view/pages/tags/select/tags_selection_view_model.dart';
-import 'package:fortune_client/view/widgets/tag_widget.dart';
+import 'package:fortune_client/view/widgets/other/tag_widget.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class TagsWraper extends HookConsumerWidget {

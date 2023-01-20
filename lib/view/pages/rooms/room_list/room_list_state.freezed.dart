@@ -16,7 +16,9 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$RoomListState {
+  int? get memberNum => throw _privateConstructorUsedError;
   Address? get address => throw _privateConstructorUsedError;
+  List<Tag>? get tags => throw _privateConstructorUsedError;
   AsyncValue<List<RoomListStateItem>> get rooms =>
       throw _privateConstructorUsedError;
 
@@ -31,7 +33,11 @@ abstract class $RoomListStateCopyWith<$Res> {
           RoomListState value, $Res Function(RoomListState) then) =
       _$RoomListStateCopyWithImpl<$Res, RoomListState>;
   @useResult
-  $Res call({Address? address, AsyncValue<List<RoomListStateItem>> rooms});
+  $Res call(
+      {int? memberNum,
+      Address? address,
+      List<Tag>? tags,
+      AsyncValue<List<RoomListStateItem>> rooms});
 
   $AddressCopyWith<$Res>? get address;
 }
@@ -49,14 +55,24 @@ class _$RoomListStateCopyWithImpl<$Res, $Val extends RoomListState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? memberNum = freezed,
     Object? address = freezed,
+    Object? tags = freezed,
     Object? rooms = null,
   }) {
     return _then(_value.copyWith(
+      memberNum: freezed == memberNum
+          ? _value.memberNum
+          : memberNum // ignore: cast_nullable_to_non_nullable
+              as int?,
       address: freezed == address
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
               as Address?,
+      tags: freezed == tags
+          ? _value.tags
+          : tags // ignore: cast_nullable_to_non_nullable
+              as List<Tag>?,
       rooms: null == rooms
           ? _value.rooms
           : rooms // ignore: cast_nullable_to_non_nullable
@@ -85,7 +101,11 @@ abstract class _$$_RoomListStateCopyWith<$Res>
       __$$_RoomListStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Address? address, AsyncValue<List<RoomListStateItem>> rooms});
+  $Res call(
+      {int? memberNum,
+      Address? address,
+      List<Tag>? tags,
+      AsyncValue<List<RoomListStateItem>> rooms});
 
   @override
   $AddressCopyWith<$Res>? get address;
@@ -102,14 +122,24 @@ class __$$_RoomListStateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? memberNum = freezed,
     Object? address = freezed,
+    Object? tags = freezed,
     Object? rooms = null,
   }) {
     return _then(_$_RoomListState(
+      memberNum: freezed == memberNum
+          ? _value.memberNum
+          : memberNum // ignore: cast_nullable_to_non_nullable
+              as int?,
       address: freezed == address
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
               as Address?,
+      tags: freezed == tags
+          ? _value._tags
+          : tags // ignore: cast_nullable_to_non_nullable
+              as List<Tag>?,
       rooms: null == rooms
           ? _value.rooms
           : rooms // ignore: cast_nullable_to_non_nullable
@@ -121,17 +151,34 @@ class __$$_RoomListStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_RoomListState implements _RoomListState {
-  const _$_RoomListState({this.address, this.rooms = const AsyncLoading()});
+  const _$_RoomListState(
+      {this.memberNum,
+      this.address,
+      final List<Tag>? tags,
+      this.rooms = const AsyncLoading()})
+      : _tags = tags;
 
   @override
+  final int? memberNum;
+  @override
   final Address? address;
+  final List<Tag>? _tags;
+  @override
+  List<Tag>? get tags {
+    final value = _tags;
+    if (value == null) return null;
+    if (_tags is EqualUnmodifiableListView) return _tags;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
   @override
   @JsonKey()
   final AsyncValue<List<RoomListStateItem>> rooms;
 
   @override
   String toString() {
-    return 'RoomListState(address: $address, rooms: $rooms)';
+    return 'RoomListState(memberNum: $memberNum, address: $address, tags: $tags, rooms: $rooms)';
   }
 
   @override
@@ -139,12 +186,16 @@ class _$_RoomListState implements _RoomListState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_RoomListState &&
+            (identical(other.memberNum, memberNum) ||
+                other.memberNum == memberNum) &&
             (identical(other.address, address) || other.address == address) &&
+            const DeepCollectionEquality().equals(other._tags, _tags) &&
             (identical(other.rooms, rooms) || other.rooms == rooms));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, address, rooms);
+  int get hashCode => Object.hash(runtimeType, memberNum, address,
+      const DeepCollectionEquality().hash(_tags), rooms);
 
   @JsonKey(ignore: true)
   @override
@@ -155,11 +206,17 @@ class _$_RoomListState implements _RoomListState {
 
 abstract class _RoomListState implements RoomListState {
   const factory _RoomListState(
-      {final Address? address,
+      {final int? memberNum,
+      final Address? address,
+      final List<Tag>? tags,
       final AsyncValue<List<RoomListStateItem>> rooms}) = _$_RoomListState;
 
   @override
+  int? get memberNum;
+  @override
   Address? get address;
+  @override
+  List<Tag>? get tags;
   @override
   AsyncValue<List<RoomListStateItem>> get rooms;
   @override
