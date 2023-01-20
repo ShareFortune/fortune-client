@@ -20,6 +20,30 @@ class RoomListPage extends HookConsumerWidget {
     final state = ref.watch(roomListViewModelProvider);
     final viewModel = ref.watch(roomListViewModelProvider.notifier);
 
+    /// 人数検索
+    final membersNumSearchTile = searchTile(
+      theme: theme,
+      title: "人数",
+      value: "未設定",
+      onTap: null,
+    );
+
+    /// アドレス検索
+    final addressesSearchTile = searchTile(
+      theme: theme,
+      title: "場所",
+      value: "未設定",
+      onTap: viewModel.navigateToEntryAddress,
+    );
+
+    /// タグ検索
+    final tagsSearchTile = searchTile(
+      theme: theme,
+      title: "タグ",
+      value: "未設定",
+      onTap: viewModel.navigateToTagsSelection,
+    );
+
     ///
     /// ルームリスト
     ///
@@ -38,9 +62,12 @@ class RoomListPage extends HookConsumerWidget {
           SliverToBoxAdapter(
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: _searchListTile(
-                theme,
-                navigateToTagsSelection: viewModel.navigateToTagsSelection,
+              child: Column(
+                children: [
+                  membersNumSearchTile,
+                  addressesSearchTile,
+                  tagsSearchTile,
+                ],
               ),
             ),
           ),
@@ -50,34 +77,6 @@ class RoomListPage extends HookConsumerWidget {
           ),
         ],
       ),
-    );
-  }
-
-  _searchListTile(
-    AppTheme theme, {
-    required Function() navigateToTagsSelection,
-  }) {
-    return Column(
-      children: [
-        searchTile(
-          theme: theme,
-          title: "人数",
-          value: "未設定",
-          onTap: null,
-        ),
-        searchTile(
-          theme: theme,
-          title: "場所",
-          value: "未設定",
-          onTap: null,
-        ),
-        searchTile(
-          theme: theme,
-          title: "タグ",
-          value: "未設定",
-          onTap: navigateToTagsSelection,
-        ),
-      ],
     );
   }
 

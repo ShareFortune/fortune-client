@@ -41,6 +41,10 @@ class RoomListViewModel
     return true;
   }
 
+  navigateToEntryAddress() async {
+    await sl<AppRouter>().push(EntryAddressRoute());
+  }
+
   navigateToRoomDetail() async {
     await sl<AppRouter>().push(RoomDetailRoute(id: "id"));
   }

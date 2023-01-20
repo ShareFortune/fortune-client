@@ -53,21 +53,23 @@ class EntryAddressPage extends HookConsumerWidget {
                   controller: controller,
                   hintText: "市や区で検索",
                   clearCallBack: () {
-                    viewModel.displaySearchResults(false);
+                    viewModel.changeSearchResultsIsDisplay(false);
                     controller.clear();
                   },
                   onChanged: (p0) {
-                    if (p0.isEmpty) viewModel.displaySearchResults(false);
+                    if (p0.isEmpty) {
+                      viewModel.changeSearchResultsIsDisplay(false);
+                    }
                   },
                   onEditingComplete: () {
-                    viewModel.displaySearchResults(true);
+                    viewModel.changeSearchResultsIsDisplay(true);
                     viewModel.search(controller.text);
                   }),
             ),
             const Gap(50),
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 30),
-              child: viewModel.isDisplaySearchResults()
+              child: state.searchResultsIsDisplay
                   ? searchResults
                   : _annotation(theme),
             )
