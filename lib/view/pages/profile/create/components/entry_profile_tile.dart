@@ -42,11 +42,6 @@ class EntryProfileTile extends HookConsumerWidget {
       onTap: ontap,
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 15),
-        decoration: BoxDecoration(
-          border: Border(
-            bottom: BorderSide(width: 1, color: theme.appColors.border1),
-          ),
-        ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -54,11 +49,10 @@ class EntryProfileTile extends HookConsumerWidget {
             Row(
               children: [
                 valueText,
-                const Gap(10),
-                const Icon(
-                  size: 16,
-                  Icons.arrow_forward_ios,
-                  color: Color(0xFFD9D9D9),
+                const Gap(5),
+                Icon(
+                  Icons.chevron_right,
+                  color: theme.appColors.iconBtn2,
                 ),
               ],
             ),

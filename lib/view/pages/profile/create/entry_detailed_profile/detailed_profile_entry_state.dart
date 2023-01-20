@@ -25,6 +25,6 @@ class DetailedProfileEntryState with _$DetailedProfileEntryState {
     CigaretteFrequency? cigaretteFrequency,
 
     /// 居住地
-    Address? adress,
+    Address? address,
   }) = _DetailedProfileEntryState;
 }

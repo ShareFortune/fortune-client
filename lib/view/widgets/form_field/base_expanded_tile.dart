@@ -113,7 +113,7 @@ class _BaseExpandedTileState extends ConsumerState<BaseExpandedTile> {
             widget.contentBackgroundColor ?? theme.appColors.onBackground,
         titlePadding: EdgeInsets.zero,
         contentPadding: EdgeInsets.zero,
-        trailingPadding: EdgeInsets.zero,
+        trailingPadding: const EdgeInsets.only(left: 5),
         headerPadding: const EdgeInsets.symmetric(vertical: 15),
       ),
       title: Row(

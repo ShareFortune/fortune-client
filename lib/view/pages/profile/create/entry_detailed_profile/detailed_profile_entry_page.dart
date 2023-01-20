@@ -42,6 +42,15 @@ class DetailedProfileEntryPage extends HookConsumerWidget {
       },
     );
 
+    /// 住所ピッカー
+    final addressPicker = EntryProfileTile(
+      title: "居住地",
+      value: state.address?.text,
+      ontap: () {
+        viewModel.navigateToEntryAddress();
+      },
+    );
+
     /// お酒ピッカー
     final drinkFrequencyPicker = EntryProfileExpandedTilePicker(
       title: "お酒",
@@ -94,13 +103,7 @@ class DetailedProfileEntryPage extends HookConsumerWidget {
                   const Gap(10),
 
                   /// 居住地
-                  EntryProfileTile(
-                    title: "居住地",
-                    value: "test",
-                    ontap: () {
-                      viewModel.navigateToEntryAddress();
-                    },
-                  ),
+                  addressPicker,
                   const Gap(10),
 
                   /// お酒

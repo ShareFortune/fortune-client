@@ -1,3 +1,4 @@
+import 'package:fortune_client/data/model/address/address.dart';
 import 'package:fortune_client/data/model/enum/cigarette_frequency.dart';
 import 'package:fortune_client/data/model/enum/drink_frequency.dart';
 import 'package:fortune_client/data/model/enum/gender.dart';
@@ -32,7 +33,8 @@ class DetailedProfileEntryViewModel
   }
 
   navigateToEntryAddress() async {
-    await sl<AppRouter>().push(EntryAddressRoute());
+    final result = await sl<AppRouter>().push(EntryAddressRoute()) as Address?;
+    state = state.copyWith(address: result ?? state.address);
   }
 
   navigateToEntryProfileicon() async {
