@@ -113,10 +113,13 @@ class RoomDetailPage extends HookConsumerWidget {
   Widget _header(AppTheme theme, String title, String image) {
     return Column(
       children: [
-        CircleAvatar(
-          radius: 40,
-          backgroundColor: Colors.black12,
-          // backgroundImage: NetworkImage(image),
+        ClipOval(
+          child: Image.network(
+            image,
+            width: 80,
+            height: 80,
+            fit: BoxFit.cover,
+          ),
         ),
         const Gap(30),
         Text(title, style: theme.textTheme.h40.bold()),

@@ -212,7 +212,14 @@ class MyPage extends HookConsumerWidget {
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Row(
         children: [
-          CircleAvatar(radius: 40, backgroundImage: NetworkImage(image)),
+          ClipOval(
+            child: Image.network(
+              image,
+              width: 80,
+              height: 80,
+              fit: BoxFit.cover,
+            ),
+          ),
           const Gap(20),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
