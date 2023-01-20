@@ -17,6 +17,7 @@ class BaseExpandedTile extends StatefulHookConsumerWidget {
     this.isExpanded,
     this.onTap,
     this.titlePadding,
+    this.headerPadding,
     this.headerColor,
     this.contentBackgroundColor,
     this.textWhenUnset = "未設定",
@@ -57,6 +58,7 @@ class BaseExpandedTile extends StatefulHookConsumerWidget {
 
   /// Padding
   final EdgeInsetsGeometry? titlePadding;
+  final EdgeInsetsGeometry? headerPadding;
 
   /// [value]未設定時のテキスト
   /// [isDisplayValue]がfalseの場合は表示しない
@@ -104,7 +106,8 @@ class _BaseExpandedTileState extends ConsumerState<BaseExpandedTile> {
         titlePadding: widget.titlePadding,
         contentPadding: EdgeInsets.zero,
         trailingPadding: const EdgeInsets.only(left: 5),
-        headerPadding: const EdgeInsets.symmetric(vertical: 15),
+        headerPadding:
+            widget.headerPadding ?? const EdgeInsets.symmetric(vertical: 15),
       ),
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

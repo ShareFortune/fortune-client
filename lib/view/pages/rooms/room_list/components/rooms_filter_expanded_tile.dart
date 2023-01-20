@@ -30,6 +30,7 @@ class RoomsFilterExpandedTile extends HookConsumerWidget {
       valueStyle: theme.textTheme.h30.paint(theme.appColors.primary),
       textWhenUnsetStyle: theme.textTheme.h30.paint(theme.appColors.subText3),
       titlePadding: const EdgeInsets.only(left: 5),
+      headerPadding: const EdgeInsets.symmetric(vertical: 12),
       content: BaseCupertinoPicker(
         items: items,
         onSelectedItemChanged: (index) {
