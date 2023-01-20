@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:fortune_client/gen/assets.gen.dart';
 import 'package:fortune_client/injector.dart';
-import 'package:fortune_client/view/pages/common/scroll_app_bar/scroll_app_bar_state.dart';
 import 'package:fortune_client/view/pages/common/scroll_app_bar/scroll_app_bar_view_model.dart';
 import 'package:fortune_client/view/routes/app_router.gr.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
-import 'package:fortune_client/view/widgets/other/skeleton.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -35,10 +35,10 @@ class ScrollAppBar extends HookConsumerWidget implements PreferredSizeWidget {
     Widget titleWidget = Text(title, style: titleTextStyle);
 
     /// アイコン
-    Widget iconWidget = state.maybeWhen(
-      data: _icon,
-      orElse: () => Skeleton.circular(iconSize),
-    );
+    // Widget iconWidget = state.maybeWhen(
+    //   data: _icon,
+    //   orElse: () => Skeleton.circular(iconSize),
+    // );
 
     /// 下部ウィジェット
     Widget bottomWidget = isBorder ? _divider() : Container();
@@ -56,23 +56,21 @@ class ScrollAppBar extends HookConsumerWidget implements PreferredSizeWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 titleWidget,
-                iconWidget,
+                InkWell(
+                  onTap: () => sl<AppRouter>().push(const MyRoute()),
+                  child: SvgPicture.asset(
+                    Assets.images.icons.iconProfile.path,
+                    fit: BoxFit.contain,
+                    width: 24,
+                    height: 24,
+                  ),
+                ),
               ],
             ),
             const Gap(15),
             bottomWidget,
           ],
         ),
-      ),
-    );
-  }
-
-  Widget _icon(ScrollAppBarState data) {
-    return InkWell(
-      onTap: () => sl<AppRouter>().push(const MyRoute()),
-      child: CircleAvatar(
-        radius: iconSize,
-        backgroundImage: data.image,
       ),
     );
   }
