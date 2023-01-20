@@ -24,17 +24,21 @@ class EntryAddressPage extends HookConsumerWidget {
 
     /// 検索結果
     final searchResults = state.searchResults.maybeWhen(
-      data: (data) => Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            "候補",
-            style: theme.textTheme.h40.paint(theme.appColors.subText1).bold(),
-          ),
-          const Gap(20),
-          Column(children: data.map((e) => _addressTile(theme, e)).toList()),
-        ],
-      ),
+      data: (data) {
+        final textStyle = theme.textTheme.h40.bold();
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text("候補", style: textStyle.paint(theme.appColors.subText1)),
+            const Gap(20),
+            Column(
+              children: data.map((e) {
+                return _addressTile(theme, e, () => viewModel.select(e));
+              }).toList(),
+            ),
+          ],
+        );
+      },
       orElse: () => loadingWidget(),
     );
 
@@ -96,23 +100,26 @@ class EntryAddressPage extends HookConsumerWidget {
     );
   }
 
-  Widget _addressTile(AppTheme theme, Address address) {
-    return Container(
-      padding: const EdgeInsets.symmetric(vertical: 15),
-      child: Row(
-        children: [
-          SvgPicture.asset(
-            Assets.images.icons.iconLocation.path,
-            fit: BoxFit.contain,
-            width: 24,
-            height: 24,
-          ),
-          const Gap(10),
-          Text(
-            address.text,
-            style: theme.textTheme.h40.paint(theme.appColors.subText2),
-          ),
-        ],
+  Widget _addressTile(AppTheme theme, Address address, VoidCallback onTap) {
+    return InkWell(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.symmetric(vertical: 15),
+        child: Row(
+          children: [
+            SvgPicture.asset(
+              Assets.images.icons.iconLocation.path,
+              fit: BoxFit.contain,
+              width: 24,
+              height: 24,
+            ),
+            const Gap(10),
+            Text(
+              address.text,
+              style: theme.textTheme.h40.paint(theme.appColors.subText2),
+            ),
+          ],
+        ),
       ),
     );
   }
