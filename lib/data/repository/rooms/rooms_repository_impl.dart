@@ -39,7 +39,6 @@ class RoomsRepositoryImpl implements RoomsRepository {
   Future<RoomDetail> fetchDetail(String roomId) async {
     try {
       logger.i("$runtimeType fetchDetail");
-      logger.i(roomId);
       return await _roomsDataSource.getDetail(roomId);
     } catch (e) {
       logger.e(e);
@@ -63,7 +62,6 @@ class RoomsRepositoryImpl implements RoomsRepository {
   Future<List<ParticipantRoomAsGuest>> getRoomsToParticipateAsGuest() async {
     try {
       logger.i("$runtimeType getRoomsToParticipateAsGuest");
-
       final result = await _roomsDataSource.getGuest(perPage: 10);
       return result.rooms;
     } catch (e) {

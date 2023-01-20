@@ -93,10 +93,8 @@ class RoomListPage extends HookConsumerWidget {
   }
 
   _showJoinRequestToast(BuildContext context, AppTheme theme, bool isSuccess) {
-    if (isSuccess) {
-      showToast(context, theme, "参加申請を送信しました。");
-    } else {
-      showErrorToast(context, theme, "参加申請の送信に失敗しました。");
-    }
+    isSuccess
+        ? showToast(context, theme, "参加申請を送信しました。")
+        : showErrorToast(context, theme, "参加申請の送信に失敗しました。");
   }
 }

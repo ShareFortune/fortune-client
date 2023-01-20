@@ -6,6 +6,7 @@ import 'package:fortune_client/view/pages/rooms/room_detail/components/room_deta
 import 'package:fortune_client/view/pages/rooms/room_detail/components/room_members_container.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
+import 'package:fortune_client/view/widgets/dialog/toast.dart';
 import 'package:fortune_client/view/widgets/other/loading_widget.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -28,7 +29,7 @@ class RoomDetailPage extends HookConsumerWidget {
 
     state.detail.maybeWhen(
       data: (roomDetail) {
-        hostIconAsync = _header(
+        hostIconAsync = _headerWidget(
           theme,
           roomDetail.title,
           roomDetail.host.mainImageURL,
@@ -50,9 +51,12 @@ class RoomDetailPage extends HookConsumerWidget {
           return;
         }
 
-        ///
         if (roomDetail.status == RoomStatus.pending) {
-          bottomWidgetAsync = bottomButton(theme, "参加する", () {});
+          bottomWidgetAsync = bottomButton(theme, "参加する", () async {
+            final result = await viewModel.joinRequest();
+            // ignore: use_build_context_synchronously
+            _showJoinRequestToast(context, theme, result);
+          });
         }
       },
       orElse: () => loadingWidget(),
@@ -132,7 +136,7 @@ class RoomDetailPage extends HookConsumerWidget {
     );
   }
 
-  Widget _header(AppTheme theme, String title, String image) {
+  Widget _headerWidget(AppTheme theme, String title, String image) {
     return Column(
       children: [
         ClipOval(
@@ -147,5 +151,11 @@ class RoomDetailPage extends HookConsumerWidget {
         Text(title, style: theme.textTheme.h40.bold()),
       ],
     );
+  }
+
+  _showJoinRequestToast(BuildContext context, AppTheme theme, bool isSuccess) {
+    isSuccess
+        ? showToast(context, theme, "参加申請を送信しました。")
+        : showErrorToast(context, theme, "参加申請の送信に失敗しました。");
   }
 }
