@@ -5,6 +5,7 @@ import 'package:fortune_client/data/datasource/local/shared_pref_data_source_imp
 import 'package:fortune_client/data/datasource/remote/firebase/firebase_auth_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/firebase/firebase_auth_data_source_impl.dart';
 import 'package:fortune_client/data/datasource/remote/go/addresses/addresses_data_source.dart';
+import 'package:fortune_client/data/datasource/remote/go/favorites/favorites_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/go/join_requests/join_requests_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/go/message_rooms/message_rooms_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/go/profile/profile_data_source.dart';
@@ -17,6 +18,8 @@ import 'package:fortune_client/data/repository/auth/auth_repository.dart';
 import 'package:fortune_client/data/repository/auth/auth_repository_impl.dart';
 import 'package:fortune_client/data/repository/debug/debug_repository.dart';
 import 'package:fortune_client/data/repository/debug/debug_repository_impl.dart';
+import 'package:fortune_client/data/repository/favorites/favorites_repository.dart';
+import 'package:fortune_client/data/repository/favorites/favorites_repository_impl.dart';
 import 'package:fortune_client/data/repository/join_requests/join_requests_repository.dart';
 import 'package:fortune_client/data/repository/join_requests/join_requests_repository_impl.dart';
 import 'package:fortune_client/data/repository/message/message_repository.dart';
@@ -92,6 +95,9 @@ Future<void> initDependencies(bool isRelease) async {
   sl.registerLazySingleton<AddressesRepository>(
     () => AddressesRepositoryImpl(sl()),
   );
+  sl.registerLazySingleton<FavoritesRepository>(
+    () => FavoritesRepositoryImpl(sl()),
+  );
 
   /// DataSource
   sl.registerLazySingleton<SharedPreferencesDataSource>(
@@ -120,6 +126,9 @@ Future<void> initDependencies(bool isRelease) async {
   );
   sl.registerLazySingleton<AddressesDataSource>(
     () => AddressesDataSource(sl()),
+  );
+  sl.registerLazySingleton<FavoritesDataSource>(
+    () => FavoritesDataSource(sl()),
   );
 
   return await sl.allReady();
