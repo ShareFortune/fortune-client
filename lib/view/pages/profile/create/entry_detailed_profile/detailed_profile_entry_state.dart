@@ -10,7 +10,7 @@ part 'detailed_profile_entry_state.freezed.dart';
 class DetailedProfileEntryState with _$DetailedProfileEntryState {
   const factory DetailedProfileEntryState({
     /// 名前
-    @Default("") String name,
+    String? name,
 
     /// 性別
     Gender? gender,

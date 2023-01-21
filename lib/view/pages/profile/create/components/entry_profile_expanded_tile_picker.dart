@@ -30,6 +30,7 @@ class EntryProfileExpandedTilePicker extends HookConsumerWidget {
       title: title,
       titleStyle: titleTextStyle,
       value: value,
+      textWhenUnsetStyle: theme.textTheme.h30.paint(theme.appColors.subText3),
       content: BaseCupertinoPicker(
         items: items,
         onSelectedItemChanged: (index) {

@@ -17,7 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$DetailedProfileEntryState {
   /// 名前
-  String get name => throw _privateConstructorUsedError;
+  String? get name => throw _privateConstructorUsedError;
 
   /// 性別
   Gender? get gender => throw _privateConstructorUsedError;
@@ -47,7 +47,7 @@ abstract class $DetailedProfileEntryStateCopyWith<$Res> {
       _$DetailedProfileEntryStateCopyWithImpl<$Res, DetailedProfileEntryState>;
   @useResult
   $Res call(
-      {String name,
+      {String? name,
       Gender? gender,
       int? stature,
       DrinkFrequency? drinkFrequency,
@@ -71,7 +71,7 @@ class _$DetailedProfileEntryStateCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = null,
+    Object? name = freezed,
     Object? gender = freezed,
     Object? stature = freezed,
     Object? drinkFrequency = freezed,
@@ -79,10 +79,10 @@ class _$DetailedProfileEntryStateCopyWithImpl<$Res,
     Object? address = freezed,
   }) {
     return _then(_value.copyWith(
-      name: null == name
+      name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       gender: freezed == gender
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
@@ -129,7 +129,7 @@ abstract class _$$_DetailedProfileEntryStateCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String name,
+      {String? name,
       Gender? gender,
       int? stature,
       DrinkFrequency? drinkFrequency,
@@ -153,7 +153,7 @@ class __$$_DetailedProfileEntryStateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = null,
+    Object? name = freezed,
     Object? gender = freezed,
     Object? stature = freezed,
     Object? drinkFrequency = freezed,
@@ -161,10 +161,10 @@ class __$$_DetailedProfileEntryStateCopyWithImpl<$Res>
     Object? address = freezed,
   }) {
     return _then(_$_DetailedProfileEntryState(
-      name: null == name
+      name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       gender: freezed == gender
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
@@ -193,7 +193,7 @@ class __$$_DetailedProfileEntryStateCopyWithImpl<$Res>
 
 class _$_DetailedProfileEntryState implements _DetailedProfileEntryState {
   const _$_DetailedProfileEntryState(
-      {this.name = "",
+      {this.name,
       this.gender,
       this.stature,
       this.drinkFrequency,
@@ -202,8 +202,7 @@ class _$_DetailedProfileEntryState implements _DetailedProfileEntryState {
 
   /// 名前
   @override
-  @JsonKey()
-  final String name;
+  final String? name;
 
   /// 性別
   @override
@@ -259,7 +258,7 @@ class _$_DetailedProfileEntryState implements _DetailedProfileEntryState {
 
 abstract class _DetailedProfileEntryState implements DetailedProfileEntryState {
   const factory _DetailedProfileEntryState(
-      {final String name,
+      {final String? name,
       final Gender? gender,
       final int? stature,
       final DrinkFrequency? drinkFrequency,
@@ -269,7 +268,7 @@ abstract class _DetailedProfileEntryState implements DetailedProfileEntryState {
   @override
 
   /// 名前
-  String get name;
+  String? get name;
   @override
 
   /// 性別
