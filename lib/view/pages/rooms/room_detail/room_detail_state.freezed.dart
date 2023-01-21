@@ -164,6 +164,8 @@ mixin _$RoomDetailStateInfo {
   bool get isHost => throw _privateConstructorUsedError;
   bool get isMember => throw _privateConstructorUsedError;
   RoomStatus get status => throw _privateConstructorUsedError;
+  RoomJoinRequestStatus? get joinRequestStatus =>
+      throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $RoomDetailStateInfoCopyWith<RoomDetailStateInfo> get copyWith =>
@@ -186,7 +188,8 @@ abstract class $RoomDetailStateInfoCopyWith<$Res> {
       int membersNum,
       bool isHost,
       bool isMember,
-      RoomStatus status});
+      RoomStatus status,
+      RoomJoinRequestStatus? joinRequestStatus});
 
   $ParticipatingUserCopyWith<$Res> get host;
   $AddressCopyWith<$Res> get address;
@@ -215,6 +218,7 @@ class _$RoomDetailStateInfoCopyWithImpl<$Res, $Val extends RoomDetailStateInfo>
     Object? isHost = null,
     Object? isMember = null,
     Object? status = null,
+    Object? joinRequestStatus = freezed,
   }) {
     return _then(_value.copyWith(
       title: null == title
@@ -257,6 +261,10 @@ class _$RoomDetailStateInfoCopyWithImpl<$Res, $Val extends RoomDetailStateInfo>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as RoomStatus,
+      joinRequestStatus: freezed == joinRequestStatus
+          ? _value.joinRequestStatus
+          : joinRequestStatus // ignore: cast_nullable_to_non_nullable
+              as RoomJoinRequestStatus?,
     ) as $Val);
   }
 
@@ -295,7 +303,8 @@ abstract class _$$_RoomDetailStateInfoCopyWith<$Res>
       int membersNum,
       bool isHost,
       bool isMember,
-      RoomStatus status});
+      RoomStatus status,
+      RoomJoinRequestStatus? joinRequestStatus});
 
   @override
   $ParticipatingUserCopyWith<$Res> get host;
@@ -324,6 +333,7 @@ class __$$_RoomDetailStateInfoCopyWithImpl<$Res>
     Object? isHost = null,
     Object? isMember = null,
     Object? status = null,
+    Object? joinRequestStatus = freezed,
   }) {
     return _then(_$_RoomDetailStateInfo(
       title: null == title
@@ -366,6 +376,10 @@ class __$$_RoomDetailStateInfoCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as RoomStatus,
+      joinRequestStatus: freezed == joinRequestStatus
+          ? _value.joinRequestStatus
+          : joinRequestStatus // ignore: cast_nullable_to_non_nullable
+              as RoomJoinRequestStatus?,
     ));
   }
 }
@@ -383,7 +397,8 @@ class _$_RoomDetailStateInfo implements _RoomDetailStateInfo {
       required this.membersNum,
       required this.isHost,
       required this.isMember,
-      required this.status})
+      required this.status,
+      required this.joinRequestStatus})
       : _members = members,
         _tags = tags;
 
@@ -419,10 +434,12 @@ class _$_RoomDetailStateInfo implements _RoomDetailStateInfo {
   final bool isMember;
   @override
   final RoomStatus status;
+  @override
+  final RoomJoinRequestStatus? joinRequestStatus;
 
   @override
   String toString() {
-    return 'RoomDetailStateInfo(title: $title, host: $host, explanation: $explanation, members: $members, tags: $tags, address: $address, membersNum: $membersNum, isHost: $isHost, isMember: $isMember, status: $status)';
+    return 'RoomDetailStateInfo(title: $title, host: $host, explanation: $explanation, members: $members, tags: $tags, address: $address, membersNum: $membersNum, isHost: $isHost, isMember: $isMember, status: $status, joinRequestStatus: $joinRequestStatus)';
   }
 
   @override
@@ -442,7 +459,9 @@ class _$_RoomDetailStateInfo implements _RoomDetailStateInfo {
             (identical(other.isHost, isHost) || other.isHost == isHost) &&
             (identical(other.isMember, isMember) ||
                 other.isMember == isMember) &&
-            (identical(other.status, status) || other.status == status));
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.joinRequestStatus, joinRequestStatus) ||
+                other.joinRequestStatus == joinRequestStatus));
   }
 
   @override
@@ -457,7 +476,8 @@ class _$_RoomDetailStateInfo implements _RoomDetailStateInfo {
       membersNum,
       isHost,
       isMember,
-      status);
+      status,
+      joinRequestStatus);
 
   @JsonKey(ignore: true)
   @override
@@ -469,16 +489,18 @@ class _$_RoomDetailStateInfo implements _RoomDetailStateInfo {
 
 abstract class _RoomDetailStateInfo implements RoomDetailStateInfo {
   const factory _RoomDetailStateInfo(
-      {required final String title,
-      required final ParticipatingUser host,
-      required final String explanation,
-      required final List<ParticipatingUser> members,
-      required final List<Tag> tags,
-      required final Address address,
-      required final int membersNum,
-      required final bool isHost,
-      required final bool isMember,
-      required final RoomStatus status}) = _$_RoomDetailStateInfo;
+          {required final String title,
+          required final ParticipatingUser host,
+          required final String explanation,
+          required final List<ParticipatingUser> members,
+          required final List<Tag> tags,
+          required final Address address,
+          required final int membersNum,
+          required final bool isHost,
+          required final bool isMember,
+          required final RoomStatus status,
+          required final RoomJoinRequestStatus? joinRequestStatus}) =
+      _$_RoomDetailStateInfo;
 
   @override
   String get title;
@@ -500,6 +522,8 @@ abstract class _RoomDetailStateInfo implements RoomDetailStateInfo {
   bool get isMember;
   @override
   RoomStatus get status;
+  @override
+  RoomJoinRequestStatus? get joinRequestStatus;
   @override
   @JsonKey(ignore: true)
   _$$_RoomDetailStateInfoCopyWith<_$_RoomDetailStateInfo> get copyWith =>

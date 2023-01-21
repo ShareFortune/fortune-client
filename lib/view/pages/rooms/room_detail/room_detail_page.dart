@@ -8,7 +8,6 @@ import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/dialog/toast.dart';
 import 'package:fortune_client/view/widgets/other/loading_widget.dart';
-import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class RoomDetailPage extends HookConsumerWidget {
@@ -22,18 +21,15 @@ class RoomDetailPage extends HookConsumerWidget {
     final state = ref.watch(roomDetailViewModelProvider(roomId));
     final viewModel = ref.watch(roomDetailViewModelProvider(roomId).notifier);
 
-    Widget hostIconAsync = Container();
+    Widget headerWidgetAsync = Container();
     Widget roomDetailContainerAsync = Container();
     Widget membersContainerAsync = Container();
     Widget bottomWidgetAsync = Container();
 
     state.detail.maybeWhen(
       data: (roomDetail) {
-        hostIconAsync = _headerWidget(
-          theme,
-          roomDetail.title,
-          roomDetail.host.mainImageURL,
-        );
+        headerWidgetAsync = _headerWidget(
+            theme, roomDetail.title, roomDetail.host.mainImageURL);
         roomDetailContainerAsync = RoomDetailContainer(roomDetail);
         membersContainerAsync =
             RoomMembersContainer(roomDetail.members, (c, v) {});
@@ -43,20 +39,20 @@ class RoomDetailPage extends HookConsumerWidget {
 
         /// ゲストならリクエスト中 or 参加中
         if (roomDetail.isMember) {
-          if (roomDetail.status == RoomStatus.pending) {
-            bottomWidgetAsync = bottomButton(theme, "参加しています", null);
-          } else {
-            bottomWidgetAsync = bottomButton(theme, "メッセージ", () {});
-          }
+          roomDetail.status == RoomStatus.pending
+              ? bottomWidgetAsync = bottomButton(theme, "参加しています", null)
+              : bottomWidgetAsync = bottomButton(theme, "メッセージ", () {});
           return;
         }
 
         if (roomDetail.status == RoomStatus.pending) {
-          bottomWidgetAsync = bottomButton(theme, "参加する", () async {
-            final result = await viewModel.joinRequest();
-            // ignore: use_build_context_synchronously
-            _showJoinRequestToast(context, theme, result);
-          });
+          roomDetail.joinRequestStatus != null
+              ? bottomWidgetAsync = bottomButton(theme, "リクエスト中", null)
+              : bottomWidgetAsync = bottomButton(theme, "参加する", () async {
+                  final result = await viewModel.joinRequest();
+                  // ignore: use_build_context_synchronously
+                  _showJoinRequestToast(context, theme, result);
+                });
         }
       },
       orElse: () => loadingWidget(),
@@ -82,14 +78,13 @@ class RoomDetailPage extends HookConsumerWidget {
                 backgroundColor: Colors.transparent,
                 iconTheme: IconThemeData(color: theme.appColors.iconBtn1),
               ),
-              SliverToBoxAdapter(child: hostIconAsync),
+              SliverToBoxAdapter(child: headerWidgetAsync),
               SliverToBoxAdapter(
                 child: TabBar(
                   labelColor: onTabTextColor,
                   unselectedLabelColor: tabTextColor,
                   labelStyle: onTabTextStyle,
                   unselectedLabelStyle: tabTextStyle,
-                  padding: const EdgeInsets.only(top: 50),
                   indicatorPadding: const EdgeInsets.symmetric(horizontal: 30),
                   labelPadding: const EdgeInsets.only(bottom: 5),
                   tabs: const [Tab(text: '詳細'), Tab(text: 'メンバー')],
@@ -124,7 +119,7 @@ class RoomDetailPage extends HookConsumerWidget {
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
         elevation: 0,
-        minimumSize: const Size.fromHeight(60),
+        minimumSize: const Size.fromHeight(50),
         backgroundColor: onPressed != null
             ? theme.appColors.primary
             : theme.appColors.disable,
@@ -140,15 +135,12 @@ class RoomDetailPage extends HookConsumerWidget {
     return Column(
       children: [
         ClipOval(
-          child: Image.network(
-            image,
-            width: 80,
-            height: 80,
-            fit: BoxFit.cover,
-          ),
+          child: Image.network(image, width: 80, height: 80, fit: BoxFit.cover),
         ),
-        const Gap(30),
-        Text(title, style: theme.textTheme.h40.bold()),
+        Container(
+          padding: const EdgeInsets.all(30),
+          child: Text(title, style: theme.textTheme.h40.bold()),
+        ),
       ],
     );
   }
