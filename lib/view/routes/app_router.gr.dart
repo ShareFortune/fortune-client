@@ -37,7 +37,7 @@ import 'package:fortune_client/view/pages/profile/profile/profile_page.dart'
     as _i6;
 import 'package:fortune_client/view/pages/request/request_confirmation/request_confirmation_page.dart'
     as _i15;
-import 'package:fortune_client/view/pages/rooms/create/room_create_page.dart'
+import 'package:fortune_client/view/pages/rooms/create/room_creation_page.dart'
     as _i7;
 import 'package:fortune_client/view/pages/rooms/participating/participating_room_list_page.dart'
     as _i14;
@@ -111,10 +111,10 @@ class AppRouter extends _i21.RootStackRouter {
         ),
       );
     },
-    RoomCreateRoute.name: (routeData) {
+    RoomCreationRoute.name: (routeData) {
       return _i21.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i7.RoomCreatePage(),
+        child: const _i7.RoomCreationPage(),
       );
     },
     EntryAddressRoute.name: (routeData) {
@@ -352,7 +352,7 @@ class AppRouter extends _i21.RootStackRouter {
           path: 'profile/:id',
         ),
         _i21.RouteConfig(
-          RoomCreateRoute.name,
+          RoomCreationRoute.name,
           path: 'create-room',
         ),
         _i21.RouteConfig(
@@ -495,15 +495,15 @@ class ProfileRouteArgs {
 }
 
 /// generated route for
-/// [_i7.RoomCreatePage]
-class RoomCreateRoute extends _i21.PageRouteInfo<void> {
-  const RoomCreateRoute()
+/// [_i7.RoomCreationPage]
+class RoomCreationRoute extends _i21.PageRouteInfo<void> {
+  const RoomCreationRoute()
       : super(
-          RoomCreateRoute.name,
+          RoomCreationRoute.name,
           path: 'create-room',
         );
 
-  static const String name = 'RoomCreateRoute';
+  static const String name = 'RoomCreationRoute';
 }
 
 /// generated route for

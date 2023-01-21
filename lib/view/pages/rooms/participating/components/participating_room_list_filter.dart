@@ -4,33 +4,30 @@ import 'package:fortune_client/gen/assets.gen.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class ParticipatingRoomListFilter extends HookConsumerWidget {
-  ParticipatingRoomListFilter({
+class ParticipatingRoomListFilter extends StatelessWidget {
+  const ParticipatingRoomListFilter({
     super.key,
+    required this.theme,
     required this.showAllRooms,
     required this.showRequestingRooms,
+    required this.onTapAddIcon,
   });
 
+  final AppTheme theme;
   final VoidCallback showAllRooms;
   final VoidCallback showRequestingRooms;
-
-  /// フィルタリングの有無
-  final presenceOfFiltering = StateProvider((_) => false);
+  final VoidCallback onTapAddIcon;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final theme = ref.watch(appThemeProvider);
-
+  Widget build(BuildContext context) {
     /// 全て表示をクリック
     onPressedShowAllRooms() {
       showAllRooms();
-      ref.watch(presenceOfFiltering.notifier).state = false;
     }
 
     /// リクエスト中を表示をクリック
     onPressedShowRequestingRooms() {
       showRequestingRooms();
-      ref.watch(presenceOfFiltering.notifier).state = true;
     }
 
     return Container(
@@ -42,7 +39,7 @@ class ParticipatingRoomListFilter extends HookConsumerWidget {
         children: [
           /// ルーム作成
           InkWell(
-            onTap: () {},
+            onTap: () => onTapAddIcon(),
             child: SvgPicture.asset(
               Assets.images.icons.iconAdd.path,
               fit: BoxFit.contain,

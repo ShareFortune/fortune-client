@@ -58,4 +58,8 @@ class ParticipatingRoomListViewModel
   Future<void> navigateToRoomDetail() async {
     await sl<AppRouter>().push(RoomDetailRoute(roomId: "id"));
   }
+
+  Future<void> navigateToRoomCreation() async {
+    await sl<AppRouter>().push(const RoomCreationRoute());
+  }
 }

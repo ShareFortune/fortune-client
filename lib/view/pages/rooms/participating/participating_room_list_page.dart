@@ -22,8 +22,10 @@ class ParticipatingRoomListPage extends HookConsumerWidget {
         const ScrollAppBar(title: "参加する", isBorder: true),
         SliverToBoxAdapter(
           child: ParticipatingRoomListFilter(
+            theme: theme,
             showAllRooms: viewModel.showAllRooms,
             showRequestingRooms: viewModel.showRequestingRooms,
+            onTapAddIcon: viewModel.navigateToRoomCreation,
           ),
         ),
         SliverToBoxAdapter(
