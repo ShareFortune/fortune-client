@@ -116,7 +116,7 @@ class RoomDetailPage extends HookConsumerWidget {
 
   bottomButton(AppTheme theme, String text, VoidCallback? onPressed) {
     return ElevatedButton(
-      onPressed: onPressed,
+      onPressed: onPressed ?? () {},
       style: ElevatedButton.styleFrom(
         elevation: 0,
         minimumSize: const Size.fromHeight(50),
