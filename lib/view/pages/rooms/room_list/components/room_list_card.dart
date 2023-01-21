@@ -7,24 +7,25 @@ import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/icon/member_icons.dart';
 import 'package:gap/gap.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class RoomListCard extends HookConsumerWidget {
+class RoomListCard extends StatelessWidget {
   const RoomListCard({
     super.key,
+    required this.theme,
     required this.room,
     required this.onTapRoom,
+    required this.onTapHeart,
     required this.onTapJoinRequestBtn,
   });
 
+  final AppTheme theme;
   final RoomListStateItem room;
   final VoidCallback onTapRoom;
-  final Function(String) onTapJoinRequestBtn;
+  final Function(bool) onTapHeart;
+  final VoidCallback onTapJoinRequestBtn;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final theme = ref.watch(appThemeProvider);
-
+  Widget build(BuildContext context) {
     /// ホストアイコン
     Widget leadingIcon = ClipOval(
       child: Image.network(
@@ -142,10 +143,8 @@ class RoomListCard extends HookConsumerWidget {
           ),
           FavoriteButton(
             iconSize: 30,
-            isFavorite: false,
-            valueChanged: (isFavorite) {
-              print('Is Favorite : $isFavorite');
-            },
+            isFavorite: room.isFavorite,
+            valueChanged: onTapHeart,
           ),
         ],
       ),
@@ -170,7 +169,7 @@ class RoomListCard extends HookConsumerWidget {
       onPressedJoinBtn = null;
     } else {
       joinBtnColor = theme.appColors.primary;
-      onPressedJoinBtn = () => onTapJoinRequestBtn(room.id);
+      onPressedJoinBtn = () => onTapJoinRequestBtn();
     }
 
     return Row(

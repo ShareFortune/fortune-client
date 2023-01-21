@@ -1,5 +1,6 @@
 import 'package:fortune_client/data/model/address/address.dart';
 import 'package:fortune_client/data/model/tag/tag.dart';
+import 'package:fortune_client/data/repository/favorites/favorites_repository.dart';
 import 'package:fortune_client/data/repository/join_requests/join_requests_repository.dart';
 import 'package:fortune_client/data/repository/rooms/rooms_repository.dart';
 import 'package:fortune_client/injector.dart';
@@ -10,15 +11,17 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final roomListViewModelProvider =
     StateNotifierProvider<RoomListViewModel, RoomListState>((ref) {
-  return RoomListViewModel(sl(), sl())..initialize();
+  return RoomListViewModel(sl(), sl(), sl())..initialize();
 });
 
 class RoomListViewModel extends StateNotifier<RoomListState> {
-  RoomListViewModel(this._roomRepository, this._joinRequestsRepository)
+  RoomListViewModel(this._roomRepository, this._joinRequestsRepository,
+      this._favoritesRepository)
       : super(const RoomListState());
 
   final RoomsRepository _roomRepository;
   final JoinRequestsRepository _joinRequestsRepository;
+  final FavoritesRepository _favoritesRepository;
 
   Future<void> initialize() async => await fetchList();
 
@@ -47,6 +50,33 @@ class RoomListViewModel extends StateNotifier<RoomListState> {
         return data;
       }),
     );
+    return true;
+  }
+
+  /// ルームの保存・保存解除
+  /// 返り値は保存・保存解除処理を完了したかどうか
+  Future<bool> saveOrReleaseRoom(String roomId, bool isFavorite) async {
+    Future<RoomListState> onChange(
+        List<RoomListStateItem> datas, bool target) async {
+      return state.copyWith(
+        rooms: await AsyncValue.guard(() async {
+          final index = datas.indexWhere((room) => room.id == roomId);
+          datas[index] = datas[index].copyWith(isFavorite: target);
+          return datas;
+        }),
+      );
+    }
+
+    final result = isFavorite
+        ? await _favoritesRepository.register(roomId) // 登録
+        : await _favoritesRepository.unregister(roomId); // 解除
+
+    final data = state.rooms.value!;
+    if (!result) {
+      state = await onChange(data, isFavorite);
+      return false;
+    }
+    state = await onChange(data, !isFavorite);
     return true;
   }
 

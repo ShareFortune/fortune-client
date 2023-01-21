@@ -12,7 +12,7 @@ class JoinRequestsRepositoryImpl implements JoinRequestsRepository {
     try {
       logger.i("[$runtimeType] send");
       final result = await _dataSource.sendJoinRequest(roomId);
-      return result.isNotEmpty;
+      return result.id.isNotEmpty;
     } catch (e) {
       logger.e(e);
       return false;

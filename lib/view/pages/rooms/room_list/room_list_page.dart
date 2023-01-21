@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:fortune_client/view/pages/common/scroll_app_bar/scroll_app_bar.dart';
 import 'package:fortune_client/view/pages/rooms/room_list/components/room_list_card.dart';
@@ -54,12 +56,17 @@ class RoomListPage extends HookConsumerWidget {
           spacing: 10,
           container: (room) {
             return RoomListCard(
+              theme: theme,
               room: room,
               onTapRoom: () => viewModel.navigateToRoomDetail(room.id),
-              onTapJoinRequestBtn: (String id) async {
-                final result = await viewModel.sendJoinRequest(id);
-                // ignore: use_build_context_synchronously
-                _showJoinRequestToast(context, theme, result);
+              onTapHeart: (bool value) async {
+                if (!await viewModel.saveOrReleaseRoom(room.id, value)) {
+                  await _showFailedToRegisterToast(context, theme);
+                }
+              },
+              onTapJoinRequestBtn: () async {
+                final result = await viewModel.sendJoinRequest(room.id);
+                await _showJoinRequestToast(context, theme, result);
               },
             );
           },
@@ -93,6 +100,10 @@ class RoomListPage extends HookConsumerWidget {
         ],
       ),
     );
+  }
+
+  _showFailedToRegisterToast(BuildContext context, AppTheme theme) {
+    showErrorToast(context, theme, "ルームを保存できませんでした。");
   }
 
   _showJoinRequestToast(BuildContext context, AppTheme theme, bool isSuccess) {
