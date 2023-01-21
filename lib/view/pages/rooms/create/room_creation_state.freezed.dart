@@ -17,11 +17,11 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$RoomCreationState {
   String? get title => throw _privateConstructorUsedError;
-  String? get explanation => throw _privateConstructorUsedError;
   List<Tag>? get tags => throw _privateConstructorUsedError;
   Address? get address => throw _privateConstructorUsedError;
   int? get membersNum => throw _privateConstructorUsedError;
   AgeGroup? get ageGroup => throw _privateConstructorUsedError;
+  String? get explanation => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $RoomCreationStateCopyWith<RoomCreationState> get copyWith =>
@@ -36,11 +36,11 @@ abstract class $RoomCreationStateCopyWith<$Res> {
   @useResult
   $Res call(
       {String? title,
-      String? explanation,
       List<Tag>? tags,
       Address? address,
       int? membersNum,
-      AgeGroup? ageGroup});
+      AgeGroup? ageGroup,
+      String? explanation});
 
   $AddressCopyWith<$Res>? get address;
 }
@@ -59,20 +59,16 @@ class _$RoomCreationStateCopyWithImpl<$Res, $Val extends RoomCreationState>
   @override
   $Res call({
     Object? title = freezed,
-    Object? explanation = freezed,
     Object? tags = freezed,
     Object? address = freezed,
     Object? membersNum = freezed,
     Object? ageGroup = freezed,
+    Object? explanation = freezed,
   }) {
     return _then(_value.copyWith(
       title: freezed == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
-              as String?,
-      explanation: freezed == explanation
-          ? _value.explanation
-          : explanation // ignore: cast_nullable_to_non_nullable
               as String?,
       tags: freezed == tags
           ? _value.tags
@@ -90,6 +86,10 @@ class _$RoomCreationStateCopyWithImpl<$Res, $Val extends RoomCreationState>
           ? _value.ageGroup
           : ageGroup // ignore: cast_nullable_to_non_nullable
               as AgeGroup?,
+      explanation: freezed == explanation
+          ? _value.explanation
+          : explanation // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 
@@ -116,11 +116,11 @@ abstract class _$$_RoomCreationStateCopyWith<$Res>
   @useResult
   $Res call(
       {String? title,
-      String? explanation,
       List<Tag>? tags,
       Address? address,
       int? membersNum,
-      AgeGroup? ageGroup});
+      AgeGroup? ageGroup,
+      String? explanation});
 
   @override
   $AddressCopyWith<$Res>? get address;
@@ -138,20 +138,16 @@ class __$$_RoomCreationStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? title = freezed,
-    Object? explanation = freezed,
     Object? tags = freezed,
     Object? address = freezed,
     Object? membersNum = freezed,
     Object? ageGroup = freezed,
+    Object? explanation = freezed,
   }) {
     return _then(_$_RoomCreationState(
       title: freezed == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
-              as String?,
-      explanation: freezed == explanation
-          ? _value.explanation
-          : explanation // ignore: cast_nullable_to_non_nullable
               as String?,
       tags: freezed == tags
           ? _value._tags
@@ -169,6 +165,10 @@ class __$$_RoomCreationStateCopyWithImpl<$Res>
           ? _value.ageGroup
           : ageGroup // ignore: cast_nullable_to_non_nullable
               as AgeGroup?,
+      explanation: freezed == explanation
+          ? _value.explanation
+          : explanation // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -178,17 +178,15 @@ class __$$_RoomCreationStateCopyWithImpl<$Res>
 class _$_RoomCreationState implements _RoomCreationState {
   const _$_RoomCreationState(
       {this.title,
-      this.explanation,
       final List<Tag>? tags,
       this.address,
       this.membersNum,
-      this.ageGroup})
+      this.ageGroup,
+      this.explanation})
       : _tags = tags;
 
   @override
   final String? title;
-  @override
-  final String? explanation;
   final List<Tag>? _tags;
   @override
   List<Tag>? get tags {
@@ -205,10 +203,12 @@ class _$_RoomCreationState implements _RoomCreationState {
   final int? membersNum;
   @override
   final AgeGroup? ageGroup;
+  @override
+  final String? explanation;
 
   @override
   String toString() {
-    return 'RoomCreationState(title: $title, explanation: $explanation, tags: $tags, address: $address, membersNum: $membersNum, ageGroup: $ageGroup)';
+    return 'RoomCreationState(title: $title, tags: $tags, address: $address, membersNum: $membersNum, ageGroup: $ageGroup, explanation: $explanation)';
   }
 
   @override
@@ -217,25 +217,25 @@ class _$_RoomCreationState implements _RoomCreationState {
         (other.runtimeType == runtimeType &&
             other is _$_RoomCreationState &&
             (identical(other.title, title) || other.title == title) &&
-            (identical(other.explanation, explanation) ||
-                other.explanation == explanation) &&
             const DeepCollectionEquality().equals(other._tags, _tags) &&
             (identical(other.address, address) || other.address == address) &&
             (identical(other.membersNum, membersNum) ||
                 other.membersNum == membersNum) &&
             (identical(other.ageGroup, ageGroup) ||
-                other.ageGroup == ageGroup));
+                other.ageGroup == ageGroup) &&
+            (identical(other.explanation, explanation) ||
+                other.explanation == explanation));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       title,
-      explanation,
       const DeepCollectionEquality().hash(_tags),
       address,
       membersNum,
-      ageGroup);
+      ageGroup,
+      explanation);
 
   @JsonKey(ignore: true)
   @override
@@ -248,16 +248,14 @@ class _$_RoomCreationState implements _RoomCreationState {
 abstract class _RoomCreationState implements RoomCreationState {
   const factory _RoomCreationState(
       {final String? title,
-      final String? explanation,
       final List<Tag>? tags,
       final Address? address,
       final int? membersNum,
-      final AgeGroup? ageGroup}) = _$_RoomCreationState;
+      final AgeGroup? ageGroup,
+      final String? explanation}) = _$_RoomCreationState;
 
   @override
   String? get title;
-  @override
-  String? get explanation;
   @override
   List<Tag>? get tags;
   @override
@@ -266,6 +264,8 @@ abstract class _RoomCreationState implements RoomCreationState {
   int? get membersNum;
   @override
   AgeGroup? get ageGroup;
+  @override
+  String? get explanation;
   @override
   @JsonKey(ignore: true)
   _$$_RoomCreationStateCopyWith<_$_RoomCreationState> get copyWith =>

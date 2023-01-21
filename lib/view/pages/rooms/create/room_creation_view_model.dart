@@ -14,9 +14,19 @@ final roomCreationViewModelProvider =
 
 class RoomCreationViewModel extends StateNotifier<RoomCreationState> {
   RoomCreationViewModel(this._roomsRepository)
-      : super(const RoomCreationState());
+      : super(const RoomCreationState(explanation: "テスト"));
 
   final RoomsRepository _roomsRepository;
+
+  /// タグ以外はNull非許容
+  bool isPossibleToCreate() {
+    return state.title != null &&
+        state.title!.isNotEmpty &&
+        state.membersNum != null &&
+        state.ageGroup != null &&
+        state.address != null &&
+        state.explanation != null;
+  }
 
   changeTitle(String value) {
     state = state.copyWith(title: value);
@@ -32,7 +42,19 @@ class RoomCreationViewModel extends StateNotifier<RoomCreationState> {
 
   changeExplanation() {}
 
-  Future<void> create() async {}
+  Future<bool> create() async {
+    if (isPossibleToCreate()) {
+      return await _roomsRepository.create(
+        title: state.title!,
+        membersNum: state.membersNum!,
+        ageGroup: state.ageGroup!,
+        addressId: state.address!,
+        tagIds: state.tags,
+        explanation: state.explanation!,
+      );
+    }
+    return false;
+  }
 
   navigateToEntryAddress() async {
     final result = await sl<AppRouter>().push(EntryAddressRoute()) as Address?;

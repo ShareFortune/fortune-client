@@ -112,9 +112,11 @@ class AppRouter extends _i21.RootStackRouter {
       );
     },
     RoomCreationRoute.name: (routeData) {
+      final args = routeData.argsAs<RoomCreationRouteArgs>(
+          orElse: () => const RoomCreationRouteArgs());
       return _i21.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i7.RoomCreationPage(),
+        child: _i7.RoomCreationPage(key: args.key),
       );
     },
     EntryAddressRoute.name: (routeData) {
@@ -496,14 +498,26 @@ class ProfileRouteArgs {
 
 /// generated route for
 /// [_i7.RoomCreationPage]
-class RoomCreationRoute extends _i21.PageRouteInfo<void> {
-  const RoomCreationRoute()
+class RoomCreationRoute extends _i21.PageRouteInfo<RoomCreationRouteArgs> {
+  RoomCreationRoute({_i22.Key? key})
       : super(
           RoomCreationRoute.name,
           path: 'create-room',
+          args: RoomCreationRouteArgs(key: key),
         );
 
   static const String name = 'RoomCreationRoute';
+}
+
+class RoomCreationRouteArgs {
+  const RoomCreationRouteArgs({this.key});
+
+  final _i22.Key? key;
+
+  @override
+  String toString() {
+    return 'RoomCreationRouteArgs{key: $key}';
+  }
 }
 
 /// generated route for

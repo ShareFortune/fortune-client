@@ -1,8 +1,11 @@
 import 'package:fortune_client/data/datasource/remote/go/rooms/rooms_data_source.dart';
+import 'package:fortune_client/data/model/enum/age_group.dart';
+import 'package:fortune_client/data/model/address/address.dart';
 import 'package:fortune_client/data/model/participant/guest/participant_room_as_guest.dart';
 import 'package:fortune_client/data/model/participant/host/participant_room_as_host.dart';
 import 'package:fortune_client/data/model/room_detail/room_detail.dart';
 import 'package:fortune_client/data/model/rooms/rooms.dart';
+import 'package:fortune_client/data/model/tag/tag.dart';
 import 'package:fortune_client/data/repository/rooms/rooms_repository.dart';
 import 'package:fortune_client/util/logger/logger.dart';
 
@@ -12,8 +15,15 @@ class RoomsRepositoryImpl implements RoomsRepository {
   RoomsRepositoryImpl(this._roomsDataSource);
 
   @override
-  Future<String> create() {
-    // TODO: implement update
+  Future<bool> create({
+    required String title,
+    required int membersNum,
+    required AgeGroup ageGroup,
+    required Address addressId,
+    required String explanation,
+    List<Tag>? tagIds,
+  }) {
+    // TODO: implement create
     throw UnimplementedError();
   }
 

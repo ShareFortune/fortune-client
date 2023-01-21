@@ -11,7 +11,9 @@ import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class RoomCreationPage extends HookConsumerWidget {
-  const RoomCreationPage({super.key});
+  RoomCreationPage({super.key});
+
+  final titleController = TextEditingController();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -28,7 +30,7 @@ class RoomCreationPage extends HookConsumerWidget {
       explanation: "募集したいルームのタイトルです。",
       content: RoomCreationTextField(
         theme: theme,
-        controller: TextEditingController(text: state.title),
+        controller: titleController,
         hintText: "タイトルを入力する",
         clearCallBack: () => viewModel.changeTitle(""),
         onChanged: (value) => viewModel.changeTitle(value),
@@ -125,7 +127,8 @@ class RoomCreationPage extends HookConsumerWidget {
             Container(
               padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed:
+                    viewModel.isPossibleToCreate() ? viewModel.create : null,
                 child: const Text("作成"),
               ),
             ),
