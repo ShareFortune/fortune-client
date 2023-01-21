@@ -16,16 +16,18 @@ class BackAppBar extends HookConsumerWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = ref.watch(appThemeProvider);
-    const color = Colors.black;
+
+    final iconColor = theme.appColors.iconBtn1;
+
+    final titleTextColor = theme.appColors.subText1;
+    final titleTextStyle = theme.textTheme.h40.paint(titleTextColor).bold();
 
     return AppBar(
       elevation: 0,
       backgroundColor: Colors.white,
-      leading: const BackButton(color: color),
-      title: Text(
-        title,
-        style: theme.textTheme.h60.bold().merge(const TextStyle(color: color)),
-      ),
+      leading: BackButton(color: iconColor),
+      title: Text(title, style: titleTextStyle),
+      iconTheme: IconThemeData(color: iconColor),
       actions: action,
     );
   }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/view/routes/app_router.gr.dart';
+import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/app_bar/back_app_bar.dart';
 import 'package:gap/gap.dart';
@@ -15,10 +16,7 @@ class SettingsPage extends HookConsumerWidget {
 
     return Scaffold(
       backgroundColor: const Color(0xFFF2F2F6),
-      appBar: BackAppBar(
-        title: "設定",
-        action: List.empty(),
-      ),
+      appBar: const BackAppBar(title: "設定"),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -55,9 +53,7 @@ class SettingsPage extends HookConsumerWidget {
             TextButton(
               child: Text(
                 "Ver 1.0.0",
-                style: theme.textTheme.h40.merge(
-                  const TextStyle(color: Colors.grey),
-                ),
+                style: theme.textTheme.h30.paint(theme.appColors.subText3),
               ),
               onPressed: () {},
               onLongPress: () {
@@ -82,7 +78,7 @@ class SettingsPage extends HookConsumerWidget {
         const Gap(20),
         Container(
           padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-          child: Text(title, style: theme.textTheme.h40),
+          child: Text(title, style: theme.textTheme.h30),
         ),
         Column(children: items),
       ],
@@ -99,7 +95,7 @@ class SettingsPage extends HookConsumerWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(title, style: theme.textTheme.h40),
+          Text(title, style: theme.textTheme.h30),
           const Icon(
             size: 16,
             Icons.arrow_forward_ios,

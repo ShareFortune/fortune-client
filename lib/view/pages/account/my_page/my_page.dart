@@ -4,6 +4,7 @@ import 'package:fortune_client/view/pages/account/my_page/my_page_state.dart';
 import 'package:fortune_client/view/pages/account/my_page/my_page_view_model.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
+import 'package:fortune_client/view/widgets/app_bar/back_app_bar.dart';
 import 'package:fortune_client/view/widgets/other/loading_widget.dart';
 import 'package:fortune_client/view/widgets/other/tag_widget.dart';
 import 'package:gap/gap.dart';
@@ -26,7 +27,15 @@ class MyPage extends HookConsumerWidget {
 
     return Scaffold(
       backgroundColor: theme.appColors.onBackground,
-      appBar: _appBar(theme, () => viewModel.navigateToSettingPage()),
+      appBar: BackAppBar(
+        title: "マイページ",
+        action: [
+          IconButton(
+            onPressed: () => viewModel.navigateToSettingPage(),
+            icon: const Icon(Icons.settings),
+          ),
+        ],
+      ),
       body: SingleChildScrollView(child: profile),
     );
   }
@@ -100,26 +109,23 @@ class MyPage extends HookConsumerWidget {
   }
 
   Widget _profileDetailItem(AppTheme theme, String title, String value) {
+    final titleTextColor = theme.appColors.subText2;
+    final titleTextStyle = theme.textTheme.h30.paint(titleTextColor);
+
+    final valueTextColor = theme.appColors.primary;
+    final valueTextStyle = theme.textTheme.h30.paint(valueTextColor);
+
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 15),
-      decoration: const BoxDecoration(
-        border: Border(bottom: BorderSide(color: Color(0xFFF3F3F3), width: 1)),
+      decoration: BoxDecoration(
+        border: Border(
+            bottom: BorderSide(color: theme.appColors.border2, width: 1)),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(title, style: const TextStyle(color: Color(0xFF969696))),
-          Row(
-            children: [
-              Text(value),
-              const Gap(10),
-              const Icon(
-                size: 16,
-                Icons.arrow_forward_ios,
-                color: Color(0xFF969696),
-              ),
-            ],
-          ),
+          Text(title, style: titleTextStyle),
+          Text(value, style: valueTextStyle),
         ],
       ),
     );
@@ -173,7 +179,7 @@ class MyPage extends HookConsumerWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(title, style: theme.textTheme.h40.bold()),
+          Text(title, style: theme.textTheme.h30.bold()),
           const Gap(15),
           Container(child: child),
         ],
@@ -184,8 +190,8 @@ class MyPage extends HookConsumerWidget {
   Widget _adContainer() {
     return Container(
       color: Colors.blueGrey[100],
-      height: 150,
-      padding: const EdgeInsets.all(20),
+      height: 120,
+      padding: const EdgeInsets.all(10),
       child: Container(
         width: double.infinity,
         color: Colors.white,
@@ -202,7 +208,7 @@ class MyPage extends HookConsumerWidget {
     required String gender,
   }) {
     /// 名前
-    final nameTextStyle = theme.textTheme.h60.bold();
+    final nameTextStyle = theme.textTheme.h50.bold();
 
     /// サブテキスト
     final subTitleColor = theme.appColors.subText3;
@@ -220,7 +226,7 @@ class MyPage extends HookConsumerWidget {
               fit: BoxFit.cover,
             ),
           ),
-          const Gap(20),
+          const Gap(10),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -234,23 +240,24 @@ class MyPage extends HookConsumerWidget {
     );
   }
 
-  AppBar _appBar(AppTheme theme, Function() settingBtnOnTap) {
+  Widget _appBar(AppTheme theme, Function() settingBtnOnTap) {
     const color = Colors.black;
 
-    return AppBar(
-      elevation: 0,
-      backgroundColor: Colors.transparent,
-      title: Text(
-        "マイページ",
-        style: theme.textTheme.h60.bold().merge(const TextStyle(color: color)),
-      ),
-      leading: const BackButton(color: color),
-      actions: [
-        IconButton(
-          onPressed: settingBtnOnTap,
-          icon: const Icon(Icons.settings, size: 28, color: color),
-        ),
-      ],
-    );
+    return BackAppBar(title: "マイページ");
+    // return AppBar(
+    //   elevation: 0,
+    //   backgroundColor: Colors.transparent,
+    //   title: Text(
+    //     "マイページ",
+    //     style: theme.textTheme.h60.bold().merge(const TextStyle(color: color)),
+    //   ),
+    //   leading: const BackButton(color: color),
+    //   actions: [
+    //     IconButton(
+    //       onPressed: settingBtnOnTap,
+    //       icon: const Icon(Icons.settings, size: 28, color: color),
+    //     ),
+    //   ],
+    // );
   }
 }
