@@ -13,7 +13,7 @@ class ScrollAppBar extends HookConsumerWidget implements PreferredSizeWidget {
   const ScrollAppBar({
     super.key,
     required this.title,
-    this.isBorder = true,
+    this.isBorder = false,
     this.hieght = 140,
   });
 
@@ -29,19 +29,18 @@ class ScrollAppBar extends HookConsumerWidget implements PreferredSizeWidget {
     final theme = ref.watch(appThemeProvider);
     final state = ref.watch(scrollAppBarViewModelProvider);
 
+    double bottomPad = 15;
+
     /// タイトル
     final titleTextStyle =
         theme.textTheme.h60.paint(theme.appColors.subText1).bold();
     Widget titleWidget = Text(title, style: titleTextStyle);
 
-    /// アイコン
-    // Widget iconWidget = state.maybeWhen(
-    //   data: _icon,
-    //   orElse: () => Skeleton.circular(iconSize),
-    // );
-
-    /// 下部ウィジェット
-    Widget bottomWidget = isBorder ? _divider() : Container();
+    Widget bottomWidget = Container();
+    if (isBorder) {
+      bottomWidget = _divider();
+      bottomPad -= 1;
+    }
 
     return SliverAppBar(
       backgroundColor: theme.appColors.onBackground,
@@ -67,7 +66,7 @@ class ScrollAppBar extends HookConsumerWidget implements PreferredSizeWidget {
                 ),
               ],
             ),
-            const Gap(15),
+            Gap(bottomPad),
             bottomWidget,
           ],
         ),
@@ -77,7 +76,7 @@ class ScrollAppBar extends HookConsumerWidget implements PreferredSizeWidget {
 
   _divider() {
     return const Divider(
-      height: 0.1,
+      height: 1,
       thickness: 1,
       color: Color(0xFFF3F3F3),
     );
