@@ -29,7 +29,6 @@ class RoomListStateItem with _$RoomListStateItem {
   }) = _RoomListStateItem;
 
   static RoomListStateItem from(Room room) {
-    print(room.isFavorite);
     return RoomListStateItem(
       id: room.id,
       title: room.roomName,

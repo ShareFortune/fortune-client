@@ -9,6 +9,12 @@ import 'package:fortune_client/util/common/json_roader.dart';
 
 class FakeRoomDataSource implements RoomsDataSource {
   @override
+  create(Map<String, dynamic> body) {
+    // TODO: implement getGuest
+    throw UnimplementedError();
+  }
+
+  @override
   Future<Rooms> search({
     String? addressId,
     String? applicationDeadline,

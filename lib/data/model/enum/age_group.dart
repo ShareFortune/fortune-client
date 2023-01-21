@@ -1,3 +1,5 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
+
 enum AgeGroup {
   /// 10代
   teens,
@@ -50,4 +52,16 @@ extension AgeGroupEx on AgeGroup {
         return "50代以上";
     }
   }
+}
+
+class AgeGroupConverter implements JsonConverter<AgeGroup, String> {
+  const AgeGroupConverter();
+
+  @override
+  AgeGroup fromJson(String rawValue) {
+    return AgeGroupEx.from(rawValue);
+  }
+
+  @override
+  String toJson(AgeGroup status) => status.rawValue;
 }

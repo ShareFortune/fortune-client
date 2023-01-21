@@ -6,6 +6,7 @@ import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/view/pages/rooms/create/room_creation_state.dart';
 import 'package:fortune_client/view/routes/app_router.gr.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:image_picker/image_picker.dart';
 
 final roomCreationViewModelProvider =
     StateNotifierProvider<RoomCreationViewModel, RoomCreationState>(
@@ -44,7 +45,7 @@ class RoomCreationViewModel extends StateNotifier<RoomCreationState> {
 
   Future<bool> create() async {
     if (isPossibleToCreate()) {
-      return await _roomsRepository.create(
+      final result = await _roomsRepository.create(
         title: state.title!,
         membersNum: state.membersNum!,
         ageGroup: state.ageGroup!,
@@ -52,8 +53,17 @@ class RoomCreationViewModel extends StateNotifier<RoomCreationState> {
         tagIds: state.tags,
         explanation: state.explanation!,
       );
+      if (result.isEmpty) return false;
+      navigateToCreatedRoom(result);
+      return true;
     }
     return false;
+  }
+
+  navigateToCreatedRoom(String roomId) async {
+    sl<AppRouter>().push(HomeRouter(children: [
+      RoomsTab(children: [RoomDetailRoute(roomId: roomId)]),
+    ]));
   }
 
   navigateToEntryAddress() async {

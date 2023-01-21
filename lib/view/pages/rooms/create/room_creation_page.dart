@@ -7,6 +7,7 @@ import 'package:fortune_client/view/pages/rooms/create/room_creation_view_model.
 import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/app_bar/back_app_bar.dart';
+import 'package:fortune_client/view/widgets/dialog/toast.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -21,6 +22,12 @@ class RoomCreationPage extends HookConsumerWidget {
     final state = ref.watch(roomCreationViewModelProvider);
     final viewModel = ref.watch(roomCreationViewModelProvider.notifier);
 
+    createRoom() async {
+      if (!await viewModel.create()) {
+        _showFailedToCreateToast(context, theme);
+      }
+    }
+
     ///
     /// タイトル
     ///
@@ -34,7 +41,7 @@ class RoomCreationPage extends HookConsumerWidget {
         hintText: "タイトルを入力する",
         clearCallBack: () => viewModel.changeTitle(""),
         onChanged: (value) => viewModel.changeTitle(value),
-        onEditingComplete: () => FocusScope.of(context).nextFocus(),
+        onEditingComplete: () => FocusScope.of(context).unfocus(),
       ),
     );
 
@@ -127,8 +134,7 @@ class RoomCreationPage extends HookConsumerWidget {
             Container(
               padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
               child: ElevatedButton(
-                onPressed:
-                    viewModel.isPossibleToCreate() ? viewModel.create : null,
+                onPressed: viewModel.isPossibleToCreate() ? createRoom : null,
                 child: const Text("作成"),
               ),
             ),
@@ -180,5 +186,9 @@ class RoomCreationPage extends HookConsumerWidget {
         content,
       ],
     );
+  }
+
+  _showFailedToCreateToast(BuildContext context, AppTheme theme) {
+    showErrorToast(context, theme, "ルームを作成できませんでした。");
   }
 }

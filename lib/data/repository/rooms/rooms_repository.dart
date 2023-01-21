@@ -8,7 +8,7 @@ import 'package:fortune_client/data/model/tag/tag.dart';
 
 abstract class RoomsRepository {
   /// ルーム作成
-  Future<bool> create({
+  Future<String> create({
     required String title,
     required int membersNum,
     required AgeGroup ageGroup,
