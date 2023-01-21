@@ -30,7 +30,7 @@ class RoomMembersContainer extends HookConsumerWidget {
                 info: "23歳・東京",
                 onTap: (id) => onTap(context, id),
               ),
-              const Gap(20),
+              const Gap(5),
               _memberCard(
                 theme,
                 image: Assets.images.insta3,
@@ -51,7 +51,7 @@ class RoomMembersContainer extends HookConsumerWidget {
                 info: "21歳・千葉",
                 onTap: (id) => onTap(context, id),
               ),
-              const Gap(20),
+              const Gap(5),
               _memberCard(
                 theme,
                 image: Assets.images.insta5,
