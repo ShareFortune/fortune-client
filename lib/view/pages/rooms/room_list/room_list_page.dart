@@ -52,14 +52,17 @@ class RoomListPage extends HookConsumerWidget {
         return ListAnimationWidget(
           items: data,
           spacing: 10,
-          container: (room) => RoomCard(
+          container: (room) {
+            return RoomCard(
               room: room,
               onTapRoom: () => viewModel.navigateToRoomDetail(room.id),
               onTapJoinRequestBtn: (String id) async {
                 final result = await viewModel.sendJoinRequest(id);
                 // ignore: use_build_context_synchronously
                 _showJoinRequestToast(context, theme, result);
-              }),
+              },
+            );
+          },
         );
       },
       error: (e, msg) => SliverToBoxAdapter(child: errorWidget(e, msg)),

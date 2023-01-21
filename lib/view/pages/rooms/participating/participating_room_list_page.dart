@@ -10,9 +10,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 class ParticipatingRoomListPage extends HookConsumerWidget {
   const ParticipatingRoomListPage({super.key});
 
-  final iconPath =
-      "https://fortune-s3-bucket.s3.ap-northeast-1.amazonaws.com/userImage/20221027/709a82d0-b2c5-4332-b46e-65bd19585f1f.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQB3D6IMBEFXWBFW7%2F20221205%2Fap-northeast-1%2Fs3%2Faws4_request&X-Amz-Date=20221205T123835Z&X-Amz-Expires=900&X-Amz-SignedHeaders=host&X-Amz-Signature=c58309a36793d4d9203a46d3e213a179b379d32eacf929596b680d816bd8f82a";
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = ref.watch(appThemeProvider);

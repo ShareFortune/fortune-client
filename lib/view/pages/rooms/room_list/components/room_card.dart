@@ -37,7 +37,12 @@ class RoomCard extends HookConsumerWidget {
 
     /// タイトル
     final titleTextStyle = theme.textTheme.h40;
-    Text titleText = Text(room.title, style: titleTextStyle);
+    Text titleText = Text(
+      room.title,
+      style: titleTextStyle,
+      maxLines: 2,
+      overflow: TextOverflow.ellipsis,
+    );
 
     /// 位置情報
     final addressTextColor = theme.appColors.subText2;
@@ -64,34 +69,47 @@ class RoomCard extends HookConsumerWidget {
     required Text location,
     required Widget members,
   }) {
-    return _roomCard(
-      theme,
+    const shadowOffset = Offset(4, 4);
+    shadow(Offset offset) => BoxShadow(
+          color: theme.appColors.shadow,
+          blurRadius: 8,
+          offset: offset,
+        );
+
+    return InkWell(
       onTap: onTapRoom,
-      child: Column(
-        children: [
-          _titleWidget(leading, theme, title, location),
-          const Gap(10),
-          _contentsWidget(theme, members),
-        ],
+      child: Container(
+        padding: const EdgeInsets.all(10),
+        decoration: BoxDecoration(
+          color: theme.appColors.onBackground,
+          borderRadius: BorderRadius.circular(10),
+          boxShadow: [shadow(shadowOffset), shadow(-shadowOffset)],
+        ),
+        child: Column(
+          children: [
+            _titleWidget(theme, leading, title, location),
+            const Gap(10),
+            _contentsWidget(theme, members),
+          ],
+        ),
       ),
     );
   }
 
   Container _contentsWidget(AppTheme theme, Widget members) {
-    /// 参加者
-    final titleTextColor = theme.appColors.subText1;
-    final titleTextStyle = theme.textTheme.h30.paint(titleTextColor);
+    /// Label
+    final labelTextStyle = theme.textTheme.h10.bold();
+    final labelText = Text("参加者  ", style: labelTextStyle);
 
     /// 参加者：女性
     final womanTextColor = theme.appColors.primary;
-    final womanTextStyle = theme.textTheme.h20.paint(womanTextColor);
+    final womanTextStyle = theme.textTheme.h10.paint(womanTextColor);
 
     /// 参加者：男性
     final manTextColor = theme.appColors.subText3;
-    final manTextStyle = theme.textTheme.h20.paint(manTextColor);
+    final manTextStyle = theme.textTheme.h10.paint(manTextColor);
 
     return Container(
-      width: double.infinity,
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
         color: theme.appColors.background,
@@ -104,14 +122,19 @@ class RoomCard extends HookConsumerWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              RichText(
-                text: TextSpan(
-                  children: [
-                    TextSpan(text: '参加者: ', style: titleTextStyle),
-                    TextSpan(text: '女性 2/4', style: womanTextStyle),
-                    TextSpan(text: '、男性 2/4', style: manTextStyle),
-                  ],
-                ),
+              Row(
+                children: [
+                  labelText,
+                  RichText(
+                    text: TextSpan(
+                      children: [
+                        TextSpan(text: '女性 2/4', style: womanTextStyle),
+                        TextSpan(text: '・男性 2/4', style: manTextStyle),
+                      ],
+                    ),
+                  ),
+                  const Gap(10),
+                ],
               ),
               const Gap(5),
               members,
@@ -130,8 +153,8 @@ class RoomCard extends HookConsumerWidget {
   }
 
   Widget _titleWidget(
-    Widget leading,
     AppTheme theme,
+    Widget leading,
     Text title,
     Text location,
   ) {
@@ -151,24 +174,18 @@ class RoomCard extends HookConsumerWidget {
     }
 
     return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         leading,
-        const Gap(10),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            title,
-            Row(children: [
-              SvgPicture.asset(
-                Assets.images.icons.iconLocation.path,
-                fit: BoxFit.contain,
-              ),
-              const Gap(5),
-              location,
-            ]),
-          ],
+        Expanded(
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 5),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [title, _locationWidget(location)],
+            ),
+          ),
         ),
-        const Spacer(),
         ElevatedButton(
           onPressed: onPressedJoinBtn,
           style: ElevatedButton.styleFrom(
@@ -182,29 +199,14 @@ class RoomCard extends HookConsumerWidget {
     );
   }
 
-  Widget _roomCard(
-    AppTheme theme, {
-    required Function() onTap,
-    required Widget child,
-  }) {
-    const shadowOffset = Offset(4, 4);
-    shadow(Offset offset) => BoxShadow(
-          color: theme.appColors.shadow,
-          blurRadius: 8,
-          offset: offset,
-        );
-
-    return InkWell(
-      onTap: onTap,
-      child: Container(
-        padding: const EdgeInsets.all(10),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(10),
-          boxShadow: [shadow(shadowOffset), shadow(-shadowOffset)],
-        ),
-        child: child,
+  _locationWidget(Text location) {
+    return Row(children: [
+      SvgPicture.asset(
+        Assets.images.icons.iconLocation.path,
+        fit: BoxFit.contain,
       ),
-    );
+      const Gap(3),
+      location,
+    ]);
   }
 }

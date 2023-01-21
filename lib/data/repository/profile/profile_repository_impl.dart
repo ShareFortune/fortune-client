@@ -91,7 +91,6 @@ class ProfileRepositoryImpl implements ProfileRepository {
         _prefs.getString(AppPrefKey.fortuneId.keyString)!,
         profileForm.toJson(),
       );
-      logger.i("Profile ID : $result");
 
       /// ローカル保存
       return await _prefs.setString(AppPrefKey.profileId.keyString, result.id);

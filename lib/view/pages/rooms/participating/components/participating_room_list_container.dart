@@ -96,7 +96,7 @@ class ParticipatingRoomListContainer extends HookConsumerWidget {
 
           /// ルームリスト
           SizedBox(
-            height: 250,
+            height: 235,
             child: roomListContainerAsync,
           ),
 
@@ -123,7 +123,7 @@ class ParticipatingRoomListContainer extends HookConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(title, style: textStyle),
-          if (roomsNum > 0) Text(roomsNum.toString()),
+          if (roomsNum > 0) Text("  $roomsNum", style: textStyle),
         ],
       ),
     );
