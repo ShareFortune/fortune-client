@@ -9,8 +9,8 @@ import 'package:fortune_client/view/widgets/icon/member_icons.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class RoomCard extends HookConsumerWidget {
-  const RoomCard({
+class RoomListCard extends HookConsumerWidget {
+  const RoomListCard({
     super.key,
     required this.room,
     required this.onTapRoom,
@@ -36,7 +36,7 @@ class RoomCard extends HookConsumerWidget {
     );
 
     /// タイトル
-    final titleTextStyle = theme.textTheme.h40;
+    final titleTextStyle = theme.textTheme.h30;
     Text titleText = Text(
       room.title,
       style: titleTextStyle,
@@ -174,27 +174,27 @@ class RoomCard extends HookConsumerWidget {
     }
 
     return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         leading,
+        const Gap(5),
         Expanded(
-          child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 5),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [title, _locationWidget(location)],
-            ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [title, _locationWidget(location)],
           ),
         ),
+        const Gap(10),
         ElevatedButton(
           onPressed: onPressedJoinBtn,
           style: ElevatedButton.styleFrom(
             backgroundColor: joinBtnColor,
             minimumSize: Size.zero,
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+            // tapTargetSize: MaterialTapTargetSize.shrinkWrap,
           ),
           child: Text("参加", style: joinBtnTextStyle),
-        )
+        ),
       ],
     );
   }

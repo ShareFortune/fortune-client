@@ -127,7 +127,7 @@ class RoomDetailPage extends HookConsumerWidget {
           borderRadius: BorderRadius.circular(15),
         ),
       ),
-      child: Text(text, style: theme.textTheme.h40.bold()),
+      child: Text(text, style: theme.textTheme.h30.bold()),
     );
   }
 

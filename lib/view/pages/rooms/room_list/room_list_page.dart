@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fortune_client/view/pages/common/scroll_app_bar/scroll_app_bar.dart';
-import 'package:fortune_client/view/pages/rooms/room_list/components/room_card.dart';
+import 'package:fortune_client/view/pages/rooms/room_list/components/room_list_card.dart';
 import 'package:fortune_client/view/pages/rooms/room_list/components/rooms_filter_expanded_tile.dart';
 import 'package:fortune_client/view/pages/rooms/room_list/components/rooms_filter_tile.dart';
 import 'package:fortune_client/view/pages/rooms/room_list/room_list_view_model.dart';
@@ -53,7 +53,7 @@ class RoomListPage extends HookConsumerWidget {
           items: data,
           spacing: 10,
           container: (room) {
-            return RoomCard(
+            return RoomListCard(
               room: room,
               onTapRoom: () => viewModel.navigateToRoomDetail(room.id),
               onTapJoinRequestBtn: (String id) async {

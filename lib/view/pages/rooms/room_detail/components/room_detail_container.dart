@@ -27,8 +27,8 @@ class RoomDetailContainer extends HookConsumerWidget {
     final tags = _roomInfo(theme, "タグ", _tagsWidget(theme, room.tags));
 
     /// 説明
-    final explanation = _roomInfo(theme, "説明",
-        Text(room.explanation, maxLines: null, style: theme.textTheme.h40));
+    final explanation = _roomInfo(
+        theme, "説明", Text(room.explanation, style: theme.textTheme.h30));
 
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 30),
@@ -56,7 +56,7 @@ class RoomDetailContainer extends HookConsumerWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(title, style: theme.textTheme.h40.bold()),
+        Text(title, style: theme.textTheme.h30.bold()),
         const Gap(15),
         child,
       ],
