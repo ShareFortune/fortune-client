@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:fortune_client/data/model/enum/room_status.dart';
+import 'package:fortune_client/gen/assets.gen.dart';
 import 'package:fortune_client/view/pages/rooms/participating/participating_room_list_state.dart';
 import 'package:fortune_client/view/pages/rooms/participating/participating_room_list_view_model.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
@@ -21,7 +23,12 @@ class ParticipatingRoomCard extends HookConsumerWidget {
 
     /// タイトル
     final titleTextStyle = theme.textTheme.h40;
-    Text titleText = Text(room.title, style: titleTextStyle);
+    Text titleText = Text(
+      room.title,
+      style: titleTextStyle,
+      maxLines: 2,
+      overflow: TextOverflow.ellipsis,
+    );
 
     /// 位置情報
     final locationTextStyle =
@@ -103,8 +110,8 @@ class ParticipatingRoomCard extends HookConsumerWidget {
     return InkWell(
       onTap: onTapRoom,
       child: Container(
-        width: 250,
-        padding: const EdgeInsets.fromLTRB(20, 20, 20, 15),
+        width: 220,
+        padding: const EdgeInsets.fromLTRB(15, 15, 15, 10),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(10),
@@ -144,20 +151,33 @@ class ParticipatingRoomCard extends HookConsumerWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: [title, const Gap(5), location],
+      children: [
+        title,
+        const Gap(5),
+        Row(children: [
+          SvgPicture.asset(
+            Assets.images.icons.iconLocation.path,
+            fit: BoxFit.contain,
+          ),
+          const Gap(3),
+          location,
+        ])
+      ],
     );
   }
 
   _membersWidget(AppTheme theme, Widget child) {
     /// Label
-    final labelTextStyle = theme.textTheme.h30;
-    final labelText = Text("参加者", style: labelTextStyle);
+    final labelTextStyle = theme.textTheme.h10.bold();
+    final labelText = Text("参加者  ", style: labelTextStyle);
 
-    /// 参加人数
-    const participantsTextColor = Color(0xFF6C6C6C);
-    final participantsTextStyle =
-        theme.textTheme.h20.paint(participantsTextColor);
-    final participantsText = Text("女性2 男性１", style: participantsTextStyle);
+    /// 参加者：女性
+    final womanTextColor = theme.appColors.primary;
+    final womanTextStyle = theme.textTheme.h10.paint(womanTextColor);
+
+    /// 参加者：男性
+    final manTextColor = theme.appColors.subText3;
+    final manTextStyle = theme.textTheme.h10.paint(manTextColor);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -165,8 +185,15 @@ class ParticipatingRoomCard extends HookConsumerWidget {
         Row(
           children: [
             labelText,
+            RichText(
+              text: TextSpan(
+                children: [
+                  TextSpan(text: '女性 2/4', style: womanTextStyle),
+                  TextSpan(text: '・男性 2/4', style: manTextStyle),
+                ],
+              ),
+            ),
             const Gap(10),
-            participantsText,
           ],
         ),
         const Gap(5),

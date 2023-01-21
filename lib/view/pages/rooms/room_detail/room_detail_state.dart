@@ -1,4 +1,5 @@
 import 'package:fortune_client/data/model/address/address.dart';
+import 'package:fortune_client/data/model/enum/room_join_request_status.dart';
 import 'package:fortune_client/data/model/enum/room_status.dart';
 import 'package:fortune_client/data/model/participating_user/participating_user.dart';
 import 'package:fortune_client/data/model/room_detail/room_detail.dart';
@@ -29,20 +30,22 @@ class RoomDetailStateInfo with _$RoomDetailStateInfo {
     required bool isHost,
     required bool isMember,
     required RoomStatus status,
+    required RoomJoinRequestStatus? joinRequestStatus,
   }) = _RoomDetailStateInfo;
 
-  static RoomDetailStateInfo from(RoomDetail roomDetail) {
+  static RoomDetailStateInfo from(RoomDetail data) {
     return RoomDetailStateInfo(
-      title: roomDetail.title,
-      host: roomDetail.hostUser,
+      title: data.title,
+      host: data.hostUser,
       explanation: "ルームに関する説明",
-      members: roomDetail.participants ?? [],
-      tags: roomDetail.tags ?? [],
-      address: roomDetail.address,
-      membersNum: roomDetail.membersNum,
-      isHost: roomDetail.isHost,
-      isMember: roomDetail.isMember,
-      status: roomDetail.status,
+      members: data.participants ?? [],
+      tags: data.tags ?? [],
+      address: data.address,
+      membersNum: data.membersNum,
+      isHost: data.isHost,
+      isMember: data.isMember,
+      status: data.status,
+      joinRequestStatus: data.joinRequestStatus,
     );
   }
 }

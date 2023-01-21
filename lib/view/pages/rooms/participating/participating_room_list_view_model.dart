@@ -28,7 +28,6 @@ class ParticipatingRoomListViewModel
           .map((e) => ParticipatingRoomListStateItem.fromHost(e))
           .toList();
     });
-    logger.i(hostRooms);
     state = state.copyWith(host: hostRooms);
   }
 
@@ -39,7 +38,6 @@ class ParticipatingRoomListViewModel
           .map((e) => ParticipatingRoomListStateItem.fromGuest(e))
           .toList();
     });
-    logger.i(guestRooms);
     state = state.copyWith(guest: guestRooms);
   }
 
@@ -50,29 +48,14 @@ class ParticipatingRoomListViewModel
   /// 遷移処理
   ///
   Future<void> navigateToRequestConfirmation(String id) async {
-    await sl<AppRouter>().push(
-      RequestConfirmationRoute(id: 0),
-      onFailure: (failure) {
-        logger.e(failure.toString());
-      },
-    );
+    await sl<AppRouter>().push(RequestConfirmationRoute(id: 0));
   }
 
   Future<void> navigateToMessage() async {
-    await sl<AppRouter>().push(
-      MessageRoomRoute(id: "id"),
-      onFailure: (failure) {
-        logger.e(failure.toString());
-      },
-    );
+    await sl<AppRouter>().push(MessageRoomRoute(id: "id"));
   }
 
   Future<void> navigateToRoomDetail() async {
-    await sl<AppRouter>().push(
-      RoomDetailRoute(roomId: "id"),
-      onFailure: (failure) {
-        logger.e(failure.toString());
-      },
-    );
+    await sl<AppRouter>().push(RoomDetailRoute(roomId: "id"));
   }
 }
