@@ -3,6 +3,7 @@ import 'package:fortune_client/data/model/enum/cigarette_frequency.dart';
 import 'package:fortune_client/data/model/enum/drink_frequency.dart';
 import 'package:fortune_client/data/model/enum/gender.dart';
 import 'package:fortune_client/view/pages/profile/create/components/entry_profile_expanded_tile_picker.dart';
+import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/app_bar/basic_app_bar.dart';
 import 'package:fortune_client/view/pages/profile/create/entry_detailed_profile/detailed_profile_entry_view_model.dart';
@@ -19,6 +20,18 @@ class DetailedProfileEntryPage extends HookConsumerWidget {
     final theme = ref.watch(appThemeProvider);
     final state = ref.watch(detailedProfileEntryViewModelProvider);
     final viewModel = ref.watch(detailedProfileEntryViewModelProvider.notifier);
+
+    /// 名前
+    final nameInputField = TextFormField(
+      maxLength: 20,
+      decoration: InputDecoration(
+        labelText: '名前',
+        enabledBorder: UnderlineInputBorder(
+          borderSide: BorderSide(width: 1, color: theme.appColors.border1),
+        ),
+      ),
+      onChanged: viewModel.changeName,
+    );
 
     /// 性別ピッカー
     final genderPicker = EntryProfileExpandedTilePicker(
@@ -46,6 +59,7 @@ class DetailedProfileEntryPage extends HookConsumerWidget {
     final addressPicker = BaseTransitionTile(
       title: "居住地",
       value: state.address?.text,
+      textWhenUnsetStyle: theme.textTheme.h30.paint(theme.appColors.subText3),
       onTap: () {
         viewModel.navigateToEntryAddress();
       },
@@ -91,7 +105,7 @@ class DetailedProfileEntryPage extends HookConsumerWidget {
               Column(
                 children: [
                   /// 名前
-                  _nameInputField(theme, state.name),
+                  nameInputField,
                   const Gap(10),
 
                   /// 性別
@@ -129,18 +143,6 @@ class DetailedProfileEntryPage extends HookConsumerWidget {
               ),
             ],
           ),
-        ),
-      ),
-    );
-  }
-
-  _nameInputField(AppTheme theme, String value) {
-    return TextFormField(
-      controller: TextEditingController(text: value),
-      decoration: InputDecoration(
-        labelText: '名前',
-        enabledBorder: UnderlineInputBorder(
-          borderSide: BorderSide(width: 1, color: theme.appColors.border1),
         ),
       ),
     );
