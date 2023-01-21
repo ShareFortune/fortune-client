@@ -9,14 +9,16 @@ class RoomCreationSelectiveForm extends HookConsumerWidget {
   const RoomCreationSelectiveForm({
     super.key,
     required this.title,
-    required this.items,
-    required this.onSelect,
     required this.value,
+    required this.items,
+    this.separator = "",
+    required this.onSelect,
   });
 
   final String title;
   final String? value;
   final List<String> items;
+  final String separator;
   final Function(String) onSelect;
 
   @override
@@ -32,9 +34,9 @@ class RoomCreationSelectiveForm extends HookConsumerWidget {
       value: value,
       textWhenUnsetStyle: theme.textTheme.h30.paint(theme.appColors.subText3),
       content: BaseCupertinoPicker(
-        items: items,
+        items: items.map((e) => e + separator).toList(),
         onSelectedItemChanged: (index) {
-          onSelect(items[index]);
+          onSelect(items[index].replaceAll(separator, ""));
         },
       ),
     );

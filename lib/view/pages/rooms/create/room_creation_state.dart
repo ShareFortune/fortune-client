@@ -9,10 +9,10 @@ part 'room_creation_state.freezed.dart';
 class RoomCreationState with _$RoomCreationState {
   const factory RoomCreationState({
     String? title,
-    String? explanation,
     List<Tag>? tags,
     Address? address,
     int? membersNum,
     AgeGroup? ageGroup,
+    String? explanation,
   }) = _RoomCreationState;
 }

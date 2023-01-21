@@ -66,6 +66,7 @@ class EntryAddressPage extends HookConsumerWidget {
                     }
                   },
                   onEditingComplete: () {
+                    FocusScope.of(context).unfocus();
                     viewModel.changeSearchResultsIsDisplay(true);
                     viewModel.search(controller.text);
                   }),
