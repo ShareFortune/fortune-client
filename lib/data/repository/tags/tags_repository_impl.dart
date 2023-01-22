@@ -1,24 +1,32 @@
 import 'package:fortune_client/data/datasource/remote/go/tags/tags_data_source.dart';
+import 'package:fortune_client/data/model/form/tag_create_request/tag_create_request.dart';
 import 'package:fortune_client/data/model/tag/tag.dart';
 import 'package:fortune_client/data/repository/tags/tags_repository.dart';
 import 'package:fortune_client/util/logger/logger.dart';
 
 class TagsRepositoryImpl implements TagsRepository {
-  final TagsDataSource _source;
+  final TagsDataSource _tagsDataSource;
 
-  TagsRepositoryImpl(this._source);
+  TagsRepositoryImpl(this._tagsDataSource);
 
   @override
-  Future create() {
-    // TODO: implement create
-    throw UnimplementedError();
+  Future<String> create(String name, String description) async {
+    try {
+      logger.i("[$runtimeType] create");
+      final request = TagCreateRequest(name: name, explanation: description);
+      final result = await _tagsDataSource.create(request.toJson());
+      return result.id;
+    } catch (e) {
+      logger.e(e);
+      rethrow;
+    }
   }
 
   @override
   Future<List<Tag>> search(String keyword) async {
     try {
       logger.i("[$runtimeType] search");
-      final result = await _source.search(name: keyword);
+      final result = await _tagsDataSource.search(name: keyword);
       return result.data;
     } catch (e) {
       logger.e(e);
@@ -30,7 +38,7 @@ class TagsRepositoryImpl implements TagsRepository {
   Future<List<Tag>> recommend() async {
     try {
       logger.i("[$runtimeType] search");
-      final result = await _source.search();
+      final result = await _tagsDataSource.search();
       return result.data;
     } catch (e) {
       logger.e(e);

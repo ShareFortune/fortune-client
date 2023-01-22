@@ -70,6 +70,13 @@ class DebugPage extends HookConsumerWidget {
                   );
                 },
               ),
+              _buildDummyItem(
+                'タグ作成',
+                showTrailing: true,
+                onTap: () {
+                  sl<AppRouter>().push(TagCreationRoute());
+                },
+              ),
             ],
           );
         },

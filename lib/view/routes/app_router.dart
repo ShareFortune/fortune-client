@@ -18,6 +18,7 @@ import 'package:fortune_client/view/pages/rooms/create/room_creation_page.dart';
 import 'package:fortune_client/view/pages/rooms/participating/participating_room_list_page.dart';
 import 'package:fortune_client/view/pages/rooms/room_detail/room_detail_page.dart';
 import 'package:fortune_client/view/pages/rooms/room_list/room_list_page.dart';
+import 'package:fortune_client/view/pages/tags/create/tag_creation_page.dart';
 import 'package:fortune_client/view/pages/tags/select/tags_selection_page.dart';
 import 'package:fortune_client/view/pages/settings/settings_page.dart';
 import 'package:fortune_client/view/routes/route_guard.dart';
@@ -134,7 +135,10 @@ const createProfileRoute = AutoRoute(
     AutoRoute(path: RoutePath.setting, page: SettingsPage),
 
     /// タグ選択
-    AutoRoute(path: RoutePath.tags, page: TagsSelectionPage),
+    AutoRoute(path: RoutePath.tagSelection, page: TagsSelectionPage),
+
+    /// タグ作成
+    AutoRoute(path: RoutePath.tagCreation, page: TagCreationPage),
 
     /// 説明入力
     AutoRoute(path: RoutePath.entryDescription, page: EntryDescriptionPage),
