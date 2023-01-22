@@ -164,7 +164,8 @@ class AppRouter extends _i23.RootStackRouter {
       return _i23.AdaptivePage<dynamic>(
         routeData: routeData,
         child: _i13.EntryDescriptionPage(
-          args.value,
+          title: args.title,
+          value: args.value,
           key: args.key,
         ),
       );
@@ -651,12 +652,14 @@ class TagCreationRouteArgs {
 class EntryDescriptionRoute
     extends _i23.PageRouteInfo<EntryDescriptionRouteArgs> {
   EntryDescriptionRoute({
+    required String title,
     required String? value,
     _i24.Key? key,
   }) : super(
           EntryDescriptionRoute.name,
           path: 'entry-description',
           args: EntryDescriptionRouteArgs(
+            title: title,
             value: value,
             key: key,
           ),
@@ -667,9 +670,12 @@ class EntryDescriptionRoute
 
 class EntryDescriptionRouteArgs {
   const EntryDescriptionRouteArgs({
+    required this.title,
     required this.value,
     this.key,
   });
+
+  final String title;
 
   final String? value;
 
@@ -677,7 +683,7 @@ class EntryDescriptionRouteArgs {
 
   @override
   String toString() {
-    return 'EntryDescriptionRouteArgs{value: $value, key: $key}';
+    return 'EntryDescriptionRouteArgs{title: $title, value: $value, key: $key}';
   }
 }
 
