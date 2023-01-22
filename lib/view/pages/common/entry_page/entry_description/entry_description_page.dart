@@ -6,10 +6,15 @@ import 'package:fortune_client/view/widgets/app_bar/back_app_bar.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class EntryDescriptionPage extends HookConsumerWidget {
-  EntryDescriptionPage(this.value, {super.key}) {
+  EntryDescriptionPage({
+    required this.title,
+    required this.value,
+    super.key,
+  }) {
     controller.text = value ?? "";
   }
 
+  final String title;
   final String? value;
   final controller = TextEditingController();
 
@@ -21,7 +26,8 @@ class EntryDescriptionPage extends HookConsumerWidget {
     return Scaffold(
       backgroundColor: theme.appColors.onBackground,
       appBar: BackAppBar(
-        title: "ルームの説明を入力",
+        // title: "ルームの説明を入力",
+        title: title,
         action: [
           TextButton(
             onPressed: () => viewModel.save(),
