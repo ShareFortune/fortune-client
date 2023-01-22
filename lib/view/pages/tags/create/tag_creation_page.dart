@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fortune_client/view/pages/tags/create/components/tag_creation_text_field.dart';
 import 'package:fortune_client/view/pages/tags/create/components/tag_creation_transition_tile.dart';
+import 'package:fortune_client/view/pages/tags/create/tag_creation_view_model.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/app_bar/back_app_bar.dart';
@@ -15,6 +16,8 @@ class TagCreationPage extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = ref.watch(appThemeProvider);
+    final state = ref.watch(tagCreationViewModelProvider);
+    final viewModel = ref.watch(tagCreationViewModelProvider.notifier);
 
     ///
     /// タグネーム
@@ -40,19 +43,17 @@ class TagCreationPage extends HookConsumerWidget {
       theme,
       title: "説明",
       explanation: "作成するタグに関する説明を書きましょう",
-      content: descriptionContainer(
-          theme, "テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト"),
+      content: state.description?.isNotEmpty == true
+          ? descriptionContainer(
+              theme: theme,
+              description: state.description!,
+              onTap: viewModel.navigateToEntryDescription,
+            )
+          : TagCreationTransitionTile(
+              title: "タグの説明を入力しましょう",
+              onTap: () => viewModel.navigateToEntryDescription(),
+            ),
     );
-    // final descriptionWidget = _inputFieldContainer(
-    //   theme,
-    //   title: "説明",
-    //   explanation: "作成するタグに関する説明を書きましょう",
-    //   content: TagCreationTransitionTile(
-    //     title: "タグの説明を入力しましょう",
-    //     value: null,
-    //     onTap: () {},
-    //   ),
-    // );
 
     return Scaffold(
       backgroundColor: theme.appColors.onBackground,
@@ -107,18 +108,27 @@ class TagCreationPage extends HookConsumerWidget {
     );
   }
 
-  descriptionContainer(AppTheme theme, String description) {
-    return Container(
-      padding: const EdgeInsets.symmetric(vertical: 30),
-      decoration: BoxDecoration(
-        border: Border(
-          top: BorderSide(color: theme.appColors.border2, width: 1),
-          bottom: BorderSide(color: theme.appColors.border2, width: 1),
+  descriptionContainer({
+    required AppTheme theme,
+    required String description,
+    required VoidCallback onTap,
+  }) {
+    return InkWell(
+      onTap: onTap,
+      child: Container(
+        width: double.infinity,
+        padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 15),
+        decoration: BoxDecoration(
+          color: theme.appColors.textFieldBackground,
+          border: Border(
+            top: BorderSide(color: theme.appColors.border1, width: 1),
+            bottom: BorderSide(color: theme.appColors.border1, width: 1),
+          ),
         ),
-      ),
-      child: Text(
-        description,
-        style: theme.textTheme.h40,
+        child: Text(
+          description,
+          style: theme.textTheme.h40,
+        ),
       ),
     );
   }
