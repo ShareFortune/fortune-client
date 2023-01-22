@@ -5,6 +5,7 @@ import 'package:fortune_client/view/pages/tags/create/tag_creation_view_model.da
 import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/app_bar/back_app_bar.dart';
+import 'package:fortune_client/view/widgets/dialog/toast.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -30,8 +31,8 @@ class TagCreationPage extends HookConsumerWidget {
         theme: theme,
         controller: tagNameController,
         hintText: "タイトルを入力する",
-        clearCallBack: () {},
-        onChanged: (value) {},
+        clearCallBack: () => viewModel.changeName(""),
+        onChanged: (value) => viewModel.changeName(value),
         onEditingComplete: () => FocusScope.of(context).unfocus(),
       ),
     );
@@ -63,7 +64,13 @@ class TagCreationPage extends HookConsumerWidget {
           Container(
             padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
             child: ElevatedButton(
-              onPressed: () {},
+              onPressed: viewModel.isPossibleToCreate()
+                  ? () async {
+                      if (!await viewModel.create()) {
+                        _showFailedToCreateToast(context, theme);
+                      }
+                    }
+                  : null,
               child: const Text("作成"),
             ),
           ),
@@ -131,5 +138,9 @@ class TagCreationPage extends HookConsumerWidget {
         ),
       ),
     );
+  }
+
+  _showFailedToCreateToast(BuildContext context, AppTheme theme) {
+    showErrorToast(context, theme, "タグを作成できませんでした。");
   }
 }

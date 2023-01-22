@@ -22,12 +22,6 @@ class RoomCreationPage extends HookConsumerWidget {
     final state = ref.watch(roomCreationViewModelProvider);
     final viewModel = ref.watch(roomCreationViewModelProvider.notifier);
 
-    createRoom() async {
-      if (!await viewModel.create()) {
-        _showFailedToCreateToast(context, theme);
-      }
-    }
-
     ///
     /// タイトル
     ///
@@ -134,7 +128,13 @@ class RoomCreationPage extends HookConsumerWidget {
             Container(
               padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
               child: ElevatedButton(
-                onPressed: viewModel.isPossibleToCreate() ? createRoom : null,
+                onPressed: viewModel.isPossibleToCreate()
+                    ? () async {
+                        if (!await viewModel.create()) {
+                          _showFailedToCreateToast(context, theme);
+                        }
+                      }
+                    : null,
                 child: const Text("作成"),
               ),
             ),
