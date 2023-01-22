@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:fortune_client/data/datasource/core/annotations_headers.dart.dart';
+import 'package:fortune_client/data/model/base/id/response_id.dart';
 import 'package:fortune_client/data/model/tag/tag.dart';
 import 'package:retrofit/retrofit.dart';
 
@@ -11,7 +12,7 @@ abstract class TagsDataSource {
 
   @POST('/tags')
   @authenticatedRequest
-  Future<Tags> create(
+  Future<ResponseID> create(
     @Body() Map<String, dynamic> body,
   );
 
