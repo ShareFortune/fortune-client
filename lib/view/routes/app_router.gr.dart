@@ -12,19 +12,19 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i22;
-import 'package:auto_route/empty_router_widgets.dart' as _i2;
+import 'package:auto_route/empty_router_widgets.dart' as _i3;
 import 'package:flutter/material.dart' as _i23;
 import 'package:fortune_client/view/pages/account/my_page/my_page.dart' as _i9;
-import 'package:fortune_client/view/pages/auth/login/login_page.dart' as _i4;
+import 'package:fortune_client/view/pages/auth/login/login_page.dart' as _i1;
 import 'package:fortune_client/view/pages/common/bottom_navigation_bar/bottom_navigation_bar.dart'
-    as _i1;
+    as _i2;
 import 'package:fortune_client/view/pages/common/entry_page/entry_address/entry_address_page.dart'
     as _i8;
 import 'package:fortune_client/view/pages/common/entry_page/entry_description/entry_description_page.dart'
     as _i12;
 import 'package:fortune_client/view/pages/debug/debug_page.dart' as _i5;
 import 'package:fortune_client/view/pages/message/message_room/message_room_page.dart'
-    as _i3;
+    as _i4;
 import 'package:fortune_client/view/pages/message/message_room_list/message_room_list_page.dart'
     as _i17;
 import 'package:fortune_client/view/pages/profile/create/entry_basic_profile/basic_profile_entry_page.dart'
@@ -65,16 +65,22 @@ class AppRouter extends _i22.RootStackRouter {
 
   @override
   final Map<String, _i22.PageFactory> pagesMap = {
+    LoginRoute.name: (routeData) {
+      return _i22.AdaptivePage<dynamic>(
+        routeData: routeData,
+        child: const _i1.LoginPage(),
+      );
+    },
     HomeRouter.name: (routeData) {
       return _i22.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i1.MyBottomNavigationBar(),
+        child: const _i2.MyBottomNavigationBar(),
       );
     },
     CreateProfileRoute.name: (routeData) {
       return _i22.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i2.EmptyRouterPage(),
+        child: const _i3.EmptyRouterPage(),
       );
     },
     MessageRoomRoute.name: (routeData) {
@@ -83,16 +89,10 @@ class AppRouter extends _i22.RootStackRouter {
           orElse: () => MessageRoomRouteArgs(id: pathParams.getString('id')));
       return _i22.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: _i3.MessageRoomPage(
+        child: _i4.MessageRoomPage(
           key: args.key,
           id: args.id,
         ),
-      );
-    },
-    LoginRoute.name: (routeData) {
-      return _i22.AdaptivePage<dynamic>(
-        routeData: routeData,
-        child: const _i4.LoginPage(),
       );
     },
     DebugRoute.name: (routeData) {
@@ -162,19 +162,19 @@ class AppRouter extends _i22.RootStackRouter {
     RoomsTab.name: (routeData) {
       return _i22.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i2.EmptyRouterPage(),
+        child: const _i3.EmptyRouterPage(),
       );
     },
     ParticipatingTab.name: (routeData) {
       return _i22.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i2.EmptyRouterPage(),
+        child: const _i3.EmptyRouterPage(),
       );
     },
     MessagesTab.name: (routeData) {
       return _i22.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i2.EmptyRouterPage(),
+        child: const _i3.EmptyRouterPage(),
       );
     },
     RoomListRoute.name: (routeData) {
@@ -249,6 +249,10 @@ class AppRouter extends _i22.RootStackRouter {
 
   @override
   List<_i22.RouteConfig> get routes => [
+        _i22.RouteConfig(
+          LoginRoute.name,
+          path: 'login',
+        ),
         _i22.RouteConfig(
           HomeRouter.name,
           path: '/',
@@ -354,10 +358,6 @@ class AppRouter extends _i22.RootStackRouter {
           path: 'message-room/:id',
         ),
         _i22.RouteConfig(
-          LoginRoute.name,
-          path: 'login',
-        ),
-        _i22.RouteConfig(
           DebugRoute.name,
           path: 'debug',
         ),
@@ -393,7 +393,19 @@ class AppRouter extends _i22.RootStackRouter {
 }
 
 /// generated route for
-/// [_i1.MyBottomNavigationBar]
+/// [_i1.LoginPage]
+class LoginRoute extends _i22.PageRouteInfo<void> {
+  const LoginRoute()
+      : super(
+          LoginRoute.name,
+          path: 'login',
+        );
+
+  static const String name = 'LoginRoute';
+}
+
+/// generated route for
+/// [_i2.MyBottomNavigationBar]
 class HomeRouter extends _i22.PageRouteInfo<void> {
   const HomeRouter({List<_i22.PageRouteInfo>? children})
       : super(
@@ -406,7 +418,7 @@ class HomeRouter extends _i22.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i2.EmptyRouterPage]
+/// [_i3.EmptyRouterPage]
 class CreateProfileRoute extends _i22.PageRouteInfo<void> {
   const CreateProfileRoute({List<_i22.PageRouteInfo>? children})
       : super(
@@ -419,7 +431,7 @@ class CreateProfileRoute extends _i22.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i3.MessageRoomPage]
+/// [_i4.MessageRoomPage]
 class MessageRoomRoute extends _i22.PageRouteInfo<MessageRoomRouteArgs> {
   MessageRoomRoute({
     _i23.Key? key,
@@ -451,18 +463,6 @@ class MessageRoomRouteArgs {
   String toString() {
     return 'MessageRoomRouteArgs{key: $key, id: $id}';
   }
-}
-
-/// generated route for
-/// [_i4.LoginPage]
-class LoginRoute extends _i22.PageRouteInfo<void> {
-  const LoginRoute()
-      : super(
-          LoginRoute.name,
-          path: 'login',
-        );
-
-  static const String name = 'LoginRoute';
 }
 
 /// generated route for
@@ -644,7 +644,7 @@ class EntryDescriptionRouteArgs {
 }
 
 /// generated route for
-/// [_i2.EmptyRouterPage]
+/// [_i3.EmptyRouterPage]
 class RoomsTab extends _i22.PageRouteInfo<void> {
   const RoomsTab({List<_i22.PageRouteInfo>? children})
       : super(
@@ -657,7 +657,7 @@ class RoomsTab extends _i22.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i2.EmptyRouterPage]
+/// [_i3.EmptyRouterPage]
 class ParticipatingTab extends _i22.PageRouteInfo<void> {
   const ParticipatingTab({List<_i22.PageRouteInfo>? children})
       : super(
@@ -670,7 +670,7 @@ class ParticipatingTab extends _i22.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i2.EmptyRouterPage]
+/// [_i3.EmptyRouterPage]
 class MessagesTab extends _i22.PageRouteInfo<void> {
   const MessagesTab({List<_i22.PageRouteInfo>? children})
       : super(

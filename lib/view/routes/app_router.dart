@@ -106,14 +106,14 @@ const createProfileRoute = AutoRoute(
 @AdaptiveAutoRouter(
   replaceInRouteName: 'Page,Route',
   routes: <AutoRoute>[
+    /// ログイン
+    AutoRoute(path: RoutePath.login, page: LoginPage),
+
     homeRouter,
     createProfileRoute,
 
     /// メッセージ
     AutoRoute(path: RoutePath.messageRoom, page: MessageRoomPage),
-
-    /// ログイン
-    AutoRoute(path: RoutePath.login, page: LoginPage),
 
     /// デバッグ
     AutoRoute(path: RoutePath.debug, page: DebugPage),

@@ -29,8 +29,9 @@ class LoginPage extends HookConsumerWidget {
                   GestureDetector(
                     /// DEBUG: ダミーログインAPI
                     onDoubleTap: () async {
-                      final result = await viewModel.toggleDebugMode();
-                      if (result != null) showDebugDialog(context, result);
+                      // final result = await viewModel.toggleDebugMode();
+                      // // ignore: use_build_context_synchronously
+                      // if (result != null) showDebugDialog(context, result);
                     },
                     child: const Text(
                       "Fortune",
@@ -78,7 +79,6 @@ class LoginPage extends HookConsumerWidget {
       'ダミーログインAPIを使用: $result',
       onPressed: () {
         context.router.pop();
-        // Navigator.of(context).pop();
       },
     );
   }

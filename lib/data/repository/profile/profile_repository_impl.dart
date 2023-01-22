@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:fortune_client/data/datasource/local/shared_pref_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/go/profile/profile_data_source.dart';
 import 'package:fortune_client/data/model/address/address.dart';
@@ -64,6 +65,7 @@ class ProfileRepositoryImpl implements ProfileRepository {
 
       /// 作成フォーム画像
       const toBase64 = ImageConverter.convertImageForBase64;
+      // print(await toBase64(iconImage!));
       final profileFormImage = ProfileFormImages(
         mainImage: await toBase64(iconImage!),
         secondImage: mainImage != null ? await toBase64(mainImage) : null,
@@ -95,6 +97,10 @@ class ProfileRepositoryImpl implements ProfileRepository {
       /// ローカル保存
       return await _prefs.setString(AppPrefKey.profileId.keyString, result.id);
     } catch (e) {
+      Fluttertoast.showToast(
+        gravity: ToastGravity.CENTER,
+        msg: e.toString(),
+      );
       logger.e(e);
       rethrow;
     }
