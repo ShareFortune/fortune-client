@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fortune_client/data/model/tag/tag.dart';
+import 'package:fortune_client/util/logger/logger.dart';
 import 'package:fortune_client/view/pages/account/my_page/my_page_state.dart';
 import 'package:fortune_client/view/pages/account/my_page/my_page_view_model.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
@@ -224,6 +225,10 @@ class MyPage extends HookConsumerWidget {
               width: 80,
               height: 80,
               fit: BoxFit.cover,
+              errorBuilder: (context, error, stackTrace) {
+                logger.e(error);
+                return const CircleAvatar(radius: 40);
+              },
             ),
           ),
           const Gap(10),
