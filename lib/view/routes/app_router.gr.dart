@@ -150,9 +150,13 @@ class AppRouter extends _i22.RootStackRouter {
       );
     },
     EntryDescriptionRoute.name: (routeData) {
+      final args = routeData.argsAs<EntryDescriptionRouteArgs>();
       return _i22.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i12.EntryDescriptionPage(),
+        child: _i12.EntryDescriptionPage(
+          args.value,
+          key: args.key,
+        ),
       );
     },
     RoomsTab.name: (routeData) {
@@ -606,14 +610,37 @@ class TagsSelectionRouteArgs {
 
 /// generated route for
 /// [_i12.EntryDescriptionPage]
-class EntryDescriptionRoute extends _i22.PageRouteInfo<void> {
-  const EntryDescriptionRoute()
-      : super(
+class EntryDescriptionRoute
+    extends _i22.PageRouteInfo<EntryDescriptionRouteArgs> {
+  EntryDescriptionRoute({
+    required String? value,
+    _i23.Key? key,
+  }) : super(
           EntryDescriptionRoute.name,
           path: 'entry-description',
+          args: EntryDescriptionRouteArgs(
+            value: value,
+            key: key,
+          ),
         );
 
   static const String name = 'EntryDescriptionRoute';
+}
+
+class EntryDescriptionRouteArgs {
+  const EntryDescriptionRouteArgs({
+    required this.value,
+    this.key,
+  });
+
+  final String? value;
+
+  final _i23.Key? key;
+
+  @override
+  String toString() {
+    return 'EntryDescriptionRouteArgs{value: $value, key: $key}';
+  }
 }
 
 /// generated route for
