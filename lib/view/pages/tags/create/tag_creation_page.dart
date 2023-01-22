@@ -19,7 +19,7 @@ class TagCreationPage extends HookConsumerWidget {
     ///
     /// タグネーム
     ///
-    final titleWidget = _inputFieldContainer(
+    final nameWidget = _inputFieldContainer(
       theme,
       title: "タグの名前",
       explanation: "作成するタグの名前を入力しましょう",
@@ -75,7 +75,7 @@ class TagCreationPage extends HookConsumerWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Gap(30),
-              titleWidget,
+              nameWidget,
               const Gap(30),
               descriptionWidget,
               const Gap(30),

@@ -5,7 +5,7 @@ part 'tag_creation_state.freezed.dart';
 @freezed
 class TagCreationState with _$TagCreationState {
   const factory TagCreationState({
-    String? title,
+    String? name,
     String? description,
   }) = _TagCreationState;
 }

@@ -1,6 +1,5 @@
 // ignore_for_file: invalid_annotation_target
 
-import 'package:fortune_client/util/converter/enumeration_converter.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'create_profile_form.freezed.dart';

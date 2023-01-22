@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$TagCreationState {
-  String? get title => throw _privateConstructorUsedError;
+  String? get name => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -30,7 +30,7 @@ abstract class $TagCreationStateCopyWith<$Res> {
           TagCreationState value, $Res Function(TagCreationState) then) =
       _$TagCreationStateCopyWithImpl<$Res, TagCreationState>;
   @useResult
-  $Res call({String? title, String? description});
+  $Res call({String? name, String? description});
 }
 
 /// @nodoc
@@ -46,13 +46,13 @@ class _$TagCreationStateCopyWithImpl<$Res, $Val extends TagCreationState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? title = freezed,
+    Object? name = freezed,
     Object? description = freezed,
   }) {
     return _then(_value.copyWith(
-      title: freezed == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String?,
       description: freezed == description
           ? _value.description
@@ -70,7 +70,7 @@ abstract class _$$_TagCreationStateCopyWith<$Res>
       __$$_TagCreationStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? title, String? description});
+  $Res call({String? name, String? description});
 }
 
 /// @nodoc
@@ -84,13 +84,13 @@ class __$$_TagCreationStateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? title = freezed,
+    Object? name = freezed,
     Object? description = freezed,
   }) {
     return _then(_$_TagCreationState(
-      title: freezed == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String?,
       description: freezed == description
           ? _value.description
@@ -103,16 +103,16 @@ class __$$_TagCreationStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_TagCreationState implements _TagCreationState {
-  const _$_TagCreationState({this.title, this.description});
+  const _$_TagCreationState({this.name, this.description});
 
   @override
-  final String? title;
+  final String? name;
   @override
   final String? description;
 
   @override
   String toString() {
-    return 'TagCreationState(title: $title, description: $description)';
+    return 'TagCreationState(name: $name, description: $description)';
   }
 
   @override
@@ -120,13 +120,13 @@ class _$_TagCreationState implements _TagCreationState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_TagCreationState &&
-            (identical(other.title, title) || other.title == title) &&
+            (identical(other.name, name) || other.name == name) &&
             (identical(other.description, description) ||
                 other.description == description));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, title, description);
+  int get hashCode => Object.hash(runtimeType, name, description);
 
   @JsonKey(ignore: true)
   @override
@@ -137,10 +137,10 @@ class _$_TagCreationState implements _TagCreationState {
 
 abstract class _TagCreationState implements TagCreationState {
   const factory _TagCreationState(
-      {final String? title, final String? description}) = _$_TagCreationState;
+      {final String? name, final String? description}) = _$_TagCreationState;
 
   @override
-  String? get title;
+  String? get name;
   @override
   String? get description;
   @override
