@@ -1,3 +1,4 @@
+import 'package:fortune_client/data/model/tag/tag.dart';
 import 'package:fortune_client/data/repository/tags/tags_repository.dart';
 import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/view/pages/tags/create/tag_creation_state.dart';
@@ -30,12 +31,13 @@ class TagCreationViewModel extends StateNotifier<TagCreationState> {
   }
 
   Future<bool> create() async {
-    if (isPossibleToCreate()) {
-      if (await _tagsRepository.create(state.name!, state.description!)) {
-        sl<AppRouter>().pop();
-      }
+    try {
+      if (!isPossibleToCreate()) return false;
+      final id = await _tagsRepository.create(state.name!, state.description!);
+      return sl<AppRouter>().pop(Tag(id: id, name: state.name!));
+    } catch (e) {
+      return false;
     }
-    return false;
   }
 
   navigateToEntryDescription() async {

@@ -1,3 +1,4 @@
+import 'package:fortune_client/data/model/tag/tag.dart';
 import 'package:fortune_client/data/repository/tags/tags_repository.dart';
 import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/view/pages/tags/select/tags_selection_state.dart';
@@ -54,5 +55,14 @@ class TagsSelectionViewModel extends StateNotifier<TagsSelectionState> {
     sl<AppRouter>().pop(state.beingSet.isEmpty
         ? null
         : state.beingSet.map((e) => e.data).toList());
+  }
+
+  navigateToTagCreation() async {
+    final tag = await sl<AppRouter>().push(TagCreationRoute()) as Tag?;
+    if (tag != null) {
+      state = state.copyWith(
+        beingSet: [...state.beingSet, TagState(data: tag, isSelected: true)],
+      );
+    }
   }
 }

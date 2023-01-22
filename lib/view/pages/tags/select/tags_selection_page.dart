@@ -31,11 +31,22 @@ class TagsSelectionPage extends HookConsumerWidget {
     final tagsBeingSet = _tagsBeingSet(state.beingSet);
 
     /// おすすめのタグ
-    final recommendedResults =
-        asyncTagWraper(theme, "人気のタグ", state.recommendation);
+    final recommendedResults = state.recommendation.when(
+      data: (data) => data.isEmpty ? Container() : TagsWraper(data),
+      error: (error, stackTrace) => errorWidget(error, stackTrace),
+      loading: () => loadingWidget(),
+    );
 
     /// 検索結果
-    final searchResult = asyncTagWraper(theme, "検索結果", state.searchResult);
+    final searchResult = state.searchResult.when(
+      data: (data) {
+        return data.isEmpty
+            ? emptyTagContainer(theme, viewModel.navigateToTagCreation)
+            : TagsWraper(data);
+      },
+      error: (error, stackTrace) => errorWidget(error, stackTrace),
+      loading: () => loadingWidget(),
+    );
 
     /// タグ検索フォームクリア
     tagFormClearCallBack() {
@@ -81,7 +92,9 @@ class TagsSelectionPage extends HookConsumerWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 tagsBeingSet,
-                isDisplaySearchResults ? searchResult : recommendedResults,
+                isDisplaySearchResults
+                    ? tagsContainer(theme, "検索結果", searchResult)
+                    : tagsContainer(theme, "人気のタグ", recommendedResults),
               ],
             ),
           ),
@@ -103,32 +116,18 @@ class TagsSelectionPage extends HookConsumerWidget {
     );
   }
 
-  Widget asyncTagWraper(
-    AppTheme theme,
-    String title,
-    AsyncValue<List<TagState>> tags,
-  ) {
+  tagsContainer(AppTheme theme, String title, Widget child) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(title),
         const Gap(20),
-        tags.when(
-          data: (data) {
-            if (data.isEmpty) {
-              return emptyTagContainer(theme);
-            } else {
-              return TagsWraper(data);
-            }
-          },
-          error: (error, stackTrace) => errorWidget(error, stackTrace),
-          loading: () => loadingWidget(),
-        ),
+        child,
       ],
     );
   }
 
-  Widget emptyTagContainer(AppTheme theme) {
+  Widget emptyTagContainer(AppTheme theme, VoidCallback onCreate) {
     /// アドバイステキスト
     final adviceTextColor = theme.appColors.subText3;
     final adviceTextStyle = theme.textTheme.h30.paint(adviceTextColor);
@@ -143,7 +142,7 @@ class TagsSelectionPage extends HookConsumerWidget {
           const Gap(50),
           Text("タグが存在しません。", style: adviceTextStyle),
           TextButton(
-            onPressed: () {},
+            onPressed: onCreate,
             child: Text("タグを作成しますか？", style: navigationTextStyle),
           ),
         ],

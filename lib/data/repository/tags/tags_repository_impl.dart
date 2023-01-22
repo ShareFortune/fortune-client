@@ -10,17 +10,15 @@ class TagsRepositoryImpl implements TagsRepository {
   TagsRepositoryImpl(this._tagsDataSource);
 
   @override
-  Future<bool> create(String name, String description) async {
+  Future<String> create(String name, String description) async {
     try {
       logger.i("[$runtimeType] create");
       final request = TagCreateRequest(name: name, explanation: description);
-      print(request);
       final result = await _tagsDataSource.create(request.toJson());
-      print(result.id);
-      return true;
+      return result.id;
     } catch (e) {
       logger.e(e);
-      return false;
+      rethrow;
     }
   }
 
