@@ -9,6 +9,12 @@ part 'tags_data_source.g.dart';
 abstract class TagsDataSource {
   factory TagsDataSource(Dio dio, {String baseUrl}) = _TagsDataSource;
 
+  @POST('/tags')
+  @authenticatedRequest
+  Future<Tags> create(
+    @Body() Map<String, dynamic> body,
+  );
+
   @GET('/tags')
   @authenticatedRequest
   Future<Tags> search({

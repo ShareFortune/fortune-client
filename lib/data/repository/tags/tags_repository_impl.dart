@@ -9,9 +9,8 @@ class TagsRepositoryImpl implements TagsRepository {
   TagsRepositoryImpl(this._source);
 
   @override
-  Future create() {
-    // TODO: implement create
-    throw UnimplementedError();
+  Future<bool> create(String name, String description) async {
+    // _source.
   }
 
   @override
