@@ -244,25 +244,4 @@ class MyPage extends HookConsumerWidget {
       ),
     );
   }
-
-  Widget _appBar(AppTheme theme, Function() settingBtnOnTap) {
-    const color = Colors.black;
-
-    return BackAppBar(title: "マイページ");
-    // return AppBar(
-    //   elevation: 0,
-    //   backgroundColor: Colors.transparent,
-    //   title: Text(
-    //     "マイページ",
-    //     style: theme.textTheme.h60.bold().merge(const TextStyle(color: color)),
-    //   ),
-    //   leading: const BackButton(color: color),
-    //   actions: [
-    //     IconButton(
-    //       onPressed: settingBtnOnTap,
-    //       icon: const Icon(Icons.settings, size: 28, color: color),
-    //     ),
-    //   ],
-    // );
-  }
 }

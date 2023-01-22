@@ -40,7 +40,10 @@ class RoutePath {
   static const profile = 'profile/:id';
 
   /// タグ
-  static const tags = 'tags';
+  static const tagSelection = 'select-tag';
+
+  /// タグ作成
+  static const tagCreation = 'create-tag';
 
   /// 説明入力
   static const entryDescription = 'entry-description';
