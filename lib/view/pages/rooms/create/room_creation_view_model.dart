@@ -14,7 +14,7 @@ final roomCreationViewModelProvider =
 
 class RoomCreationViewModel extends StateNotifier<RoomCreationState> {
   RoomCreationViewModel(this._roomsRepository)
-      : super(const RoomCreationState(explanation: "テスト"));
+      : super(const RoomCreationState());
 
   final RoomsRepository _roomsRepository;
 
