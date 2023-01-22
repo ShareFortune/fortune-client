@@ -120,7 +120,7 @@ class RoomCreationPage extends HookConsumerWidget {
       content: RoomCreationTransitionTile(
         title: "ルームの説明を入力しましょう",
         value: state.explanation,
-        onTap: () {},
+        onTap: () => viewModel.navigateToEntryDescription(),
       ),
     );
 

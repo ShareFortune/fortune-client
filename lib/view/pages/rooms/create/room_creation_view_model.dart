@@ -6,7 +6,6 @@ import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/view/pages/rooms/create/room_creation_state.dart';
 import 'package:fortune_client/view/routes/app_router.gr.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:image_picker/image_picker.dart';
 
 final roomCreationViewModelProvider =
     StateNotifierProvider<RoomCreationViewModel, RoomCreationState>(
@@ -64,6 +63,10 @@ class RoomCreationViewModel extends StateNotifier<RoomCreationState> {
     sl<AppRouter>().push(HomeRouter(children: [
       RoomsTab(children: [RoomDetailRoute(roomId: roomId)]),
     ]));
+  }
+
+  navigateToEntryDescription() async {
+    await sl<AppRouter>().push(const EntryDescriptionRoute());
   }
 
   navigateToEntryAddress() async {

@@ -39,8 +39,11 @@ class RoutePath {
   /// プロフィール
   static const profile = 'profile/:id';
 
-  /// 検索
+  /// タグ
   static const tags = 'tags';
+
+  /// 説明入力
+  static const entryDescription = 'entry-description';
 
   /// アカウント
   static const account = 'account';
