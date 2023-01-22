@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:fortune_client/data/model/base/id/response_id.dart';
 import 'package:fortune_client/data/model/participant/base/participant_rooms.dart';
 import 'package:fortune_client/data/model/participant/guest/participant_room_as_guest.dart';
 import 'package:fortune_client/data/model/participant/host/participant_room_as_host.dart';
@@ -12,6 +13,12 @@ part 'rooms_data_source.g.dart';
 @RestApi()
 abstract class RoomsDataSource {
   factory RoomsDataSource(Dio dio, {String baseUrl}) = _RoomsDataSource;
+
+  @POST('/rooms')
+  @authenticatedRequest
+  Future<ResponseID> create(
+    @Body() Map<String, dynamic> body,
+  );
 
   @GET('/rooms')
   @authenticatedRequest

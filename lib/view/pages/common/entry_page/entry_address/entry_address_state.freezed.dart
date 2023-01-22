@@ -140,14 +140,13 @@ class __$$_EntryAddresStateCopyWithImpl<$Res>
 class _$_EntryAddresState implements _EntryAddresState {
   const _$_EntryAddresState(
       {this.searchResultsIsDisplay = false,
-      this.adress = null,
+      this.adress,
       this.searchResults = const AsyncData([])});
 
   @override
   @JsonKey()
   final bool searchResultsIsDisplay;
   @override
-  @JsonKey()
   final Address? adress;
   @override
   @JsonKey()

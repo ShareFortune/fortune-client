@@ -3,7 +3,8 @@ import 'package:auto_route/empty_router_widgets.dart';
 import 'package:fortune_client/view/pages/account/my_page/my_page.dart';
 import 'package:fortune_client/view/pages/auth/login/login_page.dart';
 import 'package:fortune_client/view/pages/common/bottom_navigation_bar/bottom_navigation_bar.dart';
-import 'package:fortune_client/view/pages/common/entry_page/entry_address_page.dart';
+import 'package:fortune_client/view/pages/common/entry_page/entry_address/entry_address_page.dart';
+import 'package:fortune_client/view/pages/common/entry_page/entry_description/entry_description_page.dart';
 import 'package:fortune_client/view/pages/debug/debug_page.dart';
 import 'package:fortune_client/view/pages/message/message_room/message_room_page.dart';
 import 'package:fortune_client/view/pages/message/message_room_list/message_room_list_page.dart';
@@ -13,7 +14,7 @@ import 'package:fortune_client/view/pages/profile/create/entry_profile_icon_imag
 import 'package:fortune_client/view/pages/profile/create/entry_profile_sub_image/entry_profile_sub_image_page.dart';
 import 'package:fortune_client/view/pages/profile/profile/profile_page.dart';
 import 'package:fortune_client/view/pages/request/request_confirmation/request_confirmation_page.dart';
-import 'package:fortune_client/view/pages/rooms/create/room_create_page.dart';
+import 'package:fortune_client/view/pages/rooms/create/room_creation_page.dart';
 import 'package:fortune_client/view/pages/rooms/participating/participating_room_list_page.dart';
 import 'package:fortune_client/view/pages/rooms/room_detail/room_detail_page.dart';
 import 'package:fortune_client/view/pages/rooms/room_list/room_list_page.dart';
@@ -105,14 +106,14 @@ const createProfileRoute = AutoRoute(
 @AdaptiveAutoRouter(
   replaceInRouteName: 'Page,Route',
   routes: <AutoRoute>[
+    /// ログイン
+    AutoRoute(path: RoutePath.login, page: LoginPage),
+
     homeRouter,
     createProfileRoute,
 
     /// メッセージ
     AutoRoute(path: RoutePath.messageRoom, page: MessageRoomPage),
-
-    /// ログイン
-    AutoRoute(path: RoutePath.login, page: LoginPage),
 
     /// デバッグ
     AutoRoute(path: RoutePath.debug, page: DebugPage),
@@ -121,7 +122,7 @@ const createProfileRoute = AutoRoute(
     AutoRoute(path: RoutePath.profile, page: ProfilePage),
 
     /// ルーム作成
-    AutoRoute(path: RoutePath.createRoom, page: RoomCreatePage),
+    AutoRoute(path: RoutePath.createRoom, page: RoomCreationPage),
 
     /// 住所検索
     AutoRoute(path: RoutePath.enterAddress, page: EntryAddressPage),
@@ -134,6 +135,9 @@ const createProfileRoute = AutoRoute(
 
     /// タグ選択
     AutoRoute(path: RoutePath.tags, page: TagsSelectionPage),
+
+    /// 説明入力
+    AutoRoute(path: RoutePath.entryDescription, page: EntryDescriptionPage),
   ],
 )
 class $AppRouter {}

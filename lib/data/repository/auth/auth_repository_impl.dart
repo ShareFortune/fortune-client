@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:fortune_client/data/datasource/remote/firebase/firebase_auth_data_source.dart';
 
 import 'auth_repository.dart';
@@ -13,7 +14,14 @@ class AuthRepositoryImpl implements AuthRepository {
   String get firebaseId => _user!.uid;
 
   @override
-  bool get isLogin => _user != null;
+  bool get isLogin {
+    Fluttertoast.showToast(
+      gravity: ToastGravity.CENTER,
+      msg: "ログインユーザー: ${_user?.email}",
+    );
+    final result = _user != null;
+    return result;
+  }
 
   @override
   Future<String> idToken() => _user!.getIdToken();

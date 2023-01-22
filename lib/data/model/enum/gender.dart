@@ -21,7 +21,6 @@ extension GenderEx on Gender {
   String get rawValue => rawValues[this]!;
 
   static Gender from(String rawValue) {
-    print(rawValue);
     return rawValues.keys.firstWhere((key) => rawValues[key] == rawValue);
   }
 

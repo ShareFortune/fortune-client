@@ -1,7 +1,7 @@
 import 'package:fortune_client/data/model/address/address.dart';
 import 'package:fortune_client/data/repository/addresses/addresses_repository.dart';
 import 'package:fortune_client/injector.dart';
-import 'package:fortune_client/view/pages/common/entry_page/entry_address_state.dart';
+import 'package:fortune_client/view/pages/common/entry_page/entry_address/entry_address_state.dart';
 import 'package:fortune_client/view/routes/app_router.gr.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 

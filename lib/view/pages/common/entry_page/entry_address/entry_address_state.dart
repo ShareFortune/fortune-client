@@ -8,7 +8,7 @@ part 'entry_address_state.freezed.dart';
 class EntryAddressState with _$EntryAddressState {
   const factory EntryAddressState({
     @Default(false) bool searchResultsIsDisplay,
-    @Default(null) Address? adress,
+    Address? adress,
     @Default(AsyncData([])) AsyncValue<List<Address>> searchResults,
   }) = _EntryAddresState;
 }

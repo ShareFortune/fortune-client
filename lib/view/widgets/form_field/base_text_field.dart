@@ -16,7 +16,6 @@ class BaseTextField extends StatefulHookConsumerWidget {
     this.hintStyle,
     this.keyboardType,
     this.cursorColor,
-    this.decoration,
     this.textInputAction,
     this.style,
     this.onChanged,
@@ -30,6 +29,11 @@ class BaseTextField extends StatefulHookConsumerWidget {
     this.clearCallBack,
     this.inputFormatters,
     this.maxLength,
+    this.fillColor,
+    this.border,
+    this.enabledBorder,
+    this.focusedBorder,
+    this.contentPadding,
   }) : super(key: key);
 
   final bool? autofocus;
@@ -40,7 +44,6 @@ class BaseTextField extends StatefulHookConsumerWidget {
   final Color? cursorColor;
   final String? hintText;
   final TextStyle? hintStyle;
-  final InputDecoration? decoration;
   final TextInputAction? textInputAction;
   final TextStyle? style;
   final ValueChanged<String>? onChanged;
@@ -53,6 +56,11 @@ class BaseTextField extends StatefulHookConsumerWidget {
   final BorderSide? borderside;
   final VoidCallback? clearCallBack;
   final List<TextInputFormatter>? inputFormatters;
+  final Color? fillColor;
+  final InputBorder? border;
+  final InputBorder? enabledBorder;
+  final InputBorder? focusedBorder;
+  final EdgeInsetsGeometry? contentPadding;
 
   final int? maxLength;
 
@@ -101,29 +109,6 @@ class _BaseTextFieldState extends ConsumerState<BaseTextField> {
   Widget build(BuildContext context) {
     final theme = ref.watch(appThemeProvider);
 
-    final suffixIcon = SizedBox(
-      width: widget.suffixIcon != null ? 110 : 55,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          isDisplayFirstSuffixIcon
-              ? InkWell(
-                  onTap: () {
-                    widget.controller.clear();
-                    setState(() => _isNotEmpty = false);
-                    if (widget.clearCallBack != null) widget.clearCallBack!();
-                  },
-                  child: IconButton(
-                    onPressed: widget.clearCallBack,
-                    icon: const Icon(Icons.close),
-                  ),
-                )
-              : Container(),
-          if (isDisplaySecondSuffixIcon) ...[const Gap(20), widget.suffixIcon!],
-        ],
-      ),
-    );
-
     return TextFormField(
       autofocus: widget.autofocus ?? false,
       focusNode: _focusNode,
@@ -134,7 +119,10 @@ class _BaseTextFieldState extends ConsumerState<BaseTextField> {
       maxLength: widget.maxLength,
       cursorColor: widget.cursorColor,
       textInputAction: widget.textInputAction,
-      style: theme.textTheme.h30.paint(theme.appColors.subText1),
+      style:
+          widget.style ?? theme.textTheme.h30.paint(theme.appColors.subText1),
+      onTap: widget.onTap,
+      onEditingComplete: widget.onEditingComplete,
       decoration: InputDecoration(
         fillColor: theme.appColors.textFieldBackground,
         filled: true,
@@ -142,20 +130,56 @@ class _BaseTextFieldState extends ConsumerState<BaseTextField> {
         hintStyle: theme.textTheme.h30.paint(theme.appColors.subText2),
         prefixIcon: widget.prefixIcon,
         prefixIconColor: widget.prefixIconColor,
-        suffixIcon: (!_isNotEmpty && !isNotEmpty) ? null : suffixIcon,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8),
         ),
         enabledBorder: OutlineInputBorder(
-          borderSide: widget.borderside ??
-              BorderSide(color: theme.appColors.textFieldBackground),
+          borderSide:
+              widget.borderside ?? BorderSide(color: theme.appColors.onError),
         ),
         focusedBorder: OutlineInputBorder(
-          borderSide: widget.borderside ??
-              BorderSide(color: theme.appColors.textFieldBackground),
+          borderSide:
+              widget.borderside ?? BorderSide(color: theme.appColors.primary),
         ),
-        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        contentPadding: const EdgeInsets.all(10),
         errorMaxLines: 2,
+        suffixIcon: (!_isNotEmpty && !isNotEmpty)
+            ? null
+            : SizedBox(
+                width: widget.suffixIcon != null ? 110 : 55,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    isDisplayFirstSuffixIcon
+                        ? InkWell(
+                            onTap: () {
+                              widget.controller.clear();
+                              setState(() => _isNotEmpty = false);
+                              if (widget.clearCallBack != null) {
+                                widget.clearCallBack!();
+                              }
+                            },
+                            child: IconButton(
+                              onPressed: widget.clearCallBack,
+                              icon: const Icon(Icons.close),
+                            ),
+                          )
+                        : Container(),
+                    if (isDisplaySecondSuffixIcon) ...[
+                      const Gap(20),
+                      widget.suffixIcon!
+                    ],
+                  ],
+                ),
+              ),
+      ).copyWith(
+        fillColor: widget.fillColor,
+        contentPadding: widget.contentPadding,
+        border: widget.border,
+        enabledBorder: widget.enabledBorder,
+        focusedBorder: widget.focusedBorder,
+        labelStyle: widget.style,
+        hintStyle: widget.hintStyle,
       ),
       obscureText: widget.obscureText ?? false,
       onChanged: (text) {
@@ -164,8 +188,6 @@ class _BaseTextFieldState extends ConsumerState<BaseTextField> {
         if (widget.onChanged == null) return;
         widget.onChanged!(text);
       },
-      onTap: widget.onTap,
-      onEditingComplete: widget.onEditingComplete,
     );
   }
 }
