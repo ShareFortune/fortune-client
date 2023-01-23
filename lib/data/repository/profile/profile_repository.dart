@@ -31,12 +31,13 @@ abstract class ProfileRepository {
   /// 取得
   Future<Profile> get();
 
-  /// アップデート基本情報
-  ///
-  Future<Profile> updateBasicInfo({
-    int? stature,
-    Address? addressId,
-    DrinkFrequency? drinkFrequency,
-    CigaretteFrequency? cigaretteFrequency,
+  /// キャッシュに保存されたプロフィールを取得
+  Profile getCache();
+
+  Future<void> updateBasicInfo({
+    required int? addressId,
+    required int? stature,
+    required String? drinkFrequency,
+    required String? cigaretteFrequency,
   });
 }
