@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_route/empty_router_widgets.dart';
 import 'package:fortune_client/view/pages/account/my_page/my_page.dart';
+import 'package:fortune_client/view/pages/account/update/profile_update_page.dart';
 import 'package:fortune_client/view/pages/auth/login/login_page.dart';
 import 'package:fortune_client/view/pages/common/bottom_navigation_bar/bottom_navigation_bar.dart';
 import 'package:fortune_client/view/pages/common/entry_page/entry_address/entry_address_page.dart';
@@ -130,6 +131,9 @@ const createProfileRoute = AutoRoute(
 
     /// アカウント
     AutoRoute(path: RoutePath.account, page: MyPage),
+
+    /// プロフィール更新
+    AutoRoute(path: RoutePath.updateProfile, page: ProfileUpdatePage),
 
     /// 設定
     AutoRoute(path: RoutePath.setting, page: SettingsPage),

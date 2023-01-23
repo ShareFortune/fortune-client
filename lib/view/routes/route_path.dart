@@ -13,6 +13,8 @@ class RoutePath {
   static const createProfileIconImage = 'create-profile-icon-image'; // アイコン
   static const createProfileSubImage = 'create-profile-sub-image'; // サブイメージ
 
+  static const updateProfile = 'update-profile';
+
   static const enterAddress = 'enter-address';
 
   /// ルームリスト

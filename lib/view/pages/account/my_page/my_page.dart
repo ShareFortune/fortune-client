@@ -52,7 +52,7 @@ class MyPage extends HookConsumerWidget {
           stature: profile.height,
           drinkFrequency: profile.drinkFrequency,
           cigaretteFrequency: profile.cigaretteFrequency,
-          onUpdate: () {},
+          onUpdate: () => viewModel.navigateToUpdateBasic(),
         );
 
         return Column(

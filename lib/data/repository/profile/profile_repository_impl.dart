@@ -30,23 +30,6 @@ class ProfileRepositoryImpl implements ProfileRepository {
   }
 
   @override
-  Future<String> update() {
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<Profile> get() async {
-    try {
-      logger.i("[$runtimeType] get");
-      final result = await _profile.get();
-      return result;
-    } catch (e) {
-      logger.e(e);
-      rethrow;
-    }
-  }
-
-  @override
   Future<bool> create({
     required String name,
     required Gender gender,
@@ -102,6 +85,23 @@ class ProfileRepositoryImpl implements ProfileRepository {
         gravity: ToastGravity.CENTER,
         msg: e.toString(),
       );
+      logger.e(e);
+      rethrow;
+    }
+  }
+
+  @override
+  Future<String> update() {
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<Profile> get() async {
+    try {
+      logger.i("[$runtimeType] get");
+      final result = await _profile.get();
+      return result;
+    } catch (e) {
       logger.e(e);
       rethrow;
     }
