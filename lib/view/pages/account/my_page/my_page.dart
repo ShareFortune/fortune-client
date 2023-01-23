@@ -39,7 +39,7 @@ class MyPage extends HookConsumerWidget {
         /// 自己紹介
         final selfIntroduction = MyProfileSelfIntroductionContainer(
           theme: theme,
-          selfIntroduction: profile.selfIntroduction,
+          selfIntroduction: profile.selfIntroduction ?? "",
         );
 
         /// タグ

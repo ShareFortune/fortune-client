@@ -18,14 +18,14 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$ProfileState {
   String get name => throw _privateConstructorUsedError;
   String get gender => throw _privateConstructorUsedError;
-  int get height => throw _privateConstructorUsedError;
-  String get drinkFrequency => throw _privateConstructorUsedError; // お酒をよく飲むか
-  String get cigaretteFrequency =>
+  int? get height => throw _privateConstructorUsedError;
+  String? get drinkFrequency => throw _privateConstructorUsedError; // お酒をよく飲むか
+  String? get cigaretteFrequency =>
       throw _privateConstructorUsedError; // タバコをよく吸うか
-  String get selfIntroduction =>
+  String? get selfIntroduction =>
       throw _privateConstructorUsedError; // 自己紹介文(nullalble)
   String get adress => throw _privateConstructorUsedError; // 居住地
-  List<Tag> get tags => throw _privateConstructorUsedError; // 職業ID
+  List<Tag>? get tags => throw _privateConstructorUsedError; // 職業ID
   String get mainImageURL => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -42,12 +42,12 @@ abstract class $ProfileStateCopyWith<$Res> {
   $Res call(
       {String name,
       String gender,
-      int height,
-      String drinkFrequency,
-      String cigaretteFrequency,
-      String selfIntroduction,
+      int? height,
+      String? drinkFrequency,
+      String? cigaretteFrequency,
+      String? selfIntroduction,
       String adress,
-      List<Tag> tags,
+      List<Tag>? tags,
       String mainImageURL});
 }
 
@@ -66,12 +66,12 @@ class _$ProfileStateCopyWithImpl<$Res, $Val extends ProfileState>
   $Res call({
     Object? name = null,
     Object? gender = null,
-    Object? height = null,
-    Object? drinkFrequency = null,
-    Object? cigaretteFrequency = null,
-    Object? selfIntroduction = null,
+    Object? height = freezed,
+    Object? drinkFrequency = freezed,
+    Object? cigaretteFrequency = freezed,
+    Object? selfIntroduction = freezed,
     Object? adress = null,
-    Object? tags = null,
+    Object? tags = freezed,
     Object? mainImageURL = null,
   }) {
     return _then(_value.copyWith(
@@ -83,30 +83,30 @@ class _$ProfileStateCopyWithImpl<$Res, $Val extends ProfileState>
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
               as String,
-      height: null == height
+      height: freezed == height
           ? _value.height
           : height // ignore: cast_nullable_to_non_nullable
-              as int,
-      drinkFrequency: null == drinkFrequency
+              as int?,
+      drinkFrequency: freezed == drinkFrequency
           ? _value.drinkFrequency
           : drinkFrequency // ignore: cast_nullable_to_non_nullable
-              as String,
-      cigaretteFrequency: null == cigaretteFrequency
+              as String?,
+      cigaretteFrequency: freezed == cigaretteFrequency
           ? _value.cigaretteFrequency
           : cigaretteFrequency // ignore: cast_nullable_to_non_nullable
-              as String,
-      selfIntroduction: null == selfIntroduction
+              as String?,
+      selfIntroduction: freezed == selfIntroduction
           ? _value.selfIntroduction
           : selfIntroduction // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       adress: null == adress
           ? _value.adress
           : adress // ignore: cast_nullable_to_non_nullable
               as String,
-      tags: null == tags
+      tags: freezed == tags
           ? _value.tags
           : tags // ignore: cast_nullable_to_non_nullable
-              as List<Tag>,
+              as List<Tag>?,
       mainImageURL: null == mainImageURL
           ? _value.mainImageURL
           : mainImageURL // ignore: cast_nullable_to_non_nullable
@@ -126,12 +126,12 @@ abstract class _$$_ProfileStateCopyWith<$Res>
   $Res call(
       {String name,
       String gender,
-      int height,
-      String drinkFrequency,
-      String cigaretteFrequency,
-      String selfIntroduction,
+      int? height,
+      String? drinkFrequency,
+      String? cigaretteFrequency,
+      String? selfIntroduction,
       String adress,
-      List<Tag> tags,
+      List<Tag>? tags,
       String mainImageURL});
 }
 
@@ -148,12 +148,12 @@ class __$$_ProfileStateCopyWithImpl<$Res>
   $Res call({
     Object? name = null,
     Object? gender = null,
-    Object? height = null,
-    Object? drinkFrequency = null,
-    Object? cigaretteFrequency = null,
-    Object? selfIntroduction = null,
+    Object? height = freezed,
+    Object? drinkFrequency = freezed,
+    Object? cigaretteFrequency = freezed,
+    Object? selfIntroduction = freezed,
     Object? adress = null,
-    Object? tags = null,
+    Object? tags = freezed,
     Object? mainImageURL = null,
   }) {
     return _then(_$_ProfileState(
@@ -165,30 +165,30 @@ class __$$_ProfileStateCopyWithImpl<$Res>
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
               as String,
-      height: null == height
+      height: freezed == height
           ? _value.height
           : height // ignore: cast_nullable_to_non_nullable
-              as int,
-      drinkFrequency: null == drinkFrequency
+              as int?,
+      drinkFrequency: freezed == drinkFrequency
           ? _value.drinkFrequency
           : drinkFrequency // ignore: cast_nullable_to_non_nullable
-              as String,
-      cigaretteFrequency: null == cigaretteFrequency
+              as String?,
+      cigaretteFrequency: freezed == cigaretteFrequency
           ? _value.cigaretteFrequency
           : cigaretteFrequency // ignore: cast_nullable_to_non_nullable
-              as String,
-      selfIntroduction: null == selfIntroduction
+              as String?,
+      selfIntroduction: freezed == selfIntroduction
           ? _value.selfIntroduction
           : selfIntroduction // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       adress: null == adress
           ? _value.adress
           : adress // ignore: cast_nullable_to_non_nullable
               as String,
-      tags: null == tags
+      tags: freezed == tags
           ? _value._tags
           : tags // ignore: cast_nullable_to_non_nullable
-              as List<Tag>,
+              as List<Tag>?,
       mainImageURL: null == mainImageURL
           ? _value.mainImageURL
           : mainImageURL // ignore: cast_nullable_to_non_nullable
@@ -208,7 +208,7 @@ class _$_ProfileState implements _ProfileState {
       required this.cigaretteFrequency,
       required this.selfIntroduction,
       required this.adress,
-      required final List<Tag> tags,
+      required final List<Tag>? tags,
       required this.mainImageURL})
       : _tags = tags;
 
@@ -217,26 +217,28 @@ class _$_ProfileState implements _ProfileState {
   @override
   final String gender;
   @override
-  final int height;
+  final int? height;
   @override
-  final String drinkFrequency;
+  final String? drinkFrequency;
 // お酒をよく飲むか
   @override
-  final String cigaretteFrequency;
+  final String? cigaretteFrequency;
 // タバコをよく吸うか
   @override
-  final String selfIntroduction;
+  final String? selfIntroduction;
 // 自己紹介文(nullalble)
   @override
   final String adress;
 // 居住地
-  final List<Tag> _tags;
+  final List<Tag>? _tags;
 // 居住地
   @override
-  List<Tag> get tags {
+  List<Tag>? get tags {
+    final value = _tags;
+    if (value == null) return null;
     if (_tags is EqualUnmodifiableListView) return _tags;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_tags);
+    return EqualUnmodifiableListView(value);
   }
 
 // 職業ID
@@ -292,12 +294,12 @@ abstract class _ProfileState implements ProfileState {
   const factory _ProfileState(
       {required final String name,
       required final String gender,
-      required final int height,
-      required final String drinkFrequency,
-      required final String cigaretteFrequency,
-      required final String selfIntroduction,
+      required final int? height,
+      required final String? drinkFrequency,
+      required final String? cigaretteFrequency,
+      required final String? selfIntroduction,
       required final String adress,
-      required final List<Tag> tags,
+      required final List<Tag>? tags,
       required final String mainImageURL}) = _$_ProfileState;
 
   @override
@@ -305,17 +307,17 @@ abstract class _ProfileState implements ProfileState {
   @override
   String get gender;
   @override
-  int get height;
+  int? get height;
   @override
-  String get drinkFrequency;
+  String? get drinkFrequency;
   @override // お酒をよく飲むか
-  String get cigaretteFrequency;
+  String? get cigaretteFrequency;
   @override // タバコをよく吸うか
-  String get selfIntroduction;
+  String? get selfIntroduction;
   @override // 自己紹介文(nullalble)
   String get adress;
   @override // 居住地
-  List<Tag> get tags;
+  List<Tag>? get tags;
   @override // 職業ID
   String get mainImageURL;
   @override

@@ -15,8 +15,6 @@ import 'package:auto_route/auto_route.dart' as _i24;
 import 'package:auto_route/empty_router_widgets.dart' as _i3;
 import 'package:flutter/material.dart' as _i25;
 import 'package:fortune_client/view/pages/account/my_page/my_page.dart' as _i9;
-import 'package:fortune_client/view/pages/account/update/profile_update_page.dart'
-    as _i10;
 import 'package:fortune_client/view/pages/auth/login/login_page.dart' as _i1;
 import 'package:fortune_client/view/pages/common/bottom_navigation_bar/bottom_navigation_bar.dart'
     as _i2;
@@ -39,6 +37,8 @@ import 'package:fortune_client/view/pages/profile/create/entry_profile_sub_image
     as _i23;
 import 'package:fortune_client/view/pages/profile/profile/profile_page.dart'
     as _i6;
+import 'package:fortune_client/view/pages/profile/update/profile_update_page.dart'
+    as _i10;
 import 'package:fortune_client/view/pages/request/request_confirmation/request_confirmation_page.dart'
     as _i18;
 import 'package:fortune_client/view/pages/rooms/create/room_creation_page.dart'

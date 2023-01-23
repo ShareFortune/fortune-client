@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'create_profile_form.dart';
+part of 'profile_update_request.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,101 +14,65 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-ProfileForm _$ProfileFormFromJson(Map<String, dynamic> json) {
-  return _ProfileForm.fromJson(json);
+ProfileUpdateRequest _$ProfileUpdateRequestFromJson(Map<String, dynamic> json) {
+  return _ProfileUpdateRequest.fromJson(json);
 }
 
 /// @nodoc
-mixin _$ProfileForm {
-  ///
-  /// 名前
-  ///
-  @JsonKey(name: 'name')
+mixin _$ProfileUpdateRequest {
+  @JsonKey(name: "name")
   String get name => throw _privateConstructorUsedError;
-
-  ///
-  /// 性別
-  ///
-  @JsonKey(name: 'gender')
+  @JsonKey(name: "gender")
   String get gender => throw _privateConstructorUsedError;
-
-  ///
-  /// アイコン画像
-  ///
-  @JsonKey(name: 'files')
-  Map<String, dynamic> get images => throw _privateConstructorUsedError;
-
-  ///
-  /// 居住地
-  ///
-  @JsonKey(name: 'addressId')
+  @JsonKey(name: "addressId")
   int get addressId => throw _privateConstructorUsedError;
-
-  ///
-  /// 身長
-  ///
-  @JsonKey(name: 'height')
+  @JsonKey(name: "files")
+  ProfileFilesRequest get files => throw _privateConstructorUsedError;
+  @JsonKey(name: "height")
   int? get height => throw _privateConstructorUsedError;
-
-  ///
-  /// お酒をよく飲むか
-  ///
-  @JsonKey(name: 'drinkFrequency')
+  @JsonKey(name: "drinkFrequency")
   String? get drinkFrequency => throw _privateConstructorUsedError;
-
-  ///
-  /// タバコをよく吸うか
-  ///
-  @JsonKey(name: 'cigaretteFrequency')
+  @JsonKey(name: "cigaretteFrequency")
   String? get cigaretteFrequency => throw _privateConstructorUsedError;
-
-  ///
-  /// 自己紹介文
-  ///
-  @JsonKey(name: 'selfIntroduction')
+  @JsonKey(name: "selfIntroduction")
   String? get selfIntroduction => throw _privateConstructorUsedError;
-
-  ///
-  /// 職業ID
-  ///
-  @JsonKey(name: 'occupationId')
+  @JsonKey(name: "occupationId")
   int? get occupationId => throw _privateConstructorUsedError;
-
-  ///
-  /// タグ
-  ///
-  @JsonKey(name: 'tagIds')
+  @JsonKey(name: "tagIds")
   List<String>? get tagIds => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $ProfileFormCopyWith<ProfileForm> get copyWith =>
+  $ProfileUpdateRequestCopyWith<ProfileUpdateRequest> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ProfileFormCopyWith<$Res> {
-  factory $ProfileFormCopyWith(
-          ProfileForm value, $Res Function(ProfileForm) then) =
-      _$ProfileFormCopyWithImpl<$Res, ProfileForm>;
+abstract class $ProfileUpdateRequestCopyWith<$Res> {
+  factory $ProfileUpdateRequestCopyWith(ProfileUpdateRequest value,
+          $Res Function(ProfileUpdateRequest) then) =
+      _$ProfileUpdateRequestCopyWithImpl<$Res, ProfileUpdateRequest>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'name') String name,
-      @JsonKey(name: 'gender') String gender,
-      @JsonKey(name: 'files') Map<String, dynamic> images,
-      @JsonKey(name: 'addressId') int addressId,
-      @JsonKey(name: 'height') int? height,
-      @JsonKey(name: 'drinkFrequency') String? drinkFrequency,
-      @JsonKey(name: 'cigaretteFrequency') String? cigaretteFrequency,
-      @JsonKey(name: 'selfIntroduction') String? selfIntroduction,
-      @JsonKey(name: 'occupationId') int? occupationId,
-      @JsonKey(name: 'tagIds') List<String>? tagIds});
+      {@JsonKey(name: "name") String name,
+      @JsonKey(name: "gender") String gender,
+      @JsonKey(name: "addressId") int addressId,
+      @JsonKey(name: "files") ProfileFilesRequest files,
+      @JsonKey(name: "height") int? height,
+      @JsonKey(name: "drinkFrequency") String? drinkFrequency,
+      @JsonKey(name: "cigaretteFrequency") String? cigaretteFrequency,
+      @JsonKey(name: "selfIntroduction") String? selfIntroduction,
+      @JsonKey(name: "occupationId") int? occupationId,
+      @JsonKey(name: "tagIds") List<String>? tagIds});
+
+  $ProfileFilesRequestCopyWith<$Res> get files;
 }
 
 /// @nodoc
-class _$ProfileFormCopyWithImpl<$Res, $Val extends ProfileForm>
-    implements $ProfileFormCopyWith<$Res> {
-  _$ProfileFormCopyWithImpl(this._value, this._then);
+class _$ProfileUpdateRequestCopyWithImpl<$Res,
+        $Val extends ProfileUpdateRequest>
+    implements $ProfileUpdateRequestCopyWith<$Res> {
+  _$ProfileUpdateRequestCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -120,8 +84,8 @@ class _$ProfileFormCopyWithImpl<$Res, $Val extends ProfileForm>
   $Res call({
     Object? name = null,
     Object? gender = null,
-    Object? images = null,
     Object? addressId = null,
+    Object? files = null,
     Object? height = freezed,
     Object? drinkFrequency = freezed,
     Object? cigaretteFrequency = freezed,
@@ -138,14 +102,14 @@ class _$ProfileFormCopyWithImpl<$Res, $Val extends ProfileForm>
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
               as String,
-      images: null == images
-          ? _value.images
-          : images // ignore: cast_nullable_to_non_nullable
-              as Map<String, dynamic>,
       addressId: null == addressId
           ? _value.addressId
           : addressId // ignore: cast_nullable_to_non_nullable
               as int,
+      files: null == files
+          ? _value.files
+          : files // ignore: cast_nullable_to_non_nullable
+              as ProfileFilesRequest,
       height: freezed == height
           ? _value.height
           : height // ignore: cast_nullable_to_non_nullable
@@ -172,35 +136,46 @@ class _$ProfileFormCopyWithImpl<$Res, $Val extends ProfileForm>
               as List<String>?,
     ) as $Val);
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ProfileFilesRequestCopyWith<$Res> get files {
+    return $ProfileFilesRequestCopyWith<$Res>(_value.files, (value) {
+      return _then(_value.copyWith(files: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
-abstract class _$$_ProfileFormCopyWith<$Res>
-    implements $ProfileFormCopyWith<$Res> {
-  factory _$$_ProfileFormCopyWith(
-          _$_ProfileForm value, $Res Function(_$_ProfileForm) then) =
-      __$$_ProfileFormCopyWithImpl<$Res>;
+abstract class _$$_ProfileUpdateRequestCopyWith<$Res>
+    implements $ProfileUpdateRequestCopyWith<$Res> {
+  factory _$$_ProfileUpdateRequestCopyWith(_$_ProfileUpdateRequest value,
+          $Res Function(_$_ProfileUpdateRequest) then) =
+      __$$_ProfileUpdateRequestCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'name') String name,
-      @JsonKey(name: 'gender') String gender,
-      @JsonKey(name: 'files') Map<String, dynamic> images,
-      @JsonKey(name: 'addressId') int addressId,
-      @JsonKey(name: 'height') int? height,
-      @JsonKey(name: 'drinkFrequency') String? drinkFrequency,
-      @JsonKey(name: 'cigaretteFrequency') String? cigaretteFrequency,
-      @JsonKey(name: 'selfIntroduction') String? selfIntroduction,
-      @JsonKey(name: 'occupationId') int? occupationId,
-      @JsonKey(name: 'tagIds') List<String>? tagIds});
+      {@JsonKey(name: "name") String name,
+      @JsonKey(name: "gender") String gender,
+      @JsonKey(name: "addressId") int addressId,
+      @JsonKey(name: "files") ProfileFilesRequest files,
+      @JsonKey(name: "height") int? height,
+      @JsonKey(name: "drinkFrequency") String? drinkFrequency,
+      @JsonKey(name: "cigaretteFrequency") String? cigaretteFrequency,
+      @JsonKey(name: "selfIntroduction") String? selfIntroduction,
+      @JsonKey(name: "occupationId") int? occupationId,
+      @JsonKey(name: "tagIds") List<String>? tagIds});
+
+  @override
+  $ProfileFilesRequestCopyWith<$Res> get files;
 }
 
 /// @nodoc
-class __$$_ProfileFormCopyWithImpl<$Res>
-    extends _$ProfileFormCopyWithImpl<$Res, _$_ProfileForm>
-    implements _$$_ProfileFormCopyWith<$Res> {
-  __$$_ProfileFormCopyWithImpl(
-      _$_ProfileForm _value, $Res Function(_$_ProfileForm) _then)
+class __$$_ProfileUpdateRequestCopyWithImpl<$Res>
+    extends _$ProfileUpdateRequestCopyWithImpl<$Res, _$_ProfileUpdateRequest>
+    implements _$$_ProfileUpdateRequestCopyWith<$Res> {
+  __$$_ProfileUpdateRequestCopyWithImpl(_$_ProfileUpdateRequest _value,
+      $Res Function(_$_ProfileUpdateRequest) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -208,8 +183,8 @@ class __$$_ProfileFormCopyWithImpl<$Res>
   $Res call({
     Object? name = null,
     Object? gender = null,
-    Object? images = null,
     Object? addressId = null,
+    Object? files = null,
     Object? height = freezed,
     Object? drinkFrequency = freezed,
     Object? cigaretteFrequency = freezed,
@@ -217,7 +192,7 @@ class __$$_ProfileFormCopyWithImpl<$Res>
     Object? occupationId = freezed,
     Object? tagIds = freezed,
   }) {
-    return _then(_$_ProfileForm(
+    return _then(_$_ProfileUpdateRequest(
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -226,14 +201,14 @@ class __$$_ProfileFormCopyWithImpl<$Res>
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
               as String,
-      images: null == images
-          ? _value._images
-          : images // ignore: cast_nullable_to_non_nullable
-              as Map<String, dynamic>,
       addressId: null == addressId
           ? _value.addressId
           : addressId // ignore: cast_nullable_to_non_nullable
               as int,
+      files: null == files
+          ? _value.files
+          : files // ignore: cast_nullable_to_non_nullable
+              as ProfileFilesRequest,
       height: freezed == height
           ? _value.height
           : height // ignore: cast_nullable_to_non_nullable
@@ -264,106 +239,53 @@ class __$$_ProfileFormCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_ProfileForm implements _ProfileForm {
-  _$_ProfileForm(
-      {@JsonKey(name: 'name') required this.name,
-      @JsonKey(name: 'gender') required this.gender,
-      @JsonKey(name: 'files') required final Map<String, dynamic> images,
-      @JsonKey(name: 'addressId') required this.addressId,
-      @JsonKey(name: 'height') this.height,
-      @JsonKey(name: 'drinkFrequency') this.drinkFrequency,
-      @JsonKey(name: 'cigaretteFrequency') this.cigaretteFrequency,
-      @JsonKey(name: 'selfIntroduction') this.selfIntroduction,
-      @JsonKey(name: 'occupationId') this.occupationId,
-      @JsonKey(name: 'tagIds') final List<String>? tagIds})
-      : _images = images,
-        _tagIds = tagIds;
+class _$_ProfileUpdateRequest implements _ProfileUpdateRequest {
+  const _$_ProfileUpdateRequest(
+      {@JsonKey(name: "name") required this.name,
+      @JsonKey(name: "gender") required this.gender,
+      @JsonKey(name: "addressId") required this.addressId,
+      @JsonKey(name: "files") required this.files,
+      @JsonKey(name: "height") required this.height,
+      @JsonKey(name: "drinkFrequency") required this.drinkFrequency,
+      @JsonKey(name: "cigaretteFrequency") required this.cigaretteFrequency,
+      @JsonKey(name: "selfIntroduction") required this.selfIntroduction,
+      @JsonKey(name: "occupationId") required this.occupationId,
+      @JsonKey(name: "tagIds") required final List<String>? tagIds})
+      : _tagIds = tagIds;
 
-  factory _$_ProfileForm.fromJson(Map<String, dynamic> json) =>
-      _$$_ProfileFormFromJson(json);
+  factory _$_ProfileUpdateRequest.fromJson(Map<String, dynamic> json) =>
+      _$$_ProfileUpdateRequestFromJson(json);
 
-  ///
-  /// 名前
-  ///
   @override
-  @JsonKey(name: 'name')
+  @JsonKey(name: "name")
   final String name;
-
-  ///
-  /// 性別
-  ///
   @override
-  @JsonKey(name: 'gender')
+  @JsonKey(name: "gender")
   final String gender;
-
-  ///
-  /// アイコン画像
-  ///
-  final Map<String, dynamic> _images;
-
-  ///
-  /// アイコン画像
-  ///
   @override
-  @JsonKey(name: 'files')
-  Map<String, dynamic> get images {
-    if (_images is EqualUnmodifiableMapView) return _images;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableMapView(_images);
-  }
-
-  ///
-  /// 居住地
-  ///
-  @override
-  @JsonKey(name: 'addressId')
+  @JsonKey(name: "addressId")
   final int addressId;
-
-  ///
-  /// 身長
-  ///
   @override
-  @JsonKey(name: 'height')
+  @JsonKey(name: "files")
+  final ProfileFilesRequest files;
+  @override
+  @JsonKey(name: "height")
   final int? height;
-
-  ///
-  /// お酒をよく飲むか
-  ///
   @override
-  @JsonKey(name: 'drinkFrequency')
+  @JsonKey(name: "drinkFrequency")
   final String? drinkFrequency;
-
-  ///
-  /// タバコをよく吸うか
-  ///
   @override
-  @JsonKey(name: 'cigaretteFrequency')
+  @JsonKey(name: "cigaretteFrequency")
   final String? cigaretteFrequency;
-
-  ///
-  /// 自己紹介文
-  ///
   @override
-  @JsonKey(name: 'selfIntroduction')
+  @JsonKey(name: "selfIntroduction")
   final String? selfIntroduction;
-
-  ///
-  /// 職業ID
-  ///
   @override
-  @JsonKey(name: 'occupationId')
+  @JsonKey(name: "occupationId")
   final int? occupationId;
-
-  ///
-  /// タグ
-  ///
   final List<String>? _tagIds;
-
-  ///
-  /// タグ
-  ///
   @override
-  @JsonKey(name: 'tagIds')
+  @JsonKey(name: "tagIds")
   List<String>? get tagIds {
     final value = _tagIds;
     if (value == null) return null;
@@ -374,19 +296,19 @@ class _$_ProfileForm implements _ProfileForm {
 
   @override
   String toString() {
-    return 'ProfileForm(name: $name, gender: $gender, images: $images, addressId: $addressId, height: $height, drinkFrequency: $drinkFrequency, cigaretteFrequency: $cigaretteFrequency, selfIntroduction: $selfIntroduction, occupationId: $occupationId, tagIds: $tagIds)';
+    return 'ProfileUpdateRequest(name: $name, gender: $gender, addressId: $addressId, files: $files, height: $height, drinkFrequency: $drinkFrequency, cigaretteFrequency: $cigaretteFrequency, selfIntroduction: $selfIntroduction, occupationId: $occupationId, tagIds: $tagIds)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ProfileForm &&
+            other is _$_ProfileUpdateRequest &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.gender, gender) || other.gender == gender) &&
-            const DeepCollectionEquality().equals(other._images, _images) &&
             (identical(other.addressId, addressId) ||
                 other.addressId == addressId) &&
+            (identical(other.files, files) || other.files == files) &&
             (identical(other.height, height) || other.height == height) &&
             (identical(other.drinkFrequency, drinkFrequency) ||
                 other.drinkFrequency == drinkFrequency) &&
@@ -405,8 +327,8 @@ class _$_ProfileForm implements _ProfileForm {
       runtimeType,
       name,
       gender,
-      const DeepCollectionEquality().hash(_images),
       addressId,
+      files,
       height,
       drinkFrequency,
       cigaretteFrequency,
@@ -417,105 +339,76 @@ class _$_ProfileForm implements _ProfileForm {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ProfileFormCopyWith<_$_ProfileForm> get copyWith =>
-      __$$_ProfileFormCopyWithImpl<_$_ProfileForm>(this, _$identity);
+  _$$_ProfileUpdateRequestCopyWith<_$_ProfileUpdateRequest> get copyWith =>
+      __$$_ProfileUpdateRequestCopyWithImpl<_$_ProfileUpdateRequest>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ProfileFormToJson(
+    return _$$_ProfileUpdateRequestToJson(
       this,
     );
   }
 }
 
-abstract class _ProfileForm implements ProfileForm {
-  factory _ProfileForm(
-      {@JsonKey(name: 'name') required final String name,
-      @JsonKey(name: 'gender') required final String gender,
-      @JsonKey(name: 'files') required final Map<String, dynamic> images,
-      @JsonKey(name: 'addressId') required final int addressId,
-      @JsonKey(name: 'height') final int? height,
-      @JsonKey(name: 'drinkFrequency') final String? drinkFrequency,
-      @JsonKey(name: 'cigaretteFrequency') final String? cigaretteFrequency,
-      @JsonKey(name: 'selfIntroduction') final String? selfIntroduction,
-      @JsonKey(name: 'occupationId') final int? occupationId,
-      @JsonKey(name: 'tagIds') final List<String>? tagIds}) = _$_ProfileForm;
+abstract class _ProfileUpdateRequest implements ProfileUpdateRequest {
+  const factory _ProfileUpdateRequest(
+      {@JsonKey(name: "name")
+          required final String name,
+      @JsonKey(name: "gender")
+          required final String gender,
+      @JsonKey(name: "addressId")
+          required final int addressId,
+      @JsonKey(name: "files")
+          required final ProfileFilesRequest files,
+      @JsonKey(name: "height")
+          required final int? height,
+      @JsonKey(name: "drinkFrequency")
+          required final String? drinkFrequency,
+      @JsonKey(name: "cigaretteFrequency")
+          required final String? cigaretteFrequency,
+      @JsonKey(name: "selfIntroduction")
+          required final String? selfIntroduction,
+      @JsonKey(name: "occupationId")
+          required final int? occupationId,
+      @JsonKey(name: "tagIds")
+          required final List<String>? tagIds}) = _$_ProfileUpdateRequest;
 
-  factory _ProfileForm.fromJson(Map<String, dynamic> json) =
-      _$_ProfileForm.fromJson;
+  factory _ProfileUpdateRequest.fromJson(Map<String, dynamic> json) =
+      _$_ProfileUpdateRequest.fromJson;
 
   @override
-
-  ///
-  /// 名前
-  ///
-  @JsonKey(name: 'name')
+  @JsonKey(name: "name")
   String get name;
   @override
-
-  ///
-  /// 性別
-  ///
-  @JsonKey(name: 'gender')
+  @JsonKey(name: "gender")
   String get gender;
   @override
-
-  ///
-  /// アイコン画像
-  ///
-  @JsonKey(name: 'files')
-  Map<String, dynamic> get images;
-  @override
-
-  ///
-  /// 居住地
-  ///
-  @JsonKey(name: 'addressId')
+  @JsonKey(name: "addressId")
   int get addressId;
   @override
-
-  ///
-  /// 身長
-  ///
-  @JsonKey(name: 'height')
+  @JsonKey(name: "files")
+  ProfileFilesRequest get files;
+  @override
+  @JsonKey(name: "height")
   int? get height;
   @override
-
-  ///
-  /// お酒をよく飲むか
-  ///
-  @JsonKey(name: 'drinkFrequency')
+  @JsonKey(name: "drinkFrequency")
   String? get drinkFrequency;
   @override
-
-  ///
-  /// タバコをよく吸うか
-  ///
-  @JsonKey(name: 'cigaretteFrequency')
+  @JsonKey(name: "cigaretteFrequency")
   String? get cigaretteFrequency;
   @override
-
-  ///
-  /// 自己紹介文
-  ///
-  @JsonKey(name: 'selfIntroduction')
+  @JsonKey(name: "selfIntroduction")
   String? get selfIntroduction;
   @override
-
-  ///
-  /// 職業ID
-  ///
-  @JsonKey(name: 'occupationId')
+  @JsonKey(name: "occupationId")
   int? get occupationId;
   @override
-
-  ///
-  /// タグ
-  ///
-  @JsonKey(name: 'tagIds')
+  @JsonKey(name: "tagIds")
   List<String>? get tagIds;
   @override
   @JsonKey(ignore: true)
-  _$$_ProfileFormCopyWith<_$_ProfileForm> get copyWith =>
+  _$$_ProfileUpdateRequestCopyWith<_$_ProfileUpdateRequest> get copyWith =>
       throw _privateConstructorUsedError;
 }

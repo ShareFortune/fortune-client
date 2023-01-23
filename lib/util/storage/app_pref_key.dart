@@ -10,6 +10,9 @@ enum AppPrefKey {
 
   /// プロフィールID
   profileId,
+
+  /// プロフィール
+  profile,
 }
 
 extension AppPrefKeyEx on AppPrefKey {

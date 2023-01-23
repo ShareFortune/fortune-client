@@ -67,7 +67,7 @@ class EntryProfileSubImageViewModel
     final icon = _ref.read(profileIconImageEntryViewModelProvider);
 
     return await repository.create(
-      iconImage: icon.imageFile,
+      iconImage: icon.imageFile!,
       mainImage: data.firstImageFile,
       secondImage: data.secondImageFile,
       thirdImage: data.thirdImageFile,

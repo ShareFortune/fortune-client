@@ -1,17 +1,19 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'create_profile_form.dart';
+part of 'profile_update_request.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_ProfileForm _$$_ProfileFormFromJson(Map<String, dynamic> json) =>
-    _$_ProfileForm(
+_$_ProfileUpdateRequest _$$_ProfileUpdateRequestFromJson(
+        Map<String, dynamic> json) =>
+    _$_ProfileUpdateRequest(
       name: json['name'] as String,
       gender: json['gender'] as String,
-      images: json['files'] as Map<String, dynamic>,
       addressId: json['addressId'] as int,
+      files:
+          ProfileFilesRequest.fromJson(json['files'] as Map<String, dynamic>),
       height: json['height'] as int?,
       drinkFrequency: json['drinkFrequency'] as String?,
       cigaretteFrequency: json['cigaretteFrequency'] as String?,
@@ -21,12 +23,13 @@ _$_ProfileForm _$$_ProfileFormFromJson(Map<String, dynamic> json) =>
           (json['tagIds'] as List<dynamic>?)?.map((e) => e as String).toList(),
     );
 
-Map<String, dynamic> _$$_ProfileFormToJson(_$_ProfileForm instance) =>
+Map<String, dynamic> _$$_ProfileUpdateRequestToJson(
+        _$_ProfileUpdateRequest instance) =>
     <String, dynamic>{
       'name': instance.name,
       'gender': instance.gender,
-      'files': instance.images,
       'addressId': instance.addressId,
+      'files': instance.files,
       'height': instance.height,
       'drinkFrequency': instance.drinkFrequency,
       'cigaretteFrequency': instance.cigaretteFrequency,

@@ -21,33 +21,35 @@ class Profile with _$Profile {
     /// ニックネーム
     @JsonKey(name: "name") required String name,
 
+    /// プロフィール画像
+    @JsonKey(name: "mainImageURL") required String mainImageURL,
+
     /// 性別
     @JsonKey(name: "gender") @GenderConverter() required Gender gender,
-
-    /// 身長
-    @JsonKey(name: "height") required int height,
-
-    /// お酒をよく飲むか
-    @JsonKey(name: "drinkFrequency")
-    @DrinkFrequencyConverter()
-        required DrinkFrequency drinkFrequency,
-
-    /// タバコをよく吸うか
-    @JsonKey(name: "cigaretteFrequency")
-    @CigaretteFrequencyConverter()
-        required CigaretteFrequency cigaretteFrequency,
-
-    /// 自己紹介文
-    @JsonKey(name: "selfIntroduction") required String selfIntroduction,
 
     /// 居住地
     @JsonKey(name: "address") required Address address,
 
-    /// 居住地
-    @JsonKey(name: "tags") required List<Tag> tags,
+    /// NULL =>
 
-    /// プロフィール画像
-    @JsonKey(name: "mainImageURL") required String mainImageURL,
+    /// 身長
+    @JsonKey(name: "height") required int? height,
+
+    /// お酒をよく飲むか
+    @JsonKey(name: "drinkFrequency")
+    @DrinkFrequencyConverter()
+        required DrinkFrequency? drinkFrequency,
+
+    /// タバコをよく吸うか
+    @JsonKey(name: "cigaretteFrequency")
+    @CigaretteFrequencyConverter()
+        required CigaretteFrequency? cigaretteFrequency,
+
+    /// 自己紹介文
+    @JsonKey(name: "selfIntroduction") required String? selfIntroduction,
+
+    /// 居住地
+    @JsonKey(name: "tags") required List<Tag>? tags,
   }) = _Profile;
 
   factory Profile.fromJson(Map<String, dynamic> json) =>

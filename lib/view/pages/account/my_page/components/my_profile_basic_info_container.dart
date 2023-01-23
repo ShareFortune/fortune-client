@@ -16,9 +16,9 @@ class MyProfileBasicInfoContainer extends StatelessWidget {
 
   final AppTheme theme;
   final String address;
-  final int stature;
-  final String drinkFrequency;
-  final String cigaretteFrequency;
+  final int? stature;
+  final String? drinkFrequency;
+  final String? cigaretteFrequency;
   final VoidCallback onUpdate;
 
   @override
@@ -31,9 +31,9 @@ class MyProfileBasicInfoContainer extends StatelessWidget {
       child: Column(
         children: [
           basicInfoTile(theme, "居住地", address),
-          basicInfoTile(theme, "身長", "${stature}cm"),
-          basicInfoTile(theme, "お酒", drinkFrequency),
-          basicInfoTile(theme, "タバコ", cigaretteFrequency),
+          basicInfoTile(theme, "身長", stature != null ? "${stature}cm" : "未設定"),
+          basicInfoTile(theme, "お酒", drinkFrequency ?? "未設定"),
+          basicInfoTile(theme, "タバコ", cigaretteFrequency ?? "未設定"),
         ],
       ),
     );

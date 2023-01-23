@@ -12,7 +12,7 @@ class MyProfileTagsContainer extends StatelessWidget {
   });
 
   final AppTheme theme;
-  final List<Tag> tags;
+  final List<Tag>? tags;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ class MyProfileTagsContainer extends StatelessWidget {
       child: Wrap(
         spacing: 10,
         runSpacing: 10,
-        children: tags.map((e) {
+        children: tags!.map((e) {
           return TagWidget(value: e.name);
         }).toList(),
       ),

@@ -21,16 +21,22 @@ abstract class ProfileRepository {
     required int? occupationId,
 
     /// Images
-    required File? iconImage,
+    required File iconImage,
     required File? mainImage,
     required File? secondImage,
     required File? thirdImage,
     required File? fourthImage,
   });
 
-  /// アップデート
-  Future<String> update();
-
   /// 取得
   Future<Profile> get();
+
+  /// アップデート基本情報
+  ///
+  Future<Profile> updateBasicInfo({
+    int? stature,
+    Address? addressId,
+    DrinkFrequency? drinkFrequency,
+    CigaretteFrequency? cigaretteFrequency,
+  });
 }
