@@ -5,6 +5,7 @@ import 'package:fortune_client/data/model/enum/cigarette_frequency.dart';
 import 'package:fortune_client/data/model/enum/drink_frequency.dart';
 import 'package:fortune_client/data/model/profile/profile.dart';
 import 'package:fortune_client/data/model/enum/gender.dart';
+import 'package:fortune_client/data/model/tag/tag.dart';
 
 abstract class ProfileRepository {
   /// 作成済みかどうか
@@ -34,6 +35,12 @@ abstract class ProfileRepository {
   /// キャッシュに保存されたプロフィールを取得
   Profile getCache();
 
+  /// 更新
+  Future<void> updateTags({
+    required List<Tag> tags,
+  });
+
+  /// 更新
   Future<void> updateBasicInfo({
     required Address address,
     required int? stature,

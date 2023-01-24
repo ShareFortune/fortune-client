@@ -121,6 +121,16 @@ class ProfileRepositoryImpl implements ProfileRepository {
   }
 
   @override
+  Future<void> updateTags({required List<Tag> tags}) async {
+    try {
+      await _update(tags: tags);
+    } catch (e) {
+      logger.e(e);
+      rethrow;
+    }
+  }
+
+  @override
   Future<void> updateBasicInfo({
     required Address address,
     required int? stature,
@@ -128,7 +138,6 @@ class ProfileRepositoryImpl implements ProfileRepository {
     required CigaretteFrequency? cigaretteFrequency,
   }) async {
     try {
-      /// プロフィール更新
       await _update(
         address: address,
         stature: stature,

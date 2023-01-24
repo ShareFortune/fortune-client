@@ -31,9 +31,16 @@ class MyPageViewModel extends StateNotifier<AsyncValue<MyPageState>> {
   navigateToTagsSelection() async {
     final data = state.value;
     if (data == null) return;
+
+    /// タグ取得
     final result = await sl<AppRouter>().push(
       TagsSelectionRoute(beingSet: data.tags ?? List.empty()),
     ) as List<Tag>?;
+
+    /// 更新
+    if (result != null) _repository.updateTags(tags: result);
+
+    /// ステータス更新
     state = await AsyncValue.guard(() async {
       return data.copyWith(tags: result ?? data.tags);
     });
