@@ -25,6 +25,10 @@ class RoomListViewModel extends StateNotifier<RoomListState> {
 
   Future<void> initialize() async => await fetchList();
 
+  changeMemberNum(int value) {
+    state = state.copyWith(memberNum: value);
+  }
+
   Future<void> fetchList() async {
     state = state.copyWith(
       rooms: await AsyncValue.guard(() async {
@@ -34,10 +38,6 @@ class RoomListViewModel extends StateNotifier<RoomListState> {
         }).toList();
       }),
     );
-  }
-
-  changeMemberNum(int value) {
-    state = state.copyWith(memberNum: value);
   }
 
   Future<bool> sendJoinRequest(String roomId) async {
@@ -90,8 +90,9 @@ class RoomListViewModel extends StateNotifier<RoomListState> {
   }
 
   navigateToTagsSelection() async {
-    final result =
-        await sl<AppRouter>().push(TagsSelectionRoute()) as List<Tag>?;
+    final result = await sl<AppRouter>().push(
+      TagsSelectionRoute(beingSet: state.tags ?? List.empty()),
+    ) as List<Tag>?;
     state = state.copyWith(tags: result ?? state.tags);
   }
 }

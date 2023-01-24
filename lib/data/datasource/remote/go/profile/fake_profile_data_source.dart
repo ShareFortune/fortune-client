@@ -17,4 +17,10 @@ class FakeProfileDataSource implements ProfileDataSource {
       await Json.load(Assets.stub.profile),
     );
   }
+
+  @override
+  Future<ResponseID> update(String id, Map<String, dynamic> body) {
+    // TODO: implement update
+    throw UnimplementedError();
+  }
 }

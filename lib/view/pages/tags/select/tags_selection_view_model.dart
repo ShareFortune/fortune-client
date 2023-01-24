@@ -5,9 +5,9 @@ import 'package:fortune_client/view/pages/tags/select/tags_selection_state.dart'
 import 'package:fortune_client/view/routes/app_router.gr.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-final tagsSelectionViewModelProvider = StateNotifierProvider.autoDispose<
-    TagsSelectionViewModel, TagsSelectionState>(
-  (ref) => TagsSelectionViewModel(sl())..initialize(),
+final tagsSelectionViewModelProvider = StateNotifierProvider.autoDispose
+    .family<TagsSelectionViewModel, TagsSelectionState, List<Tag>>(
+  (ref, beingSet) => TagsSelectionViewModel(sl())..initialize(beingSet),
 );
 
 class TagsSelectionViewModel extends StateNotifier<TagsSelectionState> {
@@ -15,8 +15,14 @@ class TagsSelectionViewModel extends StateNotifier<TagsSelectionState> {
 
   final TagsRepository _repository;
 
-  initialize() async {
-    await getRecommendedTags();
+  initialize(List<Tag> beingSet) {
+    state = state.copyWith(
+      beingSet: beingSet.map((e) {
+        return TagState(data: e, isSelected: true);
+      }).toList(),
+    );
+
+    getRecommendedTags();
   }
 
   selectTag(TagState tag) {
@@ -43,7 +49,7 @@ class TagsSelectionViewModel extends StateNotifier<TagsSelectionState> {
     state = state.copyWith(searchResult: tags);
   }
 
-  getRecommendedTags() async {
+  Future<void> getRecommendedTags() async {
     final tags = await AsyncValue.guard<List<TagState>>(() async {
       final result = await _repository.recommend();
       return result.map((e) => TagState.from(e)).toList();

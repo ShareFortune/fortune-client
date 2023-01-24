@@ -8,8 +8,22 @@ enum AppPrefKey {
   /// Fortune ID
   fortuneId,
 
-  /// プロフィールID
+  /// プロフィール
+  profile,
   profileId,
+  username,
+  name,
+  mainImageURL,
+  gender,
+  stature,
+  addressId,
+  drinkFrequency,
+  cigaretteFrequency,
+  selfIntroduction,
+  tags,
+
+  /// プロフィール写真URL
+  profileUrl,
 }
 
 extension AppPrefKeyEx on AppPrefKey {

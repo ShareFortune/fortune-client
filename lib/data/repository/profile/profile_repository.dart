@@ -5,6 +5,7 @@ import 'package:fortune_client/data/model/enum/cigarette_frequency.dart';
 import 'package:fortune_client/data/model/enum/drink_frequency.dart';
 import 'package:fortune_client/data/model/profile/profile.dart';
 import 'package:fortune_client/data/model/enum/gender.dart';
+import 'package:fortune_client/data/model/tag/tag.dart';
 
 abstract class ProfileRepository {
   /// 作成済みかどうか
@@ -21,16 +22,26 @@ abstract class ProfileRepository {
     required int? occupationId,
 
     /// Images
-    required File? iconImage,
+    required File iconImage,
     required File? mainImage,
     required File? secondImage,
     required File? thirdImage,
     required File? fourthImage,
   });
 
-  /// アップデート
-  Future<String> update();
-
   /// 取得
   Future<Profile> get();
+
+  /// キャッシュに保存されたプロフィールを取得
+  Profile getCache();
+
+  /// 更新
+  Future<void> updateSelfIntroduction(String selfIntroduction);
+  Future<void> updateTags(List<Tag> tags);
+  Future<void> updateBasicInfo({
+    required Address address,
+    required int? stature,
+    required DrinkFrequency? drinkFrequency,
+    required CigaretteFrequency? cigaretteFrequency,
+  });
 }

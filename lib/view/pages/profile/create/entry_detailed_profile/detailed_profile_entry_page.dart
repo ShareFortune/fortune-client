@@ -72,9 +72,7 @@ class DetailedProfileEntryPage extends HookConsumerWidget {
       items: DrinkFrequency.values.map((e) => e.text).toList(),
       onSelect: (value) {
         viewModel.changeDrinkFrequency(
-          DrinkFrequency.values.firstWhere(
-            (e) => e.text == value,
-          ),
+          DrinkFrequency.values.firstWhere((e) => e.text == value),
         );
       },
     );

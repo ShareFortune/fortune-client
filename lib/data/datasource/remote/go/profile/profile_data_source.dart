@@ -20,4 +20,11 @@ abstract class ProfileDataSource {
     @Path('id') String id,
     @Body() Map<String, dynamic> body,
   );
+
+  @PATCH('profiles/{id}')
+  @authenticatedRequest
+  Future<ResponseID> update(
+    @Path('id') String id,
+    @Body() Map<String, dynamic> body,
+  );
 }

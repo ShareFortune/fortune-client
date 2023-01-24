@@ -62,21 +62,3 @@ class ProfileForm with _$ProfileForm {
   factory ProfileForm.fromJson(Map<String, dynamic> json) =>
       _$ProfileFormFromJson(json);
 }
-
-///
-/// プロフィール画像
-///
-@freezed
-class ProfileFormImages with _$ProfileFormImages {
-  factory ProfileFormImages({
-    @JsonKey(name: 'mainImage') required String mainImage,
-    @JsonKey(name: 'secondImage', nullable: true) String? secondImage,
-    @JsonKey(name: 'thirdImage', nullable: true) String? thirdImage,
-    @JsonKey(name: 'fourthImage', nullable: true) String? fourthImage,
-    @JsonKey(name: 'fifthImage', nullable: true) String? fifthImage,
-    @JsonKey(name: 'sixthImage', nullable: true) String? sixthImage,
-  }) = _ProfileFormImages;
-
-  factory ProfileFormImages.fromJson(Map<String, dynamic> json) =>
-      _$ProfileFormImagesFromJson(json);
-}
