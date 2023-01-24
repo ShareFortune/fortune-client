@@ -1,18 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:fortune_client/view/pages/tags/select/tags_selection_state.dart';
-import 'package:fortune_client/view/pages/tags/select/tags_selection_view_model.dart';
 import 'package:fortune_client/view/widgets/other/tag_widget.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class TagsWraper extends HookConsumerWidget {
-  const TagsWraper(this.tags, {super.key});
+class TagsWraper extends StatelessWidget {
+  const TagsWraper({super.key, required this.tags, required this.onSelect});
 
   final List<TagState> tags;
+  final Function(TagState) onSelect;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final viewModel = ref.watch(tagsSelectionViewModelProvider.notifier);
-
+  Widget build(BuildContext context) {
     /// BackGraundColor
     const onBackGraundColor = Colors.red;
     const offBackGraundColor = Colors.white;
@@ -35,7 +32,7 @@ class TagsWraper extends HookConsumerWidget {
               tag.isSelected ? onBackGraundColor : offBackGraundColor,
           borderColor: tag.isSelected ? onBorderColor : offBorderColor,
           textColor: tag.isSelected ? onTextColor : offTextColor,
-          onTap: () => viewModel.selectTag(tag),
+          onTap: () => onSelect(tag),
         );
       }).toList(),
     );

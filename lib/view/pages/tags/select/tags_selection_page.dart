@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:fortune_client/data/model/tag/tag.dart';
 import 'package:fortune_client/view/pages/tags/select/components/tag_text_field.dart';
 import 'package:fortune_client/view/pages/tags/select/components/tags_wraper.dart';
-import 'package:fortune_client/view/pages/tags/select/tags_selection_state.dart';
 import 'package:fortune_client/view/pages/tags/select/tags_selection_view_model.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
@@ -14,36 +14,40 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 final isDisplaySearchResultsProvider = StateProvider((_) => false);
 
 class TagsSelectionPage extends HookConsumerWidget {
-  TagsSelectionPage({super.key});
+  TagsSelectionPage(this.beingSet, {super.key});
 
-  final tagCtrl = TextEditingController();
+  final List<Tag> beingSet;
+  final controller = TextEditingController();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = ref.watch(appThemeProvider);
-    final state = ref.watch(tagsSelectionViewModelProvider);
-    final viewModel = ref.watch(tagsSelectionViewModelProvider.notifier);
+    final state = ref.watch(tagsSelectionViewModelProvider(beingSet));
+    final viewModel =
+        ref.watch(tagsSelectionViewModelProvider(beingSet).notifier);
 
     /// 表示データ
     final isDisplaySearchResults = ref.watch(isDisplaySearchResultsProvider);
 
     /// 設定されたタグ
-    final tagsBeingSet = _tagsBeingSet(state.beingSet);
+    final tagsBeingSet = state.beingSet.isNotEmpty
+        ? TagsWraper(tags: state.beingSet, onSelect: viewModel.selectTag)
+        : Container();
 
     /// おすすめのタグ
     final recommendedResults = state.recommendation.when(
-      data: (data) => data.isEmpty ? Container() : TagsWraper(data),
+      data: (data) => data.isEmpty
+          ? Container()
+          : TagsWraper(tags: data, onSelect: viewModel.selectTag),
       error: (error, stackTrace) => errorWidget(error, stackTrace),
       loading: () => loadingWidget(),
     );
 
     /// 検索結果
     final searchResult = state.searchResult.when(
-      data: (data) {
-        return data.isEmpty
-            ? emptyTagContainer(theme, viewModel.navigateToTagCreation)
-            : TagsWraper(data);
-      },
+      data: (data) => data.isEmpty
+          ? emptyTagContainer(theme, viewModel.navigateToTagCreation)
+          : TagsWraper(tags: data, onSelect: viewModel.selectTag),
       error: (error, stackTrace) => errorWidget(error, stackTrace),
       loading: () => loadingWidget(),
     );
@@ -51,13 +55,13 @@ class TagsSelectionPage extends HookConsumerWidget {
     /// タグ検索フォームクリア
     tagFormClearCallBack() {
       ref.watch(isDisplaySearchResultsProvider.notifier).state = false;
-      tagCtrl.clear();
+      controller.clear();
     }
 
     /// タグ検索フォーム入力
     tagFormOnEditingComplete() {
       ref.watch(isDisplaySearchResultsProvider.notifier).state = true;
-      viewModel.search(tagCtrl.text);
+      viewModel.search(controller.text);
     }
 
     return Scaffold(
@@ -78,7 +82,7 @@ class TagsSelectionPage extends HookConsumerWidget {
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: TagTextField(
-              emailCtrl: tagCtrl,
+              emailCtrl: controller,
               hintText: "タグを検索",
               clearCallBack: tagFormClearCallBack,
               onEditingComplete: tagFormOnEditingComplete,
@@ -91,7 +95,15 @@ class TagsSelectionPage extends HookConsumerWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                tagsBeingSet,
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text("設定中のタグ"),
+                    const Gap(20),
+                    tagsBeingSet,
+                    const Gap(50),
+                  ],
+                ),
                 isDisplaySearchResults
                     ? tagsContainer(theme, "検索結果", searchResult)
                     : tagsContainer(theme, "人気のタグ", recommendedResults),
@@ -100,19 +112,6 @@ class TagsSelectionPage extends HookConsumerWidget {
           ),
         ],
       ),
-    );
-  }
-
-  _tagsBeingSet(List<TagState> tags) {
-    if (tags.isEmpty) return Container();
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Text("設定中のタグ"),
-        const Gap(20),
-        TagsWraper(tags),
-        const Gap(50),
-      ],
     );
   }
 

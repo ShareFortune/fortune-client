@@ -14,6 +14,7 @@
 import 'package:auto_route/auto_route.dart' as _i24;
 import 'package:auto_route/empty_router_widgets.dart' as _i3;
 import 'package:flutter/material.dart' as _i25;
+import 'package:fortune_client/data/model/tag/tag.dart' as _i27;
 import 'package:fortune_client/view/pages/account/my_page/my_page.dart' as _i9;
 import 'package:fortune_client/view/pages/auth/login/login_page.dart' as _i1;
 import 'package:fortune_client/view/pages/common/bottom_navigation_bar/bottom_navigation_bar.dart'
@@ -152,11 +153,13 @@ class AppRouter extends _i24.RootStackRouter {
       );
     },
     TagsSelectionRoute.name: (routeData) {
-      final args = routeData.argsAs<TagsSelectionRouteArgs>(
-          orElse: () => const TagsSelectionRouteArgs());
+      final args = routeData.argsAs<TagsSelectionRouteArgs>();
       return _i24.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: _i12.TagsSelectionPage(key: args.key),
+        child: _i12.TagsSelectionPage(
+          args.beingSet,
+          key: args.key,
+        ),
       );
     },
     TagCreationRoute.name: (routeData) {
@@ -626,24 +629,34 @@ class SettingsRoute extends _i24.PageRouteInfo<void> {
 /// generated route for
 /// [_i12.TagsSelectionPage]
 class TagsSelectionRoute extends _i24.PageRouteInfo<TagsSelectionRouteArgs> {
-  TagsSelectionRoute({_i25.Key? key})
-      : super(
+  TagsSelectionRoute({
+    required List<_i27.Tag> beingSet,
+    _i25.Key? key,
+  }) : super(
           TagsSelectionRoute.name,
           path: 'select-tag',
-          args: TagsSelectionRouteArgs(key: key),
+          args: TagsSelectionRouteArgs(
+            beingSet: beingSet,
+            key: key,
+          ),
         );
 
   static const String name = 'TagsSelectionRoute';
 }
 
 class TagsSelectionRouteArgs {
-  const TagsSelectionRouteArgs({this.key});
+  const TagsSelectionRouteArgs({
+    required this.beingSet,
+    this.key,
+  });
+
+  final List<_i27.Tag> beingSet;
 
   final _i25.Key? key;
 
   @override
   String toString() {
-    return 'TagsSelectionRouteArgs{key: $key}';
+    return 'TagsSelectionRouteArgs{beingSet: $beingSet, key: $key}';
   }
 }
 

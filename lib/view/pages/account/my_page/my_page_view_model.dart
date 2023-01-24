@@ -1,3 +1,4 @@
+import 'package:fortune_client/data/model/tag/tag.dart';
 import 'package:fortune_client/data/repository/profile/profile_repository.dart';
 import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/view/pages/account/my_page/my_page_state.dart';
@@ -25,6 +26,17 @@ class MyPageViewModel extends StateNotifier<AsyncValue<MyPageState>> {
 
   navigateToSettingPage() {
     sl<AppRouter>().push(const SettingsRoute());
+  }
+
+  navigateToTagsSelection() async {
+    final data = state.value;
+    if (data == null) return;
+    final result = await sl<AppRouter>().push(
+      TagsSelectionRoute(beingSet: data.tags ?? List.empty()),
+    ) as List<Tag>?;
+    state = await AsyncValue.guard(() async {
+      return data.copyWith(tags: result ?? data.tags);
+    });
   }
 
   navigateToUpdateBasic() async {

@@ -43,7 +43,11 @@ class MyPage extends HookConsumerWidget {
         );
 
         /// タグ
-        final tags = MyProfileTagsContainer(theme: theme, tags: profile.tags);
+        final tags = MyProfileTagsContainer(
+          theme: theme,
+          tags: profile.tags,
+          onTap: () => viewModel.navigateToTagsSelection(),
+        );
 
         /// 基本情報
         final basicInfo = MyProfileBasicInfoContainer(

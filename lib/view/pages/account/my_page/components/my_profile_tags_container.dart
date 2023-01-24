@@ -9,10 +9,12 @@ class MyProfileTagsContainer extends StatelessWidget {
     super.key,
     required this.theme,
     required this.tags,
+    required this.onTap,
   });
 
   final AppTheme theme;
   final List<Tag>? tags;
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -21,12 +23,15 @@ class MyProfileTagsContainer extends StatelessWidget {
       title: "設定しているタグ",
       trailing: null,
       onTapContainer: () {},
-      child: Wrap(
-        spacing: 10,
-        runSpacing: 10,
-        children: tags!.map((e) {
-          return TagWidget(value: e.name);
-        }).toList(),
+      child: InkWell(
+        onTap: onTap,
+        child: Wrap(
+          spacing: 10,
+          runSpacing: 10,
+          children: tags!.map((e) {
+            return TagWidget(value: e.name);
+          }).toList(),
+        ),
       ),
     );
   }
