@@ -28,6 +28,24 @@ class MyPageViewModel extends StateNotifier<AsyncValue<MyPageState>> {
     sl<AppRouter>().push(const SettingsRoute());
   }
 
+  navigateToEntrySelfIntroduction() async {
+    final data = state.value;
+    if (data == null) return;
+
+    /// 自己紹介取得
+    final result = await sl<AppRouter>().push(
+      EntryDescriptionRoute(title: "自己紹介", value: data.selfIntroduction),
+    ) as String?;
+
+    /// 更新
+    if (result != null) _repository.updateSelfIntroduction(result);
+
+    /// ステータス更新
+    state = await AsyncValue.guard(() async {
+      return data.copyWith(selfIntroduction: result ?? data.selfIntroduction);
+    });
+  }
+
   navigateToTagsSelection() async {
     final data = state.value;
     if (data == null) return;
@@ -38,7 +56,7 @@ class MyPageViewModel extends StateNotifier<AsyncValue<MyPageState>> {
     ) as List<Tag>?;
 
     /// 更新
-    if (result != null) _repository.updateTags(tags: result);
+    if (result != null) _repository.updateTags(result);
 
     /// ステータス更新
     state = await AsyncValue.guard(() async {

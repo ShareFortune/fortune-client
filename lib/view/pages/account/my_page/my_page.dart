@@ -40,6 +40,7 @@ class MyPage extends HookConsumerWidget {
         final selfIntroduction = MyProfileSelfIntroductionContainer(
           theme: theme,
           selfIntroduction: profile.selfIntroduction ?? "",
+          onTap: () => viewModel.navigateToEntrySelfIntroduction(),
         );
 
         /// タグ

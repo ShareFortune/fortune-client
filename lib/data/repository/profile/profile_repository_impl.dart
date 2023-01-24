@@ -121,7 +121,17 @@ class ProfileRepositoryImpl implements ProfileRepository {
   }
 
   @override
-  Future<void> updateTags({required List<Tag> tags}) async {
+  Future<void> updateSelfIntroduction(String selfIntroduction) async {
+    try {
+      await _update(selfIntroduction: selfIntroduction);
+    } catch (e) {
+      logger.e(e);
+      rethrow;
+    }
+  }
+
+  @override
+  Future<void> updateTags(List<Tag> tags) async {
     try {
       await _update(tags: tags);
     } catch (e) {

@@ -10,33 +10,36 @@ class MyProfileContainer extends StatelessWidget {
     required this.title,
     required this.trailing,
     required this.child,
-    required this.onTapContainer,
+    required this.onTap,
   });
 
   final AppTheme theme;
   final String title;
   final Widget? trailing;
   final Widget? child;
-  final VoidCallback? onTapContainer;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(title, style: theme.textTheme.h30.bold()),
-              Container(child: trailing),
-            ],
-          ),
-          const Gap(30),
-          Container(child: child),
-        ],
+    return InkWell(
+      onTap: onTap,
+      child: Container(
+        width: double.infinity,
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(title, style: theme.textTheme.h30.bold()),
+                Container(child: trailing),
+              ],
+            ),
+            const Gap(30),
+            Container(child: child),
+          ],
+        ),
       ),
     );
   }

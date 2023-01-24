@@ -22,16 +22,13 @@ class MyProfileTagsContainer extends StatelessWidget {
       theme: theme,
       title: "設定しているタグ",
       trailing: null,
-      onTapContainer: () {},
-      child: InkWell(
-        onTap: onTap,
-        child: Wrap(
-          spacing: 10,
-          runSpacing: 10,
-          children: tags!.map((e) {
-            return TagWidget(value: e.name);
-          }).toList(),
-        ),
+      onTap: onTap,
+      child: Wrap(
+        spacing: 10,
+        runSpacing: 10,
+        children: tags!.map((e) {
+          return TagWidget(value: e.name);
+        }).toList(),
       ),
     );
   }

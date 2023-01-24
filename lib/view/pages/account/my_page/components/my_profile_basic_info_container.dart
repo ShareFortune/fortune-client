@@ -27,7 +27,7 @@ class MyProfileBasicInfoContainer extends StatelessWidget {
       theme: theme,
       title: "プロフィール",
       trailing: editButton(),
-      onTapContainer: null,
+      onTap: null,
       child: Column(
         children: [
           basicInfoTile(theme, "居住地", address),

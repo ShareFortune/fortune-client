@@ -8,10 +8,12 @@ class MyProfileSelfIntroductionContainer extends StatelessWidget {
     super.key,
     required this.theme,
     required this.selfIntroduction,
+    required this.onTap,
   });
 
   final AppTheme theme;
   final String selfIntroduction;
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +36,7 @@ class MyProfileSelfIntroductionContainer extends StatelessWidget {
       theme: theme,
       title: "自己紹介",
       trailing: null,
-      onTapContainer: () {},
+      onTap: onTap,
       child: Container(
         padding: EdgeInsets.symmetric(
           vertical: selfIntroduction.isEmpty ? 30 : 10,

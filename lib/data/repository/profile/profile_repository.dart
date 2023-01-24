@@ -36,11 +36,8 @@ abstract class ProfileRepository {
   Profile getCache();
 
   /// 更新
-  Future<void> updateTags({
-    required List<Tag> tags,
-  });
-
-  /// 更新
+  Future<void> updateSelfIntroduction(String selfIntroduction);
+  Future<void> updateTags(List<Tag> tags);
   Future<void> updateBasicInfo({
     required Address address,
     required int? stature,
