@@ -139,7 +139,9 @@ class DetailedProfileEntryPage extends HookConsumerWidget {
                     ),
                     const Gap(30),
                     nextButton(
-                        true, () => viewModel.navigateToEntryProfileicon()),
+                      viewModel.isPossibleToNext(),
+                      () => viewModel.navigateToEntryProfileicon(),
+                    ),
                   ],
                 ),
               ],

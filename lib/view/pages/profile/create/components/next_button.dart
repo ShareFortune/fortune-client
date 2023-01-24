@@ -14,7 +14,9 @@ Widget nextButton(bool clickable, Function() onPressed) {
         borderRadius: BorderRadius.circular(50),
       ),
     ),
-    onPressed: onPressed,
+    onPressed: () {
+      if (clickable) onPressed();
+    },
     child: Text(
       "次へ",
       style: TextStyle(
