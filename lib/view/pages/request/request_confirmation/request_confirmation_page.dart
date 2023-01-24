@@ -10,13 +10,14 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 class RequestConfirmationPage extends HookConsumerWidget {
   const RequestConfirmationPage({super.key, @PathParam() required this.id});
 
-  final int id;
+  final String id;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = ref.watch(appThemeProvider);
 
     return Scaffold(
+      backgroundColor: theme.appColors.onBackground,
       appBar: const BackAppBar(title: "リクエスト"),
       body: ListView(
         children: [

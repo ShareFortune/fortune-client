@@ -228,7 +228,7 @@ class AppRouter extends _i24.RootStackRouter {
       final pathParams = routeData.inheritedPathParams;
       final args = routeData.argsAs<RequestConfirmationRouteArgs>(
           orElse: () =>
-              RequestConfirmationRouteArgs(id: pathParams.getInt('id')));
+              RequestConfirmationRouteArgs(id: pathParams.getString('id')));
       return _i24.AdaptivePage<dynamic>(
         routeData: routeData,
         child: _i18.RequestConfirmationPage(
@@ -828,7 +828,7 @@ class RequestConfirmationRoute
     extends _i24.PageRouteInfo<RequestConfirmationRouteArgs> {
   RequestConfirmationRoute({
     _i25.Key? key,
-    required int id,
+    required String id,
   }) : super(
           RequestConfirmationRoute.name,
           path: 'request-confirmation/:id',
@@ -850,7 +850,7 @@ class RequestConfirmationRouteArgs {
 
   final _i25.Key? key;
 
-  final int id;
+  final String id;
 
   @override
   String toString() {
