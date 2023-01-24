@@ -38,6 +38,6 @@ class BasicProfileEntryViewModel extends StateNotifier<BasicProfileEntryState> {
   }
 
   navigateToEntryDetailedProfile() async {
-    await sl<AppRouter>().push(const DetailedProfileEntryRoute());
+    await sl<AppRouter>().push(DetailedProfileEntryRoute());
   }
 }

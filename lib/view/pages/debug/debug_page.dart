@@ -64,7 +64,7 @@ class DebugPage extends HookConsumerWidget {
                 showTrailing: true,
                 onTap: () {
                   sl<AppRouter>().push(
-                    const CreateProfileRoute(
+                    CreateProfileRoute(
                       children: [DetailedProfileEntryRoute()],
                     ),
                   );

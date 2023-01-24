@@ -34,6 +34,7 @@ class BaseTextField extends StatefulHookConsumerWidget {
     this.enabledBorder,
     this.focusedBorder,
     this.contentPadding,
+    this.labelText,
   }) : super(key: key);
 
   final bool? autofocus;
@@ -61,6 +62,7 @@ class BaseTextField extends StatefulHookConsumerWidget {
   final InputBorder? enabledBorder;
   final InputBorder? focusedBorder;
   final EdgeInsetsGeometry? contentPadding;
+  final String? labelText;
 
   final int? maxLength;
 
@@ -124,6 +126,7 @@ class _BaseTextFieldState extends ConsumerState<BaseTextField> {
       onTap: widget.onTap,
       onEditingComplete: widget.onEditingComplete,
       decoration: InputDecoration(
+        labelText: widget.labelText,
         fillColor: theme.appColors.textFieldBackground,
         filled: true,
         hintText: widget.hintText,

@@ -250,9 +250,11 @@ class AppRouter extends _i24.RootStackRouter {
       );
     },
     DetailedProfileEntryRoute.name: (routeData) {
+      final args = routeData.argsAs<DetailedProfileEntryRouteArgs>(
+          orElse: () => const DetailedProfileEntryRouteArgs());
       return _i24.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i21.DetailedProfileEntryPage(),
+        child: _i21.DetailedProfileEntryPage(key: args.key),
       );
     },
     ProfileIconImageEntryRoute.name: (routeData) {
@@ -884,14 +886,27 @@ class BasicProfileEntryRoute extends _i24.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i21.DetailedProfileEntryPage]
-class DetailedProfileEntryRoute extends _i24.PageRouteInfo<void> {
-  const DetailedProfileEntryRoute()
+class DetailedProfileEntryRoute
+    extends _i24.PageRouteInfo<DetailedProfileEntryRouteArgs> {
+  DetailedProfileEntryRoute({_i25.Key? key})
       : super(
           DetailedProfileEntryRoute.name,
           path: 'create-profile-detail',
+          args: DetailedProfileEntryRouteArgs(key: key),
         );
 
   static const String name = 'DetailedProfileEntryRoute';
+}
+
+class DetailedProfileEntryRouteArgs {
+  const DetailedProfileEntryRouteArgs({this.key});
+
+  final _i25.Key? key;
+
+  @override
+  String toString() {
+    return 'DetailedProfileEntryRouteArgs{key: $key}';
+  }
 }
 
 /// generated route for
