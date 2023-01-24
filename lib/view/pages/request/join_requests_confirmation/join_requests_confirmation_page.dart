@@ -7,8 +7,9 @@ import 'package:fortune_client/view/widgets/icon/circle_icon.dart';
 
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class RequestConfirmationPage extends HookConsumerWidget {
-  const RequestConfirmationPage({super.key, @PathParam() required this.id});
+class JoinRequestsConfirmationPage extends HookConsumerWidget {
+  const JoinRequestsConfirmationPage(
+      {super.key, @PathParam() required this.id});
 
   final String id;
 

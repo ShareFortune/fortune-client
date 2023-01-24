@@ -40,7 +40,7 @@ import 'package:fortune_client/view/pages/profile/profile/profile_page.dart'
     as _i6;
 import 'package:fortune_client/view/pages/profile/update/profile_update_page.dart'
     as _i10;
-import 'package:fortune_client/view/pages/request/request_confirmation/request_confirmation_page.dart'
+import 'package:fortune_client/view/pages/request/join_requests_confirmation/join_requests_confirmation_page.dart'
     as _i18;
 import 'package:fortune_client/view/pages/rooms/create/room_creation_page.dart'
     as _i7;
@@ -231,7 +231,7 @@ class AppRouter extends _i24.RootStackRouter {
               RequestConfirmationRouteArgs(id: pathParams.getString('id')));
       return _i24.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: _i18.RequestConfirmationPage(
+        child: _i18.JoinRequestsConfirmationPage(
           key: args.key,
           id: args.id,
         ),
