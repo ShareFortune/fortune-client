@@ -25,7 +25,7 @@ class BasicProfileEntryPage extends HookConsumerWidget {
       backgroundColor: theme.appColors.onBackground,
       appBar: BasicAppBar(
         title: "はじめる",
-        action: [_nextButton(state.isEntered(), viewModel.onCreate)],
+        action: [_nextButton(theme, state.isEntered(), viewModel.onCreate)],
       ),
       body: Container(
         padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 50),
@@ -33,14 +33,14 @@ class BasicProfileEntryPage extends HookConsumerWidget {
           children: [
             TextFormField(
               maxLength: 20,
-              decoration: const InputDecoration(labelText: '名前'),
+              decoration: const InputDecoration(labelText: '名前（必須）'),
               onChanged: viewModel.changeName,
             ),
             const Gap(10),
             TextFormField(
               readOnly: true,
               controller: TextEditingController(text: birthdayStr),
-              decoration: const InputDecoration(labelText: '誕生日'),
+              decoration: const InputDecoration(labelText: '誕生日（必須）'),
               onTap: () async =>
                   viewModel.changeBirthday(await datePicker(context)),
             ),
@@ -50,15 +50,16 @@ class BasicProfileEntryPage extends HookConsumerWidget {
     );
   }
 
-  Widget _nextButton(bool clickable, Function() onPressed) {
-    final bgColor =
-        clickable ? const Color(0xFFC782E4) : const Color(0xFFF5F5F5);
-    final textColor = clickable ? Colors.white : Colors.black;
+  Widget _nextButton(AppTheme theme, bool clickable, Function() onPressed) {
+    final onBg = theme.appColors.primary;
+    final offBg = theme.appColors.disable;
+    final onTextColor = theme.appColors.onPrimary;
+    final offTextColor = theme.appColors.subText2;
 
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
         elevation: 0,
-        backgroundColor: bgColor,
+        backgroundColor: clickable ? onBg : offBg,
         padding: const EdgeInsets.symmetric(horizontal: 20),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(50),
@@ -71,7 +72,7 @@ class BasicProfileEntryPage extends HookConsumerWidget {
         "次へ",
         style: TextStyle(
           fontSize: 16,
-          color: textColor,
+          color: clickable ? onTextColor : offTextColor,
         ),
       ),
     );
