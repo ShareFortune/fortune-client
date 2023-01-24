@@ -16,6 +16,10 @@ class DetailedProfileEntryViewModel
     extends StateNotifier<DetailedProfileEntryState> {
   DetailedProfileEntryViewModel() : super(const DetailedProfileEntryState());
 
+  bool isPossibleToNext() {
+    return state.name != null && state.gender != null && state.address != null;
+  }
+
   changeName(String value) {
     state = state.copyWith(name: value);
   }
