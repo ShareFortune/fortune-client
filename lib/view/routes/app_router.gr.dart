@@ -40,7 +40,7 @@ import 'package:fortune_client/view/pages/profile/profile/profile_page.dart'
     as _i6;
 import 'package:fortune_client/view/pages/profile/update/profile_update_page.dart'
     as _i10;
-import 'package:fortune_client/view/pages/request/request_confirmation/request_confirmation_page.dart'
+import 'package:fortune_client/view/pages/request/join_requests_confirmation/join_requests_confirmation_page.dart'
     as _i18;
 import 'package:fortune_client/view/pages/rooms/create/room_creation_page.dart'
     as _i7;
@@ -224,14 +224,14 @@ class AppRouter extends _i24.RootStackRouter {
         child: const _i17.ParticipatingRoomListPage(),
       );
     },
-    RequestConfirmationRoute.name: (routeData) {
+    JoinRequestsConfirmationRoute.name: (routeData) {
       final pathParams = routeData.inheritedPathParams;
-      final args = routeData.argsAs<RequestConfirmationRouteArgs>(
-          orElse: () =>
-              RequestConfirmationRouteArgs(id: pathParams.getInt('id')));
+      final args = routeData.argsAs<JoinRequestsConfirmationRouteArgs>(
+          orElse: () => JoinRequestsConfirmationRouteArgs(
+              id: pathParams.getString('id')));
       return _i24.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: _i18.RequestConfirmationPage(
+        child: _i18.JoinRequestsConfirmationPage(
           key: args.key,
           id: args.id,
         ),
@@ -316,7 +316,7 @@ class AppRouter extends _i24.RootStackRouter {
                   parent: ParticipatingTab.name,
                 ),
                 _i24.RouteConfig(
-                  RequestConfirmationRoute.name,
+                  JoinRequestsConfirmationRoute.name,
                   path: 'request-confirmation/:id',
                   parent: ParticipatingTab.name,
                 ),
@@ -823,38 +823,38 @@ class ParticipatingRoomListRoute extends _i24.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i18.RequestConfirmationPage]
-class RequestConfirmationRoute
-    extends _i24.PageRouteInfo<RequestConfirmationRouteArgs> {
-  RequestConfirmationRoute({
+/// [_i18.JoinRequestsConfirmationPage]
+class JoinRequestsConfirmationRoute
+    extends _i24.PageRouteInfo<JoinRequestsConfirmationRouteArgs> {
+  JoinRequestsConfirmationRoute({
     _i25.Key? key,
-    required int id,
+    required String id,
   }) : super(
-          RequestConfirmationRoute.name,
+          JoinRequestsConfirmationRoute.name,
           path: 'request-confirmation/:id',
-          args: RequestConfirmationRouteArgs(
+          args: JoinRequestsConfirmationRouteArgs(
             key: key,
             id: id,
           ),
           rawPathParams: {'id': id},
         );
 
-  static const String name = 'RequestConfirmationRoute';
+  static const String name = 'JoinRequestsConfirmationRoute';
 }
 
-class RequestConfirmationRouteArgs {
-  const RequestConfirmationRouteArgs({
+class JoinRequestsConfirmationRouteArgs {
+  const JoinRequestsConfirmationRouteArgs({
     this.key,
     required this.id,
   });
 
   final _i25.Key? key;
 
-  final int id;
+  final String id;
 
   @override
   String toString() {
-    return 'RequestConfirmationRouteArgs{key: $key, id: $id}';
+    return 'JoinRequestsConfirmationRouteArgs{key: $key, id: $id}';
   }
 }
 

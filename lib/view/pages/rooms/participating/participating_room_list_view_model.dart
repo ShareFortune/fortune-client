@@ -1,6 +1,5 @@
 import 'package:fortune_client/data/repository/rooms/rooms_repository.dart';
 import 'package:fortune_client/injector.dart';
-import 'package:fortune_client/util/logger/logger.dart';
 import 'package:fortune_client/view/pages/rooms/participating/participating_room_list_state.dart';
 import 'package:fortune_client/view/routes/app_router.gr.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -47,8 +46,8 @@ class ParticipatingRoomListViewModel
   ///
   /// 遷移処理
   ///
-  Future<void> navigateToRequestConfirmation(String id) async {
-    await sl<AppRouter>().push(RequestConfirmationRoute(id: 0));
+  Future<void> navigateToRequestConfirmation(String roomId) async {
+    await sl<AppRouter>().push(JoinRequestsConfirmationRoute(id: roomId));
   }
 
   Future<void> navigateToMessage() async {

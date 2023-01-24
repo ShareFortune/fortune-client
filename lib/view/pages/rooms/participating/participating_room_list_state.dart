@@ -43,7 +43,7 @@ class ParticipatingRoomListStateItem with _$ParticipatingRoomListStateItem {
       id: room.id,
       title: room.roomName,
       address: "取得したアドレス",
-      memberIcons: room.participantMainImageURLs ?? [],
+      memberIcons: room.participantMainImageURLs ?? List.empty(),
       membersNum: room.membersNum,
       participationRequestsNum: room.joinRequestsCount,
       roomStatus: room.status,

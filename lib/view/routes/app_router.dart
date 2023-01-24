@@ -14,7 +14,7 @@ import 'package:fortune_client/view/pages/profile/create/entry_detailed_profile/
 import 'package:fortune_client/view/pages/profile/create/entry_profile_icon_image/profile_icon_image_entry_page.dart';
 import 'package:fortune_client/view/pages/profile/create/entry_profile_sub_image/entry_profile_sub_image_page.dart';
 import 'package:fortune_client/view/pages/profile/profile/profile_page.dart';
-import 'package:fortune_client/view/pages/request/request_confirmation/request_confirmation_page.dart';
+import 'package:fortune_client/view/pages/request/join_requests_confirmation/join_requests_confirmation_page.dart';
 import 'package:fortune_client/view/pages/rooms/create/room_creation_page.dart';
 import 'package:fortune_client/view/pages/rooms/participating/participating_room_list_page.dart';
 import 'package:fortune_client/view/pages/rooms/room_detail/room_detail_page.dart';
@@ -60,7 +60,8 @@ const homeRouter = AutoRoute(
 
         /// 参加リクエスト
         AutoRoute(
-            path: RoutePath.requestConfirmation, page: RequestConfirmationPage),
+            path: RoutePath.requestConfirmation,
+            page: JoinRequestsConfirmationPage),
       ],
     ),
 
