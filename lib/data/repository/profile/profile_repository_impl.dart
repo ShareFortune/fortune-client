@@ -12,6 +12,7 @@ import 'package:fortune_client/data/model/form/create_profile_form/create_profil
 import 'package:fortune_client/data/model/form/profile_files_request/profile_files_request.dart';
 import 'package:fortune_client/data/model/form/profile_update_request/profile_update_request.dart';
 import 'package:fortune_client/data/model/profile/profile.dart';
+import 'package:fortune_client/data/model/tag/tag.dart';
 import 'package:fortune_client/data/repository/profile/profile_repository.dart';
 import 'package:fortune_client/data/model/enum/gender.dart';
 import 'package:fortune_client/util/converter/image_converter.dart';
@@ -20,11 +21,11 @@ import 'package:fortune_client/util/logger/logger.dart';
 import 'package:fortune_client/util/storage/app_pref_key.dart';
 
 class ProfileRepositoryImpl implements ProfileRepository {
-  final ProfileDataSource _profile;
+  final ProfileDataSource _profileDataSource;
   final SharedPreferencesDataSource _sharedPreferences;
 
   ProfileRepositoryImpl(
-    this._profile,
+    this._profileDataSource,
     this._sharedPreferences,
   );
 
@@ -72,7 +73,7 @@ class ProfileRepositoryImpl implements ProfileRepository {
       );
 
       /// 作成
-      final result = await _profile.create(
+      final result = await _profileDataSource.create(
         _sharedPreferences.getString(AppPrefKey.fortuneId.keyString)!,
         profileForm.toJson(),
       );
@@ -93,12 +94,13 @@ class ProfileRepositoryImpl implements ProfileRepository {
   @override
   Future<Profile> get() async {
     try {
-      final profile = await logInfo(() => _profile.get());
+      final profile = await logInfo(() => _profileDataSource.get());
 
       /// ローカル保存
-      final saveResult = await _sharedPreferences.setString(
-          AppPrefKey.profile.keyString, jsonEncode(profile));
-      if (!saveResult) throw Exception();
+      await _sharedPreferences.setString(
+        AppPrefKey.profile.keyString,
+        jsonEncode(profile),
+      );
 
       return profile;
     } catch (e) {
@@ -120,14 +122,15 @@ class ProfileRepositoryImpl implements ProfileRepository {
 
   @override
   Future<void> updateBasicInfo({
-    int? addressId,
-    int? stature,
-    String? drinkFrequency,
-    String? cigaretteFrequency,
+    required Address address,
+    required int? stature,
+    required DrinkFrequency? drinkFrequency,
+    required CigaretteFrequency? cigaretteFrequency,
   }) async {
     try {
+      /// プロフィール更新
       await _update(
-        addressId: addressId,
+        address: address,
         stature: stature,
         drinkFrequency: drinkFrequency,
         cigaretteFrequency: cigaretteFrequency,
@@ -139,37 +142,44 @@ class ProfileRepositoryImpl implements ProfileRepository {
   }
 
   Future<String> _update({
-    String? name,
-    String? gender,
-    int? addressId,
+    // String? mainImageURL,
+    Gender? gender,
+    Address? address,
     int? stature,
-    String? drinkFrequency,
-    String? cigaretteFrequency,
-    List<String>? tagIds,
-    int? occupationId,
+    DrinkFrequency? drinkFrequency,
+    CigaretteFrequency? cigaretteFrequency,
     String? selfIntroduction,
-    ProfileFilesRequest? files,
+    List<Tag>? tags,
   }) async {
-    final cache = getCache();
-    final requestFiles = ProfileFilesRequest(mainImage: cache.mainImageURL);
-    final request = ProfileUpdateRequest(
-      name: name ?? cache.name,
-      gender: gender ?? cache.gender.text,
-      height: stature ?? cache.height,
-      drinkFrequency: drinkFrequency ?? cache.drinkFrequency?.text,
-      cigaretteFrequency: cigaretteFrequency ?? cache.cigaretteFrequency?.text,
-      selfIntroduction: selfIntroduction ?? cache.selfIntroduction,
-      occupationId: occupationId,
+    /// 入力データを元に新たなプロフィールデータを生成
+    final profile = getCache();
+    final updatedProfile = profile.copyWith(
+      gender: gender ?? profile.gender,
+      address: address ?? profile.address,
+      height: stature ?? profile.height,
+      drinkFrequency: drinkFrequency ?? profile.drinkFrequency,
+      cigaretteFrequency: cigaretteFrequency ?? profile.cigaretteFrequency,
+      selfIntroduction: selfIntroduction ?? profile.selfIntroduction,
+      tags: tags ?? profile.tags,
+    );
 
-      /// アドレスデータにはIDをつけるようにする
-      addressId: addressId ?? cache.address.id ?? 65,
-      tagIds: tagIds ?? cache.tags?.map((e) => e.id).toList(),
-      files: files ?? requestFiles,
+    /// ローカルに保存
+    await _sharedPreferences.setString(
+      AppPrefKey.profile.keyString,
+      jsonEncode(updatedProfile),
     );
-    final result = await logInfo(
-      () => _profile.update(cache.id, request.toJson()),
-    );
-    return result.id;
+
+    /// [TODO] Update API 動いたら実装
+    /// 更新
+    // createUpdateRequest(updatedProfile);
+    // final result = await logInfo(
+    //   () => _profileDataSource.update(
+    //     updatedProfile.id,
+    //     updatedProfile.toJson(),
+    //   ),
+    // );
+    // return result.id;
+    return "";
   }
 
   /// 作成フォーム画像
@@ -187,6 +197,27 @@ class ProfileRepositoryImpl implements ProfileRepository {
       thirdImage: secondImage != null ? await toBase64(secondImage) : null,
       fourthImage: thirdImage != null ? await toBase64(thirdImage) : null,
       fifthImage: fourthImage != null ? await toBase64(fourthImage) : null,
+    );
+  }
+
+  /// 更新データフォーム作成
+  /// [Profile] convert to [ProfileUpdateRequest]
+  ProfileUpdateRequest createUpdateRequest(Profile updateProfile) {
+    return ProfileUpdateRequest(
+      name: updateProfile.name,
+      gender: updateProfile.gender.text,
+      height: updateProfile.height,
+      drinkFrequency: updateProfile.drinkFrequency?.text,
+      cigaretteFrequency: updateProfile.cigaretteFrequency?.text,
+      selfIntroduction: updateProfile.selfIntroduction,
+      occupationId: null,
+
+      /// アドレスデータにはIDをつけるようにする
+      addressId: updateProfile.address.id ?? 65,
+      tagIds: updateProfile.tags?.map((e) => e.id).toList(),
+      files: ProfileFilesRequest(
+        mainImage: updateProfile.mainImageURL,
+      ),
     );
   }
 }

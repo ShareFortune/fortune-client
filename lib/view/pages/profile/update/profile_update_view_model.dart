@@ -45,11 +45,12 @@ class ProfileUpdateViewModel extends StateNotifier<ProfileUpdateState> {
   }
 
   update() async {
-    sl<AppRouter>().pop(_repository.updateBasicInfo(
-      addressId: state.address?.id,
+    await _repository.updateBasicInfo(
+      address: state.address!,
       stature: state.stature,
-      drinkFrequency: state.drinkFrequency?.text,
-      cigaretteFrequency: state.cigaretteFrequency?.text,
-    ));
+      drinkFrequency: state.drinkFrequency,
+      cigaretteFrequency: state.cigaretteFrequency,
+    );
+    await sl<AppRouter>().pop();
   }
 }

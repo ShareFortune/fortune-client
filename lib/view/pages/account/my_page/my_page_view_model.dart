@@ -1,7 +1,6 @@
 import 'package:fortune_client/data/repository/profile/profile_repository.dart';
 import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/view/pages/account/my_page/my_page_state.dart';
-import 'package:fortune_client/view/pages/profile/update/profile_update_page.dart';
 import 'package:fortune_client/view/routes/app_router.gr.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -28,7 +27,12 @@ class MyPageViewModel extends StateNotifier<AsyncValue<MyPageState>> {
     sl<AppRouter>().push(const SettingsRoute());
   }
 
-  navigateToUpdateBasic() {
-    sl<AppRouter>().push(const ProfileUpdateRoute());
+  navigateToUpdateBasic() async {
+    sl<AppRouter>().push(const ProfileUpdateRoute()).whenComplete(() async {
+      state = await AsyncValue.guard(() async {
+        final result = _repository.getCache();
+        return MyPageState.from(result);
+      });
+    });
   }
 }

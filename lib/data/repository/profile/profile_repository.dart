@@ -35,9 +35,9 @@ abstract class ProfileRepository {
   Profile getCache();
 
   Future<void> updateBasicInfo({
-    required int? addressId,
+    required Address address,
     required int? stature,
-    required String? drinkFrequency,
-    required String? cigaretteFrequency,
+    required DrinkFrequency? drinkFrequency,
+    required CigaretteFrequency? cigaretteFrequency,
   });
 }
