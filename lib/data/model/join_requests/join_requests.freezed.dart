@@ -14,12 +14,12 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-JoinRequests _$JoinRequestsFromJson(Map<String, dynamic> json) {
-  return _JoinRequests.fromJson(json);
+JoinRequestsResponse _$JoinRequestsResponseFromJson(Map<String, dynamic> json) {
+  return _JoinRequestsResponse.fromJson(json);
 }
 
 /// @nodoc
-mixin _$JoinRequests {
+mixin _$JoinRequestsResponse {
   @JsonKey(name: 'nextToken')
   String get nextToken => throw _privateConstructorUsedError;
   @JsonKey(name: 'joinRequests')
@@ -27,15 +27,15 @@ mixin _$JoinRequests {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $JoinRequestsCopyWith<JoinRequests> get copyWith =>
+  $JoinRequestsResponseCopyWith<JoinRequestsResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $JoinRequestsCopyWith<$Res> {
-  factory $JoinRequestsCopyWith(
-          JoinRequests value, $Res Function(JoinRequests) then) =
-      _$JoinRequestsCopyWithImpl<$Res, JoinRequests>;
+abstract class $JoinRequestsResponseCopyWith<$Res> {
+  factory $JoinRequestsResponseCopyWith(JoinRequestsResponse value,
+          $Res Function(JoinRequestsResponse) then) =
+      _$JoinRequestsResponseCopyWithImpl<$Res, JoinRequestsResponse>;
   @useResult
   $Res call(
       {@JsonKey(name: 'nextToken') String nextToken,
@@ -43,9 +43,10 @@ abstract class $JoinRequestsCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$JoinRequestsCopyWithImpl<$Res, $Val extends JoinRequests>
-    implements $JoinRequestsCopyWith<$Res> {
-  _$JoinRequestsCopyWithImpl(this._value, this._then);
+class _$JoinRequestsResponseCopyWithImpl<$Res,
+        $Val extends JoinRequestsResponse>
+    implements $JoinRequestsResponseCopyWith<$Res> {
+  _$JoinRequestsResponseCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -72,11 +73,11 @@ class _$JoinRequestsCopyWithImpl<$Res, $Val extends JoinRequests>
 }
 
 /// @nodoc
-abstract class _$$_JoinRequestsCopyWith<$Res>
-    implements $JoinRequestsCopyWith<$Res> {
-  factory _$$_JoinRequestsCopyWith(
-          _$_JoinRequests value, $Res Function(_$_JoinRequests) then) =
-      __$$_JoinRequestsCopyWithImpl<$Res>;
+abstract class _$$_JoinRequestsResponseCopyWith<$Res>
+    implements $JoinRequestsResponseCopyWith<$Res> {
+  factory _$$_JoinRequestsResponseCopyWith(_$_JoinRequestsResponse value,
+          $Res Function(_$_JoinRequestsResponse) then) =
+      __$$_JoinRequestsResponseCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -85,11 +86,11 @@ abstract class _$$_JoinRequestsCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_JoinRequestsCopyWithImpl<$Res>
-    extends _$JoinRequestsCopyWithImpl<$Res, _$_JoinRequests>
-    implements _$$_JoinRequestsCopyWith<$Res> {
-  __$$_JoinRequestsCopyWithImpl(
-      _$_JoinRequests _value, $Res Function(_$_JoinRequests) _then)
+class __$$_JoinRequestsResponseCopyWithImpl<$Res>
+    extends _$JoinRequestsResponseCopyWithImpl<$Res, _$_JoinRequestsResponse>
+    implements _$$_JoinRequestsResponseCopyWith<$Res> {
+  __$$_JoinRequestsResponseCopyWithImpl(_$_JoinRequestsResponse _value,
+      $Res Function(_$_JoinRequestsResponse) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -98,7 +99,7 @@ class __$$_JoinRequestsCopyWithImpl<$Res>
     Object? nextToken = null,
     Object? joinRequests = null,
   }) {
-    return _then(_$_JoinRequests(
+    return _then(_$_JoinRequestsResponse(
       nextToken: null == nextToken
           ? _value.nextToken
           : nextToken // ignore: cast_nullable_to_non_nullable
@@ -113,16 +114,16 @@ class __$$_JoinRequestsCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_JoinRequests implements _JoinRequests {
-  const _$_JoinRequests(
+class _$_JoinRequestsResponse implements _JoinRequestsResponse {
+  const _$_JoinRequestsResponse(
       {@JsonKey(name: 'nextToken')
           required this.nextToken,
       @JsonKey(name: 'joinRequests')
           required final List<JoinRequest> joinRequests})
       : _joinRequests = joinRequests;
 
-  factory _$_JoinRequests.fromJson(Map<String, dynamic> json) =>
-      _$$_JoinRequestsFromJson(json);
+  factory _$_JoinRequestsResponse.fromJson(Map<String, dynamic> json) =>
+      _$$_JoinRequestsResponseFromJson(json);
 
   @override
   @JsonKey(name: 'nextToken')
@@ -138,14 +139,14 @@ class _$_JoinRequests implements _JoinRequests {
 
   @override
   String toString() {
-    return 'JoinRequests(nextToken: $nextToken, joinRequests: $joinRequests)';
+    return 'JoinRequestsResponse(nextToken: $nextToken, joinRequests: $joinRequests)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_JoinRequests &&
+            other is _$_JoinRequestsResponse &&
             (identical(other.nextToken, nextToken) ||
                 other.nextToken == nextToken) &&
             const DeepCollectionEquality()
@@ -160,26 +161,28 @@ class _$_JoinRequests implements _JoinRequests {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_JoinRequestsCopyWith<_$_JoinRequests> get copyWith =>
-      __$$_JoinRequestsCopyWithImpl<_$_JoinRequests>(this, _$identity);
+  _$$_JoinRequestsResponseCopyWith<_$_JoinRequestsResponse> get copyWith =>
+      __$$_JoinRequestsResponseCopyWithImpl<_$_JoinRequestsResponse>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_JoinRequestsToJson(
+    return _$$_JoinRequestsResponseToJson(
       this,
     );
   }
 }
 
-abstract class _JoinRequests implements JoinRequests {
-  const factory _JoinRequests(
-      {@JsonKey(name: 'nextToken')
-          required final String nextToken,
-      @JsonKey(name: 'joinRequests')
-          required final List<JoinRequest> joinRequests}) = _$_JoinRequests;
+abstract class _JoinRequestsResponse implements JoinRequestsResponse {
+  const factory _JoinRequestsResponse(
+          {@JsonKey(name: 'nextToken')
+              required final String nextToken,
+          @JsonKey(name: 'joinRequests')
+              required final List<JoinRequest> joinRequests}) =
+      _$_JoinRequestsResponse;
 
-  factory _JoinRequests.fromJson(Map<String, dynamic> json) =
-      _$_JoinRequests.fromJson;
+  factory _JoinRequestsResponse.fromJson(Map<String, dynamic> json) =
+      _$_JoinRequestsResponse.fromJson;
 
   @override
   @JsonKey(name: 'nextToken')
@@ -189,7 +192,7 @@ abstract class _JoinRequests implements JoinRequests {
   List<JoinRequest> get joinRequests;
   @override
   @JsonKey(ignore: true)
-  _$$_JoinRequestsCopyWith<_$_JoinRequests> get copyWith =>
+  _$$_JoinRequestsResponseCopyWith<_$_JoinRequestsResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -203,7 +206,7 @@ mixin _$JoinRequest {
   String get name => throw _privateConstructorUsedError;
   @JsonKey(name: 'userId')
   String get userId => throw _privateConstructorUsedError;
-  @JsonKey(name: 'userImageUrl')
+  @JsonKey(name: 'userImageURL')
   String get userImageUrl => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -221,7 +224,7 @@ abstract class $JoinRequestCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: 'name') String name,
       @JsonKey(name: 'userId') String userId,
-      @JsonKey(name: 'userImageUrl') String userImageUrl});
+      @JsonKey(name: 'userImageURL') String userImageUrl});
 }
 
 /// @nodoc
@@ -269,7 +272,7 @@ abstract class _$$_JoinRequestCopyWith<$Res>
   $Res call(
       {@JsonKey(name: 'name') String name,
       @JsonKey(name: 'userId') String userId,
-      @JsonKey(name: 'userImageUrl') String userImageUrl});
+      @JsonKey(name: 'userImageURL') String userImageUrl});
 }
 
 /// @nodoc
@@ -310,7 +313,7 @@ class _$_JoinRequest implements _JoinRequest {
   const _$_JoinRequest(
       {@JsonKey(name: 'name') required this.name,
       @JsonKey(name: 'userId') required this.userId,
-      @JsonKey(name: 'userImageUrl') required this.userImageUrl});
+      @JsonKey(name: 'userImageURL') required this.userImageUrl});
 
   factory _$_JoinRequest.fromJson(Map<String, dynamic> json) =>
       _$$_JoinRequestFromJson(json);
@@ -322,7 +325,7 @@ class _$_JoinRequest implements _JoinRequest {
   @JsonKey(name: 'userId')
   final String userId;
   @override
-  @JsonKey(name: 'userImageUrl')
+  @JsonKey(name: 'userImageURL')
   final String userImageUrl;
 
   @override
@@ -363,7 +366,7 @@ abstract class _JoinRequest implements JoinRequest {
   const factory _JoinRequest(
           {@JsonKey(name: 'name') required final String name,
           @JsonKey(name: 'userId') required final String userId,
-          @JsonKey(name: 'userImageUrl') required final String userImageUrl}) =
+          @JsonKey(name: 'userImageURL') required final String userImageUrl}) =
       _$_JoinRequest;
 
   factory _JoinRequest.fromJson(Map<String, dynamic> json) =
@@ -376,7 +379,7 @@ abstract class _JoinRequest implements JoinRequest {
   @JsonKey(name: 'userId')
   String get userId;
   @override
-  @JsonKey(name: 'userImageUrl')
+  @JsonKey(name: 'userImageURL')
   String get userImageUrl;
   @override
   @JsonKey(ignore: true)
