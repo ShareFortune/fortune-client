@@ -24,22 +24,11 @@ class DetailedProfileEntryPage extends HookConsumerWidget {
     final state = ref.watch(detailedProfileEntryViewModelProvider);
     final viewModel = ref.watch(detailedProfileEntryViewModelProvider.notifier);
 
-    /// 名前
-    // final nameInputField = TextFormField(
-    //   maxLength: 20,
-    //   decoration: InputDecoration(
-    //     labelText: '名前',
-    //     enabledBorder: UnderlineInputBorder(
-    //       borderSide: BorderSide(width: 1, color: theme.appColors.border1),
-    //     ),
-    //   ),
-    //   onChanged: viewModel.changeName,
-    // );
-
+    /// ニックネーム
     final nameInputField = ProfileCreationTextField(
       theme: theme,
       controller: nameController,
-      labelText: "ニックネーム",
+      labelText: "ニックネーム（必須）",
       clearCallBack: () => viewModel.changeName(""),
       onChanged: (value) => viewModel.changeName(value),
       onEditingComplete: () => FocusScope.of(context).unfocus(),
@@ -47,7 +36,7 @@ class DetailedProfileEntryPage extends HookConsumerWidget {
 
     /// 性別ピッカー
     final genderPicker = EntryProfileExpandedTilePicker(
-      title: "性別",
+      title: "性別（必須）",
       value: state.gender?.text,
       items: Gender.values.map((e) => e.text).toList(),
       onSelect: (value) {
@@ -69,7 +58,7 @@ class DetailedProfileEntryPage extends HookConsumerWidget {
 
     /// 住所ピッカー
     final addressPicker = BaseTransitionTile(
-      title: "居住地",
+      title: "居住地（必須）",
       value: state.address?.text,
       textWhenUnsetStyle: theme.textTheme.h30.paint(theme.appColors.subText3),
       onTap: () {
@@ -124,12 +113,12 @@ class DetailedProfileEntryPage extends HookConsumerWidget {
                     genderPicker,
                     const Gap(10),
 
-                    /// 身長
-                    staturePicker,
-                    const Gap(10),
-
                     /// 居住地
                     addressPicker,
+                    const Gap(10),
+
+                    /// 身長
+                    staturePicker,
                     const Gap(10),
 
                     /// お酒
