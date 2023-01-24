@@ -16,7 +16,8 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$JoinRequestsConfirmationState {
-  List<JoinRequest> get joinRequests => throw _privateConstructorUsedError;
+  AsyncValue<List<JoinRequest>> get joinRequests =>
+      throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $JoinRequestsConfirmationStateCopyWith<JoinRequestsConfirmationState>
@@ -31,7 +32,7 @@ abstract class $JoinRequestsConfirmationStateCopyWith<$Res> {
       _$JoinRequestsConfirmationStateCopyWithImpl<$Res,
           JoinRequestsConfirmationState>;
   @useResult
-  $Res call({List<JoinRequest> joinRequests});
+  $Res call({AsyncValue<List<JoinRequest>> joinRequests});
 }
 
 /// @nodoc
@@ -54,7 +55,7 @@ class _$JoinRequestsConfirmationStateCopyWithImpl<$Res,
       joinRequests: null == joinRequests
           ? _value.joinRequests
           : joinRequests // ignore: cast_nullable_to_non_nullable
-              as List<JoinRequest>,
+              as AsyncValue<List<JoinRequest>>,
     ) as $Val);
   }
 }
@@ -68,7 +69,7 @@ abstract class _$$_JoinRequestsConfirmationStateCopyWith<$Res>
       __$$_JoinRequestsConfirmationStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<JoinRequest> joinRequests});
+  $Res call({AsyncValue<List<JoinRequest>> joinRequests});
 }
 
 /// @nodoc
@@ -88,9 +89,9 @@ class __$$_JoinRequestsConfirmationStateCopyWithImpl<$Res>
   }) {
     return _then(_$_JoinRequestsConfirmationState(
       joinRequests: null == joinRequests
-          ? _value._joinRequests
+          ? _value.joinRequests
           : joinRequests // ignore: cast_nullable_to_non_nullable
-              as List<JoinRequest>,
+              as AsyncValue<List<JoinRequest>>,
     ));
   }
 }
@@ -100,16 +101,11 @@ class __$$_JoinRequestsConfirmationStateCopyWithImpl<$Res>
 class _$_JoinRequestsConfirmationState
     implements _JoinRequestsConfirmationState {
   const _$_JoinRequestsConfirmationState(
-      {required final List<JoinRequest> joinRequests})
-      : _joinRequests = joinRequests;
+      {this.joinRequests = const AsyncLoading()});
 
-  final List<JoinRequest> _joinRequests;
   @override
-  List<JoinRequest> get joinRequests {
-    if (_joinRequests is EqualUnmodifiableListView) return _joinRequests;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_joinRequests);
-  }
+  @JsonKey()
+  final AsyncValue<List<JoinRequest>> joinRequests;
 
   @override
   String toString() {
@@ -121,13 +117,12 @@ class _$_JoinRequestsConfirmationState
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_JoinRequestsConfirmationState &&
-            const DeepCollectionEquality()
-                .equals(other._joinRequests, _joinRequests));
+            (identical(other.joinRequests, joinRequests) ||
+                other.joinRequests == joinRequests));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_joinRequests));
+  int get hashCode => Object.hash(runtimeType, joinRequests);
 
   @JsonKey(ignore: true)
   @override
@@ -140,11 +135,11 @@ class _$_JoinRequestsConfirmationState
 abstract class _JoinRequestsConfirmationState
     implements JoinRequestsConfirmationState {
   const factory _JoinRequestsConfirmationState(
-          {required final List<JoinRequest> joinRequests}) =
+          {final AsyncValue<List<JoinRequest>> joinRequests}) =
       _$_JoinRequestsConfirmationState;
 
   @override
-  List<JoinRequest> get joinRequests;
+  AsyncValue<List<JoinRequest>> get joinRequests;
   @override
   @JsonKey(ignore: true)
   _$$_JoinRequestsConfirmationStateCopyWith<_$_JoinRequestsConfirmationState>

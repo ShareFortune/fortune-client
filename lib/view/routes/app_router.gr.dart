@@ -224,11 +224,11 @@ class AppRouter extends _i24.RootStackRouter {
         child: const _i17.ParticipatingRoomListPage(),
       );
     },
-    RequestConfirmationRoute.name: (routeData) {
+    JoinRequestsConfirmationRoute.name: (routeData) {
       final pathParams = routeData.inheritedPathParams;
-      final args = routeData.argsAs<RequestConfirmationRouteArgs>(
-          orElse: () =>
-              RequestConfirmationRouteArgs(id: pathParams.getString('id')));
+      final args = routeData.argsAs<JoinRequestsConfirmationRouteArgs>(
+          orElse: () => JoinRequestsConfirmationRouteArgs(
+              id: pathParams.getString('id')));
       return _i24.AdaptivePage<dynamic>(
         routeData: routeData,
         child: _i18.JoinRequestsConfirmationPage(
@@ -316,7 +316,7 @@ class AppRouter extends _i24.RootStackRouter {
                   parent: ParticipatingTab.name,
                 ),
                 _i24.RouteConfig(
-                  RequestConfirmationRoute.name,
+                  JoinRequestsConfirmationRoute.name,
                   path: 'request-confirmation/:id',
                   parent: ParticipatingTab.name,
                 ),
@@ -823,27 +823,27 @@ class ParticipatingRoomListRoute extends _i24.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i18.RequestConfirmationPage]
-class RequestConfirmationRoute
-    extends _i24.PageRouteInfo<RequestConfirmationRouteArgs> {
-  RequestConfirmationRoute({
+/// [_i18.JoinRequestsConfirmationPage]
+class JoinRequestsConfirmationRoute
+    extends _i24.PageRouteInfo<JoinRequestsConfirmationRouteArgs> {
+  JoinRequestsConfirmationRoute({
     _i25.Key? key,
     required String id,
   }) : super(
-          RequestConfirmationRoute.name,
+          JoinRequestsConfirmationRoute.name,
           path: 'request-confirmation/:id',
-          args: RequestConfirmationRouteArgs(
+          args: JoinRequestsConfirmationRouteArgs(
             key: key,
             id: id,
           ),
           rawPathParams: {'id': id},
         );
 
-  static const String name = 'RequestConfirmationRoute';
+  static const String name = 'JoinRequestsConfirmationRoute';
 }
 
-class RequestConfirmationRouteArgs {
-  const RequestConfirmationRouteArgs({
+class JoinRequestsConfirmationRouteArgs {
+  const JoinRequestsConfirmationRouteArgs({
     this.key,
     required this.id,
   });
@@ -854,7 +854,7 @@ class RequestConfirmationRouteArgs {
 
   @override
   String toString() {
-    return 'RequestConfirmationRouteArgs{key: $key, id: $id}';
+    return 'JoinRequestsConfirmationRouteArgs{key: $key, id: $id}';
   }
 }
 

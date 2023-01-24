@@ -1,64 +1,57 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:fortune_client/view/theme/app_text_theme.dart';
+import 'package:fortune_client/view/pages/request/join_requests_confirmation/components/join_request_tile.dart';
+import 'package:fortune_client/view/pages/request/join_requests_confirmation/join_requests_confirmation_view_model.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/app_bar/back_app_bar.dart';
-import 'package:fortune_client/view/widgets/icon/circle_icon.dart';
+import 'package:fortune_client/view/widgets/other/error_widget.dart';
+import 'package:fortune_client/view/widgets/other/loading_widget.dart';
 
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+/// 参加申請一覧確認ページ
+/// [id] 参加申請を受信したルームID
 class JoinRequestsConfirmationPage extends HookConsumerWidget {
-  const JoinRequestsConfirmationPage(
-      {super.key, @PathParam() required this.id});
+  const JoinRequestsConfirmationPage({
+    super.key,
+    @PathParam() required this.id,
+  });
 
   final String id;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = ref.watch(appThemeProvider);
+    final state = ref.watch(joinRequestsConfirmationViewModelProvider(id));
+    final viewModel =
+        ref.watch(joinRequestsConfirmationViewModelProvider(id).notifier);
 
     return Scaffold(
       backgroundColor: theme.appColors.onBackground,
       appBar: const BackAppBar(title: "リクエスト"),
-      body: ListView(
-        children: [
-          requestTile(theme, "あんな", "22歳・女性", () {}),
-          requestTile(theme, "takahashi", "22歳・女性", () {}),
-          requestTile(theme, "shimizu", "22歳・女性", () {}),
-          requestTile(theme, "takada", "22歳・女性", () {}),
-        ],
+      body: state.joinRequests.when(
+        data: (data) {
+          return joinRequestListView([
+            for (var joinRequest in data) ...{
+              JoinRequestTile(
+                theme: theme,
+                name: joinRequest.name,
+                info: "22歳・女性",
+                onTap: () {},
+              )
+            }
+          ]);
+        },
+        error: (error, stackTrace) => errorWidget(error, stackTrace),
+        loading: () => loadingWidget(),
       ),
     );
   }
 
-  ListTile requestTile(
-    AppTheme theme,
-    String title,
-    String subtitle,
-    Function() onTap,
-  ) {
-    return ListTile(
-      contentPadding: const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
-      leading: const CircleIconWidget(radius: 30, isMan: true),
-      title: Text(title),
-      subtitle: Text(subtitle),
-      trailing: ElevatedButton(
-        onPressed: onTap,
-        style: ElevatedButton.styleFrom(
-          elevation: 0,
-          backgroundColor: theme.appColors.primary,
-          textStyle: theme.textTheme.h30.bold(),
-          shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(10)),
-          ),
-        ),
-        child: Text(
-          "許可",
-          style: theme.textTheme.h30
-              .bold()
-              .merge(const TextStyle(color: Colors.white)),
-        ),
-      ),
+  Widget joinRequestListView(List<Widget> joinRequestTiles) {
+    return ListView(
+      padding: const EdgeInsets.only(top: 20),
+      children: joinRequestTiles,
     );
   }
 }
