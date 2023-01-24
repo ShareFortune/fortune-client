@@ -87,7 +87,7 @@ class ParticipatingRoomCard extends HookConsumerWidget {
       location: locationText,
       members: membersIcon,
       bottom: bottomWidget,
-      onTapRoom: viewModel.navigateToRoomDetail,
+      onTapRoom: () => viewModel.navigateToRoomDetail(room.id),
     );
   }
 
