@@ -21,33 +21,17 @@ class ParticipatingRoomCard extends HookConsumerWidget {
     final viewModel =
         ref.watch(participatingRoomListViewModelProvider.notifier);
 
-    /// タイトル
-    final titleTextStyle = theme.textTheme.h40;
-    Text titleText = Text(
-      room.title,
-      style: titleTextStyle,
-      maxLines: 2,
-      overflow: TextOverflow.ellipsis,
-    );
-
-    /// 位置情報
-    final locationTextStyle =
-        theme.textTheme.h20.merge(const TextStyle(color: Color(0xFF6C6C6C)));
-    Text locationText = Text(room.address, style: locationTextStyle);
-
-    /// メンバーアイコンリスト
-    Widget membersIcon = memberIconsWidget(15, room.memberIcons);
-
     /// 下部ボタン・ホスト
     Widget bottomWidgetHost(HostState state) {
       switch (state.roomStatus) {
         case RoomStatus.pending:
           return _bottomButton(
-              title: "リクエストを確認する",
-              color: theme.appColors.primary,
-              onPressed: () => state.participationRequestsNum > 0
-                  ? viewModel.navigateToRequestConfirmation(state.id)
-                  : null);
+            title: "リクエストを確認する",
+            color: theme.appColors.primary,
+            onPressed: () => state.participationRequestsNum > 0
+                ? viewModel.navigateToRequestConfirmation(state.id)
+                : null,
+          );
         default:
           return _bottomButton(
             title: "メッセージ",
@@ -75,31 +59,6 @@ class ParticipatingRoomCard extends HookConsumerWidget {
       }
     }
 
-    /// 下部ボタン
-    Widget bottomWidget = room.map<Widget>(
-      host: bottomWidgetHost,
-      guest: bottomWidgetGuest,
-    );
-
-    return _build(
-      theme: theme,
-      title: titleText,
-      location: locationText,
-      members: membersIcon,
-      bottom: bottomWidget,
-      onTapRoom: () => viewModel.navigateToRoomDetail(room.id),
-    );
-  }
-
-  _build({
-    required AppTheme theme,
-    required Text title,
-    required Text location,
-    required Widget members,
-    required Widget bottom,
-    required VoidCallback onTapRoom,
-  }) {
-    /// Shadow
     const shadowOffset = Offset(4, 4);
     shadow(Offset offset) => BoxShadow(
           color: theme.appColors.shadow,
@@ -108,7 +67,7 @@ class ParticipatingRoomCard extends HookConsumerWidget {
         );
 
     return InkWell(
-      onTap: onTapRoom,
+      onTap: () => viewModel.navigateToRoomDetail(room.id),
       child: Container(
         width: 220,
         padding: const EdgeInsets.fromLTRB(15, 15, 15, 10),
@@ -120,11 +79,76 @@ class ParticipatingRoomCard extends HookConsumerWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _titleWidget(theme, title, location),
-            const Gap(15),
-            _membersWidget(theme, members),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                ///
+                /// タイトル
+                Text(
+                  room.title,
+                  style: theme.textTheme.h40,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                const Gap(5),
+
+                ///
+                /// 開催地
+                Row(children: [
+                  SvgPicture.asset(
+                    Assets.images.icons.iconLocation.path,
+                    fit: BoxFit.contain,
+                  ),
+                  const Gap(3),
+                  Text(
+                    room.address,
+                    style: theme.textTheme.h20.paint(theme.appColors.subText2),
+                  ),
+                ])
+              ],
+            ),
+            const Gap(10),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                RichText(
+                  text: TextSpan(
+                    style: theme.textTheme.h10.paint(theme.appColors.subText1),
+                    children: [
+                      const TextSpan(text: "参加者  "),
+                      TextSpan(
+                        text:
+                            '女性 ${room.membersNum.womenNum}/${room.membersNum.maxWomenNum}',
+                        style:
+                            theme.textTheme.h10.paint(theme.appColors.primary),
+                      ),
+                      TextSpan(
+                        text:
+                            '・男性 ${room.membersNum.menNum}/${room.membersNum.maxMenNum}',
+                        style:
+                            theme.textTheme.h10.paint(theme.appColors.subText3),
+                      ),
+                    ],
+                  ),
+                ),
+                const Gap(10),
+
+                ///
+                ///
+                /// 参加者アイコン
+                memberIconsWidget(15, room.memberIcons),
+              ],
+            ),
             const Spacer(),
-            bottom,
+
+            ///
+            ///
+            /// 下部ボタン
+            room.map<Widget>(
+              host: bottomWidgetHost,
+              guest: bottomWidgetGuest,
+            ),
           ],
         ),
       ),
@@ -144,61 +168,6 @@ class ParticipatingRoomCard extends HookConsumerWidget {
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
       ),
       child: Text(title),
-    );
-  }
-
-  _titleWidget(AppTheme theme, Text title, Text location) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        title,
-        const Gap(5),
-        Row(children: [
-          SvgPicture.asset(
-            Assets.images.icons.iconLocation.path,
-            fit: BoxFit.contain,
-          ),
-          const Gap(3),
-          location,
-        ])
-      ],
-    );
-  }
-
-  _membersWidget(AppTheme theme, Widget child) {
-    /// Label
-    final labelTextStyle = theme.textTheme.h10.bold();
-    final labelText = Text("参加者  ", style: labelTextStyle);
-
-    /// 参加者：女性
-    final womanTextColor = theme.appColors.primary;
-    final womanTextStyle = theme.textTheme.h10.paint(womanTextColor);
-
-    /// 参加者：男性
-    final manTextColor = theme.appColors.subText3;
-    final manTextStyle = theme.textTheme.h10.paint(manTextColor);
-
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Row(
-          children: [
-            labelText,
-            RichText(
-              text: TextSpan(
-                children: [
-                  TextSpan(text: '女性 2/4', style: womanTextStyle),
-                  TextSpan(text: '・男性 2/4', style: manTextStyle),
-                ],
-              ),
-            ),
-            const Gap(10),
-          ],
-        ),
-        const Gap(5),
-        child,
-      ],
     );
   }
 }
