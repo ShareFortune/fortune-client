@@ -11,10 +11,10 @@ class BaseTextField extends StatefulHookConsumerWidget {
     this.keyboardType,
     this.textInputAction,
     this.style,
-    this.autofocus,
-    this.readOnly,
-    this.maxLines,
+    this.autofocus = false,
+    this.readOnly = false,
     this.expands,
+    this.maxLines = 1,
     this.minLines,
     this.maxLength,
     this.onChanged,
@@ -37,8 +37,6 @@ class BaseTextField extends StatefulHookConsumerWidget {
     this.errorMaxLines,
     this.isDense,
     this.contentPadding,
-    this.prefixIcon,
-    this.suffixIcon,
     this.filled,
     this.fillColor,
     this.focusColor,
@@ -49,6 +47,7 @@ class BaseTextField extends StatefulHookConsumerWidget {
     this.disabledBorder,
     this.enabledBorder,
     this.border,
+    this.isDisplaySuffixIcon = true,
   }) : super(key: key);
 
   /// TextFormField
@@ -57,8 +56,8 @@ class BaseTextField extends StatefulHookConsumerWidget {
   final TextInputType? keyboardType;
   final TextInputAction? textInputAction;
   final TextStyle? style;
-  final bool? autofocus;
-  final bool? readOnly;
+  final bool autofocus;
+  final bool readOnly;
   final int? maxLines;
   final int? minLines;
   final bool? expands;
@@ -85,8 +84,6 @@ class BaseTextField extends StatefulHookConsumerWidget {
   final int? errorMaxLines;
   final bool? isDense;
   final EdgeInsetsGeometry? contentPadding;
-  final Widget? prefixIcon;
-  final Widget? suffixIcon;
   final bool? filled;
   final Color? fillColor;
   final Color? focusColor;
@@ -97,6 +94,9 @@ class BaseTextField extends StatefulHookConsumerWidget {
   final InputBorder? disabledBorder;
   final InputBorder? enabledBorder;
   final InputBorder? border;
+
+  /// Others
+  final bool isDisplaySuffixIcon;
 
   @override
   ConsumerState<BaseTextField> createState() => _BaseTextFieldState();
@@ -109,7 +109,9 @@ class _BaseTextFieldState extends ConsumerState<BaseTextField> {
   /// SuffixIconを表示するか
   bool _valueIsNotEmpty = false;
   bool _showingKeyboard = false;
-  bool get isDisplaySuffixIcon => (_valueIsNotEmpty && _showingKeyboard);
+  bool get isDisplaySuffixIcon {
+    return widget.isDisplaySuffixIcon && _valueIsNotEmpty && _showingKeyboard;
+  }
 
   @override
   void initState() {
@@ -147,8 +149,8 @@ class _BaseTextFieldState extends ConsumerState<BaseTextField> {
       keyboardType: widget.keyboardType,
       textInputAction: widget.textInputAction,
       style: widget.style,
-      autofocus: widget.autofocus ?? false,
-      readOnly: widget.readOnly ?? false,
+      autofocus: widget.autofocus,
+      readOnly: widget.readOnly,
       maxLines: widget.maxLines,
       minLines: widget.minLines,
       maxLength: widget.maxLength,
@@ -183,11 +185,17 @@ class _BaseTextFieldState extends ConsumerState<BaseTextField> {
         focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(color: theme.appColors.primary),
         ),
-        // focusedErrorBorder: const OutlineInputBorder(),
-        // disabledBorder: const OutlineInputBorder(),
-        // enabledBorder: const OutlineInputBorder(),
+        focusedErrorBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: theme.appColors.error),
+        ),
+        disabledBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: theme.appColors.border1),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: theme.appColors.border1),
+        ),
         border: OutlineInputBorder(
-          borderSide: BorderSide(color: theme.appColors.border2),
+          borderSide: BorderSide(color: theme.appColors.border1),
         ),
       ).copyWith(
         icon: widget.icon,
@@ -203,7 +211,6 @@ class _BaseTextFieldState extends ConsumerState<BaseTextField> {
         errorMaxLines: widget.errorMaxLines,
         isDense: widget.isDense,
         contentPadding: widget.contentPadding,
-        suffixIcon: isDisplaySuffixIcon ? widget.suffixIcon : null,
         filled: widget.filled,
         fillColor: widget.fillColor,
         focusColor: widget.focusColor,

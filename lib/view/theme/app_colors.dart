@@ -45,7 +45,7 @@ class AppColors {
       iconBtn1: const Color(0xFF000000),
       iconBtn2: const Color(0xFFD9D9D9),
       shadow: const Color(0xFFF3F3F3),
-      border1: const Color(0xFFF3F3F3),
+      border1: const Color(0xFFDDDDDD),
       border2: const Color(0xFFF3F3F3),
       disable: const Color(0xFFC9C9CB),
     );

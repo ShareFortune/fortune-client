@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:fortune_client/data/model/enum/age_group.dart';
-import 'package:fortune_client/view/pages/rooms/create/components/room_creation_text_field.dart';
 import 'package:fortune_client/view/pages/rooms/create/components/room_creation_selective_form.dart';
 import 'package:fortune_client/view/pages/rooms/create/components/room_creation_transition_tile.dart';
 import 'package:fortune_client/view/pages/rooms/create/room_creation_view_model.dart';
@@ -8,6 +7,7 @@ import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/app_bar/back_app_bar.dart';
 import 'package:fortune_client/view/widgets/dialog/toast.dart';
+import 'package:fortune_client/view/widgets/form_field/base_text_field.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -15,6 +15,7 @@ class RoomCreationPage extends HookConsumerWidget {
   RoomCreationPage({super.key});
 
   final titleController = TextEditingController();
+  final explanationController = TextEditingController();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -28,13 +29,12 @@ class RoomCreationPage extends HookConsumerWidget {
     final titleWidget = _inputFieldContainer(
       theme,
       title: "タイトル",
-      content: RoomCreationTextField(
-        theme: theme,
+      content: BaseTextField(
         controller: titleController,
-        hintText: "必須（40文字）",
         maxLength: 20,
-        clearCallBack: () => viewModel.changeTitle(""),
+        onClear: () => viewModel.changeTitle(""),
         onChanged: (value) => viewModel.changeTitle(value),
+        hintText: "必須（40文字）",
       ),
     );
 
@@ -101,27 +101,24 @@ class RoomCreationPage extends HookConsumerWidget {
 
     ///
     /// 詳細説明
-    ///
     final explanationWidget = _inputFieldContainer(
       theme,
       title: "説明",
-      content: RoomCreationTextField(
-        theme: theme,
-        controller: titleController,
+      content: BaseTextField(
+        controller: explanationController,
+        maxLength: 500,
         minLines: 6,
+        maxLines: 100,
+        isDisplaySuffixIcon: false,
+        onChanged: (value) => viewModel.changeExplanation(value),
         hintText:
-            "募集したい人の性格や趣味など\n例）映画が好きな方とお話したいです。\n自分の好きな映画について語りましょう！\n＃映画　＃アニメ映画\n",
+            "募集したい人の性格や趣味など\n\n例）映画が好きな方とお話したいです。\n自分の好きな映画について語りましょう！\n\n＃映画　＃アニメ映画\n",
+        contentPadding: const EdgeInsets.symmetric(
+          horizontal: 15,
+          vertical: 15,
+        ),
       ),
     );
-    // final explanationWidget = _inputFieldContainer(
-    //   theme,
-    //   title: "説明",
-    //   content: RoomCreationTransitionTile(
-    //     title: "ルームの説明を入力しましょう",
-    //     value: state.explanation,
-    //     onTap: () => viewModel.navigateToEntryDescription(),
-    //   ),
-    // );
 
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),

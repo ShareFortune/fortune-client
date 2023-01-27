@@ -40,7 +40,9 @@ class RoomCreationViewModel extends StateNotifier<RoomCreationState> {
     state = state.copyWith(ageGroup: value);
   }
 
-  changeExplanation() {}
+  changeExplanation(String value) {
+    state = state.copyWith(explanation: value);
+  }
 
   Future<bool> create() async {
     if (isPossibleToCreate()) {
