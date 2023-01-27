@@ -25,13 +25,14 @@ class RoomCreationSelectiveForm extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = ref.watch(appThemeProvider);
 
-    final titleTextColor = theme.appColors.subText2;
-    final titleTextStyle = theme.textTheme.h40.paint(titleTextColor);
+    final titleTextColor = theme.appColors.subText1;
+    final titleTextStyle = theme.textTheme.h40.paint(titleTextColor).bold();
 
     return BaseExpandedTile(
       title: title,
       titleStyle: titleTextStyle,
       value: value,
+      textWhenUnset: "必須",
       textWhenUnsetStyle: theme.textTheme.h30.paint(theme.appColors.subText3),
       content: BaseCupertinoPicker(
         items: items.map((e) => e + separator).toList(),

@@ -41,69 +41,54 @@ class RoomCreationPage extends HookConsumerWidget {
     ///
     /// 募集人数
     ///
-    final membersNumWidget = _inputFieldContainer(
-      theme,
-      title: "募集人数（必須）",
-      content: RoomCreationSelectiveForm(
-        title: "募集人数を選択する",
-        value: state.membersNum != null ? "${state.membersNum}人" : null,
-        separator: "人",
-        items: List.generate(7, (index) => "${index + 4}").toList(),
-        onSelect: (value) {
-          viewModel.changeMembersNum(int.parse(value));
-        },
-      ),
+    final membersNumWidget = RoomCreationSelectiveForm(
+      title: "募集人数",
+      value: state.membersNum != null ? "${state.membersNum}人" : null,
+      separator: "人",
+      items: List.generate(7, (index) => "${index + 4}").toList(),
+      onSelect: (value) {
+        viewModel.changeMembersNum(int.parse(value));
+      },
     );
 
     ///
     /// 対象年齢
     ///
-    final ageGroupWidget = _inputFieldContainer(
-      theme,
-      title: "募集する年齢",
-      content: RoomCreationSelectiveForm(
-        title: "募集する年齢を選択する",
-        value: state.ageGroup?.text,
-        items: AgeGroup.values.map((e) => e.text).toList(),
-        onSelect: (value) {
-          viewModel.changeAgeGroup(
-            AgeGroup.values.firstWhere((e) => e.text == value),
-          );
-        },
-      ),
+    final ageGroupWidget = RoomCreationSelectiveForm(
+      title: "募集年齢",
+      value: state.ageGroup?.text,
+      items: AgeGroup.values.map((e) => e.text).toList(),
+      onSelect: (value) {
+        viewModel.changeAgeGroup(
+          AgeGroup.values.firstWhere((e) => e.text == value),
+        );
+      },
     );
 
     ///
     /// 場所
     ///
-    final addressWidget = _inputFieldContainer(
-      theme,
-      title: "開催場所（必須）",
-      content: RoomCreationTransitionTile(
-        title: "開催する場所を選択する",
-        value: state.address?.text,
-        onTap: () => viewModel.navigateToEntryAddress(),
-      ),
+    final addressWidget = RoomCreationTransitionTile(
+      title: "開催場所",
+      value: state.address?.text,
+      onTap: () => viewModel.navigateToEntryAddress(),
     );
 
     ///
     /// タグ
     ///
-    final tagsWidget = _inputFieldContainer(
-      theme,
+    final tagsWidget = RoomCreationTransitionTile(
       title: "タグ",
-      content: RoomCreationTransitionTile(
-        title: "タグを選択する",
-        value: state.tags?.map((e) => e.name).join("、"),
-        onTap: () => viewModel.navigateToTagsSelection(),
-      ),
+      value: state.tags?.map((e) => e.name).join("、"),
+      onTap: () => viewModel.navigateToTagsSelection(),
     );
 
     ///
     /// 詳細説明
     final explanationWidget = _inputFieldContainer(
       theme,
-      title: "説明",
+      required: false,
+      title: "ルームの説明",
       content: BaseTextField(
         controller: explanationController,
         maxLength: 500,
@@ -150,13 +135,13 @@ class RoomCreationPage extends HookConsumerWidget {
               children: [
                 const Gap(30),
                 titleWidget,
-                const Gap(30),
+                const Gap(20),
                 membersNumWidget,
-                const Gap(30),
+                const Gap(15),
                 ageGroupWidget,
-                const Gap(30),
+                const Gap(15),
                 addressWidget,
-                const Gap(30),
+                const Gap(15),
                 tagsWidget,
                 const Gap(30),
                 explanationWidget,
@@ -171,13 +156,28 @@ class RoomCreationPage extends HookConsumerWidget {
 
   Widget _inputFieldContainer(
     AppTheme theme, {
+    bool required = true,
     required String title,
     required Widget content,
   }) {
+    final annotation = Container(
+      color: theme.appColors.disable,
+      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 3),
+      child: Text(
+        "任意",
+        style: theme.textTheme.h10.paint(theme.appColors.subText1),
+      ),
+    );
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(title, style: theme.textTheme.h40.bold()),
+        Row(
+          children: [
+            Text(title, style: theme.textTheme.h40.bold()),
+            const Gap(10),
+            Container(child: required ? null : annotation)
+          ],
+        ),
         const Gap(10),
         content,
       ],
