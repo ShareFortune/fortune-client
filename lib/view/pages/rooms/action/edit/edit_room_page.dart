@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:fortune_client/data/model/address/address.dart';
 import 'package:fortune_client/data/model/enum/age_group.dart';
 import 'package:fortune_client/data/model/tag/tag.dart';
-import 'package:fortune_client/view/pages/rooms/action/create/room_creation_view_model.dart';
-import 'package:fortune_client/view/pages/rooms/create/components/room_creation_selective_form.dart';
-import 'package:fortune_client/view/pages/rooms/create/components/room_creation_transition_tile.dart';
+import 'package:fortune_client/view/pages/rooms/action/components/room_state_selective_form.dart';
+import 'package:fortune_client/view/pages/rooms/action/components/room_state_transition_tile.dart';
+import 'package:fortune_client/view/pages/rooms/action/edit/edit_room_view_model.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/app_bar/back_app_bar.dart';
@@ -37,8 +37,8 @@ class EditRoomPage extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = ref.watch(appThemeProvider);
-    final state = ref.watch(roomCreationViewModelProvider);
-    final viewModel = ref.watch(roomCreationViewModelProvider.notifier);
+    final state = ref.watch(editRoomViewModelProvider);
+    final viewModel = ref.watch(editRoomViewModelProvider.notifier);
 
     ///
     /// タイトル
@@ -58,7 +58,7 @@ class EditRoomPage extends HookConsumerWidget {
     ///
     /// 募集人数
     ///
-    final membersNumWidget = RoomCreationSelectiveForm(
+    final membersNumWidget = RoomStateSelectiveForm(
       title: "募集人数",
       value: state.membersNum != null ? "${state.membersNum}人" : null,
       separator: "人",
@@ -71,7 +71,7 @@ class EditRoomPage extends HookConsumerWidget {
     ///
     /// 対象年齢
     ///
-    final ageGroupWidget = RoomCreationSelectiveForm(
+    final ageGroupWidget = RoomStateSelectiveForm(
       title: "募集年齢",
       value: state.ageGroup?.text,
       items: AgeGroup.values.map((e) => e.text).toList(),
@@ -85,7 +85,7 @@ class EditRoomPage extends HookConsumerWidget {
     ///
     /// 場所
     ///
-    final addressWidget = RoomCreationTransitionTile(
+    final addressWidget = RoomStateTransitionTile(
       title: "開催場所",
       value: state.address?.text,
       onTap: () => viewModel.navigateToEntryAddress(),
@@ -94,7 +94,7 @@ class EditRoomPage extends HookConsumerWidget {
     ///
     /// タグ
     ///
-    final tagsWidget = RoomCreationTransitionTile(
+    final tagsWidget = RoomStateTransitionTile(
       title: "タグ",
       value: state.tags?.map((e) => e.name).join("、"),
       onTap: () => viewModel.navigateToTagsSelection(),
@@ -132,9 +132,9 @@ class EditRoomPage extends HookConsumerWidget {
             Container(
               padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
               child: ElevatedButton(
-                onPressed: viewModel.isPossibleToCreate()
+                onPressed: viewModel.isPossibleToUpdate()
                     ? () async {
-                        if (!await viewModel.create()) {
+                        if (!await viewModel.update()) {
                           _showFailedToCreateToast(context, theme);
                         }
                       }
@@ -202,6 +202,6 @@ class EditRoomPage extends HookConsumerWidget {
   }
 
   _showFailedToCreateToast(BuildContext context, AppTheme theme) {
-    showErrorToast(context, theme, "ルームを作成できませんでした。");
+    showErrorToast(context, theme, "ルームを編集できませんでした。");
   }
 }

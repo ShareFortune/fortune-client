@@ -18,6 +18,7 @@ import 'package:fortune_client/view/pages/profile/create/entry_profile_sub_image
 import 'package:fortune_client/view/pages/profile/profile/profile_page.dart';
 import 'package:fortune_client/view/pages/request/join_requests_confirmation/join_requests_confirmation_page.dart';
 import 'package:fortune_client/view/pages/rooms/action/create/create_room_page.dart';
+import 'package:fortune_client/view/pages/rooms/action/edit/edit_room_page.dart';
 import 'package:fortune_client/view/pages/rooms/participating/participating_room_list_page.dart';
 import 'package:fortune_client/view/pages/rooms/room_detail/room_detail_page.dart';
 import 'package:fortune_client/view/pages/rooms/room_list/room_list_page.dart';
@@ -123,6 +124,9 @@ export 'app_router.gr.dart';
 
     /// ルーム作成
     AutoRoute(path: RoutePath.createRoom, page: CreateRoomPage),
+
+    /// ルーム編集
+    AutoRoute(path: RoutePath.editRoom, page: EditRoomPage),
 
     /// 住所検索
     AutoRoute(path: RoutePath.enterAddress, page: EntryAddressPage),

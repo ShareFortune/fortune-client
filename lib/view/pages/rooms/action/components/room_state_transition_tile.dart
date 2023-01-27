@@ -4,8 +4,8 @@ import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/form_field/base_transition_tile.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class RoomCreationTransitionTile extends HookConsumerWidget {
-  const RoomCreationTransitionTile({
+class RoomStateTransitionTile extends HookConsumerWidget {
+  const RoomStateTransitionTile({
     super.key,
     required this.title,
     this.value,

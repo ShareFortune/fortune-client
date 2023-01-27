@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fortune_client/gen/assets.gen.dart';
 import 'package:fortune_client/view/pages/common/bottom_sheet/components/bottom_sheet_menu_item.dart';
+import 'package:fortune_client/view/pages/common/bottom_sheet/room_actions/room_actions_bottom_sheet_view_model.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:gap/gap.dart';
@@ -14,6 +15,8 @@ class RoomActionsBottomSheet extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = ref.watch(appThemeProvider);
+    final viewModel =
+        ref.watch(roomActionsBottomSheetViewModelProvider.notifier);
 
     return Container(
       color: Colors.transparent,
@@ -65,7 +68,7 @@ class RoomActionsBottomSheet extends HookConsumerWidget {
                 theme: theme,
                 title: "ルームを編集する",
                 iconPath: Assets.images.icons.iconLink.path,
-                onPressed: () {},
+                onPressed: () => viewModel.navigateToEditRoom(),
               ),
               BottomSheetMenuItem.last(
                 theme: theme,

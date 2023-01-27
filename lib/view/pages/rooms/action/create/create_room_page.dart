@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:fortune_client/data/model/address/address.dart';
 import 'package:fortune_client/data/model/enum/age_group.dart';
-import 'package:fortune_client/data/model/tag/tag.dart';
+import 'package:fortune_client/view/pages/rooms/action/components/room_state_selective_form.dart';
+import 'package:fortune_client/view/pages/rooms/action/components/room_state_transition_tile.dart';
 import 'package:fortune_client/view/pages/rooms/action/create/create_room_view_model.dart';
 import 'package:fortune_client/view/pages/rooms/create/components/room_creation_selective_form.dart';
 import 'package:fortune_client/view/pages/rooms/create/components/room_creation_transition_tile.dart';
@@ -43,7 +43,7 @@ class CreateRoomPage extends HookConsumerWidget {
     ///
     /// 募集人数
     ///
-    final membersNumWidget = RoomCreationSelectiveForm(
+    final membersNumWidget = RoomStateSelectiveForm(
       title: "募集人数",
       value: state.membersNum != null ? "${state.membersNum}人" : null,
       separator: "人",
@@ -56,7 +56,7 @@ class CreateRoomPage extends HookConsumerWidget {
     ///
     /// 対象年齢
     ///
-    final ageGroupWidget = RoomCreationSelectiveForm(
+    final ageGroupWidget = RoomStateSelectiveForm(
       title: "募集年齢",
       value: state.ageGroup?.text,
       items: AgeGroup.values.map((e) => e.text).toList(),
@@ -70,7 +70,7 @@ class CreateRoomPage extends HookConsumerWidget {
     ///
     /// 場所
     ///
-    final addressWidget = RoomCreationTransitionTile(
+    final addressWidget = RoomStateTransitionTile(
       title: "開催場所",
       value: state.address?.text,
       onTap: () => viewModel.navigateToEntryAddress(),
@@ -79,7 +79,7 @@ class CreateRoomPage extends HookConsumerWidget {
     ///
     /// タグ
     ///
-    final tagsWidget = RoomCreationTransitionTile(
+    final tagsWidget = RoomStateTransitionTile(
       title: "タグ",
       value: state.tags?.map((e) => e.name).join("、"),
       onTap: () => viewModel.navigateToTagsSelection(),
