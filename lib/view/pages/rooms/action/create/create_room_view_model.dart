@@ -7,14 +7,13 @@ import 'package:fortune_client/view/pages/rooms/create/room_creation_state.dart'
 import 'package:fortune_client/view/routes/app_router.gr.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-final roomCreationViewModelProvider =
-    StateNotifierProvider<RoomCreationViewModel, RoomCreationState>(
-  (_) => RoomCreationViewModel(sl()),
+final createRoomViewModelProvider =
+    StateNotifierProvider<CreateRoomViewModel, RoomCreationState>(
+  (_) => CreateRoomViewModel(sl()),
 );
 
-class RoomCreationViewModel extends StateNotifier<RoomCreationState> {
-  RoomCreationViewModel(this._roomsRepository)
-      : super(const RoomCreationState());
+class CreateRoomViewModel extends StateNotifier<RoomCreationState> {
+  CreateRoomViewModel(this._roomsRepository) : super(const RoomCreationState());
 
   final RoomsRepository _roomsRepository;
 

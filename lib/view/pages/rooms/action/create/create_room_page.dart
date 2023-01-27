@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:fortune_client/data/model/address/address.dart';
 import 'package:fortune_client/data/model/enum/age_group.dart';
+import 'package:fortune_client/data/model/tag/tag.dart';
+import 'package:fortune_client/view/pages/rooms/action/create/create_room_view_model.dart';
 import 'package:fortune_client/view/pages/rooms/create/components/room_creation_selective_form.dart';
 import 'package:fortune_client/view/pages/rooms/create/components/room_creation_transition_tile.dart';
-import 'package:fortune_client/view/pages/rooms/create/room_creation_view_model.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/app_bar/back_app_bar.dart';
@@ -11,8 +13,8 @@ import 'package:fortune_client/view/widgets/form_field/base_text_field.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class RoomCreationPage extends HookConsumerWidget {
-  RoomCreationPage({super.key});
+class CreateRoomPage extends HookConsumerWidget {
+  CreateRoomPage({super.key});
 
   final titleController = TextEditingController();
   final explanationController = TextEditingController();
@@ -20,8 +22,8 @@ class RoomCreationPage extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = ref.watch(appThemeProvider);
-    final state = ref.watch(roomCreationViewModelProvider);
-    final viewModel = ref.watch(roomCreationViewModelProvider.notifier);
+    final state = ref.watch(createRoomViewModelProvider);
+    final viewModel = ref.watch(createRoomViewModelProvider.notifier);
 
     ///
     /// タイトル

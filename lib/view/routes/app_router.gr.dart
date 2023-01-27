@@ -44,7 +44,7 @@ import 'package:fortune_client/view/pages/profile/update/profile_update_page.dar
     as _i10;
 import 'package:fortune_client/view/pages/request/join_requests_confirmation/join_requests_confirmation_page.dart'
     as _i18;
-import 'package:fortune_client/view/pages/rooms/create/room_creation_page.dart'
+import 'package:fortune_client/view/pages/rooms/action/create/create_room_page.dart'
     as _i7;
 import 'package:fortune_client/view/pages/rooms/participating/participating_room_list_page.dart'
     as _i17;
@@ -121,12 +121,12 @@ class AppRouter extends _i25.RootStackRouter {
         ),
       );
     },
-    RoomCreationRoute.name: (routeData) {
-      final args = routeData.argsAs<RoomCreationRouteArgs>(
-          orElse: () => const RoomCreationRouteArgs());
+    CreateRoomRoute.name: (routeData) {
+      final args = routeData.argsAs<CreateRoomRouteArgs>(
+          orElse: () => const CreateRoomRouteArgs());
       return _i25.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: _i7.RoomCreationPage(key: args.key),
+        child: _i7.CreateRoomPage(key: args.key),
       );
     },
     EntryAddressRoute.name: (routeData) {
@@ -412,7 +412,7 @@ class AppRouter extends _i25.RootStackRouter {
           path: 'profile/:id',
         ),
         _i25.RouteConfig(
-          RoomCreationRoute.name,
+          CreateRoomRoute.name,
           path: 'create-room',
         ),
         _i25.RouteConfig(
@@ -578,26 +578,26 @@ class ProfileRouteArgs {
 }
 
 /// generated route for
-/// [_i7.RoomCreationPage]
-class RoomCreationRoute extends _i25.PageRouteInfo<RoomCreationRouteArgs> {
-  RoomCreationRoute({_i26.Key? key})
+/// [_i7.CreateRoomPage]
+class CreateRoomRoute extends _i25.PageRouteInfo<CreateRoomRouteArgs> {
+  CreateRoomRoute({_i26.Key? key})
       : super(
-          RoomCreationRoute.name,
+          CreateRoomRoute.name,
           path: 'create-room',
-          args: RoomCreationRouteArgs(key: key),
+          args: CreateRoomRouteArgs(key: key),
         );
 
-  static const String name = 'RoomCreationRoute';
+  static const String name = 'CreateRoomRoute';
 }
 
-class RoomCreationRouteArgs {
-  const RoomCreationRouteArgs({this.key});
+class CreateRoomRouteArgs {
+  const CreateRoomRouteArgs({this.key});
 
   final _i26.Key? key;
 
   @override
   String toString() {
-    return 'RoomCreationRouteArgs{key: $key}';
+    return 'CreateRoomRouteArgs{key: $key}';
   }
 }
 
