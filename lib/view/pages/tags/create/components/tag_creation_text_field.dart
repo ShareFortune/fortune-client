@@ -33,8 +33,8 @@ class TagCreationTextField extends StatelessWidget {
       hintStyle: theme.textTheme.h40,
       onChanged: onChanged,
       onTap: onTap,
+      onClear: clearCallBack,
       onEditingComplete: onEditingComplete,
-      clearCallBack: clearCallBack,
       contentPadding: const EdgeInsets.all(15),
       enabledBorder: UnderlineInputBorder(
           borderSide: BorderSide(color: theme.appColors.border2)),

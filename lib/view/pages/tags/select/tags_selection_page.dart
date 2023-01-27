@@ -82,7 +82,7 @@ class TagsSelectionPage extends HookConsumerWidget {
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: TagTextField(
-              emailCtrl: controller,
+              controller: controller,
               hintText: "タグを検索",
               clearCallBack: tagFormClearCallBack,
               onEditingComplete: tagFormOnEditingComplete,

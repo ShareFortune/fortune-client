@@ -33,8 +33,8 @@ class ProfileCreationTextField extends StatelessWidget {
       hintStyle: theme.textTheme.h40,
       onChanged: onChanged,
       onTap: onTap,
+      onClear: clearCallBack,
       onEditingComplete: onEditingComplete,
-      clearCallBack: clearCallBack,
       fillColor: theme.appColors.onBackground,
       contentPadding: const EdgeInsets.symmetric(vertical: 15),
       enabledBorder: UnderlineInputBorder(

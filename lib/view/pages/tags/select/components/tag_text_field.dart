@@ -6,7 +6,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 class TagTextField extends HookConsumerWidget {
   const TagTextField({
     Key? key,
-    required this.emailCtrl,
+    required this.controller,
     required this.hintText,
     this.onChanged,
     this.onTap,
@@ -16,7 +16,7 @@ class TagTextField extends HookConsumerWidget {
     this.clearCallBack,
   }) : super(key: key);
 
-  final TextEditingController emailCtrl;
+  final TextEditingController controller;
   final String hintText;
   final Function(String)? onChanged;
   final VoidCallback? onTap;
@@ -30,16 +30,15 @@ class TagTextField extends HookConsumerWidget {
     final theme = ref.watch(appThemeProvider);
 
     return BaseTextField(
-      controller: emailCtrl,
+      controller: controller,
       validator: (validator == null) ? null : (value) => validator!(value),
-      keyboardType: TextInputType.emailAddress,
       textInputAction: TextInputAction.next,
       hintText: hintText,
       onChanged: onChanged,
       onTap: onTap,
+      onClear: clearCallBack,
       onEditingComplete: onEditingComplete,
-      borderside: isError ?? false ? const BorderSide(color: Colors.red) : null,
-      clearCallBack: clearCallBack,
+      // border: isError ?? false ? const BorderSide(color: Colors.red) : null,
     );
   }
 }

@@ -8,6 +8,8 @@ class RoomCreationTextField extends StatelessWidget {
     required this.theme,
     required this.controller,
     required this.hintText,
+    this.maxLength,
+    this.minLines,
     this.onChanged,
     this.onTap,
     this.onEditingComplete,
@@ -17,6 +19,8 @@ class RoomCreationTextField extends StatelessWidget {
   final AppTheme theme;
   final TextEditingController controller;
   final String hintText;
+  final int? maxLength;
+  final int? minLines;
   final Function(String)? onChanged;
   final VoidCallback? onTap;
   final VoidCallback? onEditingComplete;
@@ -25,22 +29,22 @@ class RoomCreationTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BaseTextField(
+      maxLength: maxLength,
+      minLines: minLines,
       controller: controller,
-      keyboardType: TextInputType.name,
       textInputAction: TextInputAction.next,
       hintText: hintText,
       style: theme.textTheme.h40,
       hintStyle: theme.textTheme.h40,
       onChanged: onChanged,
       onTap: onTap,
+      onClear: clearCallBack,
       onEditingComplete: onEditingComplete,
-      clearCallBack: clearCallBack,
       fillColor: theme.appColors.onBackground,
-      contentPadding: const EdgeInsets.symmetric(vertical: 15),
-      enabledBorder: UnderlineInputBorder(
-          borderSide: BorderSide(color: theme.appColors.border2)),
-      focusedBorder: UnderlineInputBorder(
-          borderSide: BorderSide(color: theme.appColors.primary)),
+      contentPadding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+      enabledBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: theme.appColors.border1),
+      ),
     );
   }
 }

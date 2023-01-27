@@ -1,101 +1,131 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
-import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class BaseTextField extends StatefulHookConsumerWidget {
   const BaseTextField({
     Key? key,
     required this.controller,
-    this.autofocus,
     this.focusNode,
-    this.validator,
-    this.hintText,
-    this.hintStyle,
     this.keyboardType,
-    this.cursorColor,
     this.textInputAction,
     this.style,
+    this.autofocus,
+    this.readOnly,
+    this.maxLines,
+    this.expands,
+    this.minLines,
+    this.maxLength,
     this.onChanged,
     this.onTap,
+    this.onClear,
     this.onEditingComplete,
-    this.obscureText,
-    this.prefixIcon,
-    this.prefixIconColor,
-    this.suffixIcon,
-    this.borderside,
-    this.clearCallBack,
-    this.inputFormatters,
-    this.maxLength,
-    this.fillColor,
-    this.border,
-    this.enabledBorder,
-    this.focusedBorder,
-    this.contentPadding,
+    this.onFieldSubmitted,
+    this.onSaved,
+    this.validator,
+    this.icon,
+    this.iconColor,
+    this.label,
     this.labelText,
+    this.labelStyle,
+    this.hintText,
+    this.hintStyle,
+    this.hintMaxLines,
+    this.errorText,
+    this.errorStyle,
+    this.errorMaxLines,
+    this.isDense,
+    this.contentPadding,
+    this.prefixIcon,
+    this.suffixIcon,
+    this.filled,
+    this.fillColor,
+    this.focusColor,
+    this.hoverColor,
+    this.errorBorder,
+    this.focusedBorder,
+    this.focusedErrorBorder,
+    this.disabledBorder,
+    this.enabledBorder,
+    this.border,
   }) : super(key: key);
 
-  final bool? autofocus;
-  final FocusNode? focusNode;
+  /// TextFormField
   final TextEditingController controller;
-  final FormFieldValidator<String>? validator;
+  final FocusNode? focusNode;
   final TextInputType? keyboardType;
-  final Color? cursorColor;
-  final String? hintText;
-  final TextStyle? hintStyle;
   final TextInputAction? textInputAction;
   final TextStyle? style;
-  final ValueChanged<String>? onChanged;
-  final VoidCallback? onTap;
-  final VoidCallback? onEditingComplete;
-  final bool? obscureText;
-  final Widget? prefixIcon;
-  final Color? prefixIconColor;
-  final Widget? suffixIcon;
-  final BorderSide? borderside;
-  final VoidCallback? clearCallBack;
-  final List<TextInputFormatter>? inputFormatters;
-  final Color? fillColor;
-  final InputBorder? border;
-  final InputBorder? enabledBorder;
-  final InputBorder? focusedBorder;
-  final EdgeInsetsGeometry? contentPadding;
-  final String? labelText;
-
+  final bool? autofocus;
+  final bool? readOnly;
+  final int? maxLines;
+  final int? minLines;
+  final bool? expands;
   final int? maxLength;
+  final void Function(String)? onChanged;
+  final void Function()? onTap;
+  final void Function()? onClear;
+  final void Function()? onEditingComplete;
+  final void Function(String)? onFieldSubmitted;
+  final void Function(String?)? onSaved;
+  final String? Function(String?)? validator;
+
+  /// InputDecoration
+  final Widget? icon;
+  final Color? iconColor;
+  final Widget? label;
+  final String? labelText;
+  final TextStyle? labelStyle;
+  final String? hintText;
+  final TextStyle? hintStyle;
+  final int? hintMaxLines;
+  final String? errorText;
+  final TextStyle? errorStyle;
+  final int? errorMaxLines;
+  final bool? isDense;
+  final EdgeInsetsGeometry? contentPadding;
+  final Widget? prefixIcon;
+  final Widget? suffixIcon;
+  final bool? filled;
+  final Color? fillColor;
+  final Color? focusColor;
+  final Color? hoverColor;
+  final InputBorder? errorBorder;
+  final InputBorder? focusedBorder;
+  final InputBorder? focusedErrorBorder;
+  final InputBorder? disabledBorder;
+  final InputBorder? enabledBorder;
+  final InputBorder? border;
 
   @override
   ConsumerState<BaseTextField> createState() => _BaseTextFieldState();
 }
 
 class _BaseTextFieldState extends ConsumerState<BaseTextField> {
-  String get value => widget.controller.text;
-
-  bool get isNotEmpty => value.isNotEmpty;
-
-  bool get isDisplayFirstSuffixIcon =>
-      ((isNotEmpty || _isNotEmpty) && _showingKeyboard);
-
-  bool get isDisplaySecondSuffixIcon =>
-      ((widget.suffixIcon != null) && (_isNotEmpty || _isNotEmpty));
-
+  /// フォーカス制御
   late final FocusNode _focusNode;
 
+  /// SuffixIconを表示するか
+  bool _valueIsNotEmpty = false;
   bool _showingKeyboard = false;
-
-  bool _isNotEmpty = false;
+  bool get isDisplaySuffixIcon => (_valueIsNotEmpty && _showingKeyboard);
 
   @override
   void initState() {
     super.initState();
     _focusNode = widget.focusNode ?? FocusNode();
-
     _focusNode.addListener(() {
       if (mounted) {
         setState(() {
           _showingKeyboard = _focusNode.hasFocus;
+        });
+      }
+    });
+    widget.controller.addListener(() {
+      if (mounted) {
+        setState(() {
+          _valueIsNotEmpty = widget.controller.text.isNotEmpty;
         });
       }
     });
@@ -112,85 +142,79 @@ class _BaseTextFieldState extends ConsumerState<BaseTextField> {
     final theme = ref.watch(appThemeProvider);
 
     return TextFormField(
-      autofocus: widget.autofocus ?? false,
-      focusNode: _focusNode,
       controller: widget.controller,
-      validator: widget.validator,
+      focusNode: _focusNode,
       keyboardType: widget.keyboardType,
-      inputFormatters: widget.inputFormatters,
-      maxLength: widget.maxLength,
-      cursorColor: widget.cursorColor,
       textInputAction: widget.textInputAction,
-      style:
-          widget.style ?? theme.textTheme.h30.paint(theme.appColors.subText1),
+      style: widget.style,
+      autofocus: widget.autofocus ?? false,
+      readOnly: widget.readOnly ?? false,
+      maxLines: widget.maxLines,
+      minLines: widget.minLines,
+      maxLength: widget.maxLength,
+      onChanged: widget.onChanged,
       onTap: widget.onTap,
       onEditingComplete: widget.onEditingComplete,
+      onFieldSubmitted: widget.onFieldSubmitted,
+      onSaved: widget.onSaved,
+      validator: widget.validator,
       decoration: InputDecoration(
-        labelText: widget.labelText,
-        fillColor: theme.appColors.textFieldBackground,
+        iconColor: Colors.red,
+        labelStyle: theme.textTheme.h30.paint(theme.appColors.subText2),
+        hintStyle: theme.textTheme.h30.paint(theme.appColors.subText3),
+        errorStyle: theme.textTheme.h10.paint(theme.appColors.error),
+        contentPadding: const EdgeInsets.symmetric(horizontal: 15, vertical: 6),
         filled: true,
-        hintText: widget.hintText,
-        hintStyle: theme.textTheme.h30.paint(theme.appColors.subText2),
-        prefixIcon: widget.prefixIcon,
-        prefixIconColor: widget.prefixIconColor,
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderSide:
-              widget.borderside ?? BorderSide(color: theme.appColors.onError),
+        suffixIcon: isDisplaySuffixIcon
+            ? IconButton(
+                icon: const Icon(Icons.close),
+                onPressed: () {
+                  widget.controller.clear();
+                  if (widget.onClear != null) widget.onClear!();
+                },
+              )
+            : null,
+        fillColor: theme.appColors.onBackground,
+        focusColor: Colors.red,
+        hoverColor: Colors.red,
+        errorBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: theme.appColors.error),
         ),
         focusedBorder: OutlineInputBorder(
-          borderSide:
-              widget.borderside ?? BorderSide(color: theme.appColors.primary),
+          borderSide: BorderSide(color: theme.appColors.primary),
         ),
-        contentPadding: const EdgeInsets.all(10),
-        errorMaxLines: 2,
-        suffixIcon: (!_isNotEmpty && !isNotEmpty)
-            ? null
-            : SizedBox(
-                width: widget.suffixIcon != null ? 110 : 55,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    isDisplayFirstSuffixIcon
-                        ? InkWell(
-                            onTap: () {
-                              widget.controller.clear();
-                              setState(() => _isNotEmpty = false);
-                              if (widget.clearCallBack != null) {
-                                widget.clearCallBack!();
-                              }
-                            },
-                            child: IconButton(
-                              onPressed: widget.clearCallBack,
-                              icon: const Icon(Icons.close),
-                            ),
-                          )
-                        : Container(),
-                    if (isDisplaySecondSuffixIcon) ...[
-                      const Gap(20),
-                      widget.suffixIcon!
-                    ],
-                  ],
-                ),
-              ),
+        // focusedErrorBorder: const OutlineInputBorder(),
+        // disabledBorder: const OutlineInputBorder(),
+        // enabledBorder: const OutlineInputBorder(),
+        border: OutlineInputBorder(
+          borderSide: BorderSide(color: theme.appColors.border2),
+        ),
       ).copyWith(
-        fillColor: widget.fillColor,
-        contentPadding: widget.contentPadding,
-        border: widget.border,
-        enabledBorder: widget.enabledBorder,
-        focusedBorder: widget.focusedBorder,
-        labelStyle: widget.style,
+        icon: widget.icon,
+        iconColor: widget.iconColor,
+        label: widget.label,
+        labelText: widget.labelText,
+        labelStyle: widget.labelStyle,
+        hintText: widget.hintText,
         hintStyle: widget.hintStyle,
+        hintMaxLines: widget.hintMaxLines,
+        errorText: widget.errorText,
+        errorStyle: widget.errorStyle,
+        errorMaxLines: widget.errorMaxLines,
+        isDense: widget.isDense,
+        contentPadding: widget.contentPadding,
+        suffixIcon: isDisplaySuffixIcon ? widget.suffixIcon : null,
+        filled: widget.filled,
+        fillColor: widget.fillColor,
+        focusColor: widget.focusColor,
+        hoverColor: widget.hoverColor,
+        errorBorder: widget.errorBorder,
+        focusedBorder: widget.focusedBorder,
+        focusedErrorBorder: widget.focusedErrorBorder,
+        disabledBorder: widget.disabledBorder,
+        enabledBorder: widget.enabledBorder,
+        border: widget.border,
       ),
-      obscureText: widget.obscureText ?? false,
-      onChanged: (text) {
-        if (text.isNotEmpty && !_isNotEmpty) setState(() => _isNotEmpty = true);
-        if (text.isEmpty && _isNotEmpty) setState(() => _isNotEmpty = false);
-        if (widget.onChanged == null) return;
-        widget.onChanged!(text);
-      },
     );
   }
 }

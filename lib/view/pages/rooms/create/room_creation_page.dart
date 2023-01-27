@@ -27,15 +27,14 @@ class RoomCreationPage extends HookConsumerWidget {
     ///
     final titleWidget = _inputFieldContainer(
       theme,
-      title: "タイトル（必須）",
-      explanation: "募集したいルームのタイトルです。",
+      title: "タイトル",
       content: RoomCreationTextField(
         theme: theme,
         controller: titleController,
-        hintText: "タイトルを入力する",
+        hintText: "必須（40文字）",
+        maxLength: 20,
         clearCallBack: () => viewModel.changeTitle(""),
         onChanged: (value) => viewModel.changeTitle(value),
-        onEditingComplete: () => FocusScope.of(context).unfocus(),
       ),
     );
 
@@ -45,7 +44,6 @@ class RoomCreationPage extends HookConsumerWidget {
     final membersNumWidget = _inputFieldContainer(
       theme,
       title: "募集人数（必須）",
-      explanation: "募集したい人数を設定して下さい。\n設定可能な人数は4名から10名です。",
       content: RoomCreationSelectiveForm(
         title: "募集人数を選択する",
         value: state.membersNum != null ? "${state.membersNum}人" : null,
@@ -63,7 +61,6 @@ class RoomCreationPage extends HookConsumerWidget {
     final ageGroupWidget = _inputFieldContainer(
       theme,
       title: "募集する年齢",
-      explanation: "募集したい年齢を選択して下さい。\n未選択でも問題ありません。",
       content: RoomCreationSelectiveForm(
         title: "募集する年齢を選択する",
         value: state.ageGroup?.text,
@@ -82,7 +79,6 @@ class RoomCreationPage extends HookConsumerWidget {
     final addressWidget = _inputFieldContainer(
       theme,
       title: "開催場所（必須）",
-      explanation: "ルームを開催する場所を選択しましょう。",
       content: RoomCreationTransitionTile(
         title: "開催する場所を選択する",
         value: state.address?.text,
@@ -96,7 +92,6 @@ class RoomCreationPage extends HookConsumerWidget {
     final tagsWidget = _inputFieldContainer(
       theme,
       title: "タグ",
-      explanation: "関連するタグを設定しましょう。\nタグを設定すると参加してもらいやすくなります。",
       content: RoomCreationTransitionTile(
         title: "タグを選択する",
         value: state.tags?.map((e) => e.name).join("、"),
@@ -110,13 +105,23 @@ class RoomCreationPage extends HookConsumerWidget {
     final explanationWidget = _inputFieldContainer(
       theme,
       title: "説明",
-      explanation: "作成するルームに関する説明を書きましょう",
-      content: RoomCreationTransitionTile(
-        title: "ルームの説明を入力しましょう",
-        value: state.explanation,
-        onTap: () => viewModel.navigateToEntryDescription(),
+      content: RoomCreationTextField(
+        theme: theme,
+        controller: titleController,
+        minLines: 6,
+        hintText:
+            "募集したい人の性格や趣味など\n例）映画が好きな方とお話したいです。\n自分の好きな映画について語りましょう！\n＃映画　＃アニメ映画\n",
       ),
     );
+    // final explanationWidget = _inputFieldContainer(
+    //   theme,
+    //   title: "説明",
+    //   content: RoomCreationTransitionTile(
+    //     title: "ルームの説明を入力しましょう",
+    //     value: state.explanation,
+    //     onTap: () => viewModel.navigateToEntryDescription(),
+    //   ),
+    // );
 
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
@@ -170,19 +175,13 @@ class RoomCreationPage extends HookConsumerWidget {
   Widget _inputFieldContainer(
     AppTheme theme, {
     required String title,
-    required String explanation,
     required Widget content,
   }) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(title, style: theme.textTheme.h40),
-        const Gap(5),
-        Text(
-          explanation,
-          style: theme.textTheme.h30.paint(theme.appColors.subText1),
-        ),
-        const Gap(15),
+        Text(title, style: theme.textTheme.h40.bold()),
+        const Gap(10),
         content,
       ],
     );
