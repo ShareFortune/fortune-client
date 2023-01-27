@@ -3,6 +3,7 @@ import 'package:fortune_client/data/model/address/address.dart';
 import 'package:fortune_client/data/model/enum/age_group.dart';
 import 'package:fortune_client/data/model/participant/host/participant_room_as_host.dart';
 import 'package:fortune_client/data/model/tag/tag.dart';
+import 'package:fortune_client/view/pages/rooms/action/components/room_state_input_field.dart';
 import 'package:fortune_client/view/pages/rooms/action/components/room_state_selective_form.dart';
 import 'package:fortune_client/view/pages/rooms/action/components/room_state_transition_tile.dart';
 import 'package:fortune_client/view/pages/rooms/action/edit/edit_room_view_model.dart';
@@ -31,8 +32,8 @@ class EditRoomPage extends HookConsumerWidget {
     ///
     /// タイトル
     ///
-    final titleWidget = _inputFieldContainer(
-      theme,
+    final titleWidget = RoomStateInputField(
+      theme: theme,
       title: "タイトル",
       content: BaseTextField(
         controller: titleController,
@@ -90,8 +91,8 @@ class EditRoomPage extends HookConsumerWidget {
 
     ///
     /// 詳細説明
-    final explanationWidget = _inputFieldContainer(
-      theme,
+    final explanationWidget = RoomStateInputField(
+      theme: theme,
       required: false,
       title: "ルームの説明",
       content: BaseTextField(
@@ -156,36 +157,6 @@ class EditRoomPage extends HookConsumerWidget {
           ),
         ),
       ),
-    );
-  }
-
-  Widget _inputFieldContainer(
-    AppTheme theme, {
-    bool required = true,
-    required String title,
-    required Widget content,
-  }) {
-    final annotation = Container(
-      color: theme.appColors.disable,
-      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 3),
-      child: Text(
-        "任意",
-        style: theme.textTheme.h10.paint(theme.appColors.subText1),
-      ),
-    );
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Row(
-          children: [
-            Text(title, style: theme.textTheme.h30.bold()),
-            const Gap(10),
-            Container(child: required ? null : annotation)
-          ],
-        ),
-        const Gap(10),
-        content,
-      ],
     );
   }
 
