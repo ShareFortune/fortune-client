@@ -64,53 +64,56 @@ class TagsSelectionPage extends HookConsumerWidget {
       viewModel.search(controller.text);
     }
 
-    return Scaffold(
-      backgroundColor: theme.appColors.onBackground,
-      appBar: BackAppBar(
-        title: "タグを選択",
-        action: [
-          TextButton(
-            onPressed: () => viewModel.saveSetData(),
-            child: Text("保存", style: theme.textTheme.h40.bold()),
-          )
-        ],
-      ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Gap(30),
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: TagTextField(
-              emailCtrl: controller,
-              hintText: "タグを検索",
-              clearCallBack: tagFormClearCallBack,
-              onEditingComplete: tagFormOnEditingComplete,
+    return GestureDetector(
+      onTap: () => FocusScope.of(context).unfocus(),
+      child: Scaffold(
+        backgroundColor: theme.appColors.onBackground,
+        appBar: BackAppBar(
+          title: "タグを選択",
+          action: [
+            TextButton(
+              onPressed: () => viewModel.saveSetData(),
+              child: Text("保存", style: theme.textTheme.h40.bold()),
+            )
+          ],
+        ),
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Gap(30),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: TagTextField(
+                controller: controller,
+                hintText: "タグを検索",
+                clearCallBack: tagFormClearCallBack,
+                onEditingComplete: tagFormOnEditingComplete,
+              ),
             ),
-          ),
-          const Gap(30),
-          Container(
-            width: double.infinity,
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text("設定中のタグ"),
-                    const Gap(20),
-                    tagsBeingSet,
-                    const Gap(50),
-                  ],
-                ),
-                isDisplaySearchResults
-                    ? tagsContainer(theme, "検索結果", searchResult)
-                    : tagsContainer(theme, "人気のタグ", recommendedResults),
-              ],
+            const Gap(30),
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text("設定中のタグ"),
+                      const Gap(20),
+                      tagsBeingSet,
+                      const Gap(50),
+                    ],
+                  ),
+                  isDisplaySearchResults
+                      ? tagsContainer(theme, "検索結果", searchResult)
+                      : tagsContainer(theme, "人気のタグ", recommendedResults),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

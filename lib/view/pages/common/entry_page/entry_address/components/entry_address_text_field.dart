@@ -33,8 +33,8 @@ class EntryAddressTextField extends StatelessWidget {
       hintText: hintText,
       onChanged: onChanged,
       onTap: onTap,
+      onClear: clearCallBack,
       onEditingComplete: onEditingComplete,
-      clearCallBack: clearCallBack,
     );
   }
 }

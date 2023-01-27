@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'room_creation_state.dart';
+part of 'edit_room_state.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$RoomCreationState {
+mixin _$EditRoomState {
   String? get title => throw _privateConstructorUsedError;
   List<Tag>? get tags => throw _privateConstructorUsedError;
   Address? get address => throw _privateConstructorUsedError;
@@ -24,15 +24,15 @@ mixin _$RoomCreationState {
   String? get explanation => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $RoomCreationStateCopyWith<RoomCreationState> get copyWith =>
+  $EditRoomStateCopyWith<EditRoomState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $RoomCreationStateCopyWith<$Res> {
-  factory $RoomCreationStateCopyWith(
-          RoomCreationState value, $Res Function(RoomCreationState) then) =
-      _$RoomCreationStateCopyWithImpl<$Res, RoomCreationState>;
+abstract class $EditRoomStateCopyWith<$Res> {
+  factory $EditRoomStateCopyWith(
+          EditRoomState value, $Res Function(EditRoomState) then) =
+      _$EditRoomStateCopyWithImpl<$Res, EditRoomState>;
   @useResult
   $Res call(
       {String? title,
@@ -46,9 +46,9 @@ abstract class $RoomCreationStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$RoomCreationStateCopyWithImpl<$Res, $Val extends RoomCreationState>
-    implements $RoomCreationStateCopyWith<$Res> {
-  _$RoomCreationStateCopyWithImpl(this._value, this._then);
+class _$EditRoomStateCopyWithImpl<$Res, $Val extends EditRoomState>
+    implements $EditRoomStateCopyWith<$Res> {
+  _$EditRoomStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -107,11 +107,11 @@ class _$RoomCreationStateCopyWithImpl<$Res, $Val extends RoomCreationState>
 }
 
 /// @nodoc
-abstract class _$$_RoomCreationStateCopyWith<$Res>
-    implements $RoomCreationStateCopyWith<$Res> {
-  factory _$$_RoomCreationStateCopyWith(_$_RoomCreationState value,
-          $Res Function(_$_RoomCreationState) then) =
-      __$$_RoomCreationStateCopyWithImpl<$Res>;
+abstract class _$$_EditRoomStateCopyWith<$Res>
+    implements $EditRoomStateCopyWith<$Res> {
+  factory _$$_EditRoomStateCopyWith(
+          _$_EditRoomState value, $Res Function(_$_EditRoomState) then) =
+      __$$_EditRoomStateCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -127,11 +127,11 @@ abstract class _$$_RoomCreationStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_RoomCreationStateCopyWithImpl<$Res>
-    extends _$RoomCreationStateCopyWithImpl<$Res, _$_RoomCreationState>
-    implements _$$_RoomCreationStateCopyWith<$Res> {
-  __$$_RoomCreationStateCopyWithImpl(
-      _$_RoomCreationState _value, $Res Function(_$_RoomCreationState) _then)
+class __$$_EditRoomStateCopyWithImpl<$Res>
+    extends _$EditRoomStateCopyWithImpl<$Res, _$_EditRoomState>
+    implements _$$_EditRoomStateCopyWith<$Res> {
+  __$$_EditRoomStateCopyWithImpl(
+      _$_EditRoomState _value, $Res Function(_$_EditRoomState) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -144,7 +144,7 @@ class __$$_RoomCreationStateCopyWithImpl<$Res>
     Object? ageGroup = freezed,
     Object? explanation = freezed,
   }) {
-    return _then(_$_RoomCreationState(
+    return _then(_$_EditRoomState(
       title: freezed == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -175,8 +175,8 @@ class __$$_RoomCreationStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_RoomCreationState implements _RoomCreationState {
-  const _$_RoomCreationState(
+class _$_EditRoomState implements _EditRoomState {
+  const _$_EditRoomState(
       {this.title,
       final List<Tag>? tags,
       this.address,
@@ -208,14 +208,14 @@ class _$_RoomCreationState implements _RoomCreationState {
 
   @override
   String toString() {
-    return 'RoomCreationState(title: $title, tags: $tags, address: $address, membersNum: $membersNum, ageGroup: $ageGroup, explanation: $explanation)';
+    return 'EditRoomState(title: $title, tags: $tags, address: $address, membersNum: $membersNum, ageGroup: $ageGroup, explanation: $explanation)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_RoomCreationState &&
+            other is _$_EditRoomState &&
             (identical(other.title, title) || other.title == title) &&
             const DeepCollectionEquality().equals(other._tags, _tags) &&
             (identical(other.address, address) || other.address == address) &&
@@ -240,19 +240,18 @@ class _$_RoomCreationState implements _RoomCreationState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_RoomCreationStateCopyWith<_$_RoomCreationState> get copyWith =>
-      __$$_RoomCreationStateCopyWithImpl<_$_RoomCreationState>(
-          this, _$identity);
+  _$$_EditRoomStateCopyWith<_$_EditRoomState> get copyWith =>
+      __$$_EditRoomStateCopyWithImpl<_$_EditRoomState>(this, _$identity);
 }
 
-abstract class _RoomCreationState implements RoomCreationState {
-  const factory _RoomCreationState(
+abstract class _EditRoomState implements EditRoomState {
+  const factory _EditRoomState(
       {final String? title,
       final List<Tag>? tags,
       final Address? address,
       final int? membersNum,
       final AgeGroup? ageGroup,
-      final String? explanation}) = _$_RoomCreationState;
+      final String? explanation}) = _$_EditRoomState;
 
   @override
   String? get title;
@@ -268,6 +267,6 @@ abstract class _RoomCreationState implements RoomCreationState {
   String? get explanation;
   @override
   @JsonKey(ignore: true)
-  _$$_RoomCreationStateCopyWith<_$_RoomCreationState> get copyWith =>
+  _$$_EditRoomStateCopyWith<_$_EditRoomState> get copyWith =>
       throw _privateConstructorUsedError;
 }

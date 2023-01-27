@@ -39,6 +39,8 @@ dependencies:
   flutter_datetime_picker: ^1.5.1
   favorite_button: ^0.0.4
   flutter_expanded_tile: ^0.3.6
+  pull_down_button: ^0.5.1
+  modal_bottom_sheet: ^2.1.2
 
   # state management
   flutter_hooks: ^0.18.5+1

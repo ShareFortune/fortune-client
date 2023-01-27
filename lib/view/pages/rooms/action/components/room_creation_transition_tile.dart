@@ -22,13 +22,14 @@ class RoomCreationTransitionTile extends HookConsumerWidget {
 
     return BaseTransitionTile(
       title: title,
-      titleStyle: theme.textTheme.h40.paint(theme.appColors.subText2),
+      titleStyle: theme.textTheme.h40.paint(theme.appColors.subText1).bold(),
       value: value,
       valueStyle: theme.textTheme.h30.paint(theme.appColors.primary),
       textWhenUnsetStyle: theme.textTheme.h30.paint(theme.appColors.subText3),
       onTap: onTap,
       titleColor: theme.appColors.subText2,
       padding: const EdgeInsets.only(left: 0, top: 12, bottom: 12),
+      textWhenUnset: "必須",
     );
   }
 }
