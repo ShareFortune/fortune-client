@@ -162,10 +162,14 @@ export 'app_router.gr.dart';
 class $AppRouter {}
 
 Route<T> modalSheetBuilder<T>(
-    BuildContext context, Widget child, CustomPage<T> page) {
+  BuildContext context,
+  Widget child,
+  CustomPage<T> page,
+) {
   return ModalBottomSheetRoute(
     settings: page,
     builder: (context) => child,
     expanded: true,
+    duration: const Duration(milliseconds: 300),
   );
 }
