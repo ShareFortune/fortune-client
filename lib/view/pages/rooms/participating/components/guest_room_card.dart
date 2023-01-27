@@ -52,7 +52,7 @@ class GuestRoomCard extends HookConsumerWidget {
       onTap: () => viewModel.navigateToRoomDetail(room.id),
       child: Container(
         width: 220,
-        padding: const EdgeInsets.fromLTRB(15, 15, 15, 10),
+        padding: const EdgeInsets.fromLTRB(15, 15, 5, 10),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(10),

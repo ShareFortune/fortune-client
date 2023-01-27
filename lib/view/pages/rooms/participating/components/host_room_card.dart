@@ -3,9 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:fortune_client/data/model/enum/room_status.dart';
 import 'package:fortune_client/data/model/participant/host/participant_room_as_host.dart';
 import 'package:fortune_client/gen/assets.gen.dart';
-import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/view/pages/rooms/participating/participating_room_list_view_model.dart';
-import 'package:fortune_client/view/routes/app_router.gr.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/icon/member_icons.dart';
@@ -54,7 +52,7 @@ class HostRoomCard extends HookConsumerWidget {
       onTap: () => viewModel.navigateToRoomDetail(room.id),
       child: Container(
         width: 220,
-        padding: const EdgeInsets.fromLTRB(15, 15, 15, 10),
+        padding: const EdgeInsets.fromLTRB(15, 15, 5, 10),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(10),
