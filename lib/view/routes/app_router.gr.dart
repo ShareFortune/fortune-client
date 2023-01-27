@@ -11,14 +11,16 @@
 // ignore_for_file: type=lint
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:auto_route/auto_route.dart' as _i24;
-import 'package:auto_route/empty_router_widgets.dart' as _i3;
-import 'package:flutter/material.dart' as _i25;
-import 'package:fortune_client/data/model/tag/tag.dart' as _i27;
+import 'package:auto_route/auto_route.dart' as _i25;
+import 'package:auto_route/empty_router_widgets.dart' as _i2;
+import 'package:flutter/material.dart' as _i26;
+import 'package:fortune_client/data/model/tag/tag.dart' as _i29;
 import 'package:fortune_client/view/pages/account/my_page/my_page.dart' as _i9;
-import 'package:fortune_client/view/pages/auth/login/login_page.dart' as _i1;
+import 'package:fortune_client/view/pages/auth/login/login_page.dart' as _i3;
 import 'package:fortune_client/view/pages/common/bottom_navigation_bar/bottom_navigation_bar.dart'
-    as _i2;
+    as _i1;
+import 'package:fortune_client/view/pages/common/bottom_sheet/room_actions/room_actions_bottom_sheet.dart'
+    as _i24;
 import 'package:fortune_client/view/pages/common/entry_page/entry_address/entry_address_page.dart'
     as _i8;
 import 'package:fortune_client/view/pages/common/entry_page/entry_description/entry_description_page.dart'
@@ -55,44 +57,45 @@ import 'package:fortune_client/view/pages/tags/create/tag_creation_page.dart'
     as _i13;
 import 'package:fortune_client/view/pages/tags/select/tags_selection_page.dart'
     as _i12;
-import 'package:fortune_client/view/routes/route_guard.dart' as _i26;
+import 'package:fortune_client/view/routes/app_router.dart' as _i28;
+import 'package:fortune_client/view/routes/route_guard.dart' as _i27;
 
-class AppRouter extends _i24.RootStackRouter {
+class AppRouter extends _i25.RootStackRouter {
   AppRouter({
-    _i25.GlobalKey<_i25.NavigatorState>? navigatorKey,
+    _i26.GlobalKey<_i26.NavigatorState>? navigatorKey,
     required this.authGuard,
     required this.checkIfMyProfileExists,
   }) : super(navigatorKey);
 
-  final _i26.AuthGuard authGuard;
+  final _i27.AuthGuard authGuard;
 
-  final _i26.CheckIfMyProfileExists checkIfMyProfileExists;
+  final _i27.CheckIfMyProfileExists checkIfMyProfileExists;
 
   @override
-  final Map<String, _i24.PageFactory> pagesMap = {
-    LoginRoute.name: (routeData) {
-      return _i24.AdaptivePage<dynamic>(
-        routeData: routeData,
-        child: const _i1.LoginPage(),
-      );
-    },
+  final Map<String, _i25.PageFactory> pagesMap = {
     HomeRouter.name: (routeData) {
-      return _i24.AdaptivePage<dynamic>(
+      return _i25.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i2.MyBottomNavigationBar(),
+        child: const _i1.MyBottomNavigationBar(),
       );
     },
     CreateProfileRoute.name: (routeData) {
-      return _i24.AdaptivePage<dynamic>(
+      return _i25.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i3.EmptyRouterPage(),
+        child: const _i2.EmptyRouterPage(),
+      );
+    },
+    LoginRoute.name: (routeData) {
+      return _i25.AdaptivePage<dynamic>(
+        routeData: routeData,
+        child: const _i3.LoginPage(),
       );
     },
     MessageRoomRoute.name: (routeData) {
       final pathParams = routeData.inheritedPathParams;
       final args = routeData.argsAs<MessageRoomRouteArgs>(
           orElse: () => MessageRoomRouteArgs(id: pathParams.getString('id')));
-      return _i24.AdaptivePage<dynamic>(
+      return _i25.AdaptivePage<dynamic>(
         routeData: routeData,
         child: _i4.MessageRoomPage(
           key: args.key,
@@ -101,7 +104,7 @@ class AppRouter extends _i24.RootStackRouter {
       );
     },
     DebugRoute.name: (routeData) {
-      return _i24.AdaptivePage<dynamic>(
+      return _i25.AdaptivePage<dynamic>(
         routeData: routeData,
         child: const _i5.DebugPage(),
       );
@@ -110,7 +113,7 @@ class AppRouter extends _i24.RootStackRouter {
       final pathParams = routeData.inheritedPathParams;
       final args = routeData.argsAs<ProfileRouteArgs>(
           orElse: () => ProfileRouteArgs(id: pathParams.getString('id')));
-      return _i24.AdaptivePage<dynamic>(
+      return _i25.AdaptivePage<dynamic>(
         routeData: routeData,
         child: _i6.ProfilePage(
           key: args.key,
@@ -121,7 +124,7 @@ class AppRouter extends _i24.RootStackRouter {
     RoomCreationRoute.name: (routeData) {
       final args = routeData.argsAs<RoomCreationRouteArgs>(
           orElse: () => const RoomCreationRouteArgs());
-      return _i24.AdaptivePage<dynamic>(
+      return _i25.AdaptivePage<dynamic>(
         routeData: routeData,
         child: _i7.RoomCreationPage(key: args.key),
       );
@@ -129,32 +132,32 @@ class AppRouter extends _i24.RootStackRouter {
     EntryAddressRoute.name: (routeData) {
       final args = routeData.argsAs<EntryAddressRouteArgs>(
           orElse: () => const EntryAddressRouteArgs());
-      return _i24.AdaptivePage<dynamic>(
+      return _i25.AdaptivePage<dynamic>(
         routeData: routeData,
         child: _i8.EntryAddressPage(key: args.key),
       );
     },
     MyRoute.name: (routeData) {
-      return _i24.AdaptivePage<dynamic>(
+      return _i25.AdaptivePage<dynamic>(
         routeData: routeData,
         child: const _i9.MyPage(),
       );
     },
     ProfileUpdateRoute.name: (routeData) {
-      return _i24.AdaptivePage<dynamic>(
+      return _i25.AdaptivePage<dynamic>(
         routeData: routeData,
         child: const _i10.ProfileUpdatePage(),
       );
     },
     SettingsRoute.name: (routeData) {
-      return _i24.AdaptivePage<dynamic>(
+      return _i25.AdaptivePage<dynamic>(
         routeData: routeData,
         child: const _i11.SettingsPage(),
       );
     },
     TagsSelectionRoute.name: (routeData) {
       final args = routeData.argsAs<TagsSelectionRouteArgs>();
-      return _i24.AdaptivePage<dynamic>(
+      return _i25.AdaptivePage<dynamic>(
         routeData: routeData,
         child: _i12.TagsSelectionPage(
           args.beingSet,
@@ -165,14 +168,14 @@ class AppRouter extends _i24.RootStackRouter {
     TagCreationRoute.name: (routeData) {
       final args = routeData.argsAs<TagCreationRouteArgs>(
           orElse: () => const TagCreationRouteArgs());
-      return _i24.AdaptivePage<dynamic>(
+      return _i25.AdaptivePage<dynamic>(
         routeData: routeData,
         child: _i13.TagCreationPage(key: args.key),
       );
     },
     EntryDescriptionRoute.name: (routeData) {
       final args = routeData.argsAs<EntryDescriptionRouteArgs>();
-      return _i24.AdaptivePage<dynamic>(
+      return _i25.AdaptivePage<dynamic>(
         routeData: routeData,
         child: _i14.EntryDescriptionPage(
           title: args.title,
@@ -181,26 +184,35 @@ class AppRouter extends _i24.RootStackRouter {
         ),
       );
     },
-    RoomsTab.name: (routeData) {
-      return _i24.AdaptivePage<dynamic>(
+    BottomSheetRouter.name: (routeData) {
+      return _i25.CustomPage<dynamic>(
         routeData: routeData,
-        child: const _i3.EmptyRouterPage(),
+        child: const _i2.EmptyRouterPage(),
+        customRouteBuilder: _i28.modalSheetBuilder,
+        opaque: true,
+        barrierDismissible: false,
+      );
+    },
+    RoomsTab.name: (routeData) {
+      return _i25.AdaptivePage<dynamic>(
+        routeData: routeData,
+        child: const _i2.EmptyRouterPage(),
       );
     },
     ParticipatingTab.name: (routeData) {
-      return _i24.AdaptivePage<dynamic>(
+      return _i25.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i3.EmptyRouterPage(),
+        child: const _i2.EmptyRouterPage(),
       );
     },
     MessagesTab.name: (routeData) {
-      return _i24.AdaptivePage<dynamic>(
+      return _i25.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i3.EmptyRouterPage(),
+        child: const _i2.EmptyRouterPage(),
       );
     },
     RoomListRoute.name: (routeData) {
-      return _i24.AdaptivePage<dynamic>(
+      return _i25.AdaptivePage<dynamic>(
         routeData: routeData,
         child: const _i15.RoomListPage(),
       );
@@ -210,7 +222,7 @@ class AppRouter extends _i24.RootStackRouter {
       final args = routeData.argsAs<RoomDetailRouteArgs>(
           orElse: () =>
               RoomDetailRouteArgs(roomId: pathParams.getString('roomId')));
-      return _i24.AdaptivePage<dynamic>(
+      return _i25.AdaptivePage<dynamic>(
         routeData: routeData,
         child: _i16.RoomDetailPage(
           args.roomId,
@@ -219,7 +231,7 @@ class AppRouter extends _i24.RootStackRouter {
       );
     },
     ParticipatingRoomListRoute.name: (routeData) {
-      return _i24.AdaptivePage<dynamic>(
+      return _i25.AdaptivePage<dynamic>(
         routeData: routeData,
         child: const _i17.ParticipatingRoomListPage(),
       );
@@ -229,7 +241,7 @@ class AppRouter extends _i24.RootStackRouter {
       final args = routeData.argsAs<JoinRequestsConfirmationRouteArgs>(
           orElse: () => JoinRequestsConfirmationRouteArgs(
               id: pathParams.getString('id')));
-      return _i24.AdaptivePage<dynamic>(
+      return _i25.AdaptivePage<dynamic>(
         routeData: routeData,
         child: _i18.JoinRequestsConfirmationPage(
           key: args.key,
@@ -238,13 +250,13 @@ class AppRouter extends _i24.RootStackRouter {
       );
     },
     MessageRoomListRoute.name: (routeData) {
-      return _i24.AdaptivePage<dynamic>(
+      return _i25.AdaptivePage<dynamic>(
         routeData: routeData,
         child: const _i19.MessageRoomListPage(),
       );
     },
     BasicProfileEntryRoute.name: (routeData) {
-      return _i24.AdaptivePage<dynamic>(
+      return _i25.AdaptivePage<dynamic>(
         routeData: routeData,
         child: const _i20.BasicProfileEntryPage(),
       );
@@ -252,32 +264,38 @@ class AppRouter extends _i24.RootStackRouter {
     DetailedProfileEntryRoute.name: (routeData) {
       final args = routeData.argsAs<DetailedProfileEntryRouteArgs>(
           orElse: () => const DetailedProfileEntryRouteArgs());
-      return _i24.AdaptivePage<dynamic>(
+      return _i25.AdaptivePage<dynamic>(
         routeData: routeData,
         child: _i21.DetailedProfileEntryPage(key: args.key),
       );
     },
     ProfileIconImageEntryRoute.name: (routeData) {
-      return _i24.AdaptivePage<dynamic>(
+      return _i25.AdaptivePage<dynamic>(
         routeData: routeData,
         child: const _i22.ProfileIconImageEntryPage(),
       );
     },
     EntryProfileSubImageRoute.name: (routeData) {
-      return _i24.AdaptivePage<dynamic>(
+      return _i25.AdaptivePage<dynamic>(
         routeData: routeData,
         child: const _i23.EntryProfileSubImagePage(),
+      );
+    },
+    RoomActions.name: (routeData) {
+      final args = routeData.argsAs<RoomActionsArgs>();
+      return _i25.AdaptivePage<dynamic>(
+        routeData: routeData,
+        child: _i24.RoomActionsBottomSheet(
+          args.roomTitle,
+          key: args.key,
+        ),
       );
     },
   };
 
   @override
-  List<_i24.RouteConfig> get routes => [
-        _i24.RouteConfig(
-          LoginRoute.name,
-          path: 'login',
-        ),
-        _i24.RouteConfig(
+  List<_i25.RouteConfig> get routes => [
+        _i25.RouteConfig(
           HomeRouter.name,
           path: '/',
           guards: [
@@ -285,56 +303,56 @@ class AppRouter extends _i24.RootStackRouter {
             checkIfMyProfileExists,
           ],
           children: [
-            _i24.RouteConfig(
+            _i25.RouteConfig(
               RoomsTab.name,
               path: 'rooms',
               parent: HomeRouter.name,
               children: [
-                _i24.RouteConfig(
+                _i25.RouteConfig(
                   RoomListRoute.name,
                   path: '',
                   parent: RoomsTab.name,
                 ),
-                _i24.RouteConfig(
+                _i25.RouteConfig(
                   RoomDetailRoute.name,
                   path: 'room/:roomId',
                   parent: RoomsTab.name,
                 ),
               ],
             ),
-            _i24.RouteConfig(
+            _i25.RouteConfig(
               ParticipatingTab.name,
               path: 'participating-rooms',
               parent: HomeRouter.name,
               children: [
-                _i24.RouteConfig(
+                _i25.RouteConfig(
                   ParticipatingRoomListRoute.name,
                   path: '',
                   parent: ParticipatingTab.name,
                 ),
-                _i24.RouteConfig(
+                _i25.RouteConfig(
                   RoomDetailRoute.name,
                   path: 'room/:roomId',
                   parent: ParticipatingTab.name,
                 ),
-                _i24.RouteConfig(
+                _i25.RouteConfig(
                   JoinRequestsConfirmationRoute.name,
                   path: 'request-confirmation/:id',
                   parent: ParticipatingTab.name,
                 ),
               ],
             ),
-            _i24.RouteConfig(
+            _i25.RouteConfig(
               MessagesTab.name,
               path: 'rooms',
               parent: HomeRouter.name,
               children: [
-                _i24.RouteConfig(
+                _i25.RouteConfig(
                   MessageRoomListRoute.name,
                   path: '',
                   parent: MessagesTab.name,
                 ),
-                _i24.RouteConfig(
+                _i25.RouteConfig(
                   RoomDetailRoute.name,
                   path: 'room/:roomId',
                   parent: MessagesTab.name,
@@ -343,103 +361,106 @@ class AppRouter extends _i24.RootStackRouter {
             ),
           ],
         ),
-        _i24.RouteConfig(
+        _i25.RouteConfig(
           CreateProfileRoute.name,
           path: '/empty-router-page',
           guards: [authGuard],
           children: [
-            _i24.RouteConfig(
+            _i25.RouteConfig(
               '#redirect',
               path: '',
               parent: CreateProfileRoute.name,
               redirectTo: 'create-profile-basic',
               fullMatch: true,
             ),
-            _i24.RouteConfig(
+            _i25.RouteConfig(
               BasicProfileEntryRoute.name,
               path: 'create-profile-basic',
               parent: CreateProfileRoute.name,
             ),
-            _i24.RouteConfig(
+            _i25.RouteConfig(
               DetailedProfileEntryRoute.name,
               path: 'create-profile-detail',
               parent: CreateProfileRoute.name,
             ),
-            _i24.RouteConfig(
+            _i25.RouteConfig(
               ProfileIconImageEntryRoute.name,
               path: 'create-profile-icon-image',
               parent: CreateProfileRoute.name,
             ),
-            _i24.RouteConfig(
+            _i25.RouteConfig(
               EntryProfileSubImageRoute.name,
               path: 'create-profile-sub-image',
               parent: CreateProfileRoute.name,
             ),
           ],
         ),
-        _i24.RouteConfig(
+        _i25.RouteConfig(
+          LoginRoute.name,
+          path: 'login',
+        ),
+        _i25.RouteConfig(
           MessageRoomRoute.name,
           path: 'message-room/:id',
         ),
-        _i24.RouteConfig(
+        _i25.RouteConfig(
           DebugRoute.name,
           path: 'debug',
         ),
-        _i24.RouteConfig(
+        _i25.RouteConfig(
           ProfileRoute.name,
           path: 'profile/:id',
         ),
-        _i24.RouteConfig(
+        _i25.RouteConfig(
           RoomCreationRoute.name,
           path: 'create-room',
         ),
-        _i24.RouteConfig(
+        _i25.RouteConfig(
           EntryAddressRoute.name,
           path: 'enter-address',
         ),
-        _i24.RouteConfig(
+        _i25.RouteConfig(
           MyRoute.name,
           path: 'account',
         ),
-        _i24.RouteConfig(
+        _i25.RouteConfig(
           ProfileUpdateRoute.name,
           path: 'update-profile',
         ),
-        _i24.RouteConfig(
+        _i25.RouteConfig(
           SettingsRoute.name,
           path: 'setting',
         ),
-        _i24.RouteConfig(
+        _i25.RouteConfig(
           TagsSelectionRoute.name,
           path: 'select-tag',
         ),
-        _i24.RouteConfig(
+        _i25.RouteConfig(
           TagCreationRoute.name,
           path: 'create-tag',
         ),
-        _i24.RouteConfig(
+        _i25.RouteConfig(
           EntryDescriptionRoute.name,
           path: 'entry-description',
+        ),
+        _i25.RouteConfig(
+          BottomSheetRouter.name,
+          path: '/empty-router-page',
+          children: [
+            _i25.RouteConfig(
+              RoomActions.name,
+              path: 'room-actions-bottom-sheet',
+              parent: BottomSheetRouter.name,
+            )
+          ],
         ),
       ];
 }
 
 /// generated route for
-/// [_i1.LoginPage]
-class LoginRoute extends _i24.PageRouteInfo<void> {
-  const LoginRoute()
-      : super(
-          LoginRoute.name,
-          path: 'login',
-        );
-
-  static const String name = 'LoginRoute';
-}
-
-/// generated route for
-/// [_i2.MyBottomNavigationBar]
-class HomeRouter extends _i24.PageRouteInfo<void> {
-  const HomeRouter({List<_i24.PageRouteInfo>? children})
+/// [_i1.MyBottomNavigationBar]
+class HomeRouter extends _i25.PageRouteInfo<void> {
+  const HomeRouter({List<_i25.PageRouteInfo>? children})
       : super(
           HomeRouter.name,
           path: '/',
@@ -450,9 +471,9 @@ class HomeRouter extends _i24.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i3.EmptyRouterPage]
-class CreateProfileRoute extends _i24.PageRouteInfo<void> {
-  const CreateProfileRoute({List<_i24.PageRouteInfo>? children})
+/// [_i2.EmptyRouterPage]
+class CreateProfileRoute extends _i25.PageRouteInfo<void> {
+  const CreateProfileRoute({List<_i25.PageRouteInfo>? children})
       : super(
           CreateProfileRoute.name,
           path: '/empty-router-page',
@@ -463,10 +484,22 @@ class CreateProfileRoute extends _i24.PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [_i3.LoginPage]
+class LoginRoute extends _i25.PageRouteInfo<void> {
+  const LoginRoute()
+      : super(
+          LoginRoute.name,
+          path: 'login',
+        );
+
+  static const String name = 'LoginRoute';
+}
+
+/// generated route for
 /// [_i4.MessageRoomPage]
-class MessageRoomRoute extends _i24.PageRouteInfo<MessageRoomRouteArgs> {
+class MessageRoomRoute extends _i25.PageRouteInfo<MessageRoomRouteArgs> {
   MessageRoomRoute({
-    _i25.Key? key,
+    _i26.Key? key,
     required String id,
   }) : super(
           MessageRoomRoute.name,
@@ -487,7 +520,7 @@ class MessageRoomRouteArgs {
     required this.id,
   });
 
-  final _i25.Key? key;
+  final _i26.Key? key;
 
   final String id;
 
@@ -499,7 +532,7 @@ class MessageRoomRouteArgs {
 
 /// generated route for
 /// [_i5.DebugPage]
-class DebugRoute extends _i24.PageRouteInfo<void> {
+class DebugRoute extends _i25.PageRouteInfo<void> {
   const DebugRoute()
       : super(
           DebugRoute.name,
@@ -511,9 +544,9 @@ class DebugRoute extends _i24.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i6.ProfilePage]
-class ProfileRoute extends _i24.PageRouteInfo<ProfileRouteArgs> {
+class ProfileRoute extends _i25.PageRouteInfo<ProfileRouteArgs> {
   ProfileRoute({
-    _i25.Key? key,
+    _i26.Key? key,
     required String id,
   }) : super(
           ProfileRoute.name,
@@ -534,7 +567,7 @@ class ProfileRouteArgs {
     required this.id,
   });
 
-  final _i25.Key? key;
+  final _i26.Key? key;
 
   final String id;
 
@@ -546,8 +579,8 @@ class ProfileRouteArgs {
 
 /// generated route for
 /// [_i7.RoomCreationPage]
-class RoomCreationRoute extends _i24.PageRouteInfo<RoomCreationRouteArgs> {
-  RoomCreationRoute({_i25.Key? key})
+class RoomCreationRoute extends _i25.PageRouteInfo<RoomCreationRouteArgs> {
+  RoomCreationRoute({_i26.Key? key})
       : super(
           RoomCreationRoute.name,
           path: 'create-room',
@@ -560,7 +593,7 @@ class RoomCreationRoute extends _i24.PageRouteInfo<RoomCreationRouteArgs> {
 class RoomCreationRouteArgs {
   const RoomCreationRouteArgs({this.key});
 
-  final _i25.Key? key;
+  final _i26.Key? key;
 
   @override
   String toString() {
@@ -570,8 +603,8 @@ class RoomCreationRouteArgs {
 
 /// generated route for
 /// [_i8.EntryAddressPage]
-class EntryAddressRoute extends _i24.PageRouteInfo<EntryAddressRouteArgs> {
-  EntryAddressRoute({_i25.Key? key})
+class EntryAddressRoute extends _i25.PageRouteInfo<EntryAddressRouteArgs> {
+  EntryAddressRoute({_i26.Key? key})
       : super(
           EntryAddressRoute.name,
           path: 'enter-address',
@@ -584,7 +617,7 @@ class EntryAddressRoute extends _i24.PageRouteInfo<EntryAddressRouteArgs> {
 class EntryAddressRouteArgs {
   const EntryAddressRouteArgs({this.key});
 
-  final _i25.Key? key;
+  final _i26.Key? key;
 
   @override
   String toString() {
@@ -594,7 +627,7 @@ class EntryAddressRouteArgs {
 
 /// generated route for
 /// [_i9.MyPage]
-class MyRoute extends _i24.PageRouteInfo<void> {
+class MyRoute extends _i25.PageRouteInfo<void> {
   const MyRoute()
       : super(
           MyRoute.name,
@@ -606,7 +639,7 @@ class MyRoute extends _i24.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i10.ProfileUpdatePage]
-class ProfileUpdateRoute extends _i24.PageRouteInfo<void> {
+class ProfileUpdateRoute extends _i25.PageRouteInfo<void> {
   const ProfileUpdateRoute()
       : super(
           ProfileUpdateRoute.name,
@@ -618,7 +651,7 @@ class ProfileUpdateRoute extends _i24.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i11.SettingsPage]
-class SettingsRoute extends _i24.PageRouteInfo<void> {
+class SettingsRoute extends _i25.PageRouteInfo<void> {
   const SettingsRoute()
       : super(
           SettingsRoute.name,
@@ -630,10 +663,10 @@ class SettingsRoute extends _i24.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i12.TagsSelectionPage]
-class TagsSelectionRoute extends _i24.PageRouteInfo<TagsSelectionRouteArgs> {
+class TagsSelectionRoute extends _i25.PageRouteInfo<TagsSelectionRouteArgs> {
   TagsSelectionRoute({
-    required List<_i27.Tag> beingSet,
-    _i25.Key? key,
+    required List<_i29.Tag> beingSet,
+    _i26.Key? key,
   }) : super(
           TagsSelectionRoute.name,
           path: 'select-tag',
@@ -652,9 +685,9 @@ class TagsSelectionRouteArgs {
     this.key,
   });
 
-  final List<_i27.Tag> beingSet;
+  final List<_i29.Tag> beingSet;
 
-  final _i25.Key? key;
+  final _i26.Key? key;
 
   @override
   String toString() {
@@ -664,8 +697,8 @@ class TagsSelectionRouteArgs {
 
 /// generated route for
 /// [_i13.TagCreationPage]
-class TagCreationRoute extends _i24.PageRouteInfo<TagCreationRouteArgs> {
-  TagCreationRoute({_i25.Key? key})
+class TagCreationRoute extends _i25.PageRouteInfo<TagCreationRouteArgs> {
+  TagCreationRoute({_i26.Key? key})
       : super(
           TagCreationRoute.name,
           path: 'create-tag',
@@ -678,7 +711,7 @@ class TagCreationRoute extends _i24.PageRouteInfo<TagCreationRouteArgs> {
 class TagCreationRouteArgs {
   const TagCreationRouteArgs({this.key});
 
-  final _i25.Key? key;
+  final _i26.Key? key;
 
   @override
   String toString() {
@@ -689,11 +722,11 @@ class TagCreationRouteArgs {
 /// generated route for
 /// [_i14.EntryDescriptionPage]
 class EntryDescriptionRoute
-    extends _i24.PageRouteInfo<EntryDescriptionRouteArgs> {
+    extends _i25.PageRouteInfo<EntryDescriptionRouteArgs> {
   EntryDescriptionRoute({
     required String title,
     required String? value,
-    _i25.Key? key,
+    _i26.Key? key,
   }) : super(
           EntryDescriptionRoute.name,
           path: 'entry-description',
@@ -718,7 +751,7 @@ class EntryDescriptionRouteArgs {
 
   final String? value;
 
-  final _i25.Key? key;
+  final _i26.Key? key;
 
   @override
   String toString() {
@@ -727,9 +760,22 @@ class EntryDescriptionRouteArgs {
 }
 
 /// generated route for
-/// [_i3.EmptyRouterPage]
-class RoomsTab extends _i24.PageRouteInfo<void> {
-  const RoomsTab({List<_i24.PageRouteInfo>? children})
+/// [_i2.EmptyRouterPage]
+class BottomSheetRouter extends _i25.PageRouteInfo<void> {
+  const BottomSheetRouter({List<_i25.PageRouteInfo>? children})
+      : super(
+          BottomSheetRouter.name,
+          path: '/empty-router-page',
+          initialChildren: children,
+        );
+
+  static const String name = 'BottomSheetRouter';
+}
+
+/// generated route for
+/// [_i2.EmptyRouterPage]
+class RoomsTab extends _i25.PageRouteInfo<void> {
+  const RoomsTab({List<_i25.PageRouteInfo>? children})
       : super(
           RoomsTab.name,
           path: 'rooms',
@@ -740,9 +786,9 @@ class RoomsTab extends _i24.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i3.EmptyRouterPage]
-class ParticipatingTab extends _i24.PageRouteInfo<void> {
-  const ParticipatingTab({List<_i24.PageRouteInfo>? children})
+/// [_i2.EmptyRouterPage]
+class ParticipatingTab extends _i25.PageRouteInfo<void> {
+  const ParticipatingTab({List<_i25.PageRouteInfo>? children})
       : super(
           ParticipatingTab.name,
           path: 'participating-rooms',
@@ -753,9 +799,9 @@ class ParticipatingTab extends _i24.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i3.EmptyRouterPage]
-class MessagesTab extends _i24.PageRouteInfo<void> {
-  const MessagesTab({List<_i24.PageRouteInfo>? children})
+/// [_i2.EmptyRouterPage]
+class MessagesTab extends _i25.PageRouteInfo<void> {
+  const MessagesTab({List<_i25.PageRouteInfo>? children})
       : super(
           MessagesTab.name,
           path: 'rooms',
@@ -767,7 +813,7 @@ class MessagesTab extends _i24.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i15.RoomListPage]
-class RoomListRoute extends _i24.PageRouteInfo<void> {
+class RoomListRoute extends _i25.PageRouteInfo<void> {
   const RoomListRoute()
       : super(
           RoomListRoute.name,
@@ -779,10 +825,10 @@ class RoomListRoute extends _i24.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i16.RoomDetailPage]
-class RoomDetailRoute extends _i24.PageRouteInfo<RoomDetailRouteArgs> {
+class RoomDetailRoute extends _i25.PageRouteInfo<RoomDetailRouteArgs> {
   RoomDetailRoute({
     required String roomId,
-    _i25.Key? key,
+    _i26.Key? key,
   }) : super(
           RoomDetailRoute.name,
           path: 'room/:roomId',
@@ -804,7 +850,7 @@ class RoomDetailRouteArgs {
 
   final String roomId;
 
-  final _i25.Key? key;
+  final _i26.Key? key;
 
   @override
   String toString() {
@@ -814,7 +860,7 @@ class RoomDetailRouteArgs {
 
 /// generated route for
 /// [_i17.ParticipatingRoomListPage]
-class ParticipatingRoomListRoute extends _i24.PageRouteInfo<void> {
+class ParticipatingRoomListRoute extends _i25.PageRouteInfo<void> {
   const ParticipatingRoomListRoute()
       : super(
           ParticipatingRoomListRoute.name,
@@ -827,9 +873,9 @@ class ParticipatingRoomListRoute extends _i24.PageRouteInfo<void> {
 /// generated route for
 /// [_i18.JoinRequestsConfirmationPage]
 class JoinRequestsConfirmationRoute
-    extends _i24.PageRouteInfo<JoinRequestsConfirmationRouteArgs> {
+    extends _i25.PageRouteInfo<JoinRequestsConfirmationRouteArgs> {
   JoinRequestsConfirmationRoute({
-    _i25.Key? key,
+    _i26.Key? key,
     required String id,
   }) : super(
           JoinRequestsConfirmationRoute.name,
@@ -850,7 +896,7 @@ class JoinRequestsConfirmationRouteArgs {
     required this.id,
   });
 
-  final _i25.Key? key;
+  final _i26.Key? key;
 
   final String id;
 
@@ -862,7 +908,7 @@ class JoinRequestsConfirmationRouteArgs {
 
 /// generated route for
 /// [_i19.MessageRoomListPage]
-class MessageRoomListRoute extends _i24.PageRouteInfo<void> {
+class MessageRoomListRoute extends _i25.PageRouteInfo<void> {
   const MessageRoomListRoute()
       : super(
           MessageRoomListRoute.name,
@@ -874,7 +920,7 @@ class MessageRoomListRoute extends _i24.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i20.BasicProfileEntryPage]
-class BasicProfileEntryRoute extends _i24.PageRouteInfo<void> {
+class BasicProfileEntryRoute extends _i25.PageRouteInfo<void> {
   const BasicProfileEntryRoute()
       : super(
           BasicProfileEntryRoute.name,
@@ -887,8 +933,8 @@ class BasicProfileEntryRoute extends _i24.PageRouteInfo<void> {
 /// generated route for
 /// [_i21.DetailedProfileEntryPage]
 class DetailedProfileEntryRoute
-    extends _i24.PageRouteInfo<DetailedProfileEntryRouteArgs> {
-  DetailedProfileEntryRoute({_i25.Key? key})
+    extends _i25.PageRouteInfo<DetailedProfileEntryRouteArgs> {
+  DetailedProfileEntryRoute({_i26.Key? key})
       : super(
           DetailedProfileEntryRoute.name,
           path: 'create-profile-detail',
@@ -901,7 +947,7 @@ class DetailedProfileEntryRoute
 class DetailedProfileEntryRouteArgs {
   const DetailedProfileEntryRouteArgs({this.key});
 
-  final _i25.Key? key;
+  final _i26.Key? key;
 
   @override
   String toString() {
@@ -911,7 +957,7 @@ class DetailedProfileEntryRouteArgs {
 
 /// generated route for
 /// [_i22.ProfileIconImageEntryPage]
-class ProfileIconImageEntryRoute extends _i24.PageRouteInfo<void> {
+class ProfileIconImageEntryRoute extends _i25.PageRouteInfo<void> {
   const ProfileIconImageEntryRoute()
       : super(
           ProfileIconImageEntryRoute.name,
@@ -923,7 +969,7 @@ class ProfileIconImageEntryRoute extends _i24.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i23.EntryProfileSubImagePage]
-class EntryProfileSubImageRoute extends _i24.PageRouteInfo<void> {
+class EntryProfileSubImageRoute extends _i25.PageRouteInfo<void> {
   const EntryProfileSubImageRoute()
       : super(
           EntryProfileSubImageRoute.name,
@@ -931,4 +977,38 @@ class EntryProfileSubImageRoute extends _i24.PageRouteInfo<void> {
         );
 
   static const String name = 'EntryProfileSubImageRoute';
+}
+
+/// generated route for
+/// [_i24.RoomActionsBottomSheet]
+class RoomActions extends _i25.PageRouteInfo<RoomActionsArgs> {
+  RoomActions({
+    required String roomTitle,
+    _i26.Key? key,
+  }) : super(
+          RoomActions.name,
+          path: 'room-actions-bottom-sheet',
+          args: RoomActionsArgs(
+            roomTitle: roomTitle,
+            key: key,
+          ),
+        );
+
+  static const String name = 'RoomActions';
+}
+
+class RoomActionsArgs {
+  const RoomActionsArgs({
+    required this.roomTitle,
+    this.key,
+  });
+
+  final String roomTitle;
+
+  final _i26.Key? key;
+
+  @override
+  String toString() {
+    return 'RoomActionsArgs{roomTitle: $roomTitle, key: $key}';
+  }
 }
