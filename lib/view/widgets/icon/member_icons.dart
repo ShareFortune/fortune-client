@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fortune_client/view/widgets/icon/circle_icon.dart';
 
-Widget memberIconsWidget(double radius, List icons) {
+Widget memberIconsWidget(double radius, List<String> icons) {
   final diameter = radius * 2;
   const overlap = 5;
 

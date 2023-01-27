@@ -1,8 +1,10 @@
 // ignore_for_file: library_private_types_in_public_api
 
 import 'package:flutter/material.dart';
-import 'package:fortune_client/view/pages/rooms/participating/components/participating_room_card.dart';
-import 'package:fortune_client/view/pages/rooms/participating/participating_room_list_state.dart';
+import 'package:fortune_client/data/model/participant/guest/participant_room_as_guest.dart';
+import 'package:fortune_client/data/model/participant/host/participant_room_as_host.dart';
+import 'package:fortune_client/view/pages/rooms/participating/components/guest_room_card.dart';
+import 'package:fortune_client/view/pages/rooms/participating/components/host_room_card.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/other/error_widget.dart';
@@ -36,11 +38,11 @@ extension RoomTypeEx on _RoomType {
   String get adviceText => adviceTexts[this]!;
 }
 
-class ParticipatingRoomListContainer extends HookConsumerWidget {
+class ParticipatingRoomListContainer<T> extends HookConsumerWidget {
   const ParticipatingRoomListContainer._(this.roomType, this.roomsAsync);
 
   final _RoomType roomType;
-  final AsyncValue<List<ParticipatingRoomListStateItem>> roomsAsync;
+  final AsyncValue<List<T>> roomsAsync;
 
   factory ParticipatingRoomListContainer.host(rooms) {
     return ParticipatingRoomListContainer._(_RoomType.host, rooms);
@@ -160,17 +162,23 @@ class ParticipatingRoomListContainer extends HookConsumerWidget {
     );
   }
 
-  _roomListContainer(List<ParticipatingRoomListStateItem> rooms) {
+  _roomListContainer(List<T> rooms) {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
         child: Row(
           children: rooms.map((e) {
-            return Row(children: [
-              ParticipatingRoomCard(e),
-              const Gap(10),
-            ]);
+            Widget card = Container();
+            switch (roomType) {
+              case _RoomType.host:
+                card = HostRoomCard(e as ParticipantRoomAsHost);
+                break;
+              case _RoomType.guest:
+                card = GuestRoomCard(e as ParticipantRoomAsGuest);
+                break;
+            }
+            return Row(children: [card, const Gap(10)]);
           }).toList(),
         ),
       ),

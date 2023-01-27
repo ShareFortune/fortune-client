@@ -14,9 +14,9 @@
 import 'package:auto_route/auto_route.dart' as _i26;
 import 'package:auto_route/empty_router_widgets.dart' as _i2;
 import 'package:flutter/material.dart' as _i27;
-import 'package:fortune_client/data/model/address/address.dart' as _i31;
-import 'package:fortune_client/data/model/enum/age_group.dart' as _i32;
-import 'package:fortune_client/data/model/tag/tag.dart' as _i30;
+import 'package:fortune_client/data/model/participant/host/participant_room_as_host.dart'
+    as _i30;
+import 'package:fortune_client/data/model/tag/tag.dart' as _i31;
 import 'package:fortune_client/view/pages/account/my_page/my_page.dart' as _i10;
 import 'package:fortune_client/view/pages/auth/login/login_page.dart' as _i3;
 import 'package:fortune_client/view/pages/common/bottom_navigation_bar/bottom_navigation_bar.dart'
@@ -134,18 +134,12 @@ class AppRouter extends _i26.RootStackRouter {
       );
     },
     EditRoomRoute.name: (routeData) {
-      final args = routeData.argsAs<EditRoomRouteArgs>(
-          orElse: () => const EditRoomRouteArgs());
+      final args = routeData.argsAs<EditRoomRouteArgs>();
       return _i26.AdaptivePage<dynamic>(
         routeData: routeData,
         child: _i8.EditRoomPage(
+          args.room,
           key: args.key,
-          title: args.title,
-          tags: args.tags,
-          address: args.address,
-          membersNum: args.membersNum,
-          ageGroup: args.ageGroup,
-          explanation: args.explanation,
         ),
       );
     },
@@ -306,7 +300,7 @@ class AppRouter extends _i26.RootStackRouter {
       return _i26.AdaptivePage<dynamic>(
         routeData: routeData,
         child: _i25.RoomActionsBottomSheet(
-          args.roomTitle,
+          args.room,
           key: args.key,
         ),
       );
@@ -629,24 +623,14 @@ class CreateRoomRouteArgs {
 /// [_i8.EditRoomPage]
 class EditRoomRoute extends _i26.PageRouteInfo<EditRoomRouteArgs> {
   EditRoomRoute({
+    required _i30.ParticipantRoomAsHost room,
     _i27.Key? key,
-    String? title,
-    List<_i30.Tag>? tags,
-    _i31.Address? address,
-    int? membersNum,
-    _i32.AgeGroup? ageGroup,
-    String? explanation,
   }) : super(
           EditRoomRoute.name,
           path: 'edit-room',
           args: EditRoomRouteArgs(
+            room: room,
             key: key,
-            title: title,
-            tags: tags,
-            address: address,
-            membersNum: membersNum,
-            ageGroup: ageGroup,
-            explanation: explanation,
           ),
         );
 
@@ -655,32 +639,17 @@ class EditRoomRoute extends _i26.PageRouteInfo<EditRoomRouteArgs> {
 
 class EditRoomRouteArgs {
   const EditRoomRouteArgs({
+    required this.room,
     this.key,
-    this.title,
-    this.tags,
-    this.address,
-    this.membersNum,
-    this.ageGroup,
-    this.explanation,
   });
+
+  final _i30.ParticipantRoomAsHost room;
 
   final _i27.Key? key;
 
-  final String? title;
-
-  final List<_i30.Tag>? tags;
-
-  final _i31.Address? address;
-
-  final int? membersNum;
-
-  final _i32.AgeGroup? ageGroup;
-
-  final String? explanation;
-
   @override
   String toString() {
-    return 'EditRoomRouteArgs{key: $key, title: $title, tags: $tags, address: $address, membersNum: $membersNum, ageGroup: $ageGroup, explanation: $explanation}';
+    return 'EditRoomRouteArgs{room: $room, key: $key}';
   }
 }
 
@@ -748,7 +717,7 @@ class SettingsRoute extends _i26.PageRouteInfo<void> {
 /// [_i13.TagsSelectionPage]
 class TagsSelectionRoute extends _i26.PageRouteInfo<TagsSelectionRouteArgs> {
   TagsSelectionRoute({
-    required List<_i30.Tag> beingSet,
+    required List<_i31.Tag> beingSet,
     _i27.Key? key,
   }) : super(
           TagsSelectionRoute.name,
@@ -768,7 +737,7 @@ class TagsSelectionRouteArgs {
     this.key,
   });
 
-  final List<_i30.Tag> beingSet;
+  final List<_i31.Tag> beingSet;
 
   final _i27.Key? key;
 
@@ -1066,13 +1035,13 @@ class EntryProfileSubImageRoute extends _i26.PageRouteInfo<void> {
 /// [_i25.RoomActionsBottomSheet]
 class RoomActions extends _i26.PageRouteInfo<RoomActionsArgs> {
   RoomActions({
-    required String roomTitle,
+    required _i30.ParticipantRoomAsHost room,
     _i27.Key? key,
   }) : super(
           RoomActions.name,
           path: 'room-actions-bottom-sheet',
           args: RoomActionsArgs(
-            roomTitle: roomTitle,
+            room: room,
             key: key,
           ),
         );
@@ -1082,16 +1051,16 @@ class RoomActions extends _i26.PageRouteInfo<RoomActionsArgs> {
 
 class RoomActionsArgs {
   const RoomActionsArgs({
-    required this.roomTitle,
+    required this.room,
     this.key,
   });
 
-  final String roomTitle;
+  final _i30.ParticipantRoomAsHost room;
 
   final _i27.Key? key;
 
   @override
   String toString() {
-    return 'RoomActionsArgs{roomTitle: $roomTitle, key: $key}';
+    return 'RoomActionsArgs{room: $room, key: $key}';
   }
 }

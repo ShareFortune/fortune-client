@@ -1,3 +1,4 @@
+import 'package:fortune_client/data/model/participant/host/participant_room_as_host.dart';
 import 'package:fortune_client/data/repository/rooms/rooms_repository.dart';
 import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/view/pages/rooms/participating/participating_room_list_state.dart';
@@ -22,20 +23,14 @@ class ParticipatingRoomListViewModel
 
   Future<void> fetchHostRooms() async {
     final hostRooms = await AsyncValue.guard(() async {
-      final result = await _roomRepository.getRoomsToParticipateAsHost();
-      return result
-          .map((e) => ParticipatingRoomListStateItem.fromHost(e))
-          .toList();
+      return await _roomRepository.getRoomsToParticipateAsHost();
     });
     state = state.copyWith(host: hostRooms);
   }
 
   Future<void> fetchGuestRooms() async {
     final guestRooms = await AsyncValue.guard(() async {
-      final result = await _roomRepository.getRoomsToParticipateAsGuest();
-      return result
-          .map((e) => ParticipatingRoomListStateItem.fromGuest(e))
-          .toList();
+      return await _roomRepository.getRoomsToParticipateAsGuest();
     });
     state = state.copyWith(guest: guestRooms);
   }
@@ -60,5 +55,11 @@ class ParticipatingRoomListViewModel
 
   Future<void> navigateToRoomCreation() async {
     await sl<AppRouter>().push(CreateRoomRoute());
+  }
+
+  Future<void> navigateToRoomActionsAsHost(ParticipantRoomAsHost room) async {
+    sl<AppRouter>().push(
+      BottomSheetRouter(children: [RoomActions(room: room)]),
+    );
   }
 }

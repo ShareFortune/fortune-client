@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fortune_client/data/model/address/address.dart';
 import 'package:fortune_client/data/model/enum/age_group.dart';
+import 'package:fortune_client/data/model/participant/host/participant_room_as_host.dart';
 import 'package:fortune_client/data/model/tag/tag.dart';
 import 'package:fortune_client/view/pages/rooms/action/components/room_state_selective_form.dart';
 import 'package:fortune_client/view/pages/rooms/action/components/room_state_transition_tile.dart';
@@ -14,22 +15,9 @@ import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class EditRoomPage extends HookConsumerWidget {
-  EditRoomPage({
-    super.key,
-    this.title,
-    this.tags,
-    this.address,
-    this.membersNum,
-    this.ageGroup,
-    this.explanation,
-  });
+  EditRoomPage(this.room, {super.key});
 
-  final String? title;
-  final List<Tag>? tags;
-  final Address? address;
-  final int? membersNum;
-  final AgeGroup? ageGroup;
-  final String? explanation;
+  final ParticipantRoomAsHost room;
 
   final titleController = TextEditingController();
   final explanationController = TextEditingController();
@@ -127,7 +115,7 @@ class EditRoomPage extends HookConsumerWidget {
       child: Scaffold(
         backgroundColor: theme.appColors.onBackground,
         appBar: BackAppBar(
-          title: "新しいルームを作る",
+          title: "ルームを編集する",
           action: [
             Container(
               padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
@@ -139,7 +127,7 @@ class EditRoomPage extends HookConsumerWidget {
                         }
                       }
                     : null,
-                child: const Text("作成"),
+                child: const Text("保存"),
               ),
             ),
           ],
@@ -190,7 +178,7 @@ class EditRoomPage extends HookConsumerWidget {
       children: [
         Row(
           children: [
-            Text(title, style: theme.textTheme.h40.bold()),
+            Text(title, style: theme.textTheme.h30.bold()),
             const Gap(10),
             Container(child: required ? null : annotation)
           ],

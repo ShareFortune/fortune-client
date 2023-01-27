@@ -3,8 +3,6 @@ import 'package:fortune_client/data/model/enum/age_group.dart';
 import 'package:fortune_client/view/pages/rooms/action/components/room_state_selective_form.dart';
 import 'package:fortune_client/view/pages/rooms/action/components/room_state_transition_tile.dart';
 import 'package:fortune_client/view/pages/rooms/action/create/create_room_view_model.dart';
-import 'package:fortune_client/view/pages/rooms/create/components/room_creation_selective_form.dart';
-import 'package:fortune_client/view/pages/rooms/create/components/room_creation_transition_tile.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/app_bar/back_app_bar.dart';

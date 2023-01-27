@@ -34,6 +34,10 @@ mixin _$ParticipantRoomAsHost {
   List<String>? get participantMainImageURLs =>
       throw _privateConstructorUsedError;
 
+  /// 開催地
+  @JsonKey(name: "address")
+  Address get address => throw _privateConstructorUsedError;
+
   /// 参加人数
   @JsonKey(name: "membersNum")
   MembersNum get membersNum => throw _privateConstructorUsedError;
@@ -66,6 +70,8 @@ abstract class $ParticipantRoomAsHostCopyWith<$Res> {
           String roomName,
       @JsonKey(name: "participantMainImageURLs")
           List<String>? participantMainImageURLs,
+      @JsonKey(name: "address")
+          Address address,
       @JsonKey(name: "membersNum")
           MembersNum membersNum,
       @JsonKey(name: "joinRequestsCount")
@@ -74,6 +80,7 @@ abstract class $ParticipantRoomAsHostCopyWith<$Res> {
       @RoomStatusConverter()
           RoomStatus status});
 
+  $AddressCopyWith<$Res> get address;
   $MembersNumCopyWith<$Res> get membersNum;
 }
 
@@ -94,6 +101,7 @@ class _$ParticipantRoomAsHostCopyWithImpl<$Res,
     Object? id = null,
     Object? roomName = null,
     Object? participantMainImageURLs = freezed,
+    Object? address = null,
     Object? membersNum = null,
     Object? joinRequestsCount = null,
     Object? status = null,
@@ -111,6 +119,10 @@ class _$ParticipantRoomAsHostCopyWithImpl<$Res,
           ? _value.participantMainImageURLs
           : participantMainImageURLs // ignore: cast_nullable_to_non_nullable
               as List<String>?,
+      address: null == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as Address,
       membersNum: null == membersNum
           ? _value.membersNum
           : membersNum // ignore: cast_nullable_to_non_nullable
@@ -124,6 +136,14 @@ class _$ParticipantRoomAsHostCopyWithImpl<$Res,
           : status // ignore: cast_nullable_to_non_nullable
               as RoomStatus,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $AddressCopyWith<$Res> get address {
+    return $AddressCopyWith<$Res>(_value.address, (value) {
+      return _then(_value.copyWith(address: value) as $Val);
+    });
   }
 
   @override
@@ -150,6 +170,8 @@ abstract class _$$_ParticipantRoomAsHostCopyWith<$Res>
           String roomName,
       @JsonKey(name: "participantMainImageURLs")
           List<String>? participantMainImageURLs,
+      @JsonKey(name: "address")
+          Address address,
       @JsonKey(name: "membersNum")
           MembersNum membersNum,
       @JsonKey(name: "joinRequestsCount")
@@ -158,6 +180,8 @@ abstract class _$$_ParticipantRoomAsHostCopyWith<$Res>
       @RoomStatusConverter()
           RoomStatus status});
 
+  @override
+  $AddressCopyWith<$Res> get address;
   @override
   $MembersNumCopyWith<$Res> get membersNum;
 }
@@ -176,6 +200,7 @@ class __$$_ParticipantRoomAsHostCopyWithImpl<$Res>
     Object? id = null,
     Object? roomName = null,
     Object? participantMainImageURLs = freezed,
+    Object? address = null,
     Object? membersNum = null,
     Object? joinRequestsCount = null,
     Object? status = null,
@@ -193,6 +218,10 @@ class __$$_ParticipantRoomAsHostCopyWithImpl<$Res>
           ? _value._participantMainImageURLs
           : participantMainImageURLs // ignore: cast_nullable_to_non_nullable
               as List<String>?,
+      address: null == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as Address,
       membersNum: null == membersNum
           ? _value.membersNum
           : membersNum // ignore: cast_nullable_to_non_nullable
@@ -219,6 +248,8 @@ class _$_ParticipantRoomAsHost implements _ParticipantRoomAsHost {
           required this.roomName,
       @JsonKey(name: "participantMainImageURLs")
           required final List<String>? participantMainImageURLs,
+      @JsonKey(name: "address")
+          required this.address,
       @JsonKey(name: "membersNum")
           required this.membersNum,
       @JsonKey(name: "joinRequestsCount")
@@ -256,6 +287,11 @@ class _$_ParticipantRoomAsHost implements _ParticipantRoomAsHost {
     return EqualUnmodifiableListView(value);
   }
 
+  /// 開催地
+  @override
+  @JsonKey(name: "address")
+  final Address address;
+
   /// 参加人数
   @override
   @JsonKey(name: "membersNum")
@@ -274,7 +310,7 @@ class _$_ParticipantRoomAsHost implements _ParticipantRoomAsHost {
 
   @override
   String toString() {
-    return 'ParticipantRoomAsHost(id: $id, roomName: $roomName, participantMainImageURLs: $participantMainImageURLs, membersNum: $membersNum, joinRequestsCount: $joinRequestsCount, status: $status)';
+    return 'ParticipantRoomAsHost(id: $id, roomName: $roomName, participantMainImageURLs: $participantMainImageURLs, address: $address, membersNum: $membersNum, joinRequestsCount: $joinRequestsCount, status: $status)';
   }
 
   @override
@@ -287,6 +323,7 @@ class _$_ParticipantRoomAsHost implements _ParticipantRoomAsHost {
                 other.roomName == roomName) &&
             const DeepCollectionEquality().equals(
                 other._participantMainImageURLs, _participantMainImageURLs) &&
+            (identical(other.address, address) || other.address == address) &&
             (identical(other.membersNum, membersNum) ||
                 other.membersNum == membersNum) &&
             (identical(other.joinRequestsCount, joinRequestsCount) ||
@@ -301,6 +338,7 @@ class _$_ParticipantRoomAsHost implements _ParticipantRoomAsHost {
       id,
       roomName,
       const DeepCollectionEquality().hash(_participantMainImageURLs),
+      address,
       membersNum,
       joinRequestsCount,
       status);
@@ -328,6 +366,8 @@ abstract class _ParticipantRoomAsHost implements ParticipantRoomAsHost {
           required final String roomName,
       @JsonKey(name: "participantMainImageURLs")
           required final List<String>? participantMainImageURLs,
+      @JsonKey(name: "address")
+          required final Address address,
       @JsonKey(name: "membersNum")
           required final MembersNum membersNum,
       @JsonKey(name: "joinRequestsCount")
@@ -354,6 +394,11 @@ abstract class _ParticipantRoomAsHost implements ParticipantRoomAsHost {
   /// メンバー画像リスト
   @JsonKey(name: "participantMainImageURLs")
   List<String>? get participantMainImageURLs;
+  @override
+
+  /// 開催地
+  @JsonKey(name: "address")
+  Address get address;
   @override
 
   /// 参加人数

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fortune_client/gen/assets.gen.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class ParticipatingRoomListFilter extends StatelessWidget {
   const ParticipatingRoomListFilter({

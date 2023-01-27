@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fortune_client/data/model/participant/host/participant_room_as_host.dart';
 import 'package:fortune_client/gen/assets.gen.dart';
 import 'package:fortune_client/view/pages/common/bottom_sheet/components/bottom_sheet_menu_item.dart';
 import 'package:fortune_client/view/pages/common/bottom_sheet/room_actions/room_actions_bottom_sheet_view_model.dart';
@@ -8,9 +9,9 @@ import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class RoomActionsBottomSheet extends HookConsumerWidget {
-  const RoomActionsBottomSheet(this.roomTitle, {super.key});
+  const RoomActionsBottomSheet(this.room, {super.key});
 
-  final String roomTitle;
+  final ParticipantRoomAsHost room;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -41,7 +42,7 @@ class RoomActionsBottomSheet extends HookConsumerWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        roomTitle,
+                        room.roomName,
                         style: theme.textTheme.h40
                             .paint(theme.appColors.subText1)
                             .bold(),
@@ -68,7 +69,7 @@ class RoomActionsBottomSheet extends HookConsumerWidget {
                 theme: theme,
                 title: "ルームを編集する",
                 iconPath: Assets.images.icons.iconLink.path,
-                onPressed: () => viewModel.navigateToEditRoom(),
+                onPressed: () => viewModel.navigateToEditRoom(room),
               ),
               BottomSheetMenuItem.last(
                 theme: theme,

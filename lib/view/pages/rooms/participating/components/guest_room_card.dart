@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fortune_client/data/model/enum/room_status.dart';
+import 'package:fortune_client/data/model/participant/guest/participant_room_as_guest.dart';
 import 'package:fortune_client/gen/assets.gen.dart';
 import 'package:fortune_client/injector.dart';
-import 'package:fortune_client/view/pages/rooms/participating/participating_room_list_state.dart';
 import 'package:fortune_client/view/pages/rooms/participating/participating_room_list_view_model.dart';
 import 'package:fortune_client/view/routes/app_router.gr.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
@@ -12,10 +12,10 @@ import 'package:fortune_client/view/widgets/icon/member_icons.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class ParticipatingRoomCard extends HookConsumerWidget {
-  const ParticipatingRoomCard(this.room, {super.key});
+class GuestRoomCard extends HookConsumerWidget {
+  const GuestRoomCard(this.room, {super.key});
 
-  final ParticipatingRoomListStateItem room;
+  final ParticipantRoomAsGuest room;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -23,28 +23,8 @@ class ParticipatingRoomCard extends HookConsumerWidget {
     final viewModel =
         ref.watch(participatingRoomListViewModelProvider.notifier);
 
-    /// 下部ボタン・ホスト
-    Widget bottomWidgetHost(HostState state) {
-      switch (state.roomStatus) {
-        case RoomStatus.pending:
-          return _bottomButton(
-            title: "リクエストを確認する",
-            color: theme.appColors.primary,
-            onPressed: () => state.participationRequestsNum > 0
-                ? viewModel.navigateToRequestConfirmation(state.id)
-                : null,
-          );
-        default:
-          return _bottomButton(
-            title: "メッセージ",
-            color: theme.appColors.secondary,
-            onPressed: viewModel.navigateToMessage,
-          );
-      }
-    }
-
     /// 下部ボタン・ゲスト
-    Widget bottomWidgetGuest(GuestState state) {
+    Widget bottomWidgetGuest(ParticipantRoomAsGuest state) {
       switch (state.roomStatus) {
         case RoomStatus.pending:
           return _bottomButton(
@@ -87,18 +67,18 @@ class ParticipatingRoomCard extends HookConsumerWidget {
                 ///
                 /// タイトル
                 Text(
-                  room.title,
+                  room.roomName,
                   style: theme.textTheme.h40,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                 ),
                 InkWell(
                   onTap: () {
-                    sl<AppRouter>().push(
-                      BottomSheetRouter(
-                        children: [RoomActions(roomTitle: room.title)],
-                      ),
-                    );
+                    // sl<AppRouter>().push(
+                    //   BottomSheetRouter(
+                    //     children: [RoomActions(roomTitle: room.roomName)],
+                    //   ),
+                    // );
                   },
                   child: SvgPicture.asset(
                     Assets.images.icons.iconMoreVert.path,
@@ -118,7 +98,7 @@ class ParticipatingRoomCard extends HookConsumerWidget {
               ),
               const Gap(3),
               Text(
-                room.address,
+                room.address.text,
                 style: theme.textTheme.h20.paint(theme.appColors.subText2),
               ),
             ]),
@@ -151,7 +131,10 @@ class ParticipatingRoomCard extends HookConsumerWidget {
                 ///
                 ///
                 /// 参加者アイコン
-                memberIconsWidget(15, room.memberIcons),
+                memberIconsWidget(15, [
+                  room.hostMainImageURL,
+                  ...?room.participantMainImageURLs,
+                ]),
               ],
             ),
             const Spacer(),
@@ -159,10 +142,7 @@ class ParticipatingRoomCard extends HookConsumerWidget {
             ///
             ///
             /// 下部ボタン
-            room.map<Widget>(
-              host: bottomWidgetHost,
-              guest: bottomWidgetGuest,
-            ),
+            bottomWidgetGuest(room),
           ],
         ),
       ),
