@@ -79,9 +79,8 @@ class ParticipatingRoomCard extends HookConsumerWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Column(
+            Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 ///
                 /// タイトル
@@ -91,23 +90,30 @@ class ParticipatingRoomCard extends HookConsumerWidget {
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                 ),
-                const Gap(5),
-
-                ///
-                /// 開催地
-                Row(children: [
-                  SvgPicture.asset(
-                    Assets.images.icons.iconLocation.path,
+                InkWell(
+                  onTap: () {},
+                  child: SvgPicture.asset(
+                    Assets.images.icons.iconMoreVert.path,
                     fit: BoxFit.contain,
                   ),
-                  const Gap(3),
-                  Text(
-                    room.address,
-                    style: theme.textTheme.h20.paint(theme.appColors.subText2),
-                  ),
-                ])
+                ),
               ],
             ),
+            const Gap(5),
+
+            ///
+            /// 開催地
+            Row(children: [
+              SvgPicture.asset(
+                Assets.images.icons.iconLocation.path,
+                fit: BoxFit.contain,
+              ),
+              const Gap(3),
+              Text(
+                room.address,
+                style: theme.textTheme.h20.paint(theme.appColors.subText2),
+              ),
+            ]),
             const Gap(10),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
