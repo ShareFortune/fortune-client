@@ -127,6 +127,10 @@ class $AssetsImagesIconsGen {
   SvgGenImage get iconTwitter =>
       const SvgGenImage('assets/images/icons/icon_twitter.svg');
 
+  /// File path: assets/images/icons/icon_user_add.svg
+  SvgGenImage get iconUserAdd =>
+      const SvgGenImage('assets/images/icons/icon_user_add.svg');
+
   /// List of all assets
   List<SvgGenImage> get values => [
         iconAdd,
@@ -139,7 +143,8 @@ class $AssetsImagesIconsGen {
         iconProfile,
         iconProfileDark,
         iconSwapVert,
-        iconTwitter
+        iconTwitter,
+        iconUserAdd
       ];
 }
 
