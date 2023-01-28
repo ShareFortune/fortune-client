@@ -251,15 +251,13 @@ class AppRouter extends _i26.RootStackRouter {
       );
     },
     JoinRequestsConfirmationRoute.name: (routeData) {
-      final pathParams = routeData.inheritedPathParams;
-      final args = routeData.argsAs<JoinRequestsConfirmationRouteArgs>(
-          orElse: () => JoinRequestsConfirmationRouteArgs(
-              id: pathParams.getString('id')));
+      final args = routeData.argsAs<JoinRequestsConfirmationRouteArgs>();
       return _i26.AdaptivePage<dynamic>(
         routeData: routeData,
         child: _i19.JoinRequestsConfirmationPage(
           key: args.key,
           id: args.id,
+          roomTitle: args.roomTitle,
         ),
       );
     },
@@ -929,12 +927,14 @@ class JoinRequestsConfirmationRoute
   JoinRequestsConfirmationRoute({
     _i27.Key? key,
     required String id,
+    required String roomTitle,
   }) : super(
           JoinRequestsConfirmationRoute.name,
           path: 'request-confirmation/:id',
           args: JoinRequestsConfirmationRouteArgs(
             key: key,
             id: id,
+            roomTitle: roomTitle,
           ),
           rawPathParams: {'id': id},
         );
@@ -946,15 +946,18 @@ class JoinRequestsConfirmationRouteArgs {
   const JoinRequestsConfirmationRouteArgs({
     this.key,
     required this.id,
+    required this.roomTitle,
   });
 
   final _i27.Key? key;
 
   final String id;
 
+  final String roomTitle;
+
   @override
   String toString() {
-    return 'JoinRequestsConfirmationRouteArgs{key: $key, id: $id}';
+    return 'JoinRequestsConfirmationRouteArgs{key: $key, id: $id, roomTitle: $roomTitle}';
   }
 }
 

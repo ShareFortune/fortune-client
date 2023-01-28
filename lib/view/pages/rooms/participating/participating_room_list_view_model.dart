@@ -41,23 +41,26 @@ class ParticipatingRoomListViewModel
   ///
   /// 遷移処理
   ///
-  Future<void> navigateToRequestConfirmation(String roomId) async {
-    await sl<AppRouter>().push(JoinRequestsConfirmationRoute(id: roomId));
+  navigateToRequestConfirmation(String roomId, String roomTitle) {
+    sl<AppRouter>().push(JoinRequestsConfirmationRoute(
+      id: roomId,
+      roomTitle: roomTitle,
+    ));
   }
 
-  Future<void> navigateToMessage() async {
-    await sl<AppRouter>().push(MessageRoomRoute(id: "id"));
+  navigateToMessage() {
+    sl<AppRouter>().push(MessageRoomRoute(id: "id"));
   }
 
-  Future<void> navigateToRoomDetail(String roomId) async {
-    await sl<AppRouter>().push(RoomDetailRoute(roomId: roomId));
+  navigateToRoomDetail(String roomId) {
+    sl<AppRouter>().push(RoomDetailRoute(roomId: roomId));
   }
 
-  Future<void> navigateToRoomCreation() async {
-    await sl<AppRouter>().push(CreateRoomRoute());
+  navigateToRoomCreation() {
+    sl<AppRouter>().push(CreateRoomRoute());
   }
 
-  Future<void> navigateToRoomActionsAsHost(ParticipantRoomAsHost room) async {
+  navigateToRoomActionsAsHost(ParticipantRoomAsHost room) {
     sl<AppRouter>().push(
       BottomSheetRouter(children: [RoomActions(room: room)]),
     );

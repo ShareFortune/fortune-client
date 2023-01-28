@@ -29,7 +29,10 @@ class HostRoomCard extends HookConsumerWidget {
             title: "リクエストを確認する",
             color: theme.appColors.primary,
             onPressed: () => state.joinRequestsCount > 0
-                ? viewModel.navigateToRequestConfirmation(state.id)
+                ? viewModel.navigateToRequestConfirmation(
+                    state.id,
+                    state.roomName,
+                  )
                 : null,
           );
         default:
