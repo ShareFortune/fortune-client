@@ -28,30 +28,27 @@ class JoinRequestsConfirmationPage extends HookConsumerWidget {
 
     return Scaffold(
       backgroundColor: theme.appColors.onBackground,
-      appBar: const BackAppBar(title: "リクエスト"),
+      appBar: const BackAppBar(title: "参加リクエスト"),
       body: state.joinRequests.when(
         data: (data) {
-          return joinRequestListView([
-            for (var joinRequest in data) ...{
-              JoinRequestTile(
-                theme: theme,
-                name: joinRequest.name,
-                info: "22歳・女性",
-                onTap: () {},
-              )
-            }
-          ]);
+          return ListView(
+            padding: const EdgeInsets.only(top: 20),
+            children: [
+              for (var joinRequest in data) ...{
+                JoinRequestTile(
+                  theme: theme,
+                  name: joinRequest.name,
+                  info: "22歳・女性",
+                  image: joinRequest.userImageUrl,
+                  onTap: () {},
+                )
+              }
+            ],
+          );
         },
         error: (error, stackTrace) => errorWidget(error, stackTrace),
         loading: () => loadingWidget(),
       ),
-    );
-  }
-
-  Widget joinRequestListView(List<Widget> joinRequestTiles) {
-    return ListView(
-      padding: const EdgeInsets.only(top: 20),
-      children: joinRequestTiles,
     );
   }
 }
