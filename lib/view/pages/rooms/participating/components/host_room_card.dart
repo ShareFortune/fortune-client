@@ -69,12 +69,15 @@ class HostRoomCard extends HookConsumerWidget {
               children: [
                 ///
                 /// タイトル
-                Text(
-                  room.roomName,
-                  style: theme.textTheme.h40,
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
+                Expanded(
+                  child: Text(
+                    room.roomName,
+                    style: theme.textTheme.h40,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 ),
+                const Gap(5),
                 InkWell(
                   onTap: () => viewModel.navigateToRoomActionsAsHost(room),
                   child: SvgPicture.asset(
