@@ -66,6 +66,7 @@ class HostRoomActionsBottomSheet extends HookConsumerWidget {
                   theme: theme,
                   title: "リンクをコピー",
                   iconPath: Assets.images.icons.iconLink.path,
+                  color: theme.appColors.iconBtn1,
                   onPressed: () {},
                 ),
                 const Gap(20),
@@ -73,6 +74,7 @@ class HostRoomActionsBottomSheet extends HookConsumerWidget {
                   theme: theme,
                   title: "ルームを編集する",
                   iconPath: Assets.images.icons.iconEdit.path,
+                  color: theme.appColors.iconBtn1,
                   onPressed: () => viewModel.navigateToEditRoom(room),
                 ),
                 BottomSheetMenuItem.last(
