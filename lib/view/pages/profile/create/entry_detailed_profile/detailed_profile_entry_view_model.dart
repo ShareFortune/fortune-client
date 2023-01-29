@@ -1,4 +1,5 @@
-import 'package:fortune_client/data/model/address/address.dart';
+import 'package:fortune_client/data/model/base/address/address.dart';
+import 'package:fortune_client/data/model/base/address_with_id/address_with_id.dart';
 import 'package:fortune_client/data/model/enum/cigarette_frequency.dart';
 import 'package:fortune_client/data/model/enum/drink_frequency.dart';
 import 'package:fortune_client/data/model/enum/gender.dart';
@@ -17,7 +18,9 @@ class DetailedProfileEntryViewModel
   DetailedProfileEntryViewModel() : super(const DetailedProfileEntryState());
 
   bool isPossibleToNext() {
-    return state.name != null && state.gender != null && state.address != null;
+    return state.name != null &&
+        state.gender != null &&
+        state.addressWithId != null;
   }
 
   changeName(String value) {
@@ -41,8 +44,10 @@ class DetailedProfileEntryViewModel
   }
 
   navigateToEntryAddress() async {
-    final result = await sl<AppRouter>().push(EntryAddressRoute()) as Address?;
-    state = state.copyWith(address: result ?? state.address);
+    final result = await sl<AppRouter>().push(
+      EntryAddressRoute(),
+    ) as AddressWithId?;
+    state = state.copyWith(addressWithId: result ?? state.addressWithId);
   }
 
   navigateToEntryProfileicon() async {
