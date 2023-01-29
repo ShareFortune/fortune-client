@@ -70,7 +70,7 @@ class GuestRoomActionsBottomSheet extends HookConsumerWidget {
                   onPressed: () {},
                 ),
                 const Gap(20),
-                BottomSheetMenuItem.last(
+                BottomSheetMenuItem(
                   theme: theme,
                   title: "参加申請を取り消す",
                   iconPath: Assets.images.icons.iconDelete.path,
