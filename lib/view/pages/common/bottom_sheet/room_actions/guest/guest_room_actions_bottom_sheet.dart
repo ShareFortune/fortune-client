@@ -1,25 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:fortune_client/data/model/participant/host/participant_room_as_host.dart';
+import 'package:fortune_client/data/model/participant/guest/participant_room_as_guest.dart';
 import 'package:fortune_client/gen/assets.gen.dart';
 import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/view/pages/common/bottom_sheet/components/bottom_sheet_menu_item.dart';
-import 'package:fortune_client/view/pages/common/bottom_sheet/room_actions/room_actions_bottom_sheet_view_model.dart';
+import 'package:fortune_client/view/pages/common/bottom_sheet/room_actions/host/host_room_actions_bottom_sheet_view_model.dart';
 import 'package:fortune_client/view/routes/app_router.gr.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class RoomActionsBottomSheet extends HookConsumerWidget {
-  const RoomActionsBottomSheet(this.room, {super.key});
+class GuestRoomActionsBottomSheet extends HookConsumerWidget {
+  const GuestRoomActionsBottomSheet(this.room, {super.key});
 
-  final ParticipantRoomAsHost room;
+  final ParticipantRoomAsGuest room;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = ref.watch(appThemeProvider);
     final viewModel =
-        ref.watch(roomActionsBottomSheetViewModelProvider.notifier);
+        ref.watch(hostRoomActionsBottomSheetViewModelProvider.notifier);
 
     return GestureDetector(
       onTap: () => sl<AppRouter>().pop(),
@@ -72,17 +72,17 @@ class RoomActionsBottomSheet extends HookConsumerWidget {
                 BottomSheetMenuItem.first(
                   theme: theme,
                   title: "ルームを編集する",
-                  iconPath: Assets.images.icons.iconLink.path,
-                  onPressed: () => viewModel.navigateToEditRoom(room),
+                  iconPath: Assets.images.icons.iconEdit.path,
+                  onPressed: () {},
                 ),
                 BottomSheetMenuItem.last(
                   theme: theme,
                   title: "ルームを削除する",
-                  iconPath: Assets.images.icons.iconLink.path,
+                  iconPath: Assets.images.icons.iconDelete.path,
                   color: theme.appColors.error,
                   onPressed: () {},
                 ),
-                const Gap(50),
+                const Gap(80),
               ],
             ),
           ),

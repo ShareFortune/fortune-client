@@ -9,10 +9,7 @@ import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 
 class MessageRoomPage extends ConsumerWidget {
-  const MessageRoomPage({
-    super.key,
-    @PathParam() required this.id,
-  });
+  const MessageRoomPage({super.key, @PathParam() required this.id});
 
   final String id;
 

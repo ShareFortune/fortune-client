@@ -73,13 +73,7 @@ class GuestRoomCard extends HookConsumerWidget {
                   overflow: TextOverflow.ellipsis,
                 ),
                 InkWell(
-                  onTap: () {
-                    // sl<AppRouter>().push(
-                    //   BottomSheetRouter(
-                    //     children: [RoomActions(roomTitle: room.roomName)],
-                    //   ),
-                    // );
-                  },
+                  onTap: () => viewModel.navigateToRoomActionsAsGuest(room),
                   child: SvgPicture.asset(
                     Assets.images.icons.iconMoreVert.path,
                     fit: BoxFit.contain,

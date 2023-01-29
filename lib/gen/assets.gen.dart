@@ -95,6 +95,10 @@ class $AssetsImagesIconsGen {
   SvgGenImage get iconArrowRight =>
       const SvgGenImage('assets/images/icons/icon_arrow_right.svg');
 
+  /// File path: assets/images/icons/icon_delete.svg
+  SvgGenImage get iconDelete =>
+      const SvgGenImage('assets/images/icons/icon_delete.svg');
+
   /// File path: assets/images/icons/icon_edit.svg
   SvgGenImage get iconEdit =>
       const SvgGenImage('assets/images/icons/icon_edit.svg');
@@ -140,6 +144,7 @@ class $AssetsImagesIconsGen {
         iconAdd,
         iconApple,
         iconArrowRight,
+        iconDelete,
         iconEdit,
         iconGoogle,
         iconLink,

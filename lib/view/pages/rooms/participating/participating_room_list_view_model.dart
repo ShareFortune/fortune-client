@@ -1,3 +1,4 @@
+import 'package:fortune_client/data/model/participant/guest/participant_room_as_guest.dart';
 import 'package:fortune_client/data/model/participant/host/participant_room_as_host.dart';
 import 'package:fortune_client/data/repository/rooms/rooms_repository.dart';
 import 'package:fortune_client/injector.dart';
@@ -62,7 +63,13 @@ class ParticipatingRoomListViewModel
 
   navigateToRoomActionsAsHost(ParticipantRoomAsHost room) {
     sl<AppRouter>().push(
-      BottomSheetRouter(children: [RoomActions(room: room)]),
+      BottomSheetRouter(children: [HostRoomActions(room: room)]),
+    );
+  }
+
+  navigateToRoomActionsAsGuest(ParticipantRoomAsGuest room) {
+    sl<AppRouter>().push(
+      BottomSheetRouter(children: [GuestRoomActions(room: room)]),
     );
   }
 }

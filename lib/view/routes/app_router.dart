@@ -2,7 +2,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:auto_route/empty_router_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:fortune_client/view/pages/account/my_page/my_page.dart';
-import 'package:fortune_client/view/pages/common/bottom_sheet/room_actions/room_actions_bottom_sheet.dart';
+import 'package:fortune_client/view/pages/common/bottom_sheet/room_actions/guest/guest_room_actions_bottom_sheet.dart';
+import 'package:fortune_client/view/pages/common/bottom_sheet/room_actions/host/host_room_actions_bottom_sheet.dart';
 import 'package:fortune_client/view/pages/profile/update/profile_update_page.dart';
 import 'package:fortune_client/view/pages/auth/login/login_page.dart';
 import 'package:fortune_client/view/pages/common/bottom_navigation_bar/bottom_navigation_bar.dart';
@@ -154,7 +155,8 @@ export 'app_router.gr.dart';
       page: EmptyRouterPage,
       customRouteBuilder: modalSheetBuilder,
       children: [
-        AutoRoute(name: 'RoomActions', page: RoomActionsBottomSheet),
+        AutoRoute(name: 'HostRoomActions', page: HostRoomActionsBottomSheet),
+        AutoRoute(name: 'GuestRoomActions', page: GuestRoomActionsBottomSheet),
       ],
     ),
   ],

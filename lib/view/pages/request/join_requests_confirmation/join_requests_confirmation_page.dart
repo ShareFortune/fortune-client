@@ -16,8 +16,8 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 class JoinRequestsConfirmationPage extends HookConsumerWidget {
   const JoinRequestsConfirmationPage({
     super.key,
-    @PathParam() required this.id,
-    required this.roomTitle,
+    @pathParam this.id = "タイトル",
+    @queryParam this.roomTitle = "ルームタイトル",
   });
 
   final String id;

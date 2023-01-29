@@ -3,13 +3,13 @@ import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/view/routes/app_router.gr.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-final roomActionsBottomSheetViewModelProvider =
-    StateNotifierProvider<RoomActionsBottomSheetViewModel, void>(
-  (ref) => RoomActionsBottomSheetViewModel(),
+final hostRoomActionsBottomSheetViewModelProvider =
+    StateNotifierProvider<HostRoomActionsBottomSheetViewModel, void>(
+  (ref) => HostRoomActionsBottomSheetViewModel(),
 );
 
-class RoomActionsBottomSheetViewModel extends StateNotifier<void> {
-  RoomActionsBottomSheetViewModel() : super(null);
+class HostRoomActionsBottomSheetViewModel extends StateNotifier<void> {
+  HostRoomActionsBottomSheetViewModel() : super(null);
 
   copy() {}
   navigateToEditRoom(ParticipantRoomAsHost room) async {
