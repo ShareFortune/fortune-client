@@ -42,22 +42,25 @@ class HostRoomActionsBottomSheet extends HookConsumerWidget {
                   children: [
                     const CircleAvatar(radius: 24),
                     const Gap(10),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          room.roomName,
-                          style: theme.textTheme.h40
-                              .paint(theme.appColors.subText1)
-                              .bold(),
-                        ),
-                        Text(
-                          "デッドライン",
-                          style: theme.textTheme.h30.paint(
-                            theme.appColors.subText2,
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            room.roomName,
+                            overflow: TextOverflow.ellipsis,
+                            style: theme.textTheme.h40
+                                .paint(theme.appColors.subText1)
+                                .bold(),
                           ),
-                        ),
-                      ],
+                          Text(
+                            "デッドライン",
+                            style: theme.textTheme.h30.paint(
+                              theme.appColors.subText2,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ],
                 ),
