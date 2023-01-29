@@ -14,6 +14,8 @@
 import 'package:auto_route/auto_route.dart' as _i25;
 import 'package:auto_route/empty_router_widgets.dart' as _i2;
 import 'package:flutter/material.dart' as _i26;
+import 'package:fortune_client/data/model/participant/host/participant_room_as_host.dart'
+    as _i30;
 import 'package:fortune_client/data/model/tag/tag.dart' as _i29;
 import 'package:fortune_client/view/pages/account/my_page/my_page.dart' as _i9;
 import 'package:fortune_client/view/pages/auth/login/login_page.dart' as _i3;
@@ -286,7 +288,7 @@ class AppRouter extends _i25.RootStackRouter {
       return _i25.AdaptivePage<dynamic>(
         routeData: routeData,
         child: _i24.RoomActionsBottomSheet(
-          args.roomTitle,
+          args.room,
           key: args.key,
         ),
       );
@@ -983,13 +985,13 @@ class EntryProfileSubImageRoute extends _i25.PageRouteInfo<void> {
 /// [_i24.RoomActionsBottomSheet]
 class RoomActions extends _i25.PageRouteInfo<RoomActionsArgs> {
   RoomActions({
-    required String roomTitle,
+    required _i30.ParticipantRoomAsHost room,
     _i26.Key? key,
   }) : super(
           RoomActions.name,
           path: 'room-actions-bottom-sheet',
           args: RoomActionsArgs(
-            roomTitle: roomTitle,
+            room: room,
             key: key,
           ),
         );
@@ -999,16 +1001,16 @@ class RoomActions extends _i25.PageRouteInfo<RoomActionsArgs> {
 
 class RoomActionsArgs {
   const RoomActionsArgs({
-    required this.roomTitle,
+    required this.room,
     this.key,
   });
 
-  final String roomTitle;
+  final _i30.ParticipantRoomAsHost room;
 
   final _i26.Key? key;
 
   @override
   String toString() {
-    return 'RoomActionsArgs{roomTitle: $roomTitle, key: $key}';
+    return 'RoomActionsArgs{room: $room, key: $key}';
   }
 }
