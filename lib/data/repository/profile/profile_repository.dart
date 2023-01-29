@@ -1,11 +1,11 @@
 import 'dart:io';
 
-import 'package:fortune_client/data/model/address/address.dart';
+import 'package:fortune_client/data/model/base/address_with_id/address_with_id.dart';
+import 'package:fortune_client/data/model/base/tag/tag.dart';
 import 'package:fortune_client/data/model/enum/cigarette_frequency.dart';
 import 'package:fortune_client/data/model/enum/drink_frequency.dart';
-import 'package:fortune_client/data/model/profile/profile.dart';
 import 'package:fortune_client/data/model/enum/gender.dart';
-import 'package:fortune_client/data/model/tag/tag.dart';
+import 'package:fortune_client/data/model/profiles/get_v1_profiles/get_v1_profiles.dart';
 
 abstract class ProfileRepository {
   /// 作成済みかどうか
@@ -15,7 +15,7 @@ abstract class ProfileRepository {
   Future<bool> create({
     required String name,
     required Gender gender,
-    required Address addressId,
+    required AddressWithId address,
     required int? height,
     required DrinkFrequency? drinkFrequency,
     required CigaretteFrequency? cigaretteFrequency,
@@ -30,16 +30,16 @@ abstract class ProfileRepository {
   });
 
   /// 取得
-  Future<Profile> get();
+  Future<GetV1ProfilesResponse> get();
 
   /// キャッシュに保存されたプロフィールを取得
-  Profile getCache();
+  GetV1ProfilesResponse getCache();
 
   /// 更新
   Future<void> updateSelfIntroduction(String selfIntroduction);
   Future<void> updateTags(List<Tag> tags);
   Future<void> updateBasicInfo({
-    required Address address,
+    required AddressWithId? addressWithId,
     required int? stature,
     required DrinkFrequency? drinkFrequency,
     required CigaretteFrequency? cigaretteFrequency,

@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:fortune_client/data/model/base/room/room.dart';
+import 'package:fortune_client/data/model/rooms/get_v1_rooms/get_v1_rooms.dart';
 import 'package:fortune_client/data/model/rooms/get_v1_rooms_guest/get_v1_rooms_guest.dart';
 import 'package:fortune_client/data/model/rooms/get_v1_rooms_host/get_v1_rooms_host.dart';
 import 'package:fortune_client/data/model/rooms/get_v1_rooms_search/get_v1_rooms_search.dart';
@@ -21,7 +22,7 @@ abstract class RoomsDataSource {
 
   @GET('/rooms')
   @authenticatedRequest
-  Future<GetV1RoomsSearchResponse> search({
+  Future<GetV1RoomsResponse> fetchList({
     @Query("addressId") String? addressId,
     @Query("applicationDeadline") String? applicationDeadline,
     @Query("memberNum") int? memberNum,

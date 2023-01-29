@@ -24,7 +24,7 @@ mixin _$GetV1RoomJoinRequestsResponse {
   @JsonKey(name: "nextToken")
   String get nextToken => throw _privateConstructorUsedError;
   @JsonKey(name: "joinRequests")
-  String get joinRequests => throw _privateConstructorUsedError;
+  List<RoomJoinRequest> get joinRequests => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -42,7 +42,7 @@ abstract class $GetV1RoomJoinRequestsResponseCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: "nextToken") String nextToken,
-      @JsonKey(name: "joinRequests") String joinRequests});
+      @JsonKey(name: "joinRequests") List<RoomJoinRequest> joinRequests});
 }
 
 /// @nodoc
@@ -70,7 +70,7 @@ class _$GetV1RoomJoinRequestsResponseCopyWithImpl<$Res,
       joinRequests: null == joinRequests
           ? _value.joinRequests
           : joinRequests // ignore: cast_nullable_to_non_nullable
-              as String,
+              as List<RoomJoinRequest>,
     ) as $Val);
   }
 }
@@ -86,7 +86,7 @@ abstract class _$$_GetV1RoomJoinRequestsResponseCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(name: "nextToken") String nextToken,
-      @JsonKey(name: "joinRequests") String joinRequests});
+      @JsonKey(name: "joinRequests") List<RoomJoinRequest> joinRequests});
 }
 
 /// @nodoc
@@ -111,9 +111,9 @@ class __$$_GetV1RoomJoinRequestsResponseCopyWithImpl<$Res>
           : nextToken // ignore: cast_nullable_to_non_nullable
               as String,
       joinRequests: null == joinRequests
-          ? _value.joinRequests
+          ? _value._joinRequests
           : joinRequests // ignore: cast_nullable_to_non_nullable
-              as String,
+              as List<RoomJoinRequest>,
     ));
   }
 }
@@ -123,8 +123,11 @@ class __$$_GetV1RoomJoinRequestsResponseCopyWithImpl<$Res>
 class _$_GetV1RoomJoinRequestsResponse
     implements _GetV1RoomJoinRequestsResponse {
   const _$_GetV1RoomJoinRequestsResponse(
-      {@JsonKey(name: "nextToken") required this.nextToken,
-      @JsonKey(name: "joinRequests") required this.joinRequests});
+      {@JsonKey(name: "nextToken")
+          required this.nextToken,
+      @JsonKey(name: "joinRequests")
+          required final List<RoomJoinRequest> joinRequests})
+      : _joinRequests = joinRequests;
 
   factory _$_GetV1RoomJoinRequestsResponse.fromJson(
           Map<String, dynamic> json) =>
@@ -133,9 +136,14 @@ class _$_GetV1RoomJoinRequestsResponse
   @override
   @JsonKey(name: "nextToken")
   final String nextToken;
+  final List<RoomJoinRequest> _joinRequests;
   @override
   @JsonKey(name: "joinRequests")
-  final String joinRequests;
+  List<RoomJoinRequest> get joinRequests {
+    if (_joinRequests is EqualUnmodifiableListView) return _joinRequests;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_joinRequests);
+  }
 
   @override
   String toString() {
@@ -149,13 +157,14 @@ class _$_GetV1RoomJoinRequestsResponse
             other is _$_GetV1RoomJoinRequestsResponse &&
             (identical(other.nextToken, nextToken) ||
                 other.nextToken == nextToken) &&
-            (identical(other.joinRequests, joinRequests) ||
-                other.joinRequests == joinRequests));
+            const DeepCollectionEquality()
+                .equals(other._joinRequests, _joinRequests));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, nextToken, joinRequests);
+  int get hashCode => Object.hash(runtimeType, nextToken,
+      const DeepCollectionEquality().hash(_joinRequests));
 
   @JsonKey(ignore: true)
   @override
@@ -175,8 +184,10 @@ class _$_GetV1RoomJoinRequestsResponse
 abstract class _GetV1RoomJoinRequestsResponse
     implements GetV1RoomJoinRequestsResponse {
   const factory _GetV1RoomJoinRequestsResponse(
-          {@JsonKey(name: "nextToken") required final String nextToken,
-          @JsonKey(name: "joinRequests") required final String joinRequests}) =
+          {@JsonKey(name: "nextToken")
+              required final String nextToken,
+          @JsonKey(name: "joinRequests")
+              required final List<RoomJoinRequest> joinRequests}) =
       _$_GetV1RoomJoinRequestsResponse;
 
   factory _GetV1RoomJoinRequestsResponse.fromJson(Map<String, dynamic> json) =
@@ -187,7 +198,7 @@ abstract class _GetV1RoomJoinRequestsResponse
   String get nextToken;
   @override
   @JsonKey(name: "joinRequests")
-  String get joinRequests;
+  List<RoomJoinRequest> get joinRequests;
   @override
   @JsonKey(ignore: true)
   _$$_GetV1RoomJoinRequestsResponseCopyWith<_$_GetV1RoomJoinRequestsResponse>

@@ -18,11 +18,11 @@ abstract class JoinRequestsDataSource {
   );
 
   /// 受信した参加リクエスト結果を取得
-  // @GET('/rooms/{id}/roomJoinRequests')
-  // @authenticatedRequest
-  // Future<GetV1Room> getResultOfIncomingJoinRequests(
-  //   @Path('id') String id, {
-  //   @Query("nextToken") String? nextToken,
-  //   @Query("perPage") int? perPage,
-  // });
+  @GET('/rooms/{id}/roomJoinRequests')
+  @authenticatedRequest
+  Future<GetV1RoomJoinRequestsResponse> getJoinRequest(
+    @Path('id') String id, {
+    @Query("nextToken") String? nextToken,
+    @Query("perPage") int? perPage,
+  });
 }

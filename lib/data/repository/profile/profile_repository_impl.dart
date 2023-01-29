@@ -1,18 +1,18 @@
 import 'dart:convert';
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:fortune_client/data/datasource/local/shared_pref_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/go/profile/profile_data_source.dart';
-import 'package:fortune_client/data/model/address/address.dart';
+import 'package:fortune_client/data/model/base/address/address.dart';
+import 'package:fortune_client/data/model/base/address_with_id/address_with_id.dart';
+import 'package:fortune_client/data/model/base/profiles_files/profiles_files.dart';
+import 'package:fortune_client/data/model/base/tag/tag.dart';
 import 'package:fortune_client/data/model/enum/cigarette_frequency.dart';
 import 'package:fortune_client/data/model/enum/drink_frequency.dart';
-import 'package:fortune_client/data/model/form/create_profile_form/create_profile_form.dart';
-import 'package:fortune_client/data/model/form/profile_files_request/profile_files_request.dart';
-import 'package:fortune_client/data/model/form/profile_update_request/profile_update_request.dart';
-import 'package:fortune_client/data/model/profile/profile.dart';
-import 'package:fortune_client/data/model/tag/tag.dart';
+import 'package:fortune_client/data/model/profiles/get_v1_profiles/get_v1_profiles.dart';
+import 'package:fortune_client/data/model/profiles/patch_v1_profiles_id/patch_v1_profiles_id.dart';
+import 'package:fortune_client/data/model/profiles/post_v1_users_id_profiles/post_v1_users_id_profiles.dart';
 import 'package:fortune_client/data/repository/profile/profile_repository.dart';
 import 'package:fortune_client/data/model/enum/gender.dart';
 import 'package:fortune_client/util/converter/image_converter.dart';
@@ -38,7 +38,7 @@ class ProfileRepositoryImpl implements ProfileRepository {
   Future<bool> create({
     required String name,
     required Gender gender,
-    required Address addressId,
+    required AddressWithId address,
     int? height,
     DrinkFrequency? drinkFrequency,
     CigaretteFrequency? cigaretteFrequency,
@@ -53,11 +53,11 @@ class ProfileRepositoryImpl implements ProfileRepository {
       logger.i("[$runtimeType] create");
 
       /// 作成フォーム
-      final profileForm = ProfileForm(
+      final profileForm = PostV1UsersIdProfilesRequest(
         name: name,
         gender: gender.rawValue,
-        addressId: 1,
-        images: await _profileFiles(
+        addressId: address.id,
+        files: await _profileFiles(
           iconImage: iconImage,
           mainImage: mainImage,
           secondImage: secondImage,
@@ -65,8 +65,8 @@ class ProfileRepositoryImpl implements ProfileRepository {
           fourthImage: fourthImage,
         ).then((value) => value.toJson()),
         height: 170,
-        drinkFrequency: "OFTEN",
-        cigaretteFrequency: "OFTEN",
+        drinkFrequency: drinkFrequency,
+        cigaretteFrequency: cigaretteFrequency,
         // occupationId: null, // 開発中のためNullにしないとエラー出るよ
         // selfIntroduction: null,
         // tagIds: null,
@@ -92,7 +92,7 @@ class ProfileRepositoryImpl implements ProfileRepository {
   }
 
   @override
-  Future<Profile> get() async {
+  Future<GetV1ProfilesResponse> get() async {
     try {
       final profile = await logInfo(() => _profileDataSource.get());
 
@@ -110,10 +110,10 @@ class ProfileRepositoryImpl implements ProfileRepository {
   }
 
   @override
-  Profile getCache() {
+  GetV1ProfilesResponse getCache() {
     try {
       final result = _sharedPreferences.getString(AppPrefKey.profile.keyString);
-      return Profile.fromJson(jsonDecode(result!));
+      return GetV1ProfilesResponse.fromJson(jsonDecode(result!));
     } catch (e) {
       logger.e(e);
       rethrow;
@@ -142,14 +142,14 @@ class ProfileRepositoryImpl implements ProfileRepository {
 
   @override
   Future<void> updateBasicInfo({
-    required Address address,
+    required AddressWithId? addressWithId,
     required int? stature,
     required DrinkFrequency? drinkFrequency,
     required CigaretteFrequency? cigaretteFrequency,
   }) async {
     try {
       await _update(
-        address: address,
+        address: addressWithId?.data,
         stature: stature,
         drinkFrequency: drinkFrequency,
         cigaretteFrequency: cigaretteFrequency,
@@ -202,7 +202,7 @@ class ProfileRepositoryImpl implements ProfileRepository {
   }
 
   /// 作成フォーム画像
-  Future<ProfileFilesRequest> _profileFiles({
+  Future<ProfilesFiles> _profileFiles({
     required File iconImage,
     File? mainImage,
     File? secondImage,
@@ -210,7 +210,7 @@ class ProfileRepositoryImpl implements ProfileRepository {
     File? fourthImage,
   }) async {
     const toBase64 = ImageConverter.convertImageForBase64;
-    return ProfileFilesRequest(
+    return ProfilesFiles(
       mainImage: await toBase64(iconImage),
       secondImage: mainImage != null ? await toBase64(mainImage) : null,
       thirdImage: secondImage != null ? await toBase64(secondImage) : null,
@@ -221,8 +221,9 @@ class ProfileRepositoryImpl implements ProfileRepository {
 
   /// 更新データフォーム作成
   /// [Profile] convert to [ProfileUpdateRequest]
-  ProfileUpdateRequest createUpdateRequest(Profile updateProfile) {
-    return ProfileUpdateRequest(
+  PatchV1ProfilesIdRequest createUpdateRequest(
+      GetV1ProfilesResponse updateProfile) {
+    return PatchV1ProfilesIdRequest(
       name: updateProfile.name,
       gender: updateProfile.gender.text,
       height: updateProfile.height,
@@ -232,9 +233,9 @@ class ProfileRepositoryImpl implements ProfileRepository {
       occupationId: null,
 
       /// アドレスデータにはIDをつけるようにする
-      addressId: updateProfile.address.id ?? 65,
+      addressId: 65,
       tagIds: updateProfile.tags?.map((e) => e.id).toList(),
-      files: ProfileFilesRequest(
+      files: ProfilesFiles(
         mainImage: updateProfile.mainImageURL,
       ),
     );

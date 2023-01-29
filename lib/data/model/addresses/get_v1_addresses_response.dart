@@ -9,7 +9,7 @@ part 'get_v1_addresses_response.g.dart';
 @freezed
 class GetV1AddressesResponse with _$GetV1AddressesResponse {
   const factory GetV1AddressesResponse(
-    @JsonKey(name: 'addresses') List<Address> addresses,
+    @JsonKey(name: 'addresses') List<Address> data,
   ) = _GetV1AddressesResponse;
 
   factory GetV1AddressesResponse.fromJson(Map<String, dynamic> json) =>

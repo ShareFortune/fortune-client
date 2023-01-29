@@ -1,10 +1,9 @@
-import 'package:fortune_client/data/model/address/address.dart';
+import 'package:fortune_client/data/model/base/address_with_id/address_with_id.dart';
+import 'package:fortune_client/data/model/base/room/room.dart';
+import 'package:fortune_client/data/model/base/tag/tag.dart';
 import 'package:fortune_client/data/model/enum/age_group.dart';
-import 'package:fortune_client/data/model/participant/guest/participant_room_as_guest.dart';
-import 'package:fortune_client/data/model/participant/host/participant_room_as_host.dart';
-import 'package:fortune_client/data/model/room_detail/room_detail.dart';
-import 'package:fortune_client/data/model/rooms/rooms.dart';
-import 'package:fortune_client/data/model/tag/tag.dart';
+import 'package:fortune_client/data/model/rooms/get_v1_rooms_guest/get_v1_rooms_guest.dart';
+import 'package:fortune_client/data/model/rooms/get_v1_rooms_host/get_v1_rooms_host.dart';
 
 abstract class RoomsRepository {
   /// ルーム作成
@@ -12,16 +11,21 @@ abstract class RoomsRepository {
     required String title,
     required int membersNum,
     required AgeGroup ageGroup,
-    required Address addressId,
+    required AddressWithId addressWithId,
     required String explanation,
     List<Tag>? tagIds,
   });
 
+  /// 更新
   Future<String> update();
-  Future<List<Room>> search();
-  Future<List<ParticipantRoomAsHost>> getRoomsToParticipateAsHost();
-  Future<List<ParticipantRoomAsGuest>> getRoomsToParticipateAsGuest();
+
+  /// ルームリストを取得
+  Future<List<Room>> fetchList({
+    AddressWithId? addressWithId,
+  });
+  Future<List<GetV1RoomsHostResponseRoom>> getRoomsToParticipateAsHost();
+  Future<List<GetV1RoomsGuestResponseRoom>> getRoomsToParticipateAsGuest();
 
   /// 詳細取得
-  Future<RoomDetail> fetchDetail(String roomId);
+  Future<Room> fetchDetail(String roomId);
 }

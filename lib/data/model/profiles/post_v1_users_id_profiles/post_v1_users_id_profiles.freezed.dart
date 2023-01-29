@@ -24,43 +24,25 @@ mixin _$PostV1UsersIdProfilesRequest {
   @freezed
   @JsonKey(name: 'files')
   Map<String, dynamic> get files => throw _privateConstructorUsedError;
-
-  /// 名前
   @JsonKey(name: 'name')
   String get name => throw _privateConstructorUsedError;
-
-  /// 性別
   @JsonKey(name: 'gender')
   String get gender => throw _privateConstructorUsedError;
-
-  /// 身長
   @JsonKey(name: 'height')
   int? get height => throw _privateConstructorUsedError;
-
-  /// お酒をよく飲むか
   @JsonKey(name: "drinkFrequency")
   @DrinkFrequencyConverter()
   DrinkFrequency? get drinkFrequency => throw _privateConstructorUsedError;
-
-  /// タバコをよく吸うか
   @JsonKey(name: "cigaretteFrequency")
   @CigaretteFrequencyConverter()
   CigaretteFrequency? get cigaretteFrequency =>
       throw _privateConstructorUsedError;
-
-  /// 自己紹介文
   @JsonKey(name: 'selfIntroduction')
   String? get selfIntroduction => throw _privateConstructorUsedError;
-
-  /// 職業ID
   @JsonKey(name: 'occupationId')
   int? get occupationId => throw _privateConstructorUsedError;
-
-  /// 居住地
   @JsonKey(name: 'addressId')
   int get addressId => throw _privateConstructorUsedError;
-
-  /// タグ
   @JsonKey(name: 'tagIds')
   List<String>? get tagIds => throw _privateConstructorUsedError;
 
@@ -321,52 +303,33 @@ class _$_PostV1UsersIdProfilesRequest implements _PostV1UsersIdProfilesRequest {
     return EqualUnmodifiableMapView(_files);
   }
 
-  /// 名前
   @override
   @JsonKey(name: 'name')
   final String name;
-
-  /// 性別
   @override
   @JsonKey(name: 'gender')
   final String gender;
-
-  /// 身長
   @override
   @JsonKey(name: 'height')
   final int? height;
-
-  /// お酒をよく飲むか
   @override
   @JsonKey(name: "drinkFrequency")
   @DrinkFrequencyConverter()
   final DrinkFrequency? drinkFrequency;
-
-  /// タバコをよく吸うか
   @override
   @JsonKey(name: "cigaretteFrequency")
   @CigaretteFrequencyConverter()
   final CigaretteFrequency? cigaretteFrequency;
-
-  /// 自己紹介文
   @override
   @JsonKey(name: 'selfIntroduction')
   final String? selfIntroduction;
-
-  /// 職業ID
   @override
   @JsonKey(name: 'occupationId')
   final int? occupationId;
-
-  /// 居住地
   @override
   @JsonKey(name: 'addressId')
   final int addressId;
-
-  /// タグ
   final List<String>? _tagIds;
-
-  /// タグ
   @override
   @JsonKey(name: 'tagIds')
   List<String>? get tagIds {
@@ -469,50 +432,32 @@ abstract class _PostV1UsersIdProfilesRequest
   @JsonKey(name: 'files')
   Map<String, dynamic> get files;
   @override
-
-  /// 名前
   @JsonKey(name: 'name')
   String get name;
   @override
-
-  /// 性別
   @JsonKey(name: 'gender')
   String get gender;
   @override
-
-  /// 身長
   @JsonKey(name: 'height')
   int? get height;
   @override
-
-  /// お酒をよく飲むか
   @JsonKey(name: "drinkFrequency")
   @DrinkFrequencyConverter()
   DrinkFrequency? get drinkFrequency;
   @override
-
-  /// タバコをよく吸うか
   @JsonKey(name: "cigaretteFrequency")
   @CigaretteFrequencyConverter()
   CigaretteFrequency? get cigaretteFrequency;
   @override
-
-  /// 自己紹介文
   @JsonKey(name: 'selfIntroduction')
   String? get selfIntroduction;
   @override
-
-  /// 職業ID
   @JsonKey(name: 'occupationId')
   int? get occupationId;
   @override
-
-  /// 居住地
   @JsonKey(name: 'addressId')
   int get addressId;
   @override
-
-  /// タグ
   @JsonKey(name: 'tagIds')
   List<String>? get tagIds;
   @override

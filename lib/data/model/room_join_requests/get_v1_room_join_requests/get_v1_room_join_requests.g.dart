@@ -10,7 +10,9 @@ _$_GetV1RoomJoinRequestsResponse _$$_GetV1RoomJoinRequestsResponseFromJson(
         Map<String, dynamic> json) =>
     _$_GetV1RoomJoinRequestsResponse(
       nextToken: json['nextToken'] as String,
-      joinRequests: json['joinRequests'] as String,
+      joinRequests: (json['joinRequests'] as List<dynamic>)
+          .map((e) => RoomJoinRequest.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$$_GetV1RoomJoinRequestsResponseToJson(

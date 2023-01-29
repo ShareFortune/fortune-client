@@ -20,8 +20,6 @@ Address _$AddressFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Address {
-  @JsonKey(name: 'id', nullable: true)
-  int? get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'country')
   String get country => throw _privateConstructorUsedError;
   @JsonKey(name: 'prefecture')
@@ -40,8 +38,7 @@ abstract class $AddressCopyWith<$Res> {
       _$AddressCopyWithImpl<$Res, Address>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id', nullable: true) int? id,
-      @JsonKey(name: 'country') String country,
+      {@JsonKey(name: 'country') String country,
       @JsonKey(name: 'prefecture') String prefecture,
       @JsonKey(name: 'city') String city});
 }
@@ -59,16 +56,11 @@ class _$AddressCopyWithImpl<$Res, $Val extends Address>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
     Object? country = null,
     Object? prefecture = null,
     Object? city = null,
   }) {
     return _then(_value.copyWith(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
       country: null == country
           ? _value.country
           : country // ignore: cast_nullable_to_non_nullable
@@ -93,8 +85,7 @@ abstract class _$$_AddressCopyWith<$Res> implements $AddressCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id', nullable: true) int? id,
-      @JsonKey(name: 'country') String country,
+      {@JsonKey(name: 'country') String country,
       @JsonKey(name: 'prefecture') String prefecture,
       @JsonKey(name: 'city') String city});
 }
@@ -109,16 +100,11 @@ class __$$_AddressCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
     Object? country = null,
     Object? prefecture = null,
     Object? city = null,
   }) {
     return _then(_$_Address(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
       country: null == country
           ? _value.country
           : country // ignore: cast_nullable_to_non_nullable
@@ -139,8 +125,7 @@ class __$$_AddressCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_Address extends _Address {
   const _$_Address(
-      {@JsonKey(name: 'id', nullable: true) this.id,
-      @JsonKey(name: 'country') required this.country,
+      {@JsonKey(name: 'country') required this.country,
       @JsonKey(name: 'prefecture') required this.prefecture,
       @JsonKey(name: 'city') required this.city})
       : super._();
@@ -148,9 +133,6 @@ class _$_Address extends _Address {
   factory _$_Address.fromJson(Map<String, dynamic> json) =>
       _$$_AddressFromJson(json);
 
-  @override
-  @JsonKey(name: 'id', nullable: true)
-  final int? id;
   @override
   @JsonKey(name: 'country')
   final String country;
@@ -163,7 +145,7 @@ class _$_Address extends _Address {
 
   @override
   String toString() {
-    return 'Address(id: $id, country: $country, prefecture: $prefecture, city: $city)';
+    return 'Address(country: $country, prefecture: $prefecture, city: $city)';
   }
 
   @override
@@ -171,7 +153,6 @@ class _$_Address extends _Address {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Address &&
-            (identical(other.id, id) || other.id == id) &&
             (identical(other.country, country) || other.country == country) &&
             (identical(other.prefecture, prefecture) ||
                 other.prefecture == prefecture) &&
@@ -180,7 +161,7 @@ class _$_Address extends _Address {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, country, prefecture, city);
+  int get hashCode => Object.hash(runtimeType, country, prefecture, city);
 
   @JsonKey(ignore: true)
   @override
@@ -198,17 +179,13 @@ class _$_Address extends _Address {
 
 abstract class _Address extends Address {
   const factory _Address(
-      {@JsonKey(name: 'id', nullable: true) final int? id,
-      @JsonKey(name: 'country') required final String country,
+      {@JsonKey(name: 'country') required final String country,
       @JsonKey(name: 'prefecture') required final String prefecture,
       @JsonKey(name: 'city') required final String city}) = _$_Address;
   const _Address._() : super._();
 
   factory _Address.fromJson(Map<String, dynamic> json) = _$_Address.fromJson;
 
-  @override
-  @JsonKey(name: 'id', nullable: true)
-  int? get id;
   @override
   @JsonKey(name: 'country')
   String get country;

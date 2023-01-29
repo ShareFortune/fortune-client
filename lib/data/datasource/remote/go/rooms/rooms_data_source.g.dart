@@ -43,7 +43,7 @@ class _RoomsDataSource implements RoomsDataSource {
   }
 
   @override
-  Future<GetV1RoomsSearchResponse> search({
+  Future<GetV1RoomsResponse> fetchList({
     addressId,
     applicationDeadline,
     memberNum,
@@ -63,8 +63,8 @@ class _RoomsDataSource implements RoomsDataSource {
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<GetV1RoomsSearchResponse>(Options(
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<GetV1RoomsResponse>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -76,7 +76,7 @@ class _RoomsDataSource implements RoomsDataSource {
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = GetV1RoomsSearchResponse.fromJson(_result.data!);
+    final value = GetV1RoomsResponse.fromJson(_result.data!);
     return value;
   }
 

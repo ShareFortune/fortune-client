@@ -17,5 +17,5 @@ _$_GetV1AddressesResponse _$$_GetV1AddressesResponseFromJson(
 Map<String, dynamic> _$$_GetV1AddressesResponseToJson(
         _$_GetV1AddressesResponse instance) =>
     <String, dynamic>{
-      'addresses': instance.addresses,
+      'addresses': instance.data,
     };

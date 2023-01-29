@@ -9,7 +9,6 @@ part 'address.g.dart';
 class Address with _$Address {
   const Address._();
   const factory Address({
-    @JsonKey(name: 'id', nullable: true) int? id,
     @JsonKey(name: 'country') required String country,
     @JsonKey(name: 'prefecture') required String prefecture,
     @JsonKey(name: 'city') required String city,

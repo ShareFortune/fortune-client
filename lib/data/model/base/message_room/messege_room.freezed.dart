@@ -25,7 +25,7 @@ mixin _$MessageRoom {
   @JsonKey(name: 'roomName')
   String get roomName => throw _privateConstructorUsedError;
   @JsonKey(name: 'lastSentAt')
-  String? get lastSentAt => throw _privateConstructorUsedError;
+  String? get lastSendAt => throw _privateConstructorUsedError;
   @JsonKey(name: 'lastSendMessage')
   String? get lastSendMessage => throw _privateConstructorUsedError;
   @JsonKey(name: 'hostMainImageURL')
@@ -54,7 +54,7 @@ abstract class $MessageRoomCopyWith<$Res> {
       @JsonKey(name: 'roomName')
           String roomName,
       @JsonKey(name: 'lastSentAt')
-          String? lastSentAt,
+          String? lastSendAt,
       @JsonKey(name: 'lastSendMessage')
           String? lastSendMessage,
       @JsonKey(name: 'hostMainImageURL')
@@ -80,7 +80,7 @@ class _$MessageRoomCopyWithImpl<$Res, $Val extends MessageRoom>
   $Res call({
     Object? id = null,
     Object? roomName = null,
-    Object? lastSentAt = freezed,
+    Object? lastSendAt = freezed,
     Object? lastSendMessage = freezed,
     Object? hostMainImageURL = null,
     Object? participantMainImageURLs = null,
@@ -95,9 +95,9 @@ class _$MessageRoomCopyWithImpl<$Res, $Val extends MessageRoom>
           ? _value.roomName
           : roomName // ignore: cast_nullable_to_non_nullable
               as String,
-      lastSentAt: freezed == lastSentAt
-          ? _value.lastSentAt
-          : lastSentAt // ignore: cast_nullable_to_non_nullable
+      lastSendAt: freezed == lastSendAt
+          ? _value.lastSendAt
+          : lastSendAt // ignore: cast_nullable_to_non_nullable
               as String?,
       lastSendMessage: freezed == lastSendMessage
           ? _value.lastSendMessage
@@ -133,7 +133,7 @@ abstract class _$$_MessageRoomCopyWith<$Res>
       @JsonKey(name: 'roomName')
           String roomName,
       @JsonKey(name: 'lastSentAt')
-          String? lastSentAt,
+          String? lastSendAt,
       @JsonKey(name: 'lastSendMessage')
           String? lastSendMessage,
       @JsonKey(name: 'hostMainImageURL')
@@ -157,7 +157,7 @@ class __$$_MessageRoomCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? roomName = null,
-    Object? lastSentAt = freezed,
+    Object? lastSendAt = freezed,
     Object? lastSendMessage = freezed,
     Object? hostMainImageURL = null,
     Object? participantMainImageURLs = null,
@@ -172,9 +172,9 @@ class __$$_MessageRoomCopyWithImpl<$Res>
           ? _value.roomName
           : roomName // ignore: cast_nullable_to_non_nullable
               as String,
-      lastSentAt: freezed == lastSentAt
-          ? _value.lastSentAt
-          : lastSentAt // ignore: cast_nullable_to_non_nullable
+      lastSendAt: freezed == lastSendAt
+          ? _value.lastSendAt
+          : lastSendAt // ignore: cast_nullable_to_non_nullable
               as String?,
       lastSendMessage: freezed == lastSendMessage
           ? _value.lastSendMessage
@@ -205,7 +205,7 @@ class _$_MessageRoom implements _MessageRoom {
       @JsonKey(name: 'roomName')
           required this.roomName,
       @JsonKey(name: 'lastSentAt')
-          this.lastSentAt,
+          this.lastSendAt,
       @JsonKey(name: 'lastSendMessage')
           this.lastSendMessage,
       @JsonKey(name: 'hostMainImageURL')
@@ -227,7 +227,7 @@ class _$_MessageRoom implements _MessageRoom {
   final String roomName;
   @override
   @JsonKey(name: 'lastSentAt')
-  final String? lastSentAt;
+  final String? lastSendAt;
   @override
   @JsonKey(name: 'lastSendMessage')
   final String? lastSendMessage;
@@ -250,7 +250,7 @@ class _$_MessageRoom implements _MessageRoom {
 
   @override
   String toString() {
-    return 'MessageRoom(id: $id, roomName: $roomName, lastSentAt: $lastSentAt, lastSendMessage: $lastSendMessage, hostMainImageURL: $hostMainImageURL, participantMainImageURLs: $participantMainImageURLs, unreadCount: $unreadCount)';
+    return 'MessageRoom(id: $id, roomName: $roomName, lastSendAt: $lastSendAt, lastSendMessage: $lastSendMessage, hostMainImageURL: $hostMainImageURL, participantMainImageURLs: $participantMainImageURLs, unreadCount: $unreadCount)';
   }
 
   @override
@@ -261,8 +261,8 @@ class _$_MessageRoom implements _MessageRoom {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.roomName, roomName) ||
                 other.roomName == roomName) &&
-            (identical(other.lastSentAt, lastSentAt) ||
-                other.lastSentAt == lastSentAt) &&
+            (identical(other.lastSendAt, lastSendAt) ||
+                other.lastSendAt == lastSendAt) &&
             (identical(other.lastSendMessage, lastSendMessage) ||
                 other.lastSendMessage == lastSendMessage) &&
             (identical(other.hostMainImageURL, hostMainImageURL) ||
@@ -279,7 +279,7 @@ class _$_MessageRoom implements _MessageRoom {
       runtimeType,
       id,
       roomName,
-      lastSentAt,
+      lastSendAt,
       lastSendMessage,
       hostMainImageURL,
       const DeepCollectionEquality().hash(_participantMainImageURLs),
@@ -306,7 +306,7 @@ abstract class _MessageRoom implements MessageRoom {
       @JsonKey(name: 'roomName')
           required final String roomName,
       @JsonKey(name: 'lastSentAt')
-          final String? lastSentAt,
+          final String? lastSendAt,
       @JsonKey(name: 'lastSendMessage')
           final String? lastSendMessage,
       @JsonKey(name: 'hostMainImageURL')
@@ -327,7 +327,7 @@ abstract class _MessageRoom implements MessageRoom {
   String get roomName;
   @override
   @JsonKey(name: 'lastSentAt')
-  String? get lastSentAt;
+  String? get lastSendAt;
   @override
   @JsonKey(name: 'lastSendMessage')
   String? get lastSendMessage;

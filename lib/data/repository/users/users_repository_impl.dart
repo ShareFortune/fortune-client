@@ -1,6 +1,6 @@
 import 'package:fortune_client/data/datasource/local/shared_pref_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/go/users/users_data_source.dart';
-import 'package:fortune_client/data/model/form/create_user_form/create_user_form.dart';
+import 'package:fortune_client/data/model/users/post_v1_users/post_v1_users.dart';
 import 'package:fortune_client/data/repository/auth/auth_repository.dart';
 import 'package:fortune_client/data/repository/users/users_repository.dart';
 import 'package:fortune_client/util/logger/logger.dart';
@@ -19,7 +19,7 @@ class UsersRepositoryImpl implements UsersRepository {
     try {
       logger.i("終わった？");
 
-      final form = CreateUserForm(
+      final form = PostV1UsersRequest(
         firebaseId: _authRepository.firebaseId,
         username: username,
         birthday: birthday,

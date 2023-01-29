@@ -41,6 +41,37 @@ class _JoinRequestsDataSource implements JoinRequestsDataSource {
     return value;
   }
 
+  @override
+  Future<GetV1RoomJoinRequestsResponse> getJoinRequest(
+    id, {
+    nextToken,
+    perPage,
+  }) async {
+    const _extra = <String, dynamic>{'append-token': true};
+    final queryParameters = <String, dynamic>{
+      r'nextToken': nextToken,
+      r'perPage': perPage,
+    };
+    queryParameters.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<GetV1RoomJoinRequestsResponse>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/rooms/${id}/roomJoinRequests',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = GetV1RoomJoinRequestsResponse.fromJson(_result.data!);
+    return value;
+  }
+
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {
     if (T != dynamic &&
         !(requestOptions.responseType == ResponseType.bytes ||
