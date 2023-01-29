@@ -3,17 +3,17 @@ import 'package:fortune_client/data/model/enum/age_group.dart';
 import 'package:fortune_client/data/model/tag/tag.dart';
 import 'package:fortune_client/data/repository/rooms/rooms_repository.dart';
 import 'package:fortune_client/injector.dart';
-import 'package:fortune_client/view/pages/rooms/create/room_creation_state.dart';
+import 'package:fortune_client/view/pages/rooms/action/create/create_room_state.dart';
 import 'package:fortune_client/view/routes/app_router.gr.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final createRoomViewModelProvider =
-    StateNotifierProvider<CreateRoomViewModel, RoomCreationState>(
+    StateNotifierProvider<CreateRoomViewModel, CreateRoomState>(
   (_) => CreateRoomViewModel(sl()),
 );
 
-class CreateRoomViewModel extends StateNotifier<RoomCreationState> {
-  CreateRoomViewModel(this._roomsRepository) : super(const RoomCreationState());
+class CreateRoomViewModel extends StateNotifier<CreateRoomState> {
+  CreateRoomViewModel(this._roomsRepository) : super(const CreateRoomState());
 
   final RoomsRepository _roomsRepository;
 

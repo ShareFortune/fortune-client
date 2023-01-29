@@ -15,6 +15,7 @@ _$_ParticipantRoomAsHost _$$_ParticipantRoomAsHostFromJson(
           (json['participantMainImageURLs'] as List<dynamic>?)
               ?.map((e) => e as String)
               .toList(),
+      address: Address.fromJson(json['address'] as Map<String, dynamic>),
       membersNum:
           MembersNum.fromJson(json['membersNum'] as Map<String, dynamic>),
       joinRequestsCount: json['joinRequestsCount'] as int,
@@ -27,6 +28,7 @@ Map<String, dynamic> _$$_ParticipantRoomAsHostToJson(
       'id': instance.id,
       'roomName': instance.roomName,
       'participantMainImageURLs': instance.participantMainImageURLs,
+      'address': instance.address,
       'membersNum': instance.membersNum,
       'joinRequestsCount': instance.joinRequestsCount,
       'status': const RoomStatusConverter().toJson(instance.status),

@@ -32,6 +32,9 @@ class RoutePath {
   /// ルーム作成
   static const createRoom = 'create-room';
 
+  /// ルーム編集
+  static const editRoom = 'edit-room';
+
   /// メッセージルームリスト
   static const messageRooms = 'message-rooms';
 

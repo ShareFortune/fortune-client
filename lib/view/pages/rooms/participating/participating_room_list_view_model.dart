@@ -1,3 +1,5 @@
+import 'package:fortune_client/data/model/participant/guest/participant_room_as_guest.dart';
+import 'package:fortune_client/data/model/participant/host/participant_room_as_host.dart';
 import 'package:fortune_client/data/repository/rooms/rooms_repository.dart';
 import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/view/pages/rooms/participating/participating_room_list_state.dart';
@@ -22,20 +24,14 @@ class ParticipatingRoomListViewModel
 
   Future<void> fetchHostRooms() async {
     final hostRooms = await AsyncValue.guard(() async {
-      final result = await _roomRepository.getRoomsToParticipateAsHost();
-      return result
-          .map((e) => ParticipatingRoomListStateItem.fromHost(e))
-          .toList();
+      return await _roomRepository.getRoomsToParticipateAsHost();
     });
     state = state.copyWith(host: hostRooms);
   }
 
   Future<void> fetchGuestRooms() async {
     final guestRooms = await AsyncValue.guard(() async {
-      final result = await _roomRepository.getRoomsToParticipateAsGuest();
-      return result
-          .map((e) => ParticipatingRoomListStateItem.fromGuest(e))
-          .toList();
+      return await _roomRepository.getRoomsToParticipateAsGuest();
     });
     state = state.copyWith(guest: guestRooms);
   }
@@ -46,19 +42,34 @@ class ParticipatingRoomListViewModel
   ///
   /// 遷移処理
   ///
-  Future<void> navigateToRequestConfirmation(String roomId) async {
-    await sl<AppRouter>().push(JoinRequestsConfirmationRoute(id: roomId));
+  navigateToRequestConfirmation(String roomId, String roomTitle) {
+    sl<AppRouter>().push(JoinRequestsConfirmationRoute(
+      id: roomId,
+      roomTitle: roomTitle,
+    ));
   }
 
-  Future<void> navigateToMessage() async {
-    await sl<AppRouter>().push(MessageRoomRoute(id: "id"));
+  navigateToMessage() {
+    sl<AppRouter>().push(MessageRoomRoute(id: "id"));
   }
 
-  Future<void> navigateToRoomDetail(String roomId) async {
-    await sl<AppRouter>().push(RoomDetailRoute(roomId: roomId));
+  navigateToRoomDetail(String roomId) {
+    sl<AppRouter>().push(RoomDetailRoute(roomId: roomId));
   }
 
-  Future<void> navigateToRoomCreation() async {
-    await sl<AppRouter>().push(CreateRoomRoute());
+  navigateToRoomCreation() {
+    sl<AppRouter>().push(CreateRoomRoute());
+  }
+
+  navigateToRoomActionsAsHost(ParticipantRoomAsHost room) {
+    sl<AppRouter>().push(
+      BottomSheetRouter(children: [HostRoomActions(room: room)]),
+    );
+  }
+
+  navigateToRoomActionsAsGuest(ParticipantRoomAsGuest room) {
+    sl<AppRouter>().push(
+      BottomSheetRouter(children: [GuestRoomActions(room: room)]),
+    );
   }
 }

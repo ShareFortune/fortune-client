@@ -2,7 +2,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:auto_route/empty_router_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:fortune_client/view/pages/account/my_page/my_page.dart';
-import 'package:fortune_client/view/pages/common/bottom_sheet/room_actions/room_actions_bottom_sheet.dart';
+import 'package:fortune_client/view/pages/common/bottom_sheet/room_actions/guest/guest_room_actions_bottom_sheet.dart';
+import 'package:fortune_client/view/pages/common/bottom_sheet/room_actions/host/host_room_actions_bottom_sheet.dart';
 import 'package:fortune_client/view/pages/profile/update/profile_update_page.dart';
 import 'package:fortune_client/view/pages/auth/login/login_page.dart';
 import 'package:fortune_client/view/pages/common/bottom_navigation_bar/bottom_navigation_bar.dart';
@@ -18,6 +19,7 @@ import 'package:fortune_client/view/pages/profile/create/entry_profile_sub_image
 import 'package:fortune_client/view/pages/profile/profile/profile_page.dart';
 import 'package:fortune_client/view/pages/request/join_requests_confirmation/join_requests_confirmation_page.dart';
 import 'package:fortune_client/view/pages/rooms/action/create/create_room_page.dart';
+import 'package:fortune_client/view/pages/rooms/action/edit/edit_room_page.dart';
 import 'package:fortune_client/view/pages/rooms/participating/participating_room_list_page.dart';
 import 'package:fortune_client/view/pages/rooms/room_detail/room_detail_page.dart';
 import 'package:fortune_client/view/pages/rooms/room_list/room_list_page.dart';
@@ -124,6 +126,9 @@ export 'app_router.gr.dart';
     /// ルーム作成
     AutoRoute(path: RoutePath.createRoom, page: CreateRoomPage),
 
+    /// ルーム編集
+    AutoRoute(path: RoutePath.editRoom, page: EditRoomPage),
+
     /// 住所検索
     AutoRoute(path: RoutePath.enterAddress, page: EntryAddressPage),
 
@@ -150,7 +155,8 @@ export 'app_router.gr.dart';
       page: EmptyRouterPage,
       customRouteBuilder: modalSheetBuilder,
       children: [
-        AutoRoute(name: 'RoomActions', page: RoomActionsBottomSheet),
+        AutoRoute(name: 'HostRoomActions', page: HostRoomActionsBottomSheet),
+        AutoRoute(name: 'GuestRoomActions', page: GuestRoomActionsBottomSheet),
       ],
     ),
   ],
@@ -158,10 +164,14 @@ export 'app_router.gr.dart';
 class $AppRouter {}
 
 Route<T> modalSheetBuilder<T>(
-    BuildContext context, Widget child, CustomPage<T> page) {
+  BuildContext context,
+  Widget child,
+  CustomPage<T> page,
+) {
   return ModalBottomSheetRoute(
     settings: page,
     builder: (context) => child,
     expanded: true,
+    duration: const Duration(milliseconds: 300),
   );
 }

@@ -103,10 +103,14 @@ class BottomSheetMenuItem extends StatelessWidget {
             borderRadius: borderRadius ?? BorderRadius.circular(10),
           ),
         ),
-        icon: SvgPicture.asset(
-          iconPath,
-          fit: BoxFit.contain,
-          color: color ?? theme.appColors.iconBtn1,
+        icon: Container(
+          width: 24,
+          alignment: Alignment.centerLeft,
+          child: SvgPicture.asset(
+            iconPath,
+            fit: BoxFit.contain,
+            color: color ?? theme.appColors.iconBtn1,
+          ),
         ),
         label: Text(
           title,

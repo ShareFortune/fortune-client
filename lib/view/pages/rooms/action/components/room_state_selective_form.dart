@@ -5,8 +5,8 @@ import 'package:fortune_client/view/widgets/form_field/base_expanded_tile.dart';
 import 'package:fortune_client/view/widgets/picker/base_cupertino_picker.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class RoomCreationSelectiveForm extends HookConsumerWidget {
-  const RoomCreationSelectiveForm({
+class RoomStateSelectiveForm extends HookConsumerWidget {
+  const RoomStateSelectiveForm({
     super.key,
     required this.title,
     required this.value,
@@ -25,12 +25,9 @@ class RoomCreationSelectiveForm extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = ref.watch(appThemeProvider);
 
-    final titleTextColor = theme.appColors.subText1;
-    final titleTextStyle = theme.textTheme.h40.paint(titleTextColor).bold();
-
     return BaseExpandedTile(
       title: title,
-      titleStyle: titleTextStyle,
+      titleStyle: theme.textTheme.h30.paint(theme.appColors.subText1).bold(),
       value: value,
       textWhenUnset: "必須",
       textWhenUnsetStyle: theme.textTheme.h30.paint(theme.appColors.subText3),

@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:fortune_client/data/model/address/address.dart';
 import 'package:fortune_client/data/model/enum/age_group.dart';
-import 'package:fortune_client/data/model/tag/tag.dart';
+import 'package:fortune_client/view/pages/rooms/action/components/room_state_input_field.dart';
+import 'package:fortune_client/view/pages/rooms/action/components/room_state_selective_form.dart';
+import 'package:fortune_client/view/pages/rooms/action/components/room_state_transition_tile.dart';
 import 'package:fortune_client/view/pages/rooms/action/create/create_room_view_model.dart';
-import 'package:fortune_client/view/pages/rooms/create/components/room_creation_selective_form.dart';
-import 'package:fortune_client/view/pages/rooms/create/components/room_creation_transition_tile.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/app_bar/back_app_bar.dart';
@@ -28,8 +27,8 @@ class CreateRoomPage extends HookConsumerWidget {
     ///
     /// タイトル
     ///
-    final titleWidget = _inputFieldContainer(
-      theme,
+    final titleWidget = RoomStateInputField(
+      theme: theme,
       title: "タイトル",
       content: BaseTextField(
         controller: titleController,
@@ -43,7 +42,7 @@ class CreateRoomPage extends HookConsumerWidget {
     ///
     /// 募集人数
     ///
-    final membersNumWidget = RoomCreationSelectiveForm(
+    final membersNumWidget = RoomStateSelectiveForm(
       title: "募集人数",
       value: state.membersNum != null ? "${state.membersNum}人" : null,
       separator: "人",
@@ -56,7 +55,7 @@ class CreateRoomPage extends HookConsumerWidget {
     ///
     /// 対象年齢
     ///
-    final ageGroupWidget = RoomCreationSelectiveForm(
+    final ageGroupWidget = RoomStateSelectiveForm(
       title: "募集年齢",
       value: state.ageGroup?.text,
       items: AgeGroup.values.map((e) => e.text).toList(),
@@ -70,7 +69,7 @@ class CreateRoomPage extends HookConsumerWidget {
     ///
     /// 場所
     ///
-    final addressWidget = RoomCreationTransitionTile(
+    final addressWidget = RoomStateTransitionTile(
       title: "開催場所",
       value: state.address?.text,
       onTap: () => viewModel.navigateToEntryAddress(),
@@ -79,7 +78,7 @@ class CreateRoomPage extends HookConsumerWidget {
     ///
     /// タグ
     ///
-    final tagsWidget = RoomCreationTransitionTile(
+    final tagsWidget = RoomStateTransitionTile(
       title: "タグ",
       value: state.tags?.map((e) => e.name).join("、"),
       onTap: () => viewModel.navigateToTagsSelection(),
@@ -87,8 +86,8 @@ class CreateRoomPage extends HookConsumerWidget {
 
     ///
     /// 詳細説明
-    final explanationWidget = _inputFieldContainer(
-      theme,
+    final explanationWidget = RoomStateInputField(
+      theme: theme,
       required: false,
       title: "ルームの説明",
       content: BaseTextField(
@@ -153,36 +152,6 @@ class CreateRoomPage extends HookConsumerWidget {
           ),
         ),
       ),
-    );
-  }
-
-  Widget _inputFieldContainer(
-    AppTheme theme, {
-    bool required = true,
-    required String title,
-    required Widget content,
-  }) {
-    final annotation = Container(
-      color: theme.appColors.disable,
-      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 3),
-      child: Text(
-        "任意",
-        style: theme.textTheme.h10.paint(theme.appColors.subText1),
-      ),
-    );
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Row(
-          children: [
-            Text(title, style: theme.textTheme.h40.bold()),
-            const Gap(10),
-            Container(child: required ? null : annotation)
-          ],
-        ),
-        const Gap(10),
-        content,
-      ],
     );
   }
 

@@ -1,5 +1,6 @@
 // ignore_for_file: invalid_annotation_target
 
+import 'package:fortune_client/data/model/address/address.dart';
 import 'package:fortune_client/data/model/enum/room_status.dart';
 import 'package:fortune_client/data/model/members_num/members_num.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -19,6 +20,9 @@ class ParticipantRoomAsHost with _$ParticipantRoomAsHost {
     /// メンバー画像リスト
     @JsonKey(name: "participantMainImageURLs")
         required List<String>? participantMainImageURLs,
+
+    /// 開催地
+    @JsonKey(name: "address") required Address address,
 
     /// 参加人数
     @JsonKey(name: "membersNum") required MembersNum membersNum,
