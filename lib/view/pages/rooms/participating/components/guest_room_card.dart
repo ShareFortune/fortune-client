@@ -3,9 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:fortune_client/data/model/enum/room_status.dart';
 import 'package:fortune_client/data/model/participant/guest/participant_room_as_guest.dart';
 import 'package:fortune_client/gen/assets.gen.dart';
-import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/view/pages/rooms/participating/participating_room_list_view_model.dart';
-import 'package:fortune_client/view/routes/app_router.gr.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/icon/member_icons.dart';
@@ -63,15 +61,19 @@ class GuestRoomCard extends HookConsumerWidget {
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 ///
                 /// タイトル
-                Text(
-                  room.roomName,
-                  style: theme.textTheme.h40,
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
+                Expanded(
+                  child: Text(
+                    room.roomName,
+                    style: theme.textTheme.h40,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 ),
+                const Gap(5),
                 InkWell(
                   onTap: () => viewModel.navigateToRoomActionsAsGuest(room),
                   child: SvgPicture.asset(
@@ -123,7 +125,6 @@ class GuestRoomCard extends HookConsumerWidget {
                 const Gap(10),
 
                 ///
-                ///
                 /// 参加者アイコン
                 memberIconsWidget(15, [
                   room.hostMainImageURL,
@@ -133,7 +134,6 @@ class GuestRoomCard extends HookConsumerWidget {
             ),
             const Spacer(),
 
-            ///
             ///
             /// 下部ボタン
             bottomWidgetGuest(room),
