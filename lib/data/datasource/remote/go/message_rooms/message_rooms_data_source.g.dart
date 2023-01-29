@@ -19,28 +19,48 @@ class _MessageRoomsDataSource implements MessageRoomsDataSource {
   String? baseUrl;
 
   @override
-  Future<MessageRooms<MessageRoomHost>> fetchMessageRoomsHost() async {
+  Future<GetV1MessageRoomsResponse> getMessageRoomsHost() async {
     const _extra = <String, dynamic>{'append-token': true};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<MessageRooms<MessageRoomHost>>(Options(
+        _setStreamType<GetV1MessageRoomsResponse>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
             .compose(
               _dio.options,
-              '/rooms',
+              '/messageRooms/host',
               queryParameters: queryParameters,
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = MessageRooms<MessageRoomHost>.fromJson(
-      _result.data!,
-      (json) => MessageRoomHost.fromJson(json as Map<String, dynamic>),
-    );
+    final value = GetV1MessageRoomsResponse.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<GetV1MessageRoomsResponse> getMessageRoomsGuest() async {
+    const _extra = <String, dynamic>{'append-token': true};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<GetV1MessageRoomsResponse>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/messageRooms/guest',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = GetV1MessageRoomsResponse.fromJson(_result.data!);
     return value;
   }
 

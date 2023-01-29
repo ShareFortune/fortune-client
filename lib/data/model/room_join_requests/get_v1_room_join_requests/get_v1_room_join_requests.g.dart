@@ -9,11 +9,13 @@ part of 'get_v1_room_join_requests.dart';
 _$_GetV1RoomJoinRequestsResponse _$$_GetV1RoomJoinRequestsResponseFromJson(
         Map<String, dynamic> json) =>
     _$_GetV1RoomJoinRequestsResponse(
-      id: json['id'] as String,
+      nextToken: json['nextToken'] as String,
+      joinRequests: json['joinRequests'] as String,
     );
 
 Map<String, dynamic> _$$_GetV1RoomJoinRequestsResponseToJson(
         _$_GetV1RoomJoinRequestsResponse instance) =>
     <String, dynamic>{
-      'id': instance.id,
+      'nextToken': instance.nextToken,
+      'joinRequests': instance.joinRequests,
     };

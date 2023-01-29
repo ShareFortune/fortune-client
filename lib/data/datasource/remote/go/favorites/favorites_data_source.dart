@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:fortune_client/data/datasource/core/annotations_headers.dart.dart';
-import 'package:fortune_client/data/model/base/id/response_id.dart';
+import 'package:fortune_client/data/model/rooms/room_id_response/room_id_response.dart';
 import 'package:retrofit/retrofit.dart';
 
 part 'favorites_data_source.g.dart';
@@ -11,13 +11,13 @@ abstract class FavoritesDataSource {
 
   @POST('/rooms/{id}/favorites')
   @authenticatedRequest
-  Future<ResponseID> register(
+  Future<RoomIdResponse> register(
     @Path('id') String id,
   );
 
   @DELETE('/rooms/{id}/favorites')
   @authenticatedRequest
-  Future<ResponseID> unregister(
+  Future<RoomIdResponse> unregister(
     @Path('id') String id,
   );
 }

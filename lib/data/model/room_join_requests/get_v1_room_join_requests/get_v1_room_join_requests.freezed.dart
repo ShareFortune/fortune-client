@@ -21,8 +21,10 @@ GetV1RoomJoinRequestsResponse _$GetV1RoomJoinRequestsResponseFromJson(
 
 /// @nodoc
 mixin _$GetV1RoomJoinRequestsResponse {
-  @JsonKey(name: 'id')
-  String get id => throw _privateConstructorUsedError;
+  @JsonKey(name: "nextToken")
+  String get nextToken => throw _privateConstructorUsedError;
+  @JsonKey(name: "joinRequests")
+  String get joinRequests => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -38,7 +40,9 @@ abstract class $GetV1RoomJoinRequestsResponseCopyWith<$Res> {
       _$GetV1RoomJoinRequestsResponseCopyWithImpl<$Res,
           GetV1RoomJoinRequestsResponse>;
   @useResult
-  $Res call({@JsonKey(name: 'id') String id});
+  $Res call(
+      {@JsonKey(name: "nextToken") String nextToken,
+      @JsonKey(name: "joinRequests") String joinRequests});
 }
 
 /// @nodoc
@@ -55,12 +59,17 @@ class _$GetV1RoomJoinRequestsResponseCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? nextToken = null,
+    Object? joinRequests = null,
   }) {
     return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
+      nextToken: null == nextToken
+          ? _value.nextToken
+          : nextToken // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinRequests: null == joinRequests
+          ? _value.joinRequests
+          : joinRequests // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -75,7 +84,9 @@ abstract class _$$_GetV1RoomJoinRequestsResponseCopyWith<$Res>
       __$$_GetV1RoomJoinRequestsResponseCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({@JsonKey(name: 'id') String id});
+  $Res call(
+      {@JsonKey(name: "nextToken") String nextToken,
+      @JsonKey(name: "joinRequests") String joinRequests});
 }
 
 /// @nodoc
@@ -91,12 +102,17 @@ class __$$_GetV1RoomJoinRequestsResponseCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? nextToken = null,
+    Object? joinRequests = null,
   }) {
     return _then(_$_GetV1RoomJoinRequestsResponse(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
+      nextToken: null == nextToken
+          ? _value.nextToken
+          : nextToken // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinRequests: null == joinRequests
+          ? _value.joinRequests
+          : joinRequests // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -107,19 +123,23 @@ class __$$_GetV1RoomJoinRequestsResponseCopyWithImpl<$Res>
 class _$_GetV1RoomJoinRequestsResponse
     implements _GetV1RoomJoinRequestsResponse {
   const _$_GetV1RoomJoinRequestsResponse(
-      {@JsonKey(name: 'id') required this.id});
+      {@JsonKey(name: "nextToken") required this.nextToken,
+      @JsonKey(name: "joinRequests") required this.joinRequests});
 
   factory _$_GetV1RoomJoinRequestsResponse.fromJson(
           Map<String, dynamic> json) =>
       _$$_GetV1RoomJoinRequestsResponseFromJson(json);
 
   @override
-  @JsonKey(name: 'id')
-  final String id;
+  @JsonKey(name: "nextToken")
+  final String nextToken;
+  @override
+  @JsonKey(name: "joinRequests")
+  final String joinRequests;
 
   @override
   String toString() {
-    return 'GetV1RoomJoinRequestsResponse(id: $id)';
+    return 'GetV1RoomJoinRequestsResponse(nextToken: $nextToken, joinRequests: $joinRequests)';
   }
 
   @override
@@ -127,12 +147,15 @@ class _$_GetV1RoomJoinRequestsResponse
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_GetV1RoomJoinRequestsResponse &&
-            (identical(other.id, id) || other.id == id));
+            (identical(other.nextToken, nextToken) ||
+                other.nextToken == nextToken) &&
+            (identical(other.joinRequests, joinRequests) ||
+                other.joinRequests == joinRequests));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id);
+  int get hashCode => Object.hash(runtimeType, nextToken, joinRequests);
 
   @JsonKey(ignore: true)
   @override
@@ -152,15 +175,19 @@ class _$_GetV1RoomJoinRequestsResponse
 abstract class _GetV1RoomJoinRequestsResponse
     implements GetV1RoomJoinRequestsResponse {
   const factory _GetV1RoomJoinRequestsResponse(
-          {@JsonKey(name: 'id') required final String id}) =
+          {@JsonKey(name: "nextToken") required final String nextToken,
+          @JsonKey(name: "joinRequests") required final String joinRequests}) =
       _$_GetV1RoomJoinRequestsResponse;
 
   factory _GetV1RoomJoinRequestsResponse.fromJson(Map<String, dynamic> json) =
       _$_GetV1RoomJoinRequestsResponse.fromJson;
 
   @override
-  @JsonKey(name: 'id')
-  String get id;
+  @JsonKey(name: "nextToken")
+  String get nextToken;
+  @override
+  @JsonKey(name: "joinRequests")
+  String get joinRequests;
   @override
   @JsonKey(ignore: true)
   _$$_GetV1RoomJoinRequestsResponseCopyWith<_$_GetV1RoomJoinRequestsResponse>

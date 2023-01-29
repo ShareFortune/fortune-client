@@ -14,7 +14,6 @@
 import 'package:auto_route/auto_route.dart' as _i27;
 import 'package:auto_route/empty_router_widgets.dart' as _i2;
 import 'package:flutter/material.dart' as _i28;
-import 'package:fortune_client/data/model/tag/tag.dart' as _i31;
 import 'package:fortune_client/view/pages/account/my_page/my_page.dart' as _i10;
 import 'package:fortune_client/view/pages/auth/login/login_page.dart' as _i3;
 import 'package:fortune_client/view/pages/common/bottom_navigation_bar/bottom_navigation_bar.dart'
@@ -742,7 +741,7 @@ class SettingsRoute extends _i27.PageRouteInfo<void> {
 /// [_i13.TagsSelectionPage]
 class TagsSelectionRoute extends _i27.PageRouteInfo<TagsSelectionRouteArgs> {
   TagsSelectionRoute({
-    required List<_i31.Tag> beingSet,
+    required List<dynamic> beingSet,
     _i28.Key? key,
   }) : super(
           TagsSelectionRoute.name,
@@ -762,7 +761,7 @@ class TagsSelectionRouteArgs {
     this.key,
   });
 
-  final List<_i31.Tag> beingSet;
+  final List<dynamic> beingSet;
 
   final _i28.Key? key;
 

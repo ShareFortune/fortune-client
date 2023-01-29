@@ -1,10 +1,9 @@
 import 'package:dio/dio.dart';
-import 'package:fortune_client/data/model/base/id/response_id.dart';
-import 'package:fortune_client/data/model/participant/base/participant_rooms.dart';
-import 'package:fortune_client/data/model/participant/guest/participant_room_as_guest.dart';
-import 'package:fortune_client/data/model/participant/host/participant_room_as_host.dart';
-import 'package:fortune_client/data/model/room_detail/room_detail.dart';
-import 'package:fortune_client/data/model/rooms/rooms.dart';
+import 'package:fortune_client/data/model/base/room/room.dart';
+import 'package:fortune_client/data/model/rooms/get_v1_rooms_guest/get_v1_rooms_guest.dart';
+import 'package:fortune_client/data/model/rooms/get_v1_rooms_host/get_v1_rooms_host.dart';
+import 'package:fortune_client/data/model/rooms/get_v1_rooms_search/get_v1_rooms_search.dart';
+import 'package:fortune_client/data/model/rooms/room_id_response/room_id_response.dart';
 import 'package:retrofit/retrofit.dart';
 import 'package:fortune_client/data/datasource/core/annotations_headers.dart.dart';
 
@@ -16,13 +15,13 @@ abstract class RoomsDataSource {
 
   @POST('/rooms')
   @authenticatedRequest
-  Future<ResponseID> create(
+  Future<RoomIdResponse> create(
     @Body() Map<String, dynamic> body,
   );
 
   @GET('/rooms')
   @authenticatedRequest
-  Future<Rooms> search({
+  Future<GetV1RoomsSearchResponse> search({
     @Query("addressId") String? addressId,
     @Query("applicationDeadline") String? applicationDeadline,
     @Query("memberNum") int? memberNum,
@@ -33,20 +32,20 @@ abstract class RoomsDataSource {
 
   @GET('/rooms/{id}')
   @authenticatedRequest
-  Future<RoomDetail> getDetail(
+  Future<Room> getDetail(
     @Path('id') String id,
   );
 
   @GET('/rooms/host')
   @authenticatedRequest
-  Future<ParticipantRooms<ParticipantRoomAsHost>> getHost({
+  Future<GetV1RoomsHostResponse> getRoomsHost({
     @Query("nextToken") String? nextToken,
     @Query("perPage") int? perPage,
   });
 
   @GET('/rooms/guest')
   @authenticatedRequest
-  Future<ParticipantRooms<ParticipantRoomAsGuest>> getGuest({
+  Future<GetV1RoomsGuestResponse> getRoomsGuest({
     @Query("nextToken") String? nextToken,
     @Query("perPage") int? perPage,
   });

@@ -19,14 +19,14 @@ class _RoomsDataSource implements RoomsDataSource {
   String? baseUrl;
 
   @override
-  Future<ResponseID> create(body) async {
+  Future<RoomIdResponse> create(body) async {
     const _extra = <String, dynamic>{'append-token': true};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(body);
     final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<ResponseID>(Options(
+        .fetch<Map<String, dynamic>>(_setStreamType<RoomIdResponse>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -38,12 +38,12 @@ class _RoomsDataSource implements RoomsDataSource {
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = ResponseID.fromJson(_result.data!);
+    final value = RoomIdResponse.fromJson(_result.data!);
     return value;
   }
 
   @override
-  Future<dynamic> search({
+  Future<GetV1RoomsSearchResponse> search({
     addressId,
     applicationDeadline,
     memberNum,
@@ -63,46 +63,48 @@ class _RoomsDataSource implements RoomsDataSource {
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    final _result = await _dio.fetch(_setStreamType<dynamic>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<GetV1RoomsSearchResponse>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
-        .compose(
-          _dio.options,
-          '/rooms',
-          queryParameters: queryParameters,
-          data: _data,
-        )
-        .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = _result.data;
+            .compose(
+              _dio.options,
+              '/rooms',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = GetV1RoomsSearchResponse.fromJson(_result.data!);
     return value;
   }
 
   @override
-  Future<dynamic> getDetail(id) async {
+  Future<Room> getDetail(id) async {
     const _extra = <String, dynamic>{'append-token': true};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    final _result = await _dio.fetch(_setStreamType<dynamic>(Options(
+    final _result =
+        await _dio.fetch<Map<String, dynamic>>(_setStreamType<Room>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
-        .compose(
-          _dio.options,
-          '/rooms/${id}',
-          queryParameters: queryParameters,
-          data: _data,
-        )
-        .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = _result.data;
+            .compose(
+              _dio.options,
+              '/rooms/${id}',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = Room.fromJson(_result.data!);
     return value;
   }
 
   @override
-  Future<dynamic> getHost({
+  Future<GetV1RoomsHostResponse> getRoomsHost({
     nextToken,
     perPage,
   }) async {
@@ -114,24 +116,25 @@ class _RoomsDataSource implements RoomsDataSource {
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    final _result = await _dio.fetch(_setStreamType<dynamic>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<GetV1RoomsHostResponse>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
-        .compose(
-          _dio.options,
-          '/rooms/host',
-          queryParameters: queryParameters,
-          data: _data,
-        )
-        .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = _result.data;
+            .compose(
+              _dio.options,
+              '/rooms/host',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = GetV1RoomsHostResponse.fromJson(_result.data!);
     return value;
   }
 
   @override
-  Future<dynamic> getGuest({
+  Future<GetV1RoomsGuestResponse> getRoomsGuest({
     nextToken,
     perPage,
   }) async {
@@ -143,19 +146,20 @@ class _RoomsDataSource implements RoomsDataSource {
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    final _result = await _dio.fetch(_setStreamType<dynamic>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<GetV1RoomsGuestResponse>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
-        .compose(
-          _dio.options,
-          '/rooms/guest',
-          queryParameters: queryParameters,
-          data: _data,
-        )
-        .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = _result.data;
+            .compose(
+              _dio.options,
+              '/rooms/guest',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = GetV1RoomsGuestResponse.fromJson(_result.data!);
     return value;
   }
 

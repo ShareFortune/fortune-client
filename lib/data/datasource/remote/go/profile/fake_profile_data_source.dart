@@ -1,25 +1,25 @@
 import 'package:fortune_client/data/datasource/remote/go/profile/profile_data_source.dart';
-import 'package:fortune_client/data/model/base/id/response_id.dart';
-import 'package:fortune_client/data/model/profile/profile.dart';
-import 'package:fortune_client/gen/assets.gen.dart';
-import 'package:fortune_client/util/common/json_roader.dart';
+import 'package:fortune_client/data/model/profiles/post_v1_users_id_profiles/post_v1_users_id_profiles.dart';
+import 'package:fortune_client/data/model/profiles/patch_v1_profiles_id/patch_v1_profiles_id.dart';
+import 'package:fortune_client/data/model/profiles/get_v1_profiles/get_v1_profiles.dart';
 
 class FakeProfileDataSource implements ProfileDataSource {
   @override
-  Future<ResponseID> create(String id, Map<String, dynamic> body) async {
-    await Future.delayed(const Duration(seconds: 3));
-    return const ResponseID(id: "test api");
+  Future<PostV1UsersIdProfilesResponse> create(
+      String id, Map<String, dynamic> body) {
+    // TODO: implement create
+    throw UnimplementedError();
   }
 
   @override
-  Future<Profile> get() async {
-    return Profile.fromJson(
-      await Json.load(Assets.stub.profile),
-    );
+  Future<GetV1ProfilesResponse> get() {
+    // TODO: implement get
+    throw UnimplementedError();
   }
 
   @override
-  Future<ResponseID> update(String id, Map<String, dynamic> body) {
+  Future<PatchV1ProfilesIdResponse> update(
+      String id, Map<String, dynamic> body) {
     // TODO: implement update
     throw UnimplementedError();
   }

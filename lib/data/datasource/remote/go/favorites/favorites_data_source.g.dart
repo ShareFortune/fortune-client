@@ -19,13 +19,13 @@ class _FavoritesDataSource implements FavoritesDataSource {
   String? baseUrl;
 
   @override
-  Future<ResponseID> register(id) async {
+  Future<RoomIdResponse> register(id) async {
     const _extra = <String, dynamic>{'append-token': true};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<ResponseID>(Options(
+        .fetch<Map<String, dynamic>>(_setStreamType<RoomIdResponse>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -37,18 +37,18 @@ class _FavoritesDataSource implements FavoritesDataSource {
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = ResponseID.fromJson(_result.data!);
+    final value = RoomIdResponse.fromJson(_result.data!);
     return value;
   }
 
   @override
-  Future<ResponseID> unregister(id) async {
+  Future<RoomIdResponse> unregister(id) async {
     const _extra = <String, dynamic>{'append-token': true};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<ResponseID>(Options(
+        .fetch<Map<String, dynamic>>(_setStreamType<RoomIdResponse>(Options(
       method: 'DELETE',
       headers: _headers,
       extra: _extra,
@@ -60,7 +60,7 @@ class _FavoritesDataSource implements FavoritesDataSource {
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = ResponseID.fromJson(_result.data!);
+    final value = RoomIdResponse.fromJson(_result.data!);
     return value;
   }
 
