@@ -14,11 +14,7 @@
 import 'package:auto_route/auto_route.dart' as _i27;
 import 'package:auto_route/empty_router_widgets.dart' as _i2;
 import 'package:flutter/material.dart' as _i28;
-import 'package:fortune_client/data/model/participant/guest/participant_room_as_guest.dart'
-    as _i33;
-import 'package:fortune_client/data/model/participant/host/participant_room_as_host.dart'
-    as _i31;
-import 'package:fortune_client/data/model/tag/tag.dart' as _i32;
+import 'package:fortune_client/data/model/tag/tag.dart' as _i31;
 import 'package:fortune_client/view/pages/account/my_page/my_page.dart' as _i10;
 import 'package:fortune_client/view/pages/auth/login/login_page.dart' as _i3;
 import 'package:fortune_client/view/pages/common/bottom_navigation_bar/bottom_navigation_bar.dart'
@@ -652,7 +648,7 @@ class CreateRoomRouteArgs {
 /// [_i8.EditRoomPage]
 class EditRoomRoute extends _i27.PageRouteInfo<EditRoomRouteArgs> {
   EditRoomRoute({
-    required _i31.ParticipantRoomAsHost room,
+    required dynamic room,
     _i28.Key? key,
   }) : super(
           EditRoomRoute.name,
@@ -672,7 +668,7 @@ class EditRoomRouteArgs {
     this.key,
   });
 
-  final _i31.ParticipantRoomAsHost room;
+  final dynamic room;
 
   final _i28.Key? key;
 
@@ -746,7 +742,7 @@ class SettingsRoute extends _i27.PageRouteInfo<void> {
 /// [_i13.TagsSelectionPage]
 class TagsSelectionRoute extends _i27.PageRouteInfo<TagsSelectionRouteArgs> {
   TagsSelectionRoute({
-    required List<_i32.Tag> beingSet,
+    required List<_i31.Tag> beingSet,
     _i28.Key? key,
   }) : super(
           TagsSelectionRoute.name,
@@ -766,7 +762,7 @@ class TagsSelectionRouteArgs {
     this.key,
   });
 
-  final List<_i32.Tag> beingSet;
+  final List<_i31.Tag> beingSet;
 
   final _i28.Key? key;
 
@@ -1070,7 +1066,7 @@ class EntryProfileSubImageRoute extends _i27.PageRouteInfo<void> {
 /// [_i25.HostRoomActionsBottomSheet]
 class HostRoomActions extends _i27.PageRouteInfo<HostRoomActionsArgs> {
   HostRoomActions({
-    required _i31.ParticipantRoomAsHost room,
+    required dynamic room,
     _i28.Key? key,
   }) : super(
           HostRoomActions.name,
@@ -1090,7 +1086,7 @@ class HostRoomActionsArgs {
     this.key,
   });
 
-  final _i31.ParticipantRoomAsHost room;
+  final dynamic room;
 
   final _i28.Key? key;
 
@@ -1104,7 +1100,7 @@ class HostRoomActionsArgs {
 /// [_i26.GuestRoomActionsBottomSheet]
 class GuestRoomActions extends _i27.PageRouteInfo<GuestRoomActionsArgs> {
   GuestRoomActions({
-    required _i33.ParticipantRoomAsGuest room,
+    required dynamic room,
     _i28.Key? key,
   }) : super(
           GuestRoomActions.name,
@@ -1124,7 +1120,7 @@ class GuestRoomActionsArgs {
     this.key,
   });
 
-  final _i33.ParticipantRoomAsGuest room;
+  final dynamic room;
 
   final _i28.Key? key;
 

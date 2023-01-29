@@ -19,26 +19,25 @@ class _AddressesDataSource implements AddressesDataSource {
   String? baseUrl;
 
   @override
-  Future<Addresses> search({city}) async {
+  Future<dynamic> search({city}) async {
     const _extra = <String, dynamic>{'append-token': true};
     final queryParameters = <String, dynamic>{r'city': city};
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<Addresses>(Options(
+    final _result = await _dio.fetch(_setStreamType<dynamic>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              '/addresses',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = Addresses.fromJson(_result.data!);
+        .compose(
+          _dio.options,
+          '/addresses',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = _result.data;
     return value;
   }
 

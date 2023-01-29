@@ -19,25 +19,24 @@ class _ProfileDataSource implements ProfileDataSource {
   String? baseUrl;
 
   @override
-  Future<Profile> get() async {
+  Future<dynamic> get() async {
     const _extra = <String, dynamic>{'append-token': true};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<Profile>(Options(
+    final _result = await _dio.fetch(_setStreamType<dynamic>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              '/profiles',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = Profile.fromJson(_result.data!);
+        .compose(
+          _dio.options,
+          '/profiles',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = _result.data;
     return value;
   }
 

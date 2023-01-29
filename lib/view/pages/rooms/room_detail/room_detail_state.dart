@@ -1,5 +1,5 @@
 import 'package:fortune_client/data/model/address/address.dart';
-import 'package:fortune_client/data/model/enum/room_join_request_status.dart';
+import 'package:fortune_client/data/model/enum/join_request_status.dart';
 import 'package:fortune_client/data/model/enum/room_status.dart';
 import 'package:fortune_client/data/model/participating_user/participating_user.dart';
 import 'package:fortune_client/data/model/room_detail/room_detail.dart';

@@ -460,8 +460,8 @@ class _$_RoomDetailStateInfo implements _RoomDetailStateInfo {
             (identical(other.isMember, isMember) ||
                 other.isMember == isMember) &&
             (identical(other.status, status) || other.status == status) &&
-            (identical(other.joinRequestStatus, joinRequestStatus) ||
-                other.joinRequestStatus == joinRequestStatus));
+            const DeepCollectionEquality()
+                .equals(other.joinRequestStatus, joinRequestStatus));
   }
 
   @override
@@ -477,7 +477,7 @@ class _$_RoomDetailStateInfo implements _RoomDetailStateInfo {
       isHost,
       isMember,
       status,
-      joinRequestStatus);
+      const DeepCollectionEquality().hash(joinRequestStatus));
 
   @JsonKey(ignore: true)
   @override

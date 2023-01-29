@@ -1,4 +1,4 @@
-import 'package:fortune_client/data/model/enum/room_join_request_status.dart';
+import 'package:fortune_client/data/model/enum/join_request_status.dart';
 import 'package:fortune_client/data/model/enum/room_status.dart';
 import 'package:fortune_client/data/model/members_num/members_num.dart';
 import 'package:fortune_client/data/model/participant/guest/participant_room_as_guest.dart';
