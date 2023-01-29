@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fortune_client/data/model/participant/host/participant_room_as_host.dart';
+import 'package:fortune_client/data/model/base/room/room.dart';
 import 'package:fortune_client/gen/assets.gen.dart';
 import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/view/pages/common/bottom_sheet/components/bottom_sheet_menu_item.dart';
@@ -13,7 +13,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 class HostRoomActionsBottomSheet extends HookConsumerWidget {
   const HostRoomActionsBottomSheet(this.room, {super.key});
 
-  final ParticipantRoomAsHost room;
+  final Room room;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

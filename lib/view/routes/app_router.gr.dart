@@ -14,6 +14,7 @@
 import 'package:auto_route/auto_route.dart' as _i27;
 import 'package:auto_route/empty_router_widgets.dart' as _i2;
 import 'package:flutter/material.dart' as _i28;
+import 'package:fortune_client/data/model/base/room/room.dart' as _i31;
 import 'package:fortune_client/view/pages/account/my_page/my_page.dart' as _i10;
 import 'package:fortune_client/view/pages/auth/login/login_page.dart' as _i3;
 import 'package:fortune_client/view/pages/common/bottom_navigation_bar/bottom_navigation_bar.dart'
@@ -1065,7 +1066,7 @@ class EntryProfileSubImageRoute extends _i27.PageRouteInfo<void> {
 /// [_i25.HostRoomActionsBottomSheet]
 class HostRoomActions extends _i27.PageRouteInfo<HostRoomActionsArgs> {
   HostRoomActions({
-    required dynamic room,
+    required _i31.Room room,
     _i28.Key? key,
   }) : super(
           HostRoomActions.name,
@@ -1085,7 +1086,7 @@ class HostRoomActionsArgs {
     this.key,
   });
 
-  final dynamic room;
+  final _i31.Room room;
 
   final _i28.Key? key;
 
@@ -1099,7 +1100,7 @@ class HostRoomActionsArgs {
 /// [_i26.GuestRoomActionsBottomSheet]
 class GuestRoomActions extends _i27.PageRouteInfo<GuestRoomActionsArgs> {
   GuestRoomActions({
-    required dynamic room,
+    required _i31.Room room,
     _i28.Key? key,
   }) : super(
           GuestRoomActions.name,
@@ -1119,7 +1120,7 @@ class GuestRoomActionsArgs {
     this.key,
   });
 
-  final dynamic room;
+  final _i31.Room room;
 
   final _i28.Key? key;
 

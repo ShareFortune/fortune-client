@@ -336,8 +336,8 @@ abstract class _StatusMessageRoomListState extends StatusMessageRoomListState {
 mixin _$MessageRoomListItemState {
   String get id => throw _privateConstructorUsedError;
   String get roomName => throw _privateConstructorUsedError;
-  String get lastSendAt => throw _privateConstructorUsedError;
-  String get lastSendMessage => throw _privateConstructorUsedError;
+  String? get lastSendAt => throw _privateConstructorUsedError;
+  String? get lastSendMessage => throw _privateConstructorUsedError;
   String get hostMainImageURL => throw _privateConstructorUsedError;
   int get unreadCount => throw _privateConstructorUsedError;
 
@@ -355,8 +355,8 @@ abstract class $MessageRoomListItemStateCopyWith<$Res> {
   $Res call(
       {String id,
       String roomName,
-      String lastSendAt,
-      String lastSendMessage,
+      String? lastSendAt,
+      String? lastSendMessage,
       String hostMainImageURL,
       int unreadCount});
 }
@@ -377,8 +377,8 @@ class _$MessageRoomListItemStateCopyWithImpl<$Res,
   $Res call({
     Object? id = null,
     Object? roomName = null,
-    Object? lastSendAt = null,
-    Object? lastSendMessage = null,
+    Object? lastSendAt = freezed,
+    Object? lastSendMessage = freezed,
     Object? hostMainImageURL = null,
     Object? unreadCount = null,
   }) {
@@ -391,14 +391,14 @@ class _$MessageRoomListItemStateCopyWithImpl<$Res,
           ? _value.roomName
           : roomName // ignore: cast_nullable_to_non_nullable
               as String,
-      lastSendAt: null == lastSendAt
+      lastSendAt: freezed == lastSendAt
           ? _value.lastSendAt
           : lastSendAt // ignore: cast_nullable_to_non_nullable
-              as String,
-      lastSendMessage: null == lastSendMessage
+              as String?,
+      lastSendMessage: freezed == lastSendMessage
           ? _value.lastSendMessage
           : lastSendMessage // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       hostMainImageURL: null == hostMainImageURL
           ? _value.hostMainImageURL
           : hostMainImageURL // ignore: cast_nullable_to_non_nullable
@@ -423,8 +423,8 @@ abstract class _$$_MessageRoomListItemStateCopyWith<$Res>
   $Res call(
       {String id,
       String roomName,
-      String lastSendAt,
-      String lastSendMessage,
+      String? lastSendAt,
+      String? lastSendMessage,
       String hostMainImageURL,
       int unreadCount});
 }
@@ -443,8 +443,8 @@ class __$$_MessageRoomListItemStateCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? roomName = null,
-    Object? lastSendAt = null,
-    Object? lastSendMessage = null,
+    Object? lastSendAt = freezed,
+    Object? lastSendMessage = freezed,
     Object? hostMainImageURL = null,
     Object? unreadCount = null,
   }) {
@@ -457,14 +457,14 @@ class __$$_MessageRoomListItemStateCopyWithImpl<$Res>
           ? _value.roomName
           : roomName // ignore: cast_nullable_to_non_nullable
               as String,
-      lastSendAt: null == lastSendAt
+      lastSendAt: freezed == lastSendAt
           ? _value.lastSendAt
           : lastSendAt // ignore: cast_nullable_to_non_nullable
-              as String,
-      lastSendMessage: null == lastSendMessage
+              as String?,
+      lastSendMessage: freezed == lastSendMessage
           ? _value.lastSendMessage
           : lastSendMessage // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       hostMainImageURL: null == hostMainImageURL
           ? _value.hostMainImageURL
           : hostMainImageURL // ignore: cast_nullable_to_non_nullable
@@ -493,9 +493,9 @@ class _$_MessageRoomListItemState implements _MessageRoomListItemState {
   @override
   final String roomName;
   @override
-  final String lastSendAt;
+  final String? lastSendAt;
   @override
-  final String lastSendMessage;
+  final String? lastSendMessage;
   @override
   final String hostMainImageURL;
   @override
@@ -540,8 +540,8 @@ abstract class _MessageRoomListItemState implements MessageRoomListItemState {
   const factory _MessageRoomListItemState(
       {required final String id,
       required final String roomName,
-      required final String lastSendAt,
-      required final String lastSendMessage,
+      required final String? lastSendAt,
+      required final String? lastSendMessage,
       required final String hostMainImageURL,
       required final int unreadCount}) = _$_MessageRoomListItemState;
 
@@ -550,9 +550,9 @@ abstract class _MessageRoomListItemState implements MessageRoomListItemState {
   @override
   String get roomName;
   @override
-  String get lastSendAt;
+  String? get lastSendAt;
   @override
-  String get lastSendMessage;
+  String? get lastSendMessage;
   @override
   String get hostMainImageURL;
   @override
