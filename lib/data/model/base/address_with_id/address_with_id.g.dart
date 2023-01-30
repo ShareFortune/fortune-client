@@ -9,11 +9,15 @@ part of 'address_with_id.dart';
 _$_AddressWithId _$$_AddressWithIdFromJson(Map<String, dynamic> json) =>
     _$_AddressWithId(
       id: json['id'] as int,
-      data: Address.fromJson(json['address'] as Map<String, dynamic>),
+      country: json['country'] as String,
+      prefecture: json['prefecture'] as String,
+      city: json['city'] as String,
     );
 
 Map<String, dynamic> _$$_AddressWithIdToJson(_$_AddressWithId instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'address': instance.data,
+      'country': instance.country,
+      'prefecture': instance.prefecture,
+      'city': instance.city,
     };

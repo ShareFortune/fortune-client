@@ -19,12 +19,11 @@ _$_Room _$$_RoomFromJson(Map<String, dynamic> json) => _$_Room(
           ?.map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
       roomStatus:
-          const RoomStatusConverter().fromJson(json['roomStatus'] as String),
+          const RoomStatusConverter().fromJson(json['status'] as String),
       joinRequestStatus: _$JsonConverterFromJson<String, JoinRequestStatus>(
           json['joinRequestStatus'],
           const JoinRequestStatusConverter().fromJson),
-      membersNum:
-          MembersNum.fromJson(json['membersNum'] as Map<String, dynamic>),
+      membersNum: json['membersNum'] as int,
       isHost: json['isHost'] as bool,
       isMember: json['isMember'] as bool,
     );
@@ -37,7 +36,7 @@ Map<String, dynamic> _$$_RoomToJson(_$_Room instance) => <String, dynamic>{
       'participants': instance.participants,
       'address': instance.address,
       'tags': instance.tags,
-      'roomStatus': const RoomStatusConverter().toJson(instance.roomStatus),
+      'status': const RoomStatusConverter().toJson(instance.roomStatus),
       'joinRequestStatus': _$JsonConverterToJson<String, JoinRequestStatus>(
           instance.joinRequestStatus,
           const JoinRequestStatusConverter().toJson),

@@ -35,7 +35,7 @@ class RoomListPage extends HookConsumerWidget {
     /// アドレス検索
     final addressesSearchTile = RoomsFilterTile(
       title: "場所",
-      value: state.addressWithId?.data.text,
+      value: state.addressWithId?.text,
       onTap: viewModel.navigateToEntryAddress,
     );
 

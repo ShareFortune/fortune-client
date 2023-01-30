@@ -21,7 +21,12 @@ class ProfileUpdateViewModel extends StateNotifier<ProfileUpdateState> {
     final profile = _repository.getCache();
     state = state.copyWith(
       stature: profile.height,
-      addressWithId: AddressWithId(id: -1, data: profile.address),
+      addressWithId: AddressWithId(
+        id: -1,
+        country: profile.address.country,
+        prefecture: profile.address.prefecture,
+        city: profile.address.city,
+      ),
       drinkFrequency: profile.drinkFrequency,
       cigaretteFrequency: profile.cigaretteFrequency,
     );

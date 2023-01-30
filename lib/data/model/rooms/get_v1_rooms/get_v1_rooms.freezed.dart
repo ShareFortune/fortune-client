@@ -203,9 +203,9 @@ mixin _$GetV1RoomsResponseRoom {
   String get id => throw _privateConstructorUsedError;
   @JsonKey(name: "roomName")
   String get roomName => throw _privateConstructorUsedError;
-  @JsonKey(name: "hostUser")
+  @JsonKey(name: "hostMainImageURL")
   String get hostMainImageURL => throw _privateConstructorUsedError;
-  @JsonKey(name: "participants")
+  @JsonKey(name: "participantMainImageURLs")
   List<String>? get participantMainImageURLs =>
       throw _privateConstructorUsedError;
   @JsonKey(name: "address")
@@ -228,13 +228,20 @@ abstract class $GetV1RoomsResponseRoomCopyWith<$Res> {
       _$GetV1RoomsResponseRoomCopyWithImpl<$Res, GetV1RoomsResponseRoom>;
   @useResult
   $Res call(
-      {@JsonKey(name: "id") String id,
-      @JsonKey(name: "roomName") String roomName,
-      @JsonKey(name: "hostUser") String hostMainImageURL,
-      @JsonKey(name: "participants") List<String>? participantMainImageURLs,
-      @JsonKey(name: "address") Address address,
-      @JsonKey(name: "membersNum") MembersNum membersNum,
-      @JsonKey(name: "isFavorite") bool isFavorite});
+      {@JsonKey(name: "id")
+          String id,
+      @JsonKey(name: "roomName")
+          String roomName,
+      @JsonKey(name: "hostMainImageURL")
+          String hostMainImageURL,
+      @JsonKey(name: "participantMainImageURLs")
+          List<String>? participantMainImageURLs,
+      @JsonKey(name: "address")
+          Address address,
+      @JsonKey(name: "membersNum")
+          MembersNum membersNum,
+      @JsonKey(name: "isFavorite")
+          bool isFavorite});
 
   $AddressCopyWith<$Res> get address;
   $MembersNumCopyWith<$Res> get membersNum;
@@ -320,13 +327,20 @@ abstract class _$$_GetV1RoomsResponseRoomCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: "id") String id,
-      @JsonKey(name: "roomName") String roomName,
-      @JsonKey(name: "hostUser") String hostMainImageURL,
-      @JsonKey(name: "participants") List<String>? participantMainImageURLs,
-      @JsonKey(name: "address") Address address,
-      @JsonKey(name: "membersNum") MembersNum membersNum,
-      @JsonKey(name: "isFavorite") bool isFavorite});
+      {@JsonKey(name: "id")
+          String id,
+      @JsonKey(name: "roomName")
+          String roomName,
+      @JsonKey(name: "hostMainImageURL")
+          String hostMainImageURL,
+      @JsonKey(name: "participantMainImageURLs")
+          List<String>? participantMainImageURLs,
+      @JsonKey(name: "address")
+          Address address,
+      @JsonKey(name: "membersNum")
+          MembersNum membersNum,
+      @JsonKey(name: "isFavorite")
+          bool isFavorite});
 
   @override
   $AddressCopyWith<$Res> get address;
@@ -395,9 +409,9 @@ class _$_GetV1RoomsResponseRoom implements _GetV1RoomsResponseRoom {
           required this.id,
       @JsonKey(name: "roomName")
           required this.roomName,
-      @JsonKey(name: "hostUser")
+      @JsonKey(name: "hostMainImageURL")
           required this.hostMainImageURL,
-      @JsonKey(name: "participants")
+      @JsonKey(name: "participantMainImageURLs")
           final List<String>? participantMainImageURLs,
       @JsonKey(name: "address")
           required this.address,
@@ -417,11 +431,11 @@ class _$_GetV1RoomsResponseRoom implements _GetV1RoomsResponseRoom {
   @JsonKey(name: "roomName")
   final String roomName;
   @override
-  @JsonKey(name: "hostUser")
+  @JsonKey(name: "hostMainImageURL")
   final String hostMainImageURL;
   final List<String>? _participantMainImageURLs;
   @override
-  @JsonKey(name: "participants")
+  @JsonKey(name: "participantMainImageURLs")
   List<String>? get participantMainImageURLs {
     final value = _participantMainImageURLs;
     if (value == null) return null;
@@ -498,9 +512,9 @@ abstract class _GetV1RoomsResponseRoom implements GetV1RoomsResponseRoom {
           required final String id,
       @JsonKey(name: "roomName")
           required final String roomName,
-      @JsonKey(name: "hostUser")
+      @JsonKey(name: "hostMainImageURL")
           required final String hostMainImageURL,
-      @JsonKey(name: "participants")
+      @JsonKey(name: "participantMainImageURLs")
           final List<String>? participantMainImageURLs,
       @JsonKey(name: "address")
           required final Address address,
@@ -519,10 +533,10 @@ abstract class _GetV1RoomsResponseRoom implements GetV1RoomsResponseRoom {
   @JsonKey(name: "roomName")
   String get roomName;
   @override
-  @JsonKey(name: "hostUser")
+  @JsonKey(name: "hostMainImageURL")
   String get hostMainImageURL;
   @override
-  @JsonKey(name: "participants")
+  @JsonKey(name: "participantMainImageURLs")
   List<String>? get participantMainImageURLs;
   @override
   @JsonKey(name: "address")

@@ -34,7 +34,7 @@ mixin _$Room {
   Address get address => throw _privateConstructorUsedError;
   @JsonKey(name: "tags")
   List<Tag>? get tags => throw _privateConstructorUsedError;
-  @JsonKey(name: "roomStatus")
+  @JsonKey(name: "status")
   @RoomStatusConverter()
   RoomStatus get roomStatus => throw _privateConstructorUsedError;
   @JsonKey(name: "joinRequestStatus")
@@ -42,7 +42,7 @@ mixin _$Room {
   JoinRequestStatus? get joinRequestStatus =>
       throw _privateConstructorUsedError;
   @JsonKey(name: "membersNum")
-  MembersNum get membersNum => throw _privateConstructorUsedError;
+  int get membersNum => throw _privateConstructorUsedError;
   @JsonKey(name: "isHost")
   bool get isHost => throw _privateConstructorUsedError;
   @JsonKey(name: "isMember")
@@ -73,14 +73,14 @@ abstract class $RoomCopyWith<$Res> {
           Address address,
       @JsonKey(name: "tags")
           List<Tag>? tags,
-      @JsonKey(name: "roomStatus")
+      @JsonKey(name: "status")
       @RoomStatusConverter()
           RoomStatus roomStatus,
       @JsonKey(name: "joinRequestStatus")
       @JoinRequestStatusConverter()
           JoinRequestStatus? joinRequestStatus,
       @JsonKey(name: "membersNum")
-          MembersNum membersNum,
+          int membersNum,
       @JsonKey(name: "isHost")
           bool isHost,
       @JsonKey(name: "isMember")
@@ -88,7 +88,6 @@ abstract class $RoomCopyWith<$Res> {
 
   $FortuneUserCopyWith<$Res> get hostUser;
   $AddressCopyWith<$Res> get address;
-  $MembersNumCopyWith<$Res> get membersNum;
 }
 
 /// @nodoc
@@ -157,7 +156,7 @@ class _$RoomCopyWithImpl<$Res, $Val extends Room>
       membersNum: null == membersNum
           ? _value.membersNum
           : membersNum // ignore: cast_nullable_to_non_nullable
-              as MembersNum,
+              as int,
       isHost: null == isHost
           ? _value.isHost
           : isHost // ignore: cast_nullable_to_non_nullable
@@ -184,14 +183,6 @@ class _$RoomCopyWithImpl<$Res, $Val extends Room>
       return _then(_value.copyWith(address: value) as $Val);
     });
   }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $MembersNumCopyWith<$Res> get membersNum {
-    return $MembersNumCopyWith<$Res>(_value.membersNum, (value) {
-      return _then(_value.copyWith(membersNum: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
@@ -215,14 +206,14 @@ abstract class _$$_RoomCopyWith<$Res> implements $RoomCopyWith<$Res> {
           Address address,
       @JsonKey(name: "tags")
           List<Tag>? tags,
-      @JsonKey(name: "roomStatus")
+      @JsonKey(name: "status")
       @RoomStatusConverter()
           RoomStatus roomStatus,
       @JsonKey(name: "joinRequestStatus")
       @JoinRequestStatusConverter()
           JoinRequestStatus? joinRequestStatus,
       @JsonKey(name: "membersNum")
-          MembersNum membersNum,
+          int membersNum,
       @JsonKey(name: "isHost")
           bool isHost,
       @JsonKey(name: "isMember")
@@ -232,8 +223,6 @@ abstract class _$$_RoomCopyWith<$Res> implements $RoomCopyWith<$Res> {
   $FortuneUserCopyWith<$Res> get hostUser;
   @override
   $AddressCopyWith<$Res> get address;
-  @override
-  $MembersNumCopyWith<$Res> get membersNum;
 }
 
 /// @nodoc
@@ -298,7 +287,7 @@ class __$$_RoomCopyWithImpl<$Res> extends _$RoomCopyWithImpl<$Res, _$_Room>
       membersNum: null == membersNum
           ? _value.membersNum
           : membersNum // ignore: cast_nullable_to_non_nullable
-              as MembersNum,
+              as int,
       isHost: null == isHost
           ? _value.isHost
           : isHost // ignore: cast_nullable_to_non_nullable
@@ -329,7 +318,7 @@ class _$_Room implements _Room {
           required this.address,
       @JsonKey(name: "tags")
           final List<Tag>? tags,
-      @JsonKey(name: "roomStatus")
+      @JsonKey(name: "status")
       @RoomStatusConverter()
           required this.roomStatus,
       @JsonKey(name: "joinRequestStatus")
@@ -384,7 +373,7 @@ class _$_Room implements _Room {
   }
 
   @override
-  @JsonKey(name: "roomStatus")
+  @JsonKey(name: "status")
   @RoomStatusConverter()
   final RoomStatus roomStatus;
   @override
@@ -393,7 +382,7 @@ class _$_Room implements _Room {
   final JoinRequestStatus? joinRequestStatus;
   @override
   @JsonKey(name: "membersNum")
-  final MembersNum membersNum;
+  final int membersNum;
   @override
   @JsonKey(name: "isHost")
   final bool isHost;
@@ -480,14 +469,14 @@ abstract class _Room implements Room {
           required final Address address,
       @JsonKey(name: "tags")
           final List<Tag>? tags,
-      @JsonKey(name: "roomStatus")
+      @JsonKey(name: "status")
       @RoomStatusConverter()
           required final RoomStatus roomStatus,
       @JsonKey(name: "joinRequestStatus")
       @JoinRequestStatusConverter()
           final JoinRequestStatus? joinRequestStatus,
       @JsonKey(name: "membersNum")
-          required final MembersNum membersNum,
+          required final int membersNum,
       @JsonKey(name: "isHost")
           required final bool isHost,
       @JsonKey(name: "isMember")
@@ -517,7 +506,7 @@ abstract class _Room implements Room {
   @JsonKey(name: "tags")
   List<Tag>? get tags;
   @override
-  @JsonKey(name: "roomStatus")
+  @JsonKey(name: "status")
   @RoomStatusConverter()
   RoomStatus get roomStatus;
   @override
@@ -526,7 +515,7 @@ abstract class _Room implements Room {
   JoinRequestStatus? get joinRequestStatus;
   @override
   @JsonKey(name: "membersNum")
-  MembersNum get membersNum;
+  int get membersNum;
   @override
   @JsonKey(name: "isHost")
   bool get isHost;

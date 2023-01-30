@@ -10,7 +10,7 @@ _$_GetV1AddressesResponse _$$_GetV1AddressesResponseFromJson(
         Map<String, dynamic> json) =>
     _$_GetV1AddressesResponse(
       (json['addresses'] as List<dynamic>)
-          .map((e) => Address.fromJson(e as Map<String, dynamic>))
+          .map((e) => AddressWithId.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 

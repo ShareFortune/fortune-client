@@ -21,13 +21,13 @@ class Room with _$Room {
     @JsonKey(name: "participants") List<FortuneUser>? participants,
     @JsonKey(name: "address") required Address address,
     @JsonKey(name: "tags") List<Tag>? tags,
-    @JsonKey(name: "roomStatus")
+    @JsonKey(name: "status")
     @RoomStatusConverter()
         required RoomStatus roomStatus,
     @JsonKey(name: "joinRequestStatus")
     @JoinRequestStatusConverter()
         JoinRequestStatus? joinRequestStatus,
-    @JsonKey(name: "membersNum") required MembersNum membersNum,
+    @JsonKey(name: "membersNum") required int membersNum,
     @JsonKey(name: "isHost") required bool isHost,
     @JsonKey(name: "isMember") required bool isMember,
   }) = _Room;

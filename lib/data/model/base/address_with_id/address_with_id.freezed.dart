@@ -22,8 +22,12 @@ AddressWithId _$AddressWithIdFromJson(Map<String, dynamic> json) {
 mixin _$AddressWithId {
   @JsonKey(name: 'id')
   int get id => throw _privateConstructorUsedError;
-  @JsonKey(name: 'address')
-  Address get data => throw _privateConstructorUsedError;
+  @JsonKey(name: 'country')
+  String get country => throw _privateConstructorUsedError;
+  @JsonKey(name: 'prefecture')
+  String get prefecture => throw _privateConstructorUsedError;
+  @JsonKey(name: 'city')
+  String get city => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -38,9 +42,10 @@ abstract class $AddressWithIdCopyWith<$Res> {
       _$AddressWithIdCopyWithImpl<$Res, AddressWithId>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') int id, @JsonKey(name: 'address') Address data});
-
-  $AddressCopyWith<$Res> get data;
+      {@JsonKey(name: 'id') int id,
+      @JsonKey(name: 'country') String country,
+      @JsonKey(name: 'prefecture') String prefecture,
+      @JsonKey(name: 'city') String city});
 }
 
 /// @nodoc
@@ -57,26 +62,28 @@ class _$AddressWithIdCopyWithImpl<$Res, $Val extends AddressWithId>
   @override
   $Res call({
     Object? id = null,
-    Object? data = null,
+    Object? country = null,
+    Object? prefecture = null,
+    Object? city = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      data: null == data
-          ? _value.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as Address,
+      country: null == country
+          ? _value.country
+          : country // ignore: cast_nullable_to_non_nullable
+              as String,
+      prefecture: null == prefecture
+          ? _value.prefecture
+          : prefecture // ignore: cast_nullable_to_non_nullable
+              as String,
+      city: null == city
+          ? _value.city
+          : city // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $AddressCopyWith<$Res> get data {
-    return $AddressCopyWith<$Res>(_value.data, (value) {
-      return _then(_value.copyWith(data: value) as $Val);
-    });
   }
 }
 
@@ -89,10 +96,10 @@ abstract class _$$_AddressWithIdCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') int id, @JsonKey(name: 'address') Address data});
-
-  @override
-  $AddressCopyWith<$Res> get data;
+      {@JsonKey(name: 'id') int id,
+      @JsonKey(name: 'country') String country,
+      @JsonKey(name: 'prefecture') String prefecture,
+      @JsonKey(name: 'city') String city});
 }
 
 /// @nodoc
@@ -107,27 +114,40 @@ class __$$_AddressWithIdCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? data = null,
+    Object? country = null,
+    Object? prefecture = null,
+    Object? city = null,
   }) {
     return _then(_$_AddressWithId(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      data: null == data
-          ? _value.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as Address,
+      country: null == country
+          ? _value.country
+          : country // ignore: cast_nullable_to_non_nullable
+              as String,
+      prefecture: null == prefecture
+          ? _value.prefecture
+          : prefecture // ignore: cast_nullable_to_non_nullable
+              as String,
+      city: null == city
+          ? _value.city
+          : city // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$_AddressWithId implements _AddressWithId {
+class _$_AddressWithId extends _AddressWithId {
   const _$_AddressWithId(
       {@JsonKey(name: 'id') required this.id,
-      @JsonKey(name: 'address') required this.data});
+      @JsonKey(name: 'country') required this.country,
+      @JsonKey(name: 'prefecture') required this.prefecture,
+      @JsonKey(name: 'city') required this.city})
+      : super._();
 
   factory _$_AddressWithId.fromJson(Map<String, dynamic> json) =>
       _$$_AddressWithIdFromJson(json);
@@ -136,12 +156,18 @@ class _$_AddressWithId implements _AddressWithId {
   @JsonKey(name: 'id')
   final int id;
   @override
-  @JsonKey(name: 'address')
-  final Address data;
+  @JsonKey(name: 'country')
+  final String country;
+  @override
+  @JsonKey(name: 'prefecture')
+  final String prefecture;
+  @override
+  @JsonKey(name: 'city')
+  final String city;
 
   @override
   String toString() {
-    return 'AddressWithId(id: $id, data: $data)';
+    return 'AddressWithId(id: $id, country: $country, prefecture: $prefecture, city: $city)';
   }
 
   @override
@@ -150,12 +176,15 @@ class _$_AddressWithId implements _AddressWithId {
         (other.runtimeType == runtimeType &&
             other is _$_AddressWithId &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.data, data) || other.data == data));
+            (identical(other.country, country) || other.country == country) &&
+            (identical(other.prefecture, prefecture) ||
+                other.prefecture == prefecture) &&
+            (identical(other.city, city) || other.city == city));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, data);
+  int get hashCode => Object.hash(runtimeType, id, country, prefecture, city);
 
   @JsonKey(ignore: true)
   @override
@@ -171,11 +200,13 @@ class _$_AddressWithId implements _AddressWithId {
   }
 }
 
-abstract class _AddressWithId implements AddressWithId {
+abstract class _AddressWithId extends AddressWithId {
   const factory _AddressWithId(
-          {@JsonKey(name: 'id') required final int id,
-          @JsonKey(name: 'address') required final Address data}) =
-      _$_AddressWithId;
+      {@JsonKey(name: 'id') required final int id,
+      @JsonKey(name: 'country') required final String country,
+      @JsonKey(name: 'prefecture') required final String prefecture,
+      @JsonKey(name: 'city') required final String city}) = _$_AddressWithId;
+  const _AddressWithId._() : super._();
 
   factory _AddressWithId.fromJson(Map<String, dynamic> json) =
       _$_AddressWithId.fromJson;
@@ -184,8 +215,14 @@ abstract class _AddressWithId implements AddressWithId {
   @JsonKey(name: 'id')
   int get id;
   @override
-  @JsonKey(name: 'address')
-  Address get data;
+  @JsonKey(name: 'country')
+  String get country;
+  @override
+  @JsonKey(name: 'prefecture')
+  String get prefecture;
+  @override
+  @JsonKey(name: 'city')
+  String get city;
   @override
   @JsonKey(ignore: true)
   _$$_AddressWithIdCopyWith<_$_AddressWithId> get copyWith =>

@@ -11,7 +11,7 @@ class FortuneUser with _$FortuneUser {
   const factory FortuneUser({
     @JsonKey(name: 'id') required String id,
     @JsonKey(name: 'name') required String name,
-    @JsonKey(name: 'gender') required Gender gender,
+    @JsonKey(name: "gender") @GenderConverter() required Gender gender,
     @JsonKey(name: 'mainImageURL') required String mainImageURL,
   }) = _FortuneUser;
 

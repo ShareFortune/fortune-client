@@ -33,7 +33,7 @@ class ProfileUpdatePage extends HookConsumerWidget {
     // /// 住所ピッカー
     final addressPicker = BaseTransitionTile(
       title: "居住地",
-      value: state.addressWithId?.data.text,
+      value: state.addressWithId?.text,
       onTap: () => viewModel.navigateToEntryAddress(),
     );
 

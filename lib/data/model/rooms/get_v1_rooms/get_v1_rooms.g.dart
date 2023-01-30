@@ -28,10 +28,11 @@ _$_GetV1RoomsResponseRoom _$$_GetV1RoomsResponseRoomFromJson(
     _$_GetV1RoomsResponseRoom(
       id: json['id'] as String,
       roomName: json['roomName'] as String,
-      hostMainImageURL: json['hostUser'] as String,
-      participantMainImageURLs: (json['participants'] as List<dynamic>?)
-          ?.map((e) => e as String)
-          .toList(),
+      hostMainImageURL: json['hostMainImageURL'] as String,
+      participantMainImageURLs:
+          (json['participantMainImageURLs'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList(),
       address: Address.fromJson(json['address'] as Map<String, dynamic>),
       membersNum:
           MembersNum.fromJson(json['membersNum'] as Map<String, dynamic>),
@@ -43,8 +44,8 @@ Map<String, dynamic> _$$_GetV1RoomsResponseRoomToJson(
     <String, dynamic>{
       'id': instance.id,
       'roomName': instance.roomName,
-      'hostUser': instance.hostMainImageURL,
-      'participants': instance.participantMainImageURLs,
+      'hostMainImageURL': instance.hostMainImageURL,
+      'participantMainImageURLs': instance.participantMainImageURLs,
       'address': instance.address,
       'membersNum': instance.membersNum,
       'isFavorite': instance.isFavorite,

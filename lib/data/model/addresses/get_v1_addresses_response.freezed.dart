@@ -22,7 +22,7 @@ GetV1AddressesResponse _$GetV1AddressesResponseFromJson(
 /// @nodoc
 mixin _$GetV1AddressesResponse {
   @JsonKey(name: 'addresses')
-  List<Address> get data => throw _privateConstructorUsedError;
+  List<AddressWithId> get data => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -36,7 +36,7 @@ abstract class $GetV1AddressesResponseCopyWith<$Res> {
           $Res Function(GetV1AddressesResponse) then) =
       _$GetV1AddressesResponseCopyWithImpl<$Res, GetV1AddressesResponse>;
   @useResult
-  $Res call({@JsonKey(name: 'addresses') List<Address> data});
+  $Res call({@JsonKey(name: 'addresses') List<AddressWithId> data});
 }
 
 /// @nodoc
@@ -59,7 +59,7 @@ class _$GetV1AddressesResponseCopyWithImpl<$Res,
       data: null == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as List<Address>,
+              as List<AddressWithId>,
     ) as $Val);
   }
 }
@@ -72,7 +72,7 @@ abstract class _$$_GetV1AddressesResponseCopyWith<$Res>
       __$$_GetV1AddressesResponseCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({@JsonKey(name: 'addresses') List<Address> data});
+  $Res call({@JsonKey(name: 'addresses') List<AddressWithId> data});
 }
 
 /// @nodoc
@@ -93,7 +93,7 @@ class __$$_GetV1AddressesResponseCopyWithImpl<$Res>
       null == data
           ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
-              as List<Address>,
+              as List<AddressWithId>,
     ));
   }
 }
@@ -102,16 +102,16 @@ class __$$_GetV1AddressesResponseCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_GetV1AddressesResponse implements _GetV1AddressesResponse {
   const _$_GetV1AddressesResponse(
-      @JsonKey(name: 'addresses') final List<Address> data)
+      @JsonKey(name: 'addresses') final List<AddressWithId> data)
       : _data = data;
 
   factory _$_GetV1AddressesResponse.fromJson(Map<String, dynamic> json) =>
       _$$_GetV1AddressesResponseFromJson(json);
 
-  final List<Address> _data;
+  final List<AddressWithId> _data;
   @override
   @JsonKey(name: 'addresses')
-  List<Address> get data {
+  List<AddressWithId> get data {
     if (_data is EqualUnmodifiableListView) return _data;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_data);
@@ -152,7 +152,7 @@ class _$_GetV1AddressesResponse implements _GetV1AddressesResponse {
 
 abstract class _GetV1AddressesResponse implements GetV1AddressesResponse {
   const factory _GetV1AddressesResponse(
-          @JsonKey(name: 'addresses') final List<Address> data) =
+          @JsonKey(name: 'addresses') final List<AddressWithId> data) =
       _$_GetV1AddressesResponse;
 
   factory _GetV1AddressesResponse.fromJson(Map<String, dynamic> json) =
@@ -160,7 +160,7 @@ abstract class _GetV1AddressesResponse implements GetV1AddressesResponse {
 
   @override
   @JsonKey(name: 'addresses')
-  List<Address> get data;
+  List<AddressWithId> get data;
   @override
   @JsonKey(ignore: true)
   _$$_GetV1AddressesResponseCopyWith<_$_GetV1AddressesResponse> get copyWith =>

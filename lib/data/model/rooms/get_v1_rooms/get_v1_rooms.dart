@@ -23,8 +23,9 @@ class GetV1RoomsResponseRoom with _$GetV1RoomsResponseRoom {
   const factory GetV1RoomsResponseRoom({
     @JsonKey(name: "id") required String id,
     @JsonKey(name: "roomName") required String roomName,
-    @JsonKey(name: "hostUser") required String hostMainImageURL,
-    @JsonKey(name: "participants") List<String>? participantMainImageURLs,
+    @JsonKey(name: "hostMainImageURL") required String hostMainImageURL,
+    @JsonKey(name: "participantMainImageURLs")
+        List<String>? participantMainImageURLs,
     @JsonKey(name: "address") required Address address,
     @JsonKey(name: "membersNum") required MembersNum membersNum,
     @JsonKey(name: "isFavorite") required bool isFavorite,

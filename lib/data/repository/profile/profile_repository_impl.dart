@@ -149,7 +149,13 @@ class ProfileRepositoryImpl implements ProfileRepository {
   }) async {
     try {
       await _update(
-        address: addressWithId?.data,
+        address: addressWithId != null
+            ? Address(
+                country: addressWithId.country,
+                prefecture: addressWithId.prefecture,
+                city: addressWithId.city,
+              )
+            : null,
         stature: stature,
         drinkFrequency: drinkFrequency,
         cigaretteFrequency: cigaretteFrequency,

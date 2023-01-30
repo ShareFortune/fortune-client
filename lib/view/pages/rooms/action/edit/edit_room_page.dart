@@ -73,7 +73,7 @@ class EditRoomPage extends HookConsumerWidget {
     ///
     final addressWidget = RoomStateTransitionTile(
       title: "開催場所",
-      value: state.addressWithId?.data.text,
+      value: state.addressWithId?.text,
       onTap: () => viewModel.navigateToEntryAddress(),
     );
 
