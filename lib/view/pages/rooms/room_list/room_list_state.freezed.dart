@@ -17,7 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$RoomListState {
   int? get memberNum => throw _privateConstructorUsedError;
-  Address? get address => throw _privateConstructorUsedError;
+  AddressWithId? get addressWithId => throw _privateConstructorUsedError;
   List<Tag>? get tags => throw _privateConstructorUsedError;
   AsyncValue<List<RoomListStateItem>> get rooms =>
       throw _privateConstructorUsedError;
@@ -35,11 +35,11 @@ abstract class $RoomListStateCopyWith<$Res> {
   @useResult
   $Res call(
       {int? memberNum,
-      Address? address,
+      AddressWithId? addressWithId,
       List<Tag>? tags,
       AsyncValue<List<RoomListStateItem>> rooms});
 
-  $AddressCopyWith<$Res>? get address;
+  $AddressWithIdCopyWith<$Res>? get addressWithId;
 }
 
 /// @nodoc
@@ -56,7 +56,7 @@ class _$RoomListStateCopyWithImpl<$Res, $Val extends RoomListState>
   @override
   $Res call({
     Object? memberNum = freezed,
-    Object? address = freezed,
+    Object? addressWithId = freezed,
     Object? tags = freezed,
     Object? rooms = null,
   }) {
@@ -65,10 +65,10 @@ class _$RoomListStateCopyWithImpl<$Res, $Val extends RoomListState>
           ? _value.memberNum
           : memberNum // ignore: cast_nullable_to_non_nullable
               as int?,
-      address: freezed == address
-          ? _value.address
-          : address // ignore: cast_nullable_to_non_nullable
-              as Address?,
+      addressWithId: freezed == addressWithId
+          ? _value.addressWithId
+          : addressWithId // ignore: cast_nullable_to_non_nullable
+              as AddressWithId?,
       tags: freezed == tags
           ? _value.tags
           : tags // ignore: cast_nullable_to_non_nullable
@@ -82,13 +82,13 @@ class _$RoomListStateCopyWithImpl<$Res, $Val extends RoomListState>
 
   @override
   @pragma('vm:prefer-inline')
-  $AddressCopyWith<$Res>? get address {
-    if (_value.address == null) {
+  $AddressWithIdCopyWith<$Res>? get addressWithId {
+    if (_value.addressWithId == null) {
       return null;
     }
 
-    return $AddressCopyWith<$Res>(_value.address!, (value) {
-      return _then(_value.copyWith(address: value) as $Val);
+    return $AddressWithIdCopyWith<$Res>(_value.addressWithId!, (value) {
+      return _then(_value.copyWith(addressWithId: value) as $Val);
     });
   }
 }
@@ -103,12 +103,12 @@ abstract class _$$_RoomListStateCopyWith<$Res>
   @useResult
   $Res call(
       {int? memberNum,
-      Address? address,
+      AddressWithId? addressWithId,
       List<Tag>? tags,
       AsyncValue<List<RoomListStateItem>> rooms});
 
   @override
-  $AddressCopyWith<$Res>? get address;
+  $AddressWithIdCopyWith<$Res>? get addressWithId;
 }
 
 /// @nodoc
@@ -123,7 +123,7 @@ class __$$_RoomListStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? memberNum = freezed,
-    Object? address = freezed,
+    Object? addressWithId = freezed,
     Object? tags = freezed,
     Object? rooms = null,
   }) {
@@ -132,10 +132,10 @@ class __$$_RoomListStateCopyWithImpl<$Res>
           ? _value.memberNum
           : memberNum // ignore: cast_nullable_to_non_nullable
               as int?,
-      address: freezed == address
-          ? _value.address
-          : address // ignore: cast_nullable_to_non_nullable
-              as Address?,
+      addressWithId: freezed == addressWithId
+          ? _value.addressWithId
+          : addressWithId // ignore: cast_nullable_to_non_nullable
+              as AddressWithId?,
       tags: freezed == tags
           ? _value._tags
           : tags // ignore: cast_nullable_to_non_nullable
@@ -153,7 +153,7 @@ class __$$_RoomListStateCopyWithImpl<$Res>
 class _$_RoomListState implements _RoomListState {
   const _$_RoomListState(
       {this.memberNum,
-      this.address,
+      this.addressWithId,
       final List<Tag>? tags,
       this.rooms = const AsyncLoading()})
       : _tags = tags;
@@ -161,7 +161,7 @@ class _$_RoomListState implements _RoomListState {
   @override
   final int? memberNum;
   @override
-  final Address? address;
+  final AddressWithId? addressWithId;
   final List<Tag>? _tags;
   @override
   List<Tag>? get tags {
@@ -178,7 +178,7 @@ class _$_RoomListState implements _RoomListState {
 
   @override
   String toString() {
-    return 'RoomListState(memberNum: $memberNum, address: $address, tags: $tags, rooms: $rooms)';
+    return 'RoomListState(memberNum: $memberNum, addressWithId: $addressWithId, tags: $tags, rooms: $rooms)';
   }
 
   @override
@@ -188,13 +188,14 @@ class _$_RoomListState implements _RoomListState {
             other is _$_RoomListState &&
             (identical(other.memberNum, memberNum) ||
                 other.memberNum == memberNum) &&
-            (identical(other.address, address) || other.address == address) &&
+            (identical(other.addressWithId, addressWithId) ||
+                other.addressWithId == addressWithId) &&
             const DeepCollectionEquality().equals(other._tags, _tags) &&
             (identical(other.rooms, rooms) || other.rooms == rooms));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, memberNum, address,
+  int get hashCode => Object.hash(runtimeType, memberNum, addressWithId,
       const DeepCollectionEquality().hash(_tags), rooms);
 
   @JsonKey(ignore: true)
@@ -207,14 +208,14 @@ class _$_RoomListState implements _RoomListState {
 abstract class _RoomListState implements RoomListState {
   const factory _RoomListState(
       {final int? memberNum,
-      final Address? address,
+      final AddressWithId? addressWithId,
       final List<Tag>? tags,
       final AsyncValue<List<RoomListStateItem>> rooms}) = _$_RoomListState;
 
   @override
   int? get memberNum;
   @override
-  Address? get address;
+  AddressWithId? get addressWithId;
   @override
   List<Tag>? get tags;
   @override
@@ -227,12 +228,7 @@ abstract class _RoomListState implements RoomListState {
 
 /// @nodoc
 mixin _$RoomListStateItem {
-  String get id => throw _privateConstructorUsedError;
-  String get title => throw _privateConstructorUsedError;
-  String get address => throw _privateConstructorUsedError;
-  String get hostIcon => throw _privateConstructorUsedError;
-  List<String> get memberIcons => throw _privateConstructorUsedError;
-  bool get isFavorite => throw _privateConstructorUsedError;
+  Room get data => throw _privateConstructorUsedError;
   bool get isRequested => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -246,14 +242,9 @@ abstract class $RoomListStateItemCopyWith<$Res> {
           RoomListStateItem value, $Res Function(RoomListStateItem) then) =
       _$RoomListStateItemCopyWithImpl<$Res, RoomListStateItem>;
   @useResult
-  $Res call(
-      {String id,
-      String title,
-      String address,
-      String hostIcon,
-      List<String> memberIcons,
-      bool isFavorite,
-      bool isRequested});
+  $Res call({Room data, bool isRequested});
+
+  $RoomCopyWith<$Res> get data;
 }
 
 /// @nodoc
@@ -269,44 +260,27 @@ class _$RoomListStateItemCopyWithImpl<$Res, $Val extends RoomListStateItem>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? title = null,
-    Object? address = null,
-    Object? hostIcon = null,
-    Object? memberIcons = null,
-    Object? isFavorite = null,
+    Object? data = null,
     Object? isRequested = null,
   }) {
     return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      title: null == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String,
-      address: null == address
-          ? _value.address
-          : address // ignore: cast_nullable_to_non_nullable
-              as String,
-      hostIcon: null == hostIcon
-          ? _value.hostIcon
-          : hostIcon // ignore: cast_nullable_to_non_nullable
-              as String,
-      memberIcons: null == memberIcons
-          ? _value.memberIcons
-          : memberIcons // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      isFavorite: null == isFavorite
-          ? _value.isFavorite
-          : isFavorite // ignore: cast_nullable_to_non_nullable
-              as bool,
+      data: null == data
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as Room,
       isRequested: null == isRequested
           ? _value.isRequested
           : isRequested // ignore: cast_nullable_to_non_nullable
               as bool,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $RoomCopyWith<$Res> get data {
+    return $RoomCopyWith<$Res>(_value.data, (value) {
+      return _then(_value.copyWith(data: value) as $Val);
+    });
   }
 }
 
@@ -318,14 +292,10 @@ abstract class _$$_RoomListStateItemCopyWith<$Res>
       __$$_RoomListStateItemCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {String id,
-      String title,
-      String address,
-      String hostIcon,
-      List<String> memberIcons,
-      bool isFavorite,
-      bool isRequested});
+  $Res call({Room data, bool isRequested});
+
+  @override
+  $RoomCopyWith<$Res> get data;
 }
 
 /// @nodoc
@@ -339,39 +309,14 @@ class __$$_RoomListStateItemCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? title = null,
-    Object? address = null,
-    Object? hostIcon = null,
-    Object? memberIcons = null,
-    Object? isFavorite = null,
+    Object? data = null,
     Object? isRequested = null,
   }) {
     return _then(_$_RoomListStateItem(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      title: null == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String,
-      address: null == address
-          ? _value.address
-          : address // ignore: cast_nullable_to_non_nullable
-              as String,
-      hostIcon: null == hostIcon
-          ? _value.hostIcon
-          : hostIcon // ignore: cast_nullable_to_non_nullable
-              as String,
-      memberIcons: null == memberIcons
-          ? _value._memberIcons
-          : memberIcons // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      isFavorite: null == isFavorite
-          ? _value.isFavorite
-          : isFavorite // ignore: cast_nullable_to_non_nullable
-              as bool,
+      data: null == data
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as Room,
       isRequested: null == isRequested
           ? _value.isRequested
           : isRequested // ignore: cast_nullable_to_non_nullable
@@ -383,40 +328,17 @@ class __$$_RoomListStateItemCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_RoomListStateItem implements _RoomListStateItem {
-  const _$_RoomListStateItem(
-      {required this.id,
-      required this.title,
-      required this.address,
-      required this.hostIcon,
-      required final List<String> memberIcons,
-      required this.isFavorite,
-      required this.isRequested})
-      : _memberIcons = memberIcons;
+  const _$_RoomListStateItem({required this.data, this.isRequested = false});
 
   @override
-  final String id;
+  final Room data;
   @override
-  final String title;
-  @override
-  final String address;
-  @override
-  final String hostIcon;
-  final List<String> _memberIcons;
-  @override
-  List<String> get memberIcons {
-    if (_memberIcons is EqualUnmodifiableListView) return _memberIcons;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_memberIcons);
-  }
-
-  @override
-  final bool isFavorite;
-  @override
+  @JsonKey()
   final bool isRequested;
 
   @override
   String toString() {
-    return 'RoomListStateItem(id: $id, title: $title, address: $address, hostIcon: $hostIcon, memberIcons: $memberIcons, isFavorite: $isFavorite, isRequested: $isRequested)';
+    return 'RoomListStateItem(data: $data, isRequested: $isRequested)';
   }
 
   @override
@@ -424,29 +346,13 @@ class _$_RoomListStateItem implements _RoomListStateItem {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_RoomListStateItem &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.title, title) || other.title == title) &&
-            (identical(other.address, address) || other.address == address) &&
-            (identical(other.hostIcon, hostIcon) ||
-                other.hostIcon == hostIcon) &&
-            const DeepCollectionEquality()
-                .equals(other._memberIcons, _memberIcons) &&
-            (identical(other.isFavorite, isFavorite) ||
-                other.isFavorite == isFavorite) &&
+            (identical(other.data, data) || other.data == data) &&
             (identical(other.isRequested, isRequested) ||
                 other.isRequested == isRequested));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      title,
-      address,
-      hostIcon,
-      const DeepCollectionEquality().hash(_memberIcons),
-      isFavorite,
-      isRequested);
+  int get hashCode => Object.hash(runtimeType, data, isRequested);
 
   @JsonKey(ignore: true)
   @override
@@ -458,26 +364,11 @@ class _$_RoomListStateItem implements _RoomListStateItem {
 
 abstract class _RoomListStateItem implements RoomListStateItem {
   const factory _RoomListStateItem(
-      {required final String id,
-      required final String title,
-      required final String address,
-      required final String hostIcon,
-      required final List<String> memberIcons,
-      required final bool isFavorite,
-      required final bool isRequested}) = _$_RoomListStateItem;
+      {required final Room data,
+      final bool isRequested}) = _$_RoomListStateItem;
 
   @override
-  String get id;
-  @override
-  String get title;
-  @override
-  String get address;
-  @override
-  String get hostIcon;
-  @override
-  List<String> get memberIcons;
-  @override
-  bool get isFavorite;
+  Room get data;
   @override
   bool get isRequested;
   @override

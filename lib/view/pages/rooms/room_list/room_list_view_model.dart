@@ -1,5 +1,5 @@
-import 'package:fortune_client/data/model/address/address.dart';
-import 'package:fortune_client/data/model/tag/tag.dart';
+import 'package:fortune_client/data/model/base/address_with_id/address_with_id.dart';
+import 'package:fortune_client/data/model/base/tag/tag.dart';
 import 'package:fortune_client/data/repository/favorites/favorites_repository.dart';
 import 'package:fortune_client/data/repository/join_requests/join_requests_repository.dart';
 import 'package:fortune_client/data/repository/rooms/rooms_repository.dart';
@@ -32,10 +32,8 @@ class RoomListViewModel extends StateNotifier<RoomListState> {
   Future<void> fetchList() async {
     state = state.copyWith(
       rooms: await AsyncValue.guard(() async {
-        final result = await _roomRepository.search();
-        return result.map((e) {
-          return RoomListStateItem.from(e);
-        }).toList();
+        final result = await _roomRepository.fetchList();
+        return result.map((data) => RoomListStateItem(data: data)).toList();
       }),
     );
   }
@@ -45,7 +43,7 @@ class RoomListViewModel extends StateNotifier<RoomListState> {
     final data = state.rooms.value!;
     state = state.copyWith(
       rooms: await AsyncValue.guard(() async {
-        final index = data.indexWhere((room) => room.id == roomId);
+        final index = data.indexWhere((room) => room.data.id == roomId);
         data[index] = data[index].copyWith(isRequested: true);
         return data;
       }),
@@ -56,33 +54,30 @@ class RoomListViewModel extends StateNotifier<RoomListState> {
   /// ルームの保存・保存解除
   /// 返り値は保存・保存解除処理を完了したかどうか
   Future<bool> saveOrReleaseRoom(String roomId, bool isFavorite) async {
-    Future<RoomListState> onChange(
-        List<RoomListStateItem> datas, bool target) async {
-      return state.copyWith(
-        rooms: await AsyncValue.guard(() async {
-          final index = datas.indexWhere((room) => room.id == roomId);
-          datas[index] = datas[index].copyWith(isFavorite: target);
-          return datas;
-        }),
-      );
-    }
-
     final result = isFavorite
         ? await _favoritesRepository.register(roomId) // 登録
         : await _favoritesRepository.unregister(roomId); // 解除
 
-    final data = state.rooms.value!;
-    if (!result) {
-      state = await onChange(data, isFavorite);
-      return false;
-    }
-    state = await onChange(data, !isFavorite);
+    if (!result) return false;
+
+    state = state.copyWith(
+      rooms: await AsyncValue.guard(() async {
+        final data = state.rooms.value!;
+        final index = data.indexWhere((room) => room.data.id == roomId);
+        data[index] = data[index].copyWith(
+          data: data[index].data.copyWith(isFavorite: isFavorite),
+        );
+        return data;
+      }),
+    );
     return true;
   }
 
   navigateToEntryAddress() async {
-    final result = await sl<AppRouter>().push(EntryAddressRoute()) as Address?;
-    state = state.copyWith(address: result ?? state.address);
+    final result = await sl<AppRouter>().push(
+      EntryAddressRoute(),
+    ) as AddressWithId?;
+    state = state.copyWith(addressWithId: result ?? state.addressWithId);
   }
 
   navigateToRoomDetail(String id) async {

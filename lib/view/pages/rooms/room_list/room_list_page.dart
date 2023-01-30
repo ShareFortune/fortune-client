@@ -35,7 +35,7 @@ class RoomListPage extends HookConsumerWidget {
     /// アドレス検索
     final addressesSearchTile = RoomsFilterTile(
       title: "場所",
-      value: state.address?.text,
+      value: state.addressWithId?.data.text,
       onTap: viewModel.navigateToEntryAddress,
     );
 
@@ -58,14 +58,14 @@ class RoomListPage extends HookConsumerWidget {
             return RoomListCard(
               theme: theme,
               room: room,
-              onTapRoom: () => viewModel.navigateToRoomDetail(room.id),
+              onTapRoom: () => viewModel.navigateToRoomDetail(room.data.id),
               onTapHeart: (bool value) async {
-                if (!await viewModel.saveOrReleaseRoom(room.id, value)) {
+                if (!await viewModel.saveOrReleaseRoom(room.data.id, value)) {
                   await _showFailedToRegisterToast(context, theme);
                 }
               },
               onTapJoinRequestBtn: () async {
-                final result = await viewModel.sendJoinRequest(room.id);
+                final result = await viewModel.sendJoinRequest(room.data.id);
                 await _showJoinRequestToast(context, theme, result);
               },
             );
