@@ -1,4 +1,5 @@
-import 'package:fortune_client/data/model/address/address.dart';
+import 'package:fortune_client/data/model/base/address/address.dart';
+import 'package:fortune_client/data/model/base/address_with_id/address_with_id.dart';
 import 'package:fortune_client/data/model/enum/cigarette_frequency.dart';
 import 'package:fortune_client/data/model/enum/drink_frequency.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -12,7 +13,7 @@ class ProfileUpdateState with _$ProfileUpdateState {
     int? stature,
 
     /// 居住地
-    Address? address,
+    AddressWithId? addressWithId,
 
     /// お酒
     DrinkFrequency? drinkFrequency,

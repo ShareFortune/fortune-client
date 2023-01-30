@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$JoinRequestsConfirmationState {
-  AsyncValue<List<JoinRequest>> get joinRequests =>
+  AsyncValue<List<RoomJoinRequest>> get joinRequests =>
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -32,7 +32,7 @@ abstract class $JoinRequestsConfirmationStateCopyWith<$Res> {
       _$JoinRequestsConfirmationStateCopyWithImpl<$Res,
           JoinRequestsConfirmationState>;
   @useResult
-  $Res call({AsyncValue<List<JoinRequest>> joinRequests});
+  $Res call({AsyncValue<List<RoomJoinRequest>> joinRequests});
 }
 
 /// @nodoc
@@ -55,7 +55,7 @@ class _$JoinRequestsConfirmationStateCopyWithImpl<$Res,
       joinRequests: null == joinRequests
           ? _value.joinRequests
           : joinRequests // ignore: cast_nullable_to_non_nullable
-              as AsyncValue<List<JoinRequest>>,
+              as AsyncValue<List<RoomJoinRequest>>,
     ) as $Val);
   }
 }
@@ -69,7 +69,7 @@ abstract class _$$_JoinRequestsConfirmationStateCopyWith<$Res>
       __$$_JoinRequestsConfirmationStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({AsyncValue<List<JoinRequest>> joinRequests});
+  $Res call({AsyncValue<List<RoomJoinRequest>> joinRequests});
 }
 
 /// @nodoc
@@ -91,7 +91,7 @@ class __$$_JoinRequestsConfirmationStateCopyWithImpl<$Res>
       joinRequests: null == joinRequests
           ? _value.joinRequests
           : joinRequests // ignore: cast_nullable_to_non_nullable
-              as AsyncValue<List<JoinRequest>>,
+              as AsyncValue<List<RoomJoinRequest>>,
     ));
   }
 }
@@ -105,7 +105,7 @@ class _$_JoinRequestsConfirmationState
 
   @override
   @JsonKey()
-  final AsyncValue<List<JoinRequest>> joinRequests;
+  final AsyncValue<List<RoomJoinRequest>> joinRequests;
 
   @override
   String toString() {
@@ -135,11 +135,11 @@ class _$_JoinRequestsConfirmationState
 abstract class _JoinRequestsConfirmationState
     implements JoinRequestsConfirmationState {
   const factory _JoinRequestsConfirmationState(
-          {final AsyncValue<List<JoinRequest>> joinRequests}) =
+          {final AsyncValue<List<RoomJoinRequest>> joinRequests}) =
       _$_JoinRequestsConfirmationState;
 
   @override
-  AsyncValue<List<JoinRequest>> get joinRequests;
+  AsyncValue<List<RoomJoinRequest>> get joinRequests;
   @override
   @JsonKey(ignore: true)
   _$$_JoinRequestsConfirmationStateCopyWith<_$_JoinRequestsConfirmationState>

@@ -1,8 +1,8 @@
+import 'package:fortune_client/data/model/base/tag/tag.dart';
 import 'package:fortune_client/data/model/enum/cigarette_frequency.dart';
 import 'package:fortune_client/data/model/enum/drink_frequency.dart';
 import 'package:fortune_client/data/model/enum/gender.dart';
-import 'package:fortune_client/data/model/profile/profile.dart';
-import 'package:fortune_client/data/model/tag/tag.dart';
+import 'package:fortune_client/data/model/profiles/get_v1_profiles/get_v1_profiles.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'profile_state.freezed.dart';
@@ -21,7 +21,7 @@ class ProfileState with _$ProfileState {
     required String mainImageURL, // プロフィール画像
   }) = _ProfileState;
 
-  static from(Profile profile) {
+  static from(GetV1ProfilesResponse profile) {
     return ProfileState(
       name: profile.name,
       gender: profile.gender.text,
