@@ -1,6 +1,6 @@
-import 'package:fortune_client/data/model/address/address.dart';
+import 'package:fortune_client/data/model/base/address_with_id/address_with_id.dart';
+import 'package:fortune_client/data/model/base/tag/tag.dart';
 import 'package:fortune_client/data/model/enum/age_group.dart';
-import 'package:fortune_client/data/model/tag/tag.dart';
 import 'package:fortune_client/data/repository/rooms/rooms_repository.dart';
 import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/view/pages/rooms/action/edit/edit_room_state.dart';
@@ -23,7 +23,7 @@ class EditRoomViewModel extends StateNotifier<EditRoomState> {
         state.title!.isNotEmpty &&
         state.membersNum != null &&
         state.ageGroup != null &&
-        state.address != null &&
+        state.addressWithId != null &&
         state.explanation != null;
   }
 
@@ -61,8 +61,10 @@ class EditRoomViewModel extends StateNotifier<EditRoomState> {
   }
 
   navigateToEntryAddress() async {
-    final result = await sl<AppRouter>().push(EntryAddressRoute()) as Address?;
-    state = state.copyWith(address: result ?? state.address);
+    final result = await sl<AppRouter>().push(
+      EntryAddressRoute(),
+    ) as AddressWithId?;
+    state = state.copyWith(addressWithId: result ?? state.addressWithId);
   }
 
   navigateToTagsSelection() async {

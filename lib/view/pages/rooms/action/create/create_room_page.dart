@@ -4,7 +4,6 @@ import 'package:fortune_client/view/pages/rooms/action/components/room_state_inp
 import 'package:fortune_client/view/pages/rooms/action/components/room_state_selective_form.dart';
 import 'package:fortune_client/view/pages/rooms/action/components/room_state_transition_tile.dart';
 import 'package:fortune_client/view/pages/rooms/action/create/create_room_view_model.dart';
-import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/app_bar/back_app_bar.dart';
 import 'package:fortune_client/view/widgets/dialog/toast.dart';
@@ -71,7 +70,7 @@ class CreateRoomPage extends HookConsumerWidget {
     ///
     final addressWidget = RoomStateTransitionTile(
       title: "開催場所",
-      value: state.address?.text,
+      value: state.addressWithId?.data.text,
       onTap: () => viewModel.navigateToEntryAddress(),
     );
 

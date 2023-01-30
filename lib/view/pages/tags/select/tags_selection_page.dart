@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fortune_client/data/model/tag/tag.dart';
+import 'package:fortune_client/data/model/base/tag/tag.dart';
 import 'package:fortune_client/view/pages/tags/select/components/tag_text_field.dart';
 import 'package:fortune_client/view/pages/tags/select/components/tags_wraper.dart';
 import 'package:fortune_client/view/pages/tags/select/tags_selection_view_model.dart';

@@ -228,7 +228,7 @@ abstract class _RoomListState implements RoomListState {
 
 /// @nodoc
 mixin _$RoomListStateItem {
-  Room get data => throw _privateConstructorUsedError;
+  GetV1RoomsResponseRoom get data => throw _privateConstructorUsedError;
   bool get isRequested => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -242,9 +242,9 @@ abstract class $RoomListStateItemCopyWith<$Res> {
           RoomListStateItem value, $Res Function(RoomListStateItem) then) =
       _$RoomListStateItemCopyWithImpl<$Res, RoomListStateItem>;
   @useResult
-  $Res call({Room data, bool isRequested});
+  $Res call({GetV1RoomsResponseRoom data, bool isRequested});
 
-  $RoomCopyWith<$Res> get data;
+  $GetV1RoomsResponseRoomCopyWith<$Res> get data;
 }
 
 /// @nodoc
@@ -267,7 +267,7 @@ class _$RoomListStateItemCopyWithImpl<$Res, $Val extends RoomListStateItem>
       data: null == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as Room,
+              as GetV1RoomsResponseRoom,
       isRequested: null == isRequested
           ? _value.isRequested
           : isRequested // ignore: cast_nullable_to_non_nullable
@@ -277,8 +277,8 @@ class _$RoomListStateItemCopyWithImpl<$Res, $Val extends RoomListStateItem>
 
   @override
   @pragma('vm:prefer-inline')
-  $RoomCopyWith<$Res> get data {
-    return $RoomCopyWith<$Res>(_value.data, (value) {
+  $GetV1RoomsResponseRoomCopyWith<$Res> get data {
+    return $GetV1RoomsResponseRoomCopyWith<$Res>(_value.data, (value) {
       return _then(_value.copyWith(data: value) as $Val);
     });
   }
@@ -292,10 +292,10 @@ abstract class _$$_RoomListStateItemCopyWith<$Res>
       __$$_RoomListStateItemCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Room data, bool isRequested});
+  $Res call({GetV1RoomsResponseRoom data, bool isRequested});
 
   @override
-  $RoomCopyWith<$Res> get data;
+  $GetV1RoomsResponseRoomCopyWith<$Res> get data;
 }
 
 /// @nodoc
@@ -316,7 +316,7 @@ class __$$_RoomListStateItemCopyWithImpl<$Res>
       data: null == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as Room,
+              as GetV1RoomsResponseRoom,
       isRequested: null == isRequested
           ? _value.isRequested
           : isRequested // ignore: cast_nullable_to_non_nullable
@@ -331,7 +331,7 @@ class _$_RoomListStateItem implements _RoomListStateItem {
   const _$_RoomListStateItem({required this.data, this.isRequested = false});
 
   @override
-  final Room data;
+  final GetV1RoomsResponseRoom data;
   @override
   @JsonKey()
   final bool isRequested;
@@ -364,11 +364,11 @@ class _$_RoomListStateItem implements _RoomListStateItem {
 
 abstract class _RoomListStateItem implements RoomListStateItem {
   const factory _RoomListStateItem(
-      {required final Room data,
+      {required final GetV1RoomsResponseRoom data,
       final bool isRequested}) = _$_RoomListStateItem;
 
   @override
-  Room get data;
+  GetV1RoomsResponseRoom get data;
   @override
   bool get isRequested;
   @override

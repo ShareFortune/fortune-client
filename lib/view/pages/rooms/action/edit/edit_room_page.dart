@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:fortune_client/data/model/address/address.dart';
 import 'package:fortune_client/data/model/enum/age_group.dart';
-import 'package:fortune_client/data/model/participant/host/participant_room_as_host.dart';
-import 'package:fortune_client/data/model/tag/tag.dart';
+import 'package:fortune_client/data/model/rooms/get_v1_rooms_host/get_v1_rooms_host.dart';
 import 'package:fortune_client/view/pages/rooms/action/components/room_state_input_field.dart';
 import 'package:fortune_client/view/pages/rooms/action/components/room_state_selective_form.dart';
 import 'package:fortune_client/view/pages/rooms/action/components/room_state_transition_tile.dart';
 import 'package:fortune_client/view/pages/rooms/action/edit/edit_room_view_model.dart';
-import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/app_bar/back_app_bar.dart';
 import 'package:fortune_client/view/widgets/dialog/toast.dart';
@@ -18,7 +15,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 class EditRoomPage extends HookConsumerWidget {
   EditRoomPage(this.room, {super.key});
 
-  final ParticipantRoomAsHost room;
+  final GetV1RoomsHostResponseRoom room;
 
   final titleController = TextEditingController();
   final explanationController = TextEditingController();
@@ -76,7 +73,7 @@ class EditRoomPage extends HookConsumerWidget {
     ///
     final addressWidget = RoomStateTransitionTile(
       title: "開催場所",
-      value: state.address?.text,
+      value: state.addressWithId?.data.text,
       onTap: () => viewModel.navigateToEntryAddress(),
     );
 

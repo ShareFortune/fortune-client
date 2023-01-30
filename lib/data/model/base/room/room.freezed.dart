@@ -20,34 +20,33 @@ Room _$RoomFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Room {
-  /// ルームID
   @JsonKey(name: "id")
   String get id => throw _privateConstructorUsedError;
-
-  /// ルームネーム
   @JsonKey(name: "roomName")
   String get roomName => throw _privateConstructorUsedError;
-
-  /// ホスト画像
-  @JsonKey(name: "hostMainImageURL")
-  String get hostMainImageURL => throw _privateConstructorUsedError;
-
-  /// メンバー画像リスト
-  @JsonKey(name: "participantMainImageURLs")
-  List<String>? get participantMainImageURLs =>
-      throw _privateConstructorUsedError;
-
-  /// 開催地
+  @JsonKey(name: "applicationDeadline")
+  String get applicationDeadline => throw _privateConstructorUsedError;
+  @JsonKey(name: "hostUser")
+  FortuneUser get hostUser => throw _privateConstructorUsedError;
+  @JsonKey(name: "participants")
+  List<FortuneUser>? get participants => throw _privateConstructorUsedError;
   @JsonKey(name: "address")
   Address get address => throw _privateConstructorUsedError;
-
-  /// お気に入りしているかどうか
-  @JsonKey(name: "isFavorite")
-  bool get isFavorite => throw _privateConstructorUsedError;
-
-  /// 参加人数
+  @JsonKey(name: "tags")
+  List<Tag>? get tags => throw _privateConstructorUsedError;
+  @JsonKey(name: "roomStatus")
+  @RoomStatusConverter()
+  RoomStatus get roomStatus => throw _privateConstructorUsedError;
+  @JsonKey(name: "joinRequestStatus")
+  @JoinRequestStatusConverter()
+  JoinRequestStatus? get joinRequestStatus =>
+      throw _privateConstructorUsedError;
   @JsonKey(name: "membersNum")
   MembersNum get membersNum => throw _privateConstructorUsedError;
+  @JsonKey(name: "isHost")
+  bool get isHost => throw _privateConstructorUsedError;
+  @JsonKey(name: "isMember")
+  bool get isMember => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -64,17 +63,30 @@ abstract class $RoomCopyWith<$Res> {
           String id,
       @JsonKey(name: "roomName")
           String roomName,
-      @JsonKey(name: "hostMainImageURL")
-          String hostMainImageURL,
-      @JsonKey(name: "participantMainImageURLs")
-          List<String>? participantMainImageURLs,
+      @JsonKey(name: "applicationDeadline")
+          String applicationDeadline,
+      @JsonKey(name: "hostUser")
+          FortuneUser hostUser,
+      @JsonKey(name: "participants")
+          List<FortuneUser>? participants,
       @JsonKey(name: "address")
           Address address,
-      @JsonKey(name: "isFavorite")
-          bool isFavorite,
+      @JsonKey(name: "tags")
+          List<Tag>? tags,
+      @JsonKey(name: "roomStatus")
+      @RoomStatusConverter()
+          RoomStatus roomStatus,
+      @JsonKey(name: "joinRequestStatus")
+      @JoinRequestStatusConverter()
+          JoinRequestStatus? joinRequestStatus,
       @JsonKey(name: "membersNum")
-          MembersNum membersNum});
+          MembersNum membersNum,
+      @JsonKey(name: "isHost")
+          bool isHost,
+      @JsonKey(name: "isMember")
+          bool isMember});
 
+  $FortuneUserCopyWith<$Res> get hostUser;
   $AddressCopyWith<$Res> get address;
   $MembersNumCopyWith<$Res> get membersNum;
 }
@@ -94,11 +106,16 @@ class _$RoomCopyWithImpl<$Res, $Val extends Room>
   $Res call({
     Object? id = null,
     Object? roomName = null,
-    Object? hostMainImageURL = null,
-    Object? participantMainImageURLs = freezed,
+    Object? applicationDeadline = null,
+    Object? hostUser = null,
+    Object? participants = freezed,
     Object? address = null,
-    Object? isFavorite = null,
+    Object? tags = freezed,
+    Object? roomStatus = null,
+    Object? joinRequestStatus = freezed,
     Object? membersNum = null,
+    Object? isHost = null,
+    Object? isMember = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -109,27 +126,55 @@ class _$RoomCopyWithImpl<$Res, $Val extends Room>
           ? _value.roomName
           : roomName // ignore: cast_nullable_to_non_nullable
               as String,
-      hostMainImageURL: null == hostMainImageURL
-          ? _value.hostMainImageURL
-          : hostMainImageURL // ignore: cast_nullable_to_non_nullable
+      applicationDeadline: null == applicationDeadline
+          ? _value.applicationDeadline
+          : applicationDeadline // ignore: cast_nullable_to_non_nullable
               as String,
-      participantMainImageURLs: freezed == participantMainImageURLs
-          ? _value.participantMainImageURLs
-          : participantMainImageURLs // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
+      hostUser: null == hostUser
+          ? _value.hostUser
+          : hostUser // ignore: cast_nullable_to_non_nullable
+              as FortuneUser,
+      participants: freezed == participants
+          ? _value.participants
+          : participants // ignore: cast_nullable_to_non_nullable
+              as List<FortuneUser>?,
       address: null == address
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
               as Address,
-      isFavorite: null == isFavorite
-          ? _value.isFavorite
-          : isFavorite // ignore: cast_nullable_to_non_nullable
-              as bool,
+      tags: freezed == tags
+          ? _value.tags
+          : tags // ignore: cast_nullable_to_non_nullable
+              as List<Tag>?,
+      roomStatus: null == roomStatus
+          ? _value.roomStatus
+          : roomStatus // ignore: cast_nullable_to_non_nullable
+              as RoomStatus,
+      joinRequestStatus: freezed == joinRequestStatus
+          ? _value.joinRequestStatus
+          : joinRequestStatus // ignore: cast_nullable_to_non_nullable
+              as JoinRequestStatus?,
       membersNum: null == membersNum
           ? _value.membersNum
           : membersNum // ignore: cast_nullable_to_non_nullable
               as MembersNum,
+      isHost: null == isHost
+          ? _value.isHost
+          : isHost // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isMember: null == isMember
+          ? _value.isMember
+          : isMember // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $FortuneUserCopyWith<$Res> get hostUser {
+    return $FortuneUserCopyWith<$Res>(_value.hostUser, (value) {
+      return _then(_value.copyWith(hostUser: value) as $Val);
+    });
   }
 
   @override
@@ -160,17 +205,31 @@ abstract class _$$_RoomCopyWith<$Res> implements $RoomCopyWith<$Res> {
           String id,
       @JsonKey(name: "roomName")
           String roomName,
-      @JsonKey(name: "hostMainImageURL")
-          String hostMainImageURL,
-      @JsonKey(name: "participantMainImageURLs")
-          List<String>? participantMainImageURLs,
+      @JsonKey(name: "applicationDeadline")
+          String applicationDeadline,
+      @JsonKey(name: "hostUser")
+          FortuneUser hostUser,
+      @JsonKey(name: "participants")
+          List<FortuneUser>? participants,
       @JsonKey(name: "address")
           Address address,
-      @JsonKey(name: "isFavorite")
-          bool isFavorite,
+      @JsonKey(name: "tags")
+          List<Tag>? tags,
+      @JsonKey(name: "roomStatus")
+      @RoomStatusConverter()
+          RoomStatus roomStatus,
+      @JsonKey(name: "joinRequestStatus")
+      @JoinRequestStatusConverter()
+          JoinRequestStatus? joinRequestStatus,
       @JsonKey(name: "membersNum")
-          MembersNum membersNum});
+          MembersNum membersNum,
+      @JsonKey(name: "isHost")
+          bool isHost,
+      @JsonKey(name: "isMember")
+          bool isMember});
 
+  @override
+  $FortuneUserCopyWith<$Res> get hostUser;
   @override
   $AddressCopyWith<$Res> get address;
   @override
@@ -188,11 +247,16 @@ class __$$_RoomCopyWithImpl<$Res> extends _$RoomCopyWithImpl<$Res, _$_Room>
   $Res call({
     Object? id = null,
     Object? roomName = null,
-    Object? hostMainImageURL = null,
-    Object? participantMainImageURLs = freezed,
+    Object? applicationDeadline = null,
+    Object? hostUser = null,
+    Object? participants = freezed,
     Object? address = null,
-    Object? isFavorite = null,
+    Object? tags = freezed,
+    Object? roomStatus = null,
+    Object? joinRequestStatus = freezed,
     Object? membersNum = null,
+    Object? isHost = null,
+    Object? isMember = null,
   }) {
     return _then(_$_Room(
       id: null == id
@@ -203,26 +267,46 @@ class __$$_RoomCopyWithImpl<$Res> extends _$RoomCopyWithImpl<$Res, _$_Room>
           ? _value.roomName
           : roomName // ignore: cast_nullable_to_non_nullable
               as String,
-      hostMainImageURL: null == hostMainImageURL
-          ? _value.hostMainImageURL
-          : hostMainImageURL // ignore: cast_nullable_to_non_nullable
+      applicationDeadline: null == applicationDeadline
+          ? _value.applicationDeadline
+          : applicationDeadline // ignore: cast_nullable_to_non_nullable
               as String,
-      participantMainImageURLs: freezed == participantMainImageURLs
-          ? _value._participantMainImageURLs
-          : participantMainImageURLs // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
+      hostUser: null == hostUser
+          ? _value.hostUser
+          : hostUser // ignore: cast_nullable_to_non_nullable
+              as FortuneUser,
+      participants: freezed == participants
+          ? _value._participants
+          : participants // ignore: cast_nullable_to_non_nullable
+              as List<FortuneUser>?,
       address: null == address
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
               as Address,
-      isFavorite: null == isFavorite
-          ? _value.isFavorite
-          : isFavorite // ignore: cast_nullable_to_non_nullable
-              as bool,
+      tags: freezed == tags
+          ? _value._tags
+          : tags // ignore: cast_nullable_to_non_nullable
+              as List<Tag>?,
+      roomStatus: null == roomStatus
+          ? _value.roomStatus
+          : roomStatus // ignore: cast_nullable_to_non_nullable
+              as RoomStatus,
+      joinRequestStatus: freezed == joinRequestStatus
+          ? _value.joinRequestStatus
+          : joinRequestStatus // ignore: cast_nullable_to_non_nullable
+              as JoinRequestStatus?,
       membersNum: null == membersNum
           ? _value.membersNum
           : membersNum // ignore: cast_nullable_to_non_nullable
               as MembersNum,
+      isHost: null == isHost
+          ? _value.isHost
+          : isHost // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isMember: null == isMember
+          ? _value.isMember
+          : isMember // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -235,68 +319,91 @@ class _$_Room implements _Room {
           required this.id,
       @JsonKey(name: "roomName")
           required this.roomName,
-      @JsonKey(name: "hostMainImageURL")
-          required this.hostMainImageURL,
-      @JsonKey(name: "participantMainImageURLs")
-          required final List<String>? participantMainImageURLs,
+      @JsonKey(name: "applicationDeadline")
+          required this.applicationDeadline,
+      @JsonKey(name: "hostUser")
+          required this.hostUser,
+      @JsonKey(name: "participants")
+          final List<FortuneUser>? participants,
       @JsonKey(name: "address")
           required this.address,
-      @JsonKey(name: "isFavorite")
-          required this.isFavorite,
+      @JsonKey(name: "tags")
+          final List<Tag>? tags,
+      @JsonKey(name: "roomStatus")
+      @RoomStatusConverter()
+          required this.roomStatus,
+      @JsonKey(name: "joinRequestStatus")
+      @JoinRequestStatusConverter()
+          this.joinRequestStatus,
       @JsonKey(name: "membersNum")
-          required this.membersNum})
-      : _participantMainImageURLs = participantMainImageURLs;
+          required this.membersNum,
+      @JsonKey(name: "isHost")
+          required this.isHost,
+      @JsonKey(name: "isMember")
+          required this.isMember})
+      : _participants = participants,
+        _tags = tags;
 
   factory _$_Room.fromJson(Map<String, dynamic> json) => _$$_RoomFromJson(json);
 
-  /// ルームID
   @override
   @JsonKey(name: "id")
   final String id;
-
-  /// ルームネーム
   @override
   @JsonKey(name: "roomName")
   final String roomName;
-
-  /// ホスト画像
   @override
-  @JsonKey(name: "hostMainImageURL")
-  final String hostMainImageURL;
-
-  /// メンバー画像リスト
-  final List<String>? _participantMainImageURLs;
-
-  /// メンバー画像リスト
+  @JsonKey(name: "applicationDeadline")
+  final String applicationDeadline;
   @override
-  @JsonKey(name: "participantMainImageURLs")
-  List<String>? get participantMainImageURLs {
-    final value = _participantMainImageURLs;
+  @JsonKey(name: "hostUser")
+  final FortuneUser hostUser;
+  final List<FortuneUser>? _participants;
+  @override
+  @JsonKey(name: "participants")
+  List<FortuneUser>? get participants {
+    final value = _participants;
     if (value == null) return null;
-    if (_participantMainImageURLs is EqualUnmodifiableListView)
-      return _participantMainImageURLs;
+    if (_participants is EqualUnmodifiableListView) return _participants;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
 
-  /// 開催地
   @override
   @JsonKey(name: "address")
   final Address address;
-
-  /// お気に入りしているかどうか
+  final List<Tag>? _tags;
   @override
-  @JsonKey(name: "isFavorite")
-  final bool isFavorite;
+  @JsonKey(name: "tags")
+  List<Tag>? get tags {
+    final value = _tags;
+    if (value == null) return null;
+    if (_tags is EqualUnmodifiableListView) return _tags;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
-  /// 参加人数
+  @override
+  @JsonKey(name: "roomStatus")
+  @RoomStatusConverter()
+  final RoomStatus roomStatus;
+  @override
+  @JsonKey(name: "joinRequestStatus")
+  @JoinRequestStatusConverter()
+  final JoinRequestStatus? joinRequestStatus;
   @override
   @JsonKey(name: "membersNum")
   final MembersNum membersNum;
+  @override
+  @JsonKey(name: "isHost")
+  final bool isHost;
+  @override
+  @JsonKey(name: "isMember")
+  final bool isMember;
 
   @override
   String toString() {
-    return 'Room(id: $id, roomName: $roomName, hostMainImageURL: $hostMainImageURL, participantMainImageURLs: $participantMainImageURLs, address: $address, isFavorite: $isFavorite, membersNum: $membersNum)';
+    return 'Room(id: $id, roomName: $roomName, applicationDeadline: $applicationDeadline, hostUser: $hostUser, participants: $participants, address: $address, tags: $tags, roomStatus: $roomStatus, joinRequestStatus: $joinRequestStatus, membersNum: $membersNum, isHost: $isHost, isMember: $isMember)';
   }
 
   @override
@@ -307,15 +414,23 @@ class _$_Room implements _Room {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.roomName, roomName) ||
                 other.roomName == roomName) &&
-            (identical(other.hostMainImageURL, hostMainImageURL) ||
-                other.hostMainImageURL == hostMainImageURL) &&
-            const DeepCollectionEquality().equals(
-                other._participantMainImageURLs, _participantMainImageURLs) &&
+            (identical(other.applicationDeadline, applicationDeadline) ||
+                other.applicationDeadline == applicationDeadline) &&
+            (identical(other.hostUser, hostUser) ||
+                other.hostUser == hostUser) &&
+            const DeepCollectionEquality()
+                .equals(other._participants, _participants) &&
             (identical(other.address, address) || other.address == address) &&
-            (identical(other.isFavorite, isFavorite) ||
-                other.isFavorite == isFavorite) &&
+            const DeepCollectionEquality().equals(other._tags, _tags) &&
+            (identical(other.roomStatus, roomStatus) ||
+                other.roomStatus == roomStatus) &&
+            (identical(other.joinRequestStatus, joinRequestStatus) ||
+                other.joinRequestStatus == joinRequestStatus) &&
             (identical(other.membersNum, membersNum) ||
-                other.membersNum == membersNum));
+                other.membersNum == membersNum) &&
+            (identical(other.isHost, isHost) || other.isHost == isHost) &&
+            (identical(other.isMember, isMember) ||
+                other.isMember == isMember));
   }
 
   @JsonKey(ignore: true)
@@ -324,11 +439,16 @@ class _$_Room implements _Room {
       runtimeType,
       id,
       roomName,
-      hostMainImageURL,
-      const DeepCollectionEquality().hash(_participantMainImageURLs),
+      applicationDeadline,
+      hostUser,
+      const DeepCollectionEquality().hash(_participants),
       address,
-      isFavorite,
-      membersNum);
+      const DeepCollectionEquality().hash(_tags),
+      roomStatus,
+      joinRequestStatus,
+      membersNum,
+      isHost,
+      isMember);
 
   @JsonKey(ignore: true)
   @override
@@ -350,54 +470,69 @@ abstract class _Room implements Room {
           required final String id,
       @JsonKey(name: "roomName")
           required final String roomName,
-      @JsonKey(name: "hostMainImageURL")
-          required final String hostMainImageURL,
-      @JsonKey(name: "participantMainImageURLs")
-          required final List<String>? participantMainImageURLs,
+      @JsonKey(name: "applicationDeadline")
+          required final String applicationDeadline,
+      @JsonKey(name: "hostUser")
+          required final FortuneUser hostUser,
+      @JsonKey(name: "participants")
+          final List<FortuneUser>? participants,
       @JsonKey(name: "address")
           required final Address address,
-      @JsonKey(name: "isFavorite")
-          required final bool isFavorite,
+      @JsonKey(name: "tags")
+          final List<Tag>? tags,
+      @JsonKey(name: "roomStatus")
+      @RoomStatusConverter()
+          required final RoomStatus roomStatus,
+      @JsonKey(name: "joinRequestStatus")
+      @JoinRequestStatusConverter()
+          final JoinRequestStatus? joinRequestStatus,
       @JsonKey(name: "membersNum")
-          required final MembersNum membersNum}) = _$_Room;
+          required final MembersNum membersNum,
+      @JsonKey(name: "isHost")
+          required final bool isHost,
+      @JsonKey(name: "isMember")
+          required final bool isMember}) = _$_Room;
 
   factory _Room.fromJson(Map<String, dynamic> json) = _$_Room.fromJson;
 
   @override
-
-  /// ルームID
   @JsonKey(name: "id")
   String get id;
   @override
-
-  /// ルームネーム
   @JsonKey(name: "roomName")
   String get roomName;
   @override
-
-  /// ホスト画像
-  @JsonKey(name: "hostMainImageURL")
-  String get hostMainImageURL;
+  @JsonKey(name: "applicationDeadline")
+  String get applicationDeadline;
   @override
-
-  /// メンバー画像リスト
-  @JsonKey(name: "participantMainImageURLs")
-  List<String>? get participantMainImageURLs;
+  @JsonKey(name: "hostUser")
+  FortuneUser get hostUser;
   @override
-
-  /// 開催地
+  @JsonKey(name: "participants")
+  List<FortuneUser>? get participants;
+  @override
   @JsonKey(name: "address")
   Address get address;
   @override
-
-  /// お気に入りしているかどうか
-  @JsonKey(name: "isFavorite")
-  bool get isFavorite;
+  @JsonKey(name: "tags")
+  List<Tag>? get tags;
   @override
-
-  /// 参加人数
+  @JsonKey(name: "roomStatus")
+  @RoomStatusConverter()
+  RoomStatus get roomStatus;
+  @override
+  @JsonKey(name: "joinRequestStatus")
+  @JoinRequestStatusConverter()
+  JoinRequestStatus? get joinRequestStatus;
+  @override
   @JsonKey(name: "membersNum")
   MembersNum get membersNum;
+  @override
+  @JsonKey(name: "isHost")
+  bool get isHost;
+  @override
+  @JsonKey(name: "isMember")
+  bool get isMember;
   @override
   @JsonKey(ignore: true)
   _$$_RoomCopyWith<_$_Room> get copyWith => throw _privateConstructorUsedError;

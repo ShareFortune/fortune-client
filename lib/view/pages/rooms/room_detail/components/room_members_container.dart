@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fortune_client/data/model/participating_user/participating_user.dart';
+import 'package:fortune_client/data/model/base/fortune_user/fortune_user.dart';
 import 'package:fortune_client/gen/assets.gen.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
@@ -9,7 +9,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 class RoomMembersContainer extends HookConsumerWidget {
   const RoomMembersContainer(this.members, this.onTap, {super.key});
 
-  final List<ParticipatingUser> members;
+  final List<FortuneUser>? members;
   final Function(BuildContext, String id) onTap;
 
   @override

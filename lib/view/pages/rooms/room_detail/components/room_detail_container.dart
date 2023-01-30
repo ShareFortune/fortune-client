@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:fortune_client/data/model/tag/tag.dart';
-import 'package:fortune_client/view/pages/rooms/room_detail/room_detail_state.dart';
-
+import 'package:fortune_client/data/model/base/room/room.dart';
+import 'package:fortune_client/data/model/base/tag/tag.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/other/tag_widget.dart';
@@ -11,7 +10,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 class RoomDetailContainer extends HookConsumerWidget {
   const RoomDetailContainer(this.room, {super.key});
 
-  final RoomDetailStateInfo room;
+  final Room room;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -28,7 +27,11 @@ class RoomDetailContainer extends HookConsumerWidget {
 
     /// 説明
     final explanation = _roomInfo(
-        theme, "説明", Text(room.explanation, style: theme.textTheme.h30));
+      theme,
+      "説明",
+      Text("ルームの説明・ルームの説明・ルームの説明・ルームの説明・ルームの説明・ルームの説明・ルームの説明・ルームの説明・ルームの説明・",
+          style: theme.textTheme.h30),
+    );
 
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 30),
