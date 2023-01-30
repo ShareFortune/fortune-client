@@ -19,7 +19,7 @@ class RoomListCard extends StatelessWidget {
   });
 
   final AppTheme theme;
-  final RoomListStateItem room;
+  final RoomListStateRoom room;
   final VoidCallback onTapRoom;
   final Function(bool) onTapHeart;
   final VoidCallback onTapJoinRequestBtn;

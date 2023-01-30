@@ -16,10 +16,8 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$RoomListState {
-  int? get memberNum => throw _privateConstructorUsedError;
-  AddressWithId? get addressWithId => throw _privateConstructorUsedError;
-  List<Tag>? get tags => throw _privateConstructorUsedError;
-  AsyncValue<List<RoomListStateItem>> get rooms =>
+  RoomListStateFilter get filter => throw _privateConstructorUsedError;
+  AsyncValue<List<RoomListStateRoom>> get rooms =>
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -34,12 +32,9 @@ abstract class $RoomListStateCopyWith<$Res> {
       _$RoomListStateCopyWithImpl<$Res, RoomListState>;
   @useResult
   $Res call(
-      {int? memberNum,
-      AddressWithId? addressWithId,
-      List<Tag>? tags,
-      AsyncValue<List<RoomListStateItem>> rooms});
+      {RoomListStateFilter filter, AsyncValue<List<RoomListStateRoom>> rooms});
 
-  $AddressWithIdCopyWith<$Res>? get addressWithId;
+  $RoomListStateFilterCopyWith<$Res> get filter;
 }
 
 /// @nodoc
@@ -55,10 +50,163 @@ class _$RoomListStateCopyWithImpl<$Res, $Val extends RoomListState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? filter = null,
+    Object? rooms = null,
+  }) {
+    return _then(_value.copyWith(
+      filter: null == filter
+          ? _value.filter
+          : filter // ignore: cast_nullable_to_non_nullable
+              as RoomListStateFilter,
+      rooms: null == rooms
+          ? _value.rooms
+          : rooms // ignore: cast_nullable_to_non_nullable
+              as AsyncValue<List<RoomListStateRoom>>,
+    ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $RoomListStateFilterCopyWith<$Res> get filter {
+    return $RoomListStateFilterCopyWith<$Res>(_value.filter, (value) {
+      return _then(_value.copyWith(filter: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$_RoomListStateCopyWith<$Res>
+    implements $RoomListStateCopyWith<$Res> {
+  factory _$$_RoomListStateCopyWith(
+          _$_RoomListState value, $Res Function(_$_RoomListState) then) =
+      __$$_RoomListStateCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {RoomListStateFilter filter, AsyncValue<List<RoomListStateRoom>> rooms});
+
+  @override
+  $RoomListStateFilterCopyWith<$Res> get filter;
+}
+
+/// @nodoc
+class __$$_RoomListStateCopyWithImpl<$Res>
+    extends _$RoomListStateCopyWithImpl<$Res, _$_RoomListState>
+    implements _$$_RoomListStateCopyWith<$Res> {
+  __$$_RoomListStateCopyWithImpl(
+      _$_RoomListState _value, $Res Function(_$_RoomListState) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? filter = null,
+    Object? rooms = null,
+  }) {
+    return _then(_$_RoomListState(
+      filter: null == filter
+          ? _value.filter
+          : filter // ignore: cast_nullable_to_non_nullable
+              as RoomListStateFilter,
+      rooms: null == rooms
+          ? _value.rooms
+          : rooms // ignore: cast_nullable_to_non_nullable
+              as AsyncValue<List<RoomListStateRoom>>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_RoomListState implements _RoomListState {
+  const _$_RoomListState(
+      {this.filter = const RoomListStateFilter(),
+      this.rooms = const AsyncLoading()});
+
+  @override
+  @JsonKey()
+  final RoomListStateFilter filter;
+  @override
+  @JsonKey()
+  final AsyncValue<List<RoomListStateRoom>> rooms;
+
+  @override
+  String toString() {
+    return 'RoomListState(filter: $filter, rooms: $rooms)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_RoomListState &&
+            (identical(other.filter, filter) || other.filter == filter) &&
+            (identical(other.rooms, rooms) || other.rooms == rooms));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, filter, rooms);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_RoomListStateCopyWith<_$_RoomListState> get copyWith =>
+      __$$_RoomListStateCopyWithImpl<_$_RoomListState>(this, _$identity);
+}
+
+abstract class _RoomListState implements RoomListState {
+  const factory _RoomListState(
+      {final RoomListStateFilter filter,
+      final AsyncValue<List<RoomListStateRoom>> rooms}) = _$_RoomListState;
+
+  @override
+  RoomListStateFilter get filter;
+  @override
+  AsyncValue<List<RoomListStateRoom>> get rooms;
+  @override
+  @JsonKey(ignore: true)
+  _$$_RoomListStateCopyWith<_$_RoomListState> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$RoomListStateFilter {
+  int? get memberNum => throw _privateConstructorUsedError;
+  AddressWithId? get addressWithId => throw _privateConstructorUsedError;
+  List<Tag>? get tags => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $RoomListStateFilterCopyWith<RoomListStateFilter> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $RoomListStateFilterCopyWith<$Res> {
+  factory $RoomListStateFilterCopyWith(
+          RoomListStateFilter value, $Res Function(RoomListStateFilter) then) =
+      _$RoomListStateFilterCopyWithImpl<$Res, RoomListStateFilter>;
+  @useResult
+  $Res call({int? memberNum, AddressWithId? addressWithId, List<Tag>? tags});
+
+  $AddressWithIdCopyWith<$Res>? get addressWithId;
+}
+
+/// @nodoc
+class _$RoomListStateFilterCopyWithImpl<$Res, $Val extends RoomListStateFilter>
+    implements $RoomListStateFilterCopyWith<$Res> {
+  _$RoomListStateFilterCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
     Object? memberNum = freezed,
     Object? addressWithId = freezed,
     Object? tags = freezed,
-    Object? rooms = null,
   }) {
     return _then(_value.copyWith(
       memberNum: freezed == memberNum
@@ -73,10 +221,6 @@ class _$RoomListStateCopyWithImpl<$Res, $Val extends RoomListState>
           ? _value.tags
           : tags // ignore: cast_nullable_to_non_nullable
               as List<Tag>?,
-      rooms: null == rooms
-          ? _value.rooms
-          : rooms // ignore: cast_nullable_to_non_nullable
-              as AsyncValue<List<RoomListStateItem>>,
     ) as $Val);
   }
 
@@ -94,29 +238,25 @@ class _$RoomListStateCopyWithImpl<$Res, $Val extends RoomListState>
 }
 
 /// @nodoc
-abstract class _$$_RoomListStateCopyWith<$Res>
-    implements $RoomListStateCopyWith<$Res> {
-  factory _$$_RoomListStateCopyWith(
-          _$_RoomListState value, $Res Function(_$_RoomListState) then) =
-      __$$_RoomListStateCopyWithImpl<$Res>;
+abstract class _$$_RoomListStateFilterCopyWith<$Res>
+    implements $RoomListStateFilterCopyWith<$Res> {
+  factory _$$_RoomListStateFilterCopyWith(_$_RoomListStateFilter value,
+          $Res Function(_$_RoomListStateFilter) then) =
+      __$$_RoomListStateFilterCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {int? memberNum,
-      AddressWithId? addressWithId,
-      List<Tag>? tags,
-      AsyncValue<List<RoomListStateItem>> rooms});
+  $Res call({int? memberNum, AddressWithId? addressWithId, List<Tag>? tags});
 
   @override
   $AddressWithIdCopyWith<$Res>? get addressWithId;
 }
 
 /// @nodoc
-class __$$_RoomListStateCopyWithImpl<$Res>
-    extends _$RoomListStateCopyWithImpl<$Res, _$_RoomListState>
-    implements _$$_RoomListStateCopyWith<$Res> {
-  __$$_RoomListStateCopyWithImpl(
-      _$_RoomListState _value, $Res Function(_$_RoomListState) _then)
+class __$$_RoomListStateFilterCopyWithImpl<$Res>
+    extends _$RoomListStateFilterCopyWithImpl<$Res, _$_RoomListStateFilter>
+    implements _$$_RoomListStateFilterCopyWith<$Res> {
+  __$$_RoomListStateFilterCopyWithImpl(_$_RoomListStateFilter _value,
+      $Res Function(_$_RoomListStateFilter) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -125,9 +265,8 @@ class __$$_RoomListStateCopyWithImpl<$Res>
     Object? memberNum = freezed,
     Object? addressWithId = freezed,
     Object? tags = freezed,
-    Object? rooms = null,
   }) {
-    return _then(_$_RoomListState(
+    return _then(_$_RoomListStateFilter(
       memberNum: freezed == memberNum
           ? _value.memberNum
           : memberNum // ignore: cast_nullable_to_non_nullable
@@ -140,22 +279,15 @@ class __$$_RoomListStateCopyWithImpl<$Res>
           ? _value._tags
           : tags // ignore: cast_nullable_to_non_nullable
               as List<Tag>?,
-      rooms: null == rooms
-          ? _value.rooms
-          : rooms // ignore: cast_nullable_to_non_nullable
-              as AsyncValue<List<RoomListStateItem>>,
     ));
   }
 }
 
 /// @nodoc
 
-class _$_RoomListState implements _RoomListState {
-  const _$_RoomListState(
-      {this.memberNum,
-      this.addressWithId,
-      final List<Tag>? tags,
-      this.rooms = const AsyncLoading()})
+class _$_RoomListStateFilter implements _RoomListStateFilter {
+  const _$_RoomListStateFilter(
+      {this.memberNum, this.addressWithId, final List<Tag>? tags})
       : _tags = tags;
 
   @override
@@ -173,44 +305,39 @@ class _$_RoomListState implements _RoomListState {
   }
 
   @override
-  @JsonKey()
-  final AsyncValue<List<RoomListStateItem>> rooms;
-
-  @override
   String toString() {
-    return 'RoomListState(memberNum: $memberNum, addressWithId: $addressWithId, tags: $tags, rooms: $rooms)';
+    return 'RoomListStateFilter(memberNum: $memberNum, addressWithId: $addressWithId, tags: $tags)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_RoomListState &&
+            other is _$_RoomListStateFilter &&
             (identical(other.memberNum, memberNum) ||
                 other.memberNum == memberNum) &&
             (identical(other.addressWithId, addressWithId) ||
                 other.addressWithId == addressWithId) &&
-            const DeepCollectionEquality().equals(other._tags, _tags) &&
-            (identical(other.rooms, rooms) || other.rooms == rooms));
+            const DeepCollectionEquality().equals(other._tags, _tags));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, memberNum, addressWithId,
-      const DeepCollectionEquality().hash(_tags), rooms);
+      const DeepCollectionEquality().hash(_tags));
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_RoomListStateCopyWith<_$_RoomListState> get copyWith =>
-      __$$_RoomListStateCopyWithImpl<_$_RoomListState>(this, _$identity);
+  _$$_RoomListStateFilterCopyWith<_$_RoomListStateFilter> get copyWith =>
+      __$$_RoomListStateFilterCopyWithImpl<_$_RoomListStateFilter>(
+          this, _$identity);
 }
 
-abstract class _RoomListState implements RoomListState {
-  const factory _RoomListState(
+abstract class _RoomListStateFilter implements RoomListStateFilter {
+  const factory _RoomListStateFilter(
       {final int? memberNum,
       final AddressWithId? addressWithId,
-      final List<Tag>? tags,
-      final AsyncValue<List<RoomListStateItem>> rooms}) = _$_RoomListState;
+      final List<Tag>? tags}) = _$_RoomListStateFilter;
 
   @override
   int? get memberNum;
@@ -219,28 +346,26 @@ abstract class _RoomListState implements RoomListState {
   @override
   List<Tag>? get tags;
   @override
-  AsyncValue<List<RoomListStateItem>> get rooms;
-  @override
   @JsonKey(ignore: true)
-  _$$_RoomListStateCopyWith<_$_RoomListState> get copyWith =>
+  _$$_RoomListStateFilterCopyWith<_$_RoomListStateFilter> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-mixin _$RoomListStateItem {
+mixin _$RoomListStateRoom {
   GetV1RoomsResponseRoom get data => throw _privateConstructorUsedError;
   bool get isRequested => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $RoomListStateItemCopyWith<RoomListStateItem> get copyWith =>
+  $RoomListStateRoomCopyWith<RoomListStateRoom> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $RoomListStateItemCopyWith<$Res> {
-  factory $RoomListStateItemCopyWith(
-          RoomListStateItem value, $Res Function(RoomListStateItem) then) =
-      _$RoomListStateItemCopyWithImpl<$Res, RoomListStateItem>;
+abstract class $RoomListStateRoomCopyWith<$Res> {
+  factory $RoomListStateRoomCopyWith(
+          RoomListStateRoom value, $Res Function(RoomListStateRoom) then) =
+      _$RoomListStateRoomCopyWithImpl<$Res, RoomListStateRoom>;
   @useResult
   $Res call({GetV1RoomsResponseRoom data, bool isRequested});
 
@@ -248,9 +373,9 @@ abstract class $RoomListStateItemCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$RoomListStateItemCopyWithImpl<$Res, $Val extends RoomListStateItem>
-    implements $RoomListStateItemCopyWith<$Res> {
-  _$RoomListStateItemCopyWithImpl(this._value, this._then);
+class _$RoomListStateRoomCopyWithImpl<$Res, $Val extends RoomListStateRoom>
+    implements $RoomListStateRoomCopyWith<$Res> {
+  _$RoomListStateRoomCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -285,11 +410,11 @@ class _$RoomListStateItemCopyWithImpl<$Res, $Val extends RoomListStateItem>
 }
 
 /// @nodoc
-abstract class _$$_RoomListStateItemCopyWith<$Res>
-    implements $RoomListStateItemCopyWith<$Res> {
-  factory _$$_RoomListStateItemCopyWith(_$_RoomListStateItem value,
-          $Res Function(_$_RoomListStateItem) then) =
-      __$$_RoomListStateItemCopyWithImpl<$Res>;
+abstract class _$$_RoomListItemCopyWith<$Res>
+    implements $RoomListStateRoomCopyWith<$Res> {
+  factory _$$_RoomListItemCopyWith(
+          _$_RoomListItem value, $Res Function(_$_RoomListItem) then) =
+      __$$_RoomListItemCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({GetV1RoomsResponseRoom data, bool isRequested});
@@ -299,11 +424,11 @@ abstract class _$$_RoomListStateItemCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_RoomListStateItemCopyWithImpl<$Res>
-    extends _$RoomListStateItemCopyWithImpl<$Res, _$_RoomListStateItem>
-    implements _$$_RoomListStateItemCopyWith<$Res> {
-  __$$_RoomListStateItemCopyWithImpl(
-      _$_RoomListStateItem _value, $Res Function(_$_RoomListStateItem) _then)
+class __$$_RoomListItemCopyWithImpl<$Res>
+    extends _$RoomListStateRoomCopyWithImpl<$Res, _$_RoomListItem>
+    implements _$$_RoomListItemCopyWith<$Res> {
+  __$$_RoomListItemCopyWithImpl(
+      _$_RoomListItem _value, $Res Function(_$_RoomListItem) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -312,7 +437,7 @@ class __$$_RoomListStateItemCopyWithImpl<$Res>
     Object? data = null,
     Object? isRequested = null,
   }) {
-    return _then(_$_RoomListStateItem(
+    return _then(_$_RoomListItem(
       data: null == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
@@ -327,8 +452,8 @@ class __$$_RoomListStateItemCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_RoomListStateItem implements _RoomListStateItem {
-  const _$_RoomListStateItem({required this.data, this.isRequested = false});
+class _$_RoomListItem implements _RoomListItem {
+  const _$_RoomListItem({required this.data, this.isRequested = false});
 
   @override
   final GetV1RoomsResponseRoom data;
@@ -338,14 +463,14 @@ class _$_RoomListStateItem implements _RoomListStateItem {
 
   @override
   String toString() {
-    return 'RoomListStateItem(data: $data, isRequested: $isRequested)';
+    return 'RoomListStateRoom(data: $data, isRequested: $isRequested)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_RoomListStateItem &&
+            other is _$_RoomListItem &&
             (identical(other.data, data) || other.data == data) &&
             (identical(other.isRequested, isRequested) ||
                 other.isRequested == isRequested));
@@ -357,15 +482,14 @@ class _$_RoomListStateItem implements _RoomListStateItem {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_RoomListStateItemCopyWith<_$_RoomListStateItem> get copyWith =>
-      __$$_RoomListStateItemCopyWithImpl<_$_RoomListStateItem>(
-          this, _$identity);
+  _$$_RoomListItemCopyWith<_$_RoomListItem> get copyWith =>
+      __$$_RoomListItemCopyWithImpl<_$_RoomListItem>(this, _$identity);
 }
 
-abstract class _RoomListStateItem implements RoomListStateItem {
-  const factory _RoomListStateItem(
+abstract class _RoomListItem implements RoomListStateRoom {
+  const factory _RoomListItem(
       {required final GetV1RoomsResponseRoom data,
-      final bool isRequested}) = _$_RoomListStateItem;
+      final bool isRequested}) = _$_RoomListItem;
 
   @override
   GetV1RoomsResponseRoom get data;
@@ -373,6 +497,6 @@ abstract class _RoomListStateItem implements RoomListStateItem {
   bool get isRequested;
   @override
   @JsonKey(ignore: true)
-  _$$_RoomListStateItemCopyWith<_$_RoomListStateItem> get copyWith =>
+  _$$_RoomListItemCopyWith<_$_RoomListItem> get copyWith =>
       throw _privateConstructorUsedError;
 }

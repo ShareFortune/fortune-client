@@ -26,14 +26,16 @@ class RoomListViewModel extends StateNotifier<RoomListState> {
   Future<void> initialize() async => await fetchList();
 
   changeMemberNum(int value) {
-    state = state.copyWith(memberNum: value);
+    state = state.copyWith(
+      filter: state.filter.copyWith(memberNum: value),
+    );
   }
 
   Future<void> fetchList() async {
     state = state.copyWith(
       rooms: await AsyncValue.guard(() async {
         final result = await _roomRepository.fetchList();
-        return result.map((data) => RoomListStateItem(data: data)).toList();
+        return result.map((data) => RoomListStateRoom(data: data)).toList();
       }),
     );
   }
@@ -77,7 +79,11 @@ class RoomListViewModel extends StateNotifier<RoomListState> {
     final result = await sl<AppRouter>().push(
       EntryAddressRoute(),
     ) as AddressWithId?;
-    state = state.copyWith(addressWithId: result ?? state.addressWithId);
+    state = state.copyWith(
+      filter: state.filter.copyWith(
+        addressWithId: result ?? state.filter.addressWithId,
+      ),
+    );
   }
 
   navigateToRoomDetail(String id) async {
@@ -86,8 +92,12 @@ class RoomListViewModel extends StateNotifier<RoomListState> {
 
   navigateToTagsSelection() async {
     final result = await sl<AppRouter>().push(
-      TagsSelectionRoute(beingSet: state.tags ?? List.empty()),
+      TagsSelectionRoute(beingSet: state.filter.tags ?? List.empty()),
     ) as List<Tag>?;
-    state = state.copyWith(tags: result ?? state.tags);
+    state = state.copyWith(
+      filter: state.filter.copyWith(
+        tags: result ?? state.filter.tags,
+      ),
+    );
   }
 }
