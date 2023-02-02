@@ -80,6 +80,16 @@ class $AssetsImagesGen {
       [imgRecipeNo8921, insta2, insta3, insta4, insta5, thinder, user1];
 }
 
+class $AssetsL10nGen {
+  const $AssetsL10nGen();
+
+  /// File path: assets/l10n/ja-JP.json
+  String get jaJP => 'assets/l10n/ja-JP.json';
+
+  /// List of all assets
+  List<String> get values => [jaJP];
+}
+
 class $AssetsImagesIconsGen {
   const $AssetsImagesIconsGen();
 
@@ -172,6 +182,7 @@ class Assets {
   Assets._();
 
   static const $AssetsImagesGen images = $AssetsImagesGen();
+  static const $AssetsL10nGen l10n = $AssetsL10nGen();
   static const $StubGen stub = $StubGen();
 }
 

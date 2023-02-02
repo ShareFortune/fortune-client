@@ -23,8 +23,8 @@ import 'package:fortune_client/view/pages/rooms/action/edit/edit_room_page.dart'
 import 'package:fortune_client/view/pages/rooms/participating/participating_room_list_page.dart';
 import 'package:fortune_client/view/pages/rooms/room_detail/room_detail_page.dart';
 import 'package:fortune_client/view/pages/rooms/room_list/room_list_page.dart';
-import 'package:fortune_client/view/pages/tags/create/tag_creation_page.dart';
-import 'package:fortune_client/view/pages/tags/select/tags_selection_page.dart';
+import 'package:fortune_client/view/pages/tags/create/create_tag_page.dart';
+import 'package:fortune_client/view/pages/tags/select/select_tags_page.dart';
 import 'package:fortune_client/view/pages/settings/settings_page.dart';
 import 'package:fortune_client/view/routes/route_guard.dart';
 import 'package:fortune_client/view/routes/route_path.dart';
@@ -141,11 +141,11 @@ export 'app_router.gr.dart';
     /// 設定
     AutoRoute(path: RoutePath.setting, page: SettingsPage),
 
-    /// タグ選択
-    AutoRoute(path: RoutePath.tagSelection, page: TagsSelectionPage),
-
     /// タグ作成
-    AutoRoute(path: RoutePath.tagCreation, page: TagCreationPage),
+    AutoRoute(path: RoutePath.createTag, page: CreateTagPage),
+
+    /// タグ選択
+    AutoRoute(path: RoutePath.selectTag, page: SelectTagsPage),
 
     /// 説明入力
     AutoRoute(path: RoutePath.entryDescription, page: EntryDescriptionPage),

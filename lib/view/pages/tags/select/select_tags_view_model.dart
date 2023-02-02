@@ -1,17 +1,17 @@
 import 'package:fortune_client/data/model/base/tag/tag.dart';
 import 'package:fortune_client/data/repository/tags/tags_repository.dart';
 import 'package:fortune_client/injector.dart';
-import 'package:fortune_client/view/pages/tags/select/tags_selection_state.dart';
+import 'package:fortune_client/view/pages/tags/select/select_tags_state.dart';
 import 'package:fortune_client/view/routes/app_router.gr.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-final tagsSelectionViewModelProvider = StateNotifierProvider.autoDispose
-    .family<TagsSelectionViewModel, TagsSelectionState, List<Tag>>(
-  (ref, beingSet) => TagsSelectionViewModel(sl())..initialize(beingSet),
+final selectTagsViewModelProvider = StateNotifierProvider.autoDispose
+    .family<SelectTagsViewModel, SelectTagsState, List<Tag>>(
+  (ref, beingSet) => SelectTagsViewModel(sl())..initialize(beingSet),
 );
 
-class TagsSelectionViewModel extends StateNotifier<TagsSelectionState> {
-  TagsSelectionViewModel(this._repository) : super(const TagsSelectionState());
+class SelectTagsViewModel extends StateNotifier<SelectTagsState> {
+  SelectTagsViewModel(this._repository) : super(const SelectTagsState());
 
   final TagsRepository _repository;
 
@@ -64,7 +64,7 @@ class TagsSelectionViewModel extends StateNotifier<TagsSelectionState> {
   }
 
   navigateToTagCreation() async {
-    final tag = await sl<AppRouter>().push(TagCreationRoute()) as Tag?;
+    final tag = await sl<AppRouter>().push(CreateTagRoute()) as Tag?;
     if (tag != null) {
       state = state.copyWith(
         beingSet: [...state.beingSet, TagState(data: tag, isSelected: true)],

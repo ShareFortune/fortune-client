@@ -1,17 +1,17 @@
 import 'package:fortune_client/data/model/base/tag/tag.dart';
 import 'package:fortune_client/data/repository/tags/tags_repository.dart';
 import 'package:fortune_client/injector.dart';
-import 'package:fortune_client/view/pages/tags/create/tag_creation_state.dart';
+import 'package:fortune_client/view/pages/tags/create/create_tag_state.dart';
 import 'package:fortune_client/view/routes/app_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-final tagCreationViewModelProvider =
-    StateNotifierProvider<TagCreationViewModel, TagCreationState>(
-  (_) => TagCreationViewModel(sl()),
+final createTagViewModelProvider =
+    StateNotifierProvider<CreateTagViewModel, CreateTagState>(
+  (_) => CreateTagViewModel(sl()),
 );
 
-class TagCreationViewModel extends StateNotifier<TagCreationState> {
-  TagCreationViewModel(this._tagsRepository) : super(const TagCreationState());
+class CreateTagViewModel extends StateNotifier<CreateTagState> {
+  CreateTagViewModel(this._tagsRepository) : super(const CreateTagState());
 
   final TagsRepository _tagsRepository;
 

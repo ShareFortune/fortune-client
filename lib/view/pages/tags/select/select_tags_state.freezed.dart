@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'tags_selection_state.dart';
+part of 'select_tags_state.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$TagsSelectionState {
+mixin _$SelectTagsState {
   AsyncValue<List<TagState>> get recommendation =>
       throw _privateConstructorUsedError;
   List<TagState> get beingSet => throw _privateConstructorUsedError;
@@ -23,15 +23,15 @@ mixin _$TagsSelectionState {
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $TagsSelectionStateCopyWith<TagsSelectionState> get copyWith =>
+  $SelectTagsStateCopyWith<SelectTagsState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $TagsSelectionStateCopyWith<$Res> {
-  factory $TagsSelectionStateCopyWith(
-          TagsSelectionState value, $Res Function(TagsSelectionState) then) =
-      _$TagsSelectionStateCopyWithImpl<$Res, TagsSelectionState>;
+abstract class $SelectTagsStateCopyWith<$Res> {
+  factory $SelectTagsStateCopyWith(
+          SelectTagsState value, $Res Function(SelectTagsState) then) =
+      _$SelectTagsStateCopyWithImpl<$Res, SelectTagsState>;
   @useResult
   $Res call(
       {AsyncValue<List<TagState>> recommendation,
@@ -40,9 +40,9 @@ abstract class $TagsSelectionStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$TagsSelectionStateCopyWithImpl<$Res, $Val extends TagsSelectionState>
-    implements $TagsSelectionStateCopyWith<$Res> {
-  _$TagsSelectionStateCopyWithImpl(this._value, this._then);
+class _$SelectTagsStateCopyWithImpl<$Res, $Val extends SelectTagsState>
+    implements $SelectTagsStateCopyWith<$Res> {
+  _$SelectTagsStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -74,11 +74,11 @@ class _$TagsSelectionStateCopyWithImpl<$Res, $Val extends TagsSelectionState>
 }
 
 /// @nodoc
-abstract class _$$_TagsSelectionStateCopyWith<$Res>
-    implements $TagsSelectionStateCopyWith<$Res> {
-  factory _$$_TagsSelectionStateCopyWith(_$_TagsSelectionState value,
-          $Res Function(_$_TagsSelectionState) then) =
-      __$$_TagsSelectionStateCopyWithImpl<$Res>;
+abstract class _$$_SelectTagsStateCopyWith<$Res>
+    implements $SelectTagsStateCopyWith<$Res> {
+  factory _$$_SelectTagsStateCopyWith(
+          _$_SelectTagsState value, $Res Function(_$_SelectTagsState) then) =
+      __$$_SelectTagsStateCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -88,11 +88,11 @@ abstract class _$$_TagsSelectionStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_TagsSelectionStateCopyWithImpl<$Res>
-    extends _$TagsSelectionStateCopyWithImpl<$Res, _$_TagsSelectionState>
-    implements _$$_TagsSelectionStateCopyWith<$Res> {
-  __$$_TagsSelectionStateCopyWithImpl(
-      _$_TagsSelectionState _value, $Res Function(_$_TagsSelectionState) _then)
+class __$$_SelectTagsStateCopyWithImpl<$Res>
+    extends _$SelectTagsStateCopyWithImpl<$Res, _$_SelectTagsState>
+    implements _$$_SelectTagsStateCopyWith<$Res> {
+  __$$_SelectTagsStateCopyWithImpl(
+      _$_SelectTagsState _value, $Res Function(_$_SelectTagsState) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -102,7 +102,7 @@ class __$$_TagsSelectionStateCopyWithImpl<$Res>
     Object? beingSet = null,
     Object? searchResult = null,
   }) {
-    return _then(_$_TagsSelectionState(
+    return _then(_$_SelectTagsState(
       recommendation: null == recommendation
           ? _value.recommendation
           : recommendation // ignore: cast_nullable_to_non_nullable
@@ -121,8 +121,8 @@ class __$$_TagsSelectionStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_TagsSelectionState implements _TagsSelectionState {
-  const _$_TagsSelectionState(
+class _$_SelectTagsState implements _SelectTagsState {
+  const _$_SelectTagsState(
       {this.recommendation = const AsyncValue.loading(),
       final List<TagState> beingSet = const [],
       this.searchResult = const AsyncValue.loading()})
@@ -146,14 +146,14 @@ class _$_TagsSelectionState implements _TagsSelectionState {
 
   @override
   String toString() {
-    return 'TagsSelectionState(recommendation: $recommendation, beingSet: $beingSet, searchResult: $searchResult)';
+    return 'SelectTagsState(recommendation: $recommendation, beingSet: $beingSet, searchResult: $searchResult)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_TagsSelectionState &&
+            other is _$_SelectTagsState &&
             (identical(other.recommendation, recommendation) ||
                 other.recommendation == recommendation) &&
             const DeepCollectionEquality().equals(other._beingSet, _beingSet) &&
@@ -168,16 +168,15 @@ class _$_TagsSelectionState implements _TagsSelectionState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_TagsSelectionStateCopyWith<_$_TagsSelectionState> get copyWith =>
-      __$$_TagsSelectionStateCopyWithImpl<_$_TagsSelectionState>(
-          this, _$identity);
+  _$$_SelectTagsStateCopyWith<_$_SelectTagsState> get copyWith =>
+      __$$_SelectTagsStateCopyWithImpl<_$_SelectTagsState>(this, _$identity);
 }
 
-abstract class _TagsSelectionState implements TagsSelectionState {
-  const factory _TagsSelectionState(
+abstract class _SelectTagsState implements SelectTagsState {
+  const factory _SelectTagsState(
       {final AsyncValue<List<TagState>> recommendation,
       final List<TagState> beingSet,
-      final AsyncValue<List<TagState>> searchResult}) = _$_TagsSelectionState;
+      final AsyncValue<List<TagState>> searchResult}) = _$_SelectTagsState;
 
   @override
   AsyncValue<List<TagState>> get recommendation;
@@ -187,7 +186,7 @@ abstract class _TagsSelectionState implements TagsSelectionState {
   AsyncValue<List<TagState>> get searchResult;
   @override
   @JsonKey(ignore: true)
-  _$$_TagsSelectionStateCopyWith<_$_TagsSelectionState> get copyWith =>
+  _$$_SelectTagsStateCopyWith<_$_SelectTagsState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

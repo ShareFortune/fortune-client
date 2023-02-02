@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fortune_client/data/model/base/tag/tag.dart';
 import 'package:fortune_client/view/pages/tags/select/components/tag_text_field.dart';
 import 'package:fortune_client/view/pages/tags/select/components/tags_wraper.dart';
-import 'package:fortune_client/view/pages/tags/select/tags_selection_view_model.dart';
+import 'package:fortune_client/view/pages/tags/select/select_tags_view_model.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/app_bar/back_app_bar.dart';
@@ -13,8 +13,8 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final isDisplaySearchResultsProvider = StateProvider((_) => false);
 
-class TagsSelectionPage extends HookConsumerWidget {
-  TagsSelectionPage(this.beingSet, {super.key});
+class SelectTagsPage extends HookConsumerWidget {
+  SelectTagsPage(this.beingSet, {super.key});
 
   final List<Tag> beingSet;
   final controller = TextEditingController();
@@ -22,9 +22,8 @@ class TagsSelectionPage extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = ref.watch(appThemeProvider);
-    final state = ref.watch(tagsSelectionViewModelProvider(beingSet));
-    final viewModel =
-        ref.watch(tagsSelectionViewModelProvider(beingSet).notifier);
+    final state = ref.watch(selectTagsViewModelProvider(beingSet));
+    final viewModel = ref.watch(selectTagsViewModelProvider(beingSet).notifier);
 
     /// 表示データ
     final isDisplaySearchResults = ref.watch(isDisplaySearchResultsProvider);

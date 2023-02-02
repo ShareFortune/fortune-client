@@ -102,7 +102,7 @@ class RoomListViewModel extends StateNotifier<RoomListState> {
   /// タグ検索ページへ遷移
   Future<List<Tag>?> navigateToTagsSelection() async {
     return await sl<AppRouter>().push(
-      TagsSelectionRoute(beingSet: state.filter.tags ?? List.empty()),
+      SelectTagsRoute(beingSet: state.filter.tags ?? List.empty()),
     ) as List<Tag>?;
   }
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fortune_client/view/pages/tags/create/components/tag_creation_text_field.dart';
 import 'package:fortune_client/view/pages/tags/create/components/tag_creation_transition_tile.dart';
-import 'package:fortune_client/view/pages/tags/create/tag_creation_view_model.dart';
+import 'package:fortune_client/view/pages/tags/create/create_tag_view_model.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/app_bar/back_app_bar.dart';
@@ -9,16 +9,16 @@ import 'package:fortune_client/view/widgets/dialog/toast.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class TagCreationPage extends HookConsumerWidget {
-  TagCreationPage({super.key});
+class CreateTagPage extends HookConsumerWidget {
+  CreateTagPage({super.key});
 
   final tagNameController = TextEditingController();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = ref.watch(appThemeProvider);
-    final state = ref.watch(tagCreationViewModelProvider);
-    final viewModel = ref.watch(tagCreationViewModelProvider.notifier);
+    final state = ref.watch(createTagViewModelProvider);
+    final viewModel = ref.watch(createTagViewModelProvider.notifier);
 
     ///
     /// タグネーム

@@ -52,7 +52,7 @@ class MyPageViewModel extends StateNotifier<AsyncValue<MyPageState>> {
 
     /// タグ取得
     final result = await sl<AppRouter>().push(
-      TagsSelectionRoute(beingSet: data.tags ?? List.empty()),
+      SelectTagsRoute(beingSet: data.tags ?? List.empty()),
     ) as List<Tag>?;
 
     /// 更新

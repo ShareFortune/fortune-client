@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fortune_client/view/pages/tags/select/tags_selection_state.dart';
+import 'package:fortune_client/view/pages/tags/select/select_tags_state.dart';
 import 'package:fortune_client/view/widgets/other/tag_widget.dart';
 
 class TagsWraper extends StatelessWidget {

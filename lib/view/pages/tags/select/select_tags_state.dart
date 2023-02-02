@@ -2,15 +2,15 @@ import 'package:fortune_client/data/model/base/tag/tag.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-part 'tags_selection_state.freezed.dart';
+part 'select_tags_state.freezed.dart';
 
 @freezed
-class TagsSelectionState with _$TagsSelectionState {
-  const factory TagsSelectionState({
+class SelectTagsState with _$SelectTagsState {
+  const factory SelectTagsState({
     @Default(AsyncValue.loading()) AsyncValue<List<TagState>> recommendation,
     @Default([]) List<TagState> beingSet,
     @Default(AsyncValue.loading()) AsyncValue<List<TagState>> searchResult,
-  }) = _TagsSelectionState;
+  }) = _SelectTagsState;
 }
 
 @freezed
