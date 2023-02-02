@@ -37,22 +37,17 @@ class RoomListPage extends HookConsumerWidget {
         slivers: [
           ScrollAppBar(
             title: "見つける",
-            onTapTitle: () {
-              RoomsFilterBottomSheet.show(context, state.filter);
+            onTapTitle: () async {
+              viewModel.changeFilter(
+                await RoomsFilterBottomSheet.show(
+                  context,
+                  filter: state.filter,
+                  onSelectAddress: viewModel.navigateToEntryAddress,
+                  onSelectTags: viewModel.navigateToTagsSelection,
+                ),
+              );
             },
           ),
-          // SliverToBoxAdapter(
-          //   child: Container(
-          //     padding: const EdgeInsets.symmetric(horizontal: 20),
-          //     child: Column(
-          //       children: [
-          //         membersNumSearchTile,
-          //         addressesSearchTile,
-          //         tagsSearchTile,
-          //       ],
-          //     ),
-          //   ),
-          // ),
           SliverPadding(
             padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
             sliver: roomListViewAsync,

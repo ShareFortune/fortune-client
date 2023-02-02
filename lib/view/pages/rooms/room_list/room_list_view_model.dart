@@ -25,12 +25,6 @@ class RoomListViewModel extends StateNotifier<RoomListState> {
 
   Future<void> initialize() async => await fetchList();
 
-  changeMemberNum(int value) {
-    state = state.copyWith(
-      filter: state.filter.copyWith(memberNum: value),
-    );
-  }
-
   Future<void> fetchList() async {
     state = state.copyWith(
       rooms: await AsyncValue.guard(() async {
@@ -40,6 +34,7 @@ class RoomListViewModel extends StateNotifier<RoomListState> {
     );
   }
 
+  /// 参加申請
   Future<bool> sendJoinRequest(String roomId) async {
     if (!await _joinRequestsRepository.request(roomId)) return false;
     final data = state.rooms.value!;
@@ -75,29 +70,40 @@ class RoomListViewModel extends StateNotifier<RoomListState> {
     return true;
   }
 
-  navigateToEntryAddress() async {
-    final result = await sl<AppRouter>().push(
+  /// フィルター更新
+  changeFilter(RoomListStateFilter? filter) async {
+    if (filter != null) {
+      state = state.copyWith(
+        filter: filter,
+        rooms: const AsyncValue.loading(),
+      );
+      await fetchList();
+    }
+  }
+
+  Future<AddressWithId?> navigateToEntryAddress() async {
+    return await sl<AppRouter>().push(
       EntryAddressRoute(),
     ) as AddressWithId?;
-    state = state.copyWith(
-      filter: state.filter.copyWith(
-        addressWithId: result ?? state.filter.addressWithId,
-      ),
-    );
+    // state = state.copyWith(
+    //   filter: state.filter.copyWith(
+    //     addressWithId: result ?? state.filter.addressWithId,
+    //   ),
+    // );
+  }
+
+  Future<List<Tag>?> navigateToTagsSelection() async {
+    return await sl<AppRouter>().push(
+      TagsSelectionRoute(beingSet: state.filter.tags ?? List.empty()),
+    ) as List<Tag>?;
+    // state = state.copyWith(
+    //   filter: state.filter.copyWith(
+    //     tags: result ?? state.filter.tags,
+    //   ),
+    // );
   }
 
   navigateToRoomDetail(String id) async {
     await sl<AppRouter>().push(RoomDetailRoute(roomId: id));
-  }
-
-  navigateToTagsSelection() async {
-    final result = await sl<AppRouter>().push(
-      TagsSelectionRoute(beingSet: state.filter.tags ?? List.empty()),
-    ) as List<Tag>?;
-    state = state.copyWith(
-      filter: state.filter.copyWith(
-        tags: result ?? state.filter.tags,
-      ),
-    );
   }
 }

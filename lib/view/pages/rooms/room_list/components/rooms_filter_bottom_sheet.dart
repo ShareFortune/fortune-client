@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:fortune_client/data/model/base/address_with_id/address_with_id.dart';
+import 'package:fortune_client/data/model/base/tag/tag.dart';
 import 'package:fortune_client/view/pages/rooms/room_list/components/rooms_filter_expanded_tile.dart';
 import 'package:fortune_client/view/pages/rooms/room_list/components/rooms_filter_tile.dart';
 import 'package:fortune_client/view/pages/rooms/room_list/room_list_state.dart';
@@ -10,22 +12,34 @@ class RoomsFilterBottomSheet extends StatefulHookConsumerWidget {
   const RoomsFilterBottomSheet({
     Key? key,
     required this.filter,
+    required this.onSelectAddress,
+    required this.onSelectTags,
   }) : super(key: key);
 
   /// 設定中のフィルター
   final RoomListStateFilter filter;
 
-  static Future<void> show(
-    BuildContext context,
-    RoomListStateFilter filter,
-  ) {
-    return showModalBottomSheet<void>(
+  /// 開催地検索
+  final Future<AddressWithId?> Function() onSelectAddress;
+
+  /// タグ検索
+  final Future<List<Tag>?> Function() onSelectTags;
+
+  static Future<RoomListStateFilter?> show(
+    BuildContext context, {
+    required RoomListStateFilter filter,
+    required Future<AddressWithId?> Function() onSelectAddress,
+    required Future<List<Tag>?> Function() onSelectTags,
+  }) {
+    return showModalBottomSheet<RoomListStateFilter?>(
       context: context,
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
       builder: (context) {
         return RoomsFilterBottomSheet(
           filter: filter,
+          onSelectAddress: onSelectAddress,
+          onSelectTags: onSelectTags,
         );
       },
     );
@@ -107,7 +121,14 @@ class _RoomsFilterBottomSheetState
                           RoomsFilterTile(
                             title: "場所",
                             value: filter.addressWithId?.text,
-                            onTap: () {},
+                            onTap: () async {
+                              final address = await widget.onSelectAddress();
+                              setState(() {
+                                filter = filter.copyWith(
+                                  addressWithId: address,
+                                );
+                              });
+                            },
                           ),
 
                           /// タグ検索
@@ -117,7 +138,12 @@ class _RoomsFilterBottomSheetState
                                 ?.map((e) => e.name)
                                 .toList()
                                 .join("、"),
-                            onTap: () {},
+                            onTap: () async {
+                              final tags = await widget.onSelectTags();
+                              setState(() {
+                                filter = filter.copyWith(tags: tags);
+                              });
+                            },
                           ),
                         ],
                       ),
@@ -132,7 +158,7 @@ class _RoomsFilterBottomSheetState
                 child: BaseButton(
                   theme: theme,
                   title: "この条件で探す",
-                  onPressed: () {},
+                  onPressed: () => Navigator.pop(context, filter),
                 ),
               ),
             ],
