@@ -19,7 +19,7 @@ class ParticipatingRoomListPage extends HookConsumerWidget {
 
     return CustomScrollView(
       slivers: [
-        const ScrollAppBar(title: "参加する", isBorder: true),
+        const ScrollAppBar(title: "参加する"),
         SliverToBoxAdapter(
           child: ParticipatingRoomListFilter(
             theme: theme,

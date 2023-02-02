@@ -91,6 +91,10 @@ class $AssetsImagesIconsGen {
   SvgGenImage get iconApple =>
       const SvgGenImage('assets/images/icons/icon_apple.svg');
 
+  /// File path: assets/images/icons/icon_arrow_drop_down.svg
+  SvgGenImage get iconArrowDropDown =>
+      const SvgGenImage('assets/images/icons/icon_arrow_drop_down.svg');
+
   /// File path: assets/images/icons/icon_arrow_right.svg
   SvgGenImage get iconArrowRight =>
       const SvgGenImage('assets/images/icons/icon_arrow_right.svg');
@@ -143,6 +147,7 @@ class $AssetsImagesIconsGen {
   List<SvgGenImage> get values => [
         iconAdd,
         iconApple,
+        iconArrowDropDown,
         iconArrowRight,
         iconDelete,
         iconEdit,

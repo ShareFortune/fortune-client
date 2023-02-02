@@ -1,17 +1,20 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:flutter/material.dart';
+import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/view/pages/common/scroll_app_bar/scroll_app_bar.dart';
 import 'package:fortune_client/view/pages/rooms/room_list/components/room_list_card.dart';
 import 'package:fortune_client/view/pages/rooms/room_list/components/rooms_filter_expanded_tile.dart';
 import 'package:fortune_client/view/pages/rooms/room_list/components/rooms_filter_tile.dart';
 import 'package:fortune_client/view/pages/rooms/room_list/room_list_state.dart';
 import 'package:fortune_client/view/pages/rooms/room_list/room_list_view_model.dart';
+import 'package:fortune_client/view/routes/app_router.gr.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/dialog/toast.dart';
 import 'package:fortune_client/view/widgets/other/list_animation.dart';
 import 'package:fortune_client/view/widgets/other/error_widget.dart';
 import 'package:fortune_client/view/widgets/other/loading_widget.dart';
+import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class RoomListPage extends HookConsumerWidget {
@@ -61,7 +64,31 @@ class RoomListPage extends HookConsumerWidget {
       color: theme.appColors.onBackground,
       child: CustomScrollView(
         slivers: [
-          const ScrollAppBar(title: "見つける", isBorder: false),
+          ScrollAppBar(
+            title: "見つける",
+            onTapTitle: () {
+              sl<AppRouter>().push(
+                BottomSheetRouter(children: [
+                  SaveData(
+                    title: "条件を設定",
+                    content: Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          const Gap(30),
+                          membersNumSearchTile,
+                          addressesSearchTile,
+                          tagsSearchTile,
+                          const Gap(80),
+                        ],
+                      ),
+                    ),
+                  ),
+                ]),
+              );
+            },
+          ),
           SliverToBoxAdapter(
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 20),
