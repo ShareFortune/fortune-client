@@ -74,7 +74,7 @@ class DebugPage extends HookConsumerWidget {
                 'タグ作成',
                 showTrailing: true,
                 onTap: () {
-                  sl<AppRouter>().push(TagCreationRoute());
+                  sl<AppRouter>().push(CreateTagRoute());
                 },
               ),
             ],

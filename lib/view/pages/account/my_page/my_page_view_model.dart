@@ -1,4 +1,4 @@
-import 'package:fortune_client/data/model/tag/tag.dart';
+import 'package:fortune_client/data/model/base/tag/tag.dart';
 import 'package:fortune_client/data/repository/profile/profile_repository.dart';
 import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/view/pages/account/my_page/my_page_state.dart';
@@ -52,7 +52,7 @@ class MyPageViewModel extends StateNotifier<AsyncValue<MyPageState>> {
 
     /// タグ取得
     final result = await sl<AppRouter>().push(
-      TagsSelectionRoute(beingSet: data.tags ?? List.empty()),
+      SelectTagsRoute(beingSet: data.tags ?? List.empty()),
     ) as List<Tag>?;
 
     /// 更新

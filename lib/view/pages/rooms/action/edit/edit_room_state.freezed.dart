@@ -18,7 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$EditRoomState {
   String? get title => throw _privateConstructorUsedError;
   List<Tag>? get tags => throw _privateConstructorUsedError;
-  Address? get address => throw _privateConstructorUsedError;
+  AddressWithId? get addressWithId => throw _privateConstructorUsedError;
   int? get membersNum => throw _privateConstructorUsedError;
   AgeGroup? get ageGroup => throw _privateConstructorUsedError;
   String? get explanation => throw _privateConstructorUsedError;
@@ -37,12 +37,12 @@ abstract class $EditRoomStateCopyWith<$Res> {
   $Res call(
       {String? title,
       List<Tag>? tags,
-      Address? address,
+      AddressWithId? addressWithId,
       int? membersNum,
       AgeGroup? ageGroup,
       String? explanation});
 
-  $AddressCopyWith<$Res>? get address;
+  $AddressWithIdCopyWith<$Res>? get addressWithId;
 }
 
 /// @nodoc
@@ -60,7 +60,7 @@ class _$EditRoomStateCopyWithImpl<$Res, $Val extends EditRoomState>
   $Res call({
     Object? title = freezed,
     Object? tags = freezed,
-    Object? address = freezed,
+    Object? addressWithId = freezed,
     Object? membersNum = freezed,
     Object? ageGroup = freezed,
     Object? explanation = freezed,
@@ -74,10 +74,10 @@ class _$EditRoomStateCopyWithImpl<$Res, $Val extends EditRoomState>
           ? _value.tags
           : tags // ignore: cast_nullable_to_non_nullable
               as List<Tag>?,
-      address: freezed == address
-          ? _value.address
-          : address // ignore: cast_nullable_to_non_nullable
-              as Address?,
+      addressWithId: freezed == addressWithId
+          ? _value.addressWithId
+          : addressWithId // ignore: cast_nullable_to_non_nullable
+              as AddressWithId?,
       membersNum: freezed == membersNum
           ? _value.membersNum
           : membersNum // ignore: cast_nullable_to_non_nullable
@@ -95,13 +95,13 @@ class _$EditRoomStateCopyWithImpl<$Res, $Val extends EditRoomState>
 
   @override
   @pragma('vm:prefer-inline')
-  $AddressCopyWith<$Res>? get address {
-    if (_value.address == null) {
+  $AddressWithIdCopyWith<$Res>? get addressWithId {
+    if (_value.addressWithId == null) {
       return null;
     }
 
-    return $AddressCopyWith<$Res>(_value.address!, (value) {
-      return _then(_value.copyWith(address: value) as $Val);
+    return $AddressWithIdCopyWith<$Res>(_value.addressWithId!, (value) {
+      return _then(_value.copyWith(addressWithId: value) as $Val);
     });
   }
 }
@@ -117,13 +117,13 @@ abstract class _$$_EditRoomStateCopyWith<$Res>
   $Res call(
       {String? title,
       List<Tag>? tags,
-      Address? address,
+      AddressWithId? addressWithId,
       int? membersNum,
       AgeGroup? ageGroup,
       String? explanation});
 
   @override
-  $AddressCopyWith<$Res>? get address;
+  $AddressWithIdCopyWith<$Res>? get addressWithId;
 }
 
 /// @nodoc
@@ -139,7 +139,7 @@ class __$$_EditRoomStateCopyWithImpl<$Res>
   $Res call({
     Object? title = freezed,
     Object? tags = freezed,
-    Object? address = freezed,
+    Object? addressWithId = freezed,
     Object? membersNum = freezed,
     Object? ageGroup = freezed,
     Object? explanation = freezed,
@@ -153,10 +153,10 @@ class __$$_EditRoomStateCopyWithImpl<$Res>
           ? _value._tags
           : tags // ignore: cast_nullable_to_non_nullable
               as List<Tag>?,
-      address: freezed == address
-          ? _value.address
-          : address // ignore: cast_nullable_to_non_nullable
-              as Address?,
+      addressWithId: freezed == addressWithId
+          ? _value.addressWithId
+          : addressWithId // ignore: cast_nullable_to_non_nullable
+              as AddressWithId?,
       membersNum: freezed == membersNum
           ? _value.membersNum
           : membersNum // ignore: cast_nullable_to_non_nullable
@@ -179,7 +179,7 @@ class _$_EditRoomState implements _EditRoomState {
   const _$_EditRoomState(
       {this.title,
       final List<Tag>? tags,
-      this.address,
+      this.addressWithId,
       this.membersNum,
       this.ageGroup,
       this.explanation})
@@ -198,7 +198,7 @@ class _$_EditRoomState implements _EditRoomState {
   }
 
   @override
-  final Address? address;
+  final AddressWithId? addressWithId;
   @override
   final int? membersNum;
   @override
@@ -208,7 +208,7 @@ class _$_EditRoomState implements _EditRoomState {
 
   @override
   String toString() {
-    return 'EditRoomState(title: $title, tags: $tags, address: $address, membersNum: $membersNum, ageGroup: $ageGroup, explanation: $explanation)';
+    return 'EditRoomState(title: $title, tags: $tags, addressWithId: $addressWithId, membersNum: $membersNum, ageGroup: $ageGroup, explanation: $explanation)';
   }
 
   @override
@@ -218,7 +218,8 @@ class _$_EditRoomState implements _EditRoomState {
             other is _$_EditRoomState &&
             (identical(other.title, title) || other.title == title) &&
             const DeepCollectionEquality().equals(other._tags, _tags) &&
-            (identical(other.address, address) || other.address == address) &&
+            (identical(other.addressWithId, addressWithId) ||
+                other.addressWithId == addressWithId) &&
             (identical(other.membersNum, membersNum) ||
                 other.membersNum == membersNum) &&
             (identical(other.ageGroup, ageGroup) ||
@@ -232,7 +233,7 @@ class _$_EditRoomState implements _EditRoomState {
       runtimeType,
       title,
       const DeepCollectionEquality().hash(_tags),
-      address,
+      addressWithId,
       membersNum,
       ageGroup,
       explanation);
@@ -248,7 +249,7 @@ abstract class _EditRoomState implements EditRoomState {
   const factory _EditRoomState(
       {final String? title,
       final List<Tag>? tags,
-      final Address? address,
+      final AddressWithId? addressWithId,
       final int? membersNum,
       final AgeGroup? ageGroup,
       final String? explanation}) = _$_EditRoomState;
@@ -258,7 +259,7 @@ abstract class _EditRoomState implements EditRoomState {
   @override
   List<Tag>? get tags;
   @override
-  Address? get address;
+  AddressWithId? get addressWithId;
   @override
   int? get membersNum;
   @override

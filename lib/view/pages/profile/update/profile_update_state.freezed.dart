@@ -20,7 +20,7 @@ mixin _$ProfileUpdateState {
   int? get stature => throw _privateConstructorUsedError;
 
   /// 居住地
-  Address? get address => throw _privateConstructorUsedError;
+  AddressWithId? get addressWithId => throw _privateConstructorUsedError;
 
   /// お酒
   DrinkFrequency? get drinkFrequency => throw _privateConstructorUsedError;
@@ -42,11 +42,11 @@ abstract class $ProfileUpdateStateCopyWith<$Res> {
   @useResult
   $Res call(
       {int? stature,
-      Address? address,
+      AddressWithId? addressWithId,
       DrinkFrequency? drinkFrequency,
       CigaretteFrequency? cigaretteFrequency});
 
-  $AddressCopyWith<$Res>? get address;
+  $AddressWithIdCopyWith<$Res>? get addressWithId;
 }
 
 /// @nodoc
@@ -63,7 +63,7 @@ class _$ProfileUpdateStateCopyWithImpl<$Res, $Val extends ProfileUpdateState>
   @override
   $Res call({
     Object? stature = freezed,
-    Object? address = freezed,
+    Object? addressWithId = freezed,
     Object? drinkFrequency = freezed,
     Object? cigaretteFrequency = freezed,
   }) {
@@ -72,10 +72,10 @@ class _$ProfileUpdateStateCopyWithImpl<$Res, $Val extends ProfileUpdateState>
           ? _value.stature
           : stature // ignore: cast_nullable_to_non_nullable
               as int?,
-      address: freezed == address
-          ? _value.address
-          : address // ignore: cast_nullable_to_non_nullable
-              as Address?,
+      addressWithId: freezed == addressWithId
+          ? _value.addressWithId
+          : addressWithId // ignore: cast_nullable_to_non_nullable
+              as AddressWithId?,
       drinkFrequency: freezed == drinkFrequency
           ? _value.drinkFrequency
           : drinkFrequency // ignore: cast_nullable_to_non_nullable
@@ -89,13 +89,13 @@ class _$ProfileUpdateStateCopyWithImpl<$Res, $Val extends ProfileUpdateState>
 
   @override
   @pragma('vm:prefer-inline')
-  $AddressCopyWith<$Res>? get address {
-    if (_value.address == null) {
+  $AddressWithIdCopyWith<$Res>? get addressWithId {
+    if (_value.addressWithId == null) {
       return null;
     }
 
-    return $AddressCopyWith<$Res>(_value.address!, (value) {
-      return _then(_value.copyWith(address: value) as $Val);
+    return $AddressWithIdCopyWith<$Res>(_value.addressWithId!, (value) {
+      return _then(_value.copyWith(addressWithId: value) as $Val);
     });
   }
 }
@@ -110,12 +110,12 @@ abstract class _$$_ProfileUpdateStateCopyWith<$Res>
   @useResult
   $Res call(
       {int? stature,
-      Address? address,
+      AddressWithId? addressWithId,
       DrinkFrequency? drinkFrequency,
       CigaretteFrequency? cigaretteFrequency});
 
   @override
-  $AddressCopyWith<$Res>? get address;
+  $AddressWithIdCopyWith<$Res>? get addressWithId;
 }
 
 /// @nodoc
@@ -130,7 +130,7 @@ class __$$_ProfileUpdateStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? stature = freezed,
-    Object? address = freezed,
+    Object? addressWithId = freezed,
     Object? drinkFrequency = freezed,
     Object? cigaretteFrequency = freezed,
   }) {
@@ -139,10 +139,10 @@ class __$$_ProfileUpdateStateCopyWithImpl<$Res>
           ? _value.stature
           : stature // ignore: cast_nullable_to_non_nullable
               as int?,
-      address: freezed == address
-          ? _value.address
-          : address // ignore: cast_nullable_to_non_nullable
-              as Address?,
+      addressWithId: freezed == addressWithId
+          ? _value.addressWithId
+          : addressWithId // ignore: cast_nullable_to_non_nullable
+              as AddressWithId?,
       drinkFrequency: freezed == drinkFrequency
           ? _value.drinkFrequency
           : drinkFrequency // ignore: cast_nullable_to_non_nullable
@@ -160,7 +160,7 @@ class __$$_ProfileUpdateStateCopyWithImpl<$Res>
 class _$_ProfileUpdateState implements _ProfileUpdateState {
   const _$_ProfileUpdateState(
       {this.stature,
-      this.address,
+      this.addressWithId,
       this.drinkFrequency,
       this.cigaretteFrequency});
 
@@ -170,7 +170,7 @@ class _$_ProfileUpdateState implements _ProfileUpdateState {
 
   /// 居住地
   @override
-  final Address? address;
+  final AddressWithId? addressWithId;
 
   /// お酒
   @override
@@ -182,7 +182,7 @@ class _$_ProfileUpdateState implements _ProfileUpdateState {
 
   @override
   String toString() {
-    return 'ProfileUpdateState(stature: $stature, address: $address, drinkFrequency: $drinkFrequency, cigaretteFrequency: $cigaretteFrequency)';
+    return 'ProfileUpdateState(stature: $stature, addressWithId: $addressWithId, drinkFrequency: $drinkFrequency, cigaretteFrequency: $cigaretteFrequency)';
   }
 
   @override
@@ -191,7 +191,8 @@ class _$_ProfileUpdateState implements _ProfileUpdateState {
         (other.runtimeType == runtimeType &&
             other is _$_ProfileUpdateState &&
             (identical(other.stature, stature) || other.stature == stature) &&
-            (identical(other.address, address) || other.address == address) &&
+            (identical(other.addressWithId, addressWithId) ||
+                other.addressWithId == addressWithId) &&
             (identical(other.drinkFrequency, drinkFrequency) ||
                 other.drinkFrequency == drinkFrequency) &&
             (identical(other.cigaretteFrequency, cigaretteFrequency) ||
@@ -200,7 +201,7 @@ class _$_ProfileUpdateState implements _ProfileUpdateState {
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, stature, address, drinkFrequency, cigaretteFrequency);
+      runtimeType, stature, addressWithId, drinkFrequency, cigaretteFrequency);
 
   @JsonKey(ignore: true)
   @override
@@ -213,7 +214,7 @@ class _$_ProfileUpdateState implements _ProfileUpdateState {
 abstract class _ProfileUpdateState implements ProfileUpdateState {
   const factory _ProfileUpdateState(
       {final int? stature,
-      final Address? address,
+      final AddressWithId? addressWithId,
       final DrinkFrequency? drinkFrequency,
       final CigaretteFrequency? cigaretteFrequency}) = _$_ProfileUpdateState;
 
@@ -224,7 +225,7 @@ abstract class _ProfileUpdateState implements ProfileUpdateState {
   @override
 
   /// 居住地
-  Address? get address;
+  AddressWithId? get addressWithId;
   @override
 
   /// お酒

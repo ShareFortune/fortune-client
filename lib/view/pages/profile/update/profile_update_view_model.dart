@@ -1,4 +1,4 @@
-import 'package:fortune_client/data/model/address/address.dart';
+import 'package:fortune_client/data/model/base/address_with_id/address_with_id.dart';
 import 'package:fortune_client/data/model/enum/cigarette_frequency.dart';
 import 'package:fortune_client/data/model/enum/drink_frequency.dart';
 import 'package:fortune_client/data/repository/profile/profile_repository.dart';
@@ -21,7 +21,12 @@ class ProfileUpdateViewModel extends StateNotifier<ProfileUpdateState> {
     final profile = _repository.getCache();
     state = state.copyWith(
       stature: profile.height,
-      address: profile.address,
+      addressWithId: AddressWithId(
+        id: -1,
+        country: profile.address.country,
+        prefecture: profile.address.prefecture,
+        city: profile.address.city,
+      ),
       drinkFrequency: profile.drinkFrequency,
       cigaretteFrequency: profile.cigaretteFrequency,
     );
@@ -40,13 +45,15 @@ class ProfileUpdateViewModel extends StateNotifier<ProfileUpdateState> {
   }
 
   navigateToEntryAddress() async {
-    final result = await sl<AppRouter>().push(EntryAddressRoute()) as Address?;
-    state = state.copyWith(address: result ?? state.address);
+    final result = await sl<AppRouter>().push(
+      EntryAddressRoute(),
+    ) as AddressWithId?;
+    state = state.copyWith(addressWithId: result ?? state.addressWithId);
   }
 
   update() async {
     await _repository.updateBasicInfo(
-      address: state.address!,
+      addressWithId: state.addressWithId!.id < 0 ? null : state.addressWithId,
       stature: state.stature,
       drinkFrequency: state.drinkFrequency,
       cigaretteFrequency: state.cigaretteFrequency,

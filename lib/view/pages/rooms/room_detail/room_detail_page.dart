@@ -27,26 +27,28 @@ class RoomDetailPage extends HookConsumerWidget {
     Widget bottomWidgetAsync = Container();
 
     state.detail.maybeWhen(
-      data: (roomDetail) {
-        headerWidgetAsync = _headerWidget(
-            theme, roomDetail.title, roomDetail.host.mainImageURL);
-        roomDetailContainerAsync = RoomDetailContainer(roomDetail);
-        membersContainerAsync =
-            RoomMembersContainer(roomDetail.members, (c, v) {});
+      data: (room) {
+        headerWidgetAsync =
+            _headerWidget(theme, room.roomName, room.hostUser.mainImageURL);
+        roomDetailContainerAsync = RoomDetailContainer(room);
+        membersContainerAsync = RoomMembersContainer(
+          room.participants,
+          (c, v) {},
+        );
 
         /// ホストなら表示しない
-        if (roomDetail.isHost) return;
+        if (room.isHost) return;
 
         /// ゲストならリクエスト中 or 参加中
-        if (roomDetail.isMember) {
-          roomDetail.status == RoomStatus.pending
+        if (room.isMember) {
+          room.roomStatus == RoomStatus.pending
               ? bottomWidgetAsync = bottomButton(theme, "参加しています", null)
               : bottomWidgetAsync = bottomButton(theme, "メッセージ", () {});
           return;
         }
 
-        if (roomDetail.status == RoomStatus.pending) {
-          roomDetail.joinRequestStatus != null
+        if (room.roomStatus == RoomStatus.pending) {
+          room.joinRequestStatus != null
               ? bottomWidgetAsync = bottomButton(theme, "リクエスト中", null)
               : bottomWidgetAsync = bottomButton(theme, "参加する", () async {
                   final result = await viewModel.joinRequest();

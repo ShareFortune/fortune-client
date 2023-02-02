@@ -80,6 +80,16 @@ class $AssetsImagesGen {
       [imgRecipeNo8921, insta2, insta3, insta4, insta5, thinder, user1];
 }
 
+class $AssetsL10nGen {
+  const $AssetsL10nGen();
+
+  /// File path: assets/l10n/ja-JP.json
+  String get jaJP => 'assets/l10n/ja-JP.json';
+
+  /// List of all assets
+  List<String> get values => [jaJP];
+}
+
 class $AssetsImagesIconsGen {
   const $AssetsImagesIconsGen();
 
@@ -90,6 +100,10 @@ class $AssetsImagesIconsGen {
   /// File path: assets/images/icons/icon_apple.svg
   SvgGenImage get iconApple =>
       const SvgGenImage('assets/images/icons/icon_apple.svg');
+
+  /// File path: assets/images/icons/icon_arrow_drop_down.svg
+  SvgGenImage get iconArrowDropDown =>
+      const SvgGenImage('assets/images/icons/icon_arrow_drop_down.svg');
 
   /// File path: assets/images/icons/icon_arrow_right.svg
   SvgGenImage get iconArrowRight =>
@@ -127,6 +141,10 @@ class $AssetsImagesIconsGen {
   SvgGenImage get iconProfileDark =>
       const SvgGenImage('assets/images/icons/icon_profile_dark.svg');
 
+  /// File path: assets/images/icons/icon_room.svg
+  SvgGenImage get iconRoom =>
+      const SvgGenImage('assets/images/icons/icon_room.svg');
+
   /// File path: assets/images/icons/icon_swap_vert.svg
   SvgGenImage get iconSwapVert =>
       const SvgGenImage('assets/images/icons/icon_swap_vert.svg');
@@ -143,6 +161,7 @@ class $AssetsImagesIconsGen {
   List<SvgGenImage> get values => [
         iconAdd,
         iconApple,
+        iconArrowDropDown,
         iconArrowRight,
         iconDelete,
         iconEdit,
@@ -152,6 +171,7 @@ class $AssetsImagesIconsGen {
         iconMoreVert,
         iconProfile,
         iconProfileDark,
+        iconRoom,
         iconSwapVert,
         iconTwitter,
         iconUserAdd
@@ -162,6 +182,7 @@ class Assets {
   Assets._();
 
   static const $AssetsImagesGen images = $AssetsImagesGen();
+  static const $AssetsL10nGen l10n = $AssetsL10nGen();
   static const $StubGen stub = $StubGen();
 }
 

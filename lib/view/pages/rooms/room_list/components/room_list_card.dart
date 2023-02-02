@@ -19,7 +19,7 @@ class RoomListCard extends StatelessWidget {
   });
 
   final AppTheme theme;
-  final RoomListStateItem room;
+  final RoomListStateRoom room;
   final VoidCallback onTapRoom;
   final Function(bool) onTapHeart;
   final VoidCallback onTapJoinRequestBtn;
@@ -29,7 +29,7 @@ class RoomListCard extends StatelessWidget {
     /// ホストアイコン
     Widget leadingIcon = ClipOval(
       child: Image.network(
-        room.hostIcon,
+        room.data.hostMainImageURL,
         width: 50,
         height: 50,
         fit: BoxFit.cover,
@@ -39,7 +39,7 @@ class RoomListCard extends StatelessWidget {
     /// タイトル
     final titleTextStyle = theme.textTheme.h30;
     Text titleText = Text(
-      room.title,
+      room.data.roomName,
       style: titleTextStyle,
       maxLines: 2,
       overflow: TextOverflow.ellipsis,
@@ -48,11 +48,14 @@ class RoomListCard extends StatelessWidget {
     /// 位置情報
     final addressTextColor = theme.appColors.subText2;
     final addressTextStyle = theme.textTheme.h20.paint(addressTextColor);
-    Text addressText = Text(room.address, style: addressTextStyle);
+    Text addressText = Text(room.data.address.text, style: addressTextStyle);
 
     /// メンバーアイコンリスト
     Widget membersIcon;
-    membersIcon = memberIconsWidget(15, room.memberIcons);
+    membersIcon = memberIconsWidget(
+      15,
+      room.data.participantMainImageURLs ?? [],
+    );
 
     return _build(
       theme: theme,
@@ -143,7 +146,7 @@ class RoomListCard extends StatelessWidget {
           ),
           FavoriteButton(
             iconSize: 30,
-            isFavorite: room.isFavorite,
+            isFavorite: room.data.isFavorite,
             valueChanged: onTapHeart,
           ),
         ],

@@ -59,7 +59,7 @@ class DetailedProfileEntryPage extends HookConsumerWidget {
     /// 住所ピッカー
     final addressPicker = BaseTransitionTile(
       title: "居住地（必須）",
-      value: state.address?.text,
+      value: state.addressWithId?.text,
       textWhenUnsetStyle: theme.textTheme.h30.paint(theme.appColors.subText3),
       onTap: () {
         viewModel.navigateToEntryAddress();

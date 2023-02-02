@@ -1,5 +1,5 @@
-import 'package:fortune_client/data/model/participant/guest/participant_room_as_guest.dart';
-import 'package:fortune_client/data/model/participant/host/participant_room_as_host.dart';
+import 'package:fortune_client/data/model/rooms/get_v1_rooms_guest/get_v1_rooms_guest.dart';
+import 'package:fortune_client/data/model/rooms/get_v1_rooms_host/get_v1_rooms_host.dart';
 import 'package:fortune_client/data/repository/rooms/rooms_repository.dart';
 import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/view/pages/rooms/participating/participating_room_list_state.dart';
@@ -61,13 +61,13 @@ class ParticipatingRoomListViewModel
     sl<AppRouter>().push(CreateRoomRoute());
   }
 
-  navigateToRoomActionsAsHost(ParticipantRoomAsHost room) {
+  navigateToRoomActionsAsHost(GetV1RoomsHostResponseRoom room) {
     sl<AppRouter>().push(
       BottomSheetRouter(children: [HostRoomActions(room: room)]),
     );
   }
 
-  navigateToRoomActionsAsGuest(ParticipantRoomAsGuest room) {
+  navigateToRoomActionsAsGuest(GetV1RoomsGuestResponseRoom room) {
     sl<AppRouter>().push(
       BottomSheetRouter(children: [GuestRoomActions(room: room)]),
     );

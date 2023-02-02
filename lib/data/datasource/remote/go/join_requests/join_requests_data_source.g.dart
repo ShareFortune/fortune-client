@@ -19,13 +19,13 @@ class _JoinRequestsDataSource implements JoinRequestsDataSource {
   String? baseUrl;
 
   @override
-  Future<ResponseID> sendJoinRequest(id) async {
+  Future<RoomIdResponse> sendJoinRequest(id) async {
     const _extra = <String, dynamic>{'append-token': true};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<ResponseID>(Options(
+        .fetch<Map<String, dynamic>>(_setStreamType<RoomIdResponse>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -37,12 +37,12 @@ class _JoinRequestsDataSource implements JoinRequestsDataSource {
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = ResponseID.fromJson(_result.data!);
+    final value = RoomIdResponse.fromJson(_result.data!);
     return value;
   }
 
   @override
-  Future<JoinRequestsResponse> getResultOfIncomingJoinRequests(
+  Future<GetV1RoomJoinRequestsResponse> getJoinRequest(
     id, {
     nextToken,
     perPage,
@@ -56,7 +56,7 @@ class _JoinRequestsDataSource implements JoinRequestsDataSource {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<JoinRequestsResponse>(Options(
+        _setStreamType<GetV1RoomJoinRequestsResponse>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -68,7 +68,7 @@ class _JoinRequestsDataSource implements JoinRequestsDataSource {
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = JoinRequestsResponse.fromJson(_result.data!);
+    final value = GetV1RoomJoinRequestsResponse.fromJson(_result.data!);
     return value;
   }
 

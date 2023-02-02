@@ -16,9 +16,9 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$ParticipatingRoomListState {
-  AsyncValue<List<ParticipantRoomAsHost>> get host =>
+  AsyncValue<List<GetV1RoomsHostResponseRoom>> get host =>
       throw _privateConstructorUsedError;
-  AsyncValue<List<ParticipantRoomAsGuest>> get guest =>
+  AsyncValue<List<GetV1RoomsGuestResponseRoom>> get guest =>
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -34,8 +34,8 @@ abstract class $ParticipatingRoomListStateCopyWith<$Res> {
           ParticipatingRoomListState>;
   @useResult
   $Res call(
-      {AsyncValue<List<ParticipantRoomAsHost>> host,
-      AsyncValue<List<ParticipantRoomAsGuest>> guest});
+      {AsyncValue<List<GetV1RoomsHostResponseRoom>> host,
+      AsyncValue<List<GetV1RoomsGuestResponseRoom>> guest});
 }
 
 /// @nodoc
@@ -59,11 +59,11 @@ class _$ParticipatingRoomListStateCopyWithImpl<$Res,
       host: null == host
           ? _value.host
           : host // ignore: cast_nullable_to_non_nullable
-              as AsyncValue<List<ParticipantRoomAsHost>>,
+              as AsyncValue<List<GetV1RoomsHostResponseRoom>>,
       guest: null == guest
           ? _value.guest
           : guest // ignore: cast_nullable_to_non_nullable
-              as AsyncValue<List<ParticipantRoomAsGuest>>,
+              as AsyncValue<List<GetV1RoomsGuestResponseRoom>>,
     ) as $Val);
   }
 }
@@ -78,8 +78,8 @@ abstract class _$$_ParticipatingRoomListStateCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {AsyncValue<List<ParticipantRoomAsHost>> host,
-      AsyncValue<List<ParticipantRoomAsGuest>> guest});
+      {AsyncValue<List<GetV1RoomsHostResponseRoom>> host,
+      AsyncValue<List<GetV1RoomsGuestResponseRoom>> guest});
 }
 
 /// @nodoc
@@ -102,11 +102,11 @@ class __$$_ParticipatingRoomListStateCopyWithImpl<$Res>
       host: null == host
           ? _value.host
           : host // ignore: cast_nullable_to_non_nullable
-              as AsyncValue<List<ParticipantRoomAsHost>>,
+              as AsyncValue<List<GetV1RoomsHostResponseRoom>>,
       guest: null == guest
           ? _value.guest
           : guest // ignore: cast_nullable_to_non_nullable
-              as AsyncValue<List<ParticipantRoomAsGuest>>,
+              as AsyncValue<List<GetV1RoomsGuestResponseRoom>>,
     ));
   }
 }
@@ -119,10 +119,10 @@ class _$_ParticipatingRoomListState implements _ParticipatingRoomListState {
 
   @override
   @JsonKey()
-  final AsyncValue<List<ParticipantRoomAsHost>> host;
+  final AsyncValue<List<GetV1RoomsHostResponseRoom>> host;
   @override
   @JsonKey()
-  final AsyncValue<List<ParticipantRoomAsGuest>> guest;
+  final AsyncValue<List<GetV1RoomsGuestResponseRoom>> guest;
 
   @override
   String toString() {
@@ -152,14 +152,14 @@ class _$_ParticipatingRoomListState implements _ParticipatingRoomListState {
 abstract class _ParticipatingRoomListState
     implements ParticipatingRoomListState {
   const factory _ParticipatingRoomListState(
-          {final AsyncValue<List<ParticipantRoomAsHost>> host,
-          final AsyncValue<List<ParticipantRoomAsGuest>> guest}) =
+          {final AsyncValue<List<GetV1RoomsHostResponseRoom>> host,
+          final AsyncValue<List<GetV1RoomsGuestResponseRoom>> guest}) =
       _$_ParticipatingRoomListState;
 
   @override
-  AsyncValue<List<ParticipantRoomAsHost>> get host;
+  AsyncValue<List<GetV1RoomsHostResponseRoom>> get host;
   @override
-  AsyncValue<List<ParticipantRoomAsGuest>> get guest;
+  AsyncValue<List<GetV1RoomsGuestResponseRoom>> get guest;
   @override
   @JsonKey(ignore: true)
   _$$_ParticipatingRoomListStateCopyWith<_$_ParticipatingRoomListState>

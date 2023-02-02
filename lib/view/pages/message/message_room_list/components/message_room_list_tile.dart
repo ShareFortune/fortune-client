@@ -16,29 +16,14 @@ class MessageRoomListTile extends HookConsumerWidget {
   final String title;
 
   /// ボディ
-  final String body;
+  final String? body;
 
   /// 最終投稿日時
-  final String postedDate;
+  final String? postedDate;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = ref.watch(appThemeProvider);
-
-    /// タイトル
-    final titleTextColor = theme.appColors.subText1;
-    final titleTextStyle = theme.textTheme.h40.paint(titleTextColor);
-    final titleText = Text(title, style: titleTextStyle);
-
-    /// ボディ
-    final bodyTextColor = theme.appColors.subText3;
-    final bodyTextStyle = theme.textTheme.h30.paint(bodyTextColor);
-    final bodyText = Text(body, style: bodyTextStyle);
-
-    /// 投稿日時
-    final postedDateTextColor = theme.appColors.subText3;
-    final postedDateTextStyle = theme.textTheme.h10.paint(postedDateTextColor);
-    final postedDateText = Text(postedDate, style: postedDateTextStyle);
 
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -52,10 +37,28 @@ class MessageRoomListTile extends HookConsumerWidget {
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [titleText, postedDateText],
+                  children: [
+                    Text(
+                      title,
+                      style: theme.textTheme.h40.paint(
+                        theme.appColors.subText1,
+                      ),
+                    ),
+                    Text(
+                      postedDate ?? "",
+                      style: theme.textTheme.h10.paint(
+                        theme.appColors.subText3,
+                      ),
+                    ),
+                  ],
                 ),
                 const Gap(5),
-                bodyText,
+                Text(
+                  body ?? "",
+                  style: theme.textTheme.h30.paint(
+                    theme.appColors.subText3,
+                  ),
+                ),
               ],
             ),
           ),

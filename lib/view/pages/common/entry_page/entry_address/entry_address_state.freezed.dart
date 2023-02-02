@@ -17,8 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$EntryAddressState {
   bool get searchResultsIsDisplay => throw _privateConstructorUsedError;
-  Address? get adress => throw _privateConstructorUsedError;
-  AsyncValue<List<Address>> get searchResults =>
+  AsyncValue<List<AddressWithId>> get searchResults =>
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -34,10 +33,7 @@ abstract class $EntryAddressStateCopyWith<$Res> {
   @useResult
   $Res call(
       {bool searchResultsIsDisplay,
-      Address? adress,
-      AsyncValue<List<Address>> searchResults});
-
-  $AddressCopyWith<$Res>? get adress;
+      AsyncValue<List<AddressWithId>> searchResults});
 }
 
 /// @nodoc
@@ -54,7 +50,6 @@ class _$EntryAddressStateCopyWithImpl<$Res, $Val extends EntryAddressState>
   @override
   $Res call({
     Object? searchResultsIsDisplay = null,
-    Object? adress = freezed,
     Object? searchResults = null,
   }) {
     return _then(_value.copyWith(
@@ -62,27 +57,11 @@ class _$EntryAddressStateCopyWithImpl<$Res, $Val extends EntryAddressState>
           ? _value.searchResultsIsDisplay
           : searchResultsIsDisplay // ignore: cast_nullable_to_non_nullable
               as bool,
-      adress: freezed == adress
-          ? _value.adress
-          : adress // ignore: cast_nullable_to_non_nullable
-              as Address?,
       searchResults: null == searchResults
           ? _value.searchResults
           : searchResults // ignore: cast_nullable_to_non_nullable
-              as AsyncValue<List<Address>>,
+              as AsyncValue<List<AddressWithId>>,
     ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $AddressCopyWith<$Res>? get adress {
-    if (_value.adress == null) {
-      return null;
-    }
-
-    return $AddressCopyWith<$Res>(_value.adress!, (value) {
-      return _then(_value.copyWith(adress: value) as $Val);
-    });
   }
 }
 
@@ -96,11 +75,7 @@ abstract class _$$_EntryAddresStateCopyWith<$Res>
   @useResult
   $Res call(
       {bool searchResultsIsDisplay,
-      Address? adress,
-      AsyncValue<List<Address>> searchResults});
-
-  @override
-  $AddressCopyWith<$Res>? get adress;
+      AsyncValue<List<AddressWithId>> searchResults});
 }
 
 /// @nodoc
@@ -115,7 +90,6 @@ class __$$_EntryAddresStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? searchResultsIsDisplay = null,
-    Object? adress = freezed,
     Object? searchResults = null,
   }) {
     return _then(_$_EntryAddresState(
@@ -123,14 +97,10 @@ class __$$_EntryAddresStateCopyWithImpl<$Res>
           ? _value.searchResultsIsDisplay
           : searchResultsIsDisplay // ignore: cast_nullable_to_non_nullable
               as bool,
-      adress: freezed == adress
-          ? _value.adress
-          : adress // ignore: cast_nullable_to_non_nullable
-              as Address?,
       searchResults: null == searchResults
           ? _value.searchResults
           : searchResults // ignore: cast_nullable_to_non_nullable
-              as AsyncValue<List<Address>>,
+              as AsyncValue<List<AddressWithId>>,
     ));
   }
 }
@@ -140,21 +110,18 @@ class __$$_EntryAddresStateCopyWithImpl<$Res>
 class _$_EntryAddresState implements _EntryAddresState {
   const _$_EntryAddresState(
       {this.searchResultsIsDisplay = false,
-      this.adress,
       this.searchResults = const AsyncData([])});
 
   @override
   @JsonKey()
   final bool searchResultsIsDisplay;
   @override
-  final Address? adress;
-  @override
   @JsonKey()
-  final AsyncValue<List<Address>> searchResults;
+  final AsyncValue<List<AddressWithId>> searchResults;
 
   @override
   String toString() {
-    return 'EntryAddressState(searchResultsIsDisplay: $searchResultsIsDisplay, adress: $adress, searchResults: $searchResults)';
+    return 'EntryAddressState(searchResultsIsDisplay: $searchResultsIsDisplay, searchResults: $searchResults)';
   }
 
   @override
@@ -164,14 +131,13 @@ class _$_EntryAddresState implements _EntryAddresState {
             other is _$_EntryAddresState &&
             (identical(other.searchResultsIsDisplay, searchResultsIsDisplay) ||
                 other.searchResultsIsDisplay == searchResultsIsDisplay) &&
-            (identical(other.adress, adress) || other.adress == adress) &&
             (identical(other.searchResults, searchResults) ||
                 other.searchResults == searchResults));
   }
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, searchResultsIsDisplay, adress, searchResults);
+      Object.hash(runtimeType, searchResultsIsDisplay, searchResults);
 
   @JsonKey(ignore: true)
   @override
@@ -182,16 +148,14 @@ class _$_EntryAddresState implements _EntryAddresState {
 
 abstract class _EntryAddresState implements EntryAddressState {
   const factory _EntryAddresState(
-      {final bool searchResultsIsDisplay,
-      final Address? adress,
-      final AsyncValue<List<Address>> searchResults}) = _$_EntryAddresState;
+          {final bool searchResultsIsDisplay,
+          final AsyncValue<List<AddressWithId>> searchResults}) =
+      _$_EntryAddresState;
 
   @override
   bool get searchResultsIsDisplay;
   @override
-  Address? get adress;
-  @override
-  AsyncValue<List<Address>> get searchResults;
+  AsyncValue<List<AddressWithId>> get searchResults;
   @override
   @JsonKey(ignore: true)
   _$$_EntryAddresStateCopyWith<_$_EntryAddresState> get copyWith =>

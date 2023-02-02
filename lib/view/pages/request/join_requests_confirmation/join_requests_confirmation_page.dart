@@ -64,7 +64,7 @@ class JoinRequestsConfirmationPage extends HookConsumerWidget {
                   theme: theme,
                   name: joinRequest.name,
                   info: "22歳・女性",
-                  image: joinRequest.userImageUrl,
+                  image: joinRequest.userImageURL,
                   onTap: () {},
                 );
               }).toList(),

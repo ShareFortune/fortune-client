@@ -1,5 +1,5 @@
 import 'package:fortune_client/data/datasource/remote/go/message_rooms/message_rooms_data_source.dart';
-import 'package:fortune_client/data/model/message_rooms/host/message_room_host.dart';
+import 'package:fortune_client/data/model/base/message_room/messege_room.dart';
 import 'package:fortune_client/data/repository/message/message_repository.dart';
 
 class MessageRepositoryImpl implements MessageRepository {
@@ -18,11 +18,9 @@ class MessageRepositoryImpl implements MessageRepository {
   }
 
   @override
-  Future<List<MessageRoomHost>> fetchRoomsHost() async {
-    // _dataSource.fetchMessageRoomsHost();
-
+  Future<List<MessageRoom>> fetchHost() async {
     final datas = [
-      const MessageRoomHost(
+      const MessageRoom(
         id: "id",
         roomName: "渋谷で飲み会しませんか？",
         lastSendAt: "lastSendAt",
@@ -31,7 +29,7 @@ class MessageRepositoryImpl implements MessageRepository {
         participantMainImageURLs: ["", ""],
         unreadCount: 3,
       ),
-      const MessageRoomHost(
+      const MessageRoom(
         id: "id",
         roomName: "roomName",
         lastSendAt: "lastSendAt",
@@ -40,7 +38,7 @@ class MessageRepositoryImpl implements MessageRepository {
         participantMainImageURLs: ["", ""],
         unreadCount: 3,
       ),
-      const MessageRoomHost(
+      const MessageRoom(
         id: "id",
         roomName: "roomName",
         lastSendAt: "lastSendAt",

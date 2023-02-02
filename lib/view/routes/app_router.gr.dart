@@ -14,11 +14,11 @@
 import 'package:auto_route/auto_route.dart' as _i27;
 import 'package:auto_route/empty_router_widgets.dart' as _i2;
 import 'package:flutter/material.dart' as _i28;
-import 'package:fortune_client/data/model/participant/guest/participant_room_as_guest.dart'
+import 'package:fortune_client/data/model/base/tag/tag.dart' as _i32;
+import 'package:fortune_client/data/model/rooms/get_v1_rooms_guest/get_v1_rooms_guest.dart'
     as _i33;
-import 'package:fortune_client/data/model/participant/host/participant_room_as_host.dart'
+import 'package:fortune_client/data/model/rooms/get_v1_rooms_host/get_v1_rooms_host.dart'
     as _i31;
-import 'package:fortune_client/data/model/tag/tag.dart' as _i32;
 import 'package:fortune_client/view/pages/account/my_page/my_page.dart' as _i10;
 import 'package:fortune_client/view/pages/auth/login/login_page.dart' as _i3;
 import 'package:fortune_client/view/pages/common/bottom_navigation_bar/bottom_navigation_bar.dart'
@@ -61,10 +61,10 @@ import 'package:fortune_client/view/pages/rooms/room_detail/room_detail_page.dar
 import 'package:fortune_client/view/pages/rooms/room_list/room_list_page.dart'
     as _i16;
 import 'package:fortune_client/view/pages/settings/settings_page.dart' as _i12;
-import 'package:fortune_client/view/pages/tags/create/tag_creation_page.dart'
-    as _i14;
-import 'package:fortune_client/view/pages/tags/select/tags_selection_page.dart'
+import 'package:fortune_client/view/pages/tags/create/create_tag_page.dart'
     as _i13;
+import 'package:fortune_client/view/pages/tags/select/select_tags_page.dart'
+    as _i14;
 import 'package:fortune_client/view/routes/app_router.dart' as _i30;
 import 'package:fortune_client/view/routes/route_guard.dart' as _i29;
 
@@ -173,22 +173,22 @@ class AppRouter extends _i27.RootStackRouter {
         child: const _i12.SettingsPage(),
       );
     },
-    TagsSelectionRoute.name: (routeData) {
-      final args = routeData.argsAs<TagsSelectionRouteArgs>();
+    CreateTagRoute.name: (routeData) {
+      final args = routeData.argsAs<CreateTagRouteArgs>(
+          orElse: () => const CreateTagRouteArgs());
       return _i27.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: _i13.TagsSelectionPage(
+        child: _i13.CreateTagPage(key: args.key),
+      );
+    },
+    SelectTagsRoute.name: (routeData) {
+      final args = routeData.argsAs<SelectTagsRouteArgs>();
+      return _i27.AdaptivePage<dynamic>(
+        routeData: routeData,
+        child: _i14.SelectTagsPage(
           args.beingSet,
           key: args.key,
         ),
-      );
-    },
-    TagCreationRoute.name: (routeData) {
-      final args = routeData.argsAs<TagCreationRouteArgs>(
-          orElse: () => const TagCreationRouteArgs());
-      return _i27.AdaptivePage<dynamic>(
-        routeData: routeData,
-        child: _i14.TagCreationPage(key: args.key),
       );
     },
     EntryDescriptionRoute.name: (routeData) {
@@ -474,12 +474,12 @@ class AppRouter extends _i27.RootStackRouter {
           path: 'setting',
         ),
         _i27.RouteConfig(
-          TagsSelectionRoute.name,
-          path: 'select-tag',
+          CreateTagRoute.name,
+          path: 'create-tag',
         ),
         _i27.RouteConfig(
-          TagCreationRoute.name,
-          path: 'create-tag',
+          SelectTagsRoute.name,
+          path: 'select-tag',
         ),
         _i27.RouteConfig(
           EntryDescriptionRoute.name,
@@ -652,7 +652,7 @@ class CreateRoomRouteArgs {
 /// [_i8.EditRoomPage]
 class EditRoomRoute extends _i27.PageRouteInfo<EditRoomRouteArgs> {
   EditRoomRoute({
-    required _i31.ParticipantRoomAsHost room,
+    required _i31.GetV1RoomsHostResponseRoom room,
     _i28.Key? key,
   }) : super(
           EditRoomRoute.name,
@@ -672,7 +672,7 @@ class EditRoomRouteArgs {
     this.key,
   });
 
-  final _i31.ParticipantRoomAsHost room;
+  final _i31.GetV1RoomsHostResponseRoom room;
 
   final _i28.Key? key;
 
@@ -743,25 +743,49 @@ class SettingsRoute extends _i27.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i13.TagsSelectionPage]
-class TagsSelectionRoute extends _i27.PageRouteInfo<TagsSelectionRouteArgs> {
-  TagsSelectionRoute({
+/// [_i13.CreateTagPage]
+class CreateTagRoute extends _i27.PageRouteInfo<CreateTagRouteArgs> {
+  CreateTagRoute({_i28.Key? key})
+      : super(
+          CreateTagRoute.name,
+          path: 'create-tag',
+          args: CreateTagRouteArgs(key: key),
+        );
+
+  static const String name = 'CreateTagRoute';
+}
+
+class CreateTagRouteArgs {
+  const CreateTagRouteArgs({this.key});
+
+  final _i28.Key? key;
+
+  @override
+  String toString() {
+    return 'CreateTagRouteArgs{key: $key}';
+  }
+}
+
+/// generated route for
+/// [_i14.SelectTagsPage]
+class SelectTagsRoute extends _i27.PageRouteInfo<SelectTagsRouteArgs> {
+  SelectTagsRoute({
     required List<_i32.Tag> beingSet,
     _i28.Key? key,
   }) : super(
-          TagsSelectionRoute.name,
+          SelectTagsRoute.name,
           path: 'select-tag',
-          args: TagsSelectionRouteArgs(
+          args: SelectTagsRouteArgs(
             beingSet: beingSet,
             key: key,
           ),
         );
 
-  static const String name = 'TagsSelectionRoute';
+  static const String name = 'SelectTagsRoute';
 }
 
-class TagsSelectionRouteArgs {
-  const TagsSelectionRouteArgs({
+class SelectTagsRouteArgs {
+  const SelectTagsRouteArgs({
     required this.beingSet,
     this.key,
   });
@@ -772,31 +796,7 @@ class TagsSelectionRouteArgs {
 
   @override
   String toString() {
-    return 'TagsSelectionRouteArgs{beingSet: $beingSet, key: $key}';
-  }
-}
-
-/// generated route for
-/// [_i14.TagCreationPage]
-class TagCreationRoute extends _i27.PageRouteInfo<TagCreationRouteArgs> {
-  TagCreationRoute({_i28.Key? key})
-      : super(
-          TagCreationRoute.name,
-          path: 'create-tag',
-          args: TagCreationRouteArgs(key: key),
-        );
-
-  static const String name = 'TagCreationRoute';
-}
-
-class TagCreationRouteArgs {
-  const TagCreationRouteArgs({this.key});
-
-  final _i28.Key? key;
-
-  @override
-  String toString() {
-    return 'TagCreationRouteArgs{key: $key}';
+    return 'SelectTagsRouteArgs{beingSet: $beingSet, key: $key}';
   }
 }
 
@@ -1070,7 +1070,7 @@ class EntryProfileSubImageRoute extends _i27.PageRouteInfo<void> {
 /// [_i25.HostRoomActionsBottomSheet]
 class HostRoomActions extends _i27.PageRouteInfo<HostRoomActionsArgs> {
   HostRoomActions({
-    required _i31.ParticipantRoomAsHost room,
+    required _i31.GetV1RoomsHostResponseRoom room,
     _i28.Key? key,
   }) : super(
           HostRoomActions.name,
@@ -1090,7 +1090,7 @@ class HostRoomActionsArgs {
     this.key,
   });
 
-  final _i31.ParticipantRoomAsHost room;
+  final _i31.GetV1RoomsHostResponseRoom room;
 
   final _i28.Key? key;
 
@@ -1104,7 +1104,7 @@ class HostRoomActionsArgs {
 /// [_i26.GuestRoomActionsBottomSheet]
 class GuestRoomActions extends _i27.PageRouteInfo<GuestRoomActionsArgs> {
   GuestRoomActions({
-    required _i33.ParticipantRoomAsGuest room,
+    required _i33.GetV1RoomsGuestResponseRoom room,
     _i28.Key? key,
   }) : super(
           GuestRoomActions.name,
@@ -1124,7 +1124,7 @@ class GuestRoomActionsArgs {
     this.key,
   });
 
-  final _i33.ParticipantRoomAsGuest room;
+  final _i33.GetV1RoomsGuestResponseRoom room;
 
   final _i28.Key? key;
 

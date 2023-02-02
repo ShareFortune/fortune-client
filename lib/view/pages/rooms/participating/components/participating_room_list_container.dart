@@ -1,8 +1,8 @@
 // ignore_for_file: library_private_types_in_public_api
 
 import 'package:flutter/material.dart';
-import 'package:fortune_client/data/model/participant/guest/participant_room_as_guest.dart';
-import 'package:fortune_client/data/model/participant/host/participant_room_as_host.dart';
+import 'package:fortune_client/data/model/rooms/get_v1_rooms_guest/get_v1_rooms_guest.dart';
+import 'package:fortune_client/data/model/rooms/get_v1_rooms_host/get_v1_rooms_host.dart';
 import 'package:fortune_client/view/pages/rooms/participating/components/guest_room_card.dart';
 import 'package:fortune_client/view/pages/rooms/participating/components/host_room_card.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
@@ -172,10 +172,10 @@ class ParticipatingRoomListContainer<T> extends HookConsumerWidget {
             Widget card = Container();
             switch (roomType) {
               case _RoomType.host:
-                card = HostRoomCard(e as ParticipantRoomAsHost);
+                card = HostRoomCard(e as GetV1RoomsHostResponseRoom);
                 break;
               case _RoomType.guest:
-                card = GuestRoomCard(e as ParticipantRoomAsGuest);
+                card = GuestRoomCard(e as GetV1RoomsGuestResponseRoom);
                 break;
             }
             return Row(children: [card, const Gap(10)]);

@@ -45,10 +45,10 @@ class RoutePath {
   static const profile = 'profile/:id';
 
   /// タグ
-  static const tagSelection = 'select-tag';
+  static const selectTag = 'select-tag';
 
   /// タグ作成
-  static const tagCreation = 'create-tag';
+  static const createTag = 'create-tag';
 
   /// 説明入力
   static const entryDescription = 'entry-description';

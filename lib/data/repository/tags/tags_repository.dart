@@ -1,4 +1,4 @@
-import 'package:fortune_client/data/model/tag/tag.dart';
+import 'package:fortune_client/data/model/base/tag/tag.dart';
 
 abstract class TagsRepository {
   Future<String> create(String name, String description);

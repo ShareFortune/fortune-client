@@ -1,6 +1,6 @@
-import 'package:fortune_client/data/model/address/address.dart';
+import 'package:fortune_client/data/model/base/address_with_id/address_with_id.dart';
+import 'package:fortune_client/data/model/base/tag/tag.dart';
 import 'package:fortune_client/data/model/enum/age_group.dart';
-import 'package:fortune_client/data/model/tag/tag.dart';
 import 'package:fortune_client/data/repository/rooms/rooms_repository.dart';
 import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/view/pages/rooms/action/create/create_room_state.dart';
@@ -23,7 +23,7 @@ class CreateRoomViewModel extends StateNotifier<CreateRoomState> {
         state.title!.isNotEmpty &&
         state.membersNum != null &&
         state.ageGroup != null &&
-        state.address != null &&
+        state.addressWithId != null &&
         state.explanation != null;
   }
 
@@ -49,7 +49,7 @@ class CreateRoomViewModel extends StateNotifier<CreateRoomState> {
         title: state.title!,
         membersNum: state.membersNum!,
         ageGroup: state.ageGroup!,
-        addressId: state.address!,
+        addressWithId: state.addressWithId!,
         tagIds: state.tags,
         explanation: state.explanation!,
       );
@@ -74,13 +74,15 @@ class CreateRoomViewModel extends StateNotifier<CreateRoomState> {
   }
 
   navigateToEntryAddress() async {
-    final result = await sl<AppRouter>().push(EntryAddressRoute()) as Address?;
-    state = state.copyWith(address: result ?? state.address);
+    final result = await sl<AppRouter>().push(
+      EntryAddressRoute(),
+    ) as AddressWithId?;
+    state = state.copyWith(addressWithId: result ?? state.addressWithId);
   }
 
   navigateToTagsSelection() async {
     final result = await sl<AppRouter>().push(
-      TagsSelectionRoute(beingSet: state.tags ?? List.empty()),
+      SelectTagsRoute(beingSet: state.tags ?? List.empty()),
     ) as List<Tag>?;
     state = state.copyWith(tags: result ?? state.tags);
   }

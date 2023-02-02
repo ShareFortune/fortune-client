@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:fortune_client/data/model/address/address.dart';
+import 'package:fortune_client/data/model/base/address/address.dart';
+import 'package:fortune_client/data/model/base/address_with_id/address_with_id.dart';
 import 'package:fortune_client/gen/assets.gen.dart';
 import 'package:fortune_client/view/pages/common/entry_page/entry_address/components/entry_address_text_field.dart';
 import 'package:fortune_client/view/pages/common/entry_page/entry_address/entry_address_view_model.dart';
@@ -101,7 +102,11 @@ class EntryAddressPage extends HookConsumerWidget {
     );
   }
 
-  Widget _addressTile(AppTheme theme, Address address, VoidCallback onTap) {
+  Widget _addressTile(
+    AppTheme theme,
+    AddressWithId address,
+    VoidCallback onTap,
+  ) {
     return InkWell(
       onTap: onTap,
       child: Container(

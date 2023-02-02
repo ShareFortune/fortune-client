@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:fortune_client/l10n/locale_keys.g.dart';
 import 'package:fortune_client/view/pages/auth/login/components/auth_button.dart';
 import 'package:fortune_client/view/pages/auth/login/login_state.dart';
 import 'package:fortune_client/view/pages/auth/login/login_view_model.dart';
@@ -33,9 +34,9 @@ class LoginPage extends HookConsumerWidget {
                       // // ignore: use_build_context_synchronously
                       // if (result != null) showDebugDialog(context, result);
                     },
-                    child: const Text(
-                      "Fortune",
-                      style: TextStyle(
+                    child: Text(
+                      LocaleKeys.login_page_title.trim(),
+                      style: const TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 32,
                       ),

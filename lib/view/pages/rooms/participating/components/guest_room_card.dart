@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fortune_client/data/model/enum/room_status.dart';
-import 'package:fortune_client/data/model/participant/guest/participant_room_as_guest.dart';
+import 'package:fortune_client/data/model/rooms/get_v1_rooms_guest/get_v1_rooms_guest.dart';
 import 'package:fortune_client/gen/assets.gen.dart';
 import 'package:fortune_client/view/pages/rooms/participating/participating_room_list_view_model.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
@@ -13,7 +13,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 class GuestRoomCard extends HookConsumerWidget {
   const GuestRoomCard(this.room, {super.key});
 
-  final ParticipantRoomAsGuest room;
+  final GetV1RoomsGuestResponseRoom room;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -22,7 +22,7 @@ class GuestRoomCard extends HookConsumerWidget {
         ref.watch(participatingRoomListViewModelProvider.notifier);
 
     /// 下部ボタン・ゲスト
-    Widget bottomWidgetGuest(ParticipantRoomAsGuest state) {
+    Widget bottomWidgetGuest(GetV1RoomsGuestResponseRoom state) {
       switch (state.roomStatus) {
         case RoomStatus.pending:
           return _bottomButton(

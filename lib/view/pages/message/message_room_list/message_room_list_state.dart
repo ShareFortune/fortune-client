@@ -1,4 +1,4 @@
-import 'package:fortune_client/data/model/message_rooms/host/message_room_host.dart';
+import 'package:fortune_client/data/model/base/message_room/messege_room.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -30,13 +30,13 @@ class MessageRoomListItemState with _$MessageRoomListItemState {
   const factory MessageRoomListItemState({
     required String id,
     required String roomName,
-    required String lastSendAt,
-    required String lastSendMessage,
+    required String? lastSendAt,
+    required String? lastSendMessage,
     required String hostMainImageURL,
     required int unreadCount,
   }) = _MessageRoomListItemState;
 
-  static MessageRoomListItemState from(MessageRoomHost messageRoom) {
+  static MessageRoomListItemState from(MessageRoom messageRoom) {
     return MessageRoomListItemState(
       id: messageRoom.id,
       roomName: messageRoom.roomName,

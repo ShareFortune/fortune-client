@@ -48,7 +48,7 @@ class MessageRoomListPage extends HookConsumerWidget {
       child: NestedScrollView(
         headerSliverBuilder: (context, innerBoxIsScrolled) {
           return [
-            const ScrollAppBar(title: "メッセージ", isBorder: false),
+            const ScrollAppBar(title: "メッセージ"),
             SliverToBoxAdapter(
               child: Container(
                 color: theme.appColors.onBackground,
