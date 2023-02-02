@@ -28,7 +28,11 @@ class RoomListViewModel extends StateNotifier<RoomListState> {
   Future<void> fetchList() async {
     state = state.copyWith(
       rooms: await AsyncValue.guard(() async {
-        final result = await _roomRepository.fetchList();
+        final result = await _roomRepository.fetchList(
+          memberNum: state.filter.memberNum,
+          tags: state.filter.tags,
+          addressWithId: state.filter.addressWithId,
+        );
         return result.map((data) => RoomListStateRoom(data: data)).toList();
       }),
     );
@@ -81,28 +85,21 @@ class RoomListViewModel extends StateNotifier<RoomListState> {
     }
   }
 
+  /// 場所検索ページへ遷移
   Future<AddressWithId?> navigateToEntryAddress() async {
     return await sl<AppRouter>().push(
       EntryAddressRoute(),
     ) as AddressWithId?;
-    // state = state.copyWith(
-    //   filter: state.filter.copyWith(
-    //     addressWithId: result ?? state.filter.addressWithId,
-    //   ),
-    // );
   }
 
+  /// タグ検索ページへ遷移
   Future<List<Tag>?> navigateToTagsSelection() async {
     return await sl<AppRouter>().push(
       TagsSelectionRoute(beingSet: state.filter.tags ?? List.empty()),
     ) as List<Tag>?;
-    // state = state.copyWith(
-    //   filter: state.filter.copyWith(
-    //     tags: result ?? state.filter.tags,
-    //   ),
-    // );
   }
 
+  /// ルーム詳細ページへ遷移
   navigateToRoomDetail(String id) async {
     await sl<AppRouter>().push(RoomDetailRoute(roomId: id));
   }

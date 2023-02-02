@@ -56,12 +56,16 @@ class RoomsRepositoryImpl implements RoomsRepository {
 
   @override
   Future<List<GetV1RoomsResponseRoom>> fetchList({
+    int? memberNum,
+    List<Tag>? tags,
     AddressWithId? addressWithId,
   }) async {
     try {
       logger.i("$runtimeType fetchList");
       final result = await _roomsDataSource.fetchList(
         perPage: 10,
+        memberNum: memberNum,
+        tagIds: tags?.map((e) => e.id).toList(),
         addressId: addressWithId?.id.toString(),
       );
       return result.data;

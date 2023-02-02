@@ -22,8 +22,11 @@ abstract class RoomsRepository {
 
   /// ルームリストを取得
   Future<List<GetV1RoomsResponseRoom>> fetchList({
+    int? memberNum,
+    List<Tag>? tags,
     AddressWithId? addressWithId,
   });
+
   Future<List<GetV1RoomsHostResponseRoom>> getRoomsToParticipateAsHost();
   Future<List<GetV1RoomsGuestResponseRoom>> getRoomsToParticipateAsGuest();
 
