@@ -79,7 +79,7 @@ class _RoomsFilterBottomSheetState
               Column(
                 children: [
                   AppBar(
-                    title: const Text('銘柄を選ぶ'),
+                    title: const Text('ルームの絞り込み'),
                     leading: Container(),
                     shape: const RoundedRectangleBorder(
                       borderRadius: BorderRadius.only(

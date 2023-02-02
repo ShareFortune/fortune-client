@@ -41,9 +41,11 @@ import 'package:shared_preferences/shared_preferences.dart';
 final sl = GetIt.instance;
 
 Future<void> initDependencies(bool isRelease) async {
+  /// SharedPreferences
   sl.registerSingletonAsync<SharedPreferences>(
       () => SharedPreferences.getInstance());
 
+  /// Dio
   sl.registerLazySingleton<Dio>(
     () => Dio(
       BaseOptions(
@@ -56,7 +58,7 @@ Future<void> initDependencies(bool isRelease) async {
     )..interceptors.add(AppendTokenInterceptor(sl())),
   );
 
-  ///  Router
+  /// Router
   sl.registerLazySingleton<AuthGuard>(
     () => AuthGuard(sl()),
   );
