@@ -64,8 +64,8 @@ class RoomListViewModel extends StateNotifier<RoomListState> {
   /// 返り値は保存・保存解除処理を完了したかどうか
   Future<bool> saveOrReleaseRoom(String roomId, bool isFavorite) async {
     final result = isFavorite
-        ? await _favoritesRepository.register(roomId) // 登録
-        : await _favoritesRepository.unregister(roomId); // 解除
+        ? await _favoritesRepository.register(roomId)
+        : await _favoritesRepository.unregister(roomId);
 
     if (!result) return false;
 
