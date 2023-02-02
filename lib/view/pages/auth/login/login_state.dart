@@ -23,11 +23,11 @@ extension AuthTypeColor on AuthType {
   String get text {
     switch (this) {
       case AuthType.apple:
-        return LocaleKeys.login_page_sign_in_button_apple.trim();
+        return LocaleKeys.loginPage_signInButton_apple.trim();
       case AuthType.google:
-        return LocaleKeys.login_page_sign_in_button_google.trim();
+        return LocaleKeys.loginPage_signInButton_google.trim();
       case AuthType.twitter:
-        return LocaleKeys.login_page_sign_in_button_twitter.trim();
+        return LocaleKeys.loginPage_signInButton_twitter.trim();
     }
   }
 
