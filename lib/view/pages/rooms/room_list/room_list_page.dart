@@ -1,16 +1,20 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:fortune_client/gen/assets.gen.dart';
 import 'package:fortune_client/view/pages/common/scroll_app_bar/scroll_app_bar.dart';
 import 'package:fortune_client/view/pages/rooms/room_list/components/room_list_card.dart';
 import 'package:fortune_client/view/pages/rooms/room_list/components/rooms_filter_bottom_sheet.dart';
 import 'package:fortune_client/view/pages/rooms/room_list/room_list_state.dart';
 import 'package:fortune_client/view/pages/rooms/room_list/room_list_view_model.dart';
+import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/dialog/toast.dart';
 import 'package:fortune_client/view/widgets/other/list_animation.dart';
 import 'package:fortune_client/view/widgets/other/error_widget.dart';
 import 'package:fortune_client/view/widgets/other/loading_widget.dart';
+import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class RoomListPage extends HookConsumerWidget {
@@ -47,6 +51,25 @@ class RoomListPage extends HookConsumerWidget {
                 ),
               );
             },
+          ),
+          SliverToBoxAdapter(
+            child: SizedBox(
+              height: 150,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SvgPicture.asset(
+                    Assets.images.icons.iconRoom.path,
+                    fit: BoxFit.contain,
+                  ),
+                  const Gap(15),
+                  Text(
+                    "条件に一致するルームが存在しません。",
+                    style: theme.textTheme.h20.paint(theme.appColors.subText1),
+                  ),
+                ],
+              ),
+            ),
           ),
           SliverPadding(
             padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
