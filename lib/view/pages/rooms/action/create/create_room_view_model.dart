@@ -82,7 +82,7 @@ class CreateRoomViewModel extends StateNotifier<CreateRoomState> {
 
   navigateToTagsSelection() async {
     final result = await sl<AppRouter>().push(
-      TagsSelectionRoute(beingSet: state.tags ?? List.empty()),
+      SelectTagsRoute(beingSet: state.tags ?? List.empty()),
     ) as List<Tag>?;
     state = state.copyWith(tags: result ?? state.tags);
   }
