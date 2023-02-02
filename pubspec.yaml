@@ -10,18 +10,13 @@ dependencies:
   flutter:
     sdk: flutter
   intl: ^0.17.0
-  flutter_signin_button: ^2.0.0
-  badges: ^2.0.3
-  flutter_staggered_animations: ^1.1.1
-  flutter_chat_ui: ^1.6.5
+  easy_localization: ^3.0.1
   uuid: ^3.0.6
   mime: ^1.0.2
-  path_provider: ^2.0.11
   open_filex: ^4.1.1
   google_sign_in: ^5.4.2
   freezed_annotation: ^2.2.0
   flutter_svg: ^1.1.6
-  gap: ^2.0.1
   google_fonts: ^3.0.1
   sizer: ^2.0.15
   enum_to_string: ^2.0.1
@@ -30,6 +25,10 @@ dependencies:
 
   # util
   json_serializable: ^6.5.4
+  flutter_staggered_animations: ^1.1.1
+  flutter_chat_ui: ^1.6.5
+  flutter_signin_button: ^2.0.0
+  path_provider: ^2.0.11
   bottom_picker: ^2.0.1
   image_picker: ^0.8.6
   file_picker: ^5.2.4
@@ -41,6 +40,7 @@ dependencies:
   flutter_expanded_tile: ^0.3.6
   pull_down_button: ^0.5.1
   modal_bottom_sheet: ^2.1.2
+  gap: ^2.0.1
 
   # state management
   flutter_hooks: ^0.18.5+1
@@ -90,6 +90,10 @@ flutter_gen:
 flutter:
   uses-material-design: true
   assets:
+    # stub
     - stub/
+    # l10n
+    - assets/l10n/
+    # images
     - assets/images/
     - assets/images/icons/

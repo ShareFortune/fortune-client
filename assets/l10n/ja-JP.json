@@ -1,0 +1,21 @@
+{
+    "login_page": "Authors",
+    "my_page": "Authors",
+    "message_room_page": "Authors",
+    "message_room_list_page": "Authors",
+    "basic_profile_entry_page": "Authors",
+    "detailed_profile_entry_page": "Authors",
+    "profile_icon_image_entry_page": "Authors",
+    "entry_profile_sub_image_page": "Authors",
+    "profile_page": "Authors",
+    "profile_update_page": "Authors",
+    "join_requests_confirmation_page": "Authors",
+    "create_room_page": "Authors",
+    "edit_room_page": "Authors",
+    "participating_room_list_page": "Authors",
+    "room_detail_page": "Authors",
+    "room_list_page": "Authors",
+    "settings_page": "Authors",
+    "create_tag_page": "Authors",
+    "select_tags_page": "Authors"
+}
