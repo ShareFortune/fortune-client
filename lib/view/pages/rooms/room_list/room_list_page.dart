@@ -27,10 +27,17 @@ class RoomListPage extends HookConsumerWidget {
     final viewModel = ref.watch(roomListViewModelProvider.notifier);
 
     ///
+    /// 検索結果が存在するか
+    ///
+    final noSearchResultsFoundViewAsync = state.hasRoomSearchResult
+        ? Container()
+        : _noSearchResultsFoundView(theme);
+
+    ///
     /// ルームリスト
     ///
     final roomListViewAsync = state.rooms.when(
-      data: (data) => roomListView(context, theme, data, viewModel),
+      data: (data) => _roomListView(data, theme, viewModel, context),
       error: (e, msg) => SliverToBoxAdapter(child: errorWidget(e, msg)),
       loading: () => SliverToBoxAdapter(child: loadingWidget()),
     );
@@ -52,25 +59,7 @@ class RoomListPage extends HookConsumerWidget {
               );
             },
           ),
-          SliverToBoxAdapter(
-            child: SizedBox(
-              height: 150,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SvgPicture.asset(
-                    Assets.images.icons.iconRoom.path,
-                    fit: BoxFit.contain,
-                  ),
-                  const Gap(15),
-                  Text(
-                    "条件に一致するルームが存在しません。",
-                    style: theme.textTheme.h20.paint(theme.appColors.subText1),
-                  ),
-                ],
-              ),
-            ),
-          ),
+          SliverToBoxAdapter(child: noSearchResultsFoundViewAsync),
           SliverPadding(
             padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
             sliver: roomListViewAsync,
@@ -80,11 +69,11 @@ class RoomListPage extends HookConsumerWidget {
     );
   }
 
-  ListAnimationWidget<RoomListStateRoom> roomListView(
-    BuildContext context,
-    AppTheme theme,
+  Widget _roomListView(
     List<RoomListStateRoom> data,
+    AppTheme theme,
     RoomListViewModel viewModel,
+    BuildContext context,
   ) {
     return ListAnimationWidget(
       items: data,
@@ -105,6 +94,26 @@ class RoomListPage extends HookConsumerWidget {
           },
         );
       },
+    );
+  }
+
+  Widget _noSearchResultsFoundView(AppTheme theme) {
+    return SizedBox(
+      height: 150,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          SvgPicture.asset(
+            Assets.images.icons.iconRoom.path,
+            fit: BoxFit.contain,
+          ),
+          const Gap(15),
+          Text(
+            "条件に一致するルームが存在しません。",
+            style: theme.textTheme.h20.paint(theme.appColors.subText1),
+          ),
+        ],
+      ),
     );
   }
 

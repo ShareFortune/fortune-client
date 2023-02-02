@@ -26,6 +26,7 @@ class RoomListViewModel extends StateNotifier<RoomListState> {
   Future<void> initialize() async => await fetchList();
 
   Future<void> fetchList() async {
+    bool hasRoomSearchResult = false;
     state = state.copyWith(
       rooms: await AsyncValue.guard(() async {
         final result = await _roomRepository.fetchList(
@@ -38,11 +39,12 @@ class RoomListViewModel extends StateNotifier<RoomListState> {
         /// [hasRoomSearchResult]を書き換える
         /// ルームリストは保存せず前データを返す。
         if (result.isEmpty) {
-          state = state.copyWith(hasRoomSearchResult: false);
           return state.rooms.value ?? List.empty();
         }
+        hasRoomSearchResult = true;
         return result.map((data) => RoomListStateRoom(data: data)).toList();
       }),
+      hasRoomSearchResult: hasRoomSearchResult,
     );
   }
 

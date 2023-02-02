@@ -13,7 +13,7 @@ class RoomListState with _$RoomListState {
     ///
     /// 存在しない場合はfalseになり、
     /// [rooms]には検索前のデータが引き続き存在する
-    bool? hasRoomSearchResult,
+    @Default(true) bool hasRoomSearchResult,
 
     /// フィルター
     /// [rooms]取得時に適用

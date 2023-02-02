@@ -20,7 +20,7 @@ mixin _$RoomListState {
   ///
   /// 存在しない場合はfalseになり、
   /// [rooms]には検索前のデータが引き続き存在する
-  bool? get hasRoomSearchResult => throw _privateConstructorUsedError;
+  bool get hasRoomSearchResult => throw _privateConstructorUsedError;
 
   /// フィルター
   /// [rooms]取得時に適用
@@ -42,7 +42,7 @@ abstract class $RoomListStateCopyWith<$Res> {
       _$RoomListStateCopyWithImpl<$Res, RoomListState>;
   @useResult
   $Res call(
-      {bool? hasRoomSearchResult,
+      {bool hasRoomSearchResult,
       RoomListStateFilter filter,
       AsyncValue<List<RoomListStateRoom>> rooms});
 
@@ -62,15 +62,15 @@ class _$RoomListStateCopyWithImpl<$Res, $Val extends RoomListState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? hasRoomSearchResult = freezed,
+    Object? hasRoomSearchResult = null,
     Object? filter = null,
     Object? rooms = null,
   }) {
     return _then(_value.copyWith(
-      hasRoomSearchResult: freezed == hasRoomSearchResult
+      hasRoomSearchResult: null == hasRoomSearchResult
           ? _value.hasRoomSearchResult
           : hasRoomSearchResult // ignore: cast_nullable_to_non_nullable
-              as bool?,
+              as bool,
       filter: null == filter
           ? _value.filter
           : filter // ignore: cast_nullable_to_non_nullable
@@ -100,7 +100,7 @@ abstract class _$$_RoomListStateCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {bool? hasRoomSearchResult,
+      {bool hasRoomSearchResult,
       RoomListStateFilter filter,
       AsyncValue<List<RoomListStateRoom>> rooms});
 
@@ -119,15 +119,15 @@ class __$$_RoomListStateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? hasRoomSearchResult = freezed,
+    Object? hasRoomSearchResult = null,
     Object? filter = null,
     Object? rooms = null,
   }) {
     return _then(_$_RoomListState(
-      hasRoomSearchResult: freezed == hasRoomSearchResult
+      hasRoomSearchResult: null == hasRoomSearchResult
           ? _value.hasRoomSearchResult
           : hasRoomSearchResult // ignore: cast_nullable_to_non_nullable
-              as bool?,
+              as bool,
       filter: null == filter
           ? _value.filter
           : filter // ignore: cast_nullable_to_non_nullable
@@ -144,7 +144,7 @@ class __$$_RoomListStateCopyWithImpl<$Res>
 
 class _$_RoomListState implements _RoomListState {
   const _$_RoomListState(
-      {this.hasRoomSearchResult,
+      {this.hasRoomSearchResult = true,
       this.filter = const RoomListStateFilter(),
       this.rooms = const AsyncLoading()});
 
@@ -153,7 +153,8 @@ class _$_RoomListState implements _RoomListState {
   /// 存在しない場合はfalseになり、
   /// [rooms]には検索前のデータが引き続き存在する
   @override
-  final bool? hasRoomSearchResult;
+  @JsonKey()
+  final bool hasRoomSearchResult;
 
   /// フィルター
   /// [rooms]取得時に適用
@@ -195,7 +196,7 @@ class _$_RoomListState implements _RoomListState {
 
 abstract class _RoomListState implements RoomListState {
   const factory _RoomListState(
-      {final bool? hasRoomSearchResult,
+      {final bool hasRoomSearchResult,
       final RoomListStateFilter filter,
       final AsyncValue<List<RoomListStateRoom>> rooms}) = _$_RoomListState;
 
@@ -205,7 +206,7 @@ abstract class _RoomListState implements RoomListState {
   ///
   /// 存在しない場合はfalseになり、
   /// [rooms]には検索前のデータが引き続き存在する
-  bool? get hasRoomSearchResult;
+  bool get hasRoomSearchResult;
   @override
 
   /// フィルター
