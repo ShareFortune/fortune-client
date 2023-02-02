@@ -28,7 +28,7 @@ class BottomSheetContainer extends StatelessWidget {
         ),
       ).copyWith(
         color: backgroundColor,
-        // borderRadius: borderRadius,
+        borderRadius: borderRadius,
       ),
       child: child,
     );
