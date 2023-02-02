@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fortune_client/gen/assets.gen.dart';
+import 'package:fortune_client/l10n/locale_keys.g.dart';
 
 enum AuthType {
   apple,
@@ -22,11 +23,11 @@ extension AuthTypeColor on AuthType {
   String get text {
     switch (this) {
       case AuthType.apple:
-        return "Appleでログインする";
+        return LocaleKeys.login_page_sign_in_button_apple.trim();
       case AuthType.google:
-        return "Googleでログインする";
+        return LocaleKeys.login_page_sign_in_button_google.trim();
       case AuthType.twitter:
-        return "Twitterでログインする";
+        return LocaleKeys.login_page_sign_in_button_twitter.trim();
     }
   }
 

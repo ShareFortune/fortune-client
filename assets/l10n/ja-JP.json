@@ -1,5 +1,12 @@
 {
-    "login_page": "Authors",
+    "login_page": {
+        "title": "Fortune",
+        "sign_in_button": {
+            "apple" : "Appleでログインする",
+            "google" : "Googleでログインする",
+            "twitter" : "Twitterでログインする"
+        }
+    },
     "my_page": "Authors",
     "message_room_page": "Authors",
     "message_room_list_page": "Authors",
