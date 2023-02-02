@@ -9,16 +9,32 @@ part 'room_list_state.freezed.dart';
 @freezed
 class RoomListState with _$RoomListState {
   const factory RoomListState({
+    /// ルームの検索結果が存在するか
+    ///
+    /// 存在しない場合はfalseになり、
+    /// [rooms]には検索前のデータが引き続き存在する
+    bool? hasRoomSearchResult,
+
+    /// フィルター
+    /// [rooms]取得時に適用
     @Default(RoomListStateFilter()) RoomListStateFilter filter,
+
+    /// ルームリスト
     @Default(AsyncLoading()) AsyncValue<List<RoomListStateRoom>> rooms,
   }) = _RoomListState;
 }
 
+/// ルームリスト検索条件
 @freezed
 class RoomListStateFilter with _$RoomListStateFilter {
   const factory RoomListStateFilter({
+    /// 募集人数
     int? memberNum,
+
+    /// 開催地
     AddressWithId? addressWithId,
+
+    /// タグ
     List<Tag>? tags,
   }) = _RoomListStateFilter;
 }

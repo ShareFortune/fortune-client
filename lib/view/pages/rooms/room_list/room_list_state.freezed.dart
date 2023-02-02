@@ -16,7 +16,17 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$RoomListState {
+  /// ルームの検索結果が存在するか
+  ///
+  /// 存在しない場合はfalseになり、
+  /// [rooms]には検索前のデータが引き続き存在する
+  bool? get hasRoomSearchResult => throw _privateConstructorUsedError;
+
+  /// フィルター
+  /// [rooms]取得時に適用
   RoomListStateFilter get filter => throw _privateConstructorUsedError;
+
+  /// ルームリスト
   AsyncValue<List<RoomListStateRoom>> get rooms =>
       throw _privateConstructorUsedError;
 
@@ -32,7 +42,9 @@ abstract class $RoomListStateCopyWith<$Res> {
       _$RoomListStateCopyWithImpl<$Res, RoomListState>;
   @useResult
   $Res call(
-      {RoomListStateFilter filter, AsyncValue<List<RoomListStateRoom>> rooms});
+      {bool? hasRoomSearchResult,
+      RoomListStateFilter filter,
+      AsyncValue<List<RoomListStateRoom>> rooms});
 
   $RoomListStateFilterCopyWith<$Res> get filter;
 }
@@ -50,10 +62,15 @@ class _$RoomListStateCopyWithImpl<$Res, $Val extends RoomListState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? hasRoomSearchResult = freezed,
     Object? filter = null,
     Object? rooms = null,
   }) {
     return _then(_value.copyWith(
+      hasRoomSearchResult: freezed == hasRoomSearchResult
+          ? _value.hasRoomSearchResult
+          : hasRoomSearchResult // ignore: cast_nullable_to_non_nullable
+              as bool?,
       filter: null == filter
           ? _value.filter
           : filter // ignore: cast_nullable_to_non_nullable
@@ -83,7 +100,9 @@ abstract class _$$_RoomListStateCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {RoomListStateFilter filter, AsyncValue<List<RoomListStateRoom>> rooms});
+      {bool? hasRoomSearchResult,
+      RoomListStateFilter filter,
+      AsyncValue<List<RoomListStateRoom>> rooms});
 
   @override
   $RoomListStateFilterCopyWith<$Res> get filter;
@@ -100,10 +119,15 @@ class __$$_RoomListStateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? hasRoomSearchResult = freezed,
     Object? filter = null,
     Object? rooms = null,
   }) {
     return _then(_$_RoomListState(
+      hasRoomSearchResult: freezed == hasRoomSearchResult
+          ? _value.hasRoomSearchResult
+          : hasRoomSearchResult // ignore: cast_nullable_to_non_nullable
+              as bool?,
       filter: null == filter
           ? _value.filter
           : filter // ignore: cast_nullable_to_non_nullable
@@ -120,19 +144,31 @@ class __$$_RoomListStateCopyWithImpl<$Res>
 
 class _$_RoomListState implements _RoomListState {
   const _$_RoomListState(
-      {this.filter = const RoomListStateFilter(),
+      {this.hasRoomSearchResult,
+      this.filter = const RoomListStateFilter(),
       this.rooms = const AsyncLoading()});
 
+  /// ルームの検索結果が存在するか
+  ///
+  /// 存在しない場合はfalseになり、
+  /// [rooms]には検索前のデータが引き続き存在する
+  @override
+  final bool? hasRoomSearchResult;
+
+  /// フィルター
+  /// [rooms]取得時に適用
   @override
   @JsonKey()
   final RoomListStateFilter filter;
+
+  /// ルームリスト
   @override
   @JsonKey()
   final AsyncValue<List<RoomListStateRoom>> rooms;
 
   @override
   String toString() {
-    return 'RoomListState(filter: $filter, rooms: $rooms)';
+    return 'RoomListState(hasRoomSearchResult: $hasRoomSearchResult, filter: $filter, rooms: $rooms)';
   }
 
   @override
@@ -140,12 +176,15 @@ class _$_RoomListState implements _RoomListState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_RoomListState &&
+            (identical(other.hasRoomSearchResult, hasRoomSearchResult) ||
+                other.hasRoomSearchResult == hasRoomSearchResult) &&
             (identical(other.filter, filter) || other.filter == filter) &&
             (identical(other.rooms, rooms) || other.rooms == rooms));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, filter, rooms);
+  int get hashCode =>
+      Object.hash(runtimeType, hasRoomSearchResult, filter, rooms);
 
   @JsonKey(ignore: true)
   @override
@@ -156,12 +195,25 @@ class _$_RoomListState implements _RoomListState {
 
 abstract class _RoomListState implements RoomListState {
   const factory _RoomListState(
-      {final RoomListStateFilter filter,
+      {final bool? hasRoomSearchResult,
+      final RoomListStateFilter filter,
       final AsyncValue<List<RoomListStateRoom>> rooms}) = _$_RoomListState;
 
   @override
+
+  /// ルームの検索結果が存在するか
+  ///
+  /// 存在しない場合はfalseになり、
+  /// [rooms]には検索前のデータが引き続き存在する
+  bool? get hasRoomSearchResult;
+  @override
+
+  /// フィルター
+  /// [rooms]取得時に適用
   RoomListStateFilter get filter;
   @override
+
+  /// ルームリスト
   AsyncValue<List<RoomListStateRoom>> get rooms;
   @override
   @JsonKey(ignore: true)
@@ -171,8 +223,13 @@ abstract class _RoomListState implements RoomListState {
 
 /// @nodoc
 mixin _$RoomListStateFilter {
+  /// 募集人数
   int? get memberNum => throw _privateConstructorUsedError;
+
+  /// 開催地
   AddressWithId? get addressWithId => throw _privateConstructorUsedError;
+
+  /// タグ
   List<Tag>? get tags => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -290,11 +347,18 @@ class _$_RoomListStateFilter implements _RoomListStateFilter {
       {this.memberNum, this.addressWithId, final List<Tag>? tags})
       : _tags = tags;
 
+  /// 募集人数
   @override
   final int? memberNum;
+
+  /// 開催地
   @override
   final AddressWithId? addressWithId;
+
+  /// タグ
   final List<Tag>? _tags;
+
+  /// タグ
   @override
   List<Tag>? get tags {
     final value = _tags;
@@ -340,10 +404,16 @@ abstract class _RoomListStateFilter implements RoomListStateFilter {
       final List<Tag>? tags}) = _$_RoomListStateFilter;
 
   @override
+
+  /// 募集人数
   int? get memberNum;
   @override
+
+  /// 開催地
   AddressWithId? get addressWithId;
   @override
+
+  /// タグ
   List<Tag>? get tags;
   @override
   @JsonKey(ignore: true)

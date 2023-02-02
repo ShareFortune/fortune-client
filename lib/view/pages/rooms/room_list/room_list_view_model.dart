@@ -33,6 +33,14 @@ class RoomListViewModel extends StateNotifier<RoomListState> {
           tags: state.filter.tags,
           addressWithId: state.filter.addressWithId,
         );
+
+        /// 検索結果が存在しない場合
+        /// [hasRoomSearchResult]を書き換える
+        /// ルームリストは保存せず前データを返す。
+        if (result.isEmpty) {
+          state = state.copyWith(hasRoomSearchResult: false);
+          return state.rooms.value ?? List.empty();
+        }
         return result.map((data) => RoomListStateRoom(data: data)).toList();
       }),
     );
@@ -77,10 +85,7 @@ class RoomListViewModel extends StateNotifier<RoomListState> {
   /// フィルター更新
   changeFilter(RoomListStateFilter? filter) async {
     if (filter != null) {
-      state = state.copyWith(
-        filter: filter,
-        rooms: const AsyncValue.loading(),
-      );
+      state = state.copyWith(filter: filter);
       await fetchList();
     }
   }
