@@ -131,6 +131,10 @@ class $AssetsImagesIconsGen {
   SvgGenImage get iconProfileDark =>
       const SvgGenImage('assets/images/icons/icon_profile_dark.svg');
 
+  /// File path: assets/images/icons/icon_room.svg
+  SvgGenImage get iconRoom =>
+      const SvgGenImage('assets/images/icons/icon_room.svg');
+
   /// File path: assets/images/icons/icon_swap_vert.svg
   SvgGenImage get iconSwapVert =>
       const SvgGenImage('assets/images/icons/icon_swap_vert.svg');
@@ -157,6 +161,7 @@ class $AssetsImagesIconsGen {
         iconMoreVert,
         iconProfile,
         iconProfileDark,
+        iconRoom,
         iconSwapVert,
         iconTwitter,
         iconUserAdd
