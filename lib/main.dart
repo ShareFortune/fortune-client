@@ -36,6 +36,7 @@ void main() async {
       EasyLocalization(
         path: 'assets/l10n',
         supportedLocales: const [Locale('ja', 'JP')],
+        fallbackLocale: const Locale('ja', 'JP'),
         child: ProviderScope(
           child: DevicePreview(
             enabled: !kReleaseMode && Constants.enablePreview,

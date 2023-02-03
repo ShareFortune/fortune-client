@@ -1,4 +1,6 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:fortune_client/l10n/locale_keys.g.dart';
 import 'package:fortune_client/util/logger/logger.dart';
 import 'package:fortune_client/view/pages/account/my_page/components/my_profile_basic_info_container.dart';
 import 'package:fortune_client/view/pages/account/my_page/components/my_profile_self_introduction_container.dart';
@@ -80,7 +82,7 @@ class MyPage extends HookConsumerWidget {
     return Scaffold(
       backgroundColor: theme.appColors.onBackground,
       appBar: BackAppBar(
-        title: "マイページ",
+        title: LocaleKeys.myPage_title.tr(),
         action: [
           IconButton(
             onPressed: () => viewModel.navigateToSettingPage(),

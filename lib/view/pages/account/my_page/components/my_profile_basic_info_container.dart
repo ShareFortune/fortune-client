@@ -1,4 +1,6 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:fortune_client/l10n/locale_keys.g.dart';
 import 'package:fortune_client/view/pages/account/my_page/components/my_profile_container.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
@@ -25,7 +27,7 @@ class MyProfileBasicInfoContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return MyProfileContainer(
       theme: theme,
-      title: "プロフィール",
+      title: LocaleKeys.myPage_subTitle_profile.tr(),
       trailing: editButton(),
       onTap: null,
       child: Column(

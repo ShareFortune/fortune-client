@@ -1,6 +1,7 @@
 import 'package:fortune_client/data/model/base/tag/tag.dart';
 import 'package:fortune_client/data/repository/profile/profile_repository.dart';
 import 'package:fortune_client/injector.dart';
+import 'package:fortune_client/l10n/locale_keys.g.dart';
 import 'package:fortune_client/view/pages/account/my_page/my_page_state.dart';
 import 'package:fortune_client/view/routes/app_router.gr.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -34,7 +35,9 @@ class MyPageViewModel extends StateNotifier<AsyncValue<MyPageState>> {
 
     /// 自己紹介取得
     final result = await sl<AppRouter>().push(
-      EntryDescriptionRoute(title: "自己紹介", value: data.selfIntroduction),
+      EntryDescriptionRoute(
+          title: LocaleKeys.myPage_subTitle_selfIntroduction.trim(),
+          value: data.selfIntroduction),
     ) as String?;
 
     /// 更新
