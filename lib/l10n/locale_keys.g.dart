@@ -31,6 +31,7 @@ abstract class  LocaleKeys {
   static const join_requests_confirmation_page = 'join_requests_confirmation_page';
   static const create_room_page = 'create_room_page';
   static const edit_room_page = 'edit_room_page';
+  static const participating_room_list_page_title = 'participating_room_list_page.title';
   static const participating_room_list_page = 'participating_room_list_page';
   static const room_detail_page_detail = 'room_detail_page.detail';
   static const room_detail_page_member = 'room_detail_page.member';

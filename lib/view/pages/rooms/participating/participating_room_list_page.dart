@@ -1,4 +1,6 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:fortune_client/l10n/locale_keys.g.dart';
 import 'package:fortune_client/view/pages/common/scroll_app_bar/scroll_app_bar.dart';
 import 'package:fortune_client/view/pages/rooms/participating/components/participating_room_list_container.dart';
 import 'package:fortune_client/view/pages/rooms/participating/components/participating_room_list_filter.dart';
@@ -19,7 +21,7 @@ class ParticipatingRoomListPage extends HookConsumerWidget {
 
     return CustomScrollView(
       slivers: [
-        const ScrollAppBar(title: "参加する"),
+        ScrollAppBar(title: LocaleKeys.participating_room_list_page_title.tr()),
         SliverToBoxAdapter(
           child: ParticipatingRoomListFilter(
             theme: theme,

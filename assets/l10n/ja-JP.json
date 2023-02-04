@@ -36,7 +36,9 @@
     "join_requests_confirmation_page": "Authors",
     "create_room_page": "Authors",
     "edit_room_page": "Authors",
-    "participating_room_list_page": "Authors",
+    "participating_room_list_page": {
+        "title": "参加する"
+    },
     "room_detail_page": {
         "detail": "詳細",
         "member": "メンバー",
