@@ -43,8 +43,40 @@
     "data": {
         "room": {},
         "profile": {
-            "stature": "{stature}cm",
-            "age": "{age}歳"
+            "gender": {
+                "title": "性別",
+                "data": {
+                    "man": "男性",
+                    "woman": "女性",
+                    "another": "その他"
+                }
+            },
+            "stature": {
+                "title": "身長",
+                "data": "{stature}cm"
+            },
+            "age": {
+                "title": "年齢",
+                "data": "{age}歳"
+            },
+            "drinkFrequency": {
+                "title": "お酒",
+                "data": {
+                    "always": "いつも飲む",
+                    "often": "よく飲む",
+                    "sometimes": "たまに飲む",
+                    "never": "飲まない"
+                }
+            },
+            "cigaretteFrequency": {
+                "title": "タバコ",
+                "data": {
+                    "always": "いつも吸う",
+                    "often": "よく吸う",
+                    "sometimes": "たまに吸う",
+                    "never": "吸わない"
+                }
+            }
         }
     }
 }
