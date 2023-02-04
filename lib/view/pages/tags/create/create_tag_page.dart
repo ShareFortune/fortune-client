@@ -33,7 +33,7 @@ class CreateTagPage extends HookConsumerWidget {
         maxLength: 20,
         onClear: () => viewModel.changeName(""),
         onChanged: (value) => viewModel.changeName(value),
-        hintText: "必須（20文字）",
+        hintText: LocaleKeys.create_tag_page_name_hint.tr(),
       ),
     );
 
@@ -47,12 +47,11 @@ class CreateTagPage extends HookConsumerWidget {
       content: BaseTextField(
         controller: tagDescriptionController,
         maxLength: 50,
-        minLines: 6,
+        minLines: 5,
         maxLines: 100,
         isDisplaySuffixIcon: false,
         onChanged: (value) => viewModel.changeDescription(value),
-        hintText:
-            "募集したい人の性格や趣味など\n\n例）映画が好きな方とお話したいです。\n自分の好きな映画について語りましょう！\n\n＃映画　＃アニメ映画\n",
+        hintText: LocaleKeys.create_tag_page_description_hint.tr(),
         contentPadding: const EdgeInsets.symmetric(
           horizontal: 15,
           vertical: 15,

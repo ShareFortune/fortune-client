@@ -43,7 +43,6 @@ abstract class  LocaleKeys {
   static const create_tag_page_description_title = 'create_tag_page.description.title';
   static const create_tag_page_description_hint = 'create_tag_page.description.hint';
   static const create_tag_page_description = 'create_tag_page.description';
-  static const create_tag_page_dialog = 'create_tag_page.dialog';
   static const create_tag_page = 'create_tag_page';
   static const select_tags_page_title = 'select_tags_page.title';
   static const select_tags_page_save = 'select_tags_page.save';
