@@ -1,5 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:fortune_client/injector.dart';
+import 'package:fortune_client/l10n/locale_keys.g.dart';
 import 'package:fortune_client/view/routes/app_router.gr.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
@@ -16,26 +18,56 @@ class SettingsPage extends HookConsumerWidget {
 
     return Scaffold(
       backgroundColor: const Color(0xFFF2F2F6),
-      appBar: const BackAppBar(title: "設定"),
+      appBar: BackAppBar(
+        title: LocaleKeys.settings_page_title.tr(),
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
             _settingsRows(
               theme: theme,
-              title: "アカウント情報",
+              title: LocaleKeys.settings_page_account_title.tr(),
               items: [
-                _settingsRow(theme, "通知設定"),
-                _settingsRow(theme, "ログイン方法の更新"),
+                /// 通知設定
+                _settingsRow(
+                  theme,
+                  LocaleKeys.settings_page_account_notification.tr(),
+                ),
+
+                /// ログイン方法の更新
+                _settingsRow(
+                  theme,
+                  LocaleKeys.settings_page_account_updatedLoginMethod.tr(),
+                ),
               ],
             ),
             _settingsRows(
               theme: theme,
-              title: "ヘルプ",
+              title: LocaleKeys.settings_page_help_title.tr(),
               items: [
-                _settingsRow(theme, "問い合わせ"),
-                _settingsRow(theme, "お知らせ"),
-                _settingsRow(theme, "ログアウト"),
-                _settingsRow(theme, "退会"),
+                /// 問い合わせ
+                _settingsRow(
+                  theme,
+                  LocaleKeys.settings_page_help_contact.tr(),
+                ),
+
+                /// お知らせ
+                _settingsRow(
+                  theme,
+                  LocaleKeys.settings_page_help_notice.tr(),
+                ),
+
+                /// ログアウト
+                _settingsRow(
+                  theme,
+                  LocaleKeys.settings_page_help_logout.tr(),
+                ),
+
+                /// 退会
+                _settingsRow(
+                  theme,
+                  LocaleKeys.settings_page_help_quit.tr(),
+                ),
               ],
             ),
             _settingsRows(

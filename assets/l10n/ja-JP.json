@@ -39,7 +39,21 @@
     "participating_room_list_page": "Authors",
     "room_detail_page": "Authors",
     "room_list_page": "Authors",
-    "settings_page": "Authors",
+    "settings_page": {
+        "title": "設定",
+        "account": {
+            "title": "アカウント情報",
+            "notification": "通知設定",
+            "updatedLoginMethod": "ログイン方法の更新"
+        },
+        "help": {
+            "title": "ヘルプ",
+            "contact": "問い合わせ",
+            "notice": "お知らせ",
+            "logout": "ログアウト",
+            "quit": "退会"
+        }
+    },
     "create_tag_page": {
         "title": "新しいタグを作成する",
         "create": "作成",
