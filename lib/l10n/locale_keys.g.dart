@@ -36,8 +36,10 @@ abstract class  LocaleKeys {
   static const detailed_profile_entry_page_hint_drinkFrequency = 'detailed_profile_entry_page.hint.drinkFrequency';
   static const detailed_profile_entry_page_hint_cigaretteFrequency = 'detailed_profile_entry_page.hint.cigaretteFrequency';
   static const detailed_profile_entry_page_hint = 'detailed_profile_entry_page.hint';
-  static const detailed_profile_entry_page_navigation = 'detailed_profile_entry_page.navigation';
+  static const detailed_profile_entry_page_guide = 'detailed_profile_entry_page.guide';
   static const detailed_profile_entry_page = 'detailed_profile_entry_page';
+  static const profile_icon_image_entry_page_title = 'profile_icon_image_entry_page.title';
+  static const profile_icon_image_entry_page_guide = 'profile_icon_image_entry_page.guide';
   static const profile_icon_image_entry_page = 'profile_icon_image_entry_page';
   static const entry_profile_sub_image_page = 'entry_profile_sub_image_page';
   static const profile_page = 'profile_page';

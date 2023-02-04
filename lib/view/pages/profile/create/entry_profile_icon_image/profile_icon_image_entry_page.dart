@@ -1,6 +1,8 @@
 import 'dart:io';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:fortune_client/l10n/locale_keys.g.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/app_bar/basic_app_bar.dart';
 import 'package:fortune_client/view/pages/profile/create/entry_profile_icon_image/profile_icon_image_entry_view_model.dart';
@@ -20,18 +22,13 @@ class ProfileIconImageEntryPage extends HookConsumerWidget {
 
     return Scaffold(
       backgroundColor: theme.appColors.onBackground,
-      appBar: const BasicAppBar(
-        title: "アイコン写真を登録しよう！",
+      appBar: BasicAppBar(
+        title: LocaleKeys.profile_icon_image_entry_page_title.tr(),
         centerTitle: true,
       ),
       body: Center(
         child: Container(
-          padding: const EdgeInsets.only(
-            top: 50,
-            left: 60,
-            right: 60,
-            bottom: 50,
-          ),
+          padding: const EdgeInsets.fromLTRB(60, 50, 60, 50),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -44,8 +41,7 @@ class ProfileIconImageEntryPage extends HookConsumerWidget {
                     },
                   ),
                   const Gap(80),
-                  const Text("こんな画像を設定したら、"),
-                  const Text("マッチしやすくなるよ的なやつを入れる。"),
+                  Text(LocaleKeys.profile_icon_image_entry_page_guide.tr()),
                 ],
               ),
               nextButton(

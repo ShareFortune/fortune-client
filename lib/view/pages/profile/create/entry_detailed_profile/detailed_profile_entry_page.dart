@@ -139,7 +139,7 @@ class DetailedProfileEntryPage extends HookConsumerWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      LocaleKeys.detailed_profile_entry_page_navigation.tr(),
+                      LocaleKeys.detailed_profile_entry_page_guide.tr(),
                       style: theme.textTheme.h20.paint(
                         theme.appColors.subText3,
                       ),
