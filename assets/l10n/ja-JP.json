@@ -43,6 +43,9 @@
     "data": {
         "room": {},
         "profile": {
+            "address": {
+                "title": "開催地"
+            },
             "gender": {
                 "title": "性別",
                 "data": {

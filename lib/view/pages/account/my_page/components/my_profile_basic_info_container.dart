@@ -1,5 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:fortune_client/data/model/base/address/address.dart';
+import 'package:fortune_client/data/model/enum/cigarette_frequency.dart';
+import 'package:fortune_client/data/model/enum/drink_frequency.dart';
 import 'package:fortune_client/l10n/locale_keys.g.dart';
 import 'package:fortune_client/view/pages/account/my_page/components/my_profile_container.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
@@ -17,10 +20,10 @@ class MyProfileBasicInfoContainer extends StatelessWidget {
   });
 
   final AppTheme theme;
-  final String address;
+  final Address address;
   final int? stature;
-  final String? drinkFrequency;
-  final String? cigaretteFrequency;
+  final DrinkFrequency? drinkFrequency;
+  final CigaretteFrequency? cigaretteFrequency;
   final VoidCallback onUpdate;
 
   @override
@@ -32,10 +35,37 @@ class MyProfileBasicInfoContainer extends StatelessWidget {
       onTap: null,
       child: Column(
         children: [
-          basicInfoTile(theme, "居住地", address),
-          basicInfoTile(theme, "身長", stature != null ? "${stature}cm" : "未設定"),
-          basicInfoTile(theme, "お酒", drinkFrequency ?? "未設定"),
-          basicInfoTile(theme, "タバコ", cigaretteFrequency ?? "未設定"),
+          /// 居住地
+          basicInfoTile(
+            theme,
+            LocaleKeys.data_profile_address_title.tr(),
+            address.text,
+          ),
+
+          /// 身長
+          basicInfoTile(
+            theme,
+            LocaleKeys.data_profile_stature_title.tr(),
+            stature != null
+                ? LocaleKeys.data_profile_stature_data.tr(
+                    namedArgs: {"stature": stature.toString()},
+                  )
+                : "未設定",
+          ),
+
+          /// お酒
+          basicInfoTile(
+            theme,
+            LocaleKeys.data_profile_drinkFrequency_title.tr(),
+            drinkFrequency?.text ?? "未設定",
+          ),
+
+          /// タバコ
+          basicInfoTile(
+            theme,
+            LocaleKeys.data_profile_cigaretteFrequency_title.tr(),
+            cigaretteFrequency?.text ?? "未設定",
+          ),
         ],
       ),
     );
