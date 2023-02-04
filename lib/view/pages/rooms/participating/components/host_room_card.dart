@@ -1,8 +1,10 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fortune_client/data/model/enum/room_status.dart';
 import 'package:fortune_client/data/model/rooms/get_v1_rooms_host/get_v1_rooms_host.dart';
 import 'package:fortune_client/gen/assets.gen.dart';
+import 'package:fortune_client/l10n/locale_keys.g.dart';
 import 'package:fortune_client/view/pages/rooms/participating/participating_room_list_view_model.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
@@ -24,9 +26,12 @@ class HostRoomCard extends HookConsumerWidget {
     /// 下部ボタン・ホスト
     Widget bottomWidgetHost(GetV1RoomsHostResponseRoom state) {
       switch (state.status) {
+
+        /// リクエストを確認する
         case RoomStatus.pending:
           return _bottomButton(
-            title: "リクエストを確認する",
+            title: LocaleKeys.participating_room_list_page_action_confirmRequest
+                .tr(),
             color: theme.appColors.primary,
             onPressed: () => state.joinRequestsCount > 0
                 ? viewModel.navigateToRequestConfirmation(
@@ -35,9 +40,11 @@ class HostRoomCard extends HookConsumerWidget {
                   )
                 : null,
           );
+
+        /// メッセージ
         default:
           return _bottomButton(
-            title: "メッセージ",
+            title: LocaleKeys.participating_room_list_page_action_message.tr(),
             color: theme.appColors.secondary,
             onPressed: viewModel.navigateToMessage,
           );
@@ -106,25 +113,34 @@ class HostRoomCard extends HookConsumerWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                RichText(
-                  text: TextSpan(
-                    style: theme.textTheme.h10.paint(theme.appColors.subText1),
-                    children: [
-                      const TextSpan(text: "参加者  "),
-                      TextSpan(
-                        text:
-                            '女性 ${room.membersNum.womenNum}/${room.membersNum.maxWomenNum}',
-                        style:
-                            theme.textTheme.h10.paint(theme.appColors.primary),
+                Row(
+                  children: [
+                    Text(
+                      LocaleKeys.data_room_membersNum_title.tr(),
+                      style: theme.textTheme.h10.bold(),
+                    ),
+                    const Gap(10),
+                    RichText(
+                      text: TextSpan(
+                        style: theme.textTheme.h10.paint(
+                          theme.appColors.subText3,
+                        ),
+                        children: [
+                          /// 参加者：女性
+                          TextSpan(
+                            text: room.membersNum.women,
+                            style: theme.textTheme.h10.paint(
+                              theme.appColors.primary,
+                            ),
+                          ),
+
+                          /// 参加者：男性
+                          const TextSpan(text: '・'),
+                          TextSpan(text: room.membersNum.men),
+                        ],
                       ),
-                      TextSpan(
-                        text:
-                            '・男性 ${room.membersNum.menNum}/${room.membersNum.maxMenNum}',
-                        style:
-                            theme.textTheme.h10.paint(theme.appColors.subText3),
-                      ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
                 const Gap(10),
 

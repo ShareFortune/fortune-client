@@ -39,7 +39,10 @@
     "participating_room_list_page": {
         "title": "参加する",
         "action": {
-            "showAll": "すべて表示"
+            "showAll": "すべて表示",
+            "message": "メッセージ",
+            "confirmRequest": "リクエストを確認する",
+            "requesting": "リクエスト中"
         },
         "tab": {
             "all": "すべて",

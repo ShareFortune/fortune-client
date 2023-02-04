@@ -33,6 +33,9 @@ abstract class  LocaleKeys {
   static const edit_room_page = 'edit_room_page';
   static const participating_room_list_page_title = 'participating_room_list_page.title';
   static const participating_room_list_page_action_showAll = 'participating_room_list_page.action.showAll';
+  static const participating_room_list_page_action_message = 'participating_room_list_page.action.message';
+  static const participating_room_list_page_action_confirmRequest = 'participating_room_list_page.action.confirmRequest';
+  static const participating_room_list_page_action_requesting = 'participating_room_list_page.action.requesting';
   static const participating_room_list_page_action = 'participating_room_list_page.action';
   static const participating_room_list_page_tab_all = 'participating_room_list_page.tab.all';
   static const participating_room_list_page_tab_requesting = 'participating_room_list_page.tab.requesting';
