@@ -123,7 +123,7 @@ class RoomListPage extends HookConsumerWidget {
     showErrorToast(
       context,
       theme,
-      LocaleKeys.room_list_page_dialog_save_failure.tr(),
+      LocaleKeys.data_room_action_save_failure.tr(),
     );
   }
 
@@ -132,12 +132,12 @@ class RoomListPage extends HookConsumerWidget {
         ? showToast(
             context,
             theme,
-            LocaleKeys.room_list_page_dialog_joinRequest_success.tr(),
+            LocaleKeys.data_room_action_joinRequest_success.tr(),
           )
         : showErrorToast(
             context,
             theme,
-            LocaleKeys.room_list_page_dialog_joinRequest_failure.tr(),
+            LocaleKeys.data_room_action_joinRequest_failure.tr(),
           );
   }
 }

@@ -1,6 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:fortune_client/data/model/base/room/room.dart';
 import 'package:fortune_client/data/model/base/tag/tag.dart';
+import 'package:fortune_client/l10n/locale_keys.g.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/other/tag_widget.dart';
@@ -17,13 +19,25 @@ class RoomDetailContainer extends HookConsumerWidget {
     final theme = ref.watch(appThemeProvider);
 
     /// 開催場所
-    final address = _basicInfo(theme, "開催場所", room.address.text);
+    final address = _basicInfo(
+      theme,
+      LocaleKeys.data_room_address_title.tr(),
+      room.address.text,
+    );
 
     /// 募集人数
-    final membersNum = _basicInfo(theme, "募集人数", "${room.membersNum}人");
+    final membersNum = _basicInfo(
+      theme,
+      LocaleKeys.data_room_membersNum_title.tr(),
+      "${room.membersNum}人",
+    );
 
     /// タグ
-    final tags = _roomInfo(theme, "タグ", _tagsWidget(theme, room.tags));
+    final tags = _roomInfo(
+      theme,
+      LocaleKeys.data_room_tags_title.tr(),
+      _tagsWidget(theme, room.tags),
+    );
 
     /// 説明
     final explanation = _roomInfo(

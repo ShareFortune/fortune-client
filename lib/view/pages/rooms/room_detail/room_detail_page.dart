@@ -1,6 +1,8 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:fortune_client/data/model/enum/room_status.dart';
+import 'package:fortune_client/l10n/locale_keys.g.dart';
 import 'package:fortune_client/view/pages/rooms/room_detail/room_detail_view_model.dart';
 import 'package:fortune_client/view/pages/rooms/room_detail/components/room_detail_container.dart';
 import 'package:fortune_client/view/pages/rooms/room_detail/components/room_members_container.dart';
@@ -42,31 +44,53 @@ class RoomDetailPage extends HookConsumerWidget {
         /// ゲストならリクエスト中 or 参加中
         if (room.isMember) {
           room.roomStatus == RoomStatus.pending
-              ? bottomWidgetAsync = bottomButton(theme, "参加しています", null)
-              : bottomWidgetAsync = bottomButton(theme, "メッセージ", () {});
+
+              /// 参加しています
+              ? bottomWidgetAsync = bottomButton(
+                  theme: theme,
+                  label:
+                      LocaleKeys.room_detail_page_label_areParticipating.tr(),
+                  onPressed: null,
+                )
+
+              /// メッセージ
+              : bottomWidgetAsync = bottomButton(
+                  theme: theme,
+                  label: LocaleKeys.room_detail_page_label_message.tr(),
+                  onPressed: () {},
+                );
           return;
         }
 
         if (room.roomStatus == RoomStatus.pending) {
           room.joinRequestStatus != null
-              ? bottomWidgetAsync = bottomButton(theme, "リクエスト中", null)
-              : bottomWidgetAsync = bottomButton(theme, "参加する", () async {
-                  final result = await viewModel.joinRequest();
-                  // ignore: use_build_context_synchronously
-                  _showJoinRequestToast(context, theme, result);
-                });
+
+              /// リクエスト中
+              ? bottomWidgetAsync = bottomButton(
+                  theme: theme,
+                  label: LocaleKeys.room_detail_page_label_requesting.tr(),
+                  onPressed: null,
+                )
+
+              /// 参加する
+              : bottomWidgetAsync = bottomButton(
+                  theme: theme,
+                  label: LocaleKeys.room_detail_page_label_joinRequest.tr(),
+                  onPressed: () async {
+                    final result = await viewModel.joinRequest();
+                    // ignore: use_build_context_synchronously
+                    _showJoinRequestToast(context, theme, result);
+                  });
         }
       },
       orElse: () => loadingWidget(),
     );
 
-    /// タブテキスト
-    final tabTextColor = theme.appColors.subText1;
-    final tabTextStyle = theme.textTheme.h20.paint(tabTextColor).bold();
+    /// タブカラー
+    final tabColor = theme.appColors.subText1;
 
-    /// タブテキスト（選択時）
-    final onTabTextColor = theme.appColors.onSecondary;
-    final onTabTextStyle = theme.textTheme.h20.paint(onTabTextColor).bold();
+    /// タブカラー（選択時）
+    final onTabColor = theme.appColors.onSecondary;
 
     return Container(
       color: theme.appColors.onBackground,
@@ -83,13 +107,17 @@ class RoomDetailPage extends HookConsumerWidget {
               SliverToBoxAdapter(child: headerWidgetAsync),
               SliverToBoxAdapter(
                 child: TabBar(
-                  labelColor: onTabTextColor,
-                  unselectedLabelColor: tabTextColor,
-                  labelStyle: onTabTextStyle,
-                  unselectedLabelStyle: tabTextStyle,
+                  labelColor: onTabColor,
+                  unselectedLabelColor: tabColor,
+                  labelStyle: theme.textTheme.h20.paint(onTabColor).bold(),
+                  unselectedLabelStyle:
+                      theme.textTheme.h20.paint(tabColor).bold(),
                   indicatorPadding: const EdgeInsets.symmetric(horizontal: 30),
                   labelPadding: const EdgeInsets.only(bottom: 5),
-                  tabs: const [Tab(text: '詳細'), Tab(text: 'メンバー')],
+                  tabs: [
+                    Tab(text: LocaleKeys.room_detail_page_detail.tr()),
+                    Tab(text: LocaleKeys.room_detail_page_member.tr()),
+                  ],
                 ),
               ),
             ];
@@ -116,7 +144,11 @@ class RoomDetailPage extends HookConsumerWidget {
     );
   }
 
-  bottomButton(AppTheme theme, String text, VoidCallback? onPressed) {
+  bottomButton({
+    required AppTheme theme,
+    required String label,
+    required VoidCallback? onPressed,
+  }) {
     return ElevatedButton(
       onPressed: onPressed ?? () {},
       style: ElevatedButton.styleFrom(
@@ -129,7 +161,7 @@ class RoomDetailPage extends HookConsumerWidget {
           borderRadius: BorderRadius.circular(15),
         ),
       ),
-      child: Text(text, style: theme.textTheme.h30.bold()),
+      child: Text(label, style: theme.textTheme.h30.bold()),
     );
   }
 
@@ -149,7 +181,15 @@ class RoomDetailPage extends HookConsumerWidget {
 
   _showJoinRequestToast(BuildContext context, AppTheme theme, bool isSuccess) {
     isSuccess
-        ? showToast(context, theme, "参加申請を送信しました。")
-        : showErrorToast(context, theme, "参加申請の送信に失敗しました。");
+        ? showToast(
+            context,
+            theme,
+            LocaleKeys.data_room_action_joinRequest_success.tr(),
+          )
+        : showErrorToast(
+            context,
+            theme,
+            LocaleKeys.data_room_action_joinRequest_failure.tr(),
+          );
   }
 }

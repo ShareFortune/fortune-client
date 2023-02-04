@@ -117,7 +117,7 @@ class RoomListCard extends StatelessWidget {
             // tapTargetSize: MaterialTapTargetSize.shrinkWrap,
           ),
           child: Text(
-            LocaleKeys.data_room_action_joinRequest.tr(),
+            LocaleKeys.data_room_action_joinRequest_label.tr(),
             style: theme.textTheme.h20.paint(theme.appColors.onPrimary).bold(),
           ),
         ),

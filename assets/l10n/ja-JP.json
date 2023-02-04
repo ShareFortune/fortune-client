@@ -37,7 +37,16 @@
     "create_room_page": "Authors",
     "edit_room_page": "Authors",
     "participating_room_list_page": "Authors",
-    "room_detail_page": "Authors",
+    "room_detail_page": {
+        "detail": "詳細",
+        "member": "メンバー",
+        "label": {
+            "joinRequest": "参加する",
+            "message": "メッセージ",
+            "requesting": "リクエスト中",
+            "areParticipating": "参加しています"
+        }
+    },
     "room_list_page": {
         "title": "見つける",
         "rooms": {
@@ -46,16 +55,6 @@
         "filter": {
             "title": "ルームの絞り込み",
             "search": "この条件で探す"
-        },
-        "dialog": {
-            "save": {
-                "success": "{}を保存しました。",
-                "failure": "ルームを保存できませんでした。"
-            },
-            "joinRequest": {
-                "success": "参加申請を送信しました。",
-                "failure": "参加申請の送信に失敗しました。"
-            }
         }
     },
     "settings_page": {
@@ -106,7 +105,16 @@
         "empty": "未設定",
         "room": {
             "action": {
-                "joinRequest": "参加"
+                "save": {
+                    "label": "保存",
+                    "success": "{}を保存しました。",
+                    "failure": "ルームを保存できませんでした。"
+                },
+                "joinRequest": {
+                    "label": "参加",
+                    "success": "参加申請を送信しました。",
+                    "failure": "参加申請の送信に失敗しました。"
+                }
             },
             "membersNum": {
                 "title": "参加人数",
@@ -117,7 +125,7 @@
                 }
             },
             "address": {
-                "title": "場所"
+                "title": "開催場所"
             },
             "tags": {
                 "title": "タグ"
