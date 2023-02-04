@@ -38,7 +38,22 @@
     "edit_room_page": "Authors",
     "participating_room_list_page": "Authors",
     "room_detail_page": "Authors",
-    "room_list_page": "Authors",
+    "room_list_page": {
+        "title": "見つける",
+        "rooms": {
+            "empty": "条件に一致するルームが存在しません。"
+        },
+        "dialog": {
+            "save": {
+                "success": "{}を保存しました。",
+                "failure": "ルームを保存できませんでした。"
+            },
+            "joinRequest": {
+                "success": "参加申請を送信しました。",
+                "failure": "参加申請の送信に失敗しました。"
+            }
+        }
+    },
     "settings_page": {
         "title": "設定",
         "account": {

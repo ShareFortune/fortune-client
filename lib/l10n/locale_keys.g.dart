@@ -33,6 +33,16 @@ abstract class  LocaleKeys {
   static const edit_room_page = 'edit_room_page';
   static const participating_room_list_page = 'participating_room_list_page';
   static const room_detail_page = 'room_detail_page';
+  static const room_list_page_title = 'room_list_page.title';
+  static const room_list_page_rooms_empty = 'room_list_page.rooms.empty';
+  static const room_list_page_rooms = 'room_list_page.rooms';
+  static const room_list_page_dialog_save_success = 'room_list_page.dialog.save.success';
+  static const room_list_page_dialog_save_failure = 'room_list_page.dialog.save.failure';
+  static const room_list_page_dialog_save = 'room_list_page.dialog.save';
+  static const room_list_page_dialog_joinRequest_success = 'room_list_page.dialog.joinRequest.success';
+  static const room_list_page_dialog_joinRequest_failure = 'room_list_page.dialog.joinRequest.failure';
+  static const room_list_page_dialog_joinRequest = 'room_list_page.dialog.joinRequest';
+  static const room_list_page_dialog = 'room_list_page.dialog';
   static const room_list_page = 'room_list_page';
   static const settings_page_title = 'settings_page.title';
   static const settings_page_account_title = 'settings_page.account.title';
