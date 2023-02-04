@@ -1,4 +1,6 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:fortune_client/l10n/locale_keys.g.dart';
 import 'package:fortune_client/view/pages/tags/create/components/tag_creation_text_field.dart';
 import 'package:fortune_client/view/pages/tags/create/components/tag_creation_transition_tile.dart';
 import 'package:fortune_client/view/pages/tags/create/create_tag_view_model.dart';
@@ -25,12 +27,12 @@ class CreateTagPage extends HookConsumerWidget {
     ///
     final nameWidget = _inputFieldContainer(
       theme,
-      title: "タグの名前",
+      title: LocaleKeys.create_tag_page_name_title.tr(),
       explanation: "作成するタグの名前を入力しましょう",
       content: TagCreationTextField(
         theme: theme,
         controller: tagNameController,
-        hintText: "タイトルを入力する",
+        hintText: LocaleKeys.create_tag_page_name_hint.tr(),
         clearCallBack: () => viewModel.changeName(""),
         onChanged: (value) => viewModel.changeName(value),
         onEditingComplete: () => FocusScope.of(context).unfocus(),
@@ -42,7 +44,7 @@ class CreateTagPage extends HookConsumerWidget {
     ///
     final descriptionWidget = _inputFieldContainer(
       theme,
-      title: "説明",
+      title: LocaleKeys.create_tag_page_description_title.tr(),
       explanation: "作成するタグに関する説明を書きましょう",
       content: state.description?.isNotEmpty == true
           ? descriptionContainer(
@@ -51,7 +53,7 @@ class CreateTagPage extends HookConsumerWidget {
               onTap: viewModel.navigateToEntryDescription,
             )
           : TagCreationTransitionTile(
-              title: "タグの説明を入力しましょう",
+              title: LocaleKeys.create_tag_page_description_hint.tr(),
               onTap: () => viewModel.navigateToEntryDescription(),
             ),
     );
@@ -59,7 +61,7 @@ class CreateTagPage extends HookConsumerWidget {
     return Scaffold(
       backgroundColor: theme.appColors.onBackground,
       appBar: BackAppBar(
-        title: "新しいタグを作る",
+        title: LocaleKeys.create_tag_page_title.tr(),
         action: [
           Container(
             padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
@@ -71,7 +73,7 @@ class CreateTagPage extends HookConsumerWidget {
                       }
                     }
                   : null,
-              child: const Text("作成"),
+              child: Text(LocaleKeys.create_tag_page_create.tr()),
             ),
           ),
         ],

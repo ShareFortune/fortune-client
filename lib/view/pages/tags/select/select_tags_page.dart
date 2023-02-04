@@ -87,7 +87,7 @@ class SelectTagsPage extends HookConsumerWidget {
             TextButton(
               onPressed: () => viewModel.saveSetData(),
               child: Text(
-                LocaleKeys.select_tags_page_saveBtn.tr(),
+                LocaleKeys.select_tags_page_save.tr(),
                 style: theme.textTheme.h40.bold(),
               ),
             )
@@ -170,7 +170,7 @@ class SelectTagsPage extends HookConsumerWidget {
           TextButton(
             onPressed: onCreate,
             child: Text(
-              LocaleKeys.select_tags_page_createBtn.tr(),
+              LocaleKeys.select_tags_page_create.tr(),
               style: theme.textTheme.h30.paint(theme.appColors.primary),
             ),
           ),

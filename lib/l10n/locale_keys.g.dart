@@ -2,10 +2,10 @@
 
 abstract class  LocaleKeys {
   static const loginPage_title = 'loginPage.title';
-  static const loginPage_signInButton_apple = 'loginPage.signInButton.apple';
-  static const loginPage_signInButton_google = 'loginPage.signInButton.google';
-  static const loginPage_signInButton_twitter = 'loginPage.signInButton.twitter';
-  static const loginPage_signInButton = 'loginPage.signInButton';
+  static const loginPage_login_apple = 'loginPage.login.apple';
+  static const loginPage_login_google = 'loginPage.login.google';
+  static const loginPage_login_twitter = 'loginPage.login.twitter';
+  static const loginPage_login = 'loginPage.login';
   static const loginPage = 'loginPage';
   static const myPage_title = 'myPage.title';
   static const myPage_profiles_selfIntroduction_title = 'myPage.profiles.selfIntroduction.title';
@@ -35,10 +35,19 @@ abstract class  LocaleKeys {
   static const room_detail_page = 'room_detail_page';
   static const room_list_page = 'room_list_page';
   static const settings_page = 'settings_page';
+  static const create_tag_page_title = 'create_tag_page.title';
+  static const create_tag_page_create = 'create_tag_page.create';
+  static const create_tag_page_name_title = 'create_tag_page.name.title';
+  static const create_tag_page_name_hint = 'create_tag_page.name.hint';
+  static const create_tag_page_name = 'create_tag_page.name';
+  static const create_tag_page_description_title = 'create_tag_page.description.title';
+  static const create_tag_page_description_hint = 'create_tag_page.description.hint';
+  static const create_tag_page_description = 'create_tag_page.description';
+  static const create_tag_page_dialog = 'create_tag_page.dialog';
   static const create_tag_page = 'create_tag_page';
   static const select_tags_page_title = 'select_tags_page.title';
-  static const select_tags_page_saveBtn = 'select_tags_page.saveBtn';
-  static const select_tags_page_createBtn = 'select_tags_page.createBtn';
+  static const select_tags_page_save = 'select_tags_page.save';
+  static const select_tags_page_create = 'select_tags_page.create';
   static const select_tags_page_beingSet_title = 'select_tags_page.beingSet.title';
   static const select_tags_page_beingSet_empty = 'select_tags_page.beingSet.empty';
   static const select_tags_page_beingSet = 'select_tags_page.beingSet';

@@ -1,7 +1,7 @@
 {
     "loginPage": {
         "title": "Fortune",
-        "signInButton": {
+        "login": {
             "apple": "Appleでログインする",
             "google": "Googleでログインする",
             "twitter": "Twitterでログインする"
@@ -40,11 +40,22 @@
     "room_detail_page": "Authors",
     "room_list_page": "Authors",
     "settings_page": "Authors",
-    "create_tag_page": "Authors",
+    "create_tag_page": {
+        "title": "新しいタグを作成する",
+        "create": "作成",
+        "name": {
+            "title": "タグのタイトル",
+            "hint": "タイトルを入力しましょう"
+        },
+        "description": {
+            "title": "タグの説明",
+            "hint": "タグの説明を入力しましょう"
+        }
+    },
     "select_tags_page": {
         "title": "タグを選択しましょう",
-        "saveBtn": "保存",
-        "createBtn": "タグを作成しますか？",
+        "save": "保存",
+        "create": "タグを作成しますか？",
         "beingSet": {
             "title": "設定中のタグ",
             "empty": "設定しているタグが存在しません。"
