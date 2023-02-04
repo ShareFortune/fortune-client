@@ -15,6 +15,7 @@ abstract class  LocaleKeys {
   static const myPage_profiles_tags_empty = 'myPage.profiles.tags.empty';
   static const myPage_profiles_tags = 'myPage.profiles.tags';
   static const myPage_profiles_detail_title = 'myPage.profiles.detail.title';
+  static const myPage_profiles_detail_edit = 'myPage.profiles.detail.edit';
   static const myPage_profiles_detail = 'myPage.profiles.detail';
   static const myPage_profiles = 'myPage.profiles';
   static const myPage = 'myPage';

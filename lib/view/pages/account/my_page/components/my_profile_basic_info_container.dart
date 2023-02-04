@@ -74,12 +74,12 @@ class MyProfileBasicInfoContainer extends StatelessWidget {
   }
 
   Widget editButton() {
-    final textColor = theme.appColors.primary;
-    final textStyle = theme.textTheme.h30.paint(textColor);
-
     return TextButton(
       onPressed: onUpdate,
-      child: Text("編集する", style: textStyle),
+      child: Text(
+        LocaleKeys.myPage_profiles_detail_edit.tr(),
+        style: theme.textTheme.h30.paint(theme.appColors.primary),
+      ),
     );
   }
 
