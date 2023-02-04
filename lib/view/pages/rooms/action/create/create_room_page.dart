@@ -3,13 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:fortune_client/data/model/enum/age_group.dart';
 import 'package:fortune_client/l10n/locale_keys.g.dart';
 import 'package:fortune_client/view/pages/rooms/action/components/room_state_input_field.dart';
-import 'package:fortune_client/view/pages/rooms/action/components/room_state_selective_form.dart';
-import 'package:fortune_client/view/pages/rooms/action/components/room_state_transition_tile.dart';
 import 'package:fortune_client/view/pages/rooms/action/create/create_room_view_model.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/app_bar/back_app_bar.dart';
 import 'package:fortune_client/view/widgets/dialog/toast.dart';
-import 'package:fortune_client/view/widgets/form_field/base_text_field.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -24,91 +21,6 @@ class CreateRoomPage extends HookConsumerWidget {
     final theme = ref.watch(appThemeProvider);
     final state = ref.watch(createRoomViewModelProvider);
     final viewModel = ref.watch(createRoomViewModelProvider.notifier);
-
-    ///
-    /// タイトル
-    ///
-    final titleWidget = RoomStateInputField(
-      theme: theme,
-      title: LocaleKeys.data_room_title_title.tr(),
-      content: BaseTextField(
-        controller: titleController,
-        maxLength: 20,
-        onClear: () => viewModel.changeTitle(""),
-        onChanged: (value) => viewModel.changeTitle(value),
-        hintText: LocaleKeys.create_room_page_roomTitleHint.tr(),
-      ),
-    );
-
-    ///
-    /// 募集人数
-    ///
-    final membersNumWidget = RoomStateSelectiveForm(
-      title: LocaleKeys.data_room_membersNum_title.tr(),
-      value: state.membersNum != null
-          ? LocaleKeys.data_room_membersNum_data_all.tr(
-              args: [state.membersNum.toString()],
-            )
-          : null,
-      separator: "人",
-      items: List.generate(7, (index) => "${index + 4}").toList(),
-      onSelect: (value) {
-        viewModel.changeMembersNum(int.parse(value));
-      },
-    );
-
-    ///
-    /// 対象年齢
-    ///
-    final ageGroupWidget = RoomStateSelectiveForm(
-      title: LocaleKeys.data_room_age_title.tr(),
-      value: state.ageGroup?.text,
-      items: AgeGroup.values.map((e) => e.text).toList(),
-      onSelect: (value) {
-        viewModel.changeAgeGroup(
-          AgeGroup.values.firstWhere((e) => e.text == value),
-        );
-      },
-    );
-
-    ///
-    /// 場所
-    ///
-    final addressWidget = RoomStateTransitionTile(
-      title: LocaleKeys.data_room_address_title.tr(),
-      value: state.addressWithId?.text,
-      onTap: () => viewModel.navigateToEntryAddress(),
-    );
-
-    ///
-    /// タグ
-    ///
-    final tagsWidget = RoomStateTransitionTile(
-      title: LocaleKeys.data_room_tags_title.tr(),
-      value: state.tags?.map((e) => e.name).join("、"),
-      onTap: () => viewModel.navigateToTagsSelection(),
-    );
-
-    ///
-    /// 詳細説明
-    final explanationWidget = RoomStateInputField(
-      theme: theme,
-      required: false,
-      title: LocaleKeys.data_room_description_title.tr(),
-      content: BaseTextField(
-        controller: explanationController,
-        maxLength: 500,
-        minLines: 6,
-        maxLines: 100,
-        isDisplaySuffixIcon: false,
-        onChanged: (value) => viewModel.changeExplanation(value),
-        hintText: LocaleKeys.data_room_description_hint.tr(),
-        contentPadding: const EdgeInsets.symmetric(
-          horizontal: 15,
-          vertical: 15,
-        ),
-      ),
-    );
 
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
@@ -139,17 +51,61 @@ class CreateRoomPage extends HookConsumerWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Gap(30),
-                titleWidget,
+
+                /// タイトル
+                RoomStateTitleInputField(
+                  theme: theme,
+                  controller: titleController,
+                  onClear: () => viewModel.changeTitle(""),
+                  onChanged: (value) => viewModel.changeTitle(value),
+                ),
+
                 const Gap(20),
-                membersNumWidget,
+
+                /// 募集人数
+                RoomStateMembersNumInputField(
+                  membersNum: state.membersNum,
+                  onSelect: (value) =>
+                      viewModel.changeMembersNum(int.parse(value)),
+                ),
+
                 const Gap(15),
-                ageGroupWidget,
+
+                /// 対象年齢
+                RoomStateAgeGroupInputField(
+                  ageGroup: state.ageGroup,
+                  onSelect: (value) {
+                    viewModel.changeAgeGroup(
+                      AgeGroup.values.firstWhere((e) => e.text == value),
+                    );
+                  },
+                ),
+
                 const Gap(15),
-                addressWidget,
+
+                /// 場所
+                RoomStateAddressInputField(
+                  addressWithId: state.addressWithId,
+                  onTap: () => viewModel.navigateToEntryAddress(),
+                ),
+
                 const Gap(15),
-                tagsWidget,
+
+                /// タグ
+                RoomStateTagsInputField(
+                  tags: state.tags,
+                  onTap: () => viewModel.navigateToTagsSelection(),
+                ),
+
                 const Gap(30),
-                explanationWidget,
+
+                /// 説明
+                RoomStateExplanationInputField(
+                  theme: theme,
+                  controller: explanationController,
+                  onChanged: (value) => viewModel.changeExplanation(value),
+                ),
+
                 const Gap(150),
               ],
             ),
