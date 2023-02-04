@@ -1,13 +1,12 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:fortune_client/data/model/enum/age_group.dart';
+import 'package:fortune_client/l10n/locale_keys.g.dart';
 import 'package:fortune_client/view/pages/rooms/action/components/room_state_input_field.dart';
-import 'package:fortune_client/view/pages/rooms/action/components/room_state_selective_form.dart';
-import 'package:fortune_client/view/pages/rooms/action/components/room_state_transition_tile.dart';
 import 'package:fortune_client/view/pages/rooms/action/create/create_room_view_model.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/app_bar/back_app_bar.dart';
 import 'package:fortune_client/view/widgets/dialog/toast.dart';
-import 'package:fortune_client/view/widgets/form_field/base_text_field.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -23,94 +22,12 @@ class CreateRoomPage extends HookConsumerWidget {
     final state = ref.watch(createRoomViewModelProvider);
     final viewModel = ref.watch(createRoomViewModelProvider.notifier);
 
-    ///
-    /// タイトル
-    ///
-    final titleWidget = RoomStateInputField(
-      theme: theme,
-      title: "タイトル",
-      content: BaseTextField(
-        controller: titleController,
-        maxLength: 20,
-        onClear: () => viewModel.changeTitle(""),
-        onChanged: (value) => viewModel.changeTitle(value),
-        hintText: "必須（40文字）",
-      ),
-    );
-
-    ///
-    /// 募集人数
-    ///
-    final membersNumWidget = RoomStateSelectiveForm(
-      title: "募集人数",
-      value: state.membersNum != null ? "${state.membersNum}人" : null,
-      separator: "人",
-      items: List.generate(7, (index) => "${index + 4}").toList(),
-      onSelect: (value) {
-        viewModel.changeMembersNum(int.parse(value));
-      },
-    );
-
-    ///
-    /// 対象年齢
-    ///
-    final ageGroupWidget = RoomStateSelectiveForm(
-      title: "募集年齢",
-      value: state.ageGroup?.text,
-      items: AgeGroup.values.map((e) => e.text).toList(),
-      onSelect: (value) {
-        viewModel.changeAgeGroup(
-          AgeGroup.values.firstWhere((e) => e.text == value),
-        );
-      },
-    );
-
-    ///
-    /// 場所
-    ///
-    final addressWidget = RoomStateTransitionTile(
-      title: "開催場所",
-      value: state.addressWithId?.text,
-      onTap: () => viewModel.navigateToEntryAddress(),
-    );
-
-    ///
-    /// タグ
-    ///
-    final tagsWidget = RoomStateTransitionTile(
-      title: "タグ",
-      value: state.tags?.map((e) => e.name).join("、"),
-      onTap: () => viewModel.navigateToTagsSelection(),
-    );
-
-    ///
-    /// 詳細説明
-    final explanationWidget = RoomStateInputField(
-      theme: theme,
-      required: false,
-      title: "ルームの説明",
-      content: BaseTextField(
-        controller: explanationController,
-        maxLength: 500,
-        minLines: 6,
-        maxLines: 100,
-        isDisplaySuffixIcon: false,
-        onChanged: (value) => viewModel.changeExplanation(value),
-        hintText:
-            "募集したい人の性格や趣味など\n\n例）映画が好きな方とお話したいです。\n自分の好きな映画について語りましょう！\n\n＃映画　＃アニメ映画\n",
-        contentPadding: const EdgeInsets.symmetric(
-          horizontal: 15,
-          vertical: 15,
-        ),
-      ),
-    );
-
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         backgroundColor: theme.appColors.onBackground,
         appBar: BackAppBar(
-          title: "新しいルームを作る",
+          title: LocaleKeys.create_room_page_title.tr(),
           action: [
             Container(
               padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
@@ -122,7 +39,7 @@ class CreateRoomPage extends HookConsumerWidget {
                         }
                       }
                     : null,
-                child: const Text("作成"),
+                child: Text(LocaleKeys.create_room_page_create.tr()),
               ),
             ),
           ],
@@ -134,17 +51,61 @@ class CreateRoomPage extends HookConsumerWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Gap(30),
-                titleWidget,
+
+                /// タイトル
+                RoomStateTitleInputField(
+                  theme: theme,
+                  controller: titleController,
+                  onClear: () => viewModel.changeTitle(""),
+                  onChanged: (value) => viewModel.changeTitle(value),
+                ),
+
                 const Gap(20),
-                membersNumWidget,
+
+                /// 募集人数
+                RoomStateMembersNumInputField(
+                  membersNum: state.membersNum,
+                  onSelect: (value) =>
+                      viewModel.changeMembersNum(int.parse(value)),
+                ),
+
                 const Gap(15),
-                ageGroupWidget,
+
+                /// 対象年齢
+                RoomStateAgeGroupInputField(
+                  ageGroup: state.ageGroup,
+                  onSelect: (value) {
+                    viewModel.changeAgeGroup(
+                      AgeGroup.values.firstWhere((e) => e.text == value),
+                    );
+                  },
+                ),
+
                 const Gap(15),
-                addressWidget,
+
+                /// 場所
+                RoomStateAddressInputField(
+                  addressWithId: state.addressWithId,
+                  onTap: () => viewModel.navigateToEntryAddress(),
+                ),
+
                 const Gap(15),
-                tagsWidget,
+
+                /// タグ
+                RoomStateTagsInputField(
+                  tags: state.tags,
+                  onTap: () => viewModel.navigateToTagsSelection(),
+                ),
+
                 const Gap(30),
-                explanationWidget,
+
+                /// 説明
+                RoomStateExplanationInputField(
+                  theme: theme,
+                  controller: explanationController,
+                  onChanged: (value) => viewModel.changeExplanation(value),
+                ),
+
                 const Gap(150),
               ],
             ),
@@ -155,6 +116,10 @@ class CreateRoomPage extends HookConsumerWidget {
   }
 
   _showFailedToCreateToast(BuildContext context, AppTheme theme) {
-    showErrorToast(context, theme, "ルームを作成できませんでした。");
+    showErrorToast(
+      context,
+      theme,
+      LocaleKeys.data_room_action_create_failure.tr(),
+    );
   }
 }

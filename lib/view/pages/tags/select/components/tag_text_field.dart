@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/form_field/base_text_field.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class TagTextField extends HookConsumerWidget {
+class TagTextField extends StatelessWidget {
   const TagTextField({
     Key? key,
     required this.controller,
@@ -26,9 +24,7 @@ class TagTextField extends HookConsumerWidget {
   final VoidCallback? clearCallBack;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final theme = ref.watch(appThemeProvider);
-
+  Widget build(BuildContext context) {
     return BaseTextField(
       controller: controller,
       validator: (validator == null) ? null : (value) => validator!(value),
@@ -38,7 +34,6 @@ class TagTextField extends HookConsumerWidget {
       onTap: onTap,
       onClear: clearCallBack,
       onEditingComplete: onEditingComplete,
-      // border: isError ?? false ? const BorderSide(color: Colors.red) : null,
     );
   }
 }

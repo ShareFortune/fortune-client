@@ -1,8 +1,10 @@
 // ignore_for_file: library_private_types_in_public_api
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:fortune_client/data/model/rooms/get_v1_rooms_guest/get_v1_rooms_guest.dart';
 import 'package:fortune_client/data/model/rooms/get_v1_rooms_host/get_v1_rooms_host.dart';
+import 'package:fortune_client/l10n/locale_keys.g.dart';
 import 'package:fortune_client/view/pages/rooms/participating/components/guest_room_card.dart';
 import 'package:fortune_client/view/pages/rooms/participating/components/host_room_card.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
@@ -19,18 +21,20 @@ enum _RoomType {
 
 extension RoomTypeEx on _RoomType {
   static final names = {
-    _RoomType.host: 'ホストで参加',
-    _RoomType.guest: 'ゲストで参加',
+    _RoomType.host: LocaleKeys.participating_room_list_page_host_title.tr(),
+    _RoomType.guest: LocaleKeys.participating_room_list_page_guest_title.tr(),
   };
 
   static final adviceTexts = {
-    _RoomType.host: '開催中のルームが存在しません。',
-    _RoomType.guest: '参加中のルームが存在しません。',
+    _RoomType.host: LocaleKeys.participating_room_list_page_host_advice.tr(),
+    _RoomType.guest: LocaleKeys.participating_room_list_page_guest_advice.tr(),
   };
 
   static final navigationTexts = {
-    _RoomType.host: 'ルームを作ってみよう！',
-    _RoomType.guest: '参加するルームを見つけよう！',
+    _RoomType.host:
+        LocaleKeys.participating_room_list_page_host_navigation.tr(),
+    _RoomType.guest:
+        LocaleKeys.participating_room_list_page_guest_navigation.tr(),
   };
 
   String get name => names[this]!;
@@ -132,11 +136,6 @@ class ParticipatingRoomListContainer<T> extends HookConsumerWidget {
   }
 
   _showAllButton(AppTheme theme, VoidCallback? onTap) {
-    /// タイトルスタイル
-    final textColor =
-        onTap != null ? theme.appColors.linkColor : theme.appColors.subText3;
-    final textStyle = theme.textTheme.h30.paint(textColor);
-
     return Container(
       height: 50,
       padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -150,7 +149,14 @@ class ParticipatingRoomListContainer<T> extends HookConsumerWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text("すべて表示", style: textStyle),
+            Text(
+              LocaleKeys.participating_room_list_page_action_showAll.tr(),
+              style: theme.textTheme.h30.paint(
+                onTap != null
+                    ? theme.appColors.linkColor
+                    : theme.appColors.subText3,
+              ),
+            ),
             const Icon(
               size: 16,
               Icons.arrow_forward_ios,

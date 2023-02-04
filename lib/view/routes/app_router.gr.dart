@@ -286,7 +286,7 @@ class AppRouter extends _i27.RootStackRouter {
     BasicProfileEntryRoute.name: (routeData) {
       return _i27.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i21.BasicProfileEntryPage(),
+        child: _i21.BasicProfileEntryPage(),
       );
     },
     DetailedProfileEntryRoute.name: (routeData) {

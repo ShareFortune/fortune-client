@@ -1,6 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:fortune_client/data/model/base/address_with_id/address_with_id.dart';
 import 'package:fortune_client/data/model/base/tag/tag.dart';
+import 'package:fortune_client/l10n/locale_keys.g.dart';
 import 'package:fortune_client/view/pages/rooms/room_list/components/rooms_filter_expanded_tile.dart';
 import 'package:fortune_client/view/pages/rooms/room_list/components/rooms_filter_tile.dart';
 import 'package:fortune_client/view/pages/rooms/room_list/room_list_state.dart';
@@ -79,7 +81,7 @@ class _RoomsFilterBottomSheetState
               Column(
                 children: [
                   AppBar(
-                    title: const Text('ルームの絞り込み'),
+                    title: Text(LocaleKeys.room_list_page_filter_title.tr()),
                     leading: Container(),
                     shape: const RoundedRectangleBorder(
                       borderRadius: BorderRadius.only(
@@ -102,9 +104,11 @@ class _RoomsFilterBottomSheetState
                         children: [
                           /// 人数検索
                           RoomsFilterExpandedTile(
-                            title: "人数",
+                            title: LocaleKeys.data_room_membersNum_title.tr(),
                             value: filter.memberNum != null
-                                ? "${filter.memberNum}人"
+                                ? LocaleKeys.data_room_membersNum_data_all.tr(
+                                    args: [filter.memberNum.toString()],
+                                  )
                                 : null,
                             items: List.generate(7, (index) => "${index + 4}")
                                 .toList(),
@@ -119,7 +123,7 @@ class _RoomsFilterBottomSheetState
 
                           /// 場所検索
                           RoomsFilterTile(
-                            title: "場所",
+                            title: LocaleKeys.data_room_address_title.tr(),
                             value: filter.addressWithId?.text,
                             onTap: () async {
                               final address = await widget.onSelectAddress();
@@ -133,7 +137,7 @@ class _RoomsFilterBottomSheetState
 
                           /// タグ検索
                           RoomsFilterTile(
-                            title: "タグ",
+                            title: LocaleKeys.data_room_tags_title.tr(),
                             value: filter.tags
                                 ?.map((e) => e.name)
                                 .toList()
@@ -157,7 +161,7 @@ class _RoomsFilterBottomSheetState
                 right: 16,
                 child: BaseButton(
                   theme: theme,
-                  title: "この条件で探す",
+                  title: LocaleKeys.room_list_page_filter_search.tr(),
                   onPressed: () => Navigator.pop(context, filter),
                 ),
               ),

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/view/routes/app_router.gr.dart';
@@ -21,9 +22,9 @@ class MyApp extends HookConsumerWidget {
         theme: theme.data,
         darkTheme: AppTheme.dark().data,
         themeMode: themeMode,
-        // locale: DevicePreview.locale(context),
-        // localizationsDelegates: L10n.localizationsDelegates,
-        // supportedLocales: L10n.supportedLocales,
+        localizationsDelegates: context.localizationDelegates,
+        supportedLocales: context.supportedLocales,
+        locale: context.locale,
         routeInformationParser: appRouter.defaultRouteParser(),
         routerDelegate: appRouter.delegate(),
       );

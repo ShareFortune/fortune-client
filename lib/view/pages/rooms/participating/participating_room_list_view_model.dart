@@ -39,9 +39,9 @@ class ParticipatingRoomListViewModel
   void showAllRooms() {}
   void showRequestingRooms() {}
 
-  ///
-  /// 遷移処理
-  ///
+  /// ------------ 遷移処理 ------------
+
+  /// リクエスト一覧へ
   navigateToRequestConfirmation(String roomId, String roomTitle) {
     sl<AppRouter>().push(JoinRequestsConfirmationRoute(
       id: roomId,
@@ -49,24 +49,29 @@ class ParticipatingRoomListViewModel
     ));
   }
 
+  /// メッセージへ
   navigateToMessage() {
     sl<AppRouter>().push(MessageRoomRoute(id: "id"));
   }
 
+  /// ルーム詳細へ
   navigateToRoomDetail(String roomId) {
     sl<AppRouter>().push(RoomDetailRoute(roomId: roomId));
   }
 
+  /// ルーム作成へ
   navigateToRoomCreation() {
     sl<AppRouter>().push(CreateRoomRoute());
   }
 
+  /// ルームアクション：ホスト
   navigateToRoomActionsAsHost(GetV1RoomsHostResponseRoom room) {
     sl<AppRouter>().push(
       BottomSheetRouter(children: [HostRoomActions(room: room)]),
     );
   }
 
+  /// ルームアクション：ゲスト
   navigateToRoomActionsAsGuest(GetV1RoomsGuestResponseRoom room) {
     sl<AppRouter>().push(
       BottomSheetRouter(children: [GuestRoomActions(room: room)]),

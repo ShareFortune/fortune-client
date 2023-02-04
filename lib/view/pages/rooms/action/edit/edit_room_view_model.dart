@@ -47,17 +47,10 @@ class EditRoomViewModel extends StateNotifier<EditRoomState> {
     return false;
   }
 
-  navigateToCreatedRoom(String roomId) async {
+  navigateToEditedRoom(String roomId) async {
     sl<AppRouter>().push(HomeRouter(children: [
       RoomsTab(children: [RoomDetailRoute(roomId: roomId)]),
     ]));
-  }
-
-  navigateToEntryDescription() async {
-    final result = await sl<AppRouter>().push(
-      EntryDescriptionRoute(title: "ルームの説明を入力", value: state.explanation),
-    ) as String?;
-    state = state.copyWith(explanation: result);
   }
 
   navigateToEntryAddress() async {

@@ -1,11 +1,12 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:fortune_client/view/pages/tags/create/components/tag_creation_text_field.dart';
-import 'package:fortune_client/view/pages/tags/create/components/tag_creation_transition_tile.dart';
+import 'package:fortune_client/l10n/locale_keys.g.dart';
+import 'package:fortune_client/view/pages/tags/create/components/create_tag_input_field.dart';
 import 'package:fortune_client/view/pages/tags/create/create_tag_view_model.dart';
-import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/app_bar/back_app_bar.dart';
 import 'package:fortune_client/view/widgets/dialog/toast.dart';
+import 'package:fortune_client/view/widgets/form_field/base_text_field.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -13,6 +14,7 @@ class CreateTagPage extends HookConsumerWidget {
   CreateTagPage({super.key});
 
   final tagNameController = TextEditingController();
+  final tagDescriptionController = TextEditingController();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -23,43 +25,44 @@ class CreateTagPage extends HookConsumerWidget {
     ///
     /// タグネーム
     ///
-    final nameWidget = _inputFieldContainer(
-      theme,
-      title: "タグの名前",
-      explanation: "作成するタグの名前を入力しましょう",
-      content: TagCreationTextField(
-        theme: theme,
+    final nameWidget = CreateTagInputField(
+      theme: theme,
+      title: LocaleKeys.create_tag_page_name_title.tr(),
+      content: BaseTextField(
         controller: tagNameController,
-        hintText: "タイトルを入力する",
-        clearCallBack: () => viewModel.changeName(""),
+        maxLength: 20,
+        onClear: () => viewModel.changeName(""),
         onChanged: (value) => viewModel.changeName(value),
-        onEditingComplete: () => FocusScope.of(context).unfocus(),
+        hintText: LocaleKeys.create_tag_page_name_hint.tr(),
       ),
     );
 
     ///
     /// 詳細説明
     ///
-    final descriptionWidget = _inputFieldContainer(
-      theme,
-      title: "説明",
-      explanation: "作成するタグに関する説明を書きましょう",
-      content: state.description?.isNotEmpty == true
-          ? descriptionContainer(
-              theme: theme,
-              description: state.description!,
-              onTap: viewModel.navigateToEntryDescription,
-            )
-          : TagCreationTransitionTile(
-              title: "タグの説明を入力しましょう",
-              onTap: () => viewModel.navigateToEntryDescription(),
-            ),
+    final descriptionWidget = CreateTagInputField(
+      theme: theme,
+      required: false,
+      title: LocaleKeys.create_tag_page_description_title.tr(),
+      content: BaseTextField(
+        controller: tagDescriptionController,
+        maxLength: 50,
+        minLines: 5,
+        maxLines: 100,
+        isDisplaySuffixIcon: false,
+        onChanged: (value) => viewModel.changeDescription(value),
+        hintText: LocaleKeys.create_tag_page_description_hint.tr(),
+        contentPadding: const EdgeInsets.symmetric(
+          horizontal: 15,
+          vertical: 15,
+        ),
+      ),
     );
 
     return Scaffold(
       backgroundColor: theme.appColors.onBackground,
       appBar: BackAppBar(
-        title: "新しいタグを作る",
+        title: LocaleKeys.create_tag_page_title.tr(),
         action: [
           Container(
             padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
@@ -71,7 +74,7 @@ class CreateTagPage extends HookConsumerWidget {
                       }
                     }
                   : null,
-              child: const Text("作成"),
+              child: Text(LocaleKeys.create_tag_page_create.tr()),
             ),
           ),
         ],
@@ -89,52 +92,6 @@ class CreateTagPage extends HookConsumerWidget {
               const Gap(30),
             ],
           ),
-        ),
-      ),
-    );
-  }
-
-  Widget _inputFieldContainer(
-    AppTheme theme, {
-    required String title,
-    required String explanation,
-    required Widget content,
-  }) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(title, style: theme.textTheme.h40),
-        const Gap(5),
-        Text(
-          explanation,
-          style: theme.textTheme.h30.paint(theme.appColors.subText1),
-        ),
-        const Gap(15),
-        content,
-      ],
-    );
-  }
-
-  descriptionContainer({
-    required AppTheme theme,
-    required String description,
-    required VoidCallback onTap,
-  }) {
-    return InkWell(
-      onTap: onTap,
-      child: Container(
-        width: double.infinity,
-        padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 15),
-        decoration: BoxDecoration(
-          color: theme.appColors.textFieldBackground,
-          border: Border(
-            top: BorderSide(color: theme.appColors.border1, width: 1),
-            bottom: BorderSide(color: theme.appColors.border1, width: 1),
-          ),
-        ),
-        child: Text(
-          description,
-          style: theme.textTheme.h40,
         ),
       ),
     );

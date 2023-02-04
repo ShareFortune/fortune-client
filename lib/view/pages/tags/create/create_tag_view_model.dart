@@ -39,11 +39,4 @@ class CreateTagViewModel extends StateNotifier<CreateTagState> {
       return false;
     }
   }
-
-  navigateToEntryDescription() async {
-    final result = await sl<AppRouter>().push(
-      EntryDescriptionRoute(title: "タグの説明を入力", value: state.description),
-    ) as String?;
-    changeDescription(result ?? state.description);
-  }
 }

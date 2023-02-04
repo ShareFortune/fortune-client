@@ -1,5 +1,7 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:fortune_client/l10n/locale_keys.g.dart';
 import 'package:fortune_client/view/pages/request/join_requests_confirmation/components/join_request_tile.dart';
 import 'package:fortune_client/view/pages/request/join_requests_confirmation/join_requests_confirmation_view_model.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
@@ -16,8 +18,8 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 class JoinRequestsConfirmationPage extends HookConsumerWidget {
   const JoinRequestsConfirmationPage({
     super.key,
-    @pathParam this.id = "タイトル",
-    @queryParam this.roomTitle = "ルームタイトル",
+    @pathParam this.id = "_",
+    @queryParam this.roomTitle = "_",
   });
 
   final String id;
@@ -30,52 +32,74 @@ class JoinRequestsConfirmationPage extends HookConsumerWidget {
     final viewModel =
         ref.watch(joinRequestsConfirmationViewModelProvider(id).notifier);
 
+    /// リクエスト数
+    int? requestCount;
+
+    /// 参加リクエスト
+    late Widget joinRequests;
+
+    state.joinRequests.maybeWhen(
+      data: (data) {
+        requestCount = data.length;
+        joinRequests = Column(
+          children: data.map((joinRequest) {
+            return JoinRequestTile(
+              theme: theme,
+              name: joinRequest.name,
+              info: "22歳・女性",
+              image: joinRequest.userImageURL,
+              onTap: () {},
+            );
+          }).toList(),
+        );
+      },
+      orElse: () {
+        requestCount = null;
+        joinRequests = loadingWidget();
+      },
+      error: (error, stackTrace) {
+        joinRequests = errorWidget(error, stackTrace);
+      },
+    );
+
     return Scaffold(
       backgroundColor: theme.appColors.onBackground,
-      appBar: const BackAppBar(title: "参加リクエスト"),
+      appBar: BackAppBar(
+        title: LocaleKeys.join_requests_confirmation_page_title.tr(),
+      ),
       body: ListView(
         children: [
           const Gap(30),
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: RichText(
-              text: TextSpan(
-                style: theme.textTheme.h30.paint(theme.appColors.subText2),
-                children: [
-                  TextSpan(
-                      text: "「$roomTitle」",
-                      style: theme.textTheme.h30
-                          .paint(theme.appColors.subText1)
-                          .bold()),
-                  const TextSpan(text: "に参加したい人  "),
-                  state.joinRequests.maybeWhen(
-                    data: (data) => TextSpan(text: "${data.length}名"),
-                    orElse: () => const TextSpan(),
-                  )
-                ],
-              ),
-            ),
+            child: requestCountText(theme, requestCount),
           ),
           const Gap(20),
-          state.joinRequests.when(data: (data) {
-            return Column(
-              children: data.map((joinRequest) {
-                return JoinRequestTile(
-                  theme: theme,
-                  name: joinRequest.name,
-                  info: "22歳・女性",
-                  image: joinRequest.userImageURL,
-                  onTap: () {},
-                );
-              }).toList(),
-            );
-          }, error: (Object error, StackTrace stackTrace) {
-            return errorWidget(error, stackTrace);
-          }, loading: () {
-            return loadingWidget();
-          }),
+          joinRequests,
         ],
       ),
     );
+  }
+
+  requestCountText(AppTheme theme, int? requestCount) {
+    Widget requestCountText;
+    if (requestCount != null && requestCount > 0) {
+      requestCountText = Text(
+        LocaleKeys.join_requests_confirmation_page_requestCount.tr(
+          namedArgs: {
+            "room": roomTitle,
+            "requestCount": requestCount.toString(),
+          },
+        ),
+        style: theme.textTheme.h30.bold(),
+      );
+    } else if (requestCount != null && requestCount < 1) {
+      requestCountText = Text(
+        LocaleKeys.join_requests_confirmation_page_requestCount.tr(),
+      );
+    } else {
+      requestCountText = Container();
+    }
+    return requestCountText;
   }
 }

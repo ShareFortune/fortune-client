@@ -1,28 +1,248 @@
 {
-    "login_page": {
+    "loginPage": {
         "title": "Fortune",
-        "sign_in_button": {
-            "apple" : "Appleでログインする",
-            "google" : "Googleでログインする",
-            "twitter" : "Twitterでログインする"
+        "login": {
+            "apple": "Appleでログインする",
+            "google": "Googleでログインする",
+            "twitter": "Twitterでログインする"
         }
     },
-    "my_page": "Authors",
+    "myPage": {
+        "title": "マイページ",
+        "profiles": {
+            "selfIntroduction": {
+                "title": "自己紹介",
+                "empty": "自己紹介文を入力しましょう",
+                "editTitle": "自己紹介文を入力しましょう"
+            },
+            "tags": {
+                "title": "設定しているタグ",
+                "empty": "タグを設定しましょう"
+            },
+            "detail": {
+                "title": "プロフィール",
+                "edit": "編集する"
+            }
+        }
+    },
     "message_room_page": "Authors",
     "message_room_list_page": "Authors",
-    "basic_profile_entry_page": "Authors",
-    "detailed_profile_entry_page": "Authors",
-    "profile_icon_image_entry_page": "Authors",
+    "basic_profile_entry_page": {
+        "title": "はじめる",
+        "next": "次へ",
+        "hint": {
+            "name": "名前（必須）",
+            "birthday": "誕生日（必須）"
+        }
+    },
+    "detailed_profile_entry_page": {
+        "title": "プロフィールを作成しよう!",
+        "hint": {
+            "nickname": "ニックネーム（必須）",
+            "gender": "性別（必須）",
+            "stature": "身長",
+            "address": "居住地（必須）",
+            "drinkFrequency": "お酒",
+            "cigaretteFrequency": "タバコ"
+        },
+        "guide": "なんか入力した方がいいですよとか入力必須ではないとかの注釈を入れる。居住地とかのデータがどのように利用されるかはログイン画面の利用規約に表示するが、他のユーザーにどのように表示されるかについてはここで注釈入れた方がいいかも。"
+    },
+    "profile_icon_image_entry_page": {
+        "title": "アイコン写真を登録しよう！",
+        "guide": "こんな画像を設定したら、\nマッチしやすくなるよ的なやつを入れる。"
+    },
     "entry_profile_sub_image_page": "Authors",
     "profile_page": "Authors",
-    "profile_update_page": "Authors",
-    "join_requests_confirmation_page": "Authors",
-    "create_room_page": "Authors",
-    "edit_room_page": "Authors",
-    "participating_room_list_page": "Authors",
-    "room_detail_page": "Authors",
-    "room_list_page": "Authors",
-    "settings_page": "Authors",
-    "create_tag_page": "Authors",
-    "select_tags_page": "Authors"
+    "profile_update_page": {
+        "title": "プロフィールを更新",
+        "save": "保存"
+    },
+    "join_requests_confirmation_page": {
+        "title": "参加リクエスト",
+        "requestCount": "{room}に参加したい人 {requestCount}名",
+        "noRequest": "リクエストが存在しません。"
+    },
+    "create_room_page": {
+        "title": "新しいルームを作る",
+        "roomTitleHint": "必須（40文字）",
+        "create": "作成"
+    },
+    "edit_room_page": {
+        "title": "ルームを編集する",
+        "save": "保存"
+    },
+    "participating_room_list_page": {
+        "title": "参加する",
+        "action": {
+            "showAll": "すべて表示",
+            "message": "メッセージ",
+            "confirmRequest": "リクエストを確認する",
+            "requesting": "リクエスト中"
+        },
+        "tab": {
+            "all": "すべて",
+            "requesting": "リクエスト中"
+        },
+        "host": {
+            "title": "ホストで参加",
+            "advice": "開催中のルームが存在しません。",
+            "navigation": "ルームを作ってみよう！"
+        },
+        "guest": {
+            "title": "ゲストで参加",
+            "advice": "参加中のルームが存在しません。",
+            "navigation": "参加するルームを見つけよう！"
+        }
+    },
+    "room_detail_page": {
+        "detail": "詳細",
+        "member": "メンバー",
+        "label": {
+            "joinRequest": "参加する",
+            "message": "メッセージ",
+            "requesting": "リクエスト中",
+            "areParticipating": "参加しています"
+        }
+    },
+    "room_list_page": {
+        "title": "見つける",
+        "rooms": {
+            "empty": "条件に一致するルームが存在しません。"
+        },
+        "filter": {
+            "title": "ルームの絞り込み",
+            "search": "この条件で探す"
+        }
+    },
+    "settings_page": {
+        "title": "設定",
+        "account": {
+            "title": "アカウント情報",
+            "notification": "通知設定",
+            "updatedLoginMethod": "ログイン方法の更新"
+        },
+        "help": {
+            "title": "ヘルプ",
+            "contact": "問い合わせ",
+            "notice": "お知らせ",
+            "logout": "ログアウト",
+            "quit": "退会"
+        }
+    },
+    "create_tag_page": {
+        "title": "新しいタグを作成する",
+        "create": "作成",
+        "name": {
+            "title": "タグのタイトル",
+            "hint": "必須（20文字）"
+        },
+        "description": {
+            "title": "タグの説明",
+            "hint": "作成するタグについて\n\n他の方に分かりやすいように書きましょう！"
+        }
+    },
+    "select_tags_page": {
+        "title": "タグを選択しましょう",
+        "save": "保存",
+        "create": "タグを作成しますか？",
+        "beingSet": {
+            "title": "設定中のタグ",
+            "empty": "設定しているタグが存在しません。"
+        },
+        "search": {
+            "title": "検索結果",
+            "hint": "タグを検索する",
+            "empty": "検索結果：タグが存在しません。"
+        },
+        "popular": {
+            "title": "人気のタグ"
+        }
+    },
+    "data": {
+        "empty": "未設定",
+        "room": {
+            "action": {
+                "create": {
+                    "success": "ルームを作成しました。",
+                    "failure": "ルームを作成できませんでした。"
+                },
+                "edit": {
+                    "success": "ルームを編集しました。",
+                    "failure": "ルームを編集できませんでした。"
+                },
+                "save": {
+                    "success": "{}を保存しました。",
+                    "failure": "ルームを保存できませんでした。"
+                },
+                "joinRequest": {
+                    "label": "参加",
+                    "success": "参加申請を送信しました。",
+                    "failure": "参加申請の送信に失敗しました。"
+                }
+            },
+            "title": {
+                "title": "タイトル"
+            },
+            "age": {
+                "title": "年齢"
+            },
+            "membersNum": {
+                "title": "参加人数",
+                "data": {
+                    "all": "{}人",
+                    "men": "男性 {}/{}人",
+                    "women": "女性 {}/{}人"
+                }
+            },
+            "address": {
+                "title": "開催場所"
+            },
+            "tags": {
+                "title": "タグ"
+            },
+            "description": {
+                "title": "ルームの説明",
+                "hint": "募集したい人の性格や趣味など\n\n例）映画が好きな方とお話したいです。\n自分の好きな映画について語りましょう！\n\n＃映画　＃アニメ映画\n"
+            }
+        },
+        "profile": {
+            "address": {
+                "title": "出身地"
+            },
+            "gender": {
+                "title": "性別",
+                "data": {
+                    "man": "男性",
+                    "woman": "女性",
+                    "another": "その他"
+                }
+            },
+            "stature": {
+                "title": "身長",
+                "data": "{}cm"
+            },
+            "age": {
+                "title": "年齢",
+                "data": "{age}歳"
+            },
+            "drinkFrequency": {
+                "title": "お酒",
+                "data": {
+                    "always": "いつも飲む",
+                    "often": "よく飲む",
+                    "sometimes": "たまに飲む",
+                    "never": "飲まない"
+                }
+            },
+            "cigaretteFrequency": {
+                "title": "タバコ",
+                "data": {
+                    "always": "いつも吸う",
+                    "often": "よく吸う",
+                    "sometimes": "たまに吸う",
+                    "never": "吸わない"
+                }
+            }
+        }
+    }
 }

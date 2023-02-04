@@ -35,7 +35,7 @@ class LoginPage extends HookConsumerWidget {
                       // if (result != null) showDebugDialog(context, result);
                     },
                     child: Text(
-                      LocaleKeys.login_page_title.trim(),
+                      LocaleKeys.loginPage_title.trim(),
                       style: const TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 32,

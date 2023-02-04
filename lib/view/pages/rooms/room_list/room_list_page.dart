@@ -1,8 +1,10 @@
 // ignore_for_file: use_build_context_synchronously
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fortune_client/gen/assets.gen.dart';
+import 'package:fortune_client/l10n/locale_keys.g.dart';
 import 'package:fortune_client/view/pages/common/scroll_app_bar/scroll_app_bar.dart';
 import 'package:fortune_client/view/pages/rooms/room_list/components/room_list_card.dart';
 import 'package:fortune_client/view/pages/rooms/room_list/components/rooms_filter_bottom_sheet.dart';
@@ -47,7 +49,7 @@ class RoomListPage extends HookConsumerWidget {
       child: CustomScrollView(
         slivers: [
           ScrollAppBar(
-            title: "見つける",
+            title: LocaleKeys.room_list_page_title.tr(),
             onTapTitle: () async {
               viewModel.changeFilter(
                 await RoomsFilterBottomSheet.show(
@@ -109,7 +111,7 @@ class RoomListPage extends HookConsumerWidget {
           ),
           const Gap(15),
           Text(
-            "条件に一致するルームが存在しません。",
+            LocaleKeys.room_list_page_rooms_empty.tr(),
             style: theme.textTheme.h20.paint(theme.appColors.subText1),
           ),
         ],
@@ -118,12 +120,24 @@ class RoomListPage extends HookConsumerWidget {
   }
 
   _showFailedToRegisterToast(BuildContext context, AppTheme theme) {
-    showErrorToast(context, theme, "ルームを保存できませんでした。");
+    showErrorToast(
+      context,
+      theme,
+      LocaleKeys.data_room_action_save_failure.tr(),
+    );
   }
 
   _showJoinRequestToast(BuildContext context, AppTheme theme, bool isSuccess) {
     isSuccess
-        ? showToast(context, theme, "参加申請を送信しました。")
-        : showErrorToast(context, theme, "参加申請の送信に失敗しました。");
+        ? showToast(
+            context,
+            theme,
+            LocaleKeys.data_room_action_joinRequest_success.tr(),
+          )
+        : showErrorToast(
+            context,
+            theme,
+            LocaleKeys.data_room_action_joinRequest_failure.tr(),
+          );
   }
 }

@@ -1,4 +1,6 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:fortune_client/l10n/locale_keys.g.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:gap/gap.dart';
@@ -17,7 +19,7 @@ class BaseTransitionTile extends HookConsumerWidget {
     this.decoration,
     required this.onTap,
     this.padding = const EdgeInsets.symmetric(vertical: 15),
-    this.textWhenUnset = "未設定",
+    this.textWhenUnset,
     this.textWhenUnsetColor,
     this.textWhenUnsetStyle,
     this.trailingColor,
@@ -55,7 +57,7 @@ class BaseTransitionTile extends HookConsumerWidget {
 
   /// [value]未設定時のテキスト
   /// [isDisplayValue]がfalseの場合は表示しない
-  final String textWhenUnset;
+  final String? textWhenUnset;
 
   /// [value]未設定時のテキストカラー
   final Color? textWhenUnsetColor;
@@ -94,7 +96,7 @@ class BaseTransitionTile extends HookConsumerWidget {
                                   .paint(theme.appColors.primary),
                         )
                       : Text(
-                          textWhenUnset,
+                          textWhenUnset ?? LocaleKeys.data_empty.tr(),
                           style: textWhenUnsetStyle ??
                               theme.textTheme.h40
                                   .paint(theme.appColors.subText3),

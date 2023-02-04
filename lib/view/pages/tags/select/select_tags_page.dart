@@ -1,5 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:fortune_client/data/model/base/tag/tag.dart';
+import 'package:fortune_client/l10n/locale_keys.g.dart';
 import 'package:fortune_client/view/pages/tags/select/components/tag_text_field.dart';
 import 'package:fortune_client/view/pages/tags/select/components/tags_wraper.dart';
 import 'package:fortune_client/view/pages/tags/select/select_tags_view_model.dart';
@@ -29,15 +31,23 @@ class SelectTagsPage extends HookConsumerWidget {
     final isDisplaySearchResults = ref.watch(isDisplaySearchResultsProvider);
 
     /// 設定されたタグ
-    final tagsBeingSet = state.beingSet.isNotEmpty
-        ? TagsWraper(tags: state.beingSet, onSelect: viewModel.selectTag)
-        : Container();
+    final tagsBeingSet = state.beingSet.isEmpty
+        ? Container()
+        : TagsWraper(
+            theme: theme,
+            tags: state.beingSet,
+            onSelect: viewModel.selectTag,
+          );
 
     /// おすすめのタグ
     final recommendedResults = state.recommendation.when(
       data: (data) => data.isEmpty
           ? Container()
-          : TagsWraper(tags: data, onSelect: viewModel.selectTag),
+          : TagsWraper(
+              theme: theme,
+              tags: data,
+              onSelect: viewModel.selectTag,
+            ),
       error: (error, stackTrace) => errorWidget(error, stackTrace),
       loading: () => loadingWidget(),
     );
@@ -46,7 +56,11 @@ class SelectTagsPage extends HookConsumerWidget {
     final searchResult = state.searchResult.when(
       data: (data) => data.isEmpty
           ? emptyTagContainer(theme, viewModel.navigateToTagCreation)
-          : TagsWraper(tags: data, onSelect: viewModel.selectTag),
+          : TagsWraper(
+              theme: theme,
+              tags: data,
+              onSelect: viewModel.selectTag,
+            ),
       error: (error, stackTrace) => errorWidget(error, stackTrace),
       loading: () => loadingWidget(),
     );
@@ -68,11 +82,14 @@ class SelectTagsPage extends HookConsumerWidget {
       child: Scaffold(
         backgroundColor: theme.appColors.onBackground,
         appBar: BackAppBar(
-          title: "タグを選択",
+          title: LocaleKeys.select_tags_page_title.tr(),
           action: [
             TextButton(
               onPressed: () => viewModel.saveSetData(),
-              child: Text("保存", style: theme.textTheme.h40.bold()),
+              child: Text(
+                LocaleKeys.select_tags_page_save.tr(),
+                style: theme.textTheme.h40.bold(),
+              ),
             )
           ],
         ),
@@ -84,7 +101,7 @@ class SelectTagsPage extends HookConsumerWidget {
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: TagTextField(
                 controller: controller,
-                hintText: "タグを検索",
+                hintText: LocaleKeys.select_tags_page_search_hint.tr(),
                 clearCallBack: tagFormClearCallBack,
                 onEditingComplete: tagFormOnEditingComplete,
               ),
@@ -99,15 +116,28 @@ class SelectTagsPage extends HookConsumerWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text("設定中のタグ"),
+                      Text(
+                        LocaleKeys.select_tags_page_beingSet_title.tr(),
+                        style: theme.textTheme.h30.paint(
+                          theme.appColors.subText1,
+                        ),
+                      ),
                       const Gap(20),
                       tagsBeingSet,
                       const Gap(50),
                     ],
                   ),
                   isDisplaySearchResults
-                      ? tagsContainer(theme, "検索結果", searchResult)
-                      : tagsContainer(theme, "人気のタグ", recommendedResults),
+                      ? tagsContainer(
+                          theme,
+                          LocaleKeys.select_tags_page_search_title.tr(),
+                          searchResult,
+                        )
+                      : tagsContainer(
+                          theme,
+                          LocaleKeys.select_tags_page_popular_title.tr(),
+                          recommendedResults,
+                        ),
                 ],
               ),
             ),
@@ -129,22 +159,20 @@ class SelectTagsPage extends HookConsumerWidget {
   }
 
   Widget emptyTagContainer(AppTheme theme, VoidCallback onCreate) {
-    /// アドバイステキスト
-    final adviceTextColor = theme.appColors.subText3;
-    final adviceTextStyle = theme.textTheme.h30.paint(adviceTextColor);
-
-    /// ナビゲーションテキスト
-    final navigationTextColor = theme.appColors.primary;
-    final navigationTextStyle = theme.textTheme.h30.paint(navigationTextColor);
-
     return Center(
       child: Column(
         children: [
           const Gap(50),
-          Text("タグが存在しません。", style: adviceTextStyle),
+          Text(
+            LocaleKeys.select_tags_page_search_empty.tr(),
+            style: theme.textTheme.h30.paint(theme.appColors.subText3),
+          ),
           TextButton(
             onPressed: onCreate,
-            child: Text("タグを作成しますか？", style: navigationTextStyle),
+            child: Text(
+              LocaleKeys.select_tags_page_create.tr(),
+              style: theme.textTheme.h30.paint(theme.appColors.primary),
+            ),
           ),
         ],
       ),

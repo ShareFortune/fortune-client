@@ -1,4 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:fortune_client/data/model/enum/gender.dart';
+import 'package:fortune_client/l10n/locale_keys.g.dart';
 import 'package:fortune_client/util/logger/logger.dart';
 import 'package:fortune_client/view/pages/account/my_page/components/my_profile_basic_info_container.dart';
 import 'package:fortune_client/view/pages/account/my_page/components/my_profile_self_introduction_container.dart';
@@ -21,7 +24,7 @@ class MyPage extends HookConsumerWidget {
     final viewModel = ref.watch(myPageViewModelProvider.notifier);
 
     /// プロフィール
-    final profileWidgetAsync = state.maybeWhen(
+    final profileWidgetAsync = state.profile.maybeWhen(
       orElse: () => loadingWidget(),
       data: (profile) {
         /// ヘッダー
@@ -46,14 +49,14 @@ class MyPage extends HookConsumerWidget {
         /// タグ
         final tags = MyProfileTagsContainer(
           theme: theme,
-          tags: profile.tags,
+          tags: profile.tags ?? List.empty(),
           onTap: () => viewModel.navigateToTagsSelection(),
         );
 
         /// 基本情報
         final basicInfo = MyProfileBasicInfoContainer(
           theme: theme,
-          address: profile.adress,
+          address: profile.address,
           stature: profile.height,
           drinkFrequency: profile.drinkFrequency,
           cigaretteFrequency: profile.cigaretteFrequency,
@@ -80,7 +83,7 @@ class MyPage extends HookConsumerWidget {
     return Scaffold(
       backgroundColor: theme.appColors.onBackground,
       appBar: BackAppBar(
-        title: "マイページ",
+        title: LocaleKeys.myPage_title.tr(),
         action: [
           IconButton(
             onPressed: () => viewModel.navigateToSettingPage(),
@@ -110,14 +113,10 @@ class MyPage extends HookConsumerWidget {
     required String image,
     required String name,
     required int age,
-    required String gender,
+    required Gender gender,
   }) {
     /// 名前
     final nameTextStyle = theme.textTheme.h50.bold();
-
-    /// サブテキスト
-    final subTitleColor = theme.appColors.subText3;
-    final subTitleStyle = theme.textTheme.h30.paint(subTitleColor);
 
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -141,7 +140,20 @@ class MyPage extends HookConsumerWidget {
             children: [
               Text(name, style: nameTextStyle),
               const Gap(5),
-              Text("$age歳 $gender", style: subTitleStyle),
+              RichText(
+                text: TextSpan(
+                  style: theme.textTheme.h30.paint(theme.appColors.subText3),
+                  children: [
+                    TextSpan(
+                      text: LocaleKeys.data_profile_age_data.tr(
+                        namedArgs: {"age": age.toString()},
+                      ),
+                    ),
+                    const TextSpan(text: "・"),
+                    TextSpan(text: gender.text),
+                  ],
+                ),
+              ),
             ],
           ),
         ],
