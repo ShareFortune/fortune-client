@@ -33,7 +33,11 @@
     "entry_profile_sub_image_page": "Authors",
     "profile_page": "Authors",
     "profile_update_page": "Authors",
-    "join_requests_confirmation_page": "Authors",
+    "join_requests_confirmation_page": {
+        "title": "参加リクエスト",
+        "requestCount": "{room}に参加したい人 {requestCount}名",
+        "noRequest": "リクエストが存在しません。"
+    },
     "create_room_page": {
         "title": "新しいルームを作る",
         "roomTitleHint": "必須（40文字）"

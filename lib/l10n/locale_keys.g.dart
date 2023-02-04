@@ -28,6 +28,9 @@ abstract class  LocaleKeys {
   static const entry_profile_sub_image_page = 'entry_profile_sub_image_page';
   static const profile_page = 'profile_page';
   static const profile_update_page = 'profile_update_page';
+  static const join_requests_confirmation_page_title = 'join_requests_confirmation_page.title';
+  static const join_requests_confirmation_page_requestCount = 'join_requests_confirmation_page.requestCount';
+  static const join_requests_confirmation_page_noRequest = 'join_requests_confirmation_page.noRequest';
   static const join_requests_confirmation_page = 'join_requests_confirmation_page';
   static const create_room_page_title = 'create_room_page.title';
   static const create_room_page_roomTitleHint = 'create_room_page.roomTitleHint';
