@@ -43,6 +43,8 @@ abstract class  LocaleKeys {
   static const profile_icon_image_entry_page = 'profile_icon_image_entry_page';
   static const entry_profile_sub_image_page = 'entry_profile_sub_image_page';
   static const profile_page = 'profile_page';
+  static const profile_update_page_title = 'profile_update_page.title';
+  static const profile_update_page_save = 'profile_update_page.save';
   static const profile_update_page = 'profile_update_page';
   static const join_requests_confirmation_page_title = 'join_requests_confirmation_page.title';
   static const join_requests_confirmation_page_requestCount = 'join_requests_confirmation_page.requestCount';

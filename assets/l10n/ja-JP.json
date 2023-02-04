@@ -53,7 +53,10 @@
     },
     "entry_profile_sub_image_page": "Authors",
     "profile_page": "Authors",
-    "profile_update_page": "Authors",
+    "profile_update_page": {
+        "title": "プロフィールを更新",
+        "save": "保存"
+    },
     "join_requests_confirmation_page": {
         "title": "参加リクエスト",
         "requestCount": "{room}に参加したい人 {requestCount}名",
