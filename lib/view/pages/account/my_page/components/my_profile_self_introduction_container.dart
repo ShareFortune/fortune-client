@@ -19,21 +19,6 @@ class MyProfileSelfIntroductionContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    /// テキスト
-    Widget text;
-
-    if (selfIntroduction.isEmpty) {
-      text = Text(
-        LocaleKeys.myPage_profiles_selfIntroduction_empty.tr(),
-        style: theme.textTheme.h30.paint(theme.appColors.subText3),
-      );
-    } else {
-      text = Text(
-        selfIntroduction,
-        style: theme.textTheme.h30.paint(theme.appColors.subText1),
-      );
-    }
-
     return MyProfileContainer(
       theme: theme,
       title: LocaleKeys.myPage_profiles_selfIntroduction_title.tr(),
@@ -43,7 +28,15 @@ class MyProfileSelfIntroductionContainer extends StatelessWidget {
         padding: EdgeInsets.symmetric(
           vertical: selfIntroduction.isEmpty ? 30 : 10,
         ),
-        child: text,
+        child: selfIntroduction.isEmpty
+            ? Text(
+                LocaleKeys.myPage_profiles_selfIntroduction_empty.tr(),
+                style: theme.textTheme.h30.paint(theme.appColors.subText3),
+              )
+            : Text(
+                selfIntroduction,
+                style: theme.textTheme.h30.paint(theme.appColors.subText1),
+              ),
       ),
     );
   }

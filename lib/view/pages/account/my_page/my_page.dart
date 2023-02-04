@@ -48,7 +48,7 @@ class MyPage extends HookConsumerWidget {
         /// タグ
         final tags = MyProfileTagsContainer(
           theme: theme,
-          tags: profile.tags,
+          tags: profile.tags ?? List.empty(),
           onTap: () => viewModel.navigateToTagsSelection(),
         );
 

@@ -15,7 +15,7 @@ class MyProfileTagsContainer extends StatelessWidget {
   });
 
   final AppTheme theme;
-  final List<Tag>? tags;
+  final List<Tag> tags;
   final VoidCallback onTap;
 
   @override
@@ -25,13 +25,15 @@ class MyProfileTagsContainer extends StatelessWidget {
       title: LocaleKeys.myPage_profiles_tags_title.tr(),
       trailing: null,
       onTap: onTap,
-      child: Wrap(
-        spacing: 10,
-        runSpacing: 10,
-        children: tags!.map((e) {
-          return TagWidget(value: e.name);
-        }).toList(),
-      ),
+      child: tags.isEmpty
+          ? Text(LocaleKeys.myPage_profiles_tags_empty.tr())
+          : Wrap(
+              spacing: 10,
+              runSpacing: 10,
+              children: tags.map((e) {
+                return TagWidget(value: e.name);
+              }).toList(),
+            ),
     );
   }
 }
