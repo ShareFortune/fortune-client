@@ -45,7 +45,7 @@ class EditRoomPage extends HookConsumerWidget {
                         }
                       }
                     : null,
-                child: Text(LocaleKeys.data_room_action_edit_label.tr()),
+                child: Text(LocaleKeys.edit_room_page_save.tr()),
               ),
             ),
           ],

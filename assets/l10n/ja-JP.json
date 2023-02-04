@@ -40,10 +40,12 @@
     },
     "create_room_page": {
         "title": "新しいルームを作る",
-        "roomTitleHint": "必須（40文字）"
+        "roomTitleHint": "必須（40文字）",
+        "create" : "作成"
     },
     "edit_room_page": {
-        "title": "ルームを編集する"
+        "title": "ルームを編集する",
+        "save": "保存"
     },
     "participating_room_list_page": {
         "title": "参加する",
@@ -137,17 +139,14 @@
         "room": {
             "action": {
                 "create": {
-                    "label": "作成",
                     "success": "ルームを作成しました。",
                     "failure": "ルームを作成できませんでした。"
                 },
                 "edit": {
-                    "label": "保存",
                     "success": "ルームを編集しました。",
                     "failure": "ルームを編集できませんでした。"
                 },
                 "save": {
-                    "label": "保存",
                     "success": "{}を保存しました。",
                     "failure": "ルームを保存できませんでした。"
                 },

@@ -34,8 +34,10 @@ abstract class  LocaleKeys {
   static const join_requests_confirmation_page = 'join_requests_confirmation_page';
   static const create_room_page_title = 'create_room_page.title';
   static const create_room_page_roomTitleHint = 'create_room_page.roomTitleHint';
+  static const create_room_page_create = 'create_room_page.create';
   static const create_room_page = 'create_room_page';
   static const edit_room_page_title = 'edit_room_page.title';
+  static const edit_room_page_save = 'edit_room_page.save';
   static const edit_room_page = 'edit_room_page';
   static const participating_room_list_page_title = 'participating_room_list_page.title';
   static const participating_room_list_page_action_showAll = 'participating_room_list_page.action.showAll';
@@ -105,15 +107,12 @@ abstract class  LocaleKeys {
   static const select_tags_page_popular = 'select_tags_page.popular';
   static const select_tags_page = 'select_tags_page';
   static const data_empty = 'data.empty';
-  static const data_room_action_create_label = 'data.room.action.create.label';
   static const data_room_action_create_success = 'data.room.action.create.success';
   static const data_room_action_create_failure = 'data.room.action.create.failure';
   static const data_room_action_create = 'data.room.action.create';
-  static const data_room_action_edit_label = 'data.room.action.edit.label';
   static const data_room_action_edit_success = 'data.room.action.edit.success';
   static const data_room_action_edit_failure = 'data.room.action.edit.failure';
   static const data_room_action_edit = 'data.room.action.edit';
-  static const data_room_action_save_label = 'data.room.action.save.label';
   static const data_room_action_save_success = 'data.room.action.save.success';
   static const data_room_action_save_failure = 'data.room.action.save.failure';
   static const data_room_action_save = 'data.room.action.save';

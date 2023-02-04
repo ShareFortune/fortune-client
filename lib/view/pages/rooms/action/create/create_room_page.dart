@@ -39,7 +39,7 @@ class CreateRoomPage extends HookConsumerWidget {
                         }
                       }
                     : null,
-                child: Text(LocaleKeys.data_room_action_create_label.tr()),
+                child: Text(LocaleKeys.create_room_page_create.tr()),
               ),
             ),
           ],
