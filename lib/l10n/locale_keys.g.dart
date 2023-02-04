@@ -36,6 +36,9 @@ abstract class  LocaleKeys {
   static const room_list_page_title = 'room_list_page.title';
   static const room_list_page_rooms_empty = 'room_list_page.rooms.empty';
   static const room_list_page_rooms = 'room_list_page.rooms';
+  static const room_list_page_filter_title = 'room_list_page.filter.title';
+  static const room_list_page_filter_search = 'room_list_page.filter.search';
+  static const room_list_page_filter = 'room_list_page.filter';
   static const room_list_page_dialog_save_success = 'room_list_page.dialog.save.success';
   static const room_list_page_dialog_save_failure = 'room_list_page.dialog.save.failure';
   static const room_list_page_dialog_save = 'room_list_page.dialog.save';
