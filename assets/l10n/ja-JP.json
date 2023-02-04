@@ -38,9 +38,22 @@
     "edit_room_page": "Authors",
     "participating_room_list_page": {
         "title": "参加する",
+        "action": {
+            "showAll": "すべて表示"
+        },
         "tab": {
             "all": "すべて",
             "requesting": "リクエスト中"
+        },
+        "host": {
+            "title": "ホストで参加",
+            "advice": "開催中のルームが存在しません。",
+            "navigation": "ルームを作ってみよう！"
+        },
+        "guest": {
+            "title": "ゲストで参加",
+            "advice": "参加中のルームが存在しません。",
+            "navigation": "参加するルームを見つけよう！"
         }
     },
     "room_detail_page": {
