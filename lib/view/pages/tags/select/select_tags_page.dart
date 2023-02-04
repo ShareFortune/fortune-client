@@ -31,15 +31,23 @@ class SelectTagsPage extends HookConsumerWidget {
     final isDisplaySearchResults = ref.watch(isDisplaySearchResultsProvider);
 
     /// 設定されたタグ
-    final tagsBeingSet = state.beingSet.isNotEmpty
-        ? TagsWraper(tags: state.beingSet, onSelect: viewModel.selectTag)
-        : Container();
+    final tagsBeingSet = state.beingSet.isEmpty
+        ? Container()
+        : TagsWraper(
+            theme: theme,
+            tags: state.beingSet,
+            onSelect: viewModel.selectTag,
+          );
 
     /// おすすめのタグ
     final recommendedResults = state.recommendation.when(
       data: (data) => data.isEmpty
           ? Container()
-          : TagsWraper(tags: data, onSelect: viewModel.selectTag),
+          : TagsWraper(
+              theme: theme,
+              tags: data,
+              onSelect: viewModel.selectTag,
+            ),
       error: (error, stackTrace) => errorWidget(error, stackTrace),
       loading: () => loadingWidget(),
     );
@@ -48,7 +56,11 @@ class SelectTagsPage extends HookConsumerWidget {
     final searchResult = state.searchResult.when(
       data: (data) => data.isEmpty
           ? emptyTagContainer(theme, viewModel.navigateToTagCreation)
-          : TagsWraper(tags: data, onSelect: viewModel.selectTag),
+          : TagsWraper(
+              theme: theme,
+              tags: data,
+              onSelect: viewModel.selectTag,
+            ),
       error: (error, stackTrace) => errorWidget(error, stackTrace),
       loading: () => loadingWidget(),
     );

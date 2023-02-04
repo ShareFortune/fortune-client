@@ -23,6 +23,7 @@ class AppColors {
     required this.border1,
     required this.border2,
     required this.disable,
+    required this.onDisable,
   });
 
   factory AppColors.light() {
@@ -34,8 +35,8 @@ class AppColors {
       background: const Color(0xFFF2F2F6),
       onBackground: const Color(0xFFFFFFFF),
       textFieldBackground: const Color(0xFFF2F8FC),
-      surface: const Color(0xFFE5E5E5),
-      onSurface: const Color(0xFFE5E5E5),
+      surface: const Color(0xFFD61355),
+      onSurface: const Color(0xFFFFFFFF),
       linkColor: const Color(0xFF0078FE),
       error: const Color(0xFFB83231),
       onError: const Color(0xFFFFFFFF),
@@ -48,6 +49,7 @@ class AppColors {
       border1: const Color(0xFFDDDDDD),
       border2: const Color(0xFFF3F3F3),
       disable: const Color(0xFFC9C9CB),
+      onDisable: const Color(0xFFFFFFFF),
     );
   }
 
@@ -74,6 +76,7 @@ class AppColors {
       border1: const Color(0xFFF3F3F3),
       border2: const Color(0xFFF3F3F3),
       disable: const Color(0xFFC9C9CB),
+      onDisable: const Color(0xFFC9C9CB),
     );
   }
 
@@ -119,4 +122,5 @@ class AppColors {
 
   /// 非活性
   final Color disable;
+  final Color onDisable;
 }
