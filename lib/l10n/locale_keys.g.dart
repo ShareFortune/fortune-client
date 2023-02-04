@@ -10,6 +10,7 @@ abstract class  LocaleKeys {
   static const myPage_title = 'myPage.title';
   static const myPage_profiles_selfIntroduction_title = 'myPage.profiles.selfIntroduction.title';
   static const myPage_profiles_selfIntroduction_empty = 'myPage.profiles.selfIntroduction.empty';
+  static const myPage_profiles_selfIntroduction_editTitle = 'myPage.profiles.selfIntroduction.editTitle';
   static const myPage_profiles_selfIntroduction = 'myPage.profiles.selfIntroduction';
   static const myPage_profiles_tags_title = 'myPage.profiles.tags.title';
   static const myPage_profiles_tags_empty = 'myPage.profiles.tags.empty';

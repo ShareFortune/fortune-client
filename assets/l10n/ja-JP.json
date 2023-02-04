@@ -12,7 +12,8 @@
         "profiles": {
             "selfIntroduction": {
                 "title": "自己紹介",
-                "empty": "自己紹介文を入力しましょう"
+                "empty": "自己紹介文を入力しましょう",
+                "editTitle": "自己紹介文を入力"
             },
             "tags": {
                 "title": "設定しているタグ",
