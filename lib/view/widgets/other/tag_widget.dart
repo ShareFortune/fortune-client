@@ -41,7 +41,7 @@ class TagWidget extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
           child: Text(
-            value,
+            "# $value",
             style: TextStyle(
               fontSize: 12,
               fontWeight: FontWeight.bold,
