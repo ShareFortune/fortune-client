@@ -1,6 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fortune_client/gen/assets.gen.dart';
+import 'package:fortune_client/l10n/locale_keys.g.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 
 class ParticipatingRoomListFilter extends StatelessWidget {
@@ -47,13 +49,20 @@ class ParticipatingRoomListFilter extends StatelessWidget {
 
           Row(
             children: [
+              /// すべて表示
               TextButton(
                 onPressed: onPressedShowAllRooms,
-                child: const Text("すべて"),
+                child: Text(
+                  LocaleKeys.participating_room_list_page_tab_all.tr(),
+                ),
               ),
+
+              /// リクエスト中を表示
               TextButton(
                 onPressed: onPressedShowRequestingRooms,
-                child: const Text("リクエスト中"),
+                child: Text(
+                  LocaleKeys.participating_room_list_page_tab_requesting.tr(),
+                ),
               ),
             ],
           ),
