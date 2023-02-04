@@ -34,7 +34,10 @@
     "profile_page": "Authors",
     "profile_update_page": "Authors",
     "join_requests_confirmation_page": "Authors",
-    "create_room_page": "Authors",
+    "create_room_page": {
+        "title": "新しいルームを作る",
+        "roomTitleHint": "必須（40文字）"
+    },
     "edit_room_page": "Authors",
     "participating_room_list_page": {
         "title": "参加する",
@@ -127,6 +130,11 @@
         "empty": "未設定",
         "room": {
             "action": {
+                "create": {
+                    "label": "作成",
+                    "success": "ルームを作成しました。",
+                    "failure": "ルームを作成できませんでした。"
+                },
                 "save": {
                     "label": "保存",
                     "success": "{}を保存しました。",
@@ -137,6 +145,12 @@
                     "success": "参加申請を送信しました。",
                     "failure": "参加申請の送信に失敗しました。"
                 }
+            },
+            "title": {
+                "title": "タイトル"
+            },
+            "age": {
+                "title": "年齢"
             },
             "membersNum": {
                 "title": "参加人数",
@@ -151,6 +165,10 @@
             },
             "tags": {
                 "title": "タグ"
+            },
+            "description": {
+                "title": "ルームの説明",
+                "hint": "募集したい人の性格や趣味など\n\n例）映画が好きな方とお話したいです。\n自分の好きな映画について語りましょう！\n\n＃映画　＃アニメ映画\n"
             }
         },
         "profile": {

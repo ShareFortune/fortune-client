@@ -106,7 +106,7 @@ class _RoomsFilterBottomSheetState
                           RoomsFilterExpandedTile(
                             title: LocaleKeys.data_room_membersNum_title.tr(),
                             value: filter.memberNum != null
-                                ? LocaleKeys.data_room_membersNum_data.tr(
+                                ? LocaleKeys.data_room_membersNum_data_all.tr(
                                     args: [filter.memberNum.toString()],
                                   )
                                 : null,

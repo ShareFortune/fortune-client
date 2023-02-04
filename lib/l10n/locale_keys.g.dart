@@ -29,6 +29,8 @@ abstract class  LocaleKeys {
   static const profile_page = 'profile_page';
   static const profile_update_page = 'profile_update_page';
   static const join_requests_confirmation_page = 'join_requests_confirmation_page';
+  static const create_room_page_title = 'create_room_page.title';
+  static const create_room_page_roomTitleHint = 'create_room_page.roomTitleHint';
   static const create_room_page = 'create_room_page';
   static const edit_room_page = 'edit_room_page';
   static const participating_room_list_page_title = 'participating_room_list_page.title';
@@ -99,6 +101,10 @@ abstract class  LocaleKeys {
   static const select_tags_page_popular = 'select_tags_page.popular';
   static const select_tags_page = 'select_tags_page';
   static const data_empty = 'data.empty';
+  static const data_room_action_create_label = 'data.room.action.create.label';
+  static const data_room_action_create_success = 'data.room.action.create.success';
+  static const data_room_action_create_failure = 'data.room.action.create.failure';
+  static const data_room_action_create = 'data.room.action.create';
   static const data_room_action_save_label = 'data.room.action.save.label';
   static const data_room_action_save_success = 'data.room.action.save.success';
   static const data_room_action_save_failure = 'data.room.action.save.failure';
@@ -108,6 +114,10 @@ abstract class  LocaleKeys {
   static const data_room_action_joinRequest_failure = 'data.room.action.joinRequest.failure';
   static const data_room_action_joinRequest = 'data.room.action.joinRequest';
   static const data_room_action = 'data.room.action';
+  static const data_room_title_title = 'data.room.title.title';
+  static const data_room_title = 'data.room.title';
+  static const data_room_age_title = 'data.room.age.title';
+  static const data_room_age = 'data.room.age';
   static const data_room_membersNum_title = 'data.room.membersNum.title';
   static const data_room_membersNum_data_all = 'data.room.membersNum.data.all';
   static const data_room_membersNum_data_men = 'data.room.membersNum.data.men';
@@ -118,6 +128,9 @@ abstract class  LocaleKeys {
   static const data_room_address = 'data.room.address';
   static const data_room_tags_title = 'data.room.tags.title';
   static const data_room_tags = 'data.room.tags';
+  static const data_room_description_title = 'data.room.description.title';
+  static const data_room_description_hint = 'data.room.description.hint';
+  static const data_room_description = 'data.room.description';
   static const data_room = 'data.room';
   static const data_profile_address_title = 'data.profile.address.title';
   static const data_profile_address = 'data.profile.address';
