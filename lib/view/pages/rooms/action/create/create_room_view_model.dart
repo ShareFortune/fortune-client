@@ -66,13 +66,6 @@ class CreateRoomViewModel extends StateNotifier<CreateRoomState> {
     ]));
   }
 
-  navigateToEntryDescription() async {
-    final result = await sl<AppRouter>().push(
-      EntryDescriptionRoute(title: "ルームの説明を入力", value: state.explanation),
-    ) as String?;
-    state = state.copyWith(explanation: result);
-  }
-
   navigateToEntryAddress() async {
     final result = await sl<AppRouter>().push(
       EntryAddressRoute(),

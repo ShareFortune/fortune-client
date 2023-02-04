@@ -1,6 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:fortune_client/data/model/enum/age_group.dart';
 import 'package:fortune_client/data/model/rooms/get_v1_rooms_host/get_v1_rooms_host.dart';
+import 'package:fortune_client/l10n/locale_keys.g.dart';
 import 'package:fortune_client/view/pages/rooms/action/components/room_state_input_field.dart';
 import 'package:fortune_client/view/pages/rooms/action/components/room_state_selective_form.dart';
 import 'package:fortune_client/view/pages/rooms/action/components/room_state_transition_tile.dart';
@@ -31,7 +33,7 @@ class EditRoomPage extends HookConsumerWidget {
       child: Scaffold(
         backgroundColor: theme.appColors.onBackground,
         appBar: BackAppBar(
-          title: "ルームを編集する",
+          title: LocaleKeys.edit_room_page_title.tr(),
           action: [
             Container(
               padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
@@ -43,7 +45,7 @@ class EditRoomPage extends HookConsumerWidget {
                         }
                       }
                     : null,
-                child: const Text("保存"),
+                child: Text(LocaleKeys.data_room_action_edit_label.tr()),
               ),
             ),
           ],
@@ -120,6 +122,10 @@ class EditRoomPage extends HookConsumerWidget {
   }
 
   _showFailedToCreateToast(BuildContext context, AppTheme theme) {
-    showErrorToast(context, theme, "ルームを編集できませんでした。");
+    showErrorToast(
+      context,
+      theme,
+      LocaleKeys.data_room_action_edit_failure.tr(),
+    );
   }
 }

@@ -38,7 +38,9 @@
         "title": "新しいルームを作る",
         "roomTitleHint": "必須（40文字）"
     },
-    "edit_room_page": "Authors",
+    "edit_room_page": {
+        "title": "ルームを編集する"
+    },
     "participating_room_list_page": {
         "title": "参加する",
         "action": {
@@ -134,6 +136,11 @@
                     "label": "作成",
                     "success": "ルームを作成しました。",
                     "failure": "ルームを作成できませんでした。"
+                },
+                "edit": {
+                    "label": "保存",
+                    "success": "ルームを編集しました。",
+                    "failure": "ルームを編集できませんでした。"
                 },
                 "save": {
                     "label": "保存",
