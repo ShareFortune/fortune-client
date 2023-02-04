@@ -58,7 +58,7 @@
             },
             "stature": {
                 "title": "身長",
-                "data": "{stature}cm"
+                "data": "{}cm"
             },
             "age": {
                 "title": "年齢",

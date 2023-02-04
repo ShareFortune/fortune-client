@@ -50,7 +50,7 @@ class MyProfileBasicInfoContainer extends StatelessWidget {
             LocaleKeys.data_profile_stature_title.tr(),
             stature != null
                 ? LocaleKeys.data_profile_stature_data.tr(
-                    namedArgs: {"stature": stature.toString()},
+                    args: [stature.toString()],
                   )
                 : emptyText,
           ),
