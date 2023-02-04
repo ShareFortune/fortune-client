@@ -22,7 +22,7 @@ class MyProfileTagsContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return MyProfileContainer(
       theme: theme,
-      title: LocaleKeys.myPage_subTitle_tags.tr(),
+      title: LocaleKeys.myPage_profiles_tags_title.tr(),
       trailing: null,
       onTap: onTap,
       child: Wrap(

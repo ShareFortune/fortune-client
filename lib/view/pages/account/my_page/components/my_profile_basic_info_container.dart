@@ -27,7 +27,7 @@ class MyProfileBasicInfoContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return MyProfileContainer(
       theme: theme,
-      title: LocaleKeys.myPage_subTitle_profile.tr(),
+      title: LocaleKeys.myPage_profiles_detail_title.tr(),
       trailing: editButton(),
       onTap: null,
       child: Column(

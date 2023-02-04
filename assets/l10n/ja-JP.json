@@ -9,10 +9,18 @@
     },
     "myPage": {
         "title": "マイページ",
-        "subTitle": {
-            "selfIntroduction": "自己紹介",
-            "tags": "設定しているタグ",
-            "profile": "プロフィール"
+        "profiles": {
+            "selfIntroduction": {
+                "title": "自己紹介",
+                "empty": "自己紹介文を入力しましょう"
+            },
+            "tags": {
+                "title": "設定しているタグ",
+                "empty": "タグを設定しましょう"
+            },
+            "detail": {
+                "title": "プロフィール"
+            }
         }
     },
     "message_room_page": "Authors",

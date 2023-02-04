@@ -36,8 +36,7 @@ class MyPageViewModel extends StateNotifier<AsyncValue<MyPageState>> {
     /// 自己紹介取得
     final result = await sl<AppRouter>().push(
       EntryDescriptionRoute(
-          title: LocaleKeys.myPage_subTitle_selfIntroduction.trim(),
-          value: data.selfIntroduction),
+          title: "ここのタイトルは後で修正", value: data.selfIntroduction),
     ) as String?;
 
     /// 更新

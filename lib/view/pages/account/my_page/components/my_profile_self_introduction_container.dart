@@ -24,7 +24,7 @@ class MyProfileSelfIntroductionContainer extends StatelessWidget {
 
     if (selfIntroduction.isEmpty) {
       text = Text(
-        "自己紹介文を入力しましょう",
+        LocaleKeys.myPage_profiles_selfIntroduction_empty.tr(),
         style: theme.textTheme.h30.paint(theme.appColors.subText3),
       );
     } else {
@@ -36,7 +36,7 @@ class MyProfileSelfIntroductionContainer extends StatelessWidget {
 
     return MyProfileContainer(
       theme: theme,
-      title: LocaleKeys.myPage_subTitle_selfIntroduction.tr(),
+      title: LocaleKeys.myPage_profiles_selfIntroduction_title.tr(),
       trailing: null,
       onTap: onTap,
       child: Container(
