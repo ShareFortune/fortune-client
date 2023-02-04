@@ -13,7 +13,7 @@
             "selfIntroduction": {
                 "title": "自己紹介",
                 "empty": "自己紹介文を入力しましょう",
-                "editTitle": "自己紹介文を入力"
+                "editTitle": "自己紹介文を入力しましょう"
             },
             "tags": {
                 "title": "設定しているタグ",
@@ -41,7 +41,23 @@
     "room_list_page": "Authors",
     "settings_page": "Authors",
     "create_tag_page": "Authors",
-    "select_tags_page": "Authors",
+    "select_tags_page": {
+        "title": "タグを選択しましょう",
+        "saveBtn": "保存",
+        "createBtn": "タグを作成しますか？",
+        "beingSet": {
+            "title": "設定中のタグ",
+            "empty": "設定しているタグが存在しません。"
+        },
+        "search": {
+            "title": "検索結果",
+            "hint": "タグを検索する",
+            "empty": "検索結果：タグが存在しません。"
+        },
+        "popular": {
+            "title": "人気のタグ"
+        }
+    },
     "data": {
         "room": {},
         "profile": {
