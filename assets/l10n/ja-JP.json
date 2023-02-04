@@ -43,6 +43,7 @@
     "data": {
         "room": {},
         "profile": {
+            "empty": "未設定",
             "address": {
                 "title": "開催地"
             },

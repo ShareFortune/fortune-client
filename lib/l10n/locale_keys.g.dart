@@ -36,6 +36,7 @@ abstract class  LocaleKeys {
   static const create_tag_page = 'create_tag_page';
   static const select_tags_page = 'select_tags_page';
   static const data_room = 'data.room';
+  static const data_profile_empty = 'data.profile.empty';
   static const data_profile_address_title = 'data.profile.address.title';
   static const data_profile_address = 'data.profile.address';
   static const data_profile_gender_title = 'data.profile.gender.title';

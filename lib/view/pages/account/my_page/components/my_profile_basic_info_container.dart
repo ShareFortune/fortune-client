@@ -28,6 +28,8 @@ class MyProfileBasicInfoContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final emptyText = LocaleKeys.data_profile_empty.tr();
+
     return MyProfileContainer(
       theme: theme,
       title: LocaleKeys.myPage_profiles_detail_title.tr(),
@@ -50,21 +52,21 @@ class MyProfileBasicInfoContainer extends StatelessWidget {
                 ? LocaleKeys.data_profile_stature_data.tr(
                     namedArgs: {"stature": stature.toString()},
                   )
-                : "未設定",
+                : emptyText,
           ),
 
           /// お酒
           basicInfoTile(
             theme,
             LocaleKeys.data_profile_drinkFrequency_title.tr(),
-            drinkFrequency?.text ?? "未設定",
+            drinkFrequency?.text ?? emptyText,
           ),
 
           /// タバコ
           basicInfoTile(
             theme,
             LocaleKeys.data_profile_cigaretteFrequency_title.tr(),
-            cigaretteFrequency?.text ?? "未設定",
+            cigaretteFrequency?.text ?? emptyText,
           ),
         ],
       ),
