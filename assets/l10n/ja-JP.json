@@ -27,8 +27,26 @@
     },
     "message_room_page": "Authors",
     "message_room_list_page": "Authors",
-    "basic_profile_entry_page": "Authors",
-    "detailed_profile_entry_page": "Authors",
+    "basic_profile_entry_page": {
+        "title": "はじめる",
+        "next": "次へ",
+        "hint": {
+            "name": "名前（必須）",
+            "birthday": "誕生日（必須）"
+        }
+    },
+    "detailed_profile_entry_page": {
+        "title": "プロフィールを作成しよう!",
+        "hint": {
+            "nickname": "ニックネーム（必須）",
+            "gender": "性別（必須）",
+            "stature": "身長",
+            "address": "居住地（必須）",
+            "drinkFrequency": "お酒",
+            "cigaretteFrequency": "タバコ"
+        },
+        "navigation": "なんか入力した方がいいですよとか入力必須ではないとかの注釈を入れる。居住地とかのデータがどのように利用されるかはログイン画面の利用規約に表示するが、他のユーザーにどのように表示されるかについてはここで注釈入れた方がいいかも。"
+    },
     "profile_icon_image_entry_page": "Authors",
     "entry_profile_sub_image_page": "Authors",
     "profile_page": "Authors",
@@ -41,7 +59,7 @@
     "create_room_page": {
         "title": "新しいルームを作る",
         "roomTitleHint": "必須（40文字）",
-        "create" : "作成"
+        "create": "作成"
     },
     "edit_room_page": {
         "title": "ルームを編集する",

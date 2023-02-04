@@ -1,7 +1,9 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:fortune_client/data/model/enum/cigarette_frequency.dart';
 import 'package:fortune_client/data/model/enum/drink_frequency.dart';
 import 'package:fortune_client/data/model/enum/gender.dart';
+import 'package:fortune_client/l10n/locale_keys.g.dart';
 import 'package:fortune_client/view/pages/profile/create/components/entry_profile_expanded_tile_picker.dart';
 import 'package:fortune_client/view/pages/profile/create/components/profile_creation_text_field.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
@@ -28,7 +30,7 @@ class DetailedProfileEntryPage extends HookConsumerWidget {
     final nameInputField = ProfileCreationTextField(
       theme: theme,
       controller: nameController,
-      labelText: "ニックネーム（必須）",
+      labelText: LocaleKeys.detailed_profile_entry_page_hint_nickname.tr(),
       clearCallBack: () => viewModel.changeName(""),
       onChanged: (value) => viewModel.changeName(value),
       onEditingComplete: () => FocusScope.of(context).unfocus(),
@@ -36,7 +38,7 @@ class DetailedProfileEntryPage extends HookConsumerWidget {
 
     /// 性別ピッカー
     final genderPicker = EntryProfileExpandedTilePicker(
-      title: "性別（必須）",
+      title: LocaleKeys.detailed_profile_entry_page_hint_gender.tr(),
       value: state.gender?.text,
       items: Gender.values.map((e) => e.text).toList(),
       onSelect: (value) {
@@ -48,7 +50,7 @@ class DetailedProfileEntryPage extends HookConsumerWidget {
 
     /// 身長ピッカー
     final staturePicker = EntryProfileExpandedTilePicker(
-      title: "身長",
+      title: LocaleKeys.detailed_profile_entry_page_hint_stature.tr(),
       value: state.stature != null ? "${state.stature}cm" : null,
       items: List.generate(100, (index) => "${index + 100}").toList(),
       onSelect: (value) {
@@ -58,7 +60,7 @@ class DetailedProfileEntryPage extends HookConsumerWidget {
 
     /// 住所ピッカー
     final addressPicker = BaseTransitionTile(
-      title: "居住地（必須）",
+      title: LocaleKeys.detailed_profile_entry_page_hint_address.tr(),
       value: state.addressWithId?.text,
       textWhenUnsetStyle: theme.textTheme.h30.paint(theme.appColors.subText3),
       onTap: () {
@@ -68,7 +70,7 @@ class DetailedProfileEntryPage extends HookConsumerWidget {
 
     /// お酒ピッカー
     final drinkFrequencyPicker = EntryProfileExpandedTilePicker(
-      title: "お酒",
+      title: LocaleKeys.detailed_profile_entry_page_hint_drinkFrequency.tr(),
       value: state.drinkFrequency?.text,
       items: DrinkFrequency.values.map((e) => e.text).toList(),
       onSelect: (value) {
@@ -80,7 +82,8 @@ class DetailedProfileEntryPage extends HookConsumerWidget {
 
     /// タバコピッカー
     final cigaretteFrequencyPicker = EntryProfileExpandedTilePicker(
-      title: "タバコ",
+      title:
+          LocaleKeys.detailed_profile_entry_page_hint_cigaretteFrequency.tr(),
       value: state.cigaretteFrequency?.text,
       items: CigaretteFrequency.values.map((e) => e.text).toList(),
       onSelect: (value) {
@@ -96,7 +99,9 @@ class DetailedProfileEntryPage extends HookConsumerWidget {
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         backgroundColor: theme.appColors.onBackground,
-        appBar: const BasicAppBar(title: "プロフィール作成"),
+        appBar: BasicAppBar(
+          title: LocaleKeys.detailed_profile_entry_page_title.tr(),
+        ),
         body: Container(
           padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 30),
           child: SingleChildScrollView(
@@ -133,9 +138,11 @@ class DetailedProfileEntryPage extends HookConsumerWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
-                      "なんか入力した方がいいですよとか入力必須ではないとかの注釈を入れる。居住地とかのデータがどのように利用されるかはログイン画面の利用規約に表示するが、他のユーザーにどのように表示されるかについてはここで注釈入れた方がいいかも。",
-                      style: TextStyle(color: Color(0xFF6C6C6C)),
+                    Text(
+                      LocaleKeys.detailed_profile_entry_page_navigation.tr(),
+                      style: theme.textTheme.h20.paint(
+                        theme.appColors.subText3,
+                      ),
                     ),
                     const Gap(30),
                     nextButton(
