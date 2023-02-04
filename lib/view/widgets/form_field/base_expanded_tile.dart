@@ -1,5 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_expanded_tile/flutter_expanded_tile.dart';
+import 'package:fortune_client/l10n/locale_keys.g.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -20,7 +22,7 @@ class BaseExpandedTile extends StatefulHookConsumerWidget {
     this.headerPadding,
     this.headerColor,
     this.contentBackgroundColor,
-    this.textWhenUnset = "未設定",
+    this.textWhenUnset,
     this.textWhenUnsetStyle,
     this.trailingRotation = 90,
     this.trailingColor,
@@ -62,7 +64,7 @@ class BaseExpandedTile extends StatefulHookConsumerWidget {
 
   /// [value]未設定時のテキスト
   /// [isDisplayValue]がfalseの場合は表示しない
-  final String textWhenUnset;
+  final String? textWhenUnset;
 
   /// [value]未設定時のテキストスタイル
   final TextStyle? textWhenUnsetStyle;
@@ -123,7 +125,7 @@ class _BaseExpandedTileState extends ConsumerState<BaseExpandedTile> {
                         theme.textTheme.h40.paint(theme.appColors.primary),
                   )
                 : Text(
-                    widget.textWhenUnset,
+                    widget.textWhenUnset ?? LocaleKeys.data_empty.tr(),
                     style: widget.textWhenUnsetStyle ??
                         theme.textTheme.h40.paint(theme.appColors.subText3),
                   ),

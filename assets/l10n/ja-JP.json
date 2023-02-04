@@ -103,11 +103,29 @@
         }
     },
     "data": {
-        "room": {},
-        "profile": {
-            "empty": "未設定",
+        "empty": "未設定",
+        "room": {
+            "action": {
+                "joinRequest": "参加"
+            },
+            "membersNum": {
+                "title": "参加人数",
+                "data": {
+                    "all": "{}人",
+                    "men": "男性 {}/{}人",
+                    "women": "女性 {}/{}人"
+                }
+            },
             "address": {
-                "title": "開催地"
+                "title": "場所"
+            },
+            "tags": {
+                "title": "タグ"
+            }
+        },
+        "profile": {
+            "address": {
+                "title": "出身地"
             },
             "gender": {
                 "title": "性別",

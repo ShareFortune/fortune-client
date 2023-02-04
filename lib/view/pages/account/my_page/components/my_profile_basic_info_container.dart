@@ -28,7 +28,7 @@ class MyProfileBasicInfoContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final emptyText = LocaleKeys.data_profile_empty.tr();
+    final emptyText = LocaleKeys.data_empty.tr();
 
     return MyProfileContainer(
       theme: theme,

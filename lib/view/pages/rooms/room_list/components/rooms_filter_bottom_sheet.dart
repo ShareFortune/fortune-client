@@ -104,9 +104,11 @@ class _RoomsFilterBottomSheetState
                         children: [
                           /// 人数検索
                           RoomsFilterExpandedTile(
-                            title: "人数",
+                            title: LocaleKeys.data_room_membersNum_title.tr(),
                             value: filter.memberNum != null
-                                ? "${filter.memberNum}人"
+                                ? LocaleKeys.data_room_membersNum_data.tr(
+                                    args: [filter.memberNum.toString()],
+                                  )
                                 : null,
                             items: List.generate(7, (index) => "${index + 4}")
                                 .toList(),
@@ -121,7 +123,7 @@ class _RoomsFilterBottomSheetState
 
                           /// 場所検索
                           RoomsFilterTile(
-                            title: "場所",
+                            title: LocaleKeys.data_room_address_title.tr(),
                             value: filter.addressWithId?.text,
                             onTap: () async {
                               final address = await widget.onSelectAddress();
@@ -135,7 +137,7 @@ class _RoomsFilterBottomSheetState
 
                           /// タグ検索
                           RoomsFilterTile(
-                            title: "タグ",
+                            title: LocaleKeys.data_room_tags_title.tr(),
                             value: filter.tags
                                 ?.map((e) => e.name)
                                 .toList()

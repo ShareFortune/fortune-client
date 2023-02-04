@@ -126,7 +126,7 @@ class GuestRoomCard extends HookConsumerWidget {
 
                 ///
                 /// 参加者アイコン
-                memberIconsWidget(15, [
+                memberIconsWidget([
                   room.hostMainImageURL,
                   ...?room.participantMainImageURLs,
                 ]),

@@ -131,7 +131,7 @@ class HostRoomCard extends HookConsumerWidget {
                 ///
                 ///
                 /// 参加者アイコン
-                memberIconsWidget(15, room.participantMainImageURLs ?? []),
+                memberIconsWidget(room.participantMainImageURLs ?? []),
               ],
             ),
             const Spacer(),

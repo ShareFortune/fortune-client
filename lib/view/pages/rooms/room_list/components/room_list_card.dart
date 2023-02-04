@@ -1,7 +1,9 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:favorite_button/favorite_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fortune_client/gen/assets.gen.dart';
+import 'package:fortune_client/l10n/locale_keys.g.dart';
 import 'package:fortune_client/view/pages/rooms/room_list/room_list_state.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
@@ -26,53 +28,6 @@ class RoomListCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    /// ホストアイコン
-    Widget leadingIcon = ClipOval(
-      child: Image.network(
-        room.data.hostMainImageURL,
-        width: 50,
-        height: 50,
-        fit: BoxFit.cover,
-      ),
-    );
-
-    /// タイトル
-    final titleTextStyle = theme.textTheme.h30;
-    Text titleText = Text(
-      room.data.roomName,
-      style: titleTextStyle,
-      maxLines: 2,
-      overflow: TextOverflow.ellipsis,
-    );
-
-    /// 位置情報
-    final addressTextColor = theme.appColors.subText2;
-    final addressTextStyle = theme.textTheme.h20.paint(addressTextColor);
-    Text addressText = Text(room.data.address.text, style: addressTextStyle);
-
-    /// メンバーアイコンリスト
-    Widget membersIcon;
-    membersIcon = memberIconsWidget(
-      15,
-      room.data.participantMainImageURLs ?? [],
-    );
-
-    return _build(
-      theme: theme,
-      leading: leadingIcon,
-      title: titleText,
-      location: addressText,
-      members: membersIcon,
-    );
-  }
-
-  _build({
-    required AppTheme theme,
-    required Widget leading,
-    required Text title,
-    required Text location,
-    required Widget members,
-  }) {
     const shadowOffset = Offset(4, 4);
     shadow(Offset offset) => BoxShadow(
           color: theme.appColors.shadow,
@@ -91,28 +46,86 @@ class RoomListCard extends StatelessWidget {
         ),
         child: Column(
           children: [
-            _titleWidget(theme, leading, title, location),
+            _titleWidget(theme),
             const Gap(10),
-            _contentsWidget(theme, members),
+            _contentsWidget(theme),
           ],
         ),
       ),
     );
   }
 
-  Container _contentsWidget(AppTheme theme, Widget members) {
-    /// Label
-    final labelTextStyle = theme.textTheme.h10.bold();
-    final labelText = Text("参加者  ", style: labelTextStyle);
+  Widget _titleWidget(AppTheme theme) {
+    // /// 参加ボタン
+    Color joinBtnColor;
+    VoidCallback? onPressedJoinBtn;
+    if (room.isRequested) {
+      joinBtnColor = theme.appColors.disable;
+      onPressedJoinBtn = null;
+    } else {
+      joinBtnColor = theme.appColors.primary;
+      onPressedJoinBtn = () => onTapJoinRequestBtn();
+    }
 
-    /// 参加者：女性
-    final womanTextColor = theme.appColors.primary;
-    final womanTextStyle = theme.textTheme.h10.paint(womanTextColor);
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        /// ホストアイコン
+        ClipOval(
+          child: Image.network(
+            room.data.hostMainImageURL,
+            width: 50,
+            height: 50,
+            fit: BoxFit.cover,
+          ),
+        ),
+        const Gap(5),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              /// タイトル
+              Text(
+                room.data.roomName,
+                style: theme.textTheme.h30,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+              ),
 
-    /// 参加者：男性
-    final manTextColor = theme.appColors.subText3;
-    final manTextStyle = theme.textTheme.h10.paint(manTextColor);
+              /// 開催地
+              Row(children: [
+                SvgPicture.asset(
+                  Assets.images.icons.iconLocation.path,
+                  fit: BoxFit.contain,
+                ),
+                const Gap(3),
+                Text(
+                  room.data.address.text,
+                  style: theme.textTheme.h20.paint(theme.appColors.subText2),
+                ),
+              ]),
+            ],
+          ),
+        ),
+        const Gap(10),
+        ElevatedButton(
+          onPressed: onPressedJoinBtn,
+          style: ElevatedButton.styleFrom(
+            backgroundColor: joinBtnColor,
+            minimumSize: Size.zero,
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+            // tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+          ),
+          child: Text(
+            LocaleKeys.data_room_action_joinRequest.tr(),
+            style: theme.textTheme.h20.paint(theme.appColors.onPrimary).bold(),
+          ),
+        ),
+      ],
+    );
+  }
 
+  Container _contentsWidget(AppTheme theme) {
     return Container(
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
@@ -128,12 +141,28 @@ class RoomListCard extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  labelText,
+                  Text(
+                    LocaleKeys.data_room_membersNum_title.tr(),
+                    style: theme.textTheme.h10.bold(),
+                  ),
+                  const Gap(10),
                   RichText(
                     text: TextSpan(
+                      style: theme.textTheme.h10.paint(
+                        theme.appColors.subText3,
+                      ),
                       children: [
-                        TextSpan(text: '女性 2/4', style: womanTextStyle),
-                        TextSpan(text: '・男性 2/4', style: manTextStyle),
+                        /// 参加者：女性
+                        TextSpan(
+                          text: room.data.membersNum.women,
+                          style: theme.textTheme.h10.paint(
+                            theme.appColors.primary,
+                          ),
+                        ),
+
+                        /// 参加者：男性
+                        const TextSpan(text: '・'),
+                        TextSpan(text: room.data.membersNum.men),
                       ],
                     ),
                   ),
@@ -141,7 +170,7 @@ class RoomListCard extends StatelessWidget {
                 ],
               ),
               const Gap(5),
-              members,
+              memberIconsWidget(room.data.participantMainImageURLs ?? []),
             ],
           ),
           FavoriteButton(
@@ -152,63 +181,5 @@ class RoomListCard extends StatelessWidget {
         ],
       ),
     );
-  }
-
-  Widget _titleWidget(
-    AppTheme theme,
-    Widget leading,
-    Text title,
-    Text location,
-  ) {
-    /// 参加ボタンテキストスタイル
-    final joinBtnTextColor = theme.appColors.onPrimary;
-    final joinBtnTextStyle = theme.textTheme.h20.paint(joinBtnTextColor).bold();
-
-    // /// 参加ボタン
-    Color joinBtnColor;
-    VoidCallback? onPressedJoinBtn;
-    if (room.isRequested) {
-      joinBtnColor = theme.appColors.disable;
-      onPressedJoinBtn = null;
-    } else {
-      joinBtnColor = theme.appColors.primary;
-      onPressedJoinBtn = () => onTapJoinRequestBtn();
-    }
-
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        leading,
-        const Gap(5),
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [title, _locationWidget(location)],
-          ),
-        ),
-        const Gap(10),
-        ElevatedButton(
-          onPressed: onPressedJoinBtn,
-          style: ElevatedButton.styleFrom(
-            backgroundColor: joinBtnColor,
-            minimumSize: Size.zero,
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-            // tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-          ),
-          child: Text("参加", style: joinBtnTextStyle),
-        ),
-      ],
-    );
-  }
-
-  _locationWidget(Text location) {
-    return Row(children: [
-      SvgPicture.asset(
-        Assets.images.icons.iconLocation.path,
-        fit: BoxFit.contain,
-      ),
-      const Gap(3),
-      location,
-    ]);
   }
 }
