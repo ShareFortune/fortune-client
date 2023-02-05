@@ -1,13 +1,11 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:fortune_client/data/model/enum/gender.dart';
 import 'package:fortune_client/l10n/locale_keys.g.dart';
-import 'package:fortune_client/util/logger/logger.dart';
+import 'package:fortune_client/view/pages/account/my_page/components/my_page_header.dart';
 import 'package:fortune_client/view/pages/account/my_page/components/my_profile_basic_info_container.dart';
 import 'package:fortune_client/view/pages/account/my_page/components/my_profile_self_introduction_container.dart';
 import 'package:fortune_client/view/pages/account/my_page/components/my_profile_tags_container.dart';
 import 'package:fortune_client/view/pages/account/my_page/my_page_view_model.dart';
-import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/app_bar/back_app_bar.dart';
 import 'package:fortune_client/view/widgets/other/loading_widget.dart';
@@ -23,63 +21,6 @@ class MyPage extends HookConsumerWidget {
     final state = ref.watch(myPageViewModelProvider);
     final viewModel = ref.watch(myPageViewModelProvider.notifier);
 
-    /// プロフィール
-    final profileWidgetAsync = state.profile.maybeWhen(
-      orElse: () => loadingWidget(),
-      data: (profile) {
-        /// ヘッダー
-        final header = _profileHeader(
-          theme,
-          image: profile.mainImageURL,
-          name: profile.name,
-          age: 22,
-          gender: profile.gender,
-        );
-
-        /// 広告
-        final ad = _adContainer();
-
-        /// 自己紹介
-        final selfIntroduction = MyProfileSelfIntroductionContainer(
-          theme: theme,
-          selfIntroduction: profile.selfIntroduction ?? "",
-          onTap: () => viewModel.navigateToEntrySelfIntroduction(),
-        );
-
-        /// タグ
-        final tags = MyProfileTagsContainer(
-          theme: theme,
-          tags: profile.tags ?? List.empty(),
-          onTap: () => viewModel.navigateToTagsSelection(),
-        );
-
-        /// 基本情報
-        final basicInfo = MyProfileBasicInfoContainer(
-          theme: theme,
-          address: profile.address,
-          stature: profile.height,
-          drinkFrequency: profile.drinkFrequency,
-          cigaretteFrequency: profile.cigaretteFrequency,
-          onUpdate: () => viewModel.navigateToUpdateBasic(),
-        );
-
-        return Column(
-          children: [
-            const Gap(30),
-            header,
-            const Gap(30),
-            ad,
-            selfIntroduction,
-            const Divider(height: 1),
-            tags,
-            const Divider(height: 1),
-            basicInfo,
-            const Gap(100),
-          ],
-        );
-      },
-    );
-
     return Scaffold(
       backgroundColor: theme.appColors.onBackground,
       appBar: BackAppBar(
@@ -91,72 +32,66 @@ class MyPage extends HookConsumerWidget {
           ),
         ],
       ),
-      body: SingleChildScrollView(child: profileWidgetAsync),
-    );
-  }
+      body: state.profile.maybeWhen(
+        orElse: () => loadingWidget(),
+        data: (profile) {
+          return SingleChildScrollView(
+            child: Column(
+              children: [
+                const Gap(30),
 
-  Widget _adContainer() {
-    return Container(
-      color: Colors.blueGrey[100],
-      height: 120,
-      padding: const EdgeInsets.all(10),
-      child: Container(
-        width: double.infinity,
-        color: Colors.white,
-        child: const Text("広告"),
-      ),
-    );
-  }
-
-  Widget _profileHeader(
-    AppTheme theme, {
-    required String image,
-    required String name,
-    required int age,
-    required Gender gender,
-  }) {
-    /// 名前
-    final nameTextStyle = theme.textTheme.h50.bold();
-
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: Row(
-        children: [
-          ClipOval(
-            child: Image.network(
-              image,
-              width: 80,
-              height: 80,
-              fit: BoxFit.cover,
-              errorBuilder: (context, error, stackTrace) {
-                logger.e(error);
-                return const CircleAvatar(radius: 40);
-              },
-            ),
-          ),
-          const Gap(10),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(name, style: nameTextStyle),
-              const Gap(5),
-              RichText(
-                text: TextSpan(
-                  style: theme.textTheme.h30.paint(theme.appColors.subText3),
-                  children: [
-                    TextSpan(
-                      text: LocaleKeys.data_profile_age_data.tr(
-                        namedArgs: {"age": age.toString()},
-                      ),
-                    ),
-                    const TextSpan(text: "・"),
-                    TextSpan(text: gender.text),
-                  ],
+                /// ヘッダー
+                MyPageHeader(
+                  theme: theme,
+                  iconUrl: profile.mainImageURL,
+                  name: profile.name,
+                  age: 22,
+                  gender: profile.gender,
                 ),
-              ),
-            ],
-          ),
-        ],
+                const Gap(30),
+
+                /// 広告
+                Container(
+                  color: Colors.blueGrey[100],
+                  height: 120,
+                  padding: const EdgeInsets.all(10),
+                  child: Container(
+                    width: double.infinity,
+                    color: Colors.white,
+                    child: const Text("広告"),
+                  ),
+                ),
+
+                /// 自己紹介
+                MyProfileSelfIntroductionContainer(
+                  theme: theme,
+                  selfIntroduction: profile.selfIntroduction ?? "",
+                  onTap: () => viewModel.navigateToEntrySelfIntroduction(),
+                ),
+                const Divider(height: 1),
+
+                /// タグ
+                MyProfileTagsContainer(
+                  theme: theme,
+                  tags: profile.tags ?? List.empty(),
+                  onTap: () => viewModel.navigateToTagsSelection(),
+                ),
+                const Divider(height: 1),
+
+                /// 基本情報
+                MyProfileBasicInfoContainer(
+                  theme: theme,
+                  address: profile.address,
+                  stature: profile.height,
+                  drinkFrequency: profile.drinkFrequency,
+                  cigaretteFrequency: profile.cigaretteFrequency,
+                  onUpdate: () => viewModel.navigateToUpdateBasic(),
+                ),
+                const Gap(100),
+              ],
+            ),
+          );
+        },
       ),
     );
   }

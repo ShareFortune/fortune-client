@@ -4,7 +4,6 @@ import 'dart:io';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:fortune_client/data/datasource/local/shared_pref_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/go/profile/profile_data_source.dart';
-import 'package:fortune_client/data/model/base/address/address.dart';
 import 'package:fortune_client/data/model/base/address_with_id/address_with_id.dart';
 import 'package:fortune_client/data/model/base/profiles_files/profiles_files.dart';
 import 'package:fortune_client/data/model/base/tag/tag.dart';
