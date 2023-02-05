@@ -86,7 +86,7 @@ class _ProfileDataSource implements ProfileDataSource {
     )
             .compose(
               _dio.options,
-              'profiles/${id}',
+              '/profiles/${id}',
               queryParameters: queryParameters,
               data: _data,
             )
