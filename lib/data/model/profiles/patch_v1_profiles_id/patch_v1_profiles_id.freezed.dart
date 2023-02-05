@@ -24,7 +24,8 @@ mixin _$PatchV1ProfilesIdRequest {
   @JsonKey(name: "name")
   String get name => throw _privateConstructorUsedError;
   @JsonKey(name: "gender")
-  String get gender => throw _privateConstructorUsedError;
+  @GenderConverter()
+  Gender get gender => throw _privateConstructorUsedError;
   @JsonKey(name: "addressId")
   int get addressId => throw _privateConstructorUsedError;
   @JsonKey(name: "files")
@@ -32,9 +33,12 @@ mixin _$PatchV1ProfilesIdRequest {
   @JsonKey(name: "height")
   int? get height => throw _privateConstructorUsedError;
   @JsonKey(name: "drinkFrequency")
-  String? get drinkFrequency => throw _privateConstructorUsedError;
+  @DrinkFrequencyConverter()
+  DrinkFrequency? get drinkFrequency => throw _privateConstructorUsedError;
   @JsonKey(name: "cigaretteFrequency")
-  String? get cigaretteFrequency => throw _privateConstructorUsedError;
+  @CigaretteFrequencyConverter()
+  CigaretteFrequency? get cigaretteFrequency =>
+      throw _privateConstructorUsedError;
   @JsonKey(name: "selfIntroduction")
   String? get selfIntroduction => throw _privateConstructorUsedError;
   @JsonKey(name: "occupationId")
@@ -55,16 +59,29 @@ abstract class $PatchV1ProfilesIdRequestCopyWith<$Res> {
       _$PatchV1ProfilesIdRequestCopyWithImpl<$Res, PatchV1ProfilesIdRequest>;
   @useResult
   $Res call(
-      {@JsonKey(name: "name") String name,
-      @JsonKey(name: "gender") String gender,
-      @JsonKey(name: "addressId") int addressId,
-      @JsonKey(name: "files") ProfilesFiles files,
-      @JsonKey(name: "height") int? height,
-      @JsonKey(name: "drinkFrequency") String? drinkFrequency,
-      @JsonKey(name: "cigaretteFrequency") String? cigaretteFrequency,
-      @JsonKey(name: "selfIntroduction") String? selfIntroduction,
-      @JsonKey(name: "occupationId") int? occupationId,
-      @JsonKey(name: "tagIds") List<String>? tagIds});
+      {@JsonKey(name: "name")
+          String name,
+      @JsonKey(name: "gender")
+      @GenderConverter()
+          Gender gender,
+      @JsonKey(name: "addressId")
+          int addressId,
+      @JsonKey(name: "files")
+          ProfilesFiles files,
+      @JsonKey(name: "height")
+          int? height,
+      @JsonKey(name: "drinkFrequency")
+      @DrinkFrequencyConverter()
+          DrinkFrequency? drinkFrequency,
+      @JsonKey(name: "cigaretteFrequency")
+      @CigaretteFrequencyConverter()
+          CigaretteFrequency? cigaretteFrequency,
+      @JsonKey(name: "selfIntroduction")
+          String? selfIntroduction,
+      @JsonKey(name: "occupationId")
+          int? occupationId,
+      @JsonKey(name: "tagIds")
+          List<String>? tagIds});
 
   $ProfilesFilesCopyWith<$Res> get files;
 }
@@ -102,7 +119,7 @@ class _$PatchV1ProfilesIdRequestCopyWithImpl<$Res,
       gender: null == gender
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Gender,
       addressId: null == addressId
           ? _value.addressId
           : addressId // ignore: cast_nullable_to_non_nullable
@@ -118,11 +135,11 @@ class _$PatchV1ProfilesIdRequestCopyWithImpl<$Res,
       drinkFrequency: freezed == drinkFrequency
           ? _value.drinkFrequency
           : drinkFrequency // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as DrinkFrequency?,
       cigaretteFrequency: freezed == cigaretteFrequency
           ? _value.cigaretteFrequency
           : cigaretteFrequency // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as CigaretteFrequency?,
       selfIntroduction: freezed == selfIntroduction
           ? _value.selfIntroduction
           : selfIntroduction // ignore: cast_nullable_to_non_nullable
@@ -157,16 +174,29 @@ abstract class _$$_PatchV1ProfilesIdRequestCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: "name") String name,
-      @JsonKey(name: "gender") String gender,
-      @JsonKey(name: "addressId") int addressId,
-      @JsonKey(name: "files") ProfilesFiles files,
-      @JsonKey(name: "height") int? height,
-      @JsonKey(name: "drinkFrequency") String? drinkFrequency,
-      @JsonKey(name: "cigaretteFrequency") String? cigaretteFrequency,
-      @JsonKey(name: "selfIntroduction") String? selfIntroduction,
-      @JsonKey(name: "occupationId") int? occupationId,
-      @JsonKey(name: "tagIds") List<String>? tagIds});
+      {@JsonKey(name: "name")
+          String name,
+      @JsonKey(name: "gender")
+      @GenderConverter()
+          Gender gender,
+      @JsonKey(name: "addressId")
+          int addressId,
+      @JsonKey(name: "files")
+          ProfilesFiles files,
+      @JsonKey(name: "height")
+          int? height,
+      @JsonKey(name: "drinkFrequency")
+      @DrinkFrequencyConverter()
+          DrinkFrequency? drinkFrequency,
+      @JsonKey(name: "cigaretteFrequency")
+      @CigaretteFrequencyConverter()
+          CigaretteFrequency? cigaretteFrequency,
+      @JsonKey(name: "selfIntroduction")
+          String? selfIntroduction,
+      @JsonKey(name: "occupationId")
+          int? occupationId,
+      @JsonKey(name: "tagIds")
+          List<String>? tagIds});
 
   @override
   $ProfilesFilesCopyWith<$Res> get files;
@@ -203,7 +233,7 @@ class __$$_PatchV1ProfilesIdRequestCopyWithImpl<$Res>
       gender: null == gender
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Gender,
       addressId: null == addressId
           ? _value.addressId
           : addressId // ignore: cast_nullable_to_non_nullable
@@ -219,11 +249,11 @@ class __$$_PatchV1ProfilesIdRequestCopyWithImpl<$Res>
       drinkFrequency: freezed == drinkFrequency
           ? _value.drinkFrequency
           : drinkFrequency // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as DrinkFrequency?,
       cigaretteFrequency: freezed == cigaretteFrequency
           ? _value.cigaretteFrequency
           : cigaretteFrequency // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as CigaretteFrequency?,
       selfIntroduction: freezed == selfIntroduction
           ? _value.selfIntroduction
           : selfIntroduction // ignore: cast_nullable_to_non_nullable
@@ -244,16 +274,29 @@ class __$$_PatchV1ProfilesIdRequestCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_PatchV1ProfilesIdRequest implements _PatchV1ProfilesIdRequest {
   const _$_PatchV1ProfilesIdRequest(
-      {@JsonKey(name: "name") required this.name,
-      @JsonKey(name: "gender") required this.gender,
-      @JsonKey(name: "addressId") required this.addressId,
-      @JsonKey(name: "files") required this.files,
-      @JsonKey(name: "height") required this.height,
-      @JsonKey(name: "drinkFrequency") required this.drinkFrequency,
-      @JsonKey(name: "cigaretteFrequency") required this.cigaretteFrequency,
-      @JsonKey(name: "selfIntroduction") required this.selfIntroduction,
-      @JsonKey(name: "occupationId") required this.occupationId,
-      @JsonKey(name: "tagIds") required final List<String>? tagIds})
+      {@JsonKey(name: "name")
+          required this.name,
+      @JsonKey(name: "gender")
+      @GenderConverter()
+          required this.gender,
+      @JsonKey(name: "addressId")
+          required this.addressId,
+      @JsonKey(name: "files")
+          required this.files,
+      @JsonKey(name: "height")
+          required this.height,
+      @JsonKey(name: "drinkFrequency")
+      @DrinkFrequencyConverter()
+          required this.drinkFrequency,
+      @JsonKey(name: "cigaretteFrequency")
+      @CigaretteFrequencyConverter()
+          required this.cigaretteFrequency,
+      @JsonKey(name: "selfIntroduction")
+          required this.selfIntroduction,
+      @JsonKey(name: "occupationId")
+          required this.occupationId,
+      @JsonKey(name: "tagIds")
+          required final List<String>? tagIds})
       : _tagIds = tagIds;
 
   factory _$_PatchV1ProfilesIdRequest.fromJson(Map<String, dynamic> json) =>
@@ -264,7 +307,8 @@ class _$_PatchV1ProfilesIdRequest implements _PatchV1ProfilesIdRequest {
   final String name;
   @override
   @JsonKey(name: "gender")
-  final String gender;
+  @GenderConverter()
+  final Gender gender;
   @override
   @JsonKey(name: "addressId")
   final int addressId;
@@ -276,10 +320,12 @@ class _$_PatchV1ProfilesIdRequest implements _PatchV1ProfilesIdRequest {
   final int? height;
   @override
   @JsonKey(name: "drinkFrequency")
-  final String? drinkFrequency;
+  @DrinkFrequencyConverter()
+  final DrinkFrequency? drinkFrequency;
   @override
   @JsonKey(name: "cigaretteFrequency")
-  final String? cigaretteFrequency;
+  @CigaretteFrequencyConverter()
+  final CigaretteFrequency? cigaretteFrequency;
   @override
   @JsonKey(name: "selfIntroduction")
   final String? selfIntroduction;
@@ -359,7 +405,8 @@ abstract class _PatchV1ProfilesIdRequest implements PatchV1ProfilesIdRequest {
       {@JsonKey(name: "name")
           required final String name,
       @JsonKey(name: "gender")
-          required final String gender,
+      @GenderConverter()
+          required final Gender gender,
       @JsonKey(name: "addressId")
           required final int addressId,
       @JsonKey(name: "files")
@@ -367,9 +414,11 @@ abstract class _PatchV1ProfilesIdRequest implements PatchV1ProfilesIdRequest {
       @JsonKey(name: "height")
           required final int? height,
       @JsonKey(name: "drinkFrequency")
-          required final String? drinkFrequency,
+      @DrinkFrequencyConverter()
+          required final DrinkFrequency? drinkFrequency,
       @JsonKey(name: "cigaretteFrequency")
-          required final String? cigaretteFrequency,
+      @CigaretteFrequencyConverter()
+          required final CigaretteFrequency? cigaretteFrequency,
       @JsonKey(name: "selfIntroduction")
           required final String? selfIntroduction,
       @JsonKey(name: "occupationId")
@@ -385,7 +434,8 @@ abstract class _PatchV1ProfilesIdRequest implements PatchV1ProfilesIdRequest {
   String get name;
   @override
   @JsonKey(name: "gender")
-  String get gender;
+  @GenderConverter()
+  Gender get gender;
   @override
   @JsonKey(name: "addressId")
   int get addressId;
@@ -397,10 +447,12 @@ abstract class _PatchV1ProfilesIdRequest implements PatchV1ProfilesIdRequest {
   int? get height;
   @override
   @JsonKey(name: "drinkFrequency")
-  String? get drinkFrequency;
+  @DrinkFrequencyConverter()
+  DrinkFrequency? get drinkFrequency;
   @override
   @JsonKey(name: "cigaretteFrequency")
-  String? get cigaretteFrequency;
+  @CigaretteFrequencyConverter()
+  CigaretteFrequency? get cigaretteFrequency;
   @override
   @JsonKey(name: "selfIntroduction")
   String? get selfIntroduction;
