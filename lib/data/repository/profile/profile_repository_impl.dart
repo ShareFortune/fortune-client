@@ -22,16 +22,81 @@ import 'package:fortune_client/util/storage/app_pref_key.dart';
 
 class ProfileRepositoryImpl implements ProfileRepository {
   final ProfileDataSource _profileDataSource;
-  final SharedPreferencesDataSource _sharedPreferences;
+  final SharedPreferencesDataSource _shared;
+
+  /// 画像変換
+  final toBase64 = ImageConverter.convertImageForBase64;
 
   ProfileRepositoryImpl(
     this._profileDataSource,
-    this._sharedPreferences,
+    this._shared,
   );
 
   @override
   Future<bool> isCreated() async {
-    return _sharedPreferences.getString(AppPrefKey.profileId.keyString) != null;
+    return _shared.getString(AppPrefKey.profileId.keyString) != null;
+  }
+
+  @override
+  Future<GetV1ProfilesResponse> get() async {
+    try {
+      final profile = await logInfo(() => _profileDataSource.get());
+
+      /// ローカル保存
+      await _shared.setString(
+        AppPrefKey.profile.keyString,
+        jsonEncode(profile),
+      );
+
+      return profile;
+    } catch (e) {
+      logger.e(e);
+      rethrow;
+    }
+  }
+
+  @override
+  GetV1ProfilesResponse getCache() {
+    try {
+      final result = _shared.getString(AppPrefKey.profile.keyString);
+      return GetV1ProfilesResponse.fromJson(jsonDecode(result!));
+    } catch (e) {
+      logger.e(e);
+      rethrow;
+    }
+  }
+
+  @override
+  Future<void> saveProfileImages({
+    File? mainImage,
+    File? secondImage,
+    File? thirdImage,
+    File? fourthImage,
+    File? fifthImage,
+    File? sixthImage,
+  }) async {
+    Future<void> saveImage(String key, File? file) async {
+      if (file != null) _shared.setString(key, await toBase64(file));
+    }
+
+    await saveImage(AppPrefKey.profileMainImage.keyString, mainImage);
+    await saveImage(AppPrefKey.profileSecondImage.keyString, secondImage);
+    await saveImage(AppPrefKey.profileThirdImage.keyString, thirdImage);
+    await saveImage(AppPrefKey.profileFourthImage.keyString, fourthImage);
+    await saveImage(AppPrefKey.profileFifthImage.keyString, fifthImage);
+    await saveImage(AppPrefKey.profileSixthImage.keyString, sixthImage);
+  }
+
+  @override
+  ProfilesFiles getProfileImages() {
+    return ProfilesFiles(
+      mainImage: _shared.getString(AppPrefKey.profileMainImage.keyString)!,
+      secondImage: _shared.getString(AppPrefKey.profileSecondImage.keyString),
+      thirdImage: _shared.getString(AppPrefKey.profileThirdImage.keyString),
+      fourthImage: _shared.getString(AppPrefKey.profileFourthImage.keyString),
+      fifthImage: _shared.getString(AppPrefKey.profileFifthImage.keyString),
+      sixthImage: _shared.getString(AppPrefKey.profileSixthImage.keyString),
+    );
   }
 
   @override
@@ -67,20 +132,20 @@ class ProfileRepositoryImpl implements ProfileRepository {
         height: 170,
         drinkFrequency: drinkFrequency,
         cigaretteFrequency: cigaretteFrequency,
-        // occupationId: null, // 開発中のためNullにしないとエラー出るよ
-        // selfIntroduction: null,
-        // tagIds: null,
+        occupationId: null, // 開発中のためNullにしないとエラー出るよ
       );
 
       /// 作成
       final result = await _profileDataSource.create(
-        _sharedPreferences.getString(AppPrefKey.fortuneId.keyString)!,
+        _shared.getString(AppPrefKey.fortuneId.keyString)!,
         profileForm.toJson(),
       );
 
       /// ローカル保存
-      return await _sharedPreferences.setString(
-          AppPrefKey.profileId.keyString, result.id);
+      return await _shared.setString(
+        AppPrefKey.profileId.keyString,
+        result.id,
+      );
     } catch (e) {
       Fluttertoast.showToast(
         gravity: ToastGravity.CENTER,
@@ -92,52 +157,53 @@ class ProfileRepositoryImpl implements ProfileRepository {
   }
 
   @override
-  Future<GetV1ProfilesResponse> get() async {
-    try {
-      final profile = await logInfo(() => _profileDataSource.get());
+  Future<void> updateProfileImages({
+    File? mainImage,
+    File? secondImage,
+    File? thirdImage,
+    File? fourthImage,
+    File? fifthImage,
+    File? sixthImage,
+  }) async {
+    /// 入力画像を保存
+    await saveProfileImages(
+      mainImage: mainImage,
+      secondImage: secondImage,
+      thirdImage: thirdImage,
+      fourthImage: fourthImage,
+      fifthImage: fifthImage,
+      sixthImage: sixthImage,
+    );
 
-      /// ローカル保存
-      await _sharedPreferences.setString(
-        AppPrefKey.profile.keyString,
-        jsonEncode(profile),
-      );
+    final profile = getCache();
+    final request = convertToPatchV1ProfilesIdRequest(profile);
 
-      return profile;
-    } catch (e) {
-      logger.e(e);
-      rethrow;
-    }
-  }
-
-  @override
-  GetV1ProfilesResponse getCache() {
-    try {
-      final result = _sharedPreferences.getString(AppPrefKey.profile.keyString);
-      return GetV1ProfilesResponse.fromJson(jsonDecode(result!));
-    } catch (e) {
-      logger.e(e);
-      rethrow;
-    }
+    await _update(
+      profile.id,
+      request.copyWith(files: getProfileImages()),
+    );
   }
 
   @override
   Future<void> updateSelfIntroduction(String selfIntroduction) async {
-    try {
-      await _update(selfIntroduction: selfIntroduction);
-    } catch (e) {
-      logger.e(e);
-      rethrow;
-    }
+    final profile = getCache();
+    final request = convertToPatchV1ProfilesIdRequest(profile);
+
+    await _update(
+      profile.id,
+      request.copyWith(selfIntroduction: selfIntroduction),
+    );
   }
 
   @override
   Future<void> updateTags(List<Tag> tags) async {
-    try {
-      await _update(tags: tags);
-    } catch (e) {
-      logger.e(e);
-      rethrow;
-    }
+    final profile = getCache();
+    final request = convertToPatchV1ProfilesIdRequest(profile);
+
+    await _update(
+      profile.id,
+      request.copyWith(tagIds: tags.map((e) => e.id).toList()),
+    );
   }
 
   @override
@@ -147,64 +213,29 @@ class ProfileRepositoryImpl implements ProfileRepository {
     required DrinkFrequency? drinkFrequency,
     required CigaretteFrequency? cigaretteFrequency,
   }) async {
+    final profile = getCache();
+    final request = convertToPatchV1ProfilesIdRequest(profile);
+
+    await _update(
+      profile.id,
+      request.copyWith(
+        addressId: addressWithId?.id ?? request.addressId,
+        height: stature,
+        drinkFrequency: drinkFrequency?.text,
+        cigaretteFrequency: cigaretteFrequency?.text,
+      ),
+    );
+  }
+
+  Future<void> _update(String id, PatchV1ProfilesIdRequest request) async {
     try {
-      await _update(
-        address: addressWithId != null
-            ? Address(
-                country: addressWithId.country,
-                prefecture: addressWithId.prefecture,
-                city: addressWithId.city,
-              )
-            : null,
-        stature: stature,
-        drinkFrequency: drinkFrequency,
-        cigaretteFrequency: cigaretteFrequency,
+      return await logInfo(
+        () => _profileDataSource.update(id, request.toJson()),
       );
     } catch (e) {
       logger.e(e);
       rethrow;
     }
-  }
-
-  Future<String> _update({
-    // String? mainImageURL,
-    Gender? gender,
-    Address? address,
-    int? stature,
-    DrinkFrequency? drinkFrequency,
-    CigaretteFrequency? cigaretteFrequency,
-    String? selfIntroduction,
-    List<Tag>? tags,
-  }) async {
-    /// 入力データを元に新たなプロフィールデータを生成
-    final profile = getCache();
-    final updatedProfile = profile.copyWith(
-      gender: gender ?? profile.gender,
-      address: address ?? profile.address,
-      height: stature ?? profile.height,
-      drinkFrequency: drinkFrequency ?? profile.drinkFrequency,
-      cigaretteFrequency: cigaretteFrequency ?? profile.cigaretteFrequency,
-      selfIntroduction: selfIntroduction ?? profile.selfIntroduction,
-      tags: tags ?? profile.tags,
-    );
-
-    /// ローカルに保存
-    await _sharedPreferences.setString(
-      AppPrefKey.profile.keyString,
-      jsonEncode(updatedProfile),
-    );
-
-    /// [TODO] Update API 動いたら実装
-    /// 更新
-    // createUpdateRequest(updatedProfile);
-    // final result = await logInfo(
-    //   () => _profileDataSource.update(
-    //     updatedProfile.id,
-    //     updatedProfile.toJson(),
-    //   ),
-    // );
-    // return result.id;
-    return "";
   }
 
   /// 作成フォーム画像
@@ -215,7 +246,6 @@ class ProfileRepositoryImpl implements ProfileRepository {
     File? thirdImage,
     File? fourthImage,
   }) async {
-    const toBase64 = ImageConverter.convertImageForBase64;
     return ProfilesFiles(
       mainImage: await toBase64(iconImage),
       secondImage: mainImage != null ? await toBase64(mainImage) : null,
@@ -227,7 +257,7 @@ class ProfileRepositoryImpl implements ProfileRepository {
 
   /// 更新データフォーム作成
   /// [Profile] convert to [ProfileUpdateRequest]
-  PatchV1ProfilesIdRequest createUpdateRequest(
+  PatchV1ProfilesIdRequest convertToPatchV1ProfilesIdRequest(
       GetV1ProfilesResponse updateProfile) {
     return PatchV1ProfilesIdRequest(
       name: updateProfile.name,

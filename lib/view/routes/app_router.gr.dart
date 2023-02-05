@@ -261,11 +261,11 @@ class AppRouter extends _i27.RootStackRouter {
           orElse: () => JoinRequestsConfirmationRouteArgs(
                 id: pathParams.getString(
                   'id',
-                  "タイトル",
+                  "_",
                 ),
                 roomTitle: queryParams.getString(
                   'roomTitle',
-                  "ルームタイトル",
+                  "_",
                 ),
               ));
       return _i27.AdaptivePage<dynamic>(
@@ -286,7 +286,7 @@ class AppRouter extends _i27.RootStackRouter {
     BasicProfileEntryRoute.name: (routeData) {
       return _i27.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: _i21.BasicProfileEntryPage(),
+        child: const _i21.BasicProfileEntryPage(),
       );
     },
     DetailedProfileEntryRoute.name: (routeData) {
@@ -957,8 +957,8 @@ class JoinRequestsConfirmationRoute
     extends _i27.PageRouteInfo<JoinRequestsConfirmationRouteArgs> {
   JoinRequestsConfirmationRoute({
     _i28.Key? key,
-    String id = "タイトル",
-    String roomTitle = "ルームタイトル",
+    String id = "_",
+    String roomTitle = "_",
   }) : super(
           JoinRequestsConfirmationRoute.name,
           path: 'request-confirmation/:id',
@@ -977,8 +977,8 @@ class JoinRequestsConfirmationRoute
 class JoinRequestsConfirmationRouteArgs {
   const JoinRequestsConfirmationRouteArgs({
     this.key,
-    this.id = "タイトル",
-    this.roomTitle = "ルームタイトル",
+    this.id = "_",
+    this.roomTitle = "_",
   });
 
   final _i28.Key? key;

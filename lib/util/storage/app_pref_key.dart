@@ -14,8 +14,14 @@ enum AppPrefKey {
   /// プロフィール
   profile,
 
-  /// プロフィール写真URL
-  profileUrl,
+  /// プロフィール写真
+  profileImage,
+  profileMainImage,
+  profileSecondImage,
+  profileThirdImage,
+  profileFourthImage,
+  profileFifthImage,
+  profileSixthImage,
 }
 
 extension AppPrefKeyEx on AppPrefKey {
