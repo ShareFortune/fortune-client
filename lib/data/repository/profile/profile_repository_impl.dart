@@ -107,27 +107,32 @@ class ProfileRepositoryImpl implements ProfileRepository {
     DrinkFrequency? drinkFrequency,
     CigaretteFrequency? cigaretteFrequency,
     int? occupationId,
-    required File iconImage,
-    File? mainImage,
+    required File mainImage,
     File? secondImage,
     File? thirdImage,
     File? fourthImage,
+    File? fifthImage,
+    File? sixthImage,
   }) async {
     try {
       logger.i("[$runtimeType] create");
+
+      /// 入力画像を保存
+      await saveProfileImages(
+        mainImage: mainImage,
+        secondImage: secondImage,
+        thirdImage: thirdImage,
+        fourthImage: fourthImage,
+        fifthImage: fifthImage,
+        sixthImage: sixthImage,
+      );
 
       /// 作成フォーム
       final profileForm = PostV1UsersIdProfilesRequest(
         name: name,
         gender: gender.rawValue,
         addressId: address.id,
-        files: await _profileFiles(
-          iconImage: iconImage,
-          mainImage: mainImage,
-          secondImage: secondImage,
-          thirdImage: thirdImage,
-          fourthImage: fourthImage,
-        ).then((value) => value.toJson()),
+        files: getProfileImages().toJson(),
         height: 170,
         drinkFrequency: drinkFrequency,
         cigaretteFrequency: cigaretteFrequency,
@@ -176,11 +181,7 @@ class ProfileRepositoryImpl implements ProfileRepository {
 
     final profile = getCache();
     final request = convertToPatchV1ProfilesIdRequest(profile);
-
-    await _update(
-      profile.id,
-      request.copyWith(files: getProfileImages()),
-    );
+    await _update(profile.id, request);
   }
 
   @override
@@ -220,8 +221,8 @@ class ProfileRepositoryImpl implements ProfileRepository {
       request.copyWith(
         addressId: addressWithId?.id ?? request.addressId,
         height: stature,
-        drinkFrequency: drinkFrequency?.text,
-        cigaretteFrequency: cigaretteFrequency?.text,
+        drinkFrequency: drinkFrequency,
+        cigaretteFrequency: cigaretteFrequency,
       ),
     );
   }
@@ -237,42 +238,25 @@ class ProfileRepositoryImpl implements ProfileRepository {
     }
   }
 
-  /// 作成フォーム画像
-  Future<ProfilesFiles> _profileFiles({
-    required File iconImage,
-    File? mainImage,
-    File? secondImage,
-    File? thirdImage,
-    File? fourthImage,
-  }) async {
-    return ProfilesFiles(
-      mainImage: await toBase64(iconImage),
-      secondImage: mainImage != null ? await toBase64(mainImage) : null,
-      thirdImage: secondImage != null ? await toBase64(secondImage) : null,
-      fourthImage: thirdImage != null ? await toBase64(thirdImage) : null,
-      fifthImage: fourthImage != null ? await toBase64(fourthImage) : null,
-    );
-  }
-
   /// 更新データフォーム作成
   /// [Profile] convert to [ProfileUpdateRequest]
   PatchV1ProfilesIdRequest convertToPatchV1ProfilesIdRequest(
-      GetV1ProfilesResponse updateProfile) {
+    GetV1ProfilesResponse updateProfile,
+  ) {
     return PatchV1ProfilesIdRequest(
       name: updateProfile.name,
-      gender: updateProfile.gender.text,
+      gender: updateProfile.gender,
       height: updateProfile.height,
-      drinkFrequency: updateProfile.drinkFrequency?.text,
-      cigaretteFrequency: updateProfile.cigaretteFrequency?.text,
+      drinkFrequency: updateProfile.drinkFrequency,
+      cigaretteFrequency: updateProfile.cigaretteFrequency,
       selfIntroduction: updateProfile.selfIntroduction,
       occupationId: null,
-
-      /// アドレスデータにはIDをつけるようにする
-      addressId: 65,
+      addressId: 65, // TODO: アドレスデータにID追加
       tagIds: updateProfile.tags?.map((e) => e.id).toList(),
-      files: ProfilesFiles(
-        mainImage: updateProfile.mainImageURL,
-      ),
+      files: getProfileImages(),
     );
   }
 }
+
+const _testImage =
+    "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAACHElEQVRYhe3WO2gUURTG8V9MwBc2aiFooaCIJqAEU2lQtBLsbETxgZ2IjVUUERQjGlECIiqKYC0K2qUSK0GMlrGQBMHCBz4ajc+sxZzJbDYzm2SzGxDyh8sM99xzvjPnvoZZ/lPW4xZeYxhvcBftMyF+GD9Qymm/cbyR4tsxEmK30Yb5WIPL+Bv2o9FfF5bhPPrwOcTPFIw9IqvGd1zDwumI78E3Y8v8FnMLxjfhKp5LpqOEF2qsxo6yIPewO/q2TtK/Fa/Cv7eWBJ6G89lanIMNkjXxRXHVxrEAN0L801QcC0ircMckpmIOHoXDME5MU1zE+BkxH0rWSSH7YuA7rK2DeEobPkTsvdUGPolB++sonnIoYj+uNijd54sbkMBS2boaZU7FoJZ4zisI0oQh+cdweevI8U0Xc0t5Z2UC/fE8UJBAO1YW2FKGJAdRJQfjmWcbZZfkC37hHFajuczeHfYrOb49Yesp62uOGN0Rs4SdE3yAU7ILp/yWWyLb050VPk0YlJW/z/hpGcHJicRTOvEA72Urt1W2RSunriNsg5Fo+rWliHEfWyYrXsTpCHg9x3YpbBenK1KNl8aXtdfY8qet7qzKES9hm6z8aRtqRALlrAuhj9gkue/TRXYTixqdQFcIfsWfeB/A5kYLpzwzdnteUHxy1p0VsjOiHxtnSjjlmOQ/oUvFmV4rUw2yXHIfDNRDvBaq/s3MUgv/AEHipuJpYlyAAAAAAElFTkSuQmCC";
