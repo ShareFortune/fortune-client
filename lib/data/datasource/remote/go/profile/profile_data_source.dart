@@ -22,6 +22,9 @@ abstract class ProfileDataSource {
     @Body() Map<String, dynamic> body,
   );
 
+  /// プロフィール編集
+  /// [PatchV1ProfilesIdRequest]
+  /// [PatchV1ProfilesIdResponse]
   @PATCH('profiles/{id}')
   @authenticatedRequest
   Future<PatchV1ProfilesIdResponse> update(

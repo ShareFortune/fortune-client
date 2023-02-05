@@ -194,17 +194,14 @@ class ProfileRepositoryImpl implements ProfileRepository {
       jsonEncode(updatedProfile),
     );
 
-    /// [TODO] Update API 動いたら実装
     /// 更新
-    // createUpdateRequest(updatedProfile);
-    // final result = await logInfo(
-    //   () => _profileDataSource.update(
-    //     updatedProfile.id,
-    //     updatedProfile.toJson(),
-    //   ),
-    // );
-    // return result.id;
-    return "";
+    final result = await logInfo(
+      () => _profileDataSource.update(
+        updatedProfile.id,
+        convertToPatchV1ProfilesIdRequest(updatedProfile).toJson(),
+      ),
+    );
+    return result.id;
   }
 
   /// 作成フォーム画像
@@ -227,7 +224,7 @@ class ProfileRepositoryImpl implements ProfileRepository {
 
   /// 更新データフォーム作成
   /// [Profile] convert to [ProfileUpdateRequest]
-  PatchV1ProfilesIdRequest createUpdateRequest(
+  PatchV1ProfilesIdRequest convertToPatchV1ProfilesIdRequest(
       GetV1ProfilesResponse updateProfile) {
     return PatchV1ProfilesIdRequest(
       name: updateProfile.name,
