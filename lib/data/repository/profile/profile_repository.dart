@@ -18,18 +18,6 @@ abstract class ProfileRepository {
   /// キャッシュに保存されたプロフィールを取得
   GetV1ProfilesResponse getCache();
 
-  /// プロフィール画像をローカル保存
-  /// プロフィール編集用のプロフィール画像を保存する。
-  Future<void> saveProfileImages({
-    File? mainImage,
-    File? secondImage,
-    File? thirdImage,
-    File? fourthImage,
-    File? fifthImage,
-    File? sixthImage,
-  });
-  ProfilesFiles getProfileImages();
-
   /// 作成
   Future<bool> create({
     required String name,
@@ -50,11 +38,12 @@ abstract class ProfileRepository {
 
   /// 更新
   Future<void> updateProfileImages({
-    File? iconImage,
     File? mainImage,
     File? secondImage,
     File? thirdImage,
     File? fourthImage,
+    File? fifthImage,
+    File? sixthImage,
   });
   Future<void> updateSelfIntroduction(String selfIntroduction);
   Future<void> updateTags(List<Tag> tags);
@@ -64,4 +53,16 @@ abstract class ProfileRepository {
     required DrinkFrequency? drinkFrequency,
     required CigaretteFrequency? cigaretteFrequency,
   });
+
+  /// プロフィール画像をローカル保存
+  /// プロフィール編集用のプロフィール画像を保存する。
+  Future<void> saveProfileImages({
+    File? mainImage,
+    File? secondImage,
+    File? thirdImage,
+    File? fourthImage,
+    File? fifthImage,
+    File? sixthImage,
+  });
+  ProfilesFiles getProfileImages();
 }
