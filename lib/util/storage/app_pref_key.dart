@@ -22,6 +22,12 @@ enum AppPrefKey {
   profileFourthImage,
   profileFifthImage,
   profileSixthImage,
+
+  /// 写真選択
+  isShowPhotoOSDialogValue,
+
+  /// カメラ
+  isShowCameraOSDialogValue,
 }
 
 extension AppPrefKeyEx on AppPrefKey {
