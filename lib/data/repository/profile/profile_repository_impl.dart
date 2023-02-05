@@ -177,11 +177,11 @@ class ProfileRepositoryImpl implements ProfileRepository {
       fourthImage: fourthImage,
       fifthImage: fifthImage,
       sixthImage: sixthImage,
-    );
-
-    final profile = getCache();
-    final request = convertToPatchV1ProfilesIdRequest(profile);
-    await _update(profile.id, request);
+    ).whenComplete(() async {
+      final profile = getCache();
+      final request = convertToPatchV1ProfilesIdRequest(profile);
+      await _update(profile.id, request);
+    });
   }
 
   @override
@@ -239,7 +239,7 @@ class ProfileRepositoryImpl implements ProfileRepository {
   }
 
   /// 更新データフォーム作成
-  /// [Profile] convert to [ProfileUpdateRequest]
+  /// [GetV1ProfilesResponse] convert to [PatchV1ProfilesIdRequest]
   PatchV1ProfilesIdRequest convertToPatchV1ProfilesIdRequest(
     GetV1ProfilesResponse updateProfile,
   ) {
@@ -257,6 +257,3 @@ class ProfileRepositoryImpl implements ProfileRepository {
     );
   }
 }
-
-const _testImage =
-    "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAACHElEQVRYhe3WO2gUURTG8V9MwBc2aiFooaCIJqAEU2lQtBLsbETxgZ2IjVUUERQjGlECIiqKYC0K2qUSK0GMlrGQBMHCBz4ajc+sxZzJbDYzm2SzGxDyh8sM99xzvjPnvoZZ/lPW4xZeYxhvcBftMyF+GD9Qymm/cbyR4tsxEmK30Yb5WIPL+Bv2o9FfF5bhPPrwOcTPFIw9IqvGd1zDwumI78E3Y8v8FnMLxjfhKp5LpqOEF2qsxo6yIPewO/q2TtK/Fa/Cv7eWBJ6G89lanIMNkjXxRXHVxrEAN0L801QcC0ircMckpmIOHoXDME5MU1zE+BkxH0rWSSH7YuA7rK2DeEobPkTsvdUGPolB++sonnIoYj+uNijd54sbkMBS2boaZU7FoJZ4zisI0oQh+cdweevI8U0Xc0t5Z2UC/fE8UJBAO1YW2FKGJAdRJQfjmWcbZZfkC37hHFajuczeHfYrOb49Yesp62uOGN0Rs4SdE3yAU7ILp/yWWyLb050VPk0YlJW/z/hpGcHJicRTOvEA72Urt1W2RSunriNsg5Fo+rWliHEfWyYrXsTpCHg9x3YpbBenK1KNl8aXtdfY8qet7qzKES9hm6z8aRtqRALlrAuhj9gkue/TRXYTixqdQFcIfsWfeB/A5kYLpzwzdnteUHxy1p0VsjOiHxtnSjjlmOQ/oUvFmV4rUw2yXHIfDNRDvBaq/s3MUgv/AEHipuJpYlyAAAAAAElFTkSuQmCC";

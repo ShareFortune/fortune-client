@@ -32,9 +32,11 @@ class MyPageViewModel extends StateNotifier<MyPageState> {
     );
   }
 
-  changeIcon(File file) async {
-    state = state.copyWith(icon: file);
-    _repository.saveProfileImages(mainImage: state.icon);
+  /// アイコン編集
+  updateIcon(File file) async {
+    _repository
+        .updateProfileImages(mainImage: file)
+        .whenComplete(() => fetch());
   }
 
   /// 設定ページへ
@@ -57,11 +59,7 @@ class MyPageViewModel extends StateNotifier<MyPageState> {
 
     /// 更新
     if (result != null) {
-      _repository.updateSelfIntroduction(result).whenComplete(() async {
-        state = state.copyWith(
-          profile: await AsyncValue.guard(() => _repository.get()),
-        );
-      });
+      _repository.updateSelfIntroduction(result).whenComplete(() => fetch());
     }
   }
 
@@ -77,20 +75,14 @@ class MyPageViewModel extends StateNotifier<MyPageState> {
 
     /// 更新
     if (result != null) {
-      _repository.updateTags(result).whenComplete(() async {
-        state = state.copyWith(
-          profile: await AsyncValue.guard(() => _repository.get()),
-        );
-      });
+      _repository.updateTags(result).whenComplete(() => fetch());
     }
   }
 
   /// 基本情報を編集
   navigateToUpdateBasic() async {
-    sl<AppRouter>().push(const ProfileUpdateRoute()).whenComplete(() async {
-      state = state.copyWith(
-        profile: await AsyncValue.guard(() async => _repository.get()),
-      );
-    });
+    sl<AppRouter>()
+        .push(const ProfileUpdateRoute())
+        .whenComplete(() => fetch());
   }
 }

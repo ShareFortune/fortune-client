@@ -15,7 +15,6 @@ import 'package:fortune_client/util/storage/app_pref_key.dart';
 import 'package:fortune_client/view/widgets/dialog/permission_dialog.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class ImagePickerService {
   static final _prefs = sl<SharedPreferencesDataSource>();
@@ -222,7 +221,7 @@ class ImagePickerService {
     var result = await FlutterImageCompress.compressAndGetFile(
       file.absolute.path,
       outPath,
-      quality: 80,
+      quality: 60,
       format: format,
     );
 
