@@ -16,6 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$MyPageState {
+  File? get icon => throw _privateConstructorUsedError;
   AsyncValue<GetV1ProfilesResponse> get profile =>
       throw _privateConstructorUsedError;
 
@@ -30,7 +31,7 @@ abstract class $MyPageStateCopyWith<$Res> {
           MyPageState value, $Res Function(MyPageState) then) =
       _$MyPageStateCopyWithImpl<$Res, MyPageState>;
   @useResult
-  $Res call({AsyncValue<GetV1ProfilesResponse> profile});
+  $Res call({File? icon, AsyncValue<GetV1ProfilesResponse> profile});
 }
 
 /// @nodoc
@@ -46,9 +47,14 @@ class _$MyPageStateCopyWithImpl<$Res, $Val extends MyPageState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? icon = freezed,
     Object? profile = null,
   }) {
     return _then(_value.copyWith(
+      icon: freezed == icon
+          ? _value.icon
+          : icon // ignore: cast_nullable_to_non_nullable
+              as File?,
       profile: null == profile
           ? _value.profile
           : profile // ignore: cast_nullable_to_non_nullable
@@ -65,7 +71,7 @@ abstract class _$$_MyPageStateCopyWith<$Res>
       __$$_MyPageStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({AsyncValue<GetV1ProfilesResponse> profile});
+  $Res call({File? icon, AsyncValue<GetV1ProfilesResponse> profile});
 }
 
 /// @nodoc
@@ -79,9 +85,14 @@ class __$$_MyPageStateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? icon = freezed,
     Object? profile = null,
   }) {
     return _then(_$_MyPageState(
+      icon: freezed == icon
+          ? _value.icon
+          : icon // ignore: cast_nullable_to_non_nullable
+              as File?,
       profile: null == profile
           ? _value.profile
           : profile // ignore: cast_nullable_to_non_nullable
@@ -93,14 +104,16 @@ class __$$_MyPageStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_MyPageState implements _MyPageState {
-  const _$_MyPageState({required this.profile});
+  const _$_MyPageState({this.icon, required this.profile});
 
+  @override
+  final File? icon;
   @override
   final AsyncValue<GetV1ProfilesResponse> profile;
 
   @override
   String toString() {
-    return 'MyPageState(profile: $profile)';
+    return 'MyPageState(icon: $icon, profile: $profile)';
   }
 
   @override
@@ -108,11 +121,12 @@ class _$_MyPageState implements _MyPageState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_MyPageState &&
+            (identical(other.icon, icon) || other.icon == icon) &&
             (identical(other.profile, profile) || other.profile == profile));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, profile);
+  int get hashCode => Object.hash(runtimeType, icon, profile);
 
   @JsonKey(ignore: true)
   @override
@@ -123,9 +137,12 @@ class _$_MyPageState implements _MyPageState {
 
 abstract class _MyPageState implements MyPageState {
   const factory _MyPageState(
-          {required final AsyncValue<GetV1ProfilesResponse> profile}) =
+          {final File? icon,
+          required final AsyncValue<GetV1ProfilesResponse> profile}) =
       _$_MyPageState;
 
+  @override
+  File? get icon;
   @override
   AsyncValue<GetV1ProfilesResponse> get profile;
   @override

@@ -29,11 +29,12 @@ abstract class ProfileRepository {
     required int? occupationId,
 
     /// Images
-    required File iconImage,
-    required File? mainImage,
-    required File? secondImage,
-    required File? thirdImage,
-    required File? fourthImage,
+    required File mainImage,
+    File? secondImage,
+    File? thirdImage,
+    File? fourthImage,
+    File? fifthImage,
+    File? sixthImage,
   });
 
   /// 更新
