@@ -22,16 +22,81 @@ import 'package:fortune_client/util/storage/app_pref_key.dart';
 
 class ProfileRepositoryImpl implements ProfileRepository {
   final ProfileDataSource _profileDataSource;
-  final SharedPreferencesDataSource _sharedPreferences;
+  final SharedPreferencesDataSource _shared;
+
+  /// 画像変換
+  final toBase64 = ImageConverter.convertImageForBase64;
 
   ProfileRepositoryImpl(
     this._profileDataSource,
-    this._sharedPreferences,
+    this._shared,
   );
 
   @override
   Future<bool> isCreated() async {
-    return _sharedPreferences.getString(AppPrefKey.profileId.keyString) != null;
+    return _shared.getString(AppPrefKey.profileId.keyString) != null;
+  }
+
+  @override
+  Future<GetV1ProfilesResponse> get() async {
+    try {
+      final profile = await logInfo(() => _profileDataSource.get());
+
+      /// ローカル保存
+      await _shared.setString(
+        AppPrefKey.profile.keyString,
+        jsonEncode(profile),
+      );
+
+      return profile;
+    } catch (e) {
+      logger.e(e);
+      rethrow;
+    }
+  }
+
+  @override
+  GetV1ProfilesResponse getCache() {
+    try {
+      final result = _shared.getString(AppPrefKey.profile.keyString);
+      return GetV1ProfilesResponse.fromJson(jsonDecode(result!));
+    } catch (e) {
+      logger.e(e);
+      rethrow;
+    }
+  }
+
+  @override
+  Future<void> saveProfileImages({
+    File? mainImage,
+    File? secondImage,
+    File? thirdImage,
+    File? fourthImage,
+    File? fifthImage,
+    File? sixthImage,
+  }) async {
+    Future<void> saveImage(String key, File? file) async {
+      if (file != null) _shared.setString(key, await toBase64(file));
+    }
+
+    await saveImage(AppPrefKey.profileMainImage.keyString, mainImage);
+    await saveImage(AppPrefKey.profileSecondImage.keyString, secondImage);
+    await saveImage(AppPrefKey.profileThirdImage.keyString, thirdImage);
+    await saveImage(AppPrefKey.profileFourthImage.keyString, fourthImage);
+    await saveImage(AppPrefKey.profileFifthImage.keyString, fifthImage);
+    await saveImage(AppPrefKey.profileSixthImage.keyString, sixthImage);
+  }
+
+  @override
+  ProfilesFiles getProfileImages() {
+    return ProfilesFiles(
+      mainImage: _shared.getString(AppPrefKey.profileMainImage.keyString)!,
+      secondImage: _shared.getString(AppPrefKey.profileSecondImage.keyString),
+      thirdImage: _shared.getString(AppPrefKey.profileThirdImage.keyString),
+      fourthImage: _shared.getString(AppPrefKey.profileFourthImage.keyString),
+      fifthImage: _shared.getString(AppPrefKey.profileFifthImage.keyString),
+      sixthImage: _shared.getString(AppPrefKey.profileSixthImage.keyString),
+    );
   }
 
   @override
@@ -74,13 +139,15 @@ class ProfileRepositoryImpl implements ProfileRepository {
 
       /// 作成
       final result = await _profileDataSource.create(
-        _sharedPreferences.getString(AppPrefKey.fortuneId.keyString)!,
+        _shared.getString(AppPrefKey.fortuneId.keyString)!,
         profileForm.toJson(),
       );
 
       /// ローカル保存
-      return await _sharedPreferences.setString(
-          AppPrefKey.profileId.keyString, result.id);
+      return await _shared.setString(
+        AppPrefKey.profileId.keyString,
+        result.id,
+      );
     } catch (e) {
       Fluttertoast.showToast(
         gravity: ToastGravity.CENTER,
@@ -92,32 +159,15 @@ class ProfileRepositoryImpl implements ProfileRepository {
   }
 
   @override
-  Future<GetV1ProfilesResponse> get() async {
-    try {
-      final profile = await logInfo(() => _profileDataSource.get());
-
-      /// ローカル保存
-      await _sharedPreferences.setString(
-        AppPrefKey.profile.keyString,
-        jsonEncode(profile),
-      );
-
-      return profile;
-    } catch (e) {
-      logger.e(e);
-      rethrow;
-    }
-  }
-
-  @override
-  GetV1ProfilesResponse getCache() {
-    try {
-      final result = _sharedPreferences.getString(AppPrefKey.profile.keyString);
-      return GetV1ProfilesResponse.fromJson(jsonDecode(result!));
-    } catch (e) {
-      logger.e(e);
-      rethrow;
-    }
+  Future<void> updateProfileImages({
+    File? iconImage,
+    File? mainImage,
+    File? secondImage,
+    File? thirdImage,
+    File? fourthImage,
+  }) {
+    // TODO: implement updateProfileImages
+    throw UnimplementedError();
   }
 
   @override
@@ -167,7 +217,7 @@ class ProfileRepositoryImpl implements ProfileRepository {
   }
 
   Future<String> _update({
-    // String? mainImageURL,
+    File? mainImage,
     Gender? gender,
     Address? address,
     int? stature,
@@ -189,7 +239,8 @@ class ProfileRepositoryImpl implements ProfileRepository {
     );
 
     /// ローカルに保存
-    await _sharedPreferences.setString(
+    saveProfileImages(mainImage: mainImage);
+    await _shared.setString(
       AppPrefKey.profile.keyString,
       jsonEncode(updatedProfile),
     );
@@ -212,7 +263,6 @@ class ProfileRepositoryImpl implements ProfileRepository {
     File? thirdImage,
     File? fourthImage,
   }) async {
-    const toBase64 = ImageConverter.convertImageForBase64;
     return ProfilesFiles(
       mainImage: await toBase64(iconImage),
       secondImage: mainImage != null ? await toBase64(mainImage) : null,
