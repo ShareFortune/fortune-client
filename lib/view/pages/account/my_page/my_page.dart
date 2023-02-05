@@ -47,6 +47,7 @@ class MyPage extends HookConsumerWidget {
                   name: profile.name,
                   age: 22,
                   gender: profile.gender,
+                  onSave: viewModel.changeIcon,
                 ),
                 const Gap(30),
 

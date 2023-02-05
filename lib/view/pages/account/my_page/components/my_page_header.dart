@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:fortune_client/data/model/enum/gender.dart';
@@ -16,6 +18,7 @@ class MyPageHeader extends StatelessWidget {
     required this.name,
     required this.age,
     required this.gender,
+    required this.onSave,
   });
 
   final AppTheme theme;
@@ -23,6 +26,7 @@ class MyPageHeader extends StatelessWidget {
   final String name;
   final int age;
   final Gender gender;
+  final Function(File) onSave;
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +40,7 @@ class MyPageHeader extends StatelessWidget {
               await showPhotoActionSheet(context, (file) async {
                 if (file != null) {
                   logger.i(file.path);
+                  onSave(file);
                 }
               });
             },
