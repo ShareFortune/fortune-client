@@ -38,7 +38,7 @@ class RoomDetailViewModel extends StateNotifier<RoomDetailState> {
     return _joinRequestsRepository.request(state.roomId);
   }
 
-  onTapProfile(BuildContext context, String id) async {
-    await context.router.push(ProfileRoute(id: id));
+  navigateToProfile(String id) async {
+    await sl<AppRouter>().push(ProfileRoute(id: id));
   }
 }

@@ -1,9 +1,9 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:fortune_client/view/pages/account/create/components/next_button.dart';
+import 'package:fortune_client/view/pages/account/create/entry_profile_sub_image/entry_profile_sub_image_view_model.dart';
 import 'package:fortune_client/view/widgets/app_bar/basic_app_bar.dart';
-import 'package:fortune_client/view/pages/profile/create/entry_profile_sub_image/entry_profile_sub_image_view_model.dart';
-import 'package:fortune_client/view/pages/profile/create/components/next_button.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 

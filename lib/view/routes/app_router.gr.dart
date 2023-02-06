@@ -19,7 +19,17 @@ import 'package:fortune_client/data/model/rooms/get_v1_rooms_guest/get_v1_rooms_
     as _i33;
 import 'package:fortune_client/data/model/rooms/get_v1_rooms_host/get_v1_rooms_host.dart'
     as _i31;
+import 'package:fortune_client/view/pages/account/create/entry_basic_profile/basic_profile_entry_page.dart'
+    as _i21;
+import 'package:fortune_client/view/pages/account/create/entry_detailed_profile/detailed_profile_entry_page.dart'
+    as _i22;
+import 'package:fortune_client/view/pages/account/create/entry_profile_icon_image/profile_icon_image_entry_page.dart'
+    as _i23;
+import 'package:fortune_client/view/pages/account/create/entry_profile_sub_image/entry_profile_sub_image_page.dart'
+    as _i24;
 import 'package:fortune_client/view/pages/account/my_page/my_page.dart' as _i10;
+import 'package:fortune_client/view/pages/account/update/profile_update_page.dart'
+    as _i11;
 import 'package:fortune_client/view/pages/auth/login/login_page.dart' as _i3;
 import 'package:fortune_client/view/pages/common/bottom_navigation_bar/bottom_navigation_bar.dart'
     as _i1;
@@ -36,18 +46,8 @@ import 'package:fortune_client/view/pages/message/message_room/message_room_page
     as _i4;
 import 'package:fortune_client/view/pages/message/message_room_list/message_room_list_page.dart'
     as _i20;
-import 'package:fortune_client/view/pages/profile/create/entry_basic_profile/basic_profile_entry_page.dart'
-    as _i21;
-import 'package:fortune_client/view/pages/profile/create/entry_detailed_profile/detailed_profile_entry_page.dart'
-    as _i22;
-import 'package:fortune_client/view/pages/profile/create/entry_profile_icon_image/profile_icon_image_entry_page.dart'
-    as _i23;
-import 'package:fortune_client/view/pages/profile/create/entry_profile_sub_image/entry_profile_sub_image_page.dart'
-    as _i24;
 import 'package:fortune_client/view/pages/profile/profile/profile_page.dart'
     as _i6;
-import 'package:fortune_client/view/pages/profile/update/profile_update_page.dart'
-    as _i11;
 import 'package:fortune_client/view/pages/request/join_requests_confirmation/join_requests_confirmation_page.dart'
     as _i19;
 import 'package:fortune_client/view/pages/rooms/action/create/create_room_page.dart'
