@@ -3,10 +3,10 @@ import 'dart:io';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:fortune_client/l10n/locale_keys.g.dart';
+import 'package:fortune_client/view/pages/account/create/components/next_button.dart';
+import 'package:fortune_client/view/pages/account/create/entry_profile_icon_image/profile_icon_image_entry_view_model.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/app_bar/basic_app_bar.dart';
-import 'package:fortune_client/view/pages/profile/create/entry_profile_icon_image/profile_icon_image_entry_view_model.dart';
-import 'package:fortune_client/view/pages/profile/create/components/next_button.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 

@@ -1,12 +1,9 @@
-import 'dart:ui';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:fortune_client/gen/assets.gen.dart';
 import 'package:fortune_client/view/pages/profile/profile/components/profile_container.dart';
 import 'package:fortune_client/view/pages/profile/profile/profile_view_model.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
-import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class ProfilePage extends HookConsumerWidget {
@@ -28,7 +25,30 @@ class ProfilePage extends HookConsumerWidget {
             backgroundColor: Colors.transparent,
           ),
           extendBodyBehindAppBar: true,
-          body: _body(context, theme),
+          body: Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                fit: BoxFit.cover,
+                image: Assets.images.insta2.provider(),
+              ),
+            ),
+            child: ListView(
+              children: [
+                SizedBox(
+                  height: 320,
+                  child: PageView(
+                    controller: PageController(viewportFraction: 0.85),
+                    children: [
+                      _image(theme),
+                      _image(theme),
+                      _image(theme),
+                    ],
+                  ),
+                ),
+                const ProfileContainer(),
+              ],
+            ),
+          ),
         );
       },
       error: (e, msg) => Center(child: Text(e.toString())),
@@ -36,67 +56,17 @@ class ProfilePage extends HookConsumerWidget {
     );
   }
 
-  Widget _body(BuildContext context, AppTheme theme) {
-    return Stack(
-      children: [
-        _bgContainer(context),
-        SingleChildScrollView(
-          child: Column(
-            children: [
-              const Gap(kToolbarHeight),
-              _image(theme),
-              const ProfileContainer(),
-            ],
-          ),
-        ),
-      ],
-    );
-  }
-
   Widget _image(AppTheme theme) {
     return Container(
-      padding: const EdgeInsets.all(60),
-      child: FractionallySizedBox(
-        widthFactor: 1,
-        child: AspectRatio(
-          aspectRatio: 1,
-          child: Container(
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                fit: BoxFit.cover,
-                image: Assets.images.insta2.provider(),
-              ),
-              borderRadius: BorderRadius.circular(30),
-              boxShadow: [
-                BoxShadow(
-                  color: theme.appColors.shadow,
-                  blurRadius: 4,
-                  offset: const Offset(0, 4),
-                ),
-              ],
-            ),
+      padding: const EdgeInsets.fromLTRB(10, 0, 10, 20),
+      child: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            fit: BoxFit.cover,
+            image: Assets.images.insta2.provider(),
           ),
+          borderRadius: BorderRadius.circular(30),
         ),
-      ),
-    );
-  }
-
-  Widget _bgContainer(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      height: MediaQuery.of(context).size.width + (kToolbarHeight * 2),
-      decoration: BoxDecoration(
-        image: DecorationImage(
-          fit: BoxFit.cover,
-          image: Assets.images.insta2.provider(),
-        ),
-      ),
-      child: BackdropFilter(
-        filter: ImageFilter.blur(
-          sigmaX: 10,
-          sigmaY: 10,
-        ),
-        child: Container(),
       ),
     );
   }

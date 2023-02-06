@@ -2,10 +2,10 @@ import 'dart:io';
 
 import 'package:fortune_client/data/repository/profile/profile_repository.dart';
 import 'package:fortune_client/injector.dart';
-import 'package:fortune_client/view/pages/profile/create/entry_basic_profile/basic_profile_entry_view_model.dart';
-import 'package:fortune_client/view/pages/profile/create/entry_detailed_profile/detailed_profile_entry_view_model.dart';
-import 'package:fortune_client/view/pages/profile/create/entry_profile_icon_image/profile_icon_image_entry_view_model.dart';
-import 'package:fortune_client/view/pages/profile/create/entry_profile_sub_image/entry_profile_sub_image_state.dart';
+import 'package:fortune_client/view/pages/account/create/entry_basic_profile/basic_profile_entry_view_model.dart';
+import 'package:fortune_client/view/pages/account/create/entry_detailed_profile/detailed_profile_entry_view_model.dart';
+import 'package:fortune_client/view/pages/account/create/entry_profile_icon_image/profile_icon_image_entry_view_model.dart';
+import 'package:fortune_client/view/pages/account/create/entry_profile_sub_image/entry_profile_sub_image_state.dart';
 import 'package:fortune_client/view/routes/app_router.gr.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:image_picker/image_picker.dart';

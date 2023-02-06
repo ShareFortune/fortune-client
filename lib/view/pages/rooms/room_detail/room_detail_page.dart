@@ -35,7 +35,7 @@ class RoomDetailPage extends HookConsumerWidget {
         roomDetailContainerAsync = RoomDetailContainer(room);
         membersContainerAsync = RoomMembersContainer(
           room.participants,
-          (c, v) {},
+          (id) => viewModel.navigateToProfile(id),
         );
 
         /// ホストなら表示しない

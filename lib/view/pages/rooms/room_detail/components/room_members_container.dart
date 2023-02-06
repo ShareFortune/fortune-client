@@ -10,7 +10,7 @@ class RoomMembersContainer extends HookConsumerWidget {
   const RoomMembersContainer(this.members, this.onTap, {super.key});
 
   final List<FortuneUser>? members;
-  final Function(BuildContext, String id) onTap;
+  final Function(String id) onTap;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -28,7 +28,7 @@ class RoomMembersContainer extends HookConsumerWidget {
                 image: Assets.images.insta2,
                 name: "あんな",
                 info: "23歳・東京",
-                onTap: (id) => onTap(context, id),
+                onTap: (id) => onTap(id),
               ),
               const Gap(5),
               _memberCard(
@@ -36,7 +36,7 @@ class RoomMembersContainer extends HookConsumerWidget {
                 image: Assets.images.insta3,
                 name: "広瀬",
                 info: "28歳・東京",
-                onTap: (id) => onTap(context, id),
+                onTap: (id) => onTap(id),
               ),
             ],
           ),
@@ -49,7 +49,7 @@ class RoomMembersContainer extends HookConsumerWidget {
                 image: Assets.images.insta4,
                 name: "miho",
                 info: "21歳・千葉",
-                onTap: (id) => onTap(context, id),
+                onTap: (id) => onTap(id),
               ),
               const Gap(5),
               _memberCard(
@@ -57,7 +57,7 @@ class RoomMembersContainer extends HookConsumerWidget {
                 image: Assets.images.insta5,
                 name: "倖田來未",
                 info: "43歳・埼玉",
-                onTap: (id) => onTap(context, id),
+                onTap: (id) => onTap(id),
               ),
             ],
           ),
