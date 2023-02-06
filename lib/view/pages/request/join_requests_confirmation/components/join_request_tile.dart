@@ -28,8 +28,8 @@ class JoinRequestTile extends StatelessWidget {
       leading: ClipOval(
         child: Image.network(
           image,
-          width: 50,
-          height: 50,
+          width: 45,
+          height: 45,
           fit: BoxFit.cover,
           errorBuilder: (context, error, stackTrace) {
             logger.e(error);
@@ -39,18 +39,27 @@ class JoinRequestTile extends StatelessWidget {
       ),
       title: Text(
         name,
-        style: theme.textTheme.h40.paint(theme.appColors.subText1),
+        style: theme.textTheme.h30.paint(theme.appColors.subText1).bold(),
       ),
       subtitle: Text(
         info,
         style: theme.textTheme.h20.paint(theme.appColors.subText2),
       ),
-      trailing: InkWell(
-        onTap: () {},
-        child: SvgPicture.asset(
-          Assets.images.icons.iconUserAdd.path,
-          color: theme.appColors.iconBtn1,
+      trailing: OutlinedButton.icon(
+        onPressed: () {},
+        style: OutlinedButton.styleFrom(
+          minimumSize: Size.zero,
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+        ),
+        icon: SvgPicture.asset(
+          width: 16,
+          height: 16,
           fit: BoxFit.contain,
+          Assets.images.icons.iconCheckCircle.path,
+        ),
+        label: Text(
+          "参加を許可",
+          style: theme.textTheme.h10.paint(theme.appColors.subText1).bold(),
         ),
       ),
     );

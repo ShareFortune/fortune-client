@@ -29,6 +29,7 @@ class GuestRoomCard extends HookConsumerWidget {
       switch (state.roomStatus) {
         case RoomStatus.pending:
           return _bottomButton(
+            theme: theme,
             title:
                 LocaleKeys.participating_room_list_page_action_requesting.tr(),
             color: Colors.transparent,
@@ -38,6 +39,7 @@ class GuestRoomCard extends HookConsumerWidget {
         /// メッセージ
         default:
           return _bottomButton(
+            theme: theme,
             title: LocaleKeys.participating_room_list_page_action_message.tr(),
             color: theme.appColors.secondary,
             onPressed: viewModel.navigateToMessage,
@@ -159,6 +161,7 @@ class GuestRoomCard extends HookConsumerWidget {
   }
 
   _bottomButton({
+    required AppTheme theme,
     required String title,
     required Color color,
     required VoidCallback? onPressed,
@@ -170,7 +173,7 @@ class GuestRoomCard extends HookConsumerWidget {
         minimumSize: Size.zero,
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
       ),
-      child: Text(title),
+      child: Text(title, style: theme.textTheme.h20),
     );
   }
 }

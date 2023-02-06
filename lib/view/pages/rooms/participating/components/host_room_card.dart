@@ -30,6 +30,7 @@ class HostRoomCard extends HookConsumerWidget {
         /// リクエストを確認する
         case RoomStatus.pending:
           return _bottomButton(
+            theme: theme,
             title: LocaleKeys.participating_room_list_page_action_confirmRequest
                 .tr(),
             color: theme.appColors.primary,
@@ -44,6 +45,7 @@ class HostRoomCard extends HookConsumerWidget {
         /// メッセージ
         default:
           return _bottomButton(
+            theme: theme,
             title: LocaleKeys.participating_room_list_page_action_message.tr(),
             color: theme.appColors.secondary,
             onPressed: viewModel.navigateToMessage,
@@ -163,6 +165,7 @@ class HostRoomCard extends HookConsumerWidget {
   }
 
   _bottomButton({
+    required AppTheme theme,
     required String title,
     required Color color,
     required VoidCallback? onPressed,
@@ -174,7 +177,7 @@ class HostRoomCard extends HookConsumerWidget {
         minimumSize: Size.zero,
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
       ),
-      child: Text(title),
+      child: Text(title, style: theme.textTheme.h20),
     );
   }
 }
