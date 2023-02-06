@@ -37,7 +37,7 @@ class JoinRequestsRepositoryImpl implements JoinRequestsRepository {
     try {
       logger.i("[$runtimeType] accept");
       final result = await _joinRequestsDataSource.accept(requestId);
-      return result.id.isNotEmpty;
+      return result.id == requestId;
     } catch (e) {
       logger.e(e);
       return false;
@@ -49,7 +49,7 @@ class JoinRequestsRepositoryImpl implements JoinRequestsRepository {
     try {
       logger.i("[$runtimeType] reject");
       final result = await _joinRequestsDataSource.reject(requestId);
-      return result.id.isNotEmpty;
+      return result.id == requestId;
     } catch (e) {
       logger.e(e);
       return false;

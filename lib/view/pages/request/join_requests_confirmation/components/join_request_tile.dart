@@ -12,14 +12,14 @@ class JoinRequestTile extends StatelessWidget {
     required this.name,
     required this.info,
     required this.image,
-    required this.onTap,
+    required this.accept,
   });
 
   final AppTheme theme;
   final String name;
   final String info;
   final String image;
-  final VoidCallback onTap;
+  final VoidCallback accept;
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +46,7 @@ class JoinRequestTile extends StatelessWidget {
         style: theme.textTheme.h20.paint(theme.appColors.subText2),
       ),
       trailing: OutlinedButton.icon(
-        onPressed: () {},
+        onPressed: accept,
         style: OutlinedButton.styleFrom(
           minimumSize: Size.zero,
           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),

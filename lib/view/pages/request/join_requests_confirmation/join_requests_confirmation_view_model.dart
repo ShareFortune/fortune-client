@@ -28,5 +28,9 @@ class JoinRequestsConfirmationViewModel
     }).then((value) => state = state.copyWith(joinRequests: value));
   }
 
-  acceptJoinRequest(String requestId) {}
+  acceptJoinRequest(String requestId) async {
+    await _joinRequestsRepository.accept(requestId).whenComplete(() {
+      fetchJoinRequests();
+    });
+  }
 }
