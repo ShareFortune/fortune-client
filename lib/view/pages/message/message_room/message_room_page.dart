@@ -7,6 +7,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fortune_client/view/pages/message/message_room/message_room_view_model.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
+import 'package:fortune_client/view/widgets/other/error_widget.dart';
+import 'package:fortune_client/view/widgets/other/loading_widget.dart';
 
 class MessageRoomPage extends ConsumerWidget {
   const MessageRoomPage({super.key, @PathParam() required this.id});
@@ -19,23 +21,24 @@ class MessageRoomPage extends ConsumerWidget {
     final state = ref.watch(messageRoomViewModelProvider);
     final viewModel = ref.watch(messageRoomViewModelProvider.notifier);
 
-    return state.when(
-      data: (data) {
-        return Scaffold(
-          appBar: AppBar(
-            title: const Text("メッセージ"),
-            titleTextStyle: theme.textTheme.h40
-                .merge(TextStyle(color: theme.appColors.subText1))
-                .bold(),
-            iconTheme: const IconThemeData(color: Colors.black),
-            elevation: 0,
-            backgroundColor: Colors.transparent,
-          ),
-          body: Chat(
+    return Scaffold(
+      backgroundColor: theme.appColors.onBackground,
+      appBar: AppBar(
+        title: const Text("メッセージ"),
+        titleTextStyle: theme.textTheme.h40
+            .merge(TextStyle(color: theme.appColors.subText1))
+            .bold(),
+        iconTheme: const IconThemeData(color: Colors.black),
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+      ),
+      body: state.when(
+        data: (data) {
+          return Chat(
             theme: DefaultChatTheme(
-              backgroundColor: theme.appColors.background,
+              backgroundColor: theme.appColors.onBackground,
               primaryColor: theme.appColors.primary,
-              inputBackgroundColor: theme.appColors.onBackground,
+              inputBackgroundColor: theme.appColors.background,
               inputBorderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(30),
                 topRight: Radius.circular(30),
@@ -46,8 +49,8 @@ class MessageRoomPage extends ConsumerWidget {
                   topRight: Radius.circular(30),
                 ),
               ),
-              // inputTextCursorColor: theme.appColors.defaultTextStyle,
-              // inputTextColor: theme.appColors.defaultTextStyle,
+              inputTextCursorColor: theme.appColors.subText2,
+              inputTextColor: theme.appColors.subText1,
             ),
             messages: data.messages,
             onAttachmentPressed: () =>
@@ -65,24 +68,10 @@ class MessageRoomPage extends ConsumerWidget {
               inputPlaceholder: 'メッセージを入力してください',
               sendButtonAccessibilityLabel: '送信',
             ),
-          ),
-        );
-      },
-      error: (e, msg) => Scaffold(
-        body: SafeArea(
-          child: Center(
-            child: Text(
-              e.toString(),
-            ),
-          ),
-        ),
-      ),
-      loading: () => const Scaffold(
-        body: SafeArea(
-          child: Center(
-            child: CircularProgressIndicator(),
-          ),
-        ),
+          );
+        },
+        error: (error, stackTrace) => errorWidget(error, stackTrace),
+        loading: () => loadingWidget(),
       ),
     );
   }

@@ -44,7 +44,7 @@ class MessageRoomListViewModel extends StateNotifier<MessageRoomListState> {
     state = state.copyWith(host: state.host, guest: guest);
   }
 
-  navigateToMessagePage(BuildContext context, String id) async {
-    await context.router.push(MessageRoomRoute(id: id));
+  navigateToMessagePage(String id) async {
+    await sl<AppRouter>().push(MessageRoomRoute(id: id));
   }
 }

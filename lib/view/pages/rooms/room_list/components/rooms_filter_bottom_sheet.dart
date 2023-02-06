@@ -6,6 +6,7 @@ import 'package:fortune_client/l10n/locale_keys.g.dart';
 import 'package:fortune_client/view/pages/rooms/room_list/components/rooms_filter_expanded_tile.dart';
 import 'package:fortune_client/view/pages/rooms/room_list/components/rooms_filter_tile.dart';
 import 'package:fortune_client/view/pages/rooms/room_list/room_list_state.dart';
+import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/button/base_button.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -75,13 +76,19 @@ class _RoomsFilterBottomSheetState
           ),
         ),
         SizedBox(
-          height: MediaQuery.of(context).size.height * 0.6,
+          height: MediaQuery.of(context).size.height * 0.5,
           child: Stack(
             children: [
               Column(
                 children: [
                   AppBar(
-                    title: Text(LocaleKeys.room_list_page_filter_title.tr()),
+                    backgroundColor: theme.appColors.onBackground,
+                    title: Text(
+                      LocaleKeys.room_list_page_filter_title.tr(),
+                      style: theme.textTheme.h40
+                          .paint(theme.appColors.subText1)
+                          .bold(),
+                    ),
                     leading: Container(),
                     shape: const RoundedRectangleBorder(
                       borderRadius: BorderRadius.only(
@@ -93,14 +100,15 @@ class _RoomsFilterBottomSheetState
                       IconButton(
                         onPressed: () => Navigator.pop(context),
                         icon: const Icon(Icons.close),
+                        color: theme.appColors.iconBtn1,
                       ),
                     ],
                   ),
                   Expanded(
                     child: Container(
                       color: theme.appColors.onBackground,
-                      child: ListView(
-                        padding: const EdgeInsets.fromLTRB(20, 30, 15, 80),
+                      padding: const EdgeInsets.fromLTRB(20, 10, 15, 80),
+                      child: Column(
                         children: [
                           /// 人数検索
                           RoomsFilterExpandedTile(
