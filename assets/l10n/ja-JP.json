@@ -244,5 +244,22 @@
                 }
             }
         }
+    },
+    "camera_or_photo": {
+        "menuCamera": "写真を撮る",
+        "menuPhoto": "写真を選択",
+        "btn": {
+            "cancel": "キャンセル"
+        }
+    },
+    "permission_dialog": {
+        "photo_title": "''Fortune''が写真にアクセスできるようにします。",
+        "photo_message": "写真を読み込みには、「fortune」に写真へのアクセスを許可してください。",
+        "camera_title": "''Fortune''がカメラにアクセスできるようにします",
+        "camera_message": "写真や動画を撮影するには、「fortune」にカメラへのアクセスを許可してください。",
+        "btn": {
+            "cancel": "キャンセル",
+            "btn": "[設定]に移動"
+        }
     }
 }

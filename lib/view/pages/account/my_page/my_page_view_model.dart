@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:fortune_client/data/model/base/tag/tag.dart';
 import 'package:fortune_client/data/repository/profile/profile_repository.dart';
@@ -30,10 +32,19 @@ class MyPageViewModel extends StateNotifier<MyPageState> {
     );
   }
 
+  /// アイコン編集
+  updateIcon(File file) async {
+    _repository
+        .updateProfileImages(mainImage: file)
+        .whenComplete(() => fetch());
+  }
+
+  /// 設定ページへ
   navigateToSettingPage() {
     sl<AppRouter>().push(const SettingsRoute());
   }
 
+  /// 自己紹介を編集
   navigateToEntrySelfIntroduction() async {
     final data = state.profile.value;
     if (data == null) return;
@@ -47,16 +58,12 @@ class MyPageViewModel extends StateNotifier<MyPageState> {
     ) as String?;
 
     /// 更新
-    if (result != null) _repository.updateSelfIntroduction(result);
-
-    /// ステータス更新
-    state = state.copyWith(
-      profile: await AsyncValue.guard(() async {
-        return data.copyWith(selfIntroduction: result ?? data.selfIntroduction);
-      }),
-    );
+    if (result != null) {
+      _repository.updateSelfIntroduction(result).whenComplete(() => fetch());
+    }
   }
 
+  /// タグを編集
   navigateToTagsSelection() async {
     final data = state.profile.value;
     if (data == null) return;
@@ -67,23 +74,15 @@ class MyPageViewModel extends StateNotifier<MyPageState> {
     ) as List<Tag>?;
 
     /// 更新
-    if (result != null) _repository.updateTags(result);
-
-    /// ステータス更新
-    state = state.copyWith(
-      profile: await AsyncValue.guard(() async {
-        return data.copyWith(tags: result ?? data.tags);
-      }),
-    );
+    if (result != null) {
+      _repository.updateTags(result).whenComplete(() => fetch());
+    }
   }
 
+  /// 基本情報を編集
   navigateToUpdateBasic() async {
-    sl<AppRouter>().push(const ProfileUpdateRoute()).whenComplete(() async {
-      state = state.copyWith(
-        profile: await AsyncValue.guard(() async {
-          return _repository.getCache();
-        }),
-      );
-    });
+    sl<AppRouter>()
+        .push(const ProfileUpdateRoute())
+        .whenComplete(() => fetch());
   }
 }

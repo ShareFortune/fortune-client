@@ -4,7 +4,6 @@ import 'dart:io';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:fortune_client/data/datasource/local/shared_pref_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/go/profile/profile_data_source.dart';
-import 'package:fortune_client/data/model/base/address/address.dart';
 import 'package:fortune_client/data/model/base/address_with_id/address_with_id.dart';
 import 'package:fortune_client/data/model/base/profiles_files/profiles_files.dart';
 import 'package:fortune_client/data/model/base/tag/tag.dart';
@@ -108,27 +107,32 @@ class ProfileRepositoryImpl implements ProfileRepository {
     DrinkFrequency? drinkFrequency,
     CigaretteFrequency? cigaretteFrequency,
     int? occupationId,
-    required File iconImage,
-    File? mainImage,
+    required File mainImage,
     File? secondImage,
     File? thirdImage,
     File? fourthImage,
+    File? fifthImage,
+    File? sixthImage,
   }) async {
     try {
       logger.i("[$runtimeType] create");
+
+      /// 入力画像を保存
+      await saveProfileImages(
+        mainImage: mainImage,
+        secondImage: secondImage,
+        thirdImage: thirdImage,
+        fourthImage: fourthImage,
+        fifthImage: fifthImage,
+        sixthImage: sixthImage,
+      );
 
       /// 作成フォーム
       final profileForm = PostV1UsersIdProfilesRequest(
         name: name,
         gender: gender.rawValue,
         addressId: address.id,
-        files: await _profileFiles(
-          iconImage: iconImage,
-          mainImage: mainImage,
-          secondImage: secondImage,
-          thirdImage: thirdImage,
-          fourthImage: fourthImage,
-        ).then((value) => value.toJson()),
+        files: getProfileImages().toJson(),
         height: 170,
         drinkFrequency: drinkFrequency,
         cigaretteFrequency: cigaretteFrequency,
@@ -173,15 +177,11 @@ class ProfileRepositoryImpl implements ProfileRepository {
       fourthImage: fourthImage,
       fifthImage: fifthImage,
       sixthImage: sixthImage,
-    );
-
-    final profile = getCache();
-    final request = convertToPatchV1ProfilesIdRequest(profile);
-
-    await _update(
-      profile.id,
-      request.copyWith(files: getProfileImages()),
-    );
+    ).whenComplete(() async {
+      final profile = getCache();
+      final request = convertToPatchV1ProfilesIdRequest(profile);
+      await _update(profile.id, request);
+    });
   }
 
   @override
@@ -221,8 +221,8 @@ class ProfileRepositoryImpl implements ProfileRepository {
       request.copyWith(
         addressId: addressWithId?.id ?? request.addressId,
         height: stature,
-        drinkFrequency: drinkFrequency?.text,
-        cigaretteFrequency: cigaretteFrequency?.text,
+        drinkFrequency: drinkFrequency,
+        cigaretteFrequency: cigaretteFrequency,
       ),
     );
   }
@@ -238,42 +238,22 @@ class ProfileRepositoryImpl implements ProfileRepository {
     }
   }
 
-  /// 作成フォーム画像
-  Future<ProfilesFiles> _profileFiles({
-    required File iconImage,
-    File? mainImage,
-    File? secondImage,
-    File? thirdImage,
-    File? fourthImage,
-  }) async {
-    return ProfilesFiles(
-      mainImage: await toBase64(iconImage),
-      secondImage: mainImage != null ? await toBase64(mainImage) : null,
-      thirdImage: secondImage != null ? await toBase64(secondImage) : null,
-      fourthImage: thirdImage != null ? await toBase64(thirdImage) : null,
-      fifthImage: fourthImage != null ? await toBase64(fourthImage) : null,
-    );
-  }
-
   /// 更新データフォーム作成
-  /// [Profile] convert to [ProfileUpdateRequest]
+  /// [GetV1ProfilesResponse] convert to [PatchV1ProfilesIdRequest]
   PatchV1ProfilesIdRequest convertToPatchV1ProfilesIdRequest(
-      GetV1ProfilesResponse updateProfile) {
+    GetV1ProfilesResponse updateProfile,
+  ) {
     return PatchV1ProfilesIdRequest(
       name: updateProfile.name,
-      gender: updateProfile.gender.text,
+      gender: updateProfile.gender,
       height: updateProfile.height,
-      drinkFrequency: updateProfile.drinkFrequency?.text,
-      cigaretteFrequency: updateProfile.cigaretteFrequency?.text,
+      drinkFrequency: updateProfile.drinkFrequency,
+      cigaretteFrequency: updateProfile.cigaretteFrequency,
       selfIntroduction: updateProfile.selfIntroduction,
       occupationId: null,
-
-      /// アドレスデータにはIDをつけるようにする
-      addressId: 65,
+      addressId: 65, // TODO: アドレスデータにID追加
       tagIds: updateProfile.tags?.map((e) => e.id).toList(),
-      files: ProfilesFiles(
-        mainImage: updateProfile.mainImageURL,
-      ),
+      files: getProfileImages(),
     );
   }
 }

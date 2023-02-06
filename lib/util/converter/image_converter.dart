@@ -16,20 +16,3 @@ class ImageConverter {
     return uri.toString();
   }
 }
-
-
-// extension IOFileExtensions on File {
-//   Future<File> convertJpg({int resizeWidth = 500}) async {
-//     if (this == null) return this;
-//     try {
-//       final image = decodeImage(readAsBytesSync());
-//       final aspect = image.height / image.width;
-//       final thumbnail = copyResize(image,
-//           width: resizeWidth, height: resizeWidth * aspect.toInt());
-//       return await writeAsBytes(encodeJpg(thumbnail));
-//     } catch (error) {
-//       debugPrint('convert jpg error: ${error.toString()}');
-//       return this;
-//     }
-//   }
-// }

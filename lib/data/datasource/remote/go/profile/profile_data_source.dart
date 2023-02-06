@@ -25,7 +25,7 @@ abstract class ProfileDataSource {
   /// プロフィール編集
   /// [PatchV1ProfilesIdRequest]
   /// [PatchV1ProfilesIdResponse]
-  @PATCH('profiles/{id}')
+  @PATCH('/profiles/{id}')
   @authenticatedRequest
   Future<PatchV1ProfilesIdResponse> update(
     @Path('id') String id,

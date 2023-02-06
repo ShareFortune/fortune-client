@@ -187,5 +187,18 @@ abstract class  LocaleKeys {
   static const data_profile_cigaretteFrequency = 'data.profile.cigaretteFrequency';
   static const data_profile = 'data.profile';
   static const data = 'data';
+  static const camera_or_photo_menuCamera = 'camera_or_photo.menuCamera';
+  static const camera_or_photo_menuPhoto = 'camera_or_photo.menuPhoto';
+  static const camera_or_photo_btn_cancel = 'camera_or_photo.btn.cancel';
+  static const camera_or_photo_btn = 'camera_or_photo.btn';
+  static const camera_or_photo = 'camera_or_photo';
+  static const permission_dialog_photo_title = 'permission_dialog.photo_title';
+  static const permission_dialog_photo_message = 'permission_dialog.photo_message';
+  static const permission_dialog_camera_title = 'permission_dialog.camera_title';
+  static const permission_dialog_camera_message = 'permission_dialog.camera_message';
+  static const permission_dialog_btn_cancel = 'permission_dialog.btn.cancel';
+  static const permission_dialog_btn_btn = 'permission_dialog.btn.btn';
+  static const permission_dialog_btn = 'permission_dialog.btn';
+  static const permission_dialog = 'permission_dialog';
 
 }

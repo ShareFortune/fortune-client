@@ -17,7 +17,7 @@ dependencies:
   google_sign_in: ^5.4.2
   freezed_annotation: ^2.2.0
   flutter_svg: ^1.1.6
-  google_fonts: ^3.0.1
+  google_fonts: ^4.0.3
   sizer: ^2.0.15
   enum_to_string: ^2.0.1
   fluttertoast: ^8.1.1
@@ -31,7 +31,6 @@ dependencies:
   path_provider: ^2.0.11
   bottom_picker: ^2.0.1
   image_picker: ^0.8.6
-  file_picker: ^5.2.4
   package_info_plus: ^3.0.2
   shimmer: ^2.0.0
   fancy_shimmer_image: ^2.0.2
@@ -41,6 +40,13 @@ dependencies:
   pull_down_button: ^0.5.1
   modal_bottom_sheet: ^2.1.2
   gap: ^2.0.1
+
+  # camera & album
+  file_picker: ^5.2.5
+  cached_network_image: ^3.2.0
+  permission_handler: ^9.2.0
+  flutter_image_compress: ^1.1.0
+  flutter_platform_widgets: ^2.2.6
 
   # state management
   flutter_hooks: ^0.18.5+1
