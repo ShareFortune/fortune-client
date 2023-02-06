@@ -27,4 +27,6 @@ class JoinRequestsConfirmationViewModel
       return _joinRequestsRepository.getJoinRequests(roomId);
     }).then((value) => state = state.copyWith(joinRequests: value));
   }
+
+  acceptJoinRequest(String requestId) {}
 }

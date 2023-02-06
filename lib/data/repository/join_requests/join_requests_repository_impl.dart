@@ -31,4 +31,28 @@ class JoinRequestsRepositoryImpl implements JoinRequestsRepository {
       rethrow;
     }
   }
+
+  @override
+  Future<bool> accept(String requestId) async {
+    try {
+      logger.i("[$runtimeType] accept");
+      final result = await _joinRequestsDataSource.accept(requestId);
+      return result.id.isNotEmpty;
+    } catch (e) {
+      logger.e(e);
+      return false;
+    }
+  }
+
+  @override
+  Future<bool> reject(String requestId) async {
+    try {
+      logger.i("[$runtimeType] reject");
+      final result = await _joinRequestsDataSource.reject(requestId);
+      return result.id.isNotEmpty;
+    } catch (e) {
+      logger.e(e);
+      return false;
+    }
+  }
 }
