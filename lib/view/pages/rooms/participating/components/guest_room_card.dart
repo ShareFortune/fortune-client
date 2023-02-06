@@ -65,7 +65,7 @@ class GuestRoomCard extends HookConsumerWidget {
                 Expanded(
                   child: Text(
                     room.roomName,
-                    style: theme.textTheme.h40,
+                    style: theme.textTheme.h30.bold(),
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                   ),

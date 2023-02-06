@@ -40,9 +40,11 @@ class MessageRoomListTile extends HookConsumerWidget {
                   children: [
                     Text(
                       title,
-                      style: theme.textTheme.h40.paint(
-                        theme.appColors.subText1,
-                      ),
+                      style: theme.textTheme.h30
+                          .paint(
+                            theme.appColors.subText1,
+                          )
+                          .bold(),
                     ),
                     Text(
                       postedDate ?? "",
@@ -52,10 +54,10 @@ class MessageRoomListTile extends HookConsumerWidget {
                     ),
                   ],
                 ),
-                const Gap(5),
+                const Gap(3),
                 Text(
                   body ?? "",
-                  style: theme.textTheme.h30.paint(
+                  style: theme.textTheme.h20.paint(
                     theme.appColors.subText3,
                   ),
                 ),

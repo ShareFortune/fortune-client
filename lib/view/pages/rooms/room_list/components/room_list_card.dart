@@ -79,7 +79,7 @@ class RoomListCard extends StatelessWidget {
             fit: BoxFit.cover,
           ),
         ),
-        const Gap(5),
+        const Gap(10),
         Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -87,7 +87,7 @@ class RoomListCard extends StatelessWidget {
               /// タイトル
               Text(
                 room.data.roomName,
-                style: theme.textTheme.h30,
+                style: theme.textTheme.h30.bold(),
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
               ),
