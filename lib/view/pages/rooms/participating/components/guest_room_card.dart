@@ -28,20 +28,11 @@ class GuestRoomCard extends HookConsumerWidget {
       /// リクエスト中
       switch (state.roomStatus) {
         case RoomStatus.pending:
-          return _bottomButton(
-            title:
-                LocaleKeys.participating_room_list_page_action_requesting.tr(),
-            color: Colors.transparent,
-            onPressed: null,
-          );
+          return _requestingButton(theme);
 
         /// メッセージ
         default:
-          return _bottomButton(
-            title: LocaleKeys.participating_room_list_page_action_message.tr(),
-            color: theme.appColors.secondary,
-            onPressed: viewModel.navigateToMessage,
-          );
+          return _messageButton(theme, () => viewModel.navigateToMessage());
       }
     }
 
@@ -158,7 +149,29 @@ class GuestRoomCard extends HookConsumerWidget {
     );
   }
 
+  _requestingButton(AppTheme theme) {
+    return _bottomButton(
+      theme: theme,
+      title: LocaleKeys.participating_room_list_page_action_requesting.tr(),
+      color: Colors.transparent,
+      onPressed: null,
+    );
+  }
+
+  _messageButton(
+    AppTheme theme,
+    VoidCallback onPressed,
+  ) {
+    return _bottomButton(
+      theme: theme,
+      title: LocaleKeys.participating_room_list_page_action_message.tr(),
+      color: theme.appColors.secondary,
+      onPressed: onPressed,
+    );
+  }
+
   _bottomButton({
+    required AppTheme theme,
     required String title,
     required Color color,
     required VoidCallback? onPressed,
@@ -170,7 +183,7 @@ class GuestRoomCard extends HookConsumerWidget {
         minimumSize: Size.zero,
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
       ),
-      child: Text(title),
+      child: Text(title, style: theme.textTheme.h20),
     );
   }
 }

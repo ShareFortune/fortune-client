@@ -11,10 +11,11 @@ abstract class JoinRequestsDataSource {
   factory JoinRequestsDataSource(Dio dio, {String baseUrl}) =
       _JoinRequestsDataSource;
 
-  @POST('/rooms/{id}/roomJoinRequests')
+  /// 参加リクエスト
+  @POST('/rooms/{roomId}/roomJoinRequests')
   @authenticatedRequest
   Future<RoomIdResponse> sendJoinRequest(
-    @Path('id') String id,
+    @Path('roomId') String roomId,
   );
 
   /// 受信した参加リクエスト結果を取得
@@ -25,4 +26,18 @@ abstract class JoinRequestsDataSource {
     @Query("nextToken") String? nextToken,
     @Query("perPage") int? perPage,
   });
+
+  /// 参加リクエストを許可
+  @PATCH('/roomJoinRequests/{requestId}/accept')
+  @authenticatedRequest
+  Future<RoomIdResponse> accept(
+    @Path('requestId') String requestId,
+  );
+
+  /// 参加リクエストを拒否
+  @PATCH('/roomJoinRequests/{requestId}/reject')
+  @authenticatedRequest
+  Future<RoomIdResponse> reject(
+    @Path('requestId') String requestId,
+  );
 }

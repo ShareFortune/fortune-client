@@ -8,8 +8,9 @@ part 'room_join_request.g.dart';
 @freezed
 class RoomJoinRequest with _$RoomJoinRequest {
   const factory RoomJoinRequest({
-    @JsonKey(name: "userId") required String userId,
+    @JsonKey(name: "id") required String id,
     @JsonKey(name: "name") required String name,
+    @JsonKey(name: "userId") required String userId,
     @JsonKey(name: "userImageURL") required String userImageURL,
   }) = _RoomJoinRequest;
 

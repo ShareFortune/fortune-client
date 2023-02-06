@@ -19,7 +19,7 @@ class _JoinRequestsDataSource implements JoinRequestsDataSource {
   String? baseUrl;
 
   @override
-  Future<RoomIdResponse> sendJoinRequest(id) async {
+  Future<RoomIdResponse> sendJoinRequest(roomId) async {
     const _extra = <String, dynamic>{'append-token': true};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -32,7 +32,7 @@ class _JoinRequestsDataSource implements JoinRequestsDataSource {
     )
             .compose(
               _dio.options,
-              '/rooms/${id}/roomJoinRequests',
+              '/rooms/${roomId}/roomJoinRequests',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -69,6 +69,52 @@ class _JoinRequestsDataSource implements JoinRequestsDataSource {
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = GetV1RoomJoinRequestsResponse.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<RoomIdResponse> accept(requestId) async {
+    const _extra = <String, dynamic>{'append-token': true};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<RoomIdResponse>(Options(
+      method: 'PATCH',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/roomJoinRequests/${requestId}/accept',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = RoomIdResponse.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<RoomIdResponse> reject(requestId) async {
+    const _extra = <String, dynamic>{'append-token': true};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<RoomIdResponse>(Options(
+      method: 'PATCH',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/roomJoinRequests/${requestId}/reject',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = RoomIdResponse.fromJson(_result.data!);
     return value;
   }
 

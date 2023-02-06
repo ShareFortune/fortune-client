@@ -29,24 +29,21 @@ class HostRoomCard extends HookConsumerWidget {
 
         /// リクエストを確認する
         case RoomStatus.pending:
-          return _bottomButton(
-            title: LocaleKeys.participating_room_list_page_action_confirmRequest
-                .tr(),
-            color: theme.appColors.primary,
-            onPressed: () => state.joinRequestsCount > 0
-                ? viewModel.navigateToRequestConfirmation(
-                    state.id,
-                    state.roomName,
-                  )
-                : null,
+          return _confirmRequestButton(
+            theme,
+            state.joinRequestsCount > 0,
+            () => viewModel.navigateToRequestConfirmation(
+              state.id,
+              state.roomName,
+            ),
           );
 
         /// メッセージ
         default:
-          return _bottomButton(
-            title: LocaleKeys.participating_room_list_page_action_message.tr(),
-            color: theme.appColors.secondary,
-            onPressed: viewModel.navigateToMessage,
+          return _messageButton(
+            theme,
+            state.joinRequestsCount > 0,
+            () => viewModel.navigateToMessage(),
           );
       }
     }
@@ -162,7 +159,34 @@ class HostRoomCard extends HookConsumerWidget {
     );
   }
 
+  _confirmRequestButton(
+    AppTheme theme,
+    bool existRequest,
+    VoidCallback onPressed,
+  ) {
+    return _bottomButton(
+      theme: theme,
+      title: LocaleKeys.participating_room_list_page_action_confirmRequest.tr(),
+      color: theme.appColors.primary,
+      onPressed: existRequest ? onPressed : null,
+    );
+  }
+
+  _messageButton(
+    AppTheme theme,
+    bool existRequest,
+    VoidCallback onPressed,
+  ) {
+    return _bottomButton(
+      theme: theme,
+      title: LocaleKeys.participating_room_list_page_action_message.tr(),
+      color: theme.appColors.secondary,
+      onPressed: existRequest ? onPressed : null,
+    );
+  }
+
   _bottomButton({
+    required AppTheme theme,
     required String title,
     required Color color,
     required VoidCallback? onPressed,
@@ -174,7 +198,7 @@ class HostRoomCard extends HookConsumerWidget {
         minimumSize: Size.zero,
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
       ),
-      child: Text(title),
+      child: Text(title, style: theme.textTheme.h20),
     );
   }
 }
