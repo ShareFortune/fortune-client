@@ -19,14 +19,6 @@ class MessageRoomListPage extends HookConsumerWidget {
     final state = ref.watch(messageRoomListViewModelProvider);
     final viewModel = ref.watch(messageRoomListViewModelProvider.notifier);
 
-    /// タブテキスト
-    final tabTextColor = theme.appColors.subText1;
-    final tabTextStyle = theme.textTheme.h20.paint(tabTextColor).bold();
-
-    /// タブテキスト（選択時）
-    final onTabTextColor = theme.appColors.onSecondary;
-    final onTabTextStyle = theme.textTheme.h20.paint(onTabTextColor).bold();
-
     /// メッセージルーム生成
     Widget asyncMessageRooms(AsyncValue<StatusMessageRoomListState> data) {
       return data.maybeWhen(
@@ -53,10 +45,10 @@ class MessageRoomListPage extends HookConsumerWidget {
               child: Container(
                 color: theme.appColors.onBackground,
                 child: TabBar(
-                  labelColor: onTabTextColor,
-                  unselectedLabelColor: tabTextColor,
-                  labelStyle: onTabTextStyle,
-                  unselectedLabelStyle: tabTextStyle,
+                  labelColor: theme.appColors.onSecondary,
+                  labelStyle: theme.textTheme.h20.bold(),
+                  unselectedLabelColor: theme.appColors.subText1,
+                  unselectedLabelStyle: theme.textTheme.h20.bold(),
                   tabs: const [
                     Tab(text: "ホスト"),
                     Tab(text: "ゲスト"),

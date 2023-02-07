@@ -22,7 +22,7 @@ class RoomsFilterTile extends HookConsumerWidget {
 
     return BaseTransitionTile(
       title: title,
-      titleStyle: theme.textTheme.h30.paint(theme.appColors.subText2),
+      titleStyle: theme.textTheme.h30.paint(theme.appColors.subText1),
       value: value,
       valueStyle: theme.textTheme.h30.paint(theme.appColors.primary),
       textWhenUnsetStyle: theme.textTheme.h30.paint(theme.appColors.subText3),
