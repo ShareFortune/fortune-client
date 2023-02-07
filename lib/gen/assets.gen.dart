@@ -109,6 +109,10 @@ class $AssetsImagesIconsGen {
   SvgGenImage get iconArrowRight =>
       const SvgGenImage('assets/images/icons/icon_arrow_right.svg');
 
+  /// File path: assets/images/icons/icon_camera.svg
+  SvgGenImage get iconCamera =>
+      const SvgGenImage('assets/images/icons/icon_camera.svg');
+
   /// File path: assets/images/icons/icon_check_circle.svg
   SvgGenImage get iconCheckCircle =>
       const SvgGenImage('assets/images/icons/icon_check_circle.svg');
@@ -167,6 +171,7 @@ class $AssetsImagesIconsGen {
         iconApple,
         iconArrowDropDown,
         iconArrowRight,
+        iconCamera,
         iconCheckCircle,
         iconDelete,
         iconEdit,

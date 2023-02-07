@@ -58,4 +58,16 @@ class RoutePath {
 
   /// 設定
   static const setting = 'setting';
+
+  /// ボトムシート
+  /// ---------------------------
+
+  static const bottomSheet = 'BottomSheetRouter';
+  static const hostRoomActions = 'HostRoomActions';
+  static const guestRoomActions = 'GuestRoomActions';
+
+  /// プロフィール写真編集
+  static const editProfilePicture = 'EditProfilePicture';
+
+  /// ---------------------------
 }
