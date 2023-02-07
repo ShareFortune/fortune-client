@@ -14,6 +14,7 @@ showPhotoActionSheet(
     context: context,
     builder: (context) {
       return WillPopScope(
+        onWillPop: () async => false,
         child: CupertinoActionSheet(
           title: null,
           actions: [
@@ -57,7 +58,6 @@ showPhotoActionSheet(
             onPressed: () => Navigator.of(context).pop(),
           ),
         ),
-        onWillPop: () async => false,
       );
     },
   );

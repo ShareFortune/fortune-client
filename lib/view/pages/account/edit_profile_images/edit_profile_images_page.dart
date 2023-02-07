@@ -46,59 +46,6 @@ class EditProfileImagesPage extends HookConsumerWidget {
     );
   }
 
-  /// プロフィール画像編集コンテナ
-  _editProfileImagesContainer(
-    AppTheme theme,
-    AsyncValue<EditProfileImagesState> state,
-  ) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          LocaleKeys.edit_profile_picture_page_profile_title.tr(),
-          style: theme.textTheme.h40.bold(),
-        ),
-        const Gap(10),
-        SpeechBubble(
-          width: double.infinity,
-          color: theme.appColors.primary,
-          nipLocation: NipLocation.BOTTOM,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                LocaleKeys.edit_profile_picture_page_profile_guide.tr(),
-                style: theme.textTheme.h20.bold().paint(
-                      theme.appColors.onPrimary,
-                    ),
-              ),
-            ],
-          ),
-        ),
-        const Gap(20),
-        state.maybeWhen(
-          data: (data) {
-            return Container(
-              alignment: Alignment.center,
-              child: Wrap(
-                spacing: 15,
-                runSpacing: 15,
-                children: [
-                  imageInputField(theme, data.secondImage),
-                  imageInputField(theme, data.thirdImage),
-                  imageInputField(theme, data.fourthImage),
-                  imageInputField(theme, data.fifthImage),
-                  imageInputField(theme, data.sixthImage),
-                ],
-              ),
-            );
-          },
-          orElse: () => loadingWidget(),
-        ),
-      ],
-    );
-  }
-
   /// アイコン編集コンテナ
   _editIconContainer(
     AppTheme theme,
@@ -123,6 +70,7 @@ class EditProfileImagesPage extends HookConsumerWidget {
                   height: 80,
                   borderRadius: BorderRadius.circular(50),
                   data: data.mainImage,
+                  onChange: (p0) {},
                 );
               },
             ),
@@ -143,7 +91,59 @@ class EditProfileImagesPage extends HookConsumerWidget {
     );
   }
 
-  imageInputField(AppTheme theme, EditProfileImagesStateItem data) {
+  /// プロフィール画像編集コンテナ
+  _editProfileImagesContainer(
+    AppTheme theme,
+    AsyncValue<EditProfileImagesState> state,
+  ) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          LocaleKeys.edit_profile_picture_page_profile_title.tr(),
+          style: theme.textTheme.h40.bold(),
+        ),
+        const Gap(10),
+        SpeechBubble(
+          width: double.infinity,
+          color: theme.appColors.primary,
+          nipLocation: NipLocation.BOTTOM,
+          child: Container(
+            alignment: Alignment.center,
+            child: Text(
+              LocaleKeys.edit_profile_picture_page_profile_guide.tr(),
+              style: theme.textTheme.h20.bold().paint(
+                    theme.appColors.onPrimary,
+                  ),
+            ),
+          ),
+        ),
+        const Gap(20),
+        state.maybeWhen(
+          orElse: () => loadingWidget(),
+          data: (data) {
+            return Container(
+              alignment: Alignment.center,
+              child: Wrap(
+                spacing: 15,
+                runSpacing: 15,
+                children: [
+                  profileImageInputField(theme, data.secondImage),
+                  profileImageInputField(theme, data.thirdImage),
+                  profileImageInputField(theme, data.fourthImage),
+                  profileImageInputField(theme, data.fifthImage),
+                  profileImageInputField(theme, data.sixthImage),
+                ],
+              ),
+            );
+          },
+        ),
+      ],
+    );
+  }
+
+  /// プロフィール画像入力フィールド
+  profileImageInputField(AppTheme theme, EditProfileImagesStateItem data) {
     return InkWell(
       onTap: () {},
       child: DottedBorder(
@@ -156,6 +156,7 @@ class EditProfileImagesPage extends HookConsumerWidget {
           height: 110,
           borderRadius: BorderRadius.circular(10),
           data: data,
+          onChange: (p0) {},
         ),
       ),
     );
