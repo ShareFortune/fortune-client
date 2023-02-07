@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fortune_client/gen/assets.gen.dart';
+import 'package:fortune_client/injector.dart';
+import 'package:fortune_client/view/routes/app_router.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/app_bar/back_app_bar.dart';
@@ -18,7 +20,13 @@ class EditProfilePicturePage extends HookConsumerWidget {
 
     return Scaffold(
       backgroundColor: theme.appColors.onBackground,
-      appBar: const BackAppBar(title: "写真編集"),
+      appBar: BackAppBar(
+        title: "写真編集",
+        leading: IconButton(
+          onPressed: sl<AppRouter>().pop,
+          icon: const Icon(Icons.close),
+        ),
+      ),
       body: Container(
         padding: const EdgeInsets.all(20),
         child: Column(
