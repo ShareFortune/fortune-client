@@ -5,7 +5,7 @@ import 'package:fortune_client/view/pages/account/create/entry_basic_profile/bas
 import 'package:fortune_client/view/pages/account/create/entry_detailed_profile/detailed_profile_entry_page.dart';
 import 'package:fortune_client/view/pages/account/create/entry_profile_icon_image/profile_icon_image_entry_page.dart';
 import 'package:fortune_client/view/pages/account/create/entry_profile_sub_image/entry_profile_sub_image_page.dart';
-import 'package:fortune_client/view/pages/account/edit_profile_picture/edit_profile_picture_page.dart';
+import 'package:fortune_client/view/pages/account/edit_profile_images/edit_profile_images_page.dart';
 import 'package:fortune_client/view/pages/account/my_page/my_page.dart';
 import 'package:fortune_client/view/pages/account/update/profile_update_page.dart';
 import 'package:fortune_client/view/pages/common/bottom_sheet/room_actions/guest/guest_room_actions_bottom_sheet.dart';
@@ -166,7 +166,7 @@ export 'app_router.gr.dart';
         ),
         AutoRoute(
           name: RoutePath.editProfilePicture,
-          page: EditProfilePicturePage,
+          page: EditProfileImagesPage,
         ),
       ],
     ),

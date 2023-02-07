@@ -7,7 +7,6 @@ import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/l10n/locale_keys.g.dart';
 import 'package:fortune_client/view/pages/account/my_page/my_page_state.dart';
 import 'package:fortune_client/view/routes/app_router.gr.dart';
-import 'package:fortune_client/view/routes/route_path.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final myPageViewModelProvider =
