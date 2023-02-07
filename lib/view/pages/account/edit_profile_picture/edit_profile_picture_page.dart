@@ -1,7 +1,9 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fortune_client/gen/assets.gen.dart';
 import 'package:fortune_client/injector.dart';
+import 'package:fortune_client/l10n/locale_keys.g.dart';
 import 'package:fortune_client/view/routes/app_router.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
@@ -21,7 +23,7 @@ class EditProfilePicturePage extends HookConsumerWidget {
     return Scaffold(
       backgroundColor: theme.appColors.onBackground,
       appBar: BackAppBar(
-        title: "写真編集",
+        title: LocaleKeys.edit_profile_picture_page_title.tr(),
         leading: IconButton(
           onPressed: sl<AppRouter>().pop,
           icon: const Icon(Icons.close),
@@ -32,7 +34,10 @@ class EditProfilePicturePage extends HookConsumerWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text("アイコン写真", style: theme.textTheme.h40.bold()),
+            Text(
+              LocaleKeys.edit_profile_picture_page_icon_title.tr(),
+              style: theme.textTheme.h40.bold(),
+            ),
             const Gap(10),
             Row(
               children: [
@@ -42,7 +47,7 @@ class EditProfilePicturePage extends HookConsumerWidget {
                   color: theme.appColors.primary,
                   nipLocation: NipLocation.LEFT,
                   child: Text(
-                    "アイコン写真では、\nあなただとわかる写真を登録しましょう！",
+                    LocaleKeys.edit_profile_picture_page_icon_guide.tr(),
                     style: theme.textTheme.h20
                         .paint(theme.appColors.onPrimary)
                         .bold(),
@@ -51,7 +56,10 @@ class EditProfilePicturePage extends HookConsumerWidget {
               ],
             ),
             const Gap(50),
-            Text("プロフィール写真", style: theme.textTheme.h40.bold()),
+            Text(
+              LocaleKeys.edit_profile_picture_page_profile_title.tr(),
+              style: theme.textTheme.h40.bold(),
+            ),
             const Gap(20),
             SpeechBubble(
               width: double.infinity,
@@ -61,7 +69,7 @@ class EditProfilePicturePage extends HookConsumerWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    "自分の活動や趣味などの写真を登録して、\nお相手にあなたのことを知ってもらいましょう！",
+                    LocaleKeys.edit_profile_picture_page_profile_guide.tr(),
                     style: theme.textTheme.h20
                         .paint(theme.appColors.onPrimary)
                         .bold(),
@@ -109,7 +117,7 @@ class EditProfilePicturePage extends HookConsumerWidget {
               ),
               const Gap(5),
               Text(
-                "追加",
+                LocaleKeys.edit_profile_picture_page_add.tr(),
                 style:
                     theme.textTheme.h20.paint(theme.appColors.subText3).bold(),
               ),
