@@ -26,7 +26,8 @@ class MyPageHeader extends StatelessWidget {
   final String name;
   final int age;
   final Gender gender;
-  final Function(File) onSave;
+  // final Function(File) onSave;
+  final Function() onSave;
 
   @override
   Widget build(BuildContext context) {
@@ -35,15 +36,16 @@ class MyPageHeader extends StatelessWidget {
       child: Row(
         children: [
           InkWell(
-            onTap: () async {
-              /// プロフィール写真の選択
-              await showPhotoActionSheet(context, (file) async {
-                if (file != null) {
-                  logger.i(file.path);
-                  onSave(file);
-                }
-              });
-            },
+            onTap: onSave,
+            // onTap: () async {
+            //   /// プロフィール写真の選択
+            //   await showPhotoActionSheet(context, (file) async {
+            //     if (file != null) {
+            //       logger.i(file.path);
+            //       onSave(file);
+            //     }
+            //   });
+            // },
             child: Stack(
               alignment: Alignment.bottomRight,
               children: [

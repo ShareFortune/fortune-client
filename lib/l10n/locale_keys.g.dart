@@ -124,6 +124,15 @@ abstract class  LocaleKeys {
   static const select_tags_page_popular_title = 'select_tags_page.popular.title';
   static const select_tags_page_popular = 'select_tags_page.popular';
   static const select_tags_page = 'select_tags_page';
+  static const edit_profile_picture_page_title = 'edit_profile_picture_page.title';
+  static const edit_profile_picture_page_icon_title = 'edit_profile_picture_page.icon.title';
+  static const edit_profile_picture_page_icon_guide = 'edit_profile_picture_page.icon.guide';
+  static const edit_profile_picture_page_icon = 'edit_profile_picture_page.icon';
+  static const edit_profile_picture_page_profile_title = 'edit_profile_picture_page.profile.title';
+  static const edit_profile_picture_page_profile_guide = 'edit_profile_picture_page.profile.guide';
+  static const edit_profile_picture_page_profile = 'edit_profile_picture_page.profile';
+  static const edit_profile_picture_page_add = 'edit_profile_picture_page.add';
+  static const edit_profile_picture_page = 'edit_profile_picture_page';
   static const data_empty = 'data.empty';
   static const data_room_action_create_success = 'data.room.action.create.success';
   static const data_room_action_create_failure = 'data.room.action.create.failure';
