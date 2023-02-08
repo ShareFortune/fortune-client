@@ -5,6 +5,7 @@ import 'package:fortune_client/l10n/locale_keys.g.dart';
 import 'package:fortune_client/view/pages/account/edit_profile_images/components/edit_image_container.dart';
 import 'package:fortune_client/view/pages/account/edit_profile_images/components/edit_image_controller.dart';
 import 'package:fortune_client/view/pages/account/edit_profile_images/edit_profile_images_state.dart';
+import 'package:fortune_client/view/pages/account/edit_profile_images/edit_profile_images_type.dart';
 import 'package:fortune_client/view/pages/account/edit_profile_images/edit_profile_images_view_model.dart';
 import 'package:fortune_client/view/routes/app_router.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
@@ -70,9 +71,12 @@ class EditProfileImagesPage extends HookConsumerWidget {
                   width: 80,
                   height: 80,
                   borderRadius: BorderRadius.circular(50),
-                  data: data.mainImage,
+                  data: data.image(EditProfileImagesType.mainImage),
                   onChange: (file) {
-                    viewModel.updateMainImage(file);
+                    viewModel.updateImage(
+                      EditProfileImagesType.mainImage,
+                      file,
+                    );
                   },
                 );
               },
@@ -131,38 +135,18 @@ class EditProfileImagesPage extends HookConsumerWidget {
               child: Wrap(
                 spacing: 15,
                 runSpacing: 15,
-                children: [
-                  EditImageContainer(
+                children: EditProfileImagesTypeEx.subImages.map((imageType) {
+                  return EditImageContainer(
                     theme: theme,
-                    data: data.secondImage,
-                    onChange: viewModel.updateSecondImage,
-                    onClear: () {},
-                  ),
-                  EditImageContainer(
-                    theme: theme,
-                    data: data.thirdImage,
-                    onChange: viewModel.updateThirdImage,
-                    onClear: () {},
-                  ),
-                  EditImageContainer(
-                    theme: theme,
-                    data: data.fourthImage,
-                    onChange: viewModel.updateFourthImage,
-                    onClear: () {},
-                  ),
-                  EditImageContainer(
-                    theme: theme,
-                    data: data.fifthImage,
-                    onChange: viewModel.updateFifthImage,
-                    onClear: () {},
-                  ),
-                  EditImageContainer(
-                    theme: theme,
-                    data: data.sixthImage,
-                    onChange: viewModel.updateSixthImage,
-                    onClear: () {},
-                  ),
-                ],
+                    data: data.image(imageType),
+                    onChange: (file) {
+                      viewModel.updateImage(imageType, file);
+                    },
+                    onClear: () {
+                      viewModel.deleteImage(imageType);
+                    },
+                  );
+                }).toList(),
               ),
             );
           },

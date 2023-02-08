@@ -16,17 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$EditProfileImagesState {
-  EditProfileImagesStateItem get mainImage =>
-      throw _privateConstructorUsedError;
-  EditProfileImagesStateItem get secondImage =>
-      throw _privateConstructorUsedError;
-  EditProfileImagesStateItem get thirdImage =>
-      throw _privateConstructorUsedError;
-  EditProfileImagesStateItem get fourthImage =>
-      throw _privateConstructorUsedError;
-  EditProfileImagesStateItem get fifthImage =>
-      throw _privateConstructorUsedError;
-  EditProfileImagesStateItem get sixthImage =>
+  List<EditProfileImagesStateItem> get images =>
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -40,20 +30,7 @@ abstract class $EditProfileImagesStateCopyWith<$Res> {
           $Res Function(EditProfileImagesState) then) =
       _$EditProfileImagesStateCopyWithImpl<$Res, EditProfileImagesState>;
   @useResult
-  $Res call(
-      {EditProfileImagesStateItem mainImage,
-      EditProfileImagesStateItem secondImage,
-      EditProfileImagesStateItem thirdImage,
-      EditProfileImagesStateItem fourthImage,
-      EditProfileImagesStateItem fifthImage,
-      EditProfileImagesStateItem sixthImage});
-
-  $EditProfileImagesStateItemCopyWith<$Res> get mainImage;
-  $EditProfileImagesStateItemCopyWith<$Res> get secondImage;
-  $EditProfileImagesStateItemCopyWith<$Res> get thirdImage;
-  $EditProfileImagesStateItemCopyWith<$Res> get fourthImage;
-  $EditProfileImagesStateItemCopyWith<$Res> get fifthImage;
-  $EditProfileImagesStateItemCopyWith<$Res> get sixthImage;
+  $Res call({List<EditProfileImagesStateItem> images});
 }
 
 /// @nodoc
@@ -70,92 +47,14 @@ class _$EditProfileImagesStateCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? mainImage = null,
-    Object? secondImage = null,
-    Object? thirdImage = null,
-    Object? fourthImage = null,
-    Object? fifthImage = null,
-    Object? sixthImage = null,
+    Object? images = null,
   }) {
     return _then(_value.copyWith(
-      mainImage: null == mainImage
-          ? _value.mainImage
-          : mainImage // ignore: cast_nullable_to_non_nullable
-              as EditProfileImagesStateItem,
-      secondImage: null == secondImage
-          ? _value.secondImage
-          : secondImage // ignore: cast_nullable_to_non_nullable
-              as EditProfileImagesStateItem,
-      thirdImage: null == thirdImage
-          ? _value.thirdImage
-          : thirdImage // ignore: cast_nullable_to_non_nullable
-              as EditProfileImagesStateItem,
-      fourthImage: null == fourthImage
-          ? _value.fourthImage
-          : fourthImage // ignore: cast_nullable_to_non_nullable
-              as EditProfileImagesStateItem,
-      fifthImage: null == fifthImage
-          ? _value.fifthImage
-          : fifthImage // ignore: cast_nullable_to_non_nullable
-              as EditProfileImagesStateItem,
-      sixthImage: null == sixthImage
-          ? _value.sixthImage
-          : sixthImage // ignore: cast_nullable_to_non_nullable
-              as EditProfileImagesStateItem,
+      images: null == images
+          ? _value.images
+          : images // ignore: cast_nullable_to_non_nullable
+              as List<EditProfileImagesStateItem>,
     ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $EditProfileImagesStateItemCopyWith<$Res> get mainImage {
-    return $EditProfileImagesStateItemCopyWith<$Res>(_value.mainImage, (value) {
-      return _then(_value.copyWith(mainImage: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $EditProfileImagesStateItemCopyWith<$Res> get secondImage {
-    return $EditProfileImagesStateItemCopyWith<$Res>(_value.secondImage,
-        (value) {
-      return _then(_value.copyWith(secondImage: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $EditProfileImagesStateItemCopyWith<$Res> get thirdImage {
-    return $EditProfileImagesStateItemCopyWith<$Res>(_value.thirdImage,
-        (value) {
-      return _then(_value.copyWith(thirdImage: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $EditProfileImagesStateItemCopyWith<$Res> get fourthImage {
-    return $EditProfileImagesStateItemCopyWith<$Res>(_value.fourthImage,
-        (value) {
-      return _then(_value.copyWith(fourthImage: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $EditProfileImagesStateItemCopyWith<$Res> get fifthImage {
-    return $EditProfileImagesStateItemCopyWith<$Res>(_value.fifthImage,
-        (value) {
-      return _then(_value.copyWith(fifthImage: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $EditProfileImagesStateItemCopyWith<$Res> get sixthImage {
-    return $EditProfileImagesStateItemCopyWith<$Res>(_value.sixthImage,
-        (value) {
-      return _then(_value.copyWith(sixthImage: value) as $Val);
-    });
   }
 }
 
@@ -167,26 +66,7 @@ abstract class _$$_EditProfileImagesStateCopyWith<$Res>
       __$$_EditProfileImagesStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {EditProfileImagesStateItem mainImage,
-      EditProfileImagesStateItem secondImage,
-      EditProfileImagesStateItem thirdImage,
-      EditProfileImagesStateItem fourthImage,
-      EditProfileImagesStateItem fifthImage,
-      EditProfileImagesStateItem sixthImage});
-
-  @override
-  $EditProfileImagesStateItemCopyWith<$Res> get mainImage;
-  @override
-  $EditProfileImagesStateItemCopyWith<$Res> get secondImage;
-  @override
-  $EditProfileImagesStateItemCopyWith<$Res> get thirdImage;
-  @override
-  $EditProfileImagesStateItemCopyWith<$Res> get fourthImage;
-  @override
-  $EditProfileImagesStateItemCopyWith<$Res> get fifthImage;
-  @override
-  $EditProfileImagesStateItemCopyWith<$Res> get sixthImage;
+  $Res call({List<EditProfileImagesStateItem> images});
 }
 
 /// @nodoc
@@ -201,69 +81,35 @@ class __$$_EditProfileImagesStateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? mainImage = null,
-    Object? secondImage = null,
-    Object? thirdImage = null,
-    Object? fourthImage = null,
-    Object? fifthImage = null,
-    Object? sixthImage = null,
+    Object? images = null,
   }) {
     return _then(_$_EditProfileImagesState(
-      mainImage: null == mainImage
-          ? _value.mainImage
-          : mainImage // ignore: cast_nullable_to_non_nullable
-              as EditProfileImagesStateItem,
-      secondImage: null == secondImage
-          ? _value.secondImage
-          : secondImage // ignore: cast_nullable_to_non_nullable
-              as EditProfileImagesStateItem,
-      thirdImage: null == thirdImage
-          ? _value.thirdImage
-          : thirdImage // ignore: cast_nullable_to_non_nullable
-              as EditProfileImagesStateItem,
-      fourthImage: null == fourthImage
-          ? _value.fourthImage
-          : fourthImage // ignore: cast_nullable_to_non_nullable
-              as EditProfileImagesStateItem,
-      fifthImage: null == fifthImage
-          ? _value.fifthImage
-          : fifthImage // ignore: cast_nullable_to_non_nullable
-              as EditProfileImagesStateItem,
-      sixthImage: null == sixthImage
-          ? _value.sixthImage
-          : sixthImage // ignore: cast_nullable_to_non_nullable
-              as EditProfileImagesStateItem,
+      null == images
+          ? _value._images
+          : images // ignore: cast_nullable_to_non_nullable
+              as List<EditProfileImagesStateItem>,
     ));
   }
 }
 
 /// @nodoc
 
-class _$_EditProfileImagesState implements _EditProfileImagesState {
-  const _$_EditProfileImagesState(
-      {required this.mainImage,
-      required this.secondImage,
-      required this.thirdImage,
-      required this.fourthImage,
-      required this.fifthImage,
-      required this.sixthImage});
+class _$_EditProfileImagesState extends _EditProfileImagesState {
+  const _$_EditProfileImagesState(final List<EditProfileImagesStateItem> images)
+      : _images = images,
+        super._();
 
+  final List<EditProfileImagesStateItem> _images;
   @override
-  final EditProfileImagesStateItem mainImage;
-  @override
-  final EditProfileImagesStateItem secondImage;
-  @override
-  final EditProfileImagesStateItem thirdImage;
-  @override
-  final EditProfileImagesStateItem fourthImage;
-  @override
-  final EditProfileImagesStateItem fifthImage;
-  @override
-  final EditProfileImagesStateItem sixthImage;
+  List<EditProfileImagesStateItem> get images {
+    if (_images is EqualUnmodifiableListView) return _images;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_images);
+  }
 
   @override
   String toString() {
-    return 'EditProfileImagesState(mainImage: $mainImage, secondImage: $secondImage, thirdImage: $thirdImage, fourthImage: $fourthImage, fifthImage: $fifthImage, sixthImage: $sixthImage)';
+    return 'EditProfileImagesState(images: $images)';
   }
 
   @override
@@ -271,23 +117,12 @@ class _$_EditProfileImagesState implements _EditProfileImagesState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_EditProfileImagesState &&
-            (identical(other.mainImage, mainImage) ||
-                other.mainImage == mainImage) &&
-            (identical(other.secondImage, secondImage) ||
-                other.secondImage == secondImage) &&
-            (identical(other.thirdImage, thirdImage) ||
-                other.thirdImage == thirdImage) &&
-            (identical(other.fourthImage, fourthImage) ||
-                other.fourthImage == fourthImage) &&
-            (identical(other.fifthImage, fifthImage) ||
-                other.fifthImage == fifthImage) &&
-            (identical(other.sixthImage, sixthImage) ||
-                other.sixthImage == sixthImage));
+            const DeepCollectionEquality().equals(other._images, _images));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, mainImage, secondImage,
-      thirdImage, fourthImage, fifthImage, sixthImage);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_images));
 
   @JsonKey(ignore: true)
   @override
@@ -297,28 +132,14 @@ class _$_EditProfileImagesState implements _EditProfileImagesState {
           this, _$identity);
 }
 
-abstract class _EditProfileImagesState implements EditProfileImagesState {
+abstract class _EditProfileImagesState extends EditProfileImagesState {
   const factory _EditProfileImagesState(
-          {required final EditProfileImagesStateItem mainImage,
-          required final EditProfileImagesStateItem secondImage,
-          required final EditProfileImagesStateItem thirdImage,
-          required final EditProfileImagesStateItem fourthImage,
-          required final EditProfileImagesStateItem fifthImage,
-          required final EditProfileImagesStateItem sixthImage}) =
+          final List<EditProfileImagesStateItem> images) =
       _$_EditProfileImagesState;
+  const _EditProfileImagesState._() : super._();
 
   @override
-  EditProfileImagesStateItem get mainImage;
-  @override
-  EditProfileImagesStateItem get secondImage;
-  @override
-  EditProfileImagesStateItem get thirdImage;
-  @override
-  EditProfileImagesStateItem get fourthImage;
-  @override
-  EditProfileImagesStateItem get fifthImage;
-  @override
-  EditProfileImagesStateItem get sixthImage;
+  List<EditProfileImagesStateItem> get images;
   @override
   @JsonKey(ignore: true)
   _$$_EditProfileImagesStateCopyWith<_$_EditProfileImagesState> get copyWith =>
@@ -327,6 +148,8 @@ abstract class _EditProfileImagesState implements EditProfileImagesState {
 
 /// @nodoc
 mixin _$EditProfileImagesStateItem {
+  EditProfileImagesType get type => throw _privateConstructorUsedError;
+
   /// 編集したか
   bool get isEdited => throw _privateConstructorUsedError;
 
@@ -351,7 +174,12 @@ abstract class $EditProfileImagesStateItemCopyWith<$Res> {
       _$EditProfileImagesStateItemCopyWithImpl<$Res,
           EditProfileImagesStateItem>;
   @useResult
-  $Res call({bool isEdited, bool isDeleted, String? url, File? updateFile});
+  $Res call(
+      {EditProfileImagesType type,
+      bool isEdited,
+      bool isDeleted,
+      String? url,
+      File? updateFile});
 }
 
 /// @nodoc
@@ -368,12 +196,17 @@ class _$EditProfileImagesStateItemCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? type = null,
     Object? isEdited = null,
     Object? isDeleted = null,
     Object? url = freezed,
     Object? updateFile = freezed,
   }) {
     return _then(_value.copyWith(
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as EditProfileImagesType,
       isEdited: null == isEdited
           ? _value.isEdited
           : isEdited // ignore: cast_nullable_to_non_nullable
@@ -403,7 +236,12 @@ abstract class _$$_EditProfileImagesStateItemCopyWith<$Res>
       __$$_EditProfileImagesStateItemCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool isEdited, bool isDeleted, String? url, File? updateFile});
+  $Res call(
+      {EditProfileImagesType type,
+      bool isEdited,
+      bool isDeleted,
+      String? url,
+      File? updateFile});
 }
 
 /// @nodoc
@@ -419,12 +257,17 @@ class __$$_EditProfileImagesStateItemCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? type = null,
     Object? isEdited = null,
     Object? isDeleted = null,
     Object? url = freezed,
     Object? updateFile = freezed,
   }) {
     return _then(_$_EditProfileImagesStateItem(
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as EditProfileImagesType,
       isEdited: null == isEdited
           ? _value.isEdited
           : isEdited // ignore: cast_nullable_to_non_nullable
@@ -449,11 +292,15 @@ class __$$_EditProfileImagesStateItemCopyWithImpl<$Res>
 
 class _$_EditProfileImagesStateItem extends _EditProfileImagesStateItem {
   const _$_EditProfileImagesStateItem(
-      {this.isEdited = false,
+      {required this.type,
+      this.isEdited = false,
       this.isDeleted = false,
       this.url,
       this.updateFile})
       : super._();
+
+  @override
+  final EditProfileImagesType type;
 
   /// 編集したか
   @override
@@ -475,7 +322,7 @@ class _$_EditProfileImagesStateItem extends _EditProfileImagesStateItem {
 
   @override
   String toString() {
-    return 'EditProfileImagesStateItem(isEdited: $isEdited, isDeleted: $isDeleted, url: $url, updateFile: $updateFile)';
+    return 'EditProfileImagesStateItem(type: $type, isEdited: $isEdited, isDeleted: $isDeleted, url: $url, updateFile: $updateFile)';
   }
 
   @override
@@ -483,6 +330,7 @@ class _$_EditProfileImagesStateItem extends _EditProfileImagesStateItem {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_EditProfileImagesStateItem &&
+            (identical(other.type, type) || other.type == type) &&
             (identical(other.isEdited, isEdited) ||
                 other.isEdited == isEdited) &&
             (identical(other.isDeleted, isDeleted) ||
@@ -494,7 +342,7 @@ class _$_EditProfileImagesStateItem extends _EditProfileImagesStateItem {
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, isEdited, isDeleted, url, updateFile);
+      Object.hash(runtimeType, type, isEdited, isDeleted, url, updateFile);
 
   @JsonKey(ignore: true)
   @override
@@ -506,12 +354,15 @@ class _$_EditProfileImagesStateItem extends _EditProfileImagesStateItem {
 
 abstract class _EditProfileImagesStateItem extends EditProfileImagesStateItem {
   const factory _EditProfileImagesStateItem(
-      {final bool isEdited,
+      {required final EditProfileImagesType type,
+      final bool isEdited,
       final bool isDeleted,
       final String? url,
       final File? updateFile}) = _$_EditProfileImagesStateItem;
   const _EditProfileImagesStateItem._() : super._();
 
+  @override
+  EditProfileImagesType get type;
   @override
 
   /// 編集したか

@@ -37,7 +37,7 @@ class EditImageContainer extends StatelessWidget {
           height: 110,
           borderRadius: BorderRadius.circular(10),
           data: data,
-          onChange: data.isDisplay() ? null : onChange,
+          onChange: data.isDisplay ? null : onChange,
         ),
       ),
     );

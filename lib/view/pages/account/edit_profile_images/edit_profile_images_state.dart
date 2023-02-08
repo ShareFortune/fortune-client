@@ -1,25 +1,28 @@
 import 'dart:io';
 
+import 'package:fortune_client/view/pages/account/edit_profile_images/edit_profile_images_type.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'edit_profile_images_state.freezed.dart';
 
 @freezed
 class EditProfileImagesState with _$EditProfileImagesState {
-  const factory EditProfileImagesState({
-    required EditProfileImagesStateItem mainImage,
-    required EditProfileImagesStateItem secondImage,
-    required EditProfileImagesStateItem thirdImage,
-    required EditProfileImagesStateItem fourthImage,
-    required EditProfileImagesStateItem fifthImage,
-    required EditProfileImagesStateItem sixthImage,
-  }) = _EditProfileImagesState;
+  const EditProfileImagesState._();
+  const factory EditProfileImagesState(
+    List<EditProfileImagesStateItem> images,
+  ) = _EditProfileImagesState;
+
+  EditProfileImagesStateItem image(EditProfileImagesType type) {
+    return images[images.indexWhere((element) => element.type == type)];
+  }
 }
 
 @freezed
 class EditProfileImagesStateItem with _$EditProfileImagesStateItem {
   const EditProfileImagesStateItem._();
   const factory EditProfileImagesStateItem({
+    required EditProfileImagesType type,
+
     /// 編集したか
     @Default(false) bool isEdited,
 
@@ -34,7 +37,7 @@ class EditProfileImagesStateItem with _$EditProfileImagesStateItem {
   }) = _EditProfileImagesStateItem;
 
   /// 画像を表示するか
-  bool isDisplay() {
+  bool get isDisplay {
     /// 削除した場合は表示しない
     if (isDeleted) {
       return false;
