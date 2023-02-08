@@ -2,16 +2,14 @@ import 'dart:io';
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:fortune_client/data/repository/image_picker/image_picker_repository.dart';
-import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/l10n/locale_keys.g.dart';
+import 'package:fortune_client/util/common/image_picker.dart';
 
 class PhotoActionSheet {
   static show(
     BuildContext context,
     void Function(File?) selected,
   ) {
-    final ImagePickerRepository repository = sl();
     showCupertinoModalPopup(
       context: context,
       builder: (context) {
@@ -23,11 +21,12 @@ class PhotoActionSheet {
               CupertinoActionSheetAction(
                 onPressed: () async {
                   Navigator.of(context).pop();
-                  final File? file = await repository.takePicture(context);
+                  final File? file =
+                      await ImagePickerService.takePicture(context);
                   File? result;
 
                   if (file != null) {
-                    result = await repository.saveImageLocally(file);
+                    result = await ImagePickerService.saveImageLocally(file);
                   }
                   selected(result);
                 },
@@ -38,11 +37,12 @@ class PhotoActionSheet {
               CupertinoActionSheetAction(
                 onPressed: () async {
                   Navigator.of(context).pop();
-                  final File? file = await repository.choosePhoto(context);
+                  final File? file =
+                      await ImagePickerService.choosePhoto(context);
                   File? result;
 
                   if (file != null) {
-                    result = await repository.saveImageLocally(file);
+                    result = await ImagePickerService.saveImageLocally(file);
                   }
                   selected(result);
                 },
