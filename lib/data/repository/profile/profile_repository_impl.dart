@@ -40,13 +40,11 @@ class ProfileRepositoryImpl implements ProfileRepository {
   Future<GetV1ProfilesResponse> get() async {
     try {
       logger.i("[$runtimeType] get");
-      final profile = _profileDataSource.get();
+      final profile = await _profileDataSource.get();
 
       /// ローカル保存
-      await _shared.setString(
-        AppPrefKey.profile.keyString,
-        jsonEncode(profile),
-      );
+      _shared.setString(AppPrefKey.profileId.keyString, profile.id);
+      _shared.setString(AppPrefKey.profile.keyString, jsonEncode(profile));
 
       return profile;
     } catch (e) {
@@ -108,7 +106,7 @@ class ProfileRepositoryImpl implements ProfileRepository {
         profileForm.toJson(),
       );
 
-      /// ローカル保存
+      /// プロフィールIDをローカル保存
       return await _shared.setString(
         AppPrefKey.profileId.keyString,
         result.id,
@@ -126,23 +124,25 @@ class ProfileRepositoryImpl implements ProfileRepository {
   ///
   /// プロフィール更新
   ///
-  Future<void> _update(
-    String id,
-    PatchV1ProfilesIdRequest request,
-  ) async {
+  Future<void> _update(PatchV1ProfilesIdRequest request) async {
     try {
       logger.i("[$runtimeType] update");
-      await _profileDataSource.update(id, request.toJson());
+      await _profileDataSource.update(
+        _shared.getString(AppPrefKey.profileId.keyString)!,
+        request.toJson(),
+      );
     } catch (e) {
       logger.e(e);
       rethrow;
     }
   }
 
+  ///
   /// 更新データフォーム作成
-  _generateUpdateRequest(
-    Function(String id, PatchV1ProfilesIdRequest request) update,
-  ) {
+  ///
+  Future<void> _generateUpdateRequest(
+    Function(PatchV1ProfilesIdRequest request) update,
+  ) async {
     final profile = getCache();
     final request = PatchV1ProfilesIdRequest(
       name: profile.name,
@@ -156,7 +156,7 @@ class ProfileRepositoryImpl implements ProfileRepository {
       tagIds: profile.tags?.map((e) => e.id).toList(),
       files: getProfileImages(),
     );
-    update(profile.id, request);
+    update(request);
   }
 
   @override
@@ -166,9 +166,8 @@ class ProfileRepositoryImpl implements ProfileRepository {
 
   @override
   Future<void> updateSelfIntroduction(String selfIntroduction) async {
-    _generateUpdateRequest(
-      (id, request) => _update(
-        id,
+    await _generateUpdateRequest(
+      (request) => _update(
         request.copyWith(selfIntroduction: selfIntroduction),
       ),
     );
@@ -176,9 +175,8 @@ class ProfileRepositoryImpl implements ProfileRepository {
 
   @override
   Future<void> updateTags(List<Tag> tags) async {
-    _generateUpdateRequest(
-      (id, request) => _update(
-        id,
+    await _generateUpdateRequest(
+      (request) => _update(
         request.copyWith(tagIds: tags.map((e) => e.id).toList()),
       ),
     );
@@ -191,9 +189,8 @@ class ProfileRepositoryImpl implements ProfileRepository {
     required DrinkFrequency? drinkFrequency,
     required CigaretteFrequency? cigaretteFrequency,
   }) async {
-    _generateUpdateRequest(
-      (id, request) => _update(
-        id,
+    await _generateUpdateRequest(
+      (request) => _update(
         request.copyWith(
           addressId: addressWithId?.id ?? request.addressId,
           height: stature,

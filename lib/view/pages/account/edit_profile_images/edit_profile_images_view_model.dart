@@ -17,7 +17,9 @@ class EditProfileImagesViewModel
 
   final ProfileRepository _profileRepository;
 
-  Future<void> initialize() async {
+  Future<void> initialize() => fetch();
+
+  fetch() async {
     state = await AsyncValue.guard(() async {
       final result = _profileRepository.getCache();
       return EditProfileImagesState(
@@ -37,35 +39,40 @@ class EditProfileImagesViewModel
 
   /// 画像削除
   deleteImage(ProfileImagesType type) {
-    final data = state.value!;
-    state = AsyncData(
-      data.copyWith(
-        images: data.images.map((image) {
-          if (image.type != type) return image;
-          return image.copyWith(
-            isDeleted: true,
-            isEdited: true,
-            updateFile: null,
-          );
-        }).toList(),
-      ),
-    );
+    _profileRepository.saveProfileImageByType(type, null);
+    _profileRepository.updateProfileImages().whenComplete(() => fetch());
+
+    // final data = state.value!;
+    // state = AsyncData(
+    //   data.copyWith(
+    //     images: data.images.map((image) {
+    //       if (image.type != type) return image;
+    //       return image.copyWith(
+    //         isDeleted: true,
+    //         isEdited: true,
+    //         updateFile: null,
+    //       );
+    //     }).toList(),
+    //   ),
+    // );
   }
 
   /// 画像編集
   updateImage(ProfileImagesType type, File file) {
-    final data = state.value!;
-    state = AsyncData(
-      data.copyWith(
-        images: data.images.map((image) {
-          if (image.type != type) return image;
-          return image.copyWith(
-            isEdited: true,
-            isDeleted: false,
-            updateFile: file,
-          );
-        }).toList(),
-      ),
-    );
+    _profileRepository.saveProfileImageByType(type, file);
+    _profileRepository.updateProfileImages().whenComplete(() => fetch());
+    // final data = state.value!;
+    // state = AsyncData(
+    //   data.copyWith(
+    //     images: data.images.map((image) {
+    //       if (image.type != type) return image;
+    //       return image.copyWith(
+    //         isEdited: true,
+    //         isDeleted: false,
+    //         updateFile: file,
+    //       );
+    //     }).toList(),
+    //   ),
+    // );
   }
 }
