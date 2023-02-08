@@ -221,8 +221,8 @@ class ImagePickerService {
     var result = await FlutterImageCompress.compressAndGetFile(
       file.absolute.path,
       outPath,
-      minWidth: 100,
-      minHeight: 100,
+      minWidth: 80,
+      minHeight: 80,
       quality: 50,
       format: format,
     );
