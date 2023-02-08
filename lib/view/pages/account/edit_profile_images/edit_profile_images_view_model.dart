@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:fortune_client/data/repository/profile/profile_repository.dart';
 import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/view/pages/account/edit_profile_images/edit_profile_images_state.dart';
-import 'package:fortune_client/view/pages/account/edit_profile_images/edit_profile_images_type.dart';
+import 'package:fortune_client/data/model/enum/profile_images_type.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final editProfilePictureViewModelProvider = StateNotifierProvider<
@@ -21,7 +21,7 @@ class EditProfileImagesViewModel
     state = await AsyncValue.guard(() async {
       final result = _profileRepository.getCache();
       return EditProfileImagesState(
-        EditProfileImagesType.values.map((profileImageType) {
+        ProfileImagesType.values.map((profileImageType) {
           return EditProfileImagesStateItem(
             type: profileImageType,
             url: profileImageType.imageURL(result),
@@ -31,8 +31,12 @@ class EditProfileImagesViewModel
     });
   }
 
+  update() {
+    _profileRepository.updateProfileImages();
+  }
+
   /// 画像削除
-  deleteImage(EditProfileImagesType type) {
+  deleteImage(ProfileImagesType type) {
     final data = state.value!;
     state = AsyncData(
       data.copyWith(
@@ -49,7 +53,7 @@ class EditProfileImagesViewModel
   }
 
   /// 画像編集
-  updateImage(EditProfileImagesType type, File file) {
+  updateImage(ProfileImagesType type, File file) {
     final data = state.value!;
     state = AsyncData(
       data.copyWith(

@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:fortune_client/view/pages/account/edit_profile_images/edit_profile_images_type.dart';
+import 'package:fortune_client/data/model/enum/profile_images_type.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'edit_profile_images_state.freezed.dart';
@@ -12,7 +12,8 @@ class EditProfileImagesState with _$EditProfileImagesState {
     List<EditProfileImagesStateItem> images,
   ) = _EditProfileImagesState;
 
-  EditProfileImagesStateItem image(EditProfileImagesType type) {
+  /// タイプに応じた画像データを取得
+  EditProfileImagesStateItem image(ProfileImagesType type) {
     return images[images.indexWhere((element) => element.type == type)];
   }
 }
@@ -21,7 +22,7 @@ class EditProfileImagesState with _$EditProfileImagesState {
 class EditProfileImagesStateItem with _$EditProfileImagesStateItem {
   const EditProfileImagesStateItem._();
   const factory EditProfileImagesStateItem({
-    required EditProfileImagesType type,
+    required ProfileImagesType type,
 
     /// 編集したか
     @Default(false) bool isEdited,

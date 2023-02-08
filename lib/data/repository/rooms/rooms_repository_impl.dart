@@ -6,7 +6,6 @@ import 'package:fortune_client/data/model/enum/age_group.dart';
 import 'package:fortune_client/data/model/rooms/get_v1_rooms/get_v1_rooms.dart';
 import 'package:fortune_client/data/model/rooms/get_v1_rooms_guest/get_v1_rooms_guest.dart';
 import 'package:fortune_client/data/model/rooms/get_v1_rooms_host/get_v1_rooms_host.dart';
-import 'package:fortune_client/data/model/rooms/get_v1_rooms_search/get_v1_rooms_search.dart';
 import 'package:fortune_client/data/model/rooms/post_v1_rooms/post_v1_rooms.dart';
 import 'package:fortune_client/data/repository/rooms/rooms_repository.dart';
 import 'package:fortune_client/util/converter/datetime_converter.dart';

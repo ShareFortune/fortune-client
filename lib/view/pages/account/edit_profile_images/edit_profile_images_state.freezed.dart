@@ -148,7 +148,7 @@ abstract class _EditProfileImagesState extends EditProfileImagesState {
 
 /// @nodoc
 mixin _$EditProfileImagesStateItem {
-  EditProfileImagesType get type => throw _privateConstructorUsedError;
+  ProfileImagesType get type => throw _privateConstructorUsedError;
 
   /// 編集したか
   bool get isEdited => throw _privateConstructorUsedError;
@@ -175,7 +175,7 @@ abstract class $EditProfileImagesStateItemCopyWith<$Res> {
           EditProfileImagesStateItem>;
   @useResult
   $Res call(
-      {EditProfileImagesType type,
+      {ProfileImagesType type,
       bool isEdited,
       bool isDeleted,
       String? url,
@@ -206,7 +206,7 @@ class _$EditProfileImagesStateItemCopyWithImpl<$Res,
       type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
-              as EditProfileImagesType,
+              as ProfileImagesType,
       isEdited: null == isEdited
           ? _value.isEdited
           : isEdited // ignore: cast_nullable_to_non_nullable
@@ -237,7 +237,7 @@ abstract class _$$_EditProfileImagesStateItemCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {EditProfileImagesType type,
+      {ProfileImagesType type,
       bool isEdited,
       bool isDeleted,
       String? url,
@@ -267,7 +267,7 @@ class __$$_EditProfileImagesStateItemCopyWithImpl<$Res>
       type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
-              as EditProfileImagesType,
+              as ProfileImagesType,
       isEdited: null == isEdited
           ? _value.isEdited
           : isEdited // ignore: cast_nullable_to_non_nullable
@@ -300,7 +300,7 @@ class _$_EditProfileImagesStateItem extends _EditProfileImagesStateItem {
       : super._();
 
   @override
-  final EditProfileImagesType type;
+  final ProfileImagesType type;
 
   /// 編集したか
   @override
@@ -354,7 +354,7 @@ class _$_EditProfileImagesStateItem extends _EditProfileImagesStateItem {
 
 abstract class _EditProfileImagesStateItem extends EditProfileImagesStateItem {
   const factory _EditProfileImagesStateItem(
-      {required final EditProfileImagesType type,
+      {required final ProfileImagesType type,
       final bool isEdited,
       final bool isDeleted,
       final String? url,
@@ -362,7 +362,7 @@ abstract class _EditProfileImagesStateItem extends EditProfileImagesStateItem {
   const _EditProfileImagesStateItem._() : super._();
 
   @override
-  EditProfileImagesType get type;
+  ProfileImagesType get type;
   @override
 
   /// 編集したか
