@@ -24,7 +24,7 @@ class EditProfileImagesViewModel
         ProfileImagesType.values.map((profileImageType) {
           return EditProfileImagesStateItem(
             type: profileImageType,
-            url: profileImageType.imageURL(result),
+            imageUrl: profileImageType.imageURL(result),
           );
         }).toList(),
       );

@@ -24,14 +24,11 @@ class EditProfileImagesStateItem with _$EditProfileImagesStateItem {
   const factory EditProfileImagesStateItem({
     required ProfileImagesType type,
 
-    /// 編集したか
-    @Default(false) bool isEdited,
-
     /// 削除したか
     @Default(false) bool isDeleted,
 
     /// 更新前
-    String? url,
+    String? imageUrl,
 
     /// 更新後
     File? updateFile,
@@ -45,7 +42,7 @@ class EditProfileImagesStateItem with _$EditProfileImagesStateItem {
     }
 
     /// URLまたは更新画像が存在する場合はどちらかを表示する
-    if (url != null || updateFile != null) {
+    if (imageUrl != null || updateFile != null) {
       return true;
     }
 

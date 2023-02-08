@@ -4,6 +4,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fortune_client/gen/assets.gen.dart';
+import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/l10n/locale_keys.g.dart';
 import 'package:fortune_client/util/logger/logger.dart';
 import 'package:fortune_client/view/pages/account/edit_profile_images/edit_profile_images_state.dart';
@@ -35,13 +36,20 @@ class EditImageController extends StatelessWidget {
     return InkWell(
       /// プロフィール写真の選択
       onTap: onChange != null
-          ? () => showPhotoActionSheet(context, (file) async {
+          ? () => PhotoActionSheet.show(context, (file) async {
                 if (file != null) {
                   logger.i(file.path);
                   onChange!(file);
                 }
               })
           : null,
+      // ? () => showPhotoActionSheet(context, (file) async {
+      //       if (file != null) {
+      //         logger.i(file.path);
+      //         onChange!(file);
+      //       }
+      //     })
+      // : null,
       child: _build(),
     );
   }
@@ -68,14 +76,14 @@ class EditImageController extends StatelessWidget {
     }
 
     /// URLを表示
-    if (data.url != null) {
+    if (data.imageUrl != null) {
       return SizedBox(
         width: width,
         height: height,
         child: ClipRRect(
           borderRadius: borderRadius ?? BorderRadius.zero,
           child: Image.network(
-            data.url!,
+            data.imageUrl!,
             fit: BoxFit.cover,
           ),
         ),

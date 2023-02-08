@@ -24,7 +24,7 @@ class ProfileRepositoryImpl implements ProfileRepository {
   final SharedPreferencesDataSource _shared;
 
   /// 画像変換
-  final toBase64 = ImageConverter.convertImageForBase64;
+  final toBase64 = ImageConverter.convertToBase64;
 
   ProfileRepositoryImpl(
     this._profileDataSource,

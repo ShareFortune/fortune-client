@@ -20,6 +20,8 @@ import 'package:fortune_client/data/repository/debug/debug_repository.dart';
 import 'package:fortune_client/data/repository/debug/debug_repository_impl.dart';
 import 'package:fortune_client/data/repository/favorites/favorites_repository.dart';
 import 'package:fortune_client/data/repository/favorites/favorites_repository_impl.dart';
+import 'package:fortune_client/data/repository/image_picker/image_picker_repository.dart';
+import 'package:fortune_client/data/repository/image_picker/image_picker_repository_impl.dart';
 import 'package:fortune_client/data/repository/join_requests/join_requests_repository.dart';
 import 'package:fortune_client/data/repository/join_requests/join_requests_repository_impl.dart';
 import 'package:fortune_client/data/repository/message/message_repository.dart';
@@ -111,6 +113,9 @@ Future<void> initDependencies(bool isRelease) async {
   );
   sl.registerLazySingleton<FavoritesRepository>(
     () => FavoritesRepositoryImpl(sl()),
+  );
+  sl.registerLazySingleton<ImagePickerRepository>(
+    () => ImagePickerRepositoryImpl(),
   );
 
   /// DataSource
