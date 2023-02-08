@@ -143,7 +143,7 @@ class EditProfileImagesPage extends HookConsumerWidget {
                       viewModel.updateImage(imageType, file);
                     },
                     onClear: () {
-                      viewModel.deleteImage(imageType);
+                      viewModel.updateImage(imageType, null);
                     },
                   );
                 }).toList(),

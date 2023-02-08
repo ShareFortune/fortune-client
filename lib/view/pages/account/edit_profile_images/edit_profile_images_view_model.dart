@@ -17,9 +17,7 @@ class EditProfileImagesViewModel
 
   final ProfileRepository _profileRepository;
 
-  Future<void> initialize() => fetch();
-
-  fetch() async {
+  Future<void> initialize() async {
     state = await AsyncValue.guard(() async {
       final result = _profileRepository.getCache();
       return EditProfileImagesState(
@@ -33,46 +31,28 @@ class EditProfileImagesViewModel
     });
   }
 
-  update() {
-    _profileRepository.updateProfileImages();
-  }
-
-  /// 画像削除
-  deleteImage(ProfileImagesType type) {
-    _profileRepository.saveProfileImageByType(type, null);
-    _profileRepository.updateProfileImages().whenComplete(() => fetch());
-
-    // final data = state.value!;
-    // state = AsyncData(
-    //   data.copyWith(
-    //     images: data.images.map((image) {
-    //       if (image.type != type) return image;
-    //       return image.copyWith(
-    //         isDeleted: true,
-    //         isEdited: true,
-    //         updateFile: null,
-    //       );
-    //     }).toList(),
-    //   ),
-    // );
+  /// ステート書き換え
+  updateImageLocally(ProfileImagesType type, File? file) {
+    final data = state.value!;
+    state = AsyncData(
+      data.copyWith(
+        images: data.images.map((image) {
+          if (image.type != type) return image;
+          return image.copyWith(
+            isDeleted: file == null,
+            updateFile: file,
+          );
+        }).toList(),
+      ),
+    );
   }
 
   /// 画像編集
-  updateImage(ProfileImagesType type, File file) {
+  /// [File]nullの場合は削除
+  /// [ProfileImagesType]に応じて保存
+  updateImage(ProfileImagesType type, File? file) {
+    updateImageLocally(type, file);
     _profileRepository.saveProfileImageByType(type, file);
-    _profileRepository.updateProfileImages().whenComplete(() => fetch());
-    // final data = state.value!;
-    // state = AsyncData(
-    //   data.copyWith(
-    //     images: data.images.map((image) {
-    //       if (image.type != type) return image;
-    //       return image.copyWith(
-    //         isEdited: true,
-    //         isDeleted: false,
-    //         updateFile: file,
-    //       );
-    //     }).toList(),
-    //   ),
-    // );
+    _profileRepository.updateProfileImages();
   }
 }

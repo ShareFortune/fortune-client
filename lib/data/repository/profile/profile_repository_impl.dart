@@ -39,7 +39,6 @@ class ProfileRepositoryImpl implements ProfileRepository {
   @override
   Future<GetV1ProfilesResponse> get() async {
     try {
-      logger.i("[$runtimeType] get");
       final profile = await _profileDataSource.get();
 
       /// ローカル保存
@@ -76,8 +75,6 @@ class ProfileRepositoryImpl implements ProfileRepository {
     File? sixthImage,
   }) async {
     try {
-      logger.i("[$runtimeType] create");
-
       /// 入力画像を保存
       await saveProfileImages(
         mainImage: mainImage,
@@ -126,7 +123,6 @@ class ProfileRepositoryImpl implements ProfileRepository {
   ///
   Future<void> _update(PatchV1ProfilesIdRequest request) async {
     try {
-      logger.i("[$runtimeType] update");
       await _profileDataSource.update(
         _shared.getString(AppPrefKey.profileId.keyString)!,
         request.toJson(),
