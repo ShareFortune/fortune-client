@@ -2,7 +2,6 @@
 
 import 'package:fortune_client/data/model/base/address/address.dart';
 import 'package:fortune_client/data/model/base/fortune_user/fortune_user.dart';
-import 'package:fortune_client/data/model/base/members_num/members_num.dart';
 import 'package:fortune_client/data/model/base/tag/tag.dart';
 import 'package:fortune_client/data/model/enum/join_request_status.dart';
 import 'package:fortune_client/data/model/enum/room_status.dart';

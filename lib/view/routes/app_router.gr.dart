@@ -27,7 +27,7 @@ import 'package:fortune_client/view/pages/account/create/entry_profile_icon_imag
     as _i23;
 import 'package:fortune_client/view/pages/account/create/entry_profile_sub_image/entry_profile_sub_image_page.dart'
     as _i24;
-import 'package:fortune_client/view/pages/account/edit_profile_picture/edit_profile_picture_page.dart'
+import 'package:fortune_client/view/pages/account/edit_profile_images/edit_profile_images_page.dart'
     as _i27;
 import 'package:fortune_client/view/pages/account/my_page/my_page.dart' as _i10;
 import 'package:fortune_client/view/pages/account/update/profile_update_page.dart'
@@ -334,7 +334,7 @@ class AppRouter extends _i28.RootStackRouter {
     EditProfilePicture.name: (routeData) {
       return _i28.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i27.EditProfilePicturePage(),
+        child: const _i27.EditProfileImagesPage(),
       );
     },
   };
@@ -509,7 +509,7 @@ class AppRouter extends _i28.RootStackRouter {
             ),
             _i28.RouteConfig(
               EditProfilePicture.name,
-              path: 'edit-profile-picture-page',
+              path: 'edit-profile-images-page',
               parent: BottomSheetRouter.name,
             ),
           ],
@@ -1148,12 +1148,12 @@ class GuestRoomActionsArgs {
 }
 
 /// generated route for
-/// [_i27.EditProfilePicturePage]
+/// [_i27.EditProfileImagesPage]
 class EditProfilePicture extends _i28.PageRouteInfo<void> {
   const EditProfilePicture()
       : super(
           EditProfilePicture.name,
-          path: 'edit-profile-picture-page',
+          path: 'edit-profile-images-page',
         );
 
   static const String name = 'EditProfilePicture';
