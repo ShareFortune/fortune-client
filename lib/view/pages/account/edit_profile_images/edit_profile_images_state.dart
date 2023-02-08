@@ -18,12 +18,13 @@ class EditProfileImagesState with _$EditProfileImagesState {
 
 @freezed
 class EditProfileImagesStateItem with _$EditProfileImagesStateItem {
+  const EditProfileImagesStateItem._();
   const factory EditProfileImagesStateItem({
-    /// 削除したか
-    @Default(false) bool isDeleted,
-
     /// 編集したか
     @Default(false) bool isEdited,
+
+    /// 削除したか
+    @Default(false) bool isDeleted,
 
     /// 更新前
     String? url,
@@ -31,4 +32,20 @@ class EditProfileImagesStateItem with _$EditProfileImagesStateItem {
     /// 更新後
     File? updateFile,
   }) = _EditProfileImagesStateItem;
+
+  /// 画像を表示するか
+  bool isDisplay() {
+    /// 削除した場合は表示しない
+    if (isDeleted) {
+      return false;
+    }
+
+    /// URLまたは更新画像が存在する場合はどちらかを表示する
+    if (url != null || updateFile != null) {
+      return true;
+    }
+
+    /// 表示画像が存在しない
+    return false;
+  }
 }

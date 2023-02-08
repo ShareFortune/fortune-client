@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/l10n/locale_keys.g.dart';
 import 'package:fortune_client/view/pages/account/edit_profile_images/components/edit_image_container.dart';
+import 'package:fortune_client/view/pages/account/edit_profile_images/components/edit_image_controller.dart';
 import 'package:fortune_client/view/pages/account/edit_profile_images/edit_profile_images_state.dart';
 import 'package:fortune_client/view/pages/account/edit_profile_images/edit_profile_images_view_model.dart';
 import 'package:fortune_client/view/routes/app_router.dart';
@@ -13,7 +14,6 @@ import 'package:fortune_client/view/widgets/other/loading_widget.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:speech_bubble/speech_bubble.dart';
-import 'package:dotted_border/dotted_border.dart';
 
 class EditProfileImagesPage extends HookConsumerWidget {
   const EditProfileImagesPage({super.key});
@@ -37,9 +37,9 @@ class EditProfileImagesPage extends HookConsumerWidget {
         padding: const EdgeInsets.all(20),
         child: Column(
           children: [
-            _editIconContainer(theme, state),
+            _editIconContainer(theme, state, viewModel),
             const Gap(50),
-            _editProfileImagesContainer(theme, state),
+            _editProfileImagesContainer(theme, state, viewModel),
           ],
         ),
       ),
@@ -50,6 +50,7 @@ class EditProfileImagesPage extends HookConsumerWidget {
   _editIconContainer(
     AppTheme theme,
     AsyncValue<EditProfileImagesState> state,
+    EditProfileImagesViewModel viewModel,
   ) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -64,13 +65,15 @@ class EditProfileImagesPage extends HookConsumerWidget {
             state.maybeWhen(
               orElse: () => const CircleAvatar(radius: 40),
               data: (data) {
-                return EditImageContainer(
+                return EditImageController(
                   theme: theme,
                   width: 80,
                   height: 80,
                   borderRadius: BorderRadius.circular(50),
                   data: data.mainImage,
-                  onChange: (p0) {},
+                  onChange: (file) {
+                    viewModel.updateMainImage(file);
+                  },
                 );
               },
             ),
@@ -95,6 +98,7 @@ class EditProfileImagesPage extends HookConsumerWidget {
   _editProfileImagesContainer(
     AppTheme theme,
     AsyncValue<EditProfileImagesState> state,
+    EditProfileImagesViewModel viewModel,
   ) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -128,37 +132,42 @@ class EditProfileImagesPage extends HookConsumerWidget {
                 spacing: 15,
                 runSpacing: 15,
                 children: [
-                  profileImageInputField(theme, data.secondImage),
-                  profileImageInputField(theme, data.thirdImage),
-                  profileImageInputField(theme, data.fourthImage),
-                  profileImageInputField(theme, data.fifthImage),
-                  profileImageInputField(theme, data.sixthImage),
+                  EditImageContainer(
+                    theme: theme,
+                    data: data.secondImage,
+                    onChange: viewModel.updateSecondImage,
+                    onClear: () {},
+                  ),
+                  EditImageContainer(
+                    theme: theme,
+                    data: data.thirdImage,
+                    onChange: viewModel.updateThirdImage,
+                    onClear: () {},
+                  ),
+                  EditImageContainer(
+                    theme: theme,
+                    data: data.fourthImage,
+                    onChange: viewModel.updateFourthImage,
+                    onClear: () {},
+                  ),
+                  EditImageContainer(
+                    theme: theme,
+                    data: data.fifthImage,
+                    onChange: viewModel.updateFifthImage,
+                    onClear: () {},
+                  ),
+                  EditImageContainer(
+                    theme: theme,
+                    data: data.sixthImage,
+                    onChange: viewModel.updateSixthImage,
+                    onClear: () {},
+                  ),
                 ],
               ),
             );
           },
         ),
       ],
-    );
-  }
-
-  /// プロフィール画像入力フィールド
-  profileImageInputField(AppTheme theme, EditProfileImagesStateItem data) {
-    return InkWell(
-      onTap: () {},
-      child: DottedBorder(
-        color: theme.appColors.border1,
-        borderType: BorderType.RRect,
-        radius: const Radius.circular(10),
-        child: EditImageContainer(
-          theme: theme,
-          width: 110,
-          height: 110,
-          borderRadius: BorderRadius.circular(10),
-          data: data,
-          onChange: (p0) {},
-        ),
-      ),
     );
   }
 }
