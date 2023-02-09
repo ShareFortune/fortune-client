@@ -198,8 +198,8 @@ class ProfileRepositoryImpl implements ProfileRepository {
   }
 
   /// プロおフィール画像をローカル保存
-  _saveImageLocally(String key, File? file) async {
-    if (file != null) _shared.setString(key, await toBase64(file));
+  Future<void> _saveImageLocally(String key, File? file) async {
+    _shared.setString(key, file != null ? await toBase64(file) : "");
   }
 
   @override
@@ -222,22 +222,29 @@ class ProfileRepositoryImpl implements ProfileRepository {
   @override
   ProfilesFiles getProfileImages() {
     return ProfilesFiles(
-      mainImage: _shared.getString(ProfileImagesType.mainImage.keyString)!,
-      secondImage: _shared.getString(ProfileImagesType.secondImage.keyString),
-      thirdImage: _shared.getString(ProfileImagesType.thirdImage.keyString),
-      fourthImage: _shared.getString(ProfileImagesType.fourthImage.keyString),
-      fifthImage: _shared.getString(ProfileImagesType.fifthImage.keyString),
-      sixthImage: _shared.getString(ProfileImagesType.sixthImage.keyString),
+      mainImage: getProfileImageByType(ProfileImagesType.mainImage)!,
+      secondImage: getProfileImageByType(ProfileImagesType.secondImage),
+      thirdImage: getProfileImageByType(ProfileImagesType.thirdImage),
+      fourthImage: getProfileImageByType(ProfileImagesType.fourthImage),
+      fifthImage: getProfileImageByType(ProfileImagesType.fifthImage),
+      sixthImage: getProfileImageByType(ProfileImagesType.sixthImage),
     );
   }
 
   @override
   String? getProfileImageByType(ProfileImagesType type) {
-    return _shared.getString(type.keyString);
+    final data = _shared.getString(type.keyString);
+    if (data == null || data.isEmpty) {
+      return null;
+    }
+    return data;
   }
 
   @override
-  saveProfileImageByType(ProfileImagesType type, File? file) async {
-    _saveImageLocally(type.keyString, file);
+  Future<void> saveProfileImageByType(
+    ProfileImagesType type,
+    File? file,
+  ) async {
+    await _saveImageLocally(type.keyString, file);
   }
 }

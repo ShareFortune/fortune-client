@@ -65,8 +65,9 @@ abstract class ProfileRepository {
   ProfilesFiles getProfileImages();
 
   /// [ProfileImagesType]に応じて画像を取得
+  /// 文字列が存在しない場合はnullを返す
   String? getProfileImageByType(ProfileImagesType type);
 
   /// [ProfileImagesType]に応じて画像を保存
-  saveProfileImageByType(ProfileImagesType type, File? file);
+  Future<void> saveProfileImageByType(ProfileImagesType type, File? file);
 }

@@ -258,8 +258,11 @@
         }
     },
     "camera_or_photo": {
-        "menuCamera": "写真を撮る",
-        "menuPhoto": "写真を選択",
+        "menu": {
+            "camera": "写真を撮る",
+            "photo": "写真を選択",
+            "delete": "写真を削除"
+        },
         "btn": {
             "cancel": "キャンセル"
         }

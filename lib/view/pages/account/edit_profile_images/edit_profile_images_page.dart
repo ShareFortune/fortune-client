@@ -139,12 +139,10 @@ class EditProfileImagesPage extends HookConsumerWidget {
                   return EditImageContainer(
                     theme: theme,
                     data: data.image(imageType),
-                    onChange: (file) {
+                    onChange: (file) async {
                       viewModel.updateImage(imageType, file);
                     },
-                    onClear: () {
-                      viewModel.updateImage(imageType, null);
-                    },
+                    onClear: () async => viewModel.updateImage(imageType, null),
                   );
                 }).toList(),
               ),

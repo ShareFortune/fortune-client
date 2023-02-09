@@ -1,10 +1,13 @@
 import 'dart:io';
 
 import 'package:dotted_border/dotted_border.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:fortune_client/l10n/locale_keys.g.dart';
 import 'package:fortune_client/view/pages/account/edit_profile_images/components/edit_image_controller.dart';
 import 'package:fortune_client/view/pages/account/edit_profile_images/edit_profile_images_state.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
+import 'package:fortune_client/view/widgets/bottom_sheet/photo_actions_sheet.dart';
 
 class EditImageContainer extends StatelessWidget {
   const EditImageContainer({
@@ -24,21 +27,27 @@ class EditImageContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       /// 画像削除
-      onTap: () {
-        print("画像を選択しますか？");
+      onTap: () async {
+        final result = await PhotoActionsSheet.deleteConfirmation(
+          theme: theme,
+          context: context,
+          title: LocaleKeys.edit_profile_picture_page_title.tr(),
+        );
+        if (result != null && result) {
+          onClear();
+        }
       },
       child: DottedBorder(
         color: theme.appColors.border1,
         borderType: BorderType.RRect,
         radius: const Radius.circular(10),
         child: EditImageController(
-          theme: theme,
-          width: 110,
-          height: 110,
-          borderRadius: BorderRadius.circular(10),
-          data: data,
-          onChange: data.isDisplay ? null : onChange,
-        ),
+            theme: theme,
+            width: 110,
+            height: 110,
+            borderRadius: BorderRadius.circular(10),
+            data: data,
+            onChange: data.isDisplay ? null : onChange),
       ),
     );
   }
