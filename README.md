@@ -1,16 +1,40 @@
 # fortune_client
+Fortune app
 
-A new Flutter project.
+## アプリの起動方法
 
-## Getting Started
+### debug-debug
+`flutter run --debug`
 
-This project is a starting point for a Flutter application.
+### prod-debug
+`flutter run --debug --flavor prod`
 
-A few resources to get you started if this is your first Flutter project:
+## 多言語対応について
+assets/l10n/ja-JP.jsonに定義
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## 画像について
+assets/imagesに格納
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## その他
+
+### 
+
+1. freezedコードを生成
+`flutter pub run build_runner build --delete-conflicting-outputs`
+`flutter pub run build_runner watch --delete-conflicting-outputs`
+
+2. Firebase CLI
+`dart pub global activate flutterfire_cli`
+
+3. l10nファイル生成
+`flutter pub run easy_localization:generate -S assets/l10n -f keys -O lib/l10n -o locale_keys.g.dart`
+
+
+### リリースファイル生成
+
+1. IOS
+`flutter build ipa --release`   
+
+2. Android
+`flutter build apk --release`
+

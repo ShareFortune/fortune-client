@@ -1,0 +1,34 @@
+{
+    "id": "aaaaaaaaa",
+    "roomName": "若者の集い@渋谷",
+    "applicationDeadline": "2022-09-20",
+    "hostUser": {
+        "id": "aaaaaaaaa",
+        "name": "fortune",
+        "gender": "MAN",
+        "mainImageURL": "https://aaa"
+    },
+    "participants": [
+        {
+            "id": "aaaaaaaaa",
+            "name": "fortune",
+            "gender": "MAN",
+            "mainImageURL": "https://aaa"
+        }
+    ],
+    "address": {
+        "country": "日本",
+        "prefecture": "神奈川県",
+        "city": "横浜市"
+    },
+    "tags": [
+        {
+            "id": "aaaaaaaaa",
+            "tagName": "居酒屋好き"
+        }
+    ],
+    "status": "OPEN",
+    "membersNum": 10,
+    "isHost": false,
+    "isMember": false
+}

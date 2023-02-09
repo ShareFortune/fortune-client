@@ -1,0 +1,28 @@
+{
+    "rooms": [
+        {
+            "roomName": "若者の集い",
+            "participantMainImageURLs": [
+                "https://aaa",
+                "https://aaa"
+            ],
+            "action": 3
+        },
+        {
+            "roomName": "若者の集い",
+            "participantMainImageURLs": [
+                "https://aaa",
+                "https://aaa"
+            ],
+            "action": 5
+        },
+        {
+            "roomName": "ゲーム好き集合",
+            "participantMainImageURLs": [
+                "https://aaa",
+                "https://aaa"
+            ],
+            "action": 0
+        }
+    ]
+}

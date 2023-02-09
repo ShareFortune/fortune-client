@@ -1,0 +1,68 @@
+{
+    "nextToken": "",
+    "rooms": [
+        {
+            "address": {
+                "city": "岩見沢市",
+                "country": "日本",
+                "prefecture": "北海道"
+            },
+            "hostMainImageURL": "https://fortune-s3-bucket.s3.ap-northeast-1.amazonaws.com/userImage/20221027/709a82d0-b2c5-4332-b46e-65bd19585f1f.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQB3D6IMBEFXWBFW7%2F20221205%2Fap-northeast-1%2Fs3%2Faws4_request&X-Amz-Date=20221205T123835Z&X-Amz-Expires=900&X-Amz-SignedHeaders=host&X-Amz-Signature=c58309a36793d4d9203a46d3e213a179b379d32eacf929596b680d816bd8f82a",
+            "id": "df08f3f8-1f32-477d-947c-4bc8b6ae4f58",
+            "isFavorite": false,
+            "membersNum": {
+                "maxMenNum": 3,
+                "maxWomenNum": 3,
+                "menNum": 1,
+                "womenNum": 0
+            },
+            "participantMainImageURLs": [
+                "",
+                ""
+            ],
+            "roomName": "渋谷で飲み会しませんか？"
+        },
+        {
+            "address": {
+                "city": "岩見沢市",
+                "country": "日本",
+                "prefecture": "北海道"
+            },
+            "hostMainImageURL": "https://fortune-s3-bucket.s3.ap-northeast-1.amazonaws.com/userImage/20221027/709a82d0-b2c5-4332-b46e-65bd19585f1f.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQB3D6IMBEFXWBFW7%2F20221205%2Fap-northeast-1%2Fs3%2Faws4_request&X-Amz-Date=20221205T123835Z&X-Amz-Expires=900&X-Amz-SignedHeaders=host&X-Amz-Signature=c58309a36793d4d9203a46d3e213a179b379d32eacf929596b680d816bd8f82a",
+            "id": "df08f3f8-1f32-477d-947c-4bc8b6ae4f58",
+            "isFavorite": false,
+            "membersNum": {
+                "maxMenNum": 3,
+                "maxWomenNum": 3,
+                "menNum": 1,
+                "womenNum": 0
+            },
+            "participantMainImageURLs": [
+                "",
+                ""
+            ],
+            "roomName": "渋谷で飲み会しませんか？"
+        },
+        {
+            "address": {
+                "city": "岩見沢市",
+                "country": "日本",
+                "prefecture": "北海道"
+            },
+            "hostMainImageURL": "https://fortune-s3-bucket.s3.ap-northeast-1.amazonaws.com/userImage/20221027/709a82d0-b2c5-4332-b46e-65bd19585f1f.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQB3D6IMBEFXWBFW7%2F20221205%2Fap-northeast-1%2Fs3%2Faws4_request&X-Amz-Date=20221205T123835Z&X-Amz-Expires=900&X-Amz-SignedHeaders=host&X-Amz-Signature=c58309a36793d4d9203a46d3e213a179b379d32eacf929596b680d816bd8f82a",
+            "id": "df08f3f8-1f32-477d-947c-4bc8b6ae4f58",
+            "isFavorite": false,
+            "membersNum": {
+                "maxMenNum": 3,
+                "maxWomenNum": 3,
+                "menNum": 1,
+                "womenNum": 0
+            },
+            "participantMainImageURLs": [
+                "",
+                ""
+            ],
+            "roomName": "渋谷で飲み会しませんか？"
+        }
+    ]
+}
