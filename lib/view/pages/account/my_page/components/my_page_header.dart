@@ -7,7 +7,7 @@ import 'package:fortune_client/l10n/locale_keys.g.dart';
 import 'package:fortune_client/util/logger/logger.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
-import 'package:fortune_client/view/widgets/bottom_sheet/photo_action_sheet.dart';
+import 'package:fortune_client/view/widgets/bottom_sheet/photo_actions_sheet.dart';
 import 'package:gap/gap.dart';
 
 class MyPageHeader extends StatelessWidget {

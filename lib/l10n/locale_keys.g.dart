@@ -196,8 +196,10 @@ abstract class  LocaleKeys {
   static const data_profile_cigaretteFrequency = 'data.profile.cigaretteFrequency';
   static const data_profile = 'data.profile';
   static const data = 'data';
-  static const camera_or_photo_menuCamera = 'camera_or_photo.menuCamera';
-  static const camera_or_photo_menuPhoto = 'camera_or_photo.menuPhoto';
+  static const camera_or_photo_menu_camera = 'camera_or_photo.menu.camera';
+  static const camera_or_photo_menu_photo = 'camera_or_photo.menu.photo';
+  static const camera_or_photo_menu_delete = 'camera_or_photo.menu.delete';
+  static const camera_or_photo_menu = 'camera_or_photo.menu';
   static const camera_or_photo_btn_cancel = 'camera_or_photo.btn.cancel';
   static const camera_or_photo_btn = 'camera_or_photo.btn';
   static const camera_or_photo = 'camera_or_photo';

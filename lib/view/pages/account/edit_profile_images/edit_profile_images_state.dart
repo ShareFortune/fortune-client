@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:fortune_client/view/pages/account/edit_profile_images/edit_profile_images_type.dart';
+import 'package:fortune_client/data/model/enum/profile_images_type.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'edit_profile_images_state.freezed.dart';
@@ -12,7 +12,8 @@ class EditProfileImagesState with _$EditProfileImagesState {
     List<EditProfileImagesStateItem> images,
   ) = _EditProfileImagesState;
 
-  EditProfileImagesStateItem image(EditProfileImagesType type) {
+  /// タイプに応じた画像データを取得
+  EditProfileImagesStateItem image(ProfileImagesType type) {
     return images[images.indexWhere((element) => element.type == type)];
   }
 }
@@ -21,16 +22,13 @@ class EditProfileImagesState with _$EditProfileImagesState {
 class EditProfileImagesStateItem with _$EditProfileImagesStateItem {
   const EditProfileImagesStateItem._();
   const factory EditProfileImagesStateItem({
-    required EditProfileImagesType type,
-
-    /// 編集したか
-    @Default(false) bool isEdited,
+    required ProfileImagesType type,
 
     /// 削除したか
     @Default(false) bool isDeleted,
 
     /// 更新前
-    String? url,
+    String? imageUrl,
 
     /// 更新後
     File? updateFile,
@@ -44,7 +42,7 @@ class EditProfileImagesStateItem with _$EditProfileImagesStateItem {
     }
 
     /// URLまたは更新画像が存在する場合はどちらかを表示する
-    if (url != null || updateFile != null) {
+    if (imageUrl != null || updateFile != null) {
       return true;
     }
 

@@ -5,7 +5,7 @@ import 'package:fortune_client/l10n/locale_keys.g.dart';
 import 'package:fortune_client/view/pages/account/edit_profile_images/components/edit_image_container.dart';
 import 'package:fortune_client/view/pages/account/edit_profile_images/components/edit_image_controller.dart';
 import 'package:fortune_client/view/pages/account/edit_profile_images/edit_profile_images_state.dart';
-import 'package:fortune_client/view/pages/account/edit_profile_images/edit_profile_images_type.dart';
+import 'package:fortune_client/data/model/enum/profile_images_type.dart';
 import 'package:fortune_client/view/pages/account/edit_profile_images/edit_profile_images_view_model.dart';
 import 'package:fortune_client/view/routes/app_router.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
@@ -71,10 +71,10 @@ class EditProfileImagesPage extends HookConsumerWidget {
                   width: 80,
                   height: 80,
                   borderRadius: BorderRadius.circular(50),
-                  data: data.image(EditProfileImagesType.mainImage),
+                  data: data.image(ProfileImagesType.mainImage),
                   onChange: (file) {
                     viewModel.updateImage(
-                      EditProfileImagesType.mainImage,
+                      ProfileImagesType.mainImage,
                       file,
                     );
                   },
@@ -135,16 +135,14 @@ class EditProfileImagesPage extends HookConsumerWidget {
               child: Wrap(
                 spacing: 15,
                 runSpacing: 15,
-                children: EditProfileImagesTypeEx.subImages.map((imageType) {
+                children: ProfileImagesTypeEx.subImages.map((imageType) {
                   return EditImageContainer(
                     theme: theme,
                     data: data.image(imageType),
-                    onChange: (file) {
+                    onChange: (file) async {
                       viewModel.updateImage(imageType, file);
                     },
-                    onClear: () {
-                      viewModel.deleteImage(imageType);
-                    },
+                    onClear: () async => viewModel.updateImage(imageType, null),
                   );
                 }).toList(),
               ),

@@ -148,16 +148,13 @@ abstract class _EditProfileImagesState extends EditProfileImagesState {
 
 /// @nodoc
 mixin _$EditProfileImagesStateItem {
-  EditProfileImagesType get type => throw _privateConstructorUsedError;
-
-  /// 編集したか
-  bool get isEdited => throw _privateConstructorUsedError;
+  ProfileImagesType get type => throw _privateConstructorUsedError;
 
   /// 削除したか
   bool get isDeleted => throw _privateConstructorUsedError;
 
   /// 更新前
-  String? get url => throw _privateConstructorUsedError;
+  String? get imageUrl => throw _privateConstructorUsedError;
 
   /// 更新後
   File? get updateFile => throw _privateConstructorUsedError;
@@ -175,10 +172,9 @@ abstract class $EditProfileImagesStateItemCopyWith<$Res> {
           EditProfileImagesStateItem>;
   @useResult
   $Res call(
-      {EditProfileImagesType type,
-      bool isEdited,
+      {ProfileImagesType type,
       bool isDeleted,
-      String? url,
+      String? imageUrl,
       File? updateFile});
 }
 
@@ -197,27 +193,22 @@ class _$EditProfileImagesStateItemCopyWithImpl<$Res,
   @override
   $Res call({
     Object? type = null,
-    Object? isEdited = null,
     Object? isDeleted = null,
-    Object? url = freezed,
+    Object? imageUrl = freezed,
     Object? updateFile = freezed,
   }) {
     return _then(_value.copyWith(
       type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
-              as EditProfileImagesType,
-      isEdited: null == isEdited
-          ? _value.isEdited
-          : isEdited // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as ProfileImagesType,
       isDeleted: null == isDeleted
           ? _value.isDeleted
           : isDeleted // ignore: cast_nullable_to_non_nullable
               as bool,
-      url: freezed == url
-          ? _value.url
-          : url // ignore: cast_nullable_to_non_nullable
+      imageUrl: freezed == imageUrl
+          ? _value.imageUrl
+          : imageUrl // ignore: cast_nullable_to_non_nullable
               as String?,
       updateFile: freezed == updateFile
           ? _value.updateFile
@@ -237,10 +228,9 @@ abstract class _$$_EditProfileImagesStateItemCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {EditProfileImagesType type,
-      bool isEdited,
+      {ProfileImagesType type,
       bool isDeleted,
-      String? url,
+      String? imageUrl,
       File? updateFile});
 }
 
@@ -258,27 +248,22 @@ class __$$_EditProfileImagesStateItemCopyWithImpl<$Res>
   @override
   $Res call({
     Object? type = null,
-    Object? isEdited = null,
     Object? isDeleted = null,
-    Object? url = freezed,
+    Object? imageUrl = freezed,
     Object? updateFile = freezed,
   }) {
     return _then(_$_EditProfileImagesStateItem(
       type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
-              as EditProfileImagesType,
-      isEdited: null == isEdited
-          ? _value.isEdited
-          : isEdited // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as ProfileImagesType,
       isDeleted: null == isDeleted
           ? _value.isDeleted
           : isDeleted // ignore: cast_nullable_to_non_nullable
               as bool,
-      url: freezed == url
-          ? _value.url
-          : url // ignore: cast_nullable_to_non_nullable
+      imageUrl: freezed == imageUrl
+          ? _value.imageUrl
+          : imageUrl // ignore: cast_nullable_to_non_nullable
               as String?,
       updateFile: freezed == updateFile
           ? _value.updateFile
@@ -293,19 +278,13 @@ class __$$_EditProfileImagesStateItemCopyWithImpl<$Res>
 class _$_EditProfileImagesStateItem extends _EditProfileImagesStateItem {
   const _$_EditProfileImagesStateItem(
       {required this.type,
-      this.isEdited = false,
       this.isDeleted = false,
-      this.url,
+      this.imageUrl,
       this.updateFile})
       : super._();
 
   @override
-  final EditProfileImagesType type;
-
-  /// 編集したか
-  @override
-  @JsonKey()
-  final bool isEdited;
+  final ProfileImagesType type;
 
   /// 削除したか
   @override
@@ -314,7 +293,7 @@ class _$_EditProfileImagesStateItem extends _EditProfileImagesStateItem {
 
   /// 更新前
   @override
-  final String? url;
+  final String? imageUrl;
 
   /// 更新後
   @override
@@ -322,7 +301,7 @@ class _$_EditProfileImagesStateItem extends _EditProfileImagesStateItem {
 
   @override
   String toString() {
-    return 'EditProfileImagesStateItem(type: $type, isEdited: $isEdited, isDeleted: $isDeleted, url: $url, updateFile: $updateFile)';
+    return 'EditProfileImagesStateItem(type: $type, isDeleted: $isDeleted, imageUrl: $imageUrl, updateFile: $updateFile)';
   }
 
   @override
@@ -331,18 +310,17 @@ class _$_EditProfileImagesStateItem extends _EditProfileImagesStateItem {
         (other.runtimeType == runtimeType &&
             other is _$_EditProfileImagesStateItem &&
             (identical(other.type, type) || other.type == type) &&
-            (identical(other.isEdited, isEdited) ||
-                other.isEdited == isEdited) &&
             (identical(other.isDeleted, isDeleted) ||
                 other.isDeleted == isDeleted) &&
-            (identical(other.url, url) || other.url == url) &&
+            (identical(other.imageUrl, imageUrl) ||
+                other.imageUrl == imageUrl) &&
             (identical(other.updateFile, updateFile) ||
                 other.updateFile == updateFile));
   }
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, type, isEdited, isDeleted, url, updateFile);
+      Object.hash(runtimeType, type, isDeleted, imageUrl, updateFile);
 
   @JsonKey(ignore: true)
   @override
@@ -354,19 +332,14 @@ class _$_EditProfileImagesStateItem extends _EditProfileImagesStateItem {
 
 abstract class _EditProfileImagesStateItem extends EditProfileImagesStateItem {
   const factory _EditProfileImagesStateItem(
-      {required final EditProfileImagesType type,
-      final bool isEdited,
+      {required final ProfileImagesType type,
       final bool isDeleted,
-      final String? url,
+      final String? imageUrl,
       final File? updateFile}) = _$_EditProfileImagesStateItem;
   const _EditProfileImagesStateItem._() : super._();
 
   @override
-  EditProfileImagesType get type;
-  @override
-
-  /// 編集したか
-  bool get isEdited;
+  ProfileImagesType get type;
   @override
 
   /// 削除したか
@@ -374,7 +347,7 @@ abstract class _EditProfileImagesStateItem extends EditProfileImagesStateItem {
   @override
 
   /// 更新前
-  String? get url;
+  String? get imageUrl;
   @override
 
   /// 更新後

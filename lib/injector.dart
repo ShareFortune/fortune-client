@@ -37,6 +37,7 @@ import 'package:fortune_client/view/routes/app_router.gr.dart';
 import 'package:fortune_client/view/routes/route_guard.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 final sl = GetIt.instance;
 
@@ -55,7 +56,18 @@ Future<void> initDependencies(bool isRelease) async {
           connectTimeout: 30 * 1000, // 30 seconds
           receiveTimeout: 30 * 1000 // 30 seconds
           ),
-    )..interceptors.add(AppendTokenInterceptor(sl())),
+    )..interceptors.addAll([
+        AppendTokenInterceptor(sl()),
+        PrettyDioLogger(
+          requestHeader: true,
+          requestBody: true,
+          responseBody: true,
+          responseHeader: true,
+          error: true,
+          compact: true,
+          maxWidth: 90,
+        ),
+      ]),
   );
 
   /// Router
