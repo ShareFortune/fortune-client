@@ -47,3 +47,5 @@ app.*.map.json
 lib/gen/firebase_options_dev.dart
 /android/app/google-services.json
 /ios/Runner/GoogleService-info.plist
+
+.fvm/flutter_sdk
