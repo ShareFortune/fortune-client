@@ -49,3 +49,7 @@ lib/gen/firebase_options_dev.dart
 /ios/Runner/GoogleService-info.plist
 
 .fvm/flutter_sdk
+
+# 環境変数
+.env*
+!.env.skel

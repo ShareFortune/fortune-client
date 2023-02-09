@@ -6,10 +6,10 @@ platform :ios do
       ENV['MATCH_KEYCHAIN_NAME'] = 'TempKeychain'
       ENV['MATCH_KEYCHAIN_PASSWORD'] = 'TempKeychainPassword'
       create_keychain(
-	      name: ENV["MATCH_KEYCHAIN_NAME"],
-	      password: ENV["MATCH_KEYCHAIN_PASSWORD"],
-	      timeout: 1800
-	    )
+        name: ENV["MATCH_KEYCHAIN_NAME"],
+        password: ENV["MATCH_KEYCHAIN_PASSWORD"],
+        timeout: 1800
+      )
     end
   end
 
