@@ -1,5 +1,0 @@
-scheme("Runner")
-clean(true)
-export_method("ad-hoc")
-codesigning_identity("Apple Distribution: ")
-output_directory("./build")

@@ -3,6 +3,7 @@ if ENV["PERSONAL_TOKEN"] != nil
 else
     git_url("https://github.com/ShareFortune/fortune-client")
 end
+
 storage_mode("git")
 
 type("adhoc")
