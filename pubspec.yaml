@@ -20,38 +20,37 @@ dependencies:
   google_fonts: ^4.0.3
   sizer: ^2.0.15
   enum_to_string: ^2.0.1
-  fluttertoast: ^8.1.1
   device_preview: ^1.1.0
 
   # util
   json_serializable: ^6.5.4
   flutter_staggered_animations: ^1.1.1
   flutter_chat_ui: ^1.6.5
-  flutter_signin_button: ^2.0.0
   path_provider: ^2.0.11
   bottom_picker: ^2.0.1
   image_picker: ^0.8.6
   package_info_plus: ^3.0.2
   shimmer: ^2.0.0
-  fancy_shimmer_image: ^2.0.2
   flutter_datetime_picker: ^1.5.1
   favorite_button: ^0.0.4
   flutter_expanded_tile: ^0.3.6
-  pull_down_button: ^0.5.1
-  modal_bottom_sheet: ^2.1.2
   gap: ^2.0.1
-  speech_bubble: ^0.0.9
   dotted_border: ^2.0.0+3
+  fluttertoast: ^8.0.9
+  # modal_bottom_sheet: ^2.0.1
+  modal_bottom_sheet:
+    git:
+      url: https://github.com/followthemoney1/modal_bottom_sheet.git
+      ref: main
+      path: modal_bottom_sheet
 
   # camera & album
   file_picker: ^5.2.5
-  cached_network_image: ^3.2.0
-  permission_handler: ^9.2.0
+  permission_handler: ^10.2.0
   flutter_image_compress: ^1.1.0
   flutter_platform_widgets: ^2.2.6
 
   # state management
-  flutter_hooks: ^0.18.5+1
   hooks_riverpod: ^2.1.1
 
   # networking
@@ -66,7 +65,6 @@ dependencies:
 
   # storage
   shared_preferences: ^2.0.15
-  flutter_secure_storage: ^7.0.1
 
   # di
   get_it: ^7.2.0
@@ -86,13 +84,12 @@ dev_dependencies:
   freezed: ^2.2.0
   auto_route_generator: ^5.0.3
   retrofit_generator: ^4.2.0
+  flutter_gen_runner: ^5.2.0
   dependency_validator: any
-  flutter_gen_runner: ^5.1.0+1
 
 flutter_gen:
   output: lib/gen/ # Optional (default: lib/gen/)
   lineLength: 80 # Optional (default: 80)
-
   integrations:
     flutter_svg: true
 

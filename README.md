@@ -38,3 +38,7 @@ assets/imagesに格納
 2. Android
 `flutter build apk --release`
 
+### Git Actions
+
+1. IOS
+`.github/workflows/ios.yml`
