@@ -1,0 +1,14 @@
+{
+    "dart.flutterSdkPath": ".fvm/flutter_sdk",
+    "search.exclude": {
+        "**/.fvm": true
+    },
+    // ファイル監視対象からFVMのファイルを除外します。(任意)
+    "files.watcherExclude": {
+        "**/.fvm": true
+    },
+    "java.configuration.updateBuildConfiguration": "interactive",
+    "yaml.schemas": {
+        "https://json.schemastore.org/github-workflow.json": "file:///Users/makidaisuke/development/Projects/fortune_client/.github/workflows/ios.yml"
+    }
+}
