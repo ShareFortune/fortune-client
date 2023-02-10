@@ -6,10 +6,10 @@ platform :ios do
       ENV['MATCH_KEYCHAIN_NAME'] = 'TempKeychain'
       ENV['MATCH_KEYCHAIN_PASSWORD'] = 'TempKeychainPassword'
       create_keychain(
-        name: ENV["MATCH_KEYCHAIN_NAME"],
-        password: ENV["MATCH_KEYCHAIN_PASSWORD"],
-        timeout: 1800
-      )
+	      name: ENV["MATCH_KEYCHAIN_NAME"],
+	      password: ENV["MATCH_KEYCHAIN_PASSWORD"],
+	      timeout: 1800
+	    )
     end
   end
 
@@ -19,8 +19,8 @@ platform :ios do
     update_code_signing_settings(
       use_automatic_signing: false,
       code_sign_identity: "iPhone Distribution",
-      team_id: ENV["sigh_com.ShareFortune.fortune_adhoc_team-id"],
-      profile_name: ENV["sigh_com.ShareFortune.fortune_adhoc_profile-name"]
+      team_id: ENV["sigh_[Bundle ID]_adhoc_team-id"],
+      profile_name: ENV["sigh_[Bundle ID]_adhoc_profile-name"]
     )
 
     increment_build_number(
