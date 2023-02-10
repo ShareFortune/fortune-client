@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - feature/fix-automatic-distribution
 
 jobs:
   build:
@@ -12,7 +13,7 @@ jobs:
     timeout-minutes: 20
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name:  Translate secrets of base64 into json
         env:

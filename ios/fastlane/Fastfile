@@ -6,10 +6,10 @@ platform :ios do
       ENV['MATCH_KEYCHAIN_NAME'] = 'TempKeychain'
       ENV['MATCH_KEYCHAIN_PASSWORD'] = 'TempKeychainPassword'
       create_keychain(
-	      name: ENV["MATCH_KEYCHAIN_NAME"],
-	      password: ENV["MATCH_KEYCHAIN_PASSWORD"],
-	      timeout: 1800
-	    )
+        name: ENV["MATCH_KEYCHAIN_NAME"],
+        password: ENV["MATCH_KEYCHAIN_PASSWORD"],
+        timeout: 1800
+      )
     end
   end
 
@@ -19,8 +19,8 @@ platform :ios do
     update_code_signing_settings(
       use_automatic_signing: false,
       code_sign_identity: "iPhone Distribution",
-      team_id: ENV["sigh_[Bundle ID]_adhoc_team-id"],
-      profile_name: ENV["sigh_[Bundle ID]_adhoc_profile-name"]
+      team_id: ENV["sigh_com.ShareFortune.fortune_adhoc_team-id"],
+      profile_name: ENV["sigh_com.ShareFortune.fortune_adhoc_profile-name"]
     )
 
     increment_build_number(
@@ -29,11 +29,21 @@ platform :ios do
 
     gym()
 
+    # canagelog作成
+    sh('git log -n 1 > ./latest_commit_log.txt')
+    sh('cat ./latest_commit_log.txt')
+    # リリースノート
+    changelog = ENV['PWD'] + "/fastlane/latest_commit_log.txt"
+
     firebase_app_distribution(
         app: ENV["FIREBASE_IOS_APP_ID"],
         groups: "pre-tester",
         firebase_cli_token:  ENV["FIREBASE_APP_TOKEN"],
-        release_notes: "ベータ版配信",
+        release_notes_file: changelog,
     )
+
+    # canagelog削除
+    sh("git", "checkout", "../ios")
+    sh("rm", "./latest_commit_log.txt")
   end
 end
