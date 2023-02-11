@@ -44,7 +44,7 @@ class EditRoomViewModel extends StateNotifier<EditRoomState> {
   }
 
   Future<bool> update() async {
-    return false;
+    return true;
   }
 
   navigateToEditedRoom(String roomId) async {
