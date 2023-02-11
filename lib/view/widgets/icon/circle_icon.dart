@@ -55,35 +55,22 @@ Widget circleIcon({
 
 class CircleIconWidget extends StatelessWidget {
   final double radius;
-  final bool isMan;
-  final ImageProvider? image;
+  final String url;
 
   const CircleIconWidget({
     super.key,
-    this.isMan = false,
-    this.image,
     required this.radius,
+    required this.url,
   });
 
   @override
   Widget build(BuildContext context) {
-    const lineWidth = 1;
-    const manColor = Colors.blue;
-    const womanColor = Colors.purple;
-    final Color outsideColor = isMan ? manColor : womanColor;
-
     return CircleAvatar(
       radius: radius,
-      backgroundColor: outsideColor,
-      child: CircleAvatar(
-        radius: radius - lineWidth,
-        backgroundColor: Colors.white,
-        child: CircleAvatar(
-          radius: radius - lineWidth * 2,
-          backgroundImage:
-              images[math.Random().nextInt(images.length)].provider(),
-        ),
-      ),
+      backgroundImage: Image.network(
+        url,
+        fit: BoxFit.cover,
+      ).image,
     );
   }
 }

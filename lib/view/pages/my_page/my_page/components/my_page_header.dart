@@ -1,13 +1,9 @@
-import 'dart:io';
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:fortune_client/data/model/enum/gender.dart';
 import 'package:fortune_client/l10n/locale_keys.g.dart';
-import 'package:fortune_client/util/logger/logger.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
-import 'package:fortune_client/view/widgets/bottom_sheet/photo_actions_sheet.dart';
 import 'package:gap/gap.dart';
 
 class MyPageHeader extends StatelessWidget {
@@ -26,8 +22,7 @@ class MyPageHeader extends StatelessWidget {
   final String name;
   final int age;
   final Gender gender;
-  // final Function(File) onSave;
-  final Function() onSave;
+  final VoidCallback onSave;
 
   @override
   Widget build(BuildContext context) {
@@ -37,15 +32,6 @@ class MyPageHeader extends StatelessWidget {
         children: [
           InkWell(
             onTap: onSave,
-            // onTap: () async {
-            //   /// プロフィール写真の選択
-            //   await showPhotoActionSheet(context, (file) async {
-            //     if (file != null) {
-            //       logger.i(file.path);
-            //       onSave(file);
-            //     }
-            //   });
-            // },
             child: Stack(
               alignment: Alignment.bottomRight,
               children: [
@@ -71,7 +57,7 @@ class MyPageHeader extends StatelessWidget {
               ],
             ),
           ),
-          const Gap(10),
+          const Gap(20),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

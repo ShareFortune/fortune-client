@@ -27,11 +27,6 @@ import 'package:fortune_client/view/pages/account/create/entry_profile_icon_imag
     as _i23;
 import 'package:fortune_client/view/pages/account/create/entry_profile_sub_image/entry_profile_sub_image_page.dart'
     as _i24;
-import 'package:fortune_client/view/pages/account/edit_profile_images/edit_profile_images_page.dart'
-    as _i27;
-import 'package:fortune_client/view/pages/account/my_page/my_page.dart' as _i10;
-import 'package:fortune_client/view/pages/account/update/profile_update_page.dart'
-    as _i11;
 import 'package:fortune_client/view/pages/auth/login/login_page.dart' as _i3;
 import 'package:fortune_client/view/pages/common/bottom_navigation_bar/bottom_navigation_bar.dart'
     as _i1;
@@ -48,6 +43,11 @@ import 'package:fortune_client/view/pages/message/message_room/message_room_page
     as _i4;
 import 'package:fortune_client/view/pages/message/message_room_list/message_room_list_page.dart'
     as _i20;
+import 'package:fortune_client/view/pages/my_page/edit_profile_images/edit_profile_images_page.dart'
+    as _i27;
+import 'package:fortune_client/view/pages/my_page/my_page/my_page.dart' as _i10;
+import 'package:fortune_client/view/pages/my_page/update/profile_update_page.dart'
+    as _i11;
 import 'package:fortune_client/view/pages/profile/profile/profile_page.dart'
     as _i6;
 import 'package:fortune_client/view/pages/request/join_requests_confirmation/join_requests_confirmation_page.dart'
@@ -122,7 +122,7 @@ class AppRouter extends _i28.RootStackRouter {
     ProfileRoute.name: (routeData) {
       final pathParams = routeData.inheritedPathParams;
       final args = routeData.argsAs<ProfileRouteArgs>(
-          orElse: () => ProfileRouteArgs(id: pathParams.getString('id')));
+          orElse: () => ProfileRouteArgs(id: pathParams.optString('id')));
       return _i28.AdaptivePage<dynamic>(
         routeData: routeData,
         child: _i6.ProfilePage(
@@ -607,7 +607,7 @@ class DebugRoute extends _i28.PageRouteInfo<void> {
 class ProfileRoute extends _i28.PageRouteInfo<ProfileRouteArgs> {
   ProfileRoute({
     _i29.Key? key,
-    required String id,
+    required String? id,
   }) : super(
           ProfileRoute.name,
           path: 'profile/:id',
@@ -629,7 +629,7 @@ class ProfileRouteArgs {
 
   final _i29.Key? key;
 
-  final String id;
+  final String? id;
 
   @override
   String toString() {
