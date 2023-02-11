@@ -38,9 +38,18 @@ class EditProfileImagesPage extends HookConsumerWidget {
         padding: const EdgeInsets.all(20),
         child: Column(
           children: [
-            _editIconContainer(theme, state, viewModel),
+            _editIconContainer(
+              theme,
+              state,
+              viewModel,
+            ),
             const Gap(50),
-            _editProfileImagesContainer(theme, state, viewModel),
+            _editProfileImagesContainer(
+              context,
+              theme,
+              state,
+              viewModel,
+            ),
           ],
         ),
       ),
@@ -100,6 +109,7 @@ class EditProfileImagesPage extends HookConsumerWidget {
 
   /// プロフィール画像編集コンテナ
   _editProfileImagesContainer(
+    BuildContext context,
     AppTheme theme,
     AsyncValue<EditProfileImagesState> state,
     EditProfileImagesViewModel viewModel,
@@ -130,15 +140,18 @@ class EditProfileImagesPage extends HookConsumerWidget {
         state.maybeWhen(
           orElse: () => loadingWidget(),
           data: (data) {
+            const spacing = 15.0;
+
             return Container(
               alignment: Alignment.center,
               child: Wrap(
-                spacing: 15,
-                runSpacing: 15,
+                spacing: spacing,
+                runSpacing: spacing,
                 children: ProfileImagesTypeEx.subImages.map((imageType) {
                   return EditImageContainer(
                     theme: theme,
                     data: data.image(imageType),
+                    sideLength: MediaQuery.of(context).size.width - spacing * 3,
                     onChange: (file) async {
                       viewModel.updateImage(imageType, file);
                     },

@@ -14,12 +14,14 @@ class EditImageContainer extends StatelessWidget {
     Key? key,
     required this.theme,
     required this.data,
+    required this.sideLength,
     required this.onChange,
     required this.onClear,
   }) : super(key: key);
 
   final AppTheme theme;
   final EditProfileImagesStateItem data;
+  final double sideLength;
   final Function(File) onChange;
   final VoidCallback onClear;
 

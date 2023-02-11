@@ -32,14 +32,6 @@ class MyPageViewModel extends StateNotifier<MyPageState> {
     );
   }
 
-  /// アイコン編集
-  updateIcon(File file) async {
-    _repository.saveProfileImages(mainImage: file).whenComplete(() {
-      _repository.updateProfileImages();
-      fetch();
-    });
-  }
-
   /// 設定ページへ
   navigateToSettingPage() {
     sl<AppRouter>().push(const SettingsRoute());
