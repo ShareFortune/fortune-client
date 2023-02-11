@@ -43,7 +43,6 @@ platform :ios do
     )
 
     # canagelog削除
-    sh("git", "checkout", "../ios")
     sh("rm", "./latest_commit_log.txt")
   end
 end
