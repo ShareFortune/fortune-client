@@ -16,12 +16,14 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$EditRoomState {
-  String? get title => throw _privateConstructorUsedError;
   List<Tag>? get tags => throw _privateConstructorUsedError;
   AddressWithId? get addressWithId => throw _privateConstructorUsedError;
   int? get membersNum => throw _privateConstructorUsedError;
   AgeGroup? get ageGroup => throw _privateConstructorUsedError;
-  String? get explanation => throw _privateConstructorUsedError;
+  TextEditingController get titleController =>
+      throw _privateConstructorUsedError;
+  TextEditingController get explanationController =>
+      throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $EditRoomStateCopyWith<EditRoomState> get copyWith =>
@@ -35,12 +37,12 @@ abstract class $EditRoomStateCopyWith<$Res> {
       _$EditRoomStateCopyWithImpl<$Res, EditRoomState>;
   @useResult
   $Res call(
-      {String? title,
-      List<Tag>? tags,
+      {List<Tag>? tags,
       AddressWithId? addressWithId,
       int? membersNum,
       AgeGroup? ageGroup,
-      String? explanation});
+      TextEditingController titleController,
+      TextEditingController explanationController});
 
   $AddressWithIdCopyWith<$Res>? get addressWithId;
 }
@@ -58,18 +60,14 @@ class _$EditRoomStateCopyWithImpl<$Res, $Val extends EditRoomState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? title = freezed,
     Object? tags = freezed,
     Object? addressWithId = freezed,
     Object? membersNum = freezed,
     Object? ageGroup = freezed,
-    Object? explanation = freezed,
+    Object? titleController = null,
+    Object? explanationController = null,
   }) {
     return _then(_value.copyWith(
-      title: freezed == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String?,
       tags: freezed == tags
           ? _value.tags
           : tags // ignore: cast_nullable_to_non_nullable
@@ -86,10 +84,14 @@ class _$EditRoomStateCopyWithImpl<$Res, $Val extends EditRoomState>
           ? _value.ageGroup
           : ageGroup // ignore: cast_nullable_to_non_nullable
               as AgeGroup?,
-      explanation: freezed == explanation
-          ? _value.explanation
-          : explanation // ignore: cast_nullable_to_non_nullable
-              as String?,
+      titleController: null == titleController
+          ? _value.titleController
+          : titleController // ignore: cast_nullable_to_non_nullable
+              as TextEditingController,
+      explanationController: null == explanationController
+          ? _value.explanationController
+          : explanationController // ignore: cast_nullable_to_non_nullable
+              as TextEditingController,
     ) as $Val);
   }
 
@@ -115,12 +117,12 @@ abstract class _$$_EditRoomStateCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String? title,
-      List<Tag>? tags,
+      {List<Tag>? tags,
       AddressWithId? addressWithId,
       int? membersNum,
       AgeGroup? ageGroup,
-      String? explanation});
+      TextEditingController titleController,
+      TextEditingController explanationController});
 
   @override
   $AddressWithIdCopyWith<$Res>? get addressWithId;
@@ -137,18 +139,14 @@ class __$$_EditRoomStateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? title = freezed,
     Object? tags = freezed,
     Object? addressWithId = freezed,
     Object? membersNum = freezed,
     Object? ageGroup = freezed,
-    Object? explanation = freezed,
+    Object? titleController = null,
+    Object? explanationController = null,
   }) {
     return _then(_$_EditRoomState(
-      title: freezed == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String?,
       tags: freezed == tags
           ? _value._tags
           : tags // ignore: cast_nullable_to_non_nullable
@@ -165,10 +163,14 @@ class __$$_EditRoomStateCopyWithImpl<$Res>
           ? _value.ageGroup
           : ageGroup // ignore: cast_nullable_to_non_nullable
               as AgeGroup?,
-      explanation: freezed == explanation
-          ? _value.explanation
-          : explanation // ignore: cast_nullable_to_non_nullable
-              as String?,
+      titleController: null == titleController
+          ? _value.titleController
+          : titleController // ignore: cast_nullable_to_non_nullable
+              as TextEditingController,
+      explanationController: null == explanationController
+          ? _value.explanationController
+          : explanationController // ignore: cast_nullable_to_non_nullable
+              as TextEditingController,
     ));
   }
 }
@@ -177,16 +179,14 @@ class __$$_EditRoomStateCopyWithImpl<$Res>
 
 class _$_EditRoomState implements _EditRoomState {
   const _$_EditRoomState(
-      {this.title,
-      final List<Tag>? tags,
+      {final List<Tag>? tags,
       this.addressWithId,
       this.membersNum,
       this.ageGroup,
-      this.explanation})
+      required this.titleController,
+      required this.explanationController})
       : _tags = tags;
 
-  @override
-  final String? title;
   final List<Tag>? _tags;
   @override
   List<Tag>? get tags {
@@ -204,11 +204,13 @@ class _$_EditRoomState implements _EditRoomState {
   @override
   final AgeGroup? ageGroup;
   @override
-  final String? explanation;
+  final TextEditingController titleController;
+  @override
+  final TextEditingController explanationController;
 
   @override
   String toString() {
-    return 'EditRoomState(title: $title, tags: $tags, addressWithId: $addressWithId, membersNum: $membersNum, ageGroup: $ageGroup, explanation: $explanation)';
+    return 'EditRoomState(tags: $tags, addressWithId: $addressWithId, membersNum: $membersNum, ageGroup: $ageGroup, titleController: $titleController, explanationController: $explanationController)';
   }
 
   @override
@@ -216,7 +218,6 @@ class _$_EditRoomState implements _EditRoomState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_EditRoomState &&
-            (identical(other.title, title) || other.title == title) &&
             const DeepCollectionEquality().equals(other._tags, _tags) &&
             (identical(other.addressWithId, addressWithId) ||
                 other.addressWithId == addressWithId) &&
@@ -224,19 +225,21 @@ class _$_EditRoomState implements _EditRoomState {
                 other.membersNum == membersNum) &&
             (identical(other.ageGroup, ageGroup) ||
                 other.ageGroup == ageGroup) &&
-            (identical(other.explanation, explanation) ||
-                other.explanation == explanation));
+            (identical(other.titleController, titleController) ||
+                other.titleController == titleController) &&
+            (identical(other.explanationController, explanationController) ||
+                other.explanationController == explanationController));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      title,
       const DeepCollectionEquality().hash(_tags),
       addressWithId,
       membersNum,
       ageGroup,
-      explanation);
+      titleController,
+      explanationController);
 
   @JsonKey(ignore: true)
   @override
@@ -247,15 +250,14 @@ class _$_EditRoomState implements _EditRoomState {
 
 abstract class _EditRoomState implements EditRoomState {
   const factory _EditRoomState(
-      {final String? title,
-      final List<Tag>? tags,
-      final AddressWithId? addressWithId,
-      final int? membersNum,
-      final AgeGroup? ageGroup,
-      final String? explanation}) = _$_EditRoomState;
+          {final List<Tag>? tags,
+          final AddressWithId? addressWithId,
+          final int? membersNum,
+          final AgeGroup? ageGroup,
+          required final TextEditingController titleController,
+          required final TextEditingController explanationController}) =
+      _$_EditRoomState;
 
-  @override
-  String? get title;
   @override
   List<Tag>? get tags;
   @override
@@ -265,7 +267,9 @@ abstract class _EditRoomState implements EditRoomState {
   @override
   AgeGroup? get ageGroup;
   @override
-  String? get explanation;
+  TextEditingController get titleController;
+  @override
+  TextEditingController get explanationController;
   @override
   @JsonKey(ignore: true)
   _$$_EditRoomStateCopyWith<_$_EditRoomState> get copyWith =>
