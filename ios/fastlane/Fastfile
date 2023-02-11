@@ -43,6 +43,6 @@ platform :ios do
     )
 
     # canagelog削除
-    sh("rm", "./latest_commit_log.txt")
+    sh("rm", changelog)
   end
 end
