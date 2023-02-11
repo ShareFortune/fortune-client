@@ -2,11 +2,11 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/l10n/locale_keys.g.dart';
-import 'package:fortune_client/view/pages/account/edit_profile_images/components/edit_image_container.dart';
-import 'package:fortune_client/view/pages/account/edit_profile_images/components/edit_image_controller.dart';
-import 'package:fortune_client/view/pages/account/edit_profile_images/edit_profile_images_state.dart';
 import 'package:fortune_client/data/model/enum/profile_images_type.dart';
-import 'package:fortune_client/view/pages/account/edit_profile_images/edit_profile_images_view_model.dart';
+import 'package:fortune_client/view/pages/my_page/edit_profile_images/components/edit_image_container.dart';
+import 'package:fortune_client/view/pages/my_page/edit_profile_images/components/edit_image_controller.dart';
+import 'package:fortune_client/view/pages/my_page/edit_profile_images/edit_profile_images_state.dart';
+import 'package:fortune_client/view/pages/my_page/edit_profile_images/edit_profile_images_view_model.dart';
 import 'package:fortune_client/view/routes/app_router.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
@@ -33,14 +33,37 @@ class EditProfileImagesPage extends HookConsumerWidget {
           onPressed: sl<AppRouter>().pop,
           icon: const Icon(Icons.close),
         ),
+        action: [
+          Container(
+            padding: const EdgeInsets.only(right: 10),
+            child: TextButton(
+              onPressed: () {
+                viewModel.navigateToProfile();
+              },
+              child: Text(
+                "プレビュー",
+                style: theme.textTheme.h30.bold(),
+              ),
+            ),
+          ),
+        ],
       ),
       body: Container(
         padding: const EdgeInsets.all(20),
         child: Column(
           children: [
-            _editIconContainer(theme, state, viewModel),
+            _editIconContainer(
+              theme,
+              state,
+              viewModel,
+            ),
             const Gap(50),
-            _editProfileImagesContainer(theme, state, viewModel),
+            _editProfileImagesContainer(
+              context,
+              theme,
+              state,
+              viewModel,
+            ),
           ],
         ),
       ),
@@ -100,6 +123,7 @@ class EditProfileImagesPage extends HookConsumerWidget {
 
   /// プロフィール画像編集コンテナ
   _editProfileImagesContainer(
+    BuildContext context,
     AppTheme theme,
     AsyncValue<EditProfileImagesState> state,
     EditProfileImagesViewModel viewModel,
@@ -130,15 +154,18 @@ class EditProfileImagesPage extends HookConsumerWidget {
         state.maybeWhen(
           orElse: () => loadingWidget(),
           data: (data) {
+            const spacing = 15.0;
+
             return Container(
               alignment: Alignment.center,
               child: Wrap(
-                spacing: 15,
-                runSpacing: 15,
+                spacing: spacing,
+                runSpacing: spacing,
                 children: ProfileImagesTypeEx.subImages.map((imageType) {
                   return EditImageContainer(
                     theme: theme,
                     data: data.image(imageType),
+                    sideLength: MediaQuery.of(context).size.width - spacing * 3,
                     onChange: (file) async {
                       viewModel.updateImage(imageType, file);
                     },

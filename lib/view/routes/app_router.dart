@@ -7,9 +7,6 @@ import 'package:fortune_client/view/pages/account/create/entry_basic_profile/bas
 import 'package:fortune_client/view/pages/account/create/entry_detailed_profile/detailed_profile_entry_page.dart';
 import 'package:fortune_client/view/pages/account/create/entry_profile_icon_image/profile_icon_image_entry_page.dart';
 import 'package:fortune_client/view/pages/account/create/entry_profile_sub_image/entry_profile_sub_image_page.dart';
-import 'package:fortune_client/view/pages/account/edit_profile_images/edit_profile_images_page.dart';
-import 'package:fortune_client/view/pages/account/my_page/my_page.dart';
-import 'package:fortune_client/view/pages/account/update/profile_update_page.dart';
 import 'package:fortune_client/view/pages/common/bottom_sheet/room_actions/guest/guest_room_actions_bottom_sheet.dart';
 import 'package:fortune_client/view/pages/common/bottom_sheet/room_actions/host/host_room_actions_bottom_sheet.dart';
 import 'package:fortune_client/view/pages/auth/login/login_page.dart';
@@ -19,6 +16,9 @@ import 'package:fortune_client/view/pages/common/entry_page/entry_description/en
 import 'package:fortune_client/view/pages/debug/debug_page.dart';
 import 'package:fortune_client/view/pages/message/message_room/message_room_page.dart';
 import 'package:fortune_client/view/pages/message/message_room_list/message_room_list_page.dart';
+import 'package:fortune_client/view/pages/my_page/edit_profile_images/edit_profile_images_page.dart';
+import 'package:fortune_client/view/pages/my_page/my_page/my_page.dart';
+import 'package:fortune_client/view/pages/my_page/update/profile_update_page.dart';
 import 'package:fortune_client/view/pages/profile/profile/profile_page.dart';
 import 'package:fortune_client/view/pages/request/join_requests_confirmation/join_requests_confirmation_page.dart';
 import 'package:fortune_client/view/pages/rooms/action/create/create_room_page.dart';
