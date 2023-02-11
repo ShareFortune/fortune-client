@@ -30,6 +30,7 @@ platform :ios do
     gym()
 
     # canagelog作成
+    sh('pwd')
     sh('git log -n 1 > ./latest_commit_log.txt')
     sh('cat ./latest_commit_log.txt')
     # リリースノート
@@ -43,6 +44,8 @@ platform :ios do
     )
 
     # canagelog削除
-    sh("rm", changelog)
+    sh('pwd')
+    sh("git", "checkout", "../ios")
+    sh("rm", "./latest_commit_log.txt")
   end
 end
