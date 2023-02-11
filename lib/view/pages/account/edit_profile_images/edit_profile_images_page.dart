@@ -14,7 +14,7 @@ import 'package:fortune_client/view/widgets/app_bar/back_app_bar.dart';
 import 'package:fortune_client/view/widgets/other/loading_widget.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:speech_bubble/speech_bubble.dart';
+// import 'package:speech_bubble/speech_bubble.dart';
 
 class EditProfileImagesPage extends HookConsumerWidget {
   const EditProfileImagesPage({super.key});
@@ -82,16 +82,16 @@ class EditProfileImagesPage extends HookConsumerWidget {
               },
             ),
             const Gap(20),
-            SpeechBubble(
-              color: theme.appColors.primary,
-              nipLocation: NipLocation.LEFT,
-              child: Text(
-                LocaleKeys.edit_profile_picture_page_icon_guide.tr(),
-                style: theme.textTheme.h20.bold().paint(
-                      theme.appColors.onPrimary,
-                    ),
-              ),
-            ),
+            // SpeechBubble(
+            //   color: theme.appColors.primary,
+            //   nipLocation: NipLocation.LEFT,
+            //   child: Text(
+            //     LocaleKeys.edit_profile_picture_page_icon_guide.tr(),
+            //     style: theme.textTheme.h20.bold().paint(
+            //           theme.appColors.onPrimary,
+            //         ),
+            //   ),
+            // ),
           ],
         ),
       ],
@@ -112,20 +112,20 @@ class EditProfileImagesPage extends HookConsumerWidget {
           style: theme.textTheme.h40.bold(),
         ),
         const Gap(10),
-        SpeechBubble(
-          width: double.infinity,
-          color: theme.appColors.primary,
-          nipLocation: NipLocation.BOTTOM,
-          child: Container(
-            alignment: Alignment.center,
-            child: Text(
-              LocaleKeys.edit_profile_picture_page_profile_guide.tr(),
-              style: theme.textTheme.h20.bold().paint(
-                    theme.appColors.onPrimary,
-                  ),
-            ),
-          ),
-        ),
+        // SpeechBubble(
+        //   width: double.infinity,
+        //   color: theme.appColors.primary,
+        //   nipLocation: NipLocation.BOTTOM,
+        //   child: Container(
+        //     alignment: Alignment.center,
+        //     child: Text(
+        //       LocaleKeys.edit_profile_picture_page_profile_guide.tr(),
+        //       style: theme.textTheme.h20.bold().paint(
+        //             theme.appColors.onPrimary,
+        //           ),
+        //     ),
+        //   ),
+        // ),
         const Gap(20),
         state.maybeWhen(
           orElse: () => loadingWidget(),

@@ -1,3 +1,5 @@
+// ignore_for_file: implementation_imports
+
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_route/empty_router_widgets.dart';
 import 'package:flutter/material.dart';
@@ -29,7 +31,7 @@ import 'package:fortune_client/view/pages/tags/select/select_tags_page.dart';
 import 'package:fortune_client/view/pages/settings/settings_page.dart';
 import 'package:fortune_client/view/routes/route_guard.dart';
 import 'package:fortune_client/view/routes/route_path.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+import 'package:modal_bottom_sheet/src/bottom_sheet_route.dart' as mbs;
 
 export 'app_router.gr.dart';
 
@@ -179,7 +181,7 @@ Route<T> modalSheetBuilder<T>(
   Widget child,
   CustomPage<T> page,
 ) {
-  return ModalBottomSheetRoute(
+  return mbs.ModalBottomSheetRoute(
     settings: page,
     builder: (context) => child,
     expanded: true,

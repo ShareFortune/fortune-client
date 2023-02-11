@@ -1,0 +1,49 @@
+default_platform(:ios)
+
+platform :ios do
+  before_all do |lane, options|
+    if is_ci
+      ENV['MATCH_KEYCHAIN_NAME'] = 'TempKeychain'
+      ENV['MATCH_KEYCHAIN_PASSWORD'] = 'TempKeychainPassword'
+      create_keychain(
+        name: ENV["MATCH_KEYCHAIN_NAME"],
+        password: ENV["MATCH_KEYCHAIN_PASSWORD"],
+        timeout: 1800
+      )
+    end
+  end
+
+  lane :build do
+    match(readonly: is_ci)
+
+    update_code_signing_settings(
+      use_automatic_signing: false,
+      code_sign_identity: "iPhone Distribution",
+      team_id: ENV["sigh_com.ShareFortune.fortune_adhoc_team-id"],
+      profile_name: ENV["sigh_com.ShareFortune.fortune_adhoc_profile-name"]
+    )
+
+    increment_build_number(
+      build_number: ENV["BUILD_NUMBER"]
+    )
+
+    gym()
+
+    # canagelog作成
+    sh('git log -n 1 > ./latest_commit_log.txt')
+    sh('cat ./latest_commit_log.txt')
+    # リリースノート
+    changelog = ENV['PWD'] + "/fastlane/latest_commit_log.txt"
+
+    firebase_app_distribution(
+        app: ENV["FIREBASE_IOS_APP_ID"],
+        groups: "tester",
+        firebase_cli_token:  ENV["FIREBASE_APP_TOKEN"],
+        release_notes_file: changelog,
+    )
+
+    # canagelog削除
+    sh("git", "checkout", "../ios")
+    sh("rm", "./latest_commit_log.txt")
+  end
+end

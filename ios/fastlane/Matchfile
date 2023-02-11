@@ -1,0 +1,11 @@
+if ENV["PERSONAL_TOKEN"] != nil
+    git_url("https://" + ENV["PERSONAL_TOKEN"] + "@github.com/ShareFortune/fortune-client")
+else
+    git_url("https://github.com/ShareFortune/fortune-client")
+end
+
+storage_mode("git")
+
+type("adhoc")
+
+app_identifier("com.ShareFortune.fortune")
