@@ -4,13 +4,10 @@ import 'package:fortune_client/data/model/enum/age_group.dart';
 import 'package:fortune_client/data/model/rooms/get_v1_rooms_host/get_v1_rooms_host.dart';
 import 'package:fortune_client/l10n/locale_keys.g.dart';
 import 'package:fortune_client/view/pages/rooms/action/components/room_state_input_field.dart';
-import 'package:fortune_client/view/pages/rooms/action/components/room_state_selective_form.dart';
-import 'package:fortune_client/view/pages/rooms/action/components/room_state_transition_tile.dart';
 import 'package:fortune_client/view/pages/rooms/action/edit/edit_room_view_model.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/app_bar/back_app_bar.dart';
 import 'package:fortune_client/view/widgets/dialog/toast.dart';
-import 'package:fortune_client/view/widgets/form_field/base_text_field.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
