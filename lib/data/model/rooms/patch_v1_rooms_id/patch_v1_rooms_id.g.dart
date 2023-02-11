@@ -10,12 +10,15 @@ _$_PatchV1RoomsIdRequest _$$_PatchV1RoomsIdRequestFromJson(
         Map<String, dynamic> json) =>
     _$_PatchV1RoomsIdRequest(
       name: json['name'] as String,
-      gender: json['gender'] as String,
+      gender: const GenderConverter().fromJson(json['gender'] as String),
       addressId: json['addressId'] as int,
       files: ProfilesFiles.fromJson(json['files'] as Map<String, dynamic>),
       height: json['height'] as int?,
-      drinkFrequency: json['drinkFrequency'] as String?,
-      cigaretteFrequency: json['cigaretteFrequency'] as String?,
+      drinkFrequency: _$JsonConverterFromJson<String, DrinkFrequency>(
+          json['drinkFrequency'], const DrinkFrequencyConverter().fromJson),
+      cigaretteFrequency: _$JsonConverterFromJson<String, CigaretteFrequency>(
+          json['cigaretteFrequency'],
+          const CigaretteFrequencyConverter().fromJson),
       selfIntroduction: json['selfIntroduction'] as String?,
       occupationId: json['occupationId'] as int?,
       tagIds:
@@ -26,13 +29,28 @@ Map<String, dynamic> _$$_PatchV1RoomsIdRequestToJson(
         _$_PatchV1RoomsIdRequest instance) =>
     <String, dynamic>{
       'name': instance.name,
-      'gender': instance.gender,
+      'gender': const GenderConverter().toJson(instance.gender),
       'addressId': instance.addressId,
       'files': instance.files,
       'height': instance.height,
-      'drinkFrequency': instance.drinkFrequency,
-      'cigaretteFrequency': instance.cigaretteFrequency,
+      'drinkFrequency': _$JsonConverterToJson<String, DrinkFrequency>(
+          instance.drinkFrequency, const DrinkFrequencyConverter().toJson),
+      'cigaretteFrequency': _$JsonConverterToJson<String, CigaretteFrequency>(
+          instance.cigaretteFrequency,
+          const CigaretteFrequencyConverter().toJson),
       'selfIntroduction': instance.selfIntroduction,
       'occupationId': instance.occupationId,
       'tagIds': instance.tagIds,
     };
+
+Value? _$JsonConverterFromJson<Json, Value>(
+  Object? json,
+  Value? Function(Json json) fromJson,
+) =>
+    json == null ? null : fromJson(json as Json);
+
+Json? _$JsonConverterToJson<Json, Value>(
+  Value? value,
+  Json? Function(Value value) toJson,
+) =>
+    value == null ? null : toJson(value);

@@ -3,7 +3,6 @@ import 'package:fortune_client/data/model/base/room/room.dart';
 import 'package:fortune_client/data/model/rooms/get_v1_rooms/get_v1_rooms.dart';
 import 'package:fortune_client/data/model/rooms/get_v1_rooms_guest/get_v1_rooms_guest.dart';
 import 'package:fortune_client/data/model/rooms/get_v1_rooms_host/get_v1_rooms_host.dart';
-import 'package:fortune_client/data/model/rooms/get_v1_rooms_search/get_v1_rooms_search.dart';
 import 'package:fortune_client/data/model/rooms/room_id_response/room_id_response.dart';
 import 'package:retrofit/retrofit.dart';
 import 'package:fortune_client/data/datasource/core/annotations_headers.dart.dart';
@@ -50,4 +49,11 @@ abstract class RoomsDataSource {
     @Query("nextToken") String? nextToken,
     @Query("perPage") int? perPage,
   });
+
+  @GET('/rooms/{id}')
+  @authenticatedRequest
+  Future<RoomIdResponse> update(
+    @Path('id') String id,
+    @Body() Map<String, dynamic> body,
+  );
 }
