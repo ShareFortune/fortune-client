@@ -14,11 +14,11 @@
 import 'package:auto_route/auto_route.dart' as _i28;
 import 'package:auto_route/empty_router_widgets.dart' as _i2;
 import 'package:flutter/material.dart' as _i29;
-import 'package:fortune_client/data/model/base/tag/tag.dart' as _i33;
+import 'package:fortune_client/data/model/base/tag/tag.dart' as _i32;
 import 'package:fortune_client/data/model/rooms/get_v1_rooms_guest/get_v1_rooms_guest.dart'
     as _i34;
 import 'package:fortune_client/data/model/rooms/get_v1_rooms_host/get_v1_rooms_host.dart'
-    as _i32;
+    as _i33;
 import 'package:fortune_client/view/pages/account/create/entry_basic_profile/basic_profile_entry_page.dart'
     as _i21;
 import 'package:fortune_client/view/pages/account/create/entry_detailed_profile/detailed_profile_entry_page.dart'
@@ -144,7 +144,7 @@ class AppRouter extends _i28.RootStackRouter {
       return _i28.AdaptivePage<dynamic>(
         routeData: routeData,
         child: _i8.EditRoomPage(
-          args.room,
+          args.roomId,
           key: args.key,
         ),
       );
@@ -665,13 +665,13 @@ class CreateRoomRouteArgs {
 /// [_i8.EditRoomPage]
 class EditRoomRoute extends _i28.PageRouteInfo<EditRoomRouteArgs> {
   EditRoomRoute({
-    required _i32.GetV1RoomsHostResponseRoom room,
+    required String roomId,
     _i29.Key? key,
   }) : super(
           EditRoomRoute.name,
           path: 'edit-room',
           args: EditRoomRouteArgs(
-            room: room,
+            roomId: roomId,
             key: key,
           ),
         );
@@ -681,17 +681,17 @@ class EditRoomRoute extends _i28.PageRouteInfo<EditRoomRouteArgs> {
 
 class EditRoomRouteArgs {
   const EditRoomRouteArgs({
-    required this.room,
+    required this.roomId,
     this.key,
   });
 
-  final _i32.GetV1RoomsHostResponseRoom room;
+  final String roomId;
 
   final _i29.Key? key;
 
   @override
   String toString() {
-    return 'EditRoomRouteArgs{room: $room, key: $key}';
+    return 'EditRoomRouteArgs{roomId: $roomId, key: $key}';
   }
 }
 
@@ -783,7 +783,7 @@ class CreateTagRouteArgs {
 /// [_i14.SelectTagsPage]
 class SelectTagsRoute extends _i28.PageRouteInfo<SelectTagsRouteArgs> {
   SelectTagsRoute({
-    required List<_i33.Tag> beingSet,
+    required List<_i32.Tag> beingSet,
     _i29.Key? key,
   }) : super(
           SelectTagsRoute.name,
@@ -803,7 +803,7 @@ class SelectTagsRouteArgs {
     this.key,
   });
 
-  final List<_i33.Tag> beingSet;
+  final List<_i32.Tag> beingSet;
 
   final _i29.Key? key;
 
@@ -1083,7 +1083,7 @@ class EntryProfileSubImageRoute extends _i28.PageRouteInfo<void> {
 /// [_i25.HostRoomActionsBottomSheet]
 class HostRoomActions extends _i28.PageRouteInfo<HostRoomActionsArgs> {
   HostRoomActions({
-    required _i32.GetV1RoomsHostResponseRoom room,
+    required _i33.GetV1RoomsHostResponseRoom room,
     _i29.Key? key,
   }) : super(
           HostRoomActions.name,
@@ -1103,7 +1103,7 @@ class HostRoomActionsArgs {
     this.key,
   });
 
-  final _i32.GetV1RoomsHostResponseRoom room;
+  final _i33.GetV1RoomsHostResponseRoom room;
 
   final _i29.Key? key;
 

@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:fortune_client/data/model/base/address_with_id/address_with_id.dart';
 import 'package:fortune_client/data/model/base/tag/tag.dart';
 import 'package:fortune_client/data/model/enum/age_group.dart';
@@ -8,39 +9,49 @@ import 'package:fortune_client/view/routes/app_router.gr.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final editRoomViewModelProvider =
-    StateNotifierProvider<EditRoomViewModel, EditRoomState>(
-  (_) => EditRoomViewModel(sl()),
+    StateNotifierProvider.family<EditRoomViewModel, EditRoomState, String>(
+  (_, id) => EditRoomViewModel(
+      sl(),
+      EditRoomState(
+        titleController: TextEditingController(),
+        explanationController: TextEditingController(),
+      ))
+    ..initialize(id),
 );
 
 class EditRoomViewModel extends StateNotifier<EditRoomState> {
-  EditRoomViewModel(this._roomsRepository) : super(const EditRoomState());
+  EditRoomViewModel(this._roomsRepository, state) : super(state);
 
   final RoomsRepository _roomsRepository;
 
-  /// タグ以外はNull非許容
+  Future<void> initialize(roomId) async {
+    await _roomsRepository.fetchDetail(roomId).then((room) {
+      changeMembersNum(room.membersNum);
+      changeTags(room.tags);
+      state.titleController.text = room.roomName;
+      state.explanationController.text = room.roomName;
+    });
+  }
+
+  /// タイトル以外はNull非許容
   bool isPossibleToUpdate() {
-    return state.title != null &&
-        state.title!.isNotEmpty &&
-        state.membersNum != null &&
-        state.ageGroup != null &&
-        state.addressWithId != null &&
-        state.explanation != null;
+    return state.titleController.text.isNotEmpty;
   }
 
-  changeTitle(String value) {
-    state = state.copyWith(title: value);
-  }
-
-  changeMembersNum(int value) {
+  changeMembersNum(int? value) {
     state = state.copyWith(membersNum: value);
   }
 
-  changeAgeGroup(AgeGroup value) {
+  changeAgeGroup(AgeGroup? value) {
     state = state.copyWith(ageGroup: value);
   }
 
-  changeExplanation(String value) {
-    state = state.copyWith(explanation: value);
+  changeTags(List<Tag>? value) {
+    state = state.copyWith(tags: value);
+  }
+
+  changeAddressWithId(AddressWithId? value) {
+    state = state.copyWith(addressWithId: value);
   }
 
   Future<bool> update() async {
@@ -57,13 +68,13 @@ class EditRoomViewModel extends StateNotifier<EditRoomState> {
     final result = await sl<AppRouter>().push(
       EntryAddressRoute(),
     ) as AddressWithId?;
-    state = state.copyWith(addressWithId: result ?? state.addressWithId);
+    changeAddressWithId(result ?? state.addressWithId);
   }
 
   navigateToTagsSelection() async {
     final result = await sl<AppRouter>().push(
       SelectTagsRoute(beingSet: state.tags ?? List.empty()),
     ) as List<Tag>?;
-    state = state.copyWith(tags: result ?? state.tags);
+    changeTags(result ?? state.tags);
   }
 }

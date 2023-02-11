@@ -20,31 +20,54 @@ Room _$RoomFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Room {
+  ///
   @JsonKey(name: "id")
   String get id => throw _privateConstructorUsedError;
+
+  ///
   @JsonKey(name: "roomName")
   String get roomName => throw _privateConstructorUsedError;
+
+  ///
   @JsonKey(name: "applicationDeadline")
   String get applicationDeadline => throw _privateConstructorUsedError;
+
+  ///
   @JsonKey(name: "hostUser")
   FortuneUser get hostUser => throw _privateConstructorUsedError;
+
+  ///
   @JsonKey(name: "participants")
   List<FortuneUser>? get participants => throw _privateConstructorUsedError;
+
+  ///
   @JsonKey(name: "address")
   Address get address => throw _privateConstructorUsedError;
+
+  ///
   @JsonKey(name: "tags")
   List<Tag>? get tags => throw _privateConstructorUsedError;
+
+  ///
   @JsonKey(name: "status")
   @RoomStatusConverter()
   RoomStatus get roomStatus => throw _privateConstructorUsedError;
+
+  ///
   @JsonKey(name: "joinRequestStatus")
   @JoinRequestStatusConverter()
   JoinRequestStatus? get joinRequestStatus =>
       throw _privateConstructorUsedError;
+
+  ///
   @JsonKey(name: "membersNum")
   int get membersNum => throw _privateConstructorUsedError;
+
+  ///
   @JsonKey(name: "isHost")
   bool get isHost => throw _privateConstructorUsedError;
+
+  ///
   @JsonKey(name: "isMember")
   bool get isMember => throw _privateConstructorUsedError;
 
@@ -335,19 +358,30 @@ class _$_Room implements _Room {
 
   factory _$_Room.fromJson(Map<String, dynamic> json) => _$$_RoomFromJson(json);
 
+  ///
   @override
   @JsonKey(name: "id")
   final String id;
+
+  ///
   @override
   @JsonKey(name: "roomName")
   final String roomName;
+
+  ///
   @override
   @JsonKey(name: "applicationDeadline")
   final String applicationDeadline;
+
+  ///
   @override
   @JsonKey(name: "hostUser")
   final FortuneUser hostUser;
+
+  ///
   final List<FortuneUser>? _participants;
+
+  ///
   @override
   @JsonKey(name: "participants")
   List<FortuneUser>? get participants {
@@ -358,10 +392,15 @@ class _$_Room implements _Room {
     return EqualUnmodifiableListView(value);
   }
 
+  ///
   @override
   @JsonKey(name: "address")
   final Address address;
+
+  ///
   final List<Tag>? _tags;
+
+  ///
   @override
   @JsonKey(name: "tags")
   List<Tag>? get tags {
@@ -372,20 +411,29 @@ class _$_Room implements _Room {
     return EqualUnmodifiableListView(value);
   }
 
+  ///
   @override
   @JsonKey(name: "status")
   @RoomStatusConverter()
   final RoomStatus roomStatus;
+
+  ///
   @override
   @JsonKey(name: "joinRequestStatus")
   @JoinRequestStatusConverter()
   final JoinRequestStatus? joinRequestStatus;
+
+  ///
   @override
   @JsonKey(name: "membersNum")
   final int membersNum;
+
+  ///
   @override
   @JsonKey(name: "isHost")
   final bool isHost;
+
+  ///
   @override
   @JsonKey(name: "isMember")
   final bool isMember;
@@ -485,41 +533,65 @@ abstract class _Room implements Room {
   factory _Room.fromJson(Map<String, dynamic> json) = _$_Room.fromJson;
 
   @override
+
+  ///
   @JsonKey(name: "id")
   String get id;
   @override
+
+  ///
   @JsonKey(name: "roomName")
   String get roomName;
   @override
+
+  ///
   @JsonKey(name: "applicationDeadline")
   String get applicationDeadline;
   @override
+
+  ///
   @JsonKey(name: "hostUser")
   FortuneUser get hostUser;
   @override
+
+  ///
   @JsonKey(name: "participants")
   List<FortuneUser>? get participants;
   @override
+
+  ///
   @JsonKey(name: "address")
   Address get address;
   @override
+
+  ///
   @JsonKey(name: "tags")
   List<Tag>? get tags;
   @override
+
+  ///
   @JsonKey(name: "status")
   @RoomStatusConverter()
   RoomStatus get roomStatus;
   @override
+
+  ///
   @JsonKey(name: "joinRequestStatus")
   @JoinRequestStatusConverter()
   JoinRequestStatus? get joinRequestStatus;
   @override
+
+  ///
   @JsonKey(name: "membersNum")
   int get membersNum;
   @override
+
+  ///
   @JsonKey(name: "isHost")
   bool get isHost;
   @override
+
+  ///
   @JsonKey(name: "isMember")
   bool get isMember;
   @override

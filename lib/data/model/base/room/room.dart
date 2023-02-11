@@ -13,21 +13,44 @@ part 'room.g.dart';
 @freezed
 class Room with _$Room {
   const factory Room({
+    ///
     @JsonKey(name: "id") required String id,
+
+    ///
     @JsonKey(name: "roomName") required String roomName,
+
+    ///
     @JsonKey(name: "applicationDeadline") required String applicationDeadline,
+
+    ///
     @JsonKey(name: "hostUser") required FortuneUser hostUser,
+
+    ///
     @JsonKey(name: "participants") List<FortuneUser>? participants,
+
+    ///
     @JsonKey(name: "address") required Address address,
+
+    ///
     @JsonKey(name: "tags") List<Tag>? tags,
+
+    ///
     @JsonKey(name: "status")
     @RoomStatusConverter()
         required RoomStatus roomStatus,
+
+    ///
     @JsonKey(name: "joinRequestStatus")
     @JoinRequestStatusConverter()
         JoinRequestStatus? joinRequestStatus,
+
+    ///
     @JsonKey(name: "membersNum") required int membersNum,
+
+    ///
     @JsonKey(name: "isHost") required bool isHost,
+
+    ///
     @JsonKey(name: "isMember") required bool isMember,
   }) = _Room;
 

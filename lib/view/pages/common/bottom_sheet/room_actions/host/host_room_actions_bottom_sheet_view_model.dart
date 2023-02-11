@@ -14,7 +14,7 @@ class HostRoomActionsBottomSheetViewModel extends StateNotifier<void> {
 
   copy() {}
   navigateToEditRoom(GetV1RoomsHostResponseRoom room) async {
-    await sl<AppRouter>().push(EditRoomRoute(room: room));
+    await sl<AppRouter>().push(EditRoomRoute(roomId: room.id));
   }
 
   delete() {}

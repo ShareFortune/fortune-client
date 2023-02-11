@@ -1,7 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:fortune_client/data/model/enum/age_group.dart';
-import 'package:fortune_client/data/model/rooms/get_v1_rooms_host/get_v1_rooms_host.dart';
 import 'package:fortune_client/l10n/locale_keys.g.dart';
 import 'package:fortune_client/view/pages/rooms/action/components/room_state_input_field.dart';
 import 'package:fortune_client/view/pages/rooms/action/edit/edit_room_view_model.dart';
@@ -12,18 +11,15 @@ import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class EditRoomPage extends HookConsumerWidget {
-  EditRoomPage(this.room, {super.key});
+  const EditRoomPage(this.roomId, {super.key});
 
-  final GetV1RoomsHostResponseRoom room;
-
-  final titleController = TextEditingController();
-  final explanationController = TextEditingController();
+  final String roomId;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = ref.watch(appThemeProvider);
-    final state = ref.watch(editRoomViewModelProvider);
-    final viewModel = ref.watch(editRoomViewModelProvider.notifier);
+    final state = ref.watch(editRoomViewModelProvider(roomId));
+    final viewModel = ref.watch(editRoomViewModelProvider(roomId).notifier);
 
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
@@ -38,6 +34,7 @@ class EditRoomPage extends HookConsumerWidget {
                 onPressed: viewModel.isPossibleToUpdate()
                     ? () async {
                         if (!await viewModel.update()) {
+                          // ignore: use_build_context_synchronously
                           _showFailedToCreateToast(context, theme);
                         }
                       }
@@ -58,9 +55,7 @@ class EditRoomPage extends HookConsumerWidget {
                 /// タイトル
                 RoomStateTitleInputField(
                   theme: theme,
-                  controller: titleController,
-                  onClear: () => viewModel.changeTitle(""),
-                  onChanged: (value) => viewModel.changeTitle(value),
+                  controller: state.titleController,
                 ),
 
                 const Gap(20),
@@ -105,8 +100,7 @@ class EditRoomPage extends HookConsumerWidget {
                 /// 説明
                 RoomStateExplanationInputField(
                   theme: theme,
-                  controller: explanationController,
-                  onChanged: (value) => viewModel.changeExplanation(value),
+                  controller: state.explanationController,
                 ),
 
                 const Gap(150),
