@@ -4,8 +4,8 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:fortune_client/l10n/locale_keys.g.dart';
-import 'package:fortune_client/view/pages/account/edit_profile_images/components/edit_image_controller.dart';
-import 'package:fortune_client/view/pages/account/edit_profile_images/edit_profile_images_state.dart';
+import 'package:fortune_client/view/pages/my_page/edit_profile_images/components/edit_image_controller.dart';
+import 'package:fortune_client/view/pages/my_page/edit_profile_images/edit_profile_images_state.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/bottom_sheet/photo_actions_sheet.dart';
 

@@ -4,7 +4,7 @@ import 'package:fortune_client/data/model/base/address/address.dart';
 import 'package:fortune_client/data/model/enum/cigarette_frequency.dart';
 import 'package:fortune_client/data/model/enum/drink_frequency.dart';
 import 'package:fortune_client/l10n/locale_keys.g.dart';
-import 'package:fortune_client/view/pages/account/my_page/components/my_profile_container.dart';
+import 'package:fortune_client/view/pages/my_page/my_page/components/my_profile_container.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 
