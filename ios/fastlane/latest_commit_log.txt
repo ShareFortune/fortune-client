@@ -1,1 +1,8 @@
-テストリリース
+commit 66e6e64b3750e621916f9ecd5771ace0a8efa0a8
+Merge: dfe7bd7 fc22f79
+Author: daisukemaki1003 <68681355+daisukemaki1003@users.noreply.github.com>
+Date:   Sat Feb 11 01:23:10 2023 +0900
+
+    Merge pull request #30 from ShareFortune/feature/fix-automatic-distribution
+    
+    アプリ配布を自動化した

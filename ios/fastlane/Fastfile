@@ -33,7 +33,7 @@ platform :ios do
     sh('git log -n 1 > ./latest_commit_log.txt')
     sh('cat ./latest_commit_log.txt')
     # リリースノート
-    changelog = ENV['PWD'] + "/fastlane/latest_commit_log.txt"
+    changelog = ENV['PWD'] + "/latest_commit_log.txt"
 
     firebase_app_distribution(
         app: ENV["FIREBASE_IOS_APP_ID"],
@@ -43,7 +43,6 @@ platform :ios do
     )
 
     # canagelog削除
-    sh("git", "checkout", "../ios")
     sh("rm", "./latest_commit_log.txt")
   end
 end
