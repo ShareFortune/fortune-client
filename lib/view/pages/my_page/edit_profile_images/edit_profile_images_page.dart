@@ -156,6 +156,9 @@ class EditProfileImagesPage extends HookConsumerWidget {
           data: (data) {
             const spacing = 15.0;
 
+            /// Padding分を引く
+            final width = (MediaQuery.of(context).size.width - 40);
+
             return Container(
               alignment: Alignment.center,
               child: Wrap(
@@ -165,7 +168,7 @@ class EditProfileImagesPage extends HookConsumerWidget {
                   return EditImageContainer(
                     theme: theme,
                     data: data.image(imageType),
-                    sideLength: MediaQuery.of(context).size.width - spacing * 3,
+                    sideLength: (width - (spacing * 3)) / 3,
                     onChange: (file) async {
                       viewModel.updateImage(imageType, file);
                     },

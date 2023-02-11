@@ -44,11 +44,15 @@ class EditImageController extends StatelessWidget {
               }
             }
           : null,
-      child: _build(),
+      child: SizedBox(
+        width: width,
+        height: height,
+        child: _build(),
+      ),
     );
   }
 
-  _build() {
+  Widget _build() {
     /// 表示画像を削除
     if (data.isDeleted) {
       return _noImage();
@@ -56,30 +60,22 @@ class EditImageController extends StatelessWidget {
 
     /// File画像を表示
     if (data.updateFile != null) {
-      return SizedBox(
-        width: width,
-        height: height,
-        child: ClipRRect(
-          borderRadius: borderRadius,
-          child: Image.file(
-            data.updateFile!,
-            fit: BoxFit.cover,
-          ),
+      return ClipRRect(
+        borderRadius: borderRadius,
+        child: Image.file(
+          data.updateFile!,
+          fit: BoxFit.cover,
         ),
       );
     }
 
     /// URLを表示
     if (data.imageUrl != null) {
-      return SizedBox(
-        width: width,
-        height: height,
-        child: ClipRRect(
-          borderRadius: borderRadius ?? BorderRadius.zero,
-          child: Image.network(
-            data.imageUrl!,
-            fit: BoxFit.cover,
-          ),
+      return ClipRRect(
+        borderRadius: borderRadius ?? BorderRadius.zero,
+        child: Image.network(
+          data.imageUrl!,
+          fit: BoxFit.cover,
         ),
       );
     }
@@ -89,23 +85,19 @@ class EditImageController extends StatelessWidget {
   }
 
   Widget _noImage() {
-    return SizedBox(
-      width: 110,
-      height: 110,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          SvgPicture.asset(
-            Assets.images.icons.iconCamera.path,
-            fit: BoxFit.contain,
-          ),
-          const Gap(5),
-          Text(
-            LocaleKeys.edit_profile_picture_page_add.tr(),
-            style: theme.textTheme.h20.paint(theme.appColors.subText3).bold(),
-          ),
-        ],
-      ),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        SvgPicture.asset(
+          Assets.images.icons.iconCamera.path,
+          fit: BoxFit.contain,
+        ),
+        const Gap(5),
+        Text(
+          LocaleKeys.edit_profile_picture_page_add.tr(),
+          style: theme.textTheme.h20.paint(theme.appColors.subText3).bold(),
+        ),
+      ],
     );
   }
 }
