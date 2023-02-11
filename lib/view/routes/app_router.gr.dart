@@ -122,7 +122,7 @@ class AppRouter extends _i28.RootStackRouter {
     ProfileRoute.name: (routeData) {
       final pathParams = routeData.inheritedPathParams;
       final args = routeData.argsAs<ProfileRouteArgs>(
-          orElse: () => ProfileRouteArgs(id: pathParams.getString('id')));
+          orElse: () => ProfileRouteArgs(id: pathParams.optString('id')));
       return _i28.AdaptivePage<dynamic>(
         routeData: routeData,
         child: _i6.ProfilePage(
@@ -607,7 +607,7 @@ class DebugRoute extends _i28.PageRouteInfo<void> {
 class ProfileRoute extends _i28.PageRouteInfo<ProfileRouteArgs> {
   ProfileRoute({
     _i29.Key? key,
-    required String id,
+    required String? id,
   }) : super(
           ProfileRoute.name,
           path: 'profile/:id',
@@ -629,7 +629,7 @@ class ProfileRouteArgs {
 
   final _i29.Key? key;
 
-  final String id;
+  final String? id;
 
   @override
   String toString() {

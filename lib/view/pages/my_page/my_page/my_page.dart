@@ -2,10 +2,10 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:fortune_client/l10n/locale_keys.g.dart';
 import 'package:fortune_client/view/pages/my_page/my_page/components/my_page_header.dart';
-import 'package:fortune_client/view/pages/my_page/my_page/components/my_profile_basic_info_container.dart';
-import 'package:fortune_client/view/pages/my_page/my_page/components/my_profile_self_introduction_container.dart';
-import 'package:fortune_client/view/pages/my_page/my_page/components/my_profile_tags_container.dart';
 import 'package:fortune_client/view/pages/my_page/my_page/my_page_view_model.dart';
+import 'package:fortune_client/view/pages/profile/profile/components/profile_basic_info_container.dart';
+import 'package:fortune_client/view/pages/profile/profile/components/profile_self_introduction_container.dart';
+import 'package:fortune_client/view/pages/profile/profile/components/profile_tags_container.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/app_bar/back_app_bar.dart';
 import 'package:fortune_client/view/widgets/other/loading_widget.dart';
@@ -64,7 +64,7 @@ class MyPage extends HookConsumerWidget {
                 ),
 
                 /// 自己紹介
-                MyProfileSelfIntroductionContainer(
+                ProfileSelfIntroductionContainer(
                   theme: theme,
                   selfIntroduction: profile.selfIntroduction ?? "",
                   onTap: () => viewModel.navigateToEntrySelfIntroduction(),
@@ -72,7 +72,7 @@ class MyPage extends HookConsumerWidget {
                 const Divider(height: 1),
 
                 /// タグ
-                MyProfileTagsContainer(
+                ProfileTagsContainer(
                   theme: theme,
                   tags: profile.tags ?? List.empty(),
                   onTap: () => viewModel.navigateToTagsSelection(),
@@ -80,7 +80,7 @@ class MyPage extends HookConsumerWidget {
                 const Divider(height: 1),
 
                 /// 基本情報
-                MyProfileBasicInfoContainer(
+                ProfileBasicInfoContainer(
                   theme: theme,
                   address: profile.address,
                   stature: profile.height,

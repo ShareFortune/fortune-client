@@ -33,6 +33,20 @@ class EditProfileImagesPage extends HookConsumerWidget {
           onPressed: sl<AppRouter>().pop,
           icon: const Icon(Icons.close),
         ),
+        action: [
+          Container(
+            padding: const EdgeInsets.only(right: 10),
+            child: TextButton(
+              onPressed: () {
+                viewModel.navigateToProfile();
+              },
+              child: Text(
+                "プレビュー",
+                style: theme.textTheme.h30.bold(),
+              ),
+            ),
+          ),
+        ],
       ),
       body: Container(
         padding: const EdgeInsets.all(20),

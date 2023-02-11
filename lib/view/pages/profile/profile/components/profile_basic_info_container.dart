@@ -4,19 +4,19 @@ import 'package:fortune_client/data/model/base/address/address.dart';
 import 'package:fortune_client/data/model/enum/cigarette_frequency.dart';
 import 'package:fortune_client/data/model/enum/drink_frequency.dart';
 import 'package:fortune_client/l10n/locale_keys.g.dart';
-import 'package:fortune_client/view/pages/my_page/my_page/components/my_profile_container.dart';
+import 'package:fortune_client/view/pages/profile/profile/components/profile_container.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 
-class MyProfileBasicInfoContainer extends StatelessWidget {
-  const MyProfileBasicInfoContainer({
+class ProfileBasicInfoContainer extends StatelessWidget {
+  const ProfileBasicInfoContainer({
     super.key,
     required this.theme,
     required this.address,
     required this.stature,
     required this.drinkFrequency,
     required this.cigaretteFrequency,
-    required this.onUpdate,
+    this.onUpdate,
   });
 
   final AppTheme theme;
@@ -24,16 +24,16 @@ class MyProfileBasicInfoContainer extends StatelessWidget {
   final int? stature;
   final DrinkFrequency? drinkFrequency;
   final CigaretteFrequency? cigaretteFrequency;
-  final VoidCallback onUpdate;
+  final VoidCallback? onUpdate;
 
   @override
   Widget build(BuildContext context) {
     final emptyText = LocaleKeys.data_empty.tr();
 
-    return MyProfileContainer(
+    return ProfileContainer(
       theme: theme,
       title: LocaleKeys.myPage_profiles_detail_title.tr(),
-      trailing: editButton(),
+      trailing: onUpdate != null ? editButton() : null,
       onTap: null,
       child: Column(
         children: [
@@ -84,12 +84,6 @@ class MyProfileBasicInfoContainer extends StatelessWidget {
   }
 
   Widget basicInfoTile(AppTheme theme, String title, String value) {
-    final titleTextColor = theme.appColors.subText2;
-    final titleTextStyle = theme.textTheme.h30.paint(titleTextColor);
-
-    final valueTextColor = theme.appColors.subText1;
-    final valueTextStyle = theme.textTheme.h30.paint(valueTextColor);
-
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 15),
       decoration: BoxDecoration(
@@ -100,8 +94,14 @@ class MyProfileBasicInfoContainer extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(title, style: titleTextStyle),
-          Text(value, style: valueTextStyle),
+          Text(
+            title,
+            style: theme.textTheme.h30.paint(theme.appColors.subText2),
+          ),
+          Text(
+            value,
+            style: theme.textTheme.h30.paint(theme.appColors.subText1),
+          ),
         ],
       ),
     );
