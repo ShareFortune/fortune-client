@@ -14,11 +14,11 @@
 import 'package:auto_route/auto_route.dart' as _i28;
 import 'package:auto_route/empty_router_widgets.dart' as _i2;
 import 'package:flutter/material.dart' as _i29;
-import 'package:fortune_client/data/model/base/tag/tag.dart' as _i33;
+import 'package:fortune_client/data/model/base/tag/tag.dart' as _i32;
 import 'package:fortune_client/data/model/rooms/get_v1_rooms_guest/get_v1_rooms_guest.dart'
     as _i34;
 import 'package:fortune_client/data/model/rooms/get_v1_rooms_host/get_v1_rooms_host.dart'
-    as _i32;
+    as _i33;
 import 'package:fortune_client/view/pages/account/create/entry_basic_profile/basic_profile_entry_page.dart'
     as _i21;
 import 'package:fortune_client/view/pages/account/create/entry_detailed_profile/detailed_profile_entry_page.dart'
@@ -27,11 +27,6 @@ import 'package:fortune_client/view/pages/account/create/entry_profile_icon_imag
     as _i23;
 import 'package:fortune_client/view/pages/account/create/entry_profile_sub_image/entry_profile_sub_image_page.dart'
     as _i24;
-import 'package:fortune_client/view/pages/account/edit_profile_images/edit_profile_images_page.dart'
-    as _i27;
-import 'package:fortune_client/view/pages/account/my_page/my_page.dart' as _i10;
-import 'package:fortune_client/view/pages/account/update/profile_update_page.dart'
-    as _i11;
 import 'package:fortune_client/view/pages/auth/login/login_page.dart' as _i3;
 import 'package:fortune_client/view/pages/common/bottom_navigation_bar/bottom_navigation_bar.dart'
     as _i1;
@@ -48,6 +43,11 @@ import 'package:fortune_client/view/pages/message/message_room/message_room_page
     as _i4;
 import 'package:fortune_client/view/pages/message/message_room_list/message_room_list_page.dart'
     as _i20;
+import 'package:fortune_client/view/pages/my_page/edit_profile_images/edit_profile_images_page.dart'
+    as _i27;
+import 'package:fortune_client/view/pages/my_page/my_page/my_page.dart' as _i10;
+import 'package:fortune_client/view/pages/my_page/update/profile_update_page.dart'
+    as _i11;
 import 'package:fortune_client/view/pages/profile/profile/profile_page.dart'
     as _i6;
 import 'package:fortune_client/view/pages/request/join_requests_confirmation/join_requests_confirmation_page.dart'
@@ -122,7 +122,7 @@ class AppRouter extends _i28.RootStackRouter {
     ProfileRoute.name: (routeData) {
       final pathParams = routeData.inheritedPathParams;
       final args = routeData.argsAs<ProfileRouteArgs>(
-          orElse: () => ProfileRouteArgs(id: pathParams.getString('id')));
+          orElse: () => ProfileRouteArgs(id: pathParams.optString('id')));
       return _i28.AdaptivePage<dynamic>(
         routeData: routeData,
         child: _i6.ProfilePage(
@@ -144,7 +144,7 @@ class AppRouter extends _i28.RootStackRouter {
       return _i28.AdaptivePage<dynamic>(
         routeData: routeData,
         child: _i8.EditRoomPage(
-          args.room,
+          args.roomId,
           key: args.key,
         ),
       );
@@ -607,7 +607,7 @@ class DebugRoute extends _i28.PageRouteInfo<void> {
 class ProfileRoute extends _i28.PageRouteInfo<ProfileRouteArgs> {
   ProfileRoute({
     _i29.Key? key,
-    required String id,
+    required String? id,
   }) : super(
           ProfileRoute.name,
           path: 'profile/:id',
@@ -629,7 +629,7 @@ class ProfileRouteArgs {
 
   final _i29.Key? key;
 
-  final String id;
+  final String? id;
 
   @override
   String toString() {
@@ -665,13 +665,13 @@ class CreateRoomRouteArgs {
 /// [_i8.EditRoomPage]
 class EditRoomRoute extends _i28.PageRouteInfo<EditRoomRouteArgs> {
   EditRoomRoute({
-    required _i32.GetV1RoomsHostResponseRoom room,
+    required String roomId,
     _i29.Key? key,
   }) : super(
           EditRoomRoute.name,
           path: 'edit-room',
           args: EditRoomRouteArgs(
-            room: room,
+            roomId: roomId,
             key: key,
           ),
         );
@@ -681,17 +681,17 @@ class EditRoomRoute extends _i28.PageRouteInfo<EditRoomRouteArgs> {
 
 class EditRoomRouteArgs {
   const EditRoomRouteArgs({
-    required this.room,
+    required this.roomId,
     this.key,
   });
 
-  final _i32.GetV1RoomsHostResponseRoom room;
+  final String roomId;
 
   final _i29.Key? key;
 
   @override
   String toString() {
-    return 'EditRoomRouteArgs{room: $room, key: $key}';
+    return 'EditRoomRouteArgs{roomId: $roomId, key: $key}';
   }
 }
 
@@ -783,7 +783,7 @@ class CreateTagRouteArgs {
 /// [_i14.SelectTagsPage]
 class SelectTagsRoute extends _i28.PageRouteInfo<SelectTagsRouteArgs> {
   SelectTagsRoute({
-    required List<_i33.Tag> beingSet,
+    required List<_i32.Tag> beingSet,
     _i29.Key? key,
   }) : super(
           SelectTagsRoute.name,
@@ -803,7 +803,7 @@ class SelectTagsRouteArgs {
     this.key,
   });
 
-  final List<_i33.Tag> beingSet;
+  final List<_i32.Tag> beingSet;
 
   final _i29.Key? key;
 
@@ -1083,7 +1083,7 @@ class EntryProfileSubImageRoute extends _i28.PageRouteInfo<void> {
 /// [_i25.HostRoomActionsBottomSheet]
 class HostRoomActions extends _i28.PageRouteInfo<HostRoomActionsArgs> {
   HostRoomActions({
-    required _i32.GetV1RoomsHostResponseRoom room,
+    required _i33.GetV1RoomsHostResponseRoom room,
     _i29.Key? key,
   }) : super(
           HostRoomActions.name,
@@ -1103,7 +1103,7 @@ class HostRoomActionsArgs {
     this.key,
   });
 
-  final _i32.GetV1RoomsHostResponseRoom room;
+  final _i33.GetV1RoomsHostResponseRoom room;
 
   final _i29.Key? key;
 

@@ -1,15 +1,24 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:fortune_client/gen/assets.gen.dart';
-import 'package:fortune_client/view/pages/profile/profile/components/profile_container.dart';
+import 'package:fortune_client/view/pages/profile/profile/components/profile_basic_info_container.dart';
+import 'package:fortune_client/view/pages/profile/profile/components/profile_header.dart';
+import 'package:fortune_client/view/pages/profile/profile/components/profile_images_page_view.dart';
+import 'package:fortune_client/view/pages/profile/profile/components/profile_self_introduction_container.dart';
+import 'package:fortune_client/view/pages/profile/profile/components/profile_tags_container.dart';
 import 'package:fortune_client/view/pages/profile/profile/profile_view_model.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
+import 'package:fortune_client/view/widgets/other/error_widget.dart';
+import 'package:fortune_client/view/widgets/other/loading_widget.dart';
+import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+/// プロフィールページ
+///
+/// [id]nullの場合はマイプロフィールを表示
 class ProfilePage extends HookConsumerWidget {
   const ProfilePage({super.key, @PathParam() required this.id});
 
-  final String id;
+  final String? id;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -17,56 +26,79 @@ class ProfilePage extends HookConsumerWidget {
     final state = ref.watch(profileViewModelProvider(id));
     final viewModel = ref.watch(profileViewModelProvider(id).notifier);
 
-    return state.when(
-      data: (data) {
-        return Scaffold(
-          appBar: AppBar(
-            elevation: 0,
-            backgroundColor: Colors.transparent,
-          ),
-          extendBodyBehindAppBar: true,
-          body: Container(
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                fit: BoxFit.cover,
-                image: Assets.images.insta2.provider(),
+    return Scaffold(
+      backgroundColor: theme.appColors.primary,
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+      ),
+      body: state.profile.when(
+        loading: () => loadingWidget(),
+        error: (error, stackTrace) => errorWidget(error, stackTrace),
+        data: (profile) {
+          return ListView(
+            children: [
+              /// プロフィール画像
+              ProfileImagesPageView(
+                theme: theme,
+                imageUrls: [
+                  profile.secondImageURL,
+                  profile.thirdImageURL,
+                  profile.fourthImageURL,
+                  profile.fifthImageURL,
+                  profile.sixthImageURL,
+                ],
               ),
-            ),
-            child: ListView(
-              children: [
-                SizedBox(
-                  height: 320,
-                  child: PageView(
-                    controller: PageController(viewportFraction: 0.85),
-                    children: [
-                      _image(theme),
-                      _image(theme),
-                      _image(theme),
-                    ],
-                  ),
+              Container(
+                width: double.infinity,
+                padding: const EdgeInsets.symmetric(vertical: 30),
+                decoration: BoxDecoration(
+                  color: theme.appColors.onBackground,
+                  borderRadius: BorderRadius.circular(30),
                 ),
-                const ProfileContainer(),
-              ],
-            ),
-          ),
-        );
-      },
-      error: (e, msg) => Center(child: Text(e.toString())),
-      loading: () => const Center(child: CircularProgressIndicator()),
-    );
-  }
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    /// プロフィールヘッダー
+                    ProfileHeader(
+                      theme: theme,
+                      iconURL: profile.mainImageURL,
+                      name: profile.name,
+                      age: 22,
+                      address: profile.address,
+                    ),
 
-  Widget _image(AppTheme theme) {
-    return Container(
-      padding: const EdgeInsets.fromLTRB(10, 0, 10, 20),
-      child: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            fit: BoxFit.cover,
-            image: Assets.images.insta2.provider(),
-          ),
-          borderRadius: BorderRadius.circular(30),
-        ),
+                    /// 自己紹介
+                    ProfileSelfIntroductionContainer(
+                      theme: theme,
+                      selfIntroduction: profile.selfIntroduction ?? "",
+                      onTap: null,
+                    ),
+                    const Divider(),
+
+                    /// タグ
+                    ProfileTagsContainer(
+                      theme: theme,
+                      tags: profile.tags ?? List.empty(),
+                    ),
+                    const Divider(),
+
+                    /// 基本情報
+                    ProfileBasicInfoContainer(
+                      theme: theme,
+                      address: profile.address,
+                      stature: profile.height,
+                      drinkFrequency: profile.drinkFrequency,
+                      cigaretteFrequency: profile.cigaretteFrequency,
+                    ),
+                    const Gap(80),
+                  ],
+                ),
+              )
+            ],
+          );
+        },
       ),
     );
   }
