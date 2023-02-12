@@ -9,6 +9,7 @@ import 'package:fortune_client/data/datasource/remote/go/favorites/favorites_dat
 import 'package:fortune_client/data/datasource/remote/go/join_requests/join_requests_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/go/message_rooms/message_rooms_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/go/profile/profile_data_source.dart';
+import 'package:fortune_client/data/datasource/remote/go/rooms/fake_rooms_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/go/rooms/rooms_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/go/tags/tags_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/go/users/users_data_source.dart';
@@ -125,6 +126,7 @@ Future<void> initDependencies(bool isRelease) async {
   );
   sl.registerLazySingleton<RoomsDataSource>(
     () => RoomsDataSource(sl()),
+    // () => FakeRoomDataSource(),
   );
   sl.registerLazySingleton<ProfileDataSource>(
     () => ProfileDataSource(sl()),

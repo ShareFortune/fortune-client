@@ -45,8 +45,8 @@ class EditImageContainer extends StatelessWidget {
         radius: const Radius.circular(10),
         child: EditImageController(
             theme: theme,
-            width: 110,
-            height: 110,
+            width: sideLength,
+            height: sideLength,
             borderRadius: BorderRadius.circular(10),
             data: data,
             onChange: data.isDisplay ? null : onChange),

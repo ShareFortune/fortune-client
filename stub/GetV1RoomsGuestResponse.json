@@ -1,0 +1,268 @@
+{
+    "nextToken": "",
+    "rooms": [
+        {
+            "address": {
+                "city": "横手市",
+                "country": "日本",
+                "prefecture": "秋田県"
+            },
+            "hostMainImageURL": "https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg",
+            "id": "id",
+            "joinRequestStatus": "ACCEPTED",
+            "membersNum": {
+                "maxMenNum": 5,
+                "maxWomenNum": 5,
+                "menNum": 3,
+                "womenNum": 0
+            },
+            "participantMainImageURLs": [
+                "https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg",
+                "https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg"
+            ],
+            "roomName": "てすと",
+            "roomStatus": "PENDING"
+        },
+        {
+            "address": {
+                "city": "横手市",
+                "country": "日本",
+                "prefecture": "秋田県"
+            },
+            "hostMainImageURL": "https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg",
+            "id": "id",
+            "joinRequestStatus": "REJECTED",
+            "membersNum": {
+                "maxMenNum": 5,
+                "maxWomenNum": 5,
+                "menNum": 3,
+                "womenNum": 0
+            },
+            "participantMainImageURLs": [
+                "https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg",
+                "https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg"
+            ],
+            "roomName": "てすと",
+            "roomStatus": "PENDING"
+        },
+        {
+            "address": {
+                "city": "横手市",
+                "country": "日本",
+                "prefecture": "秋田県"
+            },
+            "hostMainImageURL": "https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg",
+            "id": "id",
+            "joinRequestStatus": "PENDING",
+            "membersNum": {
+                "maxMenNum": 5,
+                "maxWomenNum": 5,
+                "menNum": 3,
+                "womenNum": 0
+            },
+            "participantMainImageURLs": [
+                "https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg",
+                "https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg"
+            ],
+            "roomName": "てすと",
+            "roomStatus": "PENDING"
+        },
+        {
+            "address": {
+                "city": "横手市",
+                "country": "日本",
+                "prefecture": "秋田県"
+            },
+            "hostMainImageURL": "https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg",
+            "id": "id",
+            "joinRequestStatus": "CANCELED",
+            "membersNum": {
+                "maxMenNum": 5,
+                "maxWomenNum": 5,
+                "menNum": 3,
+                "womenNum": 0
+            },
+            "participantMainImageURLs": [
+                "https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg",
+                "https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg"
+            ],
+            "roomName": "てすと",
+            "roomStatus": "PENDING"
+        },
+        {
+            "address": {
+                "city": "横手市",
+                "country": "日本",
+                "prefecture": "秋田県"
+            },
+            "hostMainImageURL": "https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg",
+            "id": "id",
+            "joinRequestStatus": "ACCEPTED",
+            "membersNum": {
+                "maxMenNum": 5,
+                "maxWomenNum": 5,
+                "menNum": 3,
+                "womenNum": 0
+            },
+            "participantMainImageURLs": [
+                "https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg",
+                "https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg"
+            ],
+            "roomName": "てすと",
+            "roomStatus": "OPEN"
+        },
+        {
+            "address": {
+                "city": "横手市",
+                "country": "日本",
+                "prefecture": "秋田県"
+            },
+            "hostMainImageURL": "https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg",
+            "id": "id",
+            "joinRequestStatus": "REJECTED",
+            "membersNum": {
+                "maxMenNum": 5,
+                "maxWomenNum": 5,
+                "menNum": 3,
+                "womenNum": 0
+            },
+            "participantMainImageURLs": [
+                "https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg",
+                "https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg"
+            ],
+            "roomName": "てすと",
+            "roomStatus": "OPEN"
+        },
+        {
+            "address": {
+                "city": "横手市",
+                "country": "日本",
+                "prefecture": "秋田県"
+            },
+            "hostMainImageURL": "https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg",
+            "id": "id",
+            "joinRequestStatus": "PENDING",
+            "membersNum": {
+                "maxMenNum": 5,
+                "maxWomenNum": 5,
+                "menNum": 3,
+                "womenNum": 0
+            },
+            "participantMainImageURLs": [
+                "https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg",
+                "https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg"
+            ],
+            "roomName": "てすと",
+            "roomStatus": "OPEN"
+        },
+        {
+            "address": {
+                "city": "横手市",
+                "country": "日本",
+                "prefecture": "秋田県"
+            },
+            "hostMainImageURL": "https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg",
+            "id": "id",
+            "joinRequestStatus": "CANCELED",
+            "membersNum": {
+                "maxMenNum": 5,
+                "maxWomenNum": 5,
+                "menNum": 3,
+                "womenNum": 0
+            },
+            "participantMainImageURLs": [
+                "https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg",
+                "https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg"
+            ],
+            "roomName": "てすと",
+            "roomStatus": "OPEN"
+        },
+        {
+            "address": {
+                "city": "横手市",
+                "country": "日本",
+                "prefecture": "秋田県"
+            },
+            "hostMainImageURL": "https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg",
+            "id": "id",
+            "joinRequestStatus": "ACCEPTED",
+            "membersNum": {
+                "maxMenNum": 5,
+                "maxWomenNum": 5,
+                "menNum": 3,
+                "womenNum": 0
+            },
+            "participantMainImageURLs": [
+                "https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg",
+                "https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg"
+            ],
+            "roomName": "てすと",
+            "roomStatus": "CLOSE"
+        },
+        {
+            "address": {
+                "city": "横手市",
+                "country": "日本",
+                "prefecture": "秋田県"
+            },
+            "hostMainImageURL": "https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg",
+            "id": "id",
+            "joinRequestStatus": "REJECTED",
+            "membersNum": {
+                "maxMenNum": 5,
+                "maxWomenNum": 5,
+                "menNum": 3,
+                "womenNum": 0
+            },
+            "participantMainImageURLs": [
+                "https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg",
+                "https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg"
+            ],
+            "roomName": "てすと",
+            "roomStatus": "CLOSE"
+        },
+        {
+            "address": {
+                "city": "横手市",
+                "country": "日本",
+                "prefecture": "秋田県"
+            },
+            "hostMainImageURL": "https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg",
+            "id": "id",
+            "joinRequestStatus": "PENDING",
+            "membersNum": {
+                "maxMenNum": 2,
+                "maxWomenNum": 2,
+                "menNum": 2,
+                "womenNum": 1
+            },
+            "participantMainImageURLs": [
+                "https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg",
+                "https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg"
+            ],
+            "roomName": "カタンしたい",
+            "roomStatus": "CLOSE"
+        },
+        {
+            "address": {
+                "city": "横手市",
+                "country": "日本",
+                "prefecture": "秋田県"
+            },
+            "hostMainImageURL": "https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg",
+            "id": "id",
+            "joinRequestStatus": "CANCELED",
+            "membersNum": {
+                "maxMenNum": 5,
+                "maxWomenNum": 5,
+                "menNum": 2,
+                "womenNum": 0
+            },
+            "participantMainImageURLs": [
+                "https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg"
+            ],
+            "roomName": "t",
+            "roomStatus": "CLOSE"
+        }     
+    ]
+}

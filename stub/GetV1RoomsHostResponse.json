@@ -1,0 +1,73 @@
+{
+    "nextToken": "",
+    "rooms": [
+        {
+            "address": {
+                "city": "東松島市",
+                "country": "日本",
+                "prefecture": "宮城県"
+            },
+            "id": "id",
+            "joinRequestsCount": 1,
+            "membersNum": {
+                "maxMenNum": 2,
+                "maxWomenNum": 2,
+                "menNum": 2,
+                "womenNum": 0
+            },
+            "participantMainImageURLs": [
+                "https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg"
+            ],
+            "roomName": "ロングネームロングネームロングネームロングネームロングネームロングネームロングネームロングネーム",
+            "status": "PENDING"
+        },
+        {
+            "address": {
+                "city": "東松島市",
+                "country": "日本",
+                "prefecture": "宮城県"
+            },
+            "id": "id",
+            "joinRequestsCount": 2,
+            "membersNum": {
+                "maxMenNum": 2,
+                "maxWomenNum": 2,
+                "menNum": 2,
+                "womenNum": 2
+            },
+            "participantMainImageURLs": [
+                "https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg",
+                "https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg",
+                "https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg",
+                "https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg"
+            ],
+            "roomName": "テストルーム１",
+            "status": "OPEN"
+        },
+        {
+            "address": {
+                "city": "東松島市",
+                "country": "日本",
+                "prefecture": "宮城県"
+            },
+            "id": "id",
+            "joinRequestsCount": 2,
+            "membersNum": {
+                "maxMenNum": 3,
+                "maxWomenNum": 3,
+                "menNum": 3,
+                "womenNum": 3
+            },
+            "participantMainImageURLs": [
+                "https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg",
+                "https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg",
+                "https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg",
+                "https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg",
+                "https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg",
+                "https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg"
+            ],
+            "roomName": "テストルーム２",
+            "status": "CLOSE"
+        }
+    ]
+}

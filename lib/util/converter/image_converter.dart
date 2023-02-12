@@ -48,13 +48,9 @@ class ImageConverter {
     var result = await FlutterImageCompress.compressAndGetFile(
       file.absolute.path,
       outPath,
-      // minWidth: 80,
-      // minHeight: 80,
-      // quality: 50,
-
-      minWidth: 50,
-      minHeight: 50,
-      quality: 10,
+      minWidth: 80,
+      minHeight: 80,
+      quality: 50,
       format: format,
     );
 

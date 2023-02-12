@@ -26,6 +26,9 @@ class RoutePath {
   /// 参加ルームリスト
   static const participatingRooms = 'participating-rooms';
 
+  /// 全ての参加ルームリスト
+  static const participatingroomsAll = 'participating-rooms-all';
+
   /// 参加リクエスト
   static const requestConfirmation = 'request-confirmation/:id';
 
