@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fortune_client/gen/assets.gen.dart';
 import 'package:fortune_client/l10n/locale_keys.g.dart';
+import 'package:fortune_client/util/logger/logger.dart';
 import 'package:fortune_client/view/pages/rooms/room_list/room_list_state.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
@@ -77,6 +78,13 @@ class RoomListCard extends StatelessWidget {
             width: 50,
             height: 50,
             fit: BoxFit.cover,
+            errorBuilder: (_, error, __) {
+              logger.e(error);
+              return const Icon(
+                Icons.error,
+                color: Colors.red,
+              );
+            },
           ),
         ),
         const Gap(10),

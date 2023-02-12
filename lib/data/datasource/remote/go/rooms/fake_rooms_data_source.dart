@@ -21,17 +21,23 @@ class FakeRoomDataSource implements RoomsDataSource {
   }
 
   @override
-  Future<GetV1RoomsGuestResponse> getRoomsGuest(
-      {String? nextToken, int? perPage}) {
-    // TODO: implement getRoomsGuest
-    throw UnimplementedError();
+  Future<GetV1RoomsGuestResponse> getRoomsGuest({
+    String? nextToken,
+    int? perPage,
+  }) async {
+    return GetV1RoomsGuestResponse.fromJson(
+      await JsonLoader.load(Assets.stub.getV1RoomsGuestResponse),
+    );
   }
 
   @override
-  Future<GetV1RoomsHostResponse> getRoomsHost(
-      {String? nextToken, int? perPage}) {
-    // TODO: implement getRoomsHost
-    throw UnimplementedError();
+  Future<GetV1RoomsHostResponse> getRoomsHost({
+    String? nextToken,
+    int? perPage,
+  }) async {
+    return GetV1RoomsHostResponse.fromJson(
+      await JsonLoader.load(Assets.stub.getV1RoomsHostResponse),
+    );
   }
 
   @override
@@ -44,7 +50,7 @@ class FakeRoomDataSource implements RoomsDataSource {
     int? perPage,
   }) async {
     return GetV1RoomsResponse.fromJson(
-      await JsonLoader.load(Assets.stub.roomList),
+      await JsonLoader.load(Assets.stub.getV1RoomsResponse),
     );
   }
 

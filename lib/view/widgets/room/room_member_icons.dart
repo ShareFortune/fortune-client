@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fortune_client/util/logger/logger.dart';
 
 class RoomMemberIcons extends StatelessWidget {
   const RoomMemberIcons({
@@ -33,12 +34,20 @@ class RoomMemberIcons extends StatelessWidget {
         return Container(
           width: w,
           alignment: Alignment.centerRight,
-          child: CircleAvatar(
-            radius: radius,
-            backgroundImage: Image.network(
+          child: ClipOval(
+            child: Image.network(
               urls[index],
+              width: radius * 2,
+              height: radius * 2,
               fit: BoxFit.cover,
-            ).image,
+              errorBuilder: (_, error, __) {
+                logger.e(error);
+                return const Icon(
+                  Icons.error,
+                  color: Colors.red,
+                );
+              },
+            ),
           ),
         );
       }),

@@ -31,7 +31,7 @@ class AppColors {
       primary: const Color(0xFFC782E4),
       onPrimary: const Color(0xFFFFFFFF),
       secondary: const Color(0xFF43C6B5),
-      onSecondary: const Color(0xFF0078FE),
+      onSecondary: const Color(0xFFFFFFFF),
       background: const Color(0xFFF2F2F6),
       onBackground: const Color(0xFFFFFFFF),
       textFieldBackground: const Color(0xFFF2F8FC),

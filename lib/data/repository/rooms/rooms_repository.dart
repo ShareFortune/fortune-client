@@ -43,7 +43,10 @@ abstract class RoomsRepository {
     AddressWithId? addressWithId,
   });
 
+  /// ルームリストを取得・ホスト
   Future<List<GetV1RoomsHostResponseRoom>> getRoomsToParticipateAsHost();
+
+  /// ルームリストを取得・ゲスト
   Future<List<GetV1RoomsGuestResponseRoom>> getRoomsToParticipateAsGuest();
 
   /// 詳細取得
