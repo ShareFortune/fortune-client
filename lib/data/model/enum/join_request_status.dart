@@ -1,10 +1,17 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 enum JoinRequestStatus {
-  accepted, // 申請許可
-  rejected, // 申請却下
-  pending, // 申請中
-  canceled, // 申請キャンセル
+  /// 申請許可
+  accepted,
+
+  /// 申請却下
+  rejected,
+
+  /// 申請中
+  pending,
+
+  /// 申請キャンセル
+  canceled,
 }
 
 extension JoinRequestStatusEx on JoinRequestStatus {

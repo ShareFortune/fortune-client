@@ -7,6 +7,8 @@ import 'package:fortune_client/data/model/rooms/get_v1_rooms_host/get_v1_rooms_h
 import 'package:fortune_client/l10n/locale_keys.g.dart';
 import 'package:fortune_client/view/pages/rooms/participating/components/participating_room_as_guest.dart';
 import 'package:fortune_client/view/pages/rooms/participating/components/participating_room_as_host.dart';
+import 'package:fortune_client/view/pages/rooms/participating/participating_type.dart';
+import 'package:fortune_client/view/pages/rooms/participating/participating_view_model.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/other/async_value_widget.dart';
@@ -14,22 +16,19 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class ParticipatingContainer extends HookConsumerWidget {
   const ParticipatingContainer._({
+    required this.type,
     required this.child,
-    required this.containerTitle,
-    required this.showAll,
   });
 
+  final ParticipatingType type;
   final Widget child;
-  final String containerTitle;
-  final VoidCallback showAll;
 
   /// ホストルーム
   factory ParticipatingContainer.host(
     AsyncValue<List<GetV1RoomsHostResponseRoom>> asyncRooms,
   ) {
     return ParticipatingContainer._(
-      containerTitle: LocaleKeys.participating_room_list_page_host_title.tr(),
-      showAll: () {},
+      type: ParticipatingType.host,
       child: AsyncValueWidget(
         data: asyncRooms,
         builder: (rooms) => ParticipatingRoomAsHost(rooms),
@@ -42,8 +41,7 @@ class ParticipatingContainer extends HookConsumerWidget {
     AsyncValue<List<GetV1RoomsGuestResponseRoom>> asyncRooms,
   ) {
     return ParticipatingContainer._(
-      containerTitle: LocaleKeys.participating_room_list_page_guest_title.tr(),
-      showAll: () {},
+      type: ParticipatingType.guest,
       child: AsyncValueWidget(
         data: asyncRooms,
         builder: (rooms) => ParticipatingRoomAsGuest(rooms),
@@ -54,6 +52,7 @@ class ParticipatingContainer extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = ref.watch(appThemeProvider);
+    final viewModel = ref.watch(participatingViewModelProvider.notifier);
 
     return Container(
       color: theme.appColors.onBackground,
@@ -80,7 +79,10 @@ class ParticipatingContainer extends HookConsumerWidget {
           ),
 
           /// 全て表示
-          _showAllButton(theme, false),
+          _showAllButton(
+            theme,
+            () => viewModel.navigateToParticipatingRoomList(type),
+          ),
         ],
       ),
     );
@@ -99,14 +101,17 @@ class ParticipatingContainer extends HookConsumerWidget {
         ),
       ),
       child: Text(
-        containerTitle,
+        type.containerLabel,
         style: theme.textTheme.h30.paint(theme.appColors.subText1),
       ),
     );
   }
 
   /// 全て見るボタン
-  _showAllButton(AppTheme theme, bool clickable) {
+  _showAllButton(
+    AppTheme theme,
+    VoidCallback? onTap,
+  ) {
     return Container(
       height: 50,
       padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -116,14 +121,14 @@ class ParticipatingContainer extends HookConsumerWidget {
         ),
       ),
       child: InkWell(
-        onTap: showAll,
+        onTap: onTap,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
               LocaleKeys.participating_room_list_page_action_showAll.tr(),
               style: theme.textTheme.h30.paint(
-                clickable
+                onTap != null
                     ? theme.appColors.linkColor
                     : theme.appColors.subText3,
               ),

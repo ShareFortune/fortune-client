@@ -7,7 +7,7 @@ import 'package:fortune_client/gen/assets.gen.dart';
 import 'package:fortune_client/l10n/locale_keys.g.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
-import 'package:fortune_client/view/widgets/icon/member_icons.dart';
+import 'package:fortune_client/view/widgets/room/room_member_icons.dart';
 import 'package:gap/gap.dart';
 
 class ParticipatingRoom extends StatelessWidget {
@@ -103,7 +103,7 @@ class ParticipatingRoom extends StatelessWidget {
                 const Gap(10),
 
                 /// メンバーアイコン
-                MemberIcons(urls: imageUrls),
+                RoomMemberIcons(urls: imageUrls),
               ],
             ),
             const Spacer(),
@@ -133,7 +133,7 @@ class ParticipatingRoom extends StatelessWidget {
             children: [
               /// 参加者：女性
               TextSpan(
-                text: membersNum.women,
+                text: membersNum.textWomen,
                 style: theme.textTheme.h10.paint(
                   theme.appColors.primary,
                 ),
@@ -141,7 +141,7 @@ class ParticipatingRoom extends StatelessWidget {
 
               /// 参加者：男性
               const TextSpan(text: '・'),
-              TextSpan(text: membersNum.men),
+              TextSpan(text: membersNum.textMen),
             ],
           ),
         ),

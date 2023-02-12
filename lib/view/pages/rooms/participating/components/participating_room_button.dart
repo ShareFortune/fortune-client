@@ -6,6 +6,15 @@ import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+///
+/// 参加ルームのナビゲーションボタン
+///
+/// ホスト
+/// [ParticipatingRoomButton.host]
+///
+/// ゲスト
+/// [ParticipatingRoomButton.guest]
+///
 class ParticipatingRoomButton extends HookConsumerWidget {
   const ParticipatingRoomButton._({
     required this.theme,
@@ -21,10 +30,55 @@ class ParticipatingRoomButton extends HookConsumerWidget {
   final Color backgroundColor;
   final VoidCallback? onPressed;
 
-  /// リクエスト中
-  factory ParticipatingRoomButton.requesting(
+  /// ホストのナビゲートボタン
+  factory ParticipatingRoomButton.host(
     AppTheme theme,
+    RoomStatus status,
+    VoidCallback navigateMessage,
+    VoidCallback navigateConfirmRequests,
   ) {
+    switch (status) {
+      /// リクエスト一覧確認
+      case RoomStatus.pending:
+        return ParticipatingRoomButton._confirmRequests(
+          theme,
+          navigateConfirmRequests,
+        );
+
+      /// メッセージ
+      /// [RoomStatus.opend] || [RoomStatus.closed]
+      default:
+        return ParticipatingRoomButton._message(theme, navigateMessage);
+    }
+  }
+
+  /// ゲストのナビゲートボタン
+  factory ParticipatingRoomButton.guest(
+    AppTheme theme,
+    RoomStatus status,
+    VoidCallback navigateMessage,
+  ) {
+    switch (status) {
+      /// リクエスト中
+      case RoomStatus.pending:
+        return ParticipatingRoomButton._requesting(theme);
+
+      /// メッセージ
+      /// [RoomStatus.opend] || [RoomStatus.closed]
+      default:
+        return ParticipatingRoomButton._message(theme, navigateMessage);
+    }
+  }
+
+  ///
+  /// ボタンタイプ
+  /// [_requesting] リクエスト中
+  /// [_message] メッセージ
+  /// [_confirmRequests] リクエスト一覧
+  /// -----------------------------
+
+  /// リクエスト中
+  factory ParticipatingRoomButton._requesting(AppTheme theme) {
     return ParticipatingRoomButton._(
       theme: theme,
       label: LocaleKeys.participating_room_list_page_action_requesting.tr(),
@@ -34,7 +88,7 @@ class ParticipatingRoomButton extends HookConsumerWidget {
   }
 
   /// メッセージ
-  factory ParticipatingRoomButton.message(
+  factory ParticipatingRoomButton._message(
     AppTheme theme,
     VoidCallback onPressed,
   ) {
@@ -48,7 +102,7 @@ class ParticipatingRoomButton extends HookConsumerWidget {
   }
 
   /// リクエスト一覧
-  factory ParticipatingRoomButton.confirmRequests(
+  factory ParticipatingRoomButton._confirmRequests(
     AppTheme theme,
     VoidCallback onPressed,
   ) {
@@ -61,45 +115,7 @@ class ParticipatingRoomButton extends HookConsumerWidget {
     );
   }
 
-  /// ホストのナビゲートボタン
-  factory ParticipatingRoomButton.host(
-    AppTheme theme,
-    RoomStatus status,
-    VoidCallback navigateMessage,
-    VoidCallback navigateConfirmRequests,
-  ) {
-    switch (status) {
-      /// リクエスト一覧確認
-      case RoomStatus.pending:
-        return ParticipatingRoomButton.confirmRequests(
-          theme,
-          navigateConfirmRequests,
-        );
-
-      /// メッセージ
-      /// [RoomStatus.opend] || [RoomStatus.closed]
-      default:
-        return ParticipatingRoomButton.message(theme, navigateMessage);
-    }
-  }
-
-  /// ゲストのナビゲートボタン
-  factory ParticipatingRoomButton.guest(
-    AppTheme theme,
-    RoomStatus status,
-    VoidCallback navigateMessage,
-  ) {
-    switch (status) {
-      /// リクエスト中
-      case RoomStatus.pending:
-        return ParticipatingRoomButton.requesting(theme);
-
-      /// メッセージ
-      /// [RoomStatus.opend] || [RoomStatus.closed]
-      default:
-        return ParticipatingRoomButton.message(theme, navigateMessage);
-    }
-  }
+  /// -----------------------------
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

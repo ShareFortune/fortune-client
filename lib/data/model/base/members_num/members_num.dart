@@ -18,17 +18,17 @@ class MembersNum with _$MembersNum {
   }) = _MembersNum;
 
   /// 総参加人数
-  String get all => LocaleKeys.data_room_membersNum_data_all.tr(
+  String get textAll => LocaleKeys.data_room_membersNum_data_all.tr(
         args: [(maxMenNum + maxWomenNum).toString()],
       );
 
   /// 男性の参加人数
-  String get men => LocaleKeys.data_room_membersNum_data_men.tr(
+  String get textMen => LocaleKeys.data_room_membersNum_data_men.tr(
         args: [menNum.toString(), maxMenNum.toString()],
       );
 
   /// 女性の参加人数
-  String get women => LocaleKeys.data_room_membersNum_data_women.tr(
+  String get textWomen => LocaleKeys.data_room_membersNum_data_women.tr(
         args: [womenNum.toString(), maxWomenNum.toString()],
       );
 

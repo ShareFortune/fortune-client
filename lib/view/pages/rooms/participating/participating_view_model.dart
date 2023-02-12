@@ -3,6 +3,7 @@ import 'package:fortune_client/data/model/rooms/get_v1_rooms_host/get_v1_rooms_h
 import 'package:fortune_client/data/repository/rooms/rooms_repository.dart';
 import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/view/pages/rooms/participating/participating_state.dart';
+import 'package:fortune_client/view/pages/rooms/participating/participating_type.dart';
 import 'package:fortune_client/view/routes/app_router.gr.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -81,5 +82,10 @@ class ParticipatingViewModel extends StateNotifier<ParticipatingState> {
     sl<AppRouter>().push(
       BottomSheetRouter(children: [GuestRoomActions(room: room)]),
     );
+  }
+
+  /// 全ての参加ルームへ
+  navigateToParticipatingRoomList(ParticipatingType type) {
+    sl<AppRouter>().push(ParticipatingRoomListRoute(type: type));
   }
 }

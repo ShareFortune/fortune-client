@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class MemberIcons extends StatelessWidget {
-  const MemberIcons({
+class RoomMemberIcons extends StatelessWidget {
+  const RoomMemberIcons({
     super.key,
     required this.urls,
     this.radius = 15,
