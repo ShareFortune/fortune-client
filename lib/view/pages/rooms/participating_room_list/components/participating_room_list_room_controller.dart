@@ -167,7 +167,7 @@ class ParticipatingRoomListRoomController extends HookConsumerWidget {
           case RoomStatus.closed:
             return Text(
               "このルームは終了しました",
-              style: style.paint(theme.appColors.primary),
+              style: style.paint(theme.appColors.error),
             );
         }
       case JoinRequestStatus.rejected:
@@ -178,7 +178,7 @@ class ParticipatingRoomListRoomController extends HookConsumerWidget {
       case JoinRequestStatus.pending:
         return Text(
           "リクエスト中です",
-          style: style.paint(theme.appColors.subText3),
+          style: style.paint(theme.appColors.primary),
         );
       case JoinRequestStatus.canceled:
         return Text(

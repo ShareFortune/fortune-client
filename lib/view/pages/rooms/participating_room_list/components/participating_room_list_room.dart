@@ -36,10 +36,6 @@ class ParticipatingRoomListRoom extends HookConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           infoText,
-          // Text(
-          //   "このルームは開催されています",
-          //   style: theme.textTheme.h20.bold().paint(theme.appColors.subText3),
-          // ),
           const Gap(10),
 
           /// ヘッダー

@@ -125,8 +125,8 @@ Future<void> initDependencies(bool isRelease) async {
     () => UsersDataSource(sl()),
   );
   sl.registerLazySingleton<RoomsDataSource>(
-    // () => RoomsDataSource(sl()),
-    () => FakeRoomDataSource(),
+    () => RoomsDataSource(sl()),
+    // () => FakeRoomDataSource(),
   );
   sl.registerLazySingleton<ProfileDataSource>(
     () => ProfileDataSource(sl()),

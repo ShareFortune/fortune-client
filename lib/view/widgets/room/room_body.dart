@@ -34,6 +34,7 @@ class RoomBody extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               RoomMembersNumText(
                 theme: theme,
