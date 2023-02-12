@@ -56,7 +56,7 @@ import 'package:fortune_client/view/pages/rooms/action/create/create_room_page.d
     as _i7;
 import 'package:fortune_client/view/pages/rooms/action/edit/edit_room_page.dart'
     as _i8;
-import 'package:fortune_client/view/pages/rooms/participating/participating_room_list_page.dart'
+import 'package:fortune_client/view/pages/rooms/participating/participating_page.dart'
     as _i18;
 import 'package:fortune_client/view/pages/rooms/room_detail/room_detail_page.dart'
     as _i17;
@@ -250,10 +250,10 @@ class AppRouter extends _i28.RootStackRouter {
         ),
       );
     },
-    ParticipatingRoomListRoute.name: (routeData) {
+    ParticipatingRoute.name: (routeData) {
       return _i28.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i18.ParticipatingRoomListPage(),
+        child: const _i18.ParticipatingPage(),
       );
     },
     JoinRequestsConfirmationRoute.name: (routeData) {
@@ -372,7 +372,7 @@ class AppRouter extends _i28.RootStackRouter {
               parent: HomeRouter.name,
               children: [
                 _i28.RouteConfig(
-                  ParticipatingRoomListRoute.name,
+                  ParticipatingRoute.name,
                   path: '',
                   parent: ParticipatingTab.name,
                 ),
@@ -953,15 +953,15 @@ class RoomDetailRouteArgs {
 }
 
 /// generated route for
-/// [_i18.ParticipatingRoomListPage]
-class ParticipatingRoomListRoute extends _i28.PageRouteInfo<void> {
-  const ParticipatingRoomListRoute()
+/// [_i18.ParticipatingPage]
+class ParticipatingRoute extends _i28.PageRouteInfo<void> {
+  const ParticipatingRoute()
       : super(
-          ParticipatingRoomListRoute.name,
+          ParticipatingRoute.name,
           path: '',
         );
 
-  static const String name = 'ParticipatingRoomListRoute';
+  static const String name = 'ParticipatingRoute';
 }
 
 /// generated route for

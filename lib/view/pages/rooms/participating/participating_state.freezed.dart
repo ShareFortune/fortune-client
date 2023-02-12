@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'participating_room_list_state.dart';
+part of 'participating_state.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,23 +15,22 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$ParticipatingRoomListState {
+mixin _$ParticipatingState {
   AsyncValue<List<GetV1RoomsHostResponseRoom>> get host =>
       throw _privateConstructorUsedError;
   AsyncValue<List<GetV1RoomsGuestResponseRoom>> get guest =>
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $ParticipatingRoomListStateCopyWith<ParticipatingRoomListState>
-      get copyWith => throw _privateConstructorUsedError;
+  $ParticipatingStateCopyWith<ParticipatingState> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ParticipatingRoomListStateCopyWith<$Res> {
-  factory $ParticipatingRoomListStateCopyWith(ParticipatingRoomListState value,
-          $Res Function(ParticipatingRoomListState) then) =
-      _$ParticipatingRoomListStateCopyWithImpl<$Res,
-          ParticipatingRoomListState>;
+abstract class $ParticipatingStateCopyWith<$Res> {
+  factory $ParticipatingStateCopyWith(
+          ParticipatingState value, $Res Function(ParticipatingState) then) =
+      _$ParticipatingStateCopyWithImpl<$Res, ParticipatingState>;
   @useResult
   $Res call(
       {AsyncValue<List<GetV1RoomsHostResponseRoom>> host,
@@ -39,10 +38,9 @@ abstract class $ParticipatingRoomListStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ParticipatingRoomListStateCopyWithImpl<$Res,
-        $Val extends ParticipatingRoomListState>
-    implements $ParticipatingRoomListStateCopyWith<$Res> {
-  _$ParticipatingRoomListStateCopyWithImpl(this._value, this._then);
+class _$ParticipatingStateCopyWithImpl<$Res, $Val extends ParticipatingState>
+    implements $ParticipatingStateCopyWith<$Res> {
+  _$ParticipatingStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -69,12 +67,11 @@ class _$ParticipatingRoomListStateCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_ParticipatingRoomListStateCopyWith<$Res>
-    implements $ParticipatingRoomListStateCopyWith<$Res> {
-  factory _$$_ParticipatingRoomListStateCopyWith(
-          _$_ParticipatingRoomListState value,
-          $Res Function(_$_ParticipatingRoomListState) then) =
-      __$$_ParticipatingRoomListStateCopyWithImpl<$Res>;
+abstract class _$$_ParticipatingStateCopyWith<$Res>
+    implements $ParticipatingStateCopyWith<$Res> {
+  factory _$$_ParticipatingStateCopyWith(_$_ParticipatingState value,
+          $Res Function(_$_ParticipatingState) then) =
+      __$$_ParticipatingStateCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -83,13 +80,11 @@ abstract class _$$_ParticipatingRoomListStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_ParticipatingRoomListStateCopyWithImpl<$Res>
-    extends _$ParticipatingRoomListStateCopyWithImpl<$Res,
-        _$_ParticipatingRoomListState>
-    implements _$$_ParticipatingRoomListStateCopyWith<$Res> {
-  __$$_ParticipatingRoomListStateCopyWithImpl(
-      _$_ParticipatingRoomListState _value,
-      $Res Function(_$_ParticipatingRoomListState) _then)
+class __$$_ParticipatingStateCopyWithImpl<$Res>
+    extends _$ParticipatingStateCopyWithImpl<$Res, _$_ParticipatingState>
+    implements _$$_ParticipatingStateCopyWith<$Res> {
+  __$$_ParticipatingStateCopyWithImpl(
+      _$_ParticipatingState _value, $Res Function(_$_ParticipatingState) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -98,12 +93,12 @@ class __$$_ParticipatingRoomListStateCopyWithImpl<$Res>
     Object? host = null,
     Object? guest = null,
   }) {
-    return _then(_$_ParticipatingRoomListState(
-      host: null == host
+    return _then(_$_ParticipatingState(
+      null == host
           ? _value.host
           : host // ignore: cast_nullable_to_non_nullable
               as AsyncValue<List<GetV1RoomsHostResponseRoom>>,
-      guest: null == guest
+      null == guest
           ? _value.guest
           : guest // ignore: cast_nullable_to_non_nullable
               as AsyncValue<List<GetV1RoomsGuestResponseRoom>>,
@@ -113,27 +108,24 @@ class __$$_ParticipatingRoomListStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_ParticipatingRoomListState implements _ParticipatingRoomListState {
-  const _$_ParticipatingRoomListState(
-      {this.host = const AsyncLoading(), this.guest = const AsyncLoading()});
+class _$_ParticipatingState implements _ParticipatingState {
+  const _$_ParticipatingState(this.host, this.guest);
 
   @override
-  @JsonKey()
   final AsyncValue<List<GetV1RoomsHostResponseRoom>> host;
   @override
-  @JsonKey()
   final AsyncValue<List<GetV1RoomsGuestResponseRoom>> guest;
 
   @override
   String toString() {
-    return 'ParticipatingRoomListState(host: $host, guest: $guest)';
+    return 'ParticipatingState(host: $host, guest: $guest)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ParticipatingRoomListState &&
+            other is _$_ParticipatingState &&
             (identical(other.host, host) || other.host == host) &&
             (identical(other.guest, guest) || other.guest == guest));
   }
@@ -144,17 +136,16 @@ class _$_ParticipatingRoomListState implements _ParticipatingRoomListState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ParticipatingRoomListStateCopyWith<_$_ParticipatingRoomListState>
-      get copyWith => __$$_ParticipatingRoomListStateCopyWithImpl<
-          _$_ParticipatingRoomListState>(this, _$identity);
+  _$$_ParticipatingStateCopyWith<_$_ParticipatingState> get copyWith =>
+      __$$_ParticipatingStateCopyWithImpl<_$_ParticipatingState>(
+          this, _$identity);
 }
 
-abstract class _ParticipatingRoomListState
-    implements ParticipatingRoomListState {
-  const factory _ParticipatingRoomListState(
-          {final AsyncValue<List<GetV1RoomsHostResponseRoom>> host,
-          final AsyncValue<List<GetV1RoomsGuestResponseRoom>> guest}) =
-      _$_ParticipatingRoomListState;
+abstract class _ParticipatingState implements ParticipatingState {
+  const factory _ParticipatingState(
+          final AsyncValue<List<GetV1RoomsHostResponseRoom>> host,
+          final AsyncValue<List<GetV1RoomsGuestResponseRoom>> guest) =
+      _$_ParticipatingState;
 
   @override
   AsyncValue<List<GetV1RoomsHostResponseRoom>> get host;
@@ -162,6 +153,6 @@ abstract class _ParticipatingRoomListState
   AsyncValue<List<GetV1RoomsGuestResponseRoom>> get guest;
   @override
   @JsonKey(ignore: true)
-  _$$_ParticipatingRoomListStateCopyWith<_$_ParticipatingRoomListState>
-      get copyWith => throw _privateConstructorUsedError;
+  _$$_ParticipatingStateCopyWith<_$_ParticipatingState> get copyWith =>
+      throw _privateConstructorUsedError;
 }

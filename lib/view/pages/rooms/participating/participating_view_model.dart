@@ -2,19 +2,23 @@ import 'package:fortune_client/data/model/rooms/get_v1_rooms_guest/get_v1_rooms_
 import 'package:fortune_client/data/model/rooms/get_v1_rooms_host/get_v1_rooms_host.dart';
 import 'package:fortune_client/data/repository/rooms/rooms_repository.dart';
 import 'package:fortune_client/injector.dart';
-import 'package:fortune_client/view/pages/rooms/participating/participating_room_list_state.dart';
+import 'package:fortune_client/view/pages/rooms/participating/participating_state.dart';
 import 'package:fortune_client/view/routes/app_router.gr.dart';
-import 'package:fortune_client/view/routes/route_path.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-final participatingRoomListViewModelProvider = StateNotifierProvider<
-        ParticipatingRoomListViewModel, ParticipatingRoomListState>(
-    (ref) => ParticipatingRoomListViewModel(sl())..initialize());
+final participatingViewModelProvider =
+    StateNotifierProvider<ParticipatingViewModel, ParticipatingState>(
+  (ref) => ParticipatingViewModel(
+    const ParticipatingState(
+      AsyncLoading(),
+      AsyncLoading(),
+    ),
+    sl(),
+  )..initialize(),
+);
 
-class ParticipatingRoomListViewModel
-    extends StateNotifier<ParticipatingRoomListState> {
-  ParticipatingRoomListViewModel(this._roomRepository)
-      : super(const ParticipatingRoomListState());
+class ParticipatingViewModel extends StateNotifier<ParticipatingState> {
+  ParticipatingViewModel(super.state, this._roomRepository);
 
   final RoomsRepository _roomRepository;
 

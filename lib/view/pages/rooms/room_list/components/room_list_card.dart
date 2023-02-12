@@ -169,7 +169,9 @@ class RoomListCard extends StatelessWidget {
                 ],
               ),
               const Gap(5),
-              memberIconsWidget(room.data.participantMainImageURLs ?? []),
+              MemberIcons(
+                urls: room.data.participantMainImageURLs ?? [],
+              ),
             ],
           ),
           FavoriteButton(
