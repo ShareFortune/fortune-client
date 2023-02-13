@@ -58,8 +58,11 @@ Future<void> initDependencies({bool testMode = false}) async {
   ///
   /// Dio
   ///
-  getIt.registerSingleton<Dio>(
-    Dio(DioClient.baseOptions)..interceptors.addAll(DioClient.interceptors),
+  getIt.registerLazySingleton<Dio>(
+    () => Dio(DioClient.baseOptions)
+      ..interceptors.addAll(
+        DioClient.interceptors,
+      ),
   );
 
   ///
