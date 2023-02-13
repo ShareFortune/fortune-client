@@ -8,17 +8,29 @@ import 'package:fortune_client/data/repository/profile/profile_repository.dart';
 import 'package:fortune_client/data/repository/rooms/rooms_repository.dart';
 import 'package:fortune_client/data/repository/tags/tags_repository.dart';
 import 'package:fortune_client/data/repository/users/users_repository.dart';
-import 'package:fortune_client/injector.dart';
 
 class Repository {
-  static DebugRepository get debug => getIt();
-  static AuthRepository get auth => getIt();
-  static UsersRepository get users => getIt();
-  static MessagesRepository get messages => getIt();
-  static ProfileRepository get profile => getIt();
-  static RoomsRepository get rooms => getIt();
-  static TagsRepository get tags => getIt();
-  static JoinRequestsRepository get joinRequests => getIt();
-  static AddressesRepository get addresses => getIt();
-  static FavoritesRepository get favorites => getIt();
+  final DebugRepository debug;
+  final AuthRepository auth;
+  final UsersRepository users;
+  final MessagesRepository messages;
+  final ProfileRepository profile;
+  final RoomsRepository rooms;
+  final TagsRepository tags;
+  final JoinRequestsRepository joinRequests;
+  final AddressesRepository addresses;
+  final FavoritesRepository favorites;
+
+  Repository({
+    required this.debug,
+    required this.auth,
+    required this.users,
+    required this.messages,
+    required this.profile,
+    required this.rooms,
+    required this.tags,
+    required this.joinRequests,
+    required this.addresses,
+    required this.favorites,
+  });
 }

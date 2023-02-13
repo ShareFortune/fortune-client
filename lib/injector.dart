@@ -32,6 +32,7 @@ import 'package:fortune_client/data/repository/message/message_repository.dart';
 import 'package:fortune_client/data/repository/message/message_repository_impl.dart';
 import 'package:fortune_client/data/repository/profile/profile_repository.dart';
 import 'package:fortune_client/data/repository/profile/profile_repository_impl.dart';
+import 'package:fortune_client/data/repository/repository.dart';
 import 'package:fortune_client/data/repository/rooms/rooms_repository.dart';
 import 'package:fortune_client/data/repository/rooms/rooms_repository_impl.dart';
 import 'package:fortune_client/data/repository/tags/tags_repository.dart';
@@ -48,16 +49,12 @@ import 'data/datasource/remote/go/tags/fake_tags_data_source.dart';
 final getIt = GetIt.instance;
 
 Future<void> initDependencies({bool testMode = false}) async {
-  ///
   /// SharedPreferences
-  ///
   getIt.registerSingletonAsync<SharedPreferences>(
     () => SharedPreferences.getInstance(),
   );
 
-  ///
   /// Dio
-  ///
   getIt.registerLazySingleton<Dio>(
     () => Dio(DioClient.baseOptions)
       ..interceptors.addAll(
@@ -81,6 +78,23 @@ Future<void> initDependencies({bool testMode = false}) async {
   ///
   /// Repository
   ///
+  getIt.registerLazySingleton(
+    () => Repository(
+      debug: getIt<DebugRepository>(),
+      auth: getIt<AuthRepository>(),
+      users: getIt<UsersRepository>(),
+      messages: getIt<MessagesRepository>(),
+      profile: getIt<ProfileRepository>(),
+      rooms: getIt<RoomsRepository>(),
+      tags: getIt<TagsRepository>(),
+      joinRequests: getIt<JoinRequestsRepository>(),
+      addresses: getIt<AddressesRepository>(),
+      favorites: getIt<FavoritesRepository>(),
+    ),
+  );
+  getIt.registerLazySingleton<DebugRepository>(
+    () => DebugRepositoryImpl(getIt()),
+  );
   getIt.registerLazySingleton<AuthRepository>(
     () => AuthRepositoryImpl(getIt()),
   );
@@ -95,9 +109,6 @@ Future<void> initDependencies({bool testMode = false}) async {
   );
   getIt.registerLazySingleton<RoomsRepository>(
     () => RoomsRepositoryImpl(getIt()),
-  );
-  getIt.registerLazySingleton<DebugRepository>(
-    () => DebugRepositoryImpl(getIt()),
   );
   getIt.registerLazySingleton<TagsRepository>(
     () => TagsRepositoryImpl(getIt()),
@@ -146,6 +157,9 @@ Future<void> initDependencies({bool testMode = false}) async {
     () => FavoritesDataSource(getIt()),
   );
 
+  ///
+  /// Test DataSource
+  ///
   if (testMode) {
     getIt.pushNewScope();
 

@@ -1,6 +1,6 @@
 import 'package:fortune_client/data/model/rooms/get_v1_rooms_guest/get_v1_rooms_guest.dart';
 import 'package:fortune_client/data/model/rooms/get_v1_rooms_host/get_v1_rooms_host.dart';
-import 'package:fortune_client/data/repository/rooms/rooms_repository.dart';
+import 'package:fortune_client/data/repository/repository.dart';
 import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/view/pages/rooms/participating/participating_state.dart';
 import 'package:fortune_client/view/pages/rooms/participating/participating_type.dart';
@@ -19,9 +19,9 @@ final participatingViewModelProvider =
 );
 
 class ParticipatingViewModel extends StateNotifier<ParticipatingState> {
-  ParticipatingViewModel(super.state, this._roomRepository);
+  ParticipatingViewModel(super.state, this._repository);
 
-  final RoomsRepository _roomRepository;
+  final Repository _repository;
 
   Future<void> initialize() async {
     await fetchHostRooms();
@@ -30,14 +30,14 @@ class ParticipatingViewModel extends StateNotifier<ParticipatingState> {
 
   Future<void> fetchHostRooms() async {
     final hostRooms = await AsyncValue.guard(() async {
-      return await _roomRepository.getRoomsToParticipateAsHost();
+      return await _repository.rooms.getRoomsToParticipateAsHost();
     });
     state = state.copyWith(host: hostRooms);
   }
 
   Future<void> fetchGuestRooms() async {
     final guestRooms = await AsyncValue.guard(() async {
-      return await _roomRepository.getRoomsToParticipateAsGuest();
+      return await _repository.rooms.getRoomsToParticipateAsGuest();
     });
     state = state.copyWith(guest: guestRooms);
   }

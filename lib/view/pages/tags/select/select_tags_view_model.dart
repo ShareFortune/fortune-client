@@ -1,5 +1,5 @@
 import 'package:fortune_client/data/model/base/tag/tag.dart';
-import 'package:fortune_client/data/repository/tags/tags_repository.dart';
+import 'package:fortune_client/data/repository/repository.dart';
 import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/view/pages/tags/select/select_tags_state.dart';
 import 'package:fortune_client/view/routes/app_router.gr.dart';
@@ -13,7 +13,7 @@ final selectTagsViewModelProvider = StateNotifierProvider.autoDispose
 class SelectTagsViewModel extends StateNotifier<SelectTagsState> {
   SelectTagsViewModel(this._repository) : super(const SelectTagsState());
 
-  final TagsRepository _repository;
+  final Repository _repository;
 
   initialize(List<Tag> beingSet) {
     state = state.copyWith(
@@ -43,7 +43,7 @@ class SelectTagsViewModel extends StateNotifier<SelectTagsState> {
 
   search(String keyword) async {
     final tags = await AsyncValue.guard<List<TagState>>(() async {
-      final result = await _repository.search(keyword);
+      final result = await _repository.tags.search(keyword);
       return result.map((e) => TagState.from(e)).toList();
     });
     state = state.copyWith(searchResult: tags);
@@ -51,7 +51,7 @@ class SelectTagsViewModel extends StateNotifier<SelectTagsState> {
 
   Future<void> getRecommendedTags() async {
     final tags = await AsyncValue.guard<List<TagState>>(() async {
-      final result = await _repository.recommend();
+      final result = await _repository.tags.recommend();
       return result.map((e) => TagState.from(e)).toList();
     });
     state = state.copyWith(recommendation: tags);

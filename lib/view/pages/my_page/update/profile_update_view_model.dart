@@ -2,6 +2,7 @@ import 'package:fortune_client/data/model/base/address_with_id/address_with_id.d
 import 'package:fortune_client/data/model/enum/cigarette_frequency.dart';
 import 'package:fortune_client/data/model/enum/drink_frequency.dart';
 import 'package:fortune_client/data/repository/profile/profile_repository.dart';
+import 'package:fortune_client/data/repository/repository.dart';
 import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/view/pages/my_page/update/profile_update_state.dart';
 import 'package:fortune_client/view/routes/app_router.dart';
@@ -15,10 +16,10 @@ final profileUpdateViewModelProvider =
 class ProfileUpdateViewModel extends StateNotifier<ProfileUpdateState> {
   ProfileUpdateViewModel(this._repository) : super(const ProfileUpdateState());
 
-  final ProfileRepository _repository;
+  final Repository _repository;
 
   initialize() {
-    final profile = _repository.getCache();
+    final profile = _repository.profile.getCache();
     state = state.copyWith(
       stature: profile.height,
       addressWithId: AddressWithId(
@@ -52,7 +53,7 @@ class ProfileUpdateViewModel extends StateNotifier<ProfileUpdateState> {
   }
 
   update() async {
-    await _repository.updateBasicInfo(
+    await _repository.profile.updateBasicInfo(
       addressWithId: state.addressWithId!.id < 0 ? null : state.addressWithId,
       stature: state.stature,
       drinkFrequency: state.drinkFrequency,

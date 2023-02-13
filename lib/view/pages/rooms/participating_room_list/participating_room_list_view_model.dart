@@ -1,4 +1,4 @@
-import 'package:fortune_client/data/repository/rooms/rooms_repository.dart';
+import 'package:fortune_client/data/repository/repository.dart';
 import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/view/pages/rooms/participating/participating_type.dart';
 import 'package:fortune_client/view/pages/rooms/participating_room_list/participating_room_list_state.dart';
@@ -19,10 +19,10 @@ final participatingRoomListViewModelProvider = StateNotifierProvider.family<
 
 class ParticipatingRoomListViewModel
     extends StateNotifier<ParticipatingRoomListState> {
-  ParticipatingRoomListViewModel(super.state, this._type, this._roomRepository);
+  ParticipatingRoomListViewModel(super.state, this._type, this._repository);
 
   final ParticipatingType _type;
-  final RoomsRepository _roomRepository;
+  final Repository _repository;
 
   initialize() => getRooms();
 
@@ -31,13 +31,13 @@ class ParticipatingRoomListViewModel
       rooms: await AsyncValue.guard(() async {
         switch (_type) {
           case ParticipatingType.host:
-            return await _roomRepository.getRoomsToParticipateAsHost();
+            return await _repository.rooms.getRoomsToParticipateAsHost();
           case ParticipatingType.guest:
-            return await _roomRepository.getRoomsToParticipateAsGuest();
+            return await _repository.rooms.getRoomsToParticipateAsGuest();
 
           /// TODO
           case ParticipatingType.all:
-            return await _roomRepository.getRoomsToParticipateAsGuest();
+            return await _repository.rooms.getRoomsToParticipateAsGuest();
         }
       }),
     );

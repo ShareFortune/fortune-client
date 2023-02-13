@@ -1,7 +1,7 @@
 import 'package:fortune_client/data/model/base/address_with_id/address_with_id.dart';
 import 'package:fortune_client/data/model/base/tag/tag.dart';
 import 'package:fortune_client/data/model/enum/age_group.dart';
-import 'package:fortune_client/data/repository/rooms/rooms_repository.dart';
+import 'package:fortune_client/data/repository/repository.dart';
 import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/view/pages/rooms/action/create/create_room_state.dart';
 import 'package:fortune_client/view/routes/app_router.gr.dart';
@@ -13,9 +13,9 @@ final createRoomViewModelProvider =
 );
 
 class CreateRoomViewModel extends StateNotifier<CreateRoomState> {
-  CreateRoomViewModel(this._roomsRepository) : super(const CreateRoomState());
+  CreateRoomViewModel(this._repository) : super(const CreateRoomState());
 
-  final RoomsRepository _roomsRepository;
+  final Repository _repository;
 
   /// タグ以外はNull非許容
   bool isPossibleToCreate() {
@@ -45,7 +45,7 @@ class CreateRoomViewModel extends StateNotifier<CreateRoomState> {
 
   Future<bool> create() async {
     if (isPossibleToCreate()) {
-      final result = await _roomsRepository.create(
+      final result = await _repository.rooms.create(
         title: state.title!,
         membersNum: state.membersNum!,
         ageGroup: state.ageGroup!,

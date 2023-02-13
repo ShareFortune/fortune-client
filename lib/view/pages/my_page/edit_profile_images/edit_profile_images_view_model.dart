@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:fortune_client/data/repository/profile/profile_repository.dart';
+import 'package:fortune_client/data/repository/repository.dart';
 import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/data/model/enum/profile_images_type.dart';
 import 'package:fortune_client/view/pages/my_page/edit_profile_images/edit_profile_images_state.dart';
@@ -14,14 +14,13 @@ final editProfilePictureViewModelProvider = StateNotifierProvider<
 
 class EditProfileImagesViewModel
     extends StateNotifier<AsyncValue<EditProfileImagesState>> {
-  EditProfileImagesViewModel(this._profileRepository)
-      : super(const AsyncLoading());
+  EditProfileImagesViewModel(this._repository) : super(const AsyncLoading());
 
-  final ProfileRepository _profileRepository;
+  final Repository _repository;
 
   Future<void> initialize() async {
     state = await AsyncValue.guard(() async {
-      final result = _profileRepository.getCache();
+      final result = _repository.profile.getCache();
       return EditProfileImagesState(
         ProfileImagesType.values.map((profileImageType) {
           return EditProfileImagesStateItem(
@@ -54,9 +53,9 @@ class EditProfileImagesViewModel
   /// [ProfileImagesType]に応じて保存
   Future<void> updateImage(ProfileImagesType type, File? file) async {
     updateImageLocally(type, file);
-    await _profileRepository.saveProfileImageByType(type, file);
-    await _profileRepository.updateProfileImages();
-    _profileRepository.get();
+    await _repository.profile.saveProfileImageByType(type, file);
+    await _repository.profile.updateProfileImages();
+    _repository.profile.get();
   }
 
   /// マイプロフィール

@@ -1,8 +1,6 @@
 import 'package:fortune_client/data/model/base/address_with_id/address_with_id.dart';
 import 'package:fortune_client/data/model/base/tag/tag.dart';
-import 'package:fortune_client/data/repository/favorites/favorites_repository.dart';
-import 'package:fortune_client/data/repository/join_requests/join_requests_repository.dart';
-import 'package:fortune_client/data/repository/rooms/rooms_repository.dart';
+import 'package:fortune_client/data/repository/repository.dart';
 import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/view/pages/rooms/room_list/room_list_state.dart';
 import 'package:fortune_client/view/routes/app_router.dart';
@@ -11,17 +9,13 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final roomListViewModelProvider =
     StateNotifierProvider<RoomListViewModel, RoomListState>((ref) {
-  return RoomListViewModel(getIt(), getIt(), getIt())..initialize();
+  return RoomListViewModel(getIt())..initialize();
 });
 
 class RoomListViewModel extends StateNotifier<RoomListState> {
-  RoomListViewModel(this._roomRepository, this._joinRequestsRepository,
-      this._favoritesRepository)
-      : super(const RoomListState());
+  RoomListViewModel(this._repository) : super(const RoomListState());
 
-  final RoomsRepository _roomRepository;
-  final JoinRequestsRepository _joinRequestsRepository;
-  final FavoritesRepository _favoritesRepository;
+  final Repository _repository;
 
   Future<void> initialize() async => await fetchList();
 
@@ -29,7 +23,7 @@ class RoomListViewModel extends StateNotifier<RoomListState> {
     bool hasRoomSearchResult = false;
     state = state.copyWith(
       rooms: await AsyncValue.guard(() async {
-        final result = await _roomRepository.fetchList(
+        final result = await _repository.rooms.fetchList(
           memberNum: state.filter.memberNum,
           tags: state.filter.tags,
           addressWithId: state.filter.addressWithId,
@@ -50,7 +44,7 @@ class RoomListViewModel extends StateNotifier<RoomListState> {
 
   /// 参加申請
   Future<bool> sendJoinRequest(String roomId) async {
-    if (!await _joinRequestsRepository.request(roomId)) return false;
+    if (!await _repository.joinRequests.request(roomId)) return false;
     final data = state.rooms.value!;
     state = state.copyWith(
       rooms: await AsyncValue.guard(() async {
@@ -66,8 +60,8 @@ class RoomListViewModel extends StateNotifier<RoomListState> {
   /// 返り値は保存・保存解除処理を完了したかどうか
   Future<bool> saveOrReleaseRoom(String roomId, bool isFavorite) async {
     final result = isFavorite
-        ? await _favoritesRepository.register(roomId)
-        : await _favoritesRepository.unregister(roomId);
+        ? await _repository.favorites.register(roomId)
+        : await _repository.favorites.unregister(roomId);
 
     if (!result) return false;
 

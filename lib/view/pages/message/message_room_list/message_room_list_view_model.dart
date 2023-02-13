@@ -1,6 +1,4 @@
-import 'package:auto_route/auto_route.dart';
-import 'package:flutter/material.dart';
-import 'package:fortune_client/data/repository/message/message_repository.dart';
+import 'package:fortune_client/data/repository/repository.dart';
 import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/view/pages/message/message_room_list/message_room_list_state.dart';
 import 'package:fortune_client/view/routes/app_router.gr.dart';
@@ -15,7 +13,7 @@ class MessageRoomListViewModel extends StateNotifier<MessageRoomListState> {
   MessageRoomListViewModel(this._repository)
       : super(const MessageRoomListState());
 
-  final MessageRepository _repository;
+  final Repository _repository;
 
   initialize() async {
     await fetchListHost();
@@ -24,7 +22,7 @@ class MessageRoomListViewModel extends StateNotifier<MessageRoomListState> {
 
   fetchListHost() async {
     final host = await AsyncValue.guard<StatusMessageRoomListState>(() async {
-      final result = await _repository.fetchHost();
+      final result = await _repository.messages.fetchHost();
       final messageRooms = result.map((e) {
         return MessageRoomListItemState.from(e);
       }).toList();

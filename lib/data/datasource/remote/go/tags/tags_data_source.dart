@@ -9,7 +9,7 @@ part 'tags_data_source.g.dart';
 
 @RestApi()
 abstract class TagsDataSource {
-  factory TagsDataSource(Dio dio, {String baseUrl}) = _TagsDataSource;
+  factory TagsDataSource(Dio dio) = _TagsDataSource;
 
   @POST('/tags')
   @authenticatedRequest

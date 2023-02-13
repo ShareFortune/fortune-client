@@ -1,5 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:fortune_client/data/repository/debug/debug_repository.dart';
+import 'package:fortune_client/data/repository/repository.dart';
 import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/view/pages/debug/debug_state.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -11,16 +10,16 @@ final debugViewModelProvider =
 });
 
 class DebugViewModel extends StateNotifier<AsyncValue<DebugState>> {
-  DebugViewModel(this._debugRepository) : super(const AsyncValue.loading());
+  DebugViewModel(this._repository) : super(const AsyncValue.loading());
 
-  final DebugRepository _debugRepository;
+  final Repository _repository;
 
   init() async {
     state = await AsyncValue.guard(() async {
       return DebugState(
         debugInfo: await PackageInfo.fromPlatform(),
-        isDummyRoginApi: await _debugRepository.getDummyRoginApi(),
-        isAutomaticLogin: await _debugRepository.getAutomaticLogin(),
+        isDummyRoginApi: await _repository.debug.getDummyRoginApi(),
+        isAutomaticLogin: await _repository.debug.getAutomaticLogin(),
       );
     });
   }
@@ -29,12 +28,12 @@ class DebugViewModel extends StateNotifier<AsyncValue<DebugState>> {
     final data = state.value;
     if (data == null) return;
     state = await AsyncValue.guard(() async {
-      await _debugRepository.setAutomaticLogin(value);
+      await _repository.debug.setAutomaticLogin(value);
       return data.copyWith(isAutomaticLogin: value);
     });
   }
 
   Future<bool> clearIsProfile() async {
-    return await _debugRepository.clearIsProfile();
+    return await _repository.debug.clearIsProfile();
   }
 }

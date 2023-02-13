@@ -1,6 +1,4 @@
-import 'package:auto_route/auto_route.dart';
-import 'package:fortune_client/data/repository/auth/auth_repository.dart';
-import 'package:fortune_client/data/repository/debug/debug_repository.dart';
+import 'package:fortune_client/data/repository/repository.dart';
 import 'package:fortune_client/foundation/constants.dart';
 import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/view/pages/auth/login/login_state.dart';
@@ -9,15 +7,13 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final loginViewModelProvider =
     StateNotifierProvider<LoginViewModel, AsyncValue<void>>((ref) {
-  return LoginViewModel(getIt(), getIt());
+  return LoginViewModel(getIt());
 });
 
 class LoginViewModel extends StateNotifier<AsyncValue<void>> {
-  LoginViewModel(this._authRepository, this._debugRepository)
-      : super(const AsyncData(null));
+  LoginViewModel(this._repository) : super(const AsyncData(null));
 
-  final AuthRepository _authRepository;
-  final DebugRepository _debugRepository;
+  final Repository _repository;
 
   /// デバッグモードオンオフ
   Future<bool?> toggleDebugMode() async {
@@ -25,8 +21,8 @@ class LoginViewModel extends StateNotifier<AsyncValue<void>> {
       return null;
     }
 
-    final isDummyRoginApi = await _debugRepository.getDummyRoginApi();
-    _debugRepository.setDummyRoginApi(!isDummyRoginApi);
+    final isDummyRoginApi = await _repository.debug.getDummyRoginApi();
+    _repository.debug.setDummyRoginApi(!isDummyRoginApi);
     return !isDummyRoginApi;
   }
 
@@ -36,7 +32,7 @@ class LoginViewModel extends StateNotifier<AsyncValue<void>> {
     //   return await navigateToHome();
     // }
     final result = await loginWithSns(type);
-    if (result && _authRepository.isLogin) {
+    if (result && _repository.auth.isLogin) {
       await navigateToHome();
     }
   }
@@ -47,11 +43,11 @@ class LoginViewModel extends StateNotifier<AsyncValue<void>> {
     state = await AsyncValue.guard(() async {
       switch (type) {
         case AuthType.apple:
-          return await _authRepository.signInWithApple();
+          return await _repository.auth.signInWithApple();
         case AuthType.google:
-          return await _authRepository.signInWithGoogle();
+          return await _repository.auth.signInWithGoogle();
         case AuthType.twitter:
-          return await _authRepository.signInWithTwitter();
+          return await _repository.auth.signInWithTwitter();
       }
     });
     return state is AsyncData;
