@@ -499,7 +499,7 @@ there are a number of features missing:
   should be low impact on other libraries.
 
   If you want to use the Rake DSL commands from your own code, just
-  include <tt>Rake::DSL</tt> into your own classes and modules.
+  include <tt>Rake::DgetIt</tt> into your own classes and modules.
 
 * The deprecated syntax for task arguments (the one using
   <tt>:needs</tt>) has been removed.
@@ -747,7 +747,7 @@ there are a number of features missing:
   should be low impact on other libraries.
 
   If you want to use the Rake DSL commands from your own code, just
-  include <tt>Rake::DSL</tt> into your own classes and modules.
+  include <tt>Rake::DgetIt</tt> into your own classes and modules.
 
 * The deprecated syntax for task arguments (the one using
   <tt>:needs</tt>) has been removed.

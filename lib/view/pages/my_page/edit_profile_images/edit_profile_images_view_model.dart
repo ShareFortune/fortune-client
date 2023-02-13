@@ -9,7 +9,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final editProfilePictureViewModelProvider = StateNotifierProvider<
     EditProfileImagesViewModel, AsyncValue<EditProfileImagesState>>(
-  (_) => EditProfileImagesViewModel(sl())..initialize(),
+  (_) => EditProfileImagesViewModel(getIt())..initialize(),
 );
 
 class EditProfileImagesViewModel
@@ -61,6 +61,6 @@ class EditProfileImagesViewModel
 
   /// マイプロフィール
   navigateToProfile() async {
-    await sl<AppRouter>().push(ProfileRoute(id: null));
+    await getIt<AppRouter>().push(ProfileRoute(id: null));
   }
 }

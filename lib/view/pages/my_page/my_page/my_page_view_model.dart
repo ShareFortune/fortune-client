@@ -11,7 +11,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final myPageViewModelProvider =
     StateNotifierProvider<MyPageViewModel, MyPageState>((_) {
-  return MyPageViewModel(sl())..initialize();
+  return MyPageViewModel(getIt())..initialize();
 });
 
 class MyPageViewModel extends StateNotifier<MyPageState> {
@@ -34,7 +34,7 @@ class MyPageViewModel extends StateNotifier<MyPageState> {
 
   /// 設定ページへ
   navigateToSettingPage() {
-    sl<AppRouter>().push(const SettingsRoute());
+    getIt<AppRouter>().push(const SettingsRoute());
   }
 
   /// 自己紹介を編集
@@ -43,7 +43,7 @@ class MyPageViewModel extends StateNotifier<MyPageState> {
     if (data == null) return;
 
     /// 自己紹介取得
-    final result = await sl<AppRouter>().push(
+    final result = await getIt<AppRouter>().push(
       EntryDescriptionRoute(
         title: LocaleKeys.myPage_profiles_selfIntroduction_editTitle.tr(),
         value: data.selfIntroduction,
@@ -62,7 +62,7 @@ class MyPageViewModel extends StateNotifier<MyPageState> {
     if (data == null) return;
 
     /// タグ取得
-    final result = await sl<AppRouter>().push(
+    final result = await getIt<AppRouter>().push(
       SelectTagsRoute(beingSet: data.tags ?? List.empty()),
     ) as List<Tag>?;
 
@@ -74,13 +74,13 @@ class MyPageViewModel extends StateNotifier<MyPageState> {
 
   /// 基本情報を編集
   navigateToUpdateBasic() async {
-    sl<AppRouter>()
+    getIt<AppRouter>()
         .push(const ProfileUpdateRoute())
         .whenComplete(() => fetch());
   }
 
   navigateToEditProfilePicture() async {
-    sl<AppRouter>().push(
+    getIt<AppRouter>().push(
       const BottomSheetRouter(children: [EditProfilePicture()]),
     );
   }

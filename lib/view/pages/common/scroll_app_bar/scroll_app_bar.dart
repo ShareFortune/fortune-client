@@ -61,7 +61,7 @@ class ScrollAppBar extends HookConsumerWidget implements PreferredSizeWidget {
                   ),
                 ),
                 InkWell(
-                  onTap: () => sl<AppRouter>().push(const MyRoute()),
+                  onTap: () => getIt<AppRouter>().push(const MyRoute()),
                   child: SvgPicture.asset(
                     Assets.images.icons.iconProfile.path,
                     fit: BoxFit.contain,

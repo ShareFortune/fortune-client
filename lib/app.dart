@@ -13,7 +13,7 @@ class MyApp extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = ref.watch(appThemeProvider);
     final themeMode = ref.watch(appThemeModeProvider);
-    final appRouter = sl<AppRouter>();
+    final appRouter = getIt<AppRouter>();
 
     return Sizer(builder: (context, orientation, deviceType) {
       return MaterialApp.router(

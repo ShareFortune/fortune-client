@@ -7,7 +7,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final createTagViewModelProvider =
     StateNotifierProvider<CreateTagViewModel, CreateTagState>(
-  (_) => CreateTagViewModel(sl()),
+  (_) => CreateTagViewModel(getIt()),
 );
 
 class CreateTagViewModel extends StateNotifier<CreateTagState> {
@@ -34,7 +34,7 @@ class CreateTagViewModel extends StateNotifier<CreateTagState> {
     try {
       if (!isPossibleToCreate()) return false;
       final id = await _tagsRepository.create(state.name!, state.description!);
-      return sl<AppRouter>().pop(Tag(id: id, name: state.name!));
+      return getIt<AppRouter>().pop(Tag(id: id, name: state.name!));
     } catch (e) {
       return false;
     }

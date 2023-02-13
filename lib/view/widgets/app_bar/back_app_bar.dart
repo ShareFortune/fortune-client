@@ -30,7 +30,7 @@ class BackAppBar extends HookConsumerWidget implements PreferredSizeWidget {
       ),
       iconTheme: IconThemeData(color: theme.appColors.iconBtn1),
       leading: leading,
-      //  ?? BackButton(onPressed: sl<AppRouter>().pop),
+      //  ?? BackButton(onPressed: getIt<AppRouter>().pop),
       actions: action,
     );
   }

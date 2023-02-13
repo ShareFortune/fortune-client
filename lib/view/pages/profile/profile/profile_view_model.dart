@@ -10,7 +10,7 @@ final profileViewModelProvider =
       profileId: id,
       profile: const AsyncLoading(),
     ),
-    sl(),
+    getIt(),
   )..initialize(),
 );
 

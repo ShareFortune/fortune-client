@@ -22,7 +22,7 @@ class HostRoomActionsBottomSheet extends HookConsumerWidget {
         ref.watch(hostRoomActionsBottomSheetViewModelProvider.notifier);
 
     return GestureDetector(
-      onTap: () => sl<AppRouter>().pop(),
+      onTap: () => getIt<AppRouter>().pop(),
       child: Container(
         color: Colors.transparent,
         alignment: Alignment.bottomCenter,

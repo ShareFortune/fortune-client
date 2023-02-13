@@ -8,7 +8,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final messageRoomListViewModelProvider =
     StateNotifierProvider<MessageRoomListViewModel, MessageRoomListState>(
-  (ref) => MessageRoomListViewModel(sl())..initialize(),
+  (ref) => MessageRoomListViewModel(getIt())..initialize(),
 );
 
 class MessageRoomListViewModel extends StateNotifier<MessageRoomListState> {
@@ -45,6 +45,6 @@ class MessageRoomListViewModel extends StateNotifier<MessageRoomListState> {
   }
 
   navigateToMessagePage(String id) async {
-    await sl<AppRouter>().push(MessageRoomRoute(id: id));
+    await getIt<AppRouter>().push(MessageRoomRoute(id: id));
   }
 }
