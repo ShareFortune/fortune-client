@@ -7,14 +7,11 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final basicProfileEntryViewModelProvider =
     StateNotifierProvider<BasicProfileEntryViewModel, BasicProfileEntryState>(
-  (ref) => BasicProfileEntryViewModel(getIt()),
+  (ref) => BasicProfileEntryViewModel(),
 );
 
 class BasicProfileEntryViewModel extends StateNotifier<BasicProfileEntryState> {
-  BasicProfileEntryViewModel(this._repository)
-      : super(const BasicProfileEntryState());
-
-  final Repository _repository;
+  BasicProfileEntryViewModel() : super(const BasicProfileEntryState());
 
   changeName(String value) {
     state = state.copyWith(name: value);
@@ -30,7 +27,7 @@ class BasicProfileEntryViewModel extends StateNotifier<BasicProfileEntryState> {
     final birthday = DateTimeConverter.convertDateTimeYYYYMMDD(state.birthday!,
         delimiter: "-");
 
-    final result = await _repository.users.create(state.name, birthday);
+    final result = await Repository.users.create(state.name, birthday);
     if (result) navigateToEntryDetailedProfile();
 
     // ignore: todo

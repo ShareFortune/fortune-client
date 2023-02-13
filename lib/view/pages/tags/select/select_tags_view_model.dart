@@ -7,13 +7,11 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final selectTagsViewModelProvider = StateNotifierProvider.autoDispose
     .family<SelectTagsViewModel, SelectTagsState, List<Tag>>(
-  (ref, beingSet) => SelectTagsViewModel(getIt())..initialize(beingSet),
+  (ref, beingSet) => SelectTagsViewModel()..initialize(beingSet),
 );
 
 class SelectTagsViewModel extends StateNotifier<SelectTagsState> {
-  SelectTagsViewModel(this._repository) : super(const SelectTagsState());
-
-  final Repository _repository;
+  SelectTagsViewModel() : super(const SelectTagsState());
 
   initialize(List<Tag> beingSet) {
     state = state.copyWith(
@@ -43,7 +41,7 @@ class SelectTagsViewModel extends StateNotifier<SelectTagsState> {
 
   search(String keyword) async {
     final tags = await AsyncValue.guard<List<TagState>>(() async {
-      final result = await _repository.tags.search(keyword);
+      final result = await Repository.tags.search(keyword);
       return result.map((e) => TagState.from(e)).toList();
     });
     state = state.copyWith(searchResult: tags);
@@ -51,7 +49,7 @@ class SelectTagsViewModel extends StateNotifier<SelectTagsState> {
 
   Future<void> getRecommendedTags() async {
     final tags = await AsyncValue.guard<List<TagState>>(() async {
-      final result = await _repository.tags.recommend();
+      final result = await Repository.tags.recommend();
       return result.map((e) => TagState.from(e)).toList();
     });
     state = state.copyWith(recommendation: tags);

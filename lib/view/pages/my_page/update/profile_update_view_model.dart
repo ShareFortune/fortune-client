@@ -10,16 +10,14 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final profileUpdateViewModelProvider =
     StateNotifierProvider<ProfileUpdateViewModel, ProfileUpdateState>(
-  (ref) => ProfileUpdateViewModel(getIt())..initialize(),
+  (ref) => ProfileUpdateViewModel()..initialize(),
 );
 
 class ProfileUpdateViewModel extends StateNotifier<ProfileUpdateState> {
-  ProfileUpdateViewModel(this._repository) : super(const ProfileUpdateState());
-
-  final Repository _repository;
+  ProfileUpdateViewModel() : super(const ProfileUpdateState());
 
   initialize() {
-    final profile = _repository.profile.getCache();
+    final profile = Repository.profile.getCache();
     state = state.copyWith(
       stature: profile.height,
       addressWithId: AddressWithId(
@@ -53,7 +51,7 @@ class ProfileUpdateViewModel extends StateNotifier<ProfileUpdateState> {
   }
 
   update() async {
-    await _repository.profile.updateBasicInfo(
+    await Repository.profile.updateBasicInfo(
       addressWithId: state.addressWithId!.id < 0 ? null : state.addressWithId,
       stature: state.stature,
       drinkFrequency: state.drinkFrequency,

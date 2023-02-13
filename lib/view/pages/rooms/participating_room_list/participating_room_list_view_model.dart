@@ -12,17 +12,15 @@ final participatingRoomListViewModelProvider = StateNotifierProvider.family<
     return ParticipatingRoomListViewModel(
       const ParticipatingRoomListState(AsyncLoading()),
       type,
-      getIt(),
     )..initialize();
   },
 );
 
 class ParticipatingRoomListViewModel
     extends StateNotifier<ParticipatingRoomListState> {
-  ParticipatingRoomListViewModel(super.state, this._type, this._repository);
+  ParticipatingRoomListViewModel(super.state, this._type);
 
   final ParticipatingType _type;
-  final Repository _repository;
 
   initialize() => getRooms();
 
@@ -31,13 +29,13 @@ class ParticipatingRoomListViewModel
       rooms: await AsyncValue.guard(() async {
         switch (_type) {
           case ParticipatingType.host:
-            return await _repository.rooms.getRoomsToParticipateAsHost();
+            return await Repository.rooms.getRoomsToParticipateAsHost();
           case ParticipatingType.guest:
-            return await _repository.rooms.getRoomsToParticipateAsGuest();
+            return await Repository.rooms.getRoomsToParticipateAsGuest();
 
           /// TODO
           case ParticipatingType.all:
-            return await _repository.rooms.getRoomsToParticipateAsGuest();
+            return await Repository.rooms.getRoomsToParticipateAsGuest();
         }
       }),
     );

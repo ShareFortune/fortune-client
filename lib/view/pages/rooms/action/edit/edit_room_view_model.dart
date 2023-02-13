@@ -11,22 +11,18 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final editRoomViewModelProvider =
     StateNotifierProvider.family<EditRoomViewModel, EditRoomState, String>(
-  (_, id) => EditRoomViewModel(
-      getIt(),
-      EditRoomState(
-        titleController: TextEditingController(),
-        explanationController: TextEditingController(),
-      ))
+  (_, id) => EditRoomViewModel(EditRoomState(
+    titleController: TextEditingController(),
+    explanationController: TextEditingController(),
+  ))
     ..initialize(id),
 );
 
 class EditRoomViewModel extends StateNotifier<EditRoomState> {
-  EditRoomViewModel(this._repository, state) : super(state);
-
-  final Repository _repository;
+  EditRoomViewModel(state) : super(state);
 
   Future<void> initialize(roomId) async {
-    await _repository.rooms.fetchDetail(roomId).then((room) {
+    await Repository.rooms.fetchDetail(roomId).then((room) {
       changeMembersNum(room.membersNum);
       changeTags(room.tags);
       state.titleController.text = room.roomName;

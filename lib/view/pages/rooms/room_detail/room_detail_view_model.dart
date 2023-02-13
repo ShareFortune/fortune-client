@@ -6,14 +6,11 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final roomDetailViewModelProvider =
     StateNotifierProvider.family<RoomDetailViewModel, RoomDetailState, String>(
-  (ref, roomId) => RoomDetailViewModel(roomId, getIt())..initialize(),
+  (ref, roomId) => RoomDetailViewModel(roomId)..initialize(),
 );
 
 class RoomDetailViewModel extends StateNotifier<RoomDetailState> {
-  RoomDetailViewModel(String roomId, this._repository)
-      : super(RoomDetailState(roomId: roomId));
-
-  final Repository _repository;
+  RoomDetailViewModel(String roomId) : super(RoomDetailState(roomId: roomId));
 
   Future<void> initialize() async {
     await fetch();
@@ -22,13 +19,13 @@ class RoomDetailViewModel extends StateNotifier<RoomDetailState> {
   Future<void> fetch() async {
     state = state.copyWith(
       detail: await AsyncValue.guard(() async {
-        return await _repository.rooms.fetchDetail(state.roomId);
+        return await Repository.rooms.fetchDetail(state.roomId);
       }),
     );
   }
 
   Future<bool> joinRequest() {
-    return _repository.joinRequests.request(state.roomId);
+    return Repository.joinRequests.request(state.roomId);
   }
 
   navigateToProfile(String id) async {

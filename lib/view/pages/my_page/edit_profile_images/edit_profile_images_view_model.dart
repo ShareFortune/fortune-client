@@ -9,18 +9,16 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final editProfilePictureViewModelProvider = StateNotifierProvider<
     EditProfileImagesViewModel, AsyncValue<EditProfileImagesState>>(
-  (_) => EditProfileImagesViewModel(getIt())..initialize(),
+  (_) => EditProfileImagesViewModel()..initialize(),
 );
 
 class EditProfileImagesViewModel
     extends StateNotifier<AsyncValue<EditProfileImagesState>> {
-  EditProfileImagesViewModel(this._repository) : super(const AsyncLoading());
-
-  final Repository _repository;
+  EditProfileImagesViewModel() : super(const AsyncLoading());
 
   Future<void> initialize() async {
     state = await AsyncValue.guard(() async {
-      final result = _repository.profile.getCache();
+      final result = Repository.profile.getCache();
       return EditProfileImagesState(
         ProfileImagesType.values.map((profileImageType) {
           return EditProfileImagesStateItem(
@@ -53,9 +51,9 @@ class EditProfileImagesViewModel
   /// [ProfileImagesType]に応じて保存
   Future<void> updateImage(ProfileImagesType type, File? file) async {
     updateImageLocally(type, file);
-    await _repository.profile.saveProfileImageByType(type, file);
-    await _repository.profile.updateProfileImages();
-    _repository.profile.get();
+    await Repository.profile.saveProfileImageByType(type, file);
+    await Repository.profile.updateProfileImages();
+    Repository.profile.get();
   }
 
   /// マイプロフィール

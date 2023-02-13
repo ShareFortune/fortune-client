@@ -7,13 +7,11 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final createTagViewModelProvider =
     StateNotifierProvider<CreateTagViewModel, CreateTagState>(
-  (_) => CreateTagViewModel(getIt()),
+  (_) => CreateTagViewModel(const CreateTagState()),
 );
 
 class CreateTagViewModel extends StateNotifier<CreateTagState> {
-  CreateTagViewModel(this._repository) : super(const CreateTagState());
-
-  final Repository _repository;
+  CreateTagViewModel(super.state);
 
   bool isPossibleToCreate() {
     return state.name != null &&
@@ -33,7 +31,7 @@ class CreateTagViewModel extends StateNotifier<CreateTagState> {
   Future<bool> create() async {
     try {
       if (!isPossibleToCreate()) return false;
-      final id = await _repository.tags.create(state.name!, state.description!);
+      final id = await Repository.tags.create(state.name!, state.description!);
       return getIt<AppRouter>().pop(Tag(id: id, name: state.name!));
     } catch (e) {
       return false;

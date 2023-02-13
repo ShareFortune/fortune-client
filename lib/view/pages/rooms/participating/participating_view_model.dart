@@ -14,14 +14,11 @@ final participatingViewModelProvider =
       AsyncLoading(),
       AsyncLoading(),
     ),
-    getIt(),
   )..initialize(),
 );
 
 class ParticipatingViewModel extends StateNotifier<ParticipatingState> {
-  ParticipatingViewModel(super.state, this._repository);
-
-  final Repository _repository;
+  ParticipatingViewModel(super.state);
 
   Future<void> initialize() async {
     await fetchHostRooms();
@@ -30,14 +27,14 @@ class ParticipatingViewModel extends StateNotifier<ParticipatingState> {
 
   Future<void> fetchHostRooms() async {
     final hostRooms = await AsyncValue.guard(() async {
-      return await _repository.rooms.getRoomsToParticipateAsHost();
+      return await Repository.rooms.getRoomsToParticipateAsHost();
     });
     state = state.copyWith(host: hostRooms);
   }
 
   Future<void> fetchGuestRooms() async {
     final guestRooms = await AsyncValue.guard(() async {
-      return await _repository.rooms.getRoomsToParticipateAsGuest();
+      return await Repository.rooms.getRoomsToParticipateAsGuest();
     });
     state = state.copyWith(guest: guestRooms);
   }

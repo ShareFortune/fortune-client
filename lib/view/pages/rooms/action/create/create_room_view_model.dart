@@ -9,13 +9,11 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final createRoomViewModelProvider =
     StateNotifierProvider<CreateRoomViewModel, CreateRoomState>(
-  (_) => CreateRoomViewModel(getIt()),
+  (_) => CreateRoomViewModel(),
 );
 
 class CreateRoomViewModel extends StateNotifier<CreateRoomState> {
-  CreateRoomViewModel(this._repository) : super(const CreateRoomState());
-
-  final Repository _repository;
+  CreateRoomViewModel() : super(const CreateRoomState());
 
   /// タグ以外はNull非許容
   bool isPossibleToCreate() {
@@ -45,7 +43,7 @@ class CreateRoomViewModel extends StateNotifier<CreateRoomState> {
 
   Future<bool> create() async {
     if (isPossibleToCreate()) {
-      final result = await _repository.rooms.create(
+      final result = await Repository.rooms.create(
         title: state.title!,
         membersNum: state.membersNum!,
         ageGroup: state.ageGroup!,

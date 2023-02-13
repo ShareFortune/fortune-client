@@ -7,13 +7,11 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final entryAddressViewModelProvider =
     StateNotifierProvider<EntryAddressViewModel, EntryAddressState>(
-  (ref) => EntryAddressViewModel(getIt()),
+  (ref) => EntryAddressViewModel(),
 );
 
 class EntryAddressViewModel extends StateNotifier<EntryAddressState> {
-  EntryAddressViewModel(this._repository) : super(const EntryAddressState());
-
-  final Repository _repository;
+  EntryAddressViewModel() : super(const EntryAddressState());
 
   changeSearchResultsIsDisplay(bool isDisplay) {
     state = state.copyWith(searchResultsIsDisplay: isDisplay);
@@ -26,7 +24,7 @@ class EntryAddressViewModel extends StateNotifier<EntryAddressState> {
   search(String keyword) async {
     state = state.copyWith(
       searchResults: await AsyncValue.guard(() async {
-        return await _repository.addresses.search(keyword);
+        return await Repository.addresses.search(keyword);
       }),
     );
   }

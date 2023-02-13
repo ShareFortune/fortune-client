@@ -6,7 +6,7 @@ part 'users_data_source.g.dart';
 
 @RestApi()
 abstract class UsersDataSource {
-  factory UsersDataSource(Dio dio, {String baseUrl}) = _UsersDataSource;
+  factory UsersDataSource(Dio dio) = _UsersDataSource;
 
   @POST('/users')
   Future<PostV1UsersResponse> create(

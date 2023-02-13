@@ -6,14 +6,11 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final messageRoomListViewModelProvider =
     StateNotifierProvider<MessageRoomListViewModel, MessageRoomListState>(
-  (ref) => MessageRoomListViewModel(getIt())..initialize(),
+  (ref) => MessageRoomListViewModel()..initialize(),
 );
 
 class MessageRoomListViewModel extends StateNotifier<MessageRoomListState> {
-  MessageRoomListViewModel(this._repository)
-      : super(const MessageRoomListState());
-
-  final Repository _repository;
+  MessageRoomListViewModel() : super(const MessageRoomListState());
 
   initialize() async {
     await fetchListHost();
@@ -22,7 +19,7 @@ class MessageRoomListViewModel extends StateNotifier<MessageRoomListState> {
 
   fetchListHost() async {
     final host = await AsyncValue.guard<StatusMessageRoomListState>(() async {
-      final result = await _repository.messages.fetchHost();
+      final result = await Repository.messages.fetchHost();
       final messageRooms = result.map((e) {
         return MessageRoomListItemState.from(e);
       }).toList();

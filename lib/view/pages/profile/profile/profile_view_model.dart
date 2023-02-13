@@ -11,14 +11,11 @@ final profileViewModelProvider =
       profileId: id,
       profile: const AsyncLoading(),
     ),
-    getIt(),
   )..initialize(),
 );
 
 class ProfileViewModel extends StateNotifier<ProfileState> {
-  ProfileViewModel(super.state, this._repository);
-
-  final Repository _repository;
+  ProfileViewModel(super.state);
 
   Future<void> initialize() => getProfile();
 
@@ -27,10 +24,10 @@ class ProfileViewModel extends StateNotifier<ProfileState> {
       profile: await AsyncValue.guard(() async {
         /// マイプロフィール
         if (state.isMy) {
-          return _repository.profile.getCache();
+          return Repository.profile.getCache();
         }
 
-        return _repository.profile.getCache();
+        return Repository.profile.getCache();
       }),
     );
   }

@@ -20,7 +20,7 @@ class UsersRepositoryImpl implements UsersRepository {
       logger.i("終わった？");
 
       final form = PostV1UsersRequest(
-        firebaseId: _repository.auth.firebaseId,
+        firebaseId: Repository.auth.firebaseId,
         username: username,
         birthday: birthday,
       );

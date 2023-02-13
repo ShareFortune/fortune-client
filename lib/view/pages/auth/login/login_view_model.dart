@@ -7,13 +7,11 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final loginViewModelProvider =
     StateNotifierProvider<LoginViewModel, AsyncValue<void>>((ref) {
-  return LoginViewModel(getIt());
+  return LoginViewModel();
 });
 
 class LoginViewModel extends StateNotifier<AsyncValue<void>> {
-  LoginViewModel(this._repository) : super(const AsyncData(null));
-
-  final Repository _repository;
+  LoginViewModel() : super(const AsyncData(null));
 
   /// デバッグモードオンオフ
   Future<bool?> toggleDebugMode() async {
@@ -21,8 +19,8 @@ class LoginViewModel extends StateNotifier<AsyncValue<void>> {
       return null;
     }
 
-    final isDummyRoginApi = await _repository.debug.getDummyRoginApi();
-    _repository.debug.setDummyRoginApi(!isDummyRoginApi);
+    final isDummyRoginApi = await Repository.debug.getDummyRoginApi();
+    Repository.debug.setDummyRoginApi(!isDummyRoginApi);
     return !isDummyRoginApi;
   }
 
@@ -32,7 +30,7 @@ class LoginViewModel extends StateNotifier<AsyncValue<void>> {
     //   return await navigateToHome();
     // }
     final result = await loginWithSns(type);
-    if (result && _repository.auth.isLogin) {
+    if (result && Repository.auth.isLogin) {
       await navigateToHome();
     }
   }
@@ -43,11 +41,11 @@ class LoginViewModel extends StateNotifier<AsyncValue<void>> {
     state = await AsyncValue.guard(() async {
       switch (type) {
         case AuthType.apple:
-          return await _repository.auth.signInWithApple();
+          return await Repository.auth.signInWithApple();
         case AuthType.google:
-          return await _repository.auth.signInWithGoogle();
+          return await Repository.auth.signInWithGoogle();
         case AuthType.twitter:
-          return await _repository.auth.signInWithTwitter();
+          return await Repository.auth.signInWithTwitter();
       }
     });
     return state is AsyncData;

@@ -7,18 +7,15 @@ final joinRequestsConfirmationViewModelProvider = StateNotifierProvider.family<
     JoinRequestsConfirmationViewModel,
     JoinRequestsConfirmationState,
     String>((_, roomId) {
-  return JoinRequestsConfirmationViewModel(roomId, getIt())..initialize();
+  return JoinRequestsConfirmationViewModel(roomId)..initialize();
 });
 
 class JoinRequestsConfirmationViewModel
     extends StateNotifier<JoinRequestsConfirmationState> {
-  JoinRequestsConfirmationViewModel(
-    this.roomId,
-    this._repository,
-  ) : super(const JoinRequestsConfirmationState());
+  JoinRequestsConfirmationViewModel(this.roomId)
+      : super(const JoinRequestsConfirmationState());
 
   final String roomId;
-  final Repository _repository;
 
   Future<void> initialize() async {
     await fetchJoinRequests();
@@ -26,14 +23,14 @@ class JoinRequestsConfirmationViewModel
 
   fetchJoinRequests() async {
     await AsyncValue.guard(() async {
-      return _repository.joinRequests.getJoinRequests(roomId);
+      return Repository.joinRequests.getJoinRequests(roomId);
     }).then((value) {
       state = state.copyWith(joinRequests: value);
     });
   }
 
   acceptJoinRequest(String requestId) async {
-    await _repository.joinRequests.accept(requestId).whenComplete(() {
+    await Repository.joinRequests.accept(requestId).whenComplete(() {
       fetchJoinRequests();
     });
   }

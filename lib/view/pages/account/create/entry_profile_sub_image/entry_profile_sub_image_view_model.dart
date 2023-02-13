@@ -12,16 +12,15 @@ import 'package:image_picker/image_picker.dart';
 
 final entryProfileSubImageViewModelProvider = StateNotifierProvider<
     EntryProfileSubImageViewModel, AsyncValue<EntryProfileSubImageState>>(
-  (ref) => EntryProfileSubImageViewModel(ref, getIt()),
+  (ref) => EntryProfileSubImageViewModel(ref),
 );
 
 class EntryProfileSubImageViewModel
     extends StateNotifier<AsyncValue<EntryProfileSubImageState>> {
-  EntryProfileSubImageViewModel(this._ref, this._repository)
+  EntryProfileSubImageViewModel(this._ref)
       : super(const AsyncData(EntryProfileSubImageState()));
 
   final Ref _ref;
-  final Repository _repository;
 
   Future<void> pickImageFirst() async {
     final data = state.value;
@@ -65,7 +64,7 @@ class EntryProfileSubImageViewModel
     final detail = _ref.read(detailedProfileEntryViewModelProvider);
     final icon = _ref.read(profileIconImageEntryViewModelProvider);
 
-    return await _repository.profile.create(
+    return await Repository.profile.create(
       mainImage: icon.imageFile!,
       secondImage: data.firstImageFile,
       thirdImage: data.secondImageFile,

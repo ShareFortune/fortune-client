@@ -9,23 +9,18 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final myPageViewModelProvider =
     StateNotifierProvider<MyPageViewModel, MyPageState>((_) {
-  return MyPageViewModel(getIt())..initialize();
+  return MyPageViewModel()..initialize();
 });
 
 class MyPageViewModel extends StateNotifier<MyPageState> {
-  MyPageViewModel(this._repository)
-      : super(const MyPageState(
-          profile: AsyncLoading(),
-        ));
-
-  final Repository _repository;
+  MyPageViewModel() : super(const MyPageState(profile: AsyncLoading()));
 
   Future<void> initialize() async => await fetch();
 
   Future fetch() async {
     state = state.copyWith(
       profile: await AsyncValue.guard(() async {
-        return await _repository.profile.get();
+        return await Repository.profile.get();
       }),
     );
   }
@@ -50,7 +45,7 @@ class MyPageViewModel extends StateNotifier<MyPageState> {
 
     /// 更新
     if (result != null) {
-      _repository.profile
+      Repository.profile
           .updateSelfIntroduction(result)
           .whenComplete(() => fetch());
     }
@@ -68,7 +63,7 @@ class MyPageViewModel extends StateNotifier<MyPageState> {
 
     /// 更新
     if (result != null) {
-      _repository.profile.updateTags(result).whenComplete(() => fetch());
+      Repository.profile.updateTags(result).whenComplete(() => fetch());
     }
   }
 

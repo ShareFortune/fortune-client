@@ -6,20 +6,18 @@ import 'package:package_info_plus/package_info_plus.dart';
 
 final debugViewModelProvider =
     StateNotifierProvider<DebugViewModel, AsyncValue<DebugState>>((_) {
-  return DebugViewModel(getIt())..init();
+  return DebugViewModel()..init();
 });
 
 class DebugViewModel extends StateNotifier<AsyncValue<DebugState>> {
-  DebugViewModel(this._repository) : super(const AsyncValue.loading());
-
-  final Repository _repository;
+  DebugViewModel() : super(const AsyncValue.loading());
 
   init() async {
     state = await AsyncValue.guard(() async {
       return DebugState(
         debugInfo: await PackageInfo.fromPlatform(),
-        isDummyRoginApi: await _repository.debug.getDummyRoginApi(),
-        isAutomaticLogin: await _repository.debug.getAutomaticLogin(),
+        isDummyRoginApi: await Repository.debug.getDummyRoginApi(),
+        isAutomaticLogin: await Repository.debug.getAutomaticLogin(),
       );
     });
   }
@@ -28,12 +26,12 @@ class DebugViewModel extends StateNotifier<AsyncValue<DebugState>> {
     final data = state.value;
     if (data == null) return;
     state = await AsyncValue.guard(() async {
-      await _repository.debug.setAutomaticLogin(value);
+      await Repository.debug.setAutomaticLogin(value);
       return data.copyWith(isAutomaticLogin: value);
     });
   }
 
   Future<bool> clearIsProfile() async {
-    return await _repository.debug.clearIsProfile();
+    return await Repository.debug.clearIsProfile();
   }
 }

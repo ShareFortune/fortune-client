@@ -2,10 +2,6 @@ import 'package:dio/dio.dart';
 import 'package:fortune_client/data/repository/repository.dart';
 
 class AppendTokenInterceptor extends Interceptor {
-  AppendTokenInterceptor(this._epository);
-
-  final Repository _epository;
-
   static const _appendTokenExtraKey = 'append-token';
 
   @override
@@ -19,7 +15,7 @@ class AppendTokenInterceptor extends Interceptor {
     /// オプションに[append-token]が存在したらtokenをヘッダーに含めるようにする
     if (appendToken) {
       /// Tokenを取得する
-      final token = await _epository.auth.idToken();
+      final token = await Repository.auth.idToken();
 
       /// Headerに取得したTokenを設定する
       options.headers['Authorization'] = 'Bearer $token';
