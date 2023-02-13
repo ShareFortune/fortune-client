@@ -8,8 +8,7 @@ part 'join_requests_data_source.g.dart';
 
 @RestApi()
 abstract class JoinRequestsDataSource {
-  factory JoinRequestsDataSource(Dio dio, {String baseUrl}) =
-      _JoinRequestsDataSource;
+  factory JoinRequestsDataSource(Dio dio) = _JoinRequestsDataSource;
 
   /// 参加リクエスト
   @POST('/rooms/{roomId}/roomJoinRequests')

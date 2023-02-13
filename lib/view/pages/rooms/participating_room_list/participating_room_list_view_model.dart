@@ -12,7 +12,7 @@ final participatingRoomListViewModelProvider = StateNotifierProvider.family<
     return ParticipatingRoomListViewModel(
       const ParticipatingRoomListState(AsyncLoading()),
       type,
-      sl(),
+      getIt(),
     )..initialize();
   },
 );

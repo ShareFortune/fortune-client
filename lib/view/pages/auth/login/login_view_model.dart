@@ -9,7 +9,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final loginViewModelProvider =
     StateNotifierProvider<LoginViewModel, AsyncValue<void>>((ref) {
-  return LoginViewModel(sl(), sl());
+  return LoginViewModel(getIt(), getIt());
 });
 
 class LoginViewModel extends StateNotifier<AsyncValue<void>> {
@@ -58,6 +58,6 @@ class LoginViewModel extends StateNotifier<AsyncValue<void>> {
   }
 
   Future navigateToHome() async {
-    await sl<AppRouter>().push(const HomeRouter());
+    await getIt<AppRouter>().push(const HomeRouter());
   }
 }

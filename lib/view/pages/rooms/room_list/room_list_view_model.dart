@@ -11,7 +11,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final roomListViewModelProvider =
     StateNotifierProvider<RoomListViewModel, RoomListState>((ref) {
-  return RoomListViewModel(sl(), sl(), sl())..initialize();
+  return RoomListViewModel(getIt(), getIt(), getIt())..initialize();
 });
 
 class RoomListViewModel extends StateNotifier<RoomListState> {
@@ -94,20 +94,20 @@ class RoomListViewModel extends StateNotifier<RoomListState> {
 
   /// 場所検索ページへ遷移
   Future<AddressWithId?> navigateToEntryAddress() async {
-    return await sl<AppRouter>().push(
+    return await getIt<AppRouter>().push(
       EntryAddressRoute(),
     ) as AddressWithId?;
   }
 
   /// タグ検索ページへ遷移
   Future<List<Tag>?> navigateToTagsSelection() async {
-    return await sl<AppRouter>().push(
+    return await getIt<AppRouter>().push(
       SelectTagsRoute(beingSet: state.filter.tags ?? List.empty()),
     ) as List<Tag>?;
   }
 
   /// ルーム詳細ページへ遷移
   navigateToRoomDetail(String id) async {
-    await sl<AppRouter>().push(RoomDetailRoute(roomId: id));
+    await getIt<AppRouter>().push(RoomDetailRoute(roomId: id));
   }
 }

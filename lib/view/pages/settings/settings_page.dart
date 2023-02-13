@@ -89,7 +89,7 @@ class SettingsPage extends HookConsumerWidget {
               ),
               onPressed: () {},
               onLongPress: () {
-                sl<AppRouter>().push(const DebugRoute());
+                getIt<AppRouter>().push(const DebugRoute());
               },
             ),
             const Gap(100),

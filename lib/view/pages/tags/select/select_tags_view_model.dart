@@ -7,7 +7,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final selectTagsViewModelProvider = StateNotifierProvider.autoDispose
     .family<SelectTagsViewModel, SelectTagsState, List<Tag>>(
-  (ref, beingSet) => SelectTagsViewModel(sl())..initialize(beingSet),
+  (ref, beingSet) => SelectTagsViewModel(getIt())..initialize(beingSet),
 );
 
 class SelectTagsViewModel extends StateNotifier<SelectTagsState> {
@@ -58,13 +58,13 @@ class SelectTagsViewModel extends StateNotifier<SelectTagsState> {
   }
 
   saveSetData() {
-    sl<AppRouter>().pop(state.beingSet.isEmpty
+    getIt<AppRouter>().pop(state.beingSet.isEmpty
         ? null
         : state.beingSet.map((e) => e.data).toList());
   }
 
   navigateToTagCreation() async {
-    final tag = await sl<AppRouter>().push(CreateTagRoute()) as Tag?;
+    final tag = await getIt<AppRouter>().push(CreateTagRoute()) as Tag?;
     if (tag != null) {
       state = state.copyWith(
         beingSet: [...state.beingSet, TagState(data: tag, isSelected: true)],

@@ -11,7 +11,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 final editRoomViewModelProvider =
     StateNotifierProvider.family<EditRoomViewModel, EditRoomState, String>(
   (_, id) => EditRoomViewModel(
-      sl(),
+      getIt(),
       EditRoomState(
         titleController: TextEditingController(),
         explanationController: TextEditingController(),
@@ -59,20 +59,20 @@ class EditRoomViewModel extends StateNotifier<EditRoomState> {
   }
 
   navigateToEditedRoom(String roomId) async {
-    sl<AppRouter>().push(HomeRouter(children: [
+    getIt<AppRouter>().push(HomeRouter(children: [
       RoomsTab(children: [RoomDetailRoute(roomId: roomId)]),
     ]));
   }
 
   navigateToEntryAddress() async {
-    final result = await sl<AppRouter>().push(
+    final result = await getIt<AppRouter>().push(
       EntryAddressRoute(),
     ) as AddressWithId?;
     changeAddressWithId(result ?? state.addressWithId);
   }
 
   navigateToTagsSelection() async {
-    final result = await sl<AppRouter>().push(
+    final result = await getIt<AppRouter>().push(
       SelectTagsRoute(beingSet: state.tags ?? List.empty()),
     ) as List<Tag>?;
     changeTags(result ?? state.tags);

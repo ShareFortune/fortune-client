@@ -7,7 +7,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final basicProfileEntryViewModelProvider =
     StateNotifierProvider<BasicProfileEntryViewModel, BasicProfileEntryState>(
-  (ref) => BasicProfileEntryViewModel(sl()),
+  (ref) => BasicProfileEntryViewModel(getIt()),
 );
 
 class BasicProfileEntryViewModel extends StateNotifier<BasicProfileEntryState> {
@@ -38,6 +38,6 @@ class BasicProfileEntryViewModel extends StateNotifier<BasicProfileEntryState> {
   }
 
   navigateToEntryDetailedProfile() async {
-    await sl<AppRouter>().push(DetailedProfileEntryRoute());
+    await getIt<AppRouter>().push(DetailedProfileEntryRoute());
   }
 }

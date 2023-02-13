@@ -28,6 +28,6 @@ class ProfileIconImageEntryViewModel
   }
 
   navigateToEntryProfileSubImage() async {
-    await sl<AppRouter>().push(const EntryProfileSubImageRoute());
+    await getIt<AppRouter>().push(const EntryProfileSubImageRoute());
   }
 }

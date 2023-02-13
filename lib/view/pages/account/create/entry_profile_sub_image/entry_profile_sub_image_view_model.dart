@@ -12,7 +12,7 @@ import 'package:image_picker/image_picker.dart';
 
 final entryProfileSubImageViewModelProvider = StateNotifierProvider<
     EntryProfileSubImageViewModel, AsyncValue<EntryProfileSubImageState>>(
-  (ref) => EntryProfileSubImageViewModel(ref, sl()),
+  (ref) => EntryProfileSubImageViewModel(ref, getIt()),
 );
 
 class EntryProfileSubImageViewModel
@@ -91,6 +91,6 @@ class EntryProfileSubImageViewModel
   }
 
   navigateToHome() async {
-    await sl<AppRouter>().push(const HomeRouter());
+    await getIt<AppRouter>().push(const HomeRouter());
   }
 }

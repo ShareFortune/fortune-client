@@ -9,7 +9,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final profileUpdateViewModelProvider =
     StateNotifierProvider<ProfileUpdateViewModel, ProfileUpdateState>(
-  (ref) => ProfileUpdateViewModel(sl())..initialize(),
+  (ref) => ProfileUpdateViewModel(getIt())..initialize(),
 );
 
 class ProfileUpdateViewModel extends StateNotifier<ProfileUpdateState> {
@@ -45,7 +45,7 @@ class ProfileUpdateViewModel extends StateNotifier<ProfileUpdateState> {
   }
 
   navigateToEntryAddress() async {
-    final result = await sl<AppRouter>().push(
+    final result = await getIt<AppRouter>().push(
       EntryAddressRoute(),
     ) as AddressWithId?;
     state = state.copyWith(addressWithId: result ?? state.addressWithId);
@@ -58,6 +58,6 @@ class ProfileUpdateViewModel extends StateNotifier<ProfileUpdateState> {
       drinkFrequency: state.drinkFrequency,
       cigaretteFrequency: state.cigaretteFrequency,
     );
-    await sl<AppRouter>().pop();
+    await getIt<AppRouter>().pop();
   }
 }

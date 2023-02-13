@@ -10,7 +10,7 @@ final joinRequestsConfirmationViewModelProvider = StateNotifierProvider.family<
     JoinRequestsConfirmationViewModel,
     JoinRequestsConfirmationState,
     String>((_, roomId) {
-  return JoinRequestsConfirmationViewModel(roomId, sl())..initialize();
+  return JoinRequestsConfirmationViewModel(roomId, getIt())..initialize();
 });
 
 class JoinRequestsConfirmationViewModel

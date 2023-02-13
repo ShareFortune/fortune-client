@@ -43,13 +43,13 @@ class DetailedProfileEntryViewModel
   }
 
   navigateToEntryAddress() async {
-    final result = await sl<AppRouter>().push(
+    final result = await getIt<AppRouter>().push(
       EntryAddressRoute(),
     ) as AddressWithId?;
     state = state.copyWith(addressWithId: result ?? state.addressWithId);
   }
 
   navigateToEntryProfileicon() async {
-    await sl<AppRouter>().push(const ProfileIconImageEntryRoute());
+    await getIt<AppRouter>().push(const ProfileIconImageEntryRoute());
   }
 }

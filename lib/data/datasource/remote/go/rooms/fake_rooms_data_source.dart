@@ -7,7 +7,7 @@ import 'package:fortune_client/data/model/base/room/room.dart';
 import 'package:fortune_client/gen/assets.gen.dart';
 import 'package:fortune_client/util/common/json_loader.dart';
 
-class FakeRoomDataSource implements RoomsDataSource {
+class FakeRoomsDataSource implements RoomsDataSource {
   @override
   Future<RoomIdResponse> create(Map<String, dynamic> body) {
     // TODO: implement create

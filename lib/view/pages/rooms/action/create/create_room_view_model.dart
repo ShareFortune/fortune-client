@@ -9,7 +9,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final createRoomViewModelProvider =
     StateNotifierProvider<CreateRoomViewModel, CreateRoomState>(
-  (_) => CreateRoomViewModel(sl()),
+  (_) => CreateRoomViewModel(getIt()),
 );
 
 class CreateRoomViewModel extends StateNotifier<CreateRoomState> {
@@ -61,20 +61,20 @@ class CreateRoomViewModel extends StateNotifier<CreateRoomState> {
   }
 
   navigateToCreatedRoom(String roomId) async {
-    sl<AppRouter>().push(HomeRouter(children: [
+    getIt<AppRouter>().push(HomeRouter(children: [
       RoomsTab(children: [RoomDetailRoute(roomId: roomId)]),
     ]));
   }
 
   navigateToEntryAddress() async {
-    final result = await sl<AppRouter>().push(
+    final result = await getIt<AppRouter>().push(
       EntryAddressRoute(),
     ) as AddressWithId?;
     state = state.copyWith(addressWithId: result ?? state.addressWithId);
   }
 
   navigateToTagsSelection() async {
-    final result = await sl<AppRouter>().push(
+    final result = await getIt<AppRouter>().push(
       SelectTagsRoute(beingSet: state.tags ?? List.empty()),
     ) as List<Tag>?;
     state = state.copyWith(tags: result ?? state.tags);

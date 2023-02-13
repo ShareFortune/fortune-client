@@ -56,14 +56,14 @@ class DebugPage extends HookConsumerWidget {
                 'ユーザー作成',
                 showTrailing: true,
                 onTap: () {
-                  sl<AppRouter>().push(const CreateProfileRoute());
+                  getIt<AppRouter>().push(const CreateProfileRoute());
                 },
               ),
               _buildDummyItem(
                 'プロフィール作成',
                 showTrailing: true,
                 onTap: () {
-                  sl<AppRouter>().push(
+                  getIt<AppRouter>().push(
                     CreateProfileRoute(
                       children: [DetailedProfileEntryRoute()],
                     ),
@@ -74,7 +74,7 @@ class DebugPage extends HookConsumerWidget {
                 'タグ作成',
                 showTrailing: true,
                 onTap: () {
-                  sl<AppRouter>().push(CreateTagRoute());
+                  getIt<AppRouter>().push(CreateTagRoute());
                 },
               ),
             ],

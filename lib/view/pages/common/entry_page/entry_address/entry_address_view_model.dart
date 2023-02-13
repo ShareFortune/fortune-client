@@ -7,7 +7,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final entryAddressViewModelProvider =
     StateNotifierProvider<EntryAddressViewModel, EntryAddressState>(
-  (ref) => EntryAddressViewModel(sl()),
+  (ref) => EntryAddressViewModel(getIt()),
 );
 
 class EntryAddressViewModel extends StateNotifier<EntryAddressState> {
@@ -21,7 +21,7 @@ class EntryAddressViewModel extends StateNotifier<EntryAddressState> {
   }
 
   select(AddressWithId address) {
-    sl<AppRouter>().pop(address);
+    getIt<AppRouter>().pop(address);
   }
 
   search(String keyword) async {

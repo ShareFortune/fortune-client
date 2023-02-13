@@ -9,7 +9,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final roomDetailViewModelProvider =
     StateNotifierProvider.family<RoomDetailViewModel, RoomDetailState, String>(
-  (ref, roomId) => RoomDetailViewModel(roomId, sl(), sl())..initialize(),
+  (ref, roomId) => RoomDetailViewModel(roomId, getIt(), getIt())..initialize(),
 );
 
 class RoomDetailViewModel extends StateNotifier<RoomDetailState> {
@@ -39,6 +39,6 @@ class RoomDetailViewModel extends StateNotifier<RoomDetailState> {
   }
 
   navigateToProfile(String id) async {
-    await sl<AppRouter>().push(ProfileRoute(id: id));
+    await getIt<AppRouter>().push(ProfileRoute(id: id));
   }
 }
