@@ -16,8 +16,8 @@ class MessageRoomListState with _$MessageRoomListState {
 class StatusMessageRoomListState with _$StatusMessageRoomListState {
   const StatusMessageRoomListState._();
   const factory StatusMessageRoomListState({
-    required List<MessageRoomListItemState> messageRooms,
-    required List<MessageRoomListItemState> newMessageRooms,
+    required List<MessageRoom> messageRooms,
+    required List<MessageRoom> newMessageRooms,
   }) = _StatusMessageRoomListState;
 
   bool isEmpty() {
@@ -25,25 +25,25 @@ class StatusMessageRoomListState with _$StatusMessageRoomListState {
   }
 }
 
-@freezed
-class MessageRoomListItemState with _$MessageRoomListItemState {
-  const factory MessageRoomListItemState({
-    required String id,
-    required String roomName,
-    required String? lastSendAt,
-    required String? lastSendMessage,
-    required String hostMainImageURL,
-    required int unreadCount,
-  }) = _MessageRoomListItemState;
+// @freezed
+// class MessageRoomListItemState with _$MessageRoomListItemState {
+//   const factory MessageRoomListItemState({
+//     required String id,
+//     required String roomName,
+//     required String? lastSendAt,
+//     required String? lastSendMessage,
+//     required String hostMainImageURL,
+//     required int unreadCount,
+//   }) = _MessageRoomListItemState;
 
-  static MessageRoomListItemState from(MessageRoom messageRoom) {
-    return MessageRoomListItemState(
-      id: messageRoom.id,
-      roomName: messageRoom.roomName,
-      lastSendAt: messageRoom.lastSendAt,
-      lastSendMessage: messageRoom.lastSendMessage,
-      hostMainImageURL: messageRoom.hostMainImageURL,
-      unreadCount: messageRoom.unreadCount,
-    );
-  }
-}
+//   static MessageRoomListItemState from(MessageRoom messageRoom) {
+//     return MessageRoomListItemState(
+//       id: messageRoom.id,
+//       roomName: messageRoom.roomName,
+//       lastSendAt: messageRoom.lastSendAt,
+//       lastSendMessage: messageRoom.lastSendMessage,
+//       hostMainImageURL: messageRoom.hostMainImageURL,
+//       unreadCount: messageRoom.unreadCount,
+//     );
+//   }
+// }

@@ -25,12 +25,9 @@ class MessageRoomListViewModel extends StateNotifier<MessageRoomListState> {
   fetchListHost() async {
     final host = await AsyncValue.guard<StatusMessageRoomListState>(() async {
       final result = await Repository.messages.fetchHost();
-      final messageRooms = result.map((e) {
-        return MessageRoomListItemState.from(e);
-      }).toList();
       return StatusMessageRoomListState(
-        messageRooms: messageRooms,
-        newMessageRooms: messageRooms,
+        messageRooms: result,
+        newMessageRooms: result,
       );
     });
     state = state.copyWith(host: host, guest: state.guest);

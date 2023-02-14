@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:fortune_client/data/model/base/message_room/messege_room.dart';
+import 'package:fortune_client/util/converter/datetime_converter.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:gap/gap.dart';
@@ -7,24 +9,12 @@ class MessageRoomListTile extends StatelessWidget {
   const MessageRoomListTile({
     super.key,
     required this.theme,
-    required this.title,
-    required this.postedDate,
-    required this.body,
+    required this.messageRoom,
     required this.onTap,
   });
 
   final AppTheme theme;
-
-  /// ルームタイトル
-  final String title;
-
-  /// ボディ
-  final String? body;
-
-  /// 最終投稿日時
-  final String? postedDate;
-
-  /// タイルタップ
+  final MessageRoom messageRoom;
   final VoidCallback onTap;
 
   @override
@@ -35,7 +25,7 @@ class MessageRoomListTile extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Row(
           children: [
-            const CircleAvatar(radius: 26),
+            _leadingIcon(),
             const Gap(15),
             Expanded(
               child: Column(
@@ -44,29 +34,11 @@ class MessageRoomListTile extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        title,
-                        style: theme.textTheme.h30
-                            .paint(
-                              theme.appColors.subText1,
-                            )
-                            .bold(),
-                      ),
-                      Text(
-                        postedDate ?? "",
-                        style: theme.textTheme.h10.paint(
-                          theme.appColors.subText3,
-                        ),
-                      ),
+                      _roomNameText(),
+                      _lastSendAtText(),
                     ],
                   ),
-                  const Gap(3),
-                  Text(
-                    body ?? "",
-                    style: theme.textTheme.h20.paint(
-                      theme.appColors.subText3,
-                    ),
-                  ),
+                  _lastSendMessageText(),
                 ],
               ),
             ),
@@ -74,5 +46,49 @@ class MessageRoomListTile extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  /// ルームのタイトル
+  Text _roomNameText() {
+    return Text(
+      messageRoom.roomName,
+      style: theme.textTheme.h30.paint(theme.appColors.subText1).bold(),
+    );
+  }
+
+  /// 最終投稿日時
+  /// １時間以内の場合は⚪︎分前と表記
+  _lastSendAtText() {
+    return Text(
+      convertLastSendAtToString(),
+      style: theme.textTheme.h10.paint(
+        theme.appColors.subText3,
+      ),
+    );
+  }
+
+  /// 最終投稿メッセージ
+  _lastSendMessageText() {
+    if (messageRoom.lastSendMessage == null) return Container();
+    return Column(
+      children: [
+        const Gap(3),
+        Text(
+          messageRoom.lastSendMessage ?? "",
+          style: theme.textTheme.h20.paint(theme.appColors.subText3),
+        ),
+      ],
+    );
+  }
+
+  /// ホストアイコン
+  CircleAvatar _leadingIcon() {
+    return const CircleAvatar(radius: 26);
+  }
+
+  /// [lastSendAt]を文字列に変換する
+  String convertLastSendAtToString() {
+    if (messageRoom.lastSendAt == null) return "";
+    return DateTimeConverter.convertToHHmm(messageRoom.lastSendAt!);
   }
 }

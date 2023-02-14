@@ -20,7 +20,7 @@ class BasicProfileEntryPage extends HookConsumerWidget {
 
     /// 誕生日フォーマッター
     String? birthdayStr;
-    const birthdayFormater = DateTimeConverter.convertDateTimeYYYYMMDD;
+    const birthdayFormater = DateTimeConverter.convertToYYYYMMDD;
     if (state.birthday != null) birthdayStr = birthdayFormater(state.birthday!);
 
     return Scaffold(

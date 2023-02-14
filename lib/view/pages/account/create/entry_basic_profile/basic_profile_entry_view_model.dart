@@ -24,8 +24,10 @@ class BasicProfileEntryViewModel extends StateNotifier<BasicProfileEntryState> {
   onCreate() async {
     if (state.birthday == null) return;
 
-    final birthday = DateTimeConverter.convertDateTimeYYYYMMDD(state.birthday!,
-        delimiter: "-");
+    final birthday = DateTimeConverter.convertToYYYYMMDD(
+      state.birthday!,
+      delimiter: "-",
+    );
 
     final result = await Repository.users.create(state.name, birthday);
     if (result) navigateToEntryDetailedProfile();

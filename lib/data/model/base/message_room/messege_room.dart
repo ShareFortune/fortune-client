@@ -10,7 +10,7 @@ class MessageRoom with _$MessageRoom {
   const factory MessageRoom({
     @JsonKey(name: 'id') required String id,
     @JsonKey(name: 'roomName') required String roomName,
-    @JsonKey(name: 'lastSentAt') String? lastSendAt,
+    @JsonKey(name: 'lastSentAt') DateTime? lastSendAt,
     @JsonKey(name: 'lastSendMessage') String? lastSendMessage,
     @JsonKey(name: 'hostMainImageURL') required String hostMainImageURL,
     @JsonKey(name: 'participantMainImageURLs')

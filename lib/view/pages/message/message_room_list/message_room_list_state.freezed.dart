@@ -160,10 +160,8 @@ abstract class _MessageRoomListState implements MessageRoomListState {
 
 /// @nodoc
 mixin _$StatusMessageRoomListState {
-  List<MessageRoomListItemState> get messageRooms =>
-      throw _privateConstructorUsedError;
-  List<MessageRoomListItemState> get newMessageRooms =>
-      throw _privateConstructorUsedError;
+  List<MessageRoom> get messageRooms => throw _privateConstructorUsedError;
+  List<MessageRoom> get newMessageRooms => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $StatusMessageRoomListStateCopyWith<StatusMessageRoomListState>
@@ -178,8 +176,7 @@ abstract class $StatusMessageRoomListStateCopyWith<$Res> {
           StatusMessageRoomListState>;
   @useResult
   $Res call(
-      {List<MessageRoomListItemState> messageRooms,
-      List<MessageRoomListItemState> newMessageRooms});
+      {List<MessageRoom> messageRooms, List<MessageRoom> newMessageRooms});
 }
 
 /// @nodoc
@@ -203,11 +200,11 @@ class _$StatusMessageRoomListStateCopyWithImpl<$Res,
       messageRooms: null == messageRooms
           ? _value.messageRooms
           : messageRooms // ignore: cast_nullable_to_non_nullable
-              as List<MessageRoomListItemState>,
+              as List<MessageRoom>,
       newMessageRooms: null == newMessageRooms
           ? _value.newMessageRooms
           : newMessageRooms // ignore: cast_nullable_to_non_nullable
-              as List<MessageRoomListItemState>,
+              as List<MessageRoom>,
     ) as $Val);
   }
 }
@@ -222,8 +219,7 @@ abstract class _$$_StatusMessageRoomListStateCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {List<MessageRoomListItemState> messageRooms,
-      List<MessageRoomListItemState> newMessageRooms});
+      {List<MessageRoom> messageRooms, List<MessageRoom> newMessageRooms});
 }
 
 /// @nodoc
@@ -246,11 +242,11 @@ class __$$_StatusMessageRoomListStateCopyWithImpl<$Res>
       messageRooms: null == messageRooms
           ? _value._messageRooms
           : messageRooms // ignore: cast_nullable_to_non_nullable
-              as List<MessageRoomListItemState>,
+              as List<MessageRoom>,
       newMessageRooms: null == newMessageRooms
           ? _value._newMessageRooms
           : newMessageRooms // ignore: cast_nullable_to_non_nullable
-              as List<MessageRoomListItemState>,
+              as List<MessageRoom>,
     ));
   }
 }
@@ -259,23 +255,23 @@ class __$$_StatusMessageRoomListStateCopyWithImpl<$Res>
 
 class _$_StatusMessageRoomListState extends _StatusMessageRoomListState {
   const _$_StatusMessageRoomListState(
-      {required final List<MessageRoomListItemState> messageRooms,
-      required final List<MessageRoomListItemState> newMessageRooms})
+      {required final List<MessageRoom> messageRooms,
+      required final List<MessageRoom> newMessageRooms})
       : _messageRooms = messageRooms,
         _newMessageRooms = newMessageRooms,
         super._();
 
-  final List<MessageRoomListItemState> _messageRooms;
+  final List<MessageRoom> _messageRooms;
   @override
-  List<MessageRoomListItemState> get messageRooms {
+  List<MessageRoom> get messageRooms {
     if (_messageRooms is EqualUnmodifiableListView) return _messageRooms;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_messageRooms);
   }
 
-  final List<MessageRoomListItemState> _newMessageRooms;
+  final List<MessageRoom> _newMessageRooms;
   @override
-  List<MessageRoomListItemState> get newMessageRooms {
+  List<MessageRoom> get newMessageRooms {
     if (_newMessageRooms is EqualUnmodifiableListView) return _newMessageRooms;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_newMessageRooms);
@@ -313,248 +309,17 @@ class _$_StatusMessageRoomListState extends _StatusMessageRoomListState {
 
 abstract class _StatusMessageRoomListState extends StatusMessageRoomListState {
   const factory _StatusMessageRoomListState(
-          {required final List<MessageRoomListItemState> messageRooms,
-          required final List<MessageRoomListItemState> newMessageRooms}) =
+          {required final List<MessageRoom> messageRooms,
+          required final List<MessageRoom> newMessageRooms}) =
       _$_StatusMessageRoomListState;
   const _StatusMessageRoomListState._() : super._();
 
   @override
-  List<MessageRoomListItemState> get messageRooms;
+  List<MessageRoom> get messageRooms;
   @override
-  List<MessageRoomListItemState> get newMessageRooms;
+  List<MessageRoom> get newMessageRooms;
   @override
   @JsonKey(ignore: true)
   _$$_StatusMessageRoomListStateCopyWith<_$_StatusMessageRoomListState>
-      get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-mixin _$MessageRoomListItemState {
-  String get id => throw _privateConstructorUsedError;
-  String get roomName => throw _privateConstructorUsedError;
-  String? get lastSendAt => throw _privateConstructorUsedError;
-  String? get lastSendMessage => throw _privateConstructorUsedError;
-  String get hostMainImageURL => throw _privateConstructorUsedError;
-  int get unreadCount => throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $MessageRoomListItemStateCopyWith<MessageRoomListItemState> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $MessageRoomListItemStateCopyWith<$Res> {
-  factory $MessageRoomListItemStateCopyWith(MessageRoomListItemState value,
-          $Res Function(MessageRoomListItemState) then) =
-      _$MessageRoomListItemStateCopyWithImpl<$Res, MessageRoomListItemState>;
-  @useResult
-  $Res call(
-      {String id,
-      String roomName,
-      String? lastSendAt,
-      String? lastSendMessage,
-      String hostMainImageURL,
-      int unreadCount});
-}
-
-/// @nodoc
-class _$MessageRoomListItemStateCopyWithImpl<$Res,
-        $Val extends MessageRoomListItemState>
-    implements $MessageRoomListItemStateCopyWith<$Res> {
-  _$MessageRoomListItemStateCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = null,
-    Object? roomName = null,
-    Object? lastSendAt = freezed,
-    Object? lastSendMessage = freezed,
-    Object? hostMainImageURL = null,
-    Object? unreadCount = null,
-  }) {
-    return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      roomName: null == roomName
-          ? _value.roomName
-          : roomName // ignore: cast_nullable_to_non_nullable
-              as String,
-      lastSendAt: freezed == lastSendAt
-          ? _value.lastSendAt
-          : lastSendAt // ignore: cast_nullable_to_non_nullable
-              as String?,
-      lastSendMessage: freezed == lastSendMessage
-          ? _value.lastSendMessage
-          : lastSendMessage // ignore: cast_nullable_to_non_nullable
-              as String?,
-      hostMainImageURL: null == hostMainImageURL
-          ? _value.hostMainImageURL
-          : hostMainImageURL // ignore: cast_nullable_to_non_nullable
-              as String,
-      unreadCount: null == unreadCount
-          ? _value.unreadCount
-          : unreadCount // ignore: cast_nullable_to_non_nullable
-              as int,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$_MessageRoomListItemStateCopyWith<$Res>
-    implements $MessageRoomListItemStateCopyWith<$Res> {
-  factory _$$_MessageRoomListItemStateCopyWith(
-          _$_MessageRoomListItemState value,
-          $Res Function(_$_MessageRoomListItemState) then) =
-      __$$_MessageRoomListItemStateCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {String id,
-      String roomName,
-      String? lastSendAt,
-      String? lastSendMessage,
-      String hostMainImageURL,
-      int unreadCount});
-}
-
-/// @nodoc
-class __$$_MessageRoomListItemStateCopyWithImpl<$Res>
-    extends _$MessageRoomListItemStateCopyWithImpl<$Res,
-        _$_MessageRoomListItemState>
-    implements _$$_MessageRoomListItemStateCopyWith<$Res> {
-  __$$_MessageRoomListItemStateCopyWithImpl(_$_MessageRoomListItemState _value,
-      $Res Function(_$_MessageRoomListItemState) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = null,
-    Object? roomName = null,
-    Object? lastSendAt = freezed,
-    Object? lastSendMessage = freezed,
-    Object? hostMainImageURL = null,
-    Object? unreadCount = null,
-  }) {
-    return _then(_$_MessageRoomListItemState(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      roomName: null == roomName
-          ? _value.roomName
-          : roomName // ignore: cast_nullable_to_non_nullable
-              as String,
-      lastSendAt: freezed == lastSendAt
-          ? _value.lastSendAt
-          : lastSendAt // ignore: cast_nullable_to_non_nullable
-              as String?,
-      lastSendMessage: freezed == lastSendMessage
-          ? _value.lastSendMessage
-          : lastSendMessage // ignore: cast_nullable_to_non_nullable
-              as String?,
-      hostMainImageURL: null == hostMainImageURL
-          ? _value.hostMainImageURL
-          : hostMainImageURL // ignore: cast_nullable_to_non_nullable
-              as String,
-      unreadCount: null == unreadCount
-          ? _value.unreadCount
-          : unreadCount // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$_MessageRoomListItemState implements _MessageRoomListItemState {
-  const _$_MessageRoomListItemState(
-      {required this.id,
-      required this.roomName,
-      required this.lastSendAt,
-      required this.lastSendMessage,
-      required this.hostMainImageURL,
-      required this.unreadCount});
-
-  @override
-  final String id;
-  @override
-  final String roomName;
-  @override
-  final String? lastSendAt;
-  @override
-  final String? lastSendMessage;
-  @override
-  final String hostMainImageURL;
-  @override
-  final int unreadCount;
-
-  @override
-  String toString() {
-    return 'MessageRoomListItemState(id: $id, roomName: $roomName, lastSendAt: $lastSendAt, lastSendMessage: $lastSendMessage, hostMainImageURL: $hostMainImageURL, unreadCount: $unreadCount)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_MessageRoomListItemState &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.roomName, roomName) ||
-                other.roomName == roomName) &&
-            (identical(other.lastSendAt, lastSendAt) ||
-                other.lastSendAt == lastSendAt) &&
-            (identical(other.lastSendMessage, lastSendMessage) ||
-                other.lastSendMessage == lastSendMessage) &&
-            (identical(other.hostMainImageURL, hostMainImageURL) ||
-                other.hostMainImageURL == hostMainImageURL) &&
-            (identical(other.unreadCount, unreadCount) ||
-                other.unreadCount == unreadCount));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, id, roomName, lastSendAt,
-      lastSendMessage, hostMainImageURL, unreadCount);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$_MessageRoomListItemStateCopyWith<_$_MessageRoomListItemState>
-      get copyWith => __$$_MessageRoomListItemStateCopyWithImpl<
-          _$_MessageRoomListItemState>(this, _$identity);
-}
-
-abstract class _MessageRoomListItemState implements MessageRoomListItemState {
-  const factory _MessageRoomListItemState(
-      {required final String id,
-      required final String roomName,
-      required final String? lastSendAt,
-      required final String? lastSendMessage,
-      required final String hostMainImageURL,
-      required final int unreadCount}) = _$_MessageRoomListItemState;
-
-  @override
-  String get id;
-  @override
-  String get roomName;
-  @override
-  String? get lastSendAt;
-  @override
-  String? get lastSendMessage;
-  @override
-  String get hostMainImageURL;
-  @override
-  int get unreadCount;
-  @override
-  @JsonKey(ignore: true)
-  _$$_MessageRoomListItemStateCopyWith<_$_MessageRoomListItemState>
       get copyWith => throw _privateConstructorUsedError;
 }

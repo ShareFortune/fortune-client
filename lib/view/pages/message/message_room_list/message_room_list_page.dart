@@ -45,7 +45,7 @@ class MessageRoomListPage extends HookConsumerWidget {
               child: Container(
                 color: theme.appColors.onBackground,
                 child: TabBar(
-                  labelColor: theme.appColors.onSecondary,
+                  labelColor: theme.appColors.linkColor,
                   labelStyle: theme.textTheme.h20.bold(),
                   unselectedLabelColor: theme.appColors.subText1,
                   unselectedLabelStyle: theme.textTheme.h20.bold(),

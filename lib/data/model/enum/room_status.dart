@@ -1,8 +1,13 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 enum RoomStatus {
+  /// 募集中
   pending,
+
+  /// 開催中
   opend,
+
+  /// 終了
   closed,
 }
 

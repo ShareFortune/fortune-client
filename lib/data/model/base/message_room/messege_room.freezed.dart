@@ -25,7 +25,7 @@ mixin _$MessageRoom {
   @JsonKey(name: 'roomName')
   String get roomName => throw _privateConstructorUsedError;
   @JsonKey(name: 'lastSentAt')
-  String? get lastSendAt => throw _privateConstructorUsedError;
+  DateTime? get lastSendAt => throw _privateConstructorUsedError;
   @JsonKey(name: 'lastSendMessage')
   String? get lastSendMessage => throw _privateConstructorUsedError;
   @JsonKey(name: 'hostMainImageURL')
@@ -54,7 +54,7 @@ abstract class $MessageRoomCopyWith<$Res> {
       @JsonKey(name: 'roomName')
           String roomName,
       @JsonKey(name: 'lastSentAt')
-          String? lastSendAt,
+          DateTime? lastSendAt,
       @JsonKey(name: 'lastSendMessage')
           String? lastSendMessage,
       @JsonKey(name: 'hostMainImageURL')
@@ -98,7 +98,7 @@ class _$MessageRoomCopyWithImpl<$Res, $Val extends MessageRoom>
       lastSendAt: freezed == lastSendAt
           ? _value.lastSendAt
           : lastSendAt // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as DateTime?,
       lastSendMessage: freezed == lastSendMessage
           ? _value.lastSendMessage
           : lastSendMessage // ignore: cast_nullable_to_non_nullable
@@ -133,7 +133,7 @@ abstract class _$$_MessageRoomCopyWith<$Res>
       @JsonKey(name: 'roomName')
           String roomName,
       @JsonKey(name: 'lastSentAt')
-          String? lastSendAt,
+          DateTime? lastSendAt,
       @JsonKey(name: 'lastSendMessage')
           String? lastSendMessage,
       @JsonKey(name: 'hostMainImageURL')
@@ -175,7 +175,7 @@ class __$$_MessageRoomCopyWithImpl<$Res>
       lastSendAt: freezed == lastSendAt
           ? _value.lastSendAt
           : lastSendAt // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as DateTime?,
       lastSendMessage: freezed == lastSendMessage
           ? _value.lastSendMessage
           : lastSendMessage // ignore: cast_nullable_to_non_nullable
@@ -227,7 +227,7 @@ class _$_MessageRoom implements _MessageRoom {
   final String roomName;
   @override
   @JsonKey(name: 'lastSentAt')
-  final String? lastSendAt;
+  final DateTime? lastSendAt;
   @override
   @JsonKey(name: 'lastSendMessage')
   final String? lastSendMessage;
@@ -306,7 +306,7 @@ abstract class _MessageRoom implements MessageRoom {
       @JsonKey(name: 'roomName')
           required final String roomName,
       @JsonKey(name: 'lastSentAt')
-          final String? lastSendAt,
+          final DateTime? lastSendAt,
       @JsonKey(name: 'lastSendMessage')
           final String? lastSendMessage,
       @JsonKey(name: 'hostMainImageURL')
@@ -327,7 +327,7 @@ abstract class _MessageRoom implements MessageRoom {
   String get roomName;
   @override
   @JsonKey(name: 'lastSentAt')
-  String? get lastSendAt;
+  DateTime? get lastSendAt;
   @override
   @JsonKey(name: 'lastSendMessage')
   String? get lastSendMessage;

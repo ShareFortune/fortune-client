@@ -9,8 +9,22 @@
                 "https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg",
                 "https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg"
             ],
-            "roomName": "カタンしたい",
-            "unreadCount": 0
+            "roomName": "テストルーム",
+            "unreadCount": 0,
+            "lastSendMessage": "テストメッセージ"
+        },
+        {
+            "hostMainImageURL": "https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg",
+            "id": "60c56ea3-0be0-4a7f-a0b0-571c7bf3ad4c",
+            "lastSentAt": "2023-01-13T23:02:01.332501+09:00",
+            "participantMainImageURLs": [
+                "https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg",
+                "https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg",
+                "https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg"
+            ],
+            "roomName": "テストルーム",
+            "unreadCount": 0,
+            "lastSendMessage": "テストメッセージ"
         }
     ],
     "nextToken": ""
