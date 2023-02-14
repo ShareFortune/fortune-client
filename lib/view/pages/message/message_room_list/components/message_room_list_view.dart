@@ -31,13 +31,10 @@ class MessageRoomListView extends HookConsumerWidget {
           ),
           Column(
             children: messageRooms.map((messageRoom) {
-              return Container(
-                padding: const EdgeInsets.only(bottom: 30),
-                child: MessageRoomListTile(
-                  theme: theme,
-                  messageRoom: messageRoom,
-                  onTap: () => viewModel.navigateToMessagePage(messageRoom.id),
-                ),
+              return MessageRoomListTile(
+                theme: theme,
+                messageRoom: messageRoom,
+                onTap: () => viewModel.navigateToMessagePage(messageRoom.id),
               );
             }).toList(),
           ),

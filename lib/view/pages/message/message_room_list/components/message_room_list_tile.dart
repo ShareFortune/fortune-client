@@ -3,7 +3,9 @@ import 'package:fortune_client/data/model/base/message_room/messege_room.dart';
 import 'package:fortune_client/util/converter/datetime_converter.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
+import 'package:fortune_client/view/widgets/icon/user_icon_widget.dart';
 import 'package:gap/gap.dart';
+import 'package:badges/badges.dart' as badges;
 
 class MessageRoomListTile extends StatelessWidget {
   const MessageRoomListTile({
@@ -22,34 +24,65 @@ class MessageRoomListTile extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: Row(
-          children: [
-            _leadingIcon(),
-            const Gap(15),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        child: IntrinsicHeight(
+          child: Row(
+            children: [
+              _userIcon(),
+              const Gap(15),
+              Expanded(
+                flex: 1,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    _roomNameText(),
+                    _lastSendMessageText(),
+                  ],
+                ),
+              ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      _roomNameText(),
-                      _lastSendAtText(),
-                    ],
-                  ),
-                  _lastSendMessageText(),
+                  _lastSendAtText(),
+                  _notification(),
                 ],
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
   }
 
+  Widget _notification() {
+    return badges.Badge(
+      showBadge: messageRoom.unreadCount != 0,
+      badgeContent: Text(
+        messageRoom.unreadCount.toString(),
+        style: theme.textTheme.h20.paint(theme.appColors.onPrimary).bold(),
+      ),
+      badgeStyle: badges.BadgeStyle(
+        elevation: 0,
+        badgeColor: theme.appColors.primary,
+        padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 1),
+        shape: badges.BadgeShape.square,
+        borderRadius: BorderRadius.circular(10),
+      ),
+    );
+  }
+
+  /// ホストのアイコン
+  Widget _userIcon() {
+    return UserIconWidget(
+      messageRoom.hostMainImageURL,
+      radius: 26,
+    );
+  }
+
   /// ルームのタイトル
-  Text _roomNameText() {
+  Widget _roomNameText() {
     return Text(
       messageRoom.roomName,
       style: theme.textTheme.h30.paint(theme.appColors.subText1).bold(),
@@ -58,7 +91,7 @@ class MessageRoomListTile extends StatelessWidget {
 
   /// 最終投稿日時
   /// １時間以内の場合は⚪︎分前と表記
-  _lastSendAtText() {
+  Widget _lastSendAtText() {
     return Text(
       convertLastSendAtToString(),
       style: theme.textTheme.h10.paint(
@@ -68,7 +101,7 @@ class MessageRoomListTile extends StatelessWidget {
   }
 
   /// 最終投稿メッセージ
-  _lastSendMessageText() {
+  Widget _lastSendMessageText() {
     if (messageRoom.lastSendMessage == null) return Container();
     return Column(
       children: [
@@ -81,14 +114,12 @@ class MessageRoomListTile extends StatelessWidget {
     );
   }
 
-  /// ホストアイコン
-  CircleAvatar _leadingIcon() {
-    return const CircleAvatar(radius: 26);
-  }
-
   /// [lastSendAt]を文字列に変換する
   String convertLastSendAtToString() {
     if (messageRoom.lastSendAt == null) return "";
-    return DateTimeConverter.convertToHHmm(messageRoom.lastSendAt!);
+    return DateTimeConverter.convertToLastSendAt(
+      DateTime.now(),
+      messageRoom.lastSendAt!,
+    );
   }
 }

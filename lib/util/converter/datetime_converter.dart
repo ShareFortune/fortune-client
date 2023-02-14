@@ -63,14 +63,17 @@ class DateTimeConverter {
   /// 現在時刻から経過時間または時刻に変換する
   /// 下記6パターンの経過時間を文字列に変換する
   ///
-  /// 1. １分以内の場合は「○秒前」
+  /// 1. １分以内の場合は「⚪︎秒前」
   /// 2. １分以降の場合は「⚪︎分前」
   /// 3. １時間以降の場合は時刻
-  /// 4. 当日中ではない場合は「○日前」
+  /// 4. 当日中ではない場合は「⚪︎日前」
   /// 5. 今月中ではない場合は月日
   /// 6. 今年中でない場合は年月日
   ///
-  static String convertToLastSendAt(DateTime now, DateTime lastSendAt) {
+  static String convertToLastSendAt(
+    DateTime now,
+    DateTime lastSendAt,
+  ) {
     final difference = now.difference(lastSendAt);
 
     /// 今年中でない場合は年月日

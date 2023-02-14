@@ -6,7 +6,7 @@ void main() {
   const converter = DateTimeConverter.convertToLastSendAt;
 
   group("DateTimeConverter.convertToLastSendAt", () {
-    test("１分以内の場合は「○秒前」を返す", () {
+    test("１分以内の場合は「⚪︎秒前」を返す", () {
       final datetime = now.add(const Duration(seconds: -5));
 
       expect(
@@ -32,7 +32,7 @@ void main() {
       );
     });
 
-    test("当日中ではない場合は「○日前」を返す", () {
+    test("当日中ではない場合は「⚪︎日前」を返す", () {
       final datetime = now.add(const Duration(hours: -25));
 
       expect(
