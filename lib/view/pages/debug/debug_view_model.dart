@@ -6,13 +6,13 @@ import 'package:package_info_plus/package_info_plus.dart';
 
 final debugViewModelProvider =
     StateNotifierProvider<DebugViewModel, AsyncValue<DebugState>>((_) {
-  return DebugViewModel()..init();
+  return DebugViewModel(const AsyncValue.loading())..initialize();
 });
 
 class DebugViewModel extends StateNotifier<AsyncValue<DebugState>> {
-  DebugViewModel() : super(const AsyncValue.loading());
+  DebugViewModel(super.state);
 
-  init() async {
+  initialize() async {
     state = await AsyncValue.guard(() async {
       return DebugState(
         debugInfo: await PackageInfo.fromPlatform(),

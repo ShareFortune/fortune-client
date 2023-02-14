@@ -3,7 +3,6 @@ import 'package:fortune_client/data/model/base/address_with_id/address_with_id.d
 import 'package:fortune_client/data/model/base/tag/tag.dart';
 import 'package:fortune_client/data/model/enum/age_group.dart';
 import 'package:fortune_client/data/repository/repository.dart';
-import 'package:fortune_client/data/repository/rooms/rooms_repository.dart';
 import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/view/pages/rooms/action/edit/edit_room_state.dart';
 import 'package:fortune_client/view/routes/app_router.gr.dart';
@@ -19,7 +18,7 @@ final editRoomViewModelProvider =
 );
 
 class EditRoomViewModel extends StateNotifier<EditRoomState> {
-  EditRoomViewModel(state) : super(state);
+  EditRoomViewModel(super.state);
 
   Future<void> initialize(roomId) async {
     await Repository.rooms.fetchDetail(roomId).then((room) {

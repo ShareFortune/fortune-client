@@ -7,11 +7,11 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final basicProfileEntryViewModelProvider =
     StateNotifierProvider<BasicProfileEntryViewModel, BasicProfileEntryState>(
-  (ref) => BasicProfileEntryViewModel(),
+  (ref) => BasicProfileEntryViewModel(const BasicProfileEntryState()),
 );
 
 class BasicProfileEntryViewModel extends StateNotifier<BasicProfileEntryState> {
-  BasicProfileEntryViewModel() : super(const BasicProfileEntryState());
+  BasicProfileEntryViewModel(super.state);
 
   changeName(String value) {
     state = state.copyWith(name: value);

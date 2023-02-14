@@ -1,7 +1,6 @@
 import 'package:fortune_client/data/model/base/address_with_id/address_with_id.dart';
 import 'package:fortune_client/data/model/enum/cigarette_frequency.dart';
 import 'package:fortune_client/data/model/enum/drink_frequency.dart';
-import 'package:fortune_client/data/repository/profile/profile_repository.dart';
 import 'package:fortune_client/data/repository/repository.dart';
 import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/view/pages/my_page/update/profile_update_state.dart';
@@ -10,11 +9,13 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final profileUpdateViewModelProvider =
     StateNotifierProvider<ProfileUpdateViewModel, ProfileUpdateState>(
-  (ref) => ProfileUpdateViewModel()..initialize(),
+  (ref) => ProfileUpdateViewModel(
+    const ProfileUpdateState(),
+  )..initialize(),
 );
 
 class ProfileUpdateViewModel extends StateNotifier<ProfileUpdateState> {
-  ProfileUpdateViewModel() : super(const ProfileUpdateState());
+  ProfileUpdateViewModel(super.state);
 
   initialize() {
     final profile = Repository.profile.getCache();

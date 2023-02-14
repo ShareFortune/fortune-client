@@ -9,12 +9,12 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final editProfilePictureViewModelProvider = StateNotifierProvider<
     EditProfileImagesViewModel, AsyncValue<EditProfileImagesState>>(
-  (_) => EditProfileImagesViewModel()..initialize(),
+  (_) => EditProfileImagesViewModel(const AsyncLoading())..initialize(),
 );
 
 class EditProfileImagesViewModel
     extends StateNotifier<AsyncValue<EditProfileImagesState>> {
-  EditProfileImagesViewModel() : super(const AsyncLoading());
+  EditProfileImagesViewModel(super.state);
 
   Future<void> initialize() async {
     state = await AsyncValue.guard(() async {

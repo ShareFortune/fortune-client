@@ -9,11 +9,13 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final roomListViewModelProvider =
     StateNotifierProvider<RoomListViewModel, RoomListState>((ref) {
-  return RoomListViewModel()..initialize();
+  return RoomListViewModel(
+    const RoomListState(),
+  )..initialize();
 });
 
 class RoomListViewModel extends StateNotifier<RoomListState> {
-  RoomListViewModel() : super(const RoomListState());
+  RoomListViewModel(super.state);
 
   Future<void> initialize() async => await fetchList();
 

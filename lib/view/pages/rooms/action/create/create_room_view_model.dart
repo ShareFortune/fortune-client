@@ -9,11 +9,11 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final createRoomViewModelProvider =
     StateNotifierProvider<CreateRoomViewModel, CreateRoomState>(
-  (_) => CreateRoomViewModel(),
+  (_) => CreateRoomViewModel(const CreateRoomState()),
 );
 
 class CreateRoomViewModel extends StateNotifier<CreateRoomState> {
-  CreateRoomViewModel() : super(const CreateRoomState());
+  CreateRoomViewModel(super._state);
 
   /// タグ以外はNull非許容
   bool isPossibleToCreate() {

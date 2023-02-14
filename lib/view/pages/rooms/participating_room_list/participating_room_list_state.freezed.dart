@@ -16,6 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$ParticipatingRoomListState<T> {
+  ParticipatingType get participatingType => throw _privateConstructorUsedError;
   AsyncValue<List<T>> get rooms => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -31,7 +32,7 @@ abstract class $ParticipatingRoomListStateCopyWith<T, $Res> {
       _$ParticipatingRoomListStateCopyWithImpl<T, $Res,
           ParticipatingRoomListState<T>>;
   @useResult
-  $Res call({AsyncValue<List<T>> rooms});
+  $Res call({ParticipatingType participatingType, AsyncValue<List<T>> rooms});
 }
 
 /// @nodoc
@@ -48,9 +49,14 @@ class _$ParticipatingRoomListStateCopyWithImpl<T, $Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? participatingType = null,
     Object? rooms = null,
   }) {
     return _then(_value.copyWith(
+      participatingType: null == participatingType
+          ? _value.participatingType
+          : participatingType // ignore: cast_nullable_to_non_nullable
+              as ParticipatingType,
       rooms: null == rooms
           ? _value.rooms
           : rooms // ignore: cast_nullable_to_non_nullable
@@ -68,7 +74,7 @@ abstract class _$$_ParticipatingRoomListStateCopyWith<T, $Res>
       __$$_ParticipatingRoomListStateCopyWithImpl<T, $Res>;
   @override
   @useResult
-  $Res call({AsyncValue<List<T>> rooms});
+  $Res call({ParticipatingType participatingType, AsyncValue<List<T>> rooms});
 }
 
 /// @nodoc
@@ -84,10 +90,15 @@ class __$$_ParticipatingRoomListStateCopyWithImpl<T, $Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? participatingType = null,
     Object? rooms = null,
   }) {
     return _then(_$_ParticipatingRoomListState<T>(
-      null == rooms
+      participatingType: null == participatingType
+          ? _value.participatingType
+          : participatingType // ignore: cast_nullable_to_non_nullable
+              as ParticipatingType,
+      rooms: null == rooms
           ? _value.rooms
           : rooms // ignore: cast_nullable_to_non_nullable
               as AsyncValue<List<T>>,
@@ -99,14 +110,17 @@ class __$$_ParticipatingRoomListStateCopyWithImpl<T, $Res>
 
 class _$_ParticipatingRoomListState<T>
     implements _ParticipatingRoomListState<T> {
-  const _$_ParticipatingRoomListState(this.rooms);
+  const _$_ParticipatingRoomListState(
+      {required this.participatingType, required this.rooms});
 
+  @override
+  final ParticipatingType participatingType;
   @override
   final AsyncValue<List<T>> rooms;
 
   @override
   String toString() {
-    return 'ParticipatingRoomListState<$T>(rooms: $rooms)';
+    return 'ParticipatingRoomListState<$T>(participatingType: $participatingType, rooms: $rooms)';
   }
 
   @override
@@ -114,11 +128,13 @@ class _$_ParticipatingRoomListState<T>
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ParticipatingRoomListState<T> &&
+            (identical(other.participatingType, participatingType) ||
+                other.participatingType == participatingType) &&
             (identical(other.rooms, rooms) || other.rooms == rooms));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, rooms);
+  int get hashCode => Object.hash(runtimeType, participatingType, rooms);
 
   @JsonKey(ignore: true)
   @override
@@ -130,9 +146,13 @@ class _$_ParticipatingRoomListState<T>
 
 abstract class _ParticipatingRoomListState<T>
     implements ParticipatingRoomListState<T> {
-  const factory _ParticipatingRoomListState(final AsyncValue<List<T>> rooms) =
+  const factory _ParticipatingRoomListState(
+          {required final ParticipatingType participatingType,
+          required final AsyncValue<List<T>> rooms}) =
       _$_ParticipatingRoomListState<T>;
 
+  @override
+  ParticipatingType get participatingType;
   @override
   AsyncValue<List<T>> get rooms;
   @override

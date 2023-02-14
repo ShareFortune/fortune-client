@@ -110,15 +110,11 @@ class __$$_MessageRoomListStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_MessageRoomListState implements _MessageRoomListState {
-  const _$_MessageRoomListState(
-      {this.host = const AsyncValue.loading(),
-      this.guest = const AsyncValue.loading()});
+  const _$_MessageRoomListState({required this.host, required this.guest});
 
   @override
-  @JsonKey()
   final AsyncValue<StatusMessageRoomListState> host;
   @override
-  @JsonKey()
   final AsyncValue<StatusMessageRoomListState> guest;
 
   @override
@@ -148,8 +144,8 @@ class _$_MessageRoomListState implements _MessageRoomListState {
 
 abstract class _MessageRoomListState implements MessageRoomListState {
   const factory _MessageRoomListState(
-          {final AsyncValue<StatusMessageRoomListState> host,
-          final AsyncValue<StatusMessageRoomListState> guest}) =
+          {required final AsyncValue<StatusMessageRoomListState> host,
+          required final AsyncValue<StatusMessageRoomListState> guest}) =
       _$_MessageRoomListState;
 
   @override

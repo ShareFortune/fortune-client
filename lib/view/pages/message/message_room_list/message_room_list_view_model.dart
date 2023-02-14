@@ -6,11 +6,16 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final messageRoomListViewModelProvider =
     StateNotifierProvider<MessageRoomListViewModel, MessageRoomListState>(
-  (ref) => MessageRoomListViewModel()..initialize(),
+  (ref) => MessageRoomListViewModel(
+    const MessageRoomListState(
+      host: AsyncLoading(),
+      guest: AsyncLoading(),
+    ),
+  )..initialize(),
 );
 
 class MessageRoomListViewModel extends StateNotifier<MessageRoomListState> {
-  MessageRoomListViewModel() : super(const MessageRoomListState());
+  MessageRoomListViewModel(super.state);
 
   initialize() async {
     await fetchListHost();

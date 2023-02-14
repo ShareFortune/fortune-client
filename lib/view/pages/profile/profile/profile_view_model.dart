@@ -1,6 +1,4 @@
-import 'package:fortune_client/data/repository/profile/profile_repository.dart';
 import 'package:fortune_client/data/repository/repository.dart';
-import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/view/pages/profile/profile/profile_state.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 

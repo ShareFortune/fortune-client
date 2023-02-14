@@ -7,8 +7,8 @@ part 'message_room_list_state.freezed.dart';
 @freezed
 class MessageRoomListState with _$MessageRoomListState {
   const factory MessageRoomListState({
-    @Default(AsyncValue.loading()) AsyncValue<StatusMessageRoomListState> host,
-    @Default(AsyncValue.loading()) AsyncValue<StatusMessageRoomListState> guest,
+    required AsyncValue<StatusMessageRoomListState> host,
+    required AsyncValue<StatusMessageRoomListState> guest,
   }) = _MessageRoomListState;
 }
 

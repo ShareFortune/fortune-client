@@ -7,6 +7,7 @@ part 'join_requests_confirmation_state.freezed.dart';
 @freezed
 class JoinRequestsConfirmationState with _$JoinRequestsConfirmationState {
   const factory JoinRequestsConfirmationState({
-    @Default(AsyncLoading()) AsyncValue<List<RoomJoinRequest>> joinRequests,
+    required String roomId,
+    required AsyncValue<List<RoomJoinRequest>> joinRequests,
   }) = _JoinRequestsConfirmationState;
 }

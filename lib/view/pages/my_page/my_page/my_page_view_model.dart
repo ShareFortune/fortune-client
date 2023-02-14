@@ -9,11 +9,13 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final myPageViewModelProvider =
     StateNotifierProvider<MyPageViewModel, MyPageState>((_) {
-  return MyPageViewModel()..initialize();
+  return MyPageViewModel(
+    const MyPageState(profile: AsyncLoading()),
+  )..initialize();
 });
 
 class MyPageViewModel extends StateNotifier<MyPageState> {
-  MyPageViewModel() : super(const MyPageState(profile: AsyncLoading()));
+  MyPageViewModel(super.state);
 
   Future<void> initialize() async => await fetch();
 

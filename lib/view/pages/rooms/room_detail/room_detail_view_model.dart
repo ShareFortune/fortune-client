@@ -6,11 +6,12 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final roomDetailViewModelProvider =
     StateNotifierProvider.family<RoomDetailViewModel, RoomDetailState, String>(
-  (ref, roomId) => RoomDetailViewModel(roomId)..initialize(),
+  (_, roomId) =>
+      RoomDetailViewModel(RoomDetailState(roomId: roomId))..initialize(),
 );
 
 class RoomDetailViewModel extends StateNotifier<RoomDetailState> {
-  RoomDetailViewModel(String roomId) : super(RoomDetailState(roomId: roomId));
+  RoomDetailViewModel(super.state);
 
   Future<void> initialize() async {
     await fetch();

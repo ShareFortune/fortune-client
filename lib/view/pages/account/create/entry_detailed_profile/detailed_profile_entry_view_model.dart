@@ -9,12 +9,12 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final detailedProfileEntryViewModelProvider = StateNotifierProvider<
     DetailedProfileEntryViewModel, DetailedProfileEntryState>(
-  (ref) => DetailedProfileEntryViewModel(),
+  (ref) => DetailedProfileEntryViewModel(const DetailedProfileEntryState()),
 );
 
 class DetailedProfileEntryViewModel
     extends StateNotifier<DetailedProfileEntryState> {
-  DetailedProfileEntryViewModel() : super(const DetailedProfileEntryState());
+  DetailedProfileEntryViewModel(super.state);
 
   bool isPossibleToNext() {
     return state.name != null &&
