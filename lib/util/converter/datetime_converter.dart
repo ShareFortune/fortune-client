@@ -26,8 +26,13 @@ class DateTimeConverter {
   }
 
   /// DateTime to String YYYY/MM/DD HH:mm 形式
-  static String convertDateTime(DateTime dateTime) {
+  static String convertYYYYMMDDHHmm(DateTime dateTime) {
     return DateFormat('yyyy/MM/dd HH:mm').format(dateTime);
+  }
+
+  /// DateTime to String MM/DD HH:mm 形式
+  static String convertToMMdd(DateTime dateTime) {
+    return DateFormat('MM/dd').format(dateTime);
   }
 
   /// DateTime to String MM/DD HH:mm 形式
@@ -56,36 +61,44 @@ class DateTimeConverter {
   }
 
   /// 現在時刻から経過時間または時刻に変換する
-  /// 下記５パターンの経過時間を文字列に変換する
+  /// 下記6パターンの経過時間を文字列に変換する
   ///
-  /// 1. １時間以内の場合は「⚪︎分前」
-  /// 2. １時間以降の場合は時刻
-  /// 3. 当日中でなければ「○日前」
-  /// 4. 今月中でなければ月日
-  /// 5. 今年中でなければ年月日
+  /// 1. １分以内の場合は「○秒前」
+  /// 2. １分以降の場合は「⚪︎分前」
+  /// 3. １時間以降の場合は時刻
+  /// 4. 当日中ではない場合は「○日前」
+  /// 5. 今月中ではない場合は月日
+  /// 6. 今年中でない場合は年月日
   ///
   static String convertToLastSendAt(DateTime now, DateTime lastSendAt) {
     final difference = now.difference(lastSendAt);
 
-    /// 今年中でない場合
+    /// 今年中でない場合は年月日
     if (lastSendAt.year != now.year) {
-      return "今年中でない場合";
+      return convertToYYYYMMDD(lastSendAt);
     }
 
-    /// 今月中か
+    /// 今月中ではない場合は月日
     if (lastSendAt.month != now.month) {
-      return "今月中ではない場合";
+      return convertToMMdd(lastSendAt);
     }
 
-    /// 当日ではない場合
+    /// 当日中ではない場合は「○日前」
     if (difference.inHours.abs() > 24) {
-      return "当日ではない場合";
+      return "${difference.inHours.abs()}日前";
     }
 
-    /// １時間以降の場合
+    /// １時間以降の場合は時刻
     if (difference.inMinutes > 60) {
-      return "１時間以降の場合";
+      return convertToHHmm(lastSendAt);
     }
-    return "１時間以内の場合";
+
+    /// １分以降の場合は「⚪︎分前」
+    if (difference.inSeconds.abs() > 60) {
+      return "${difference.inMinutes.abs()}分前";
+    }
+
+    /// １分以内の場合は「○秒前」
+    return "${difference.inSeconds.abs()}秒前";
   }
 }
