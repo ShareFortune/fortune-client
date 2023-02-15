@@ -37,7 +37,8 @@ class MessageRoomListTile extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     _roomNameText(),
-                    _lastSendMessageText(),
+                    if (messageRoom.lastSendMessage != null)
+                      _lastSendMessageText(messageRoom.lastSendMessage!),
                   ],
                 ),
               ),
@@ -101,13 +102,12 @@ class MessageRoomListTile extends StatelessWidget {
   }
 
   /// 最終投稿メッセージ
-  Widget _lastSendMessageText() {
-    if (messageRoom.lastSendMessage == null) return Container();
+  Widget _lastSendMessageText(String lastSendMessage) {
     return Column(
       children: [
         const Gap(3),
         Text(
-          messageRoom.lastSendMessage ?? "",
+          lastSendMessage,
           style: theme.textTheme.h20.paint(theme.appColors.subText3),
         ),
       ],
