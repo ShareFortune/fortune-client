@@ -1,5 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:fortune_client/data/model/base/message_room/messege_room.dart';
+import 'package:fortune_client/l10n/locale_keys.g.dart';
 import 'package:fortune_client/view/pages/message/message_room_list/components/message_room_list_tile.dart';
 import 'package:fortune_client/view/pages/message/message_room_list/message_room_list_view_model.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
@@ -24,7 +26,9 @@ class MessageRoomListView extends HookConsumerWidget {
           Container(
             padding: const EdgeInsets.only(left: 30, top: 30, bottom: 20),
             child: Text(
-              "参加中のメッセージルーム  ${messageRooms.length}",
+              LocaleKeys.message_room_list_page_guide.tr(
+                args: [messageRooms.length.toString()],
+              ),
               style: theme.textTheme.h20.paint(theme.appColors.subText1).bold(),
             ),
           ),

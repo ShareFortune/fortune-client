@@ -1,5 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:fortune_client/data/model/base/message_room/messege_room.dart';
+import 'package:fortune_client/l10n/locale_keys.g.dart';
 import 'package:fortune_client/view/pages/common/scroll_app_bar/scroll_app_bar.dart';
 import 'package:fortune_client/view/pages/message/message_room_list/components/empty_message_room_list_view.dart';
 import 'package:fortune_client/view/pages/message/message_room_list/components/message_room_list_view.dart';
@@ -23,7 +25,7 @@ class MessageRoomListPage extends HookConsumerWidget {
       child: NestedScrollView(
         headerSliverBuilder: (context, innerBoxIsScrolled) {
           return [
-            const ScrollAppBar(title: "メッセージ"),
+            ScrollAppBar(title: LocaleKeys.message_room_list_page_title.tr()),
             SliverToBoxAdapter(
               child: Container(
                 color: theme.appColors.onBackground,
@@ -32,9 +34,13 @@ class MessageRoomListPage extends HookConsumerWidget {
                   labelStyle: theme.textTheme.h20.bold(),
                   unselectedLabelColor: theme.appColors.subText1,
                   unselectedLabelStyle: theme.textTheme.h20.bold(),
-                  tabs: const [
-                    Tab(text: "ホスト"),
-                    Tab(text: "ゲスト"),
+                  tabs: [
+                    Tab(
+                      text: LocaleKeys.message_room_list_page_tabs_host.tr(),
+                    ),
+                    Tab(
+                      text: LocaleKeys.message_room_list_page_tabs_guest.tr(),
+                    ),
                   ],
                 ),
               ),
