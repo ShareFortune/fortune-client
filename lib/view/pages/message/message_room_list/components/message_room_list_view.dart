@@ -7,9 +7,8 @@ import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class MessageRoomListView extends HookConsumerWidget {
-  const MessageRoomListView(this.title, this.messageRooms, {super.key});
+  const MessageRoomListView(this.messageRooms, {super.key});
 
-  final String title;
   final List<MessageRoom> messageRooms;
 
   @override
@@ -23,9 +22,9 @@ class MessageRoomListView extends HookConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            padding: const EdgeInsets.only(left: 30, top: 30, bottom: 30),
+            padding: const EdgeInsets.only(left: 30, top: 30, bottom: 20),
             child: Text(
-              title,
+              "参加中のメッセージルーム  ${messageRooms.length}",
               style: theme.textTheme.h20.paint(theme.appColors.subText1).bold(),
             ),
           ),

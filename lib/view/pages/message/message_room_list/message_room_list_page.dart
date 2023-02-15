@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fortune_client/data/model/base/message_room/messege_room.dart';
 import 'package:fortune_client/view/pages/common/scroll_app_bar/scroll_app_bar.dart';
 import 'package:fortune_client/view/pages/message/message_room_list/components/empty_message_room_list_view.dart';
 import 'package:fortune_client/view/pages/message/message_room_list/components/message_room_list_view.dart';
@@ -43,23 +44,22 @@ class MessageRoomListPage extends HookConsumerWidget {
         body: TabBarView(
           children: [
             /// メッセージルームホスト
-            AsyncValueWidget(
-              data: state.host,
-              builder: (data) => data.isEmpty
-                  ? const EmptyMessageRoomListView()
-                  : MessageRoomListView("参加中のメッセージルーム", data),
-            ),
+            _messageRoomListTabView(state.host),
 
             /// メッセージルームゲスト
-            AsyncValueWidget(
-              data: state.guest,
-              builder: (data) => data.isEmpty
-                  ? const EmptyMessageRoomListView()
-                  : MessageRoomListView("参加中のメッセージルーム", data),
-            ),
+            _messageRoomListTabView(state.guest),
           ],
         ),
       ),
+    );
+  }
+
+  _messageRoomListTabView(AsyncValue<List<MessageRoom>> data) {
+    return AsyncValueWidget(
+      data: data,
+      builder: (data) => data.isEmpty
+          ? const EmptyMessageRoomListView()
+          : MessageRoomListView(data),
     );
   }
 }

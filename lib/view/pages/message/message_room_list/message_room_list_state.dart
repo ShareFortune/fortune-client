@@ -11,39 +11,3 @@ class MessageRoomListState with _$MessageRoomListState {
     required AsyncValue<List<MessageRoom>> guest,
   }) = _MessageRoomListState;
 }
-
-// @freezed
-// class StatusMessageRoomListState with _$StatusMessageRoomListState {
-//   const StatusMessageRoomListState._();
-//   const factory StatusMessageRoomListState({
-//     required List<MessageRoom> messageRooms,
-//     required List<MessageRoom> newMessageRooms,
-//   }) = _StatusMessageRoomListState;
-
-//   bool isEmpty() {
-//     return messageRooms.isEmpty && newMessageRooms.isEmpty;
-//   }
-// }
-
-// @freezed
-// class MessageRoomListItemState with _$MessageRoomListItemState {
-//   const factory MessageRoomListItemState({
-//     required String id,
-//     required String roomName,
-//     required String? lastSendAt,
-//     required String? lastSendMessage,
-//     required String hostMainImageURL,
-//     required int unreadCount,
-//   }) = _MessageRoomListItemState;
-
-//   static MessageRoomListItemState from(MessageRoom messageRoom) {
-//     return MessageRoomListItemState(
-//       id: messageRoom.id,
-//       roomName: messageRoom.roomName,
-//       lastSendAt: messageRoom.lastSendAt,
-//       lastSendMessage: messageRoom.lastSendMessage,
-//       hostMainImageURL: messageRoom.hostMainImageURL,
-//       unreadCount: messageRoom.unreadCount,
-//     );
-//   }
-// }
