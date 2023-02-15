@@ -10,10 +10,9 @@ part 'message.g.dart';
 class Message with _$Message {
   const factory Message({
     @JsonKey(name: "id") required String id,
-    @JsonKey(name: "sentAt") required String sentAt,
+    @JsonKey(name: "sentAt") required DateTime sendAt,
     @JsonKey(name: "text") required String text,
-    @JsonKey(name: "messageIamageURL", nullable: true)
-        required String messageIamageURL,
+    @JsonKey(name: "messageIamageURL") required String? messageIamageURL,
     @JsonKey(name: "fromUser") required MessageFromUser fromUser,
     @JsonKey(name: "readCount") required int readCount,
   }) = _Message;

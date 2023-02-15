@@ -12,6 +12,8 @@ import 'package:fortune_client/data/datasource/remote/go/join_requests/fake_join
 import 'package:fortune_client/data/datasource/remote/go/join_requests/join_requests_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/go/message_rooms/fake_message_rooms_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/go/message_rooms/message_rooms_data_source.dart';
+import 'package:fortune_client/data/datasource/remote/go/messages/fake_messages_data_source.dart';
+import 'package:fortune_client/data/datasource/remote/go/messages/messages_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/go/profile/fake_profile_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/go/profile/profile_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/go/rooms/fake_rooms_data_source.dart';
@@ -30,6 +32,8 @@ import 'package:fortune_client/data/repository/join_requests/join_requests_repos
 import 'package:fortune_client/data/repository/join_requests/join_requests_repository_impl.dart';
 import 'package:fortune_client/data/repository/message/message_repository.dart';
 import 'package:fortune_client/data/repository/message/message_repository_impl.dart';
+import 'package:fortune_client/data/repository/message_rooms/message_rooms_repository.dart';
+import 'package:fortune_client/data/repository/message_rooms/message_rooms_repository_impl.dart';
 import 'package:fortune_client/data/repository/profile/profile_repository.dart';
 import 'package:fortune_client/data/repository/profile/profile_repository_impl.dart';
 import 'package:fortune_client/data/repository/repository.dart';
@@ -106,6 +110,9 @@ Future<void> initDependencies({bool testMode = false}) async {
   getIt.registerLazySingleton<MessagesRepository>(
     () => MessagesRepositoryImpl(getIt()),
   );
+  getIt.registerLazySingleton<MessageRoomsRepository>(
+    () => MessageRoomsRepositoryImpl(getIt()),
+  );
   getIt.registerLazySingleton<ProfileRepository>(
     () => ProfileRepositoryImpl(getIt(), getIt()),
   );
@@ -170,6 +177,9 @@ Future<void> initDependencies({bool testMode = false}) async {
     );
     getIt.registerLazySingleton<ProfileDataSource>(
       () => FakeProfileDataSource(),
+    );
+    getIt.registerLazySingleton<MessagesDataSource>(
+      () => FakeMessagesDataSource(),
     );
     getIt.registerLazySingleton<MessageRoomsDataSource>(
       () => FakeMessageRoomsDataSource(),

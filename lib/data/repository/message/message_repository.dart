@@ -1,8 +1,6 @@
-import 'package:fortune_client/data/model/base/message_room/messege_room.dart';
+import 'package:fortune_client/data/model/base/message/message.dart';
 
 abstract class MessagesRepository {
-  Future<String> create();
-  Future<String> update();
-  Future<List<MessageRoom>> fetchHost();
-  Future<List<MessageRoom>> fetchGuest();
+  sendMessage();
+  Future<List<Message>> getMessages();
 }

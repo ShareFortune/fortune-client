@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'messages_data_source.dart.dart';
+part of 'messages_data_source.dart';
 
 // **************************************************************************
 // RetrofitGenerator
@@ -8,8 +8,8 @@ part of 'messages_data_source.dart.dart';
 
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers
 
-class _MessagesDataSourceDart implements MessagesDataSourceDart {
-  _MessagesDataSourceDart(
+class _MessagesDataSource implements MessagesDataSource {
+  _MessagesDataSource(
     this._dio, {
     this.baseUrl,
   });

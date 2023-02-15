@@ -23,11 +23,11 @@ mixin _$Message {
   @JsonKey(name: "id")
   String get id => throw _privateConstructorUsedError;
   @JsonKey(name: "sentAt")
-  String get sentAt => throw _privateConstructorUsedError;
+  DateTime get sendAt => throw _privateConstructorUsedError;
   @JsonKey(name: "text")
   String get text => throw _privateConstructorUsedError;
-  @JsonKey(name: "messageIamageURL", nullable: true)
-  String get messageIamageURL => throw _privateConstructorUsedError;
+  @JsonKey(name: "messageIamageURL")
+  String? get messageIamageURL => throw _privateConstructorUsedError;
   @JsonKey(name: "fromUser")
   MessageFromUser get fromUser => throw _privateConstructorUsedError;
   @JsonKey(name: "readCount")
@@ -44,18 +44,12 @@ abstract class $MessageCopyWith<$Res> {
       _$MessageCopyWithImpl<$Res, Message>;
   @useResult
   $Res call(
-      {@JsonKey(name: "id")
-          String id,
-      @JsonKey(name: "sentAt")
-          String sentAt,
-      @JsonKey(name: "text")
-          String text,
-      @JsonKey(name: "messageIamageURL", nullable: true)
-          String messageIamageURL,
-      @JsonKey(name: "fromUser")
-          MessageFromUser fromUser,
-      @JsonKey(name: "readCount")
-          int readCount});
+      {@JsonKey(name: "id") String id,
+      @JsonKey(name: "sentAt") DateTime sendAt,
+      @JsonKey(name: "text") String text,
+      @JsonKey(name: "messageIamageURL") String? messageIamageURL,
+      @JsonKey(name: "fromUser") MessageFromUser fromUser,
+      @JsonKey(name: "readCount") int readCount});
 
   $MessageFromUserCopyWith<$Res> get fromUser;
 }
@@ -74,9 +68,9 @@ class _$MessageCopyWithImpl<$Res, $Val extends Message>
   @override
   $Res call({
     Object? id = null,
-    Object? sentAt = null,
+    Object? sendAt = null,
     Object? text = null,
-    Object? messageIamageURL = null,
+    Object? messageIamageURL = freezed,
     Object? fromUser = null,
     Object? readCount = null,
   }) {
@@ -85,18 +79,18 @@ class _$MessageCopyWithImpl<$Res, $Val extends Message>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      sentAt: null == sentAt
-          ? _value.sentAt
-          : sentAt // ignore: cast_nullable_to_non_nullable
-              as String,
+      sendAt: null == sendAt
+          ? _value.sendAt
+          : sendAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
       text: null == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
               as String,
-      messageIamageURL: null == messageIamageURL
+      messageIamageURL: freezed == messageIamageURL
           ? _value.messageIamageURL
           : messageIamageURL // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       fromUser: null == fromUser
           ? _value.fromUser
           : fromUser // ignore: cast_nullable_to_non_nullable
@@ -125,18 +119,12 @@ abstract class _$$_MessageCopyWith<$Res> implements $MessageCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: "id")
-          String id,
-      @JsonKey(name: "sentAt")
-          String sentAt,
-      @JsonKey(name: "text")
-          String text,
-      @JsonKey(name: "messageIamageURL", nullable: true)
-          String messageIamageURL,
-      @JsonKey(name: "fromUser")
-          MessageFromUser fromUser,
-      @JsonKey(name: "readCount")
-          int readCount});
+      {@JsonKey(name: "id") String id,
+      @JsonKey(name: "sentAt") DateTime sendAt,
+      @JsonKey(name: "text") String text,
+      @JsonKey(name: "messageIamageURL") String? messageIamageURL,
+      @JsonKey(name: "fromUser") MessageFromUser fromUser,
+      @JsonKey(name: "readCount") int readCount});
 
   @override
   $MessageFromUserCopyWith<$Res> get fromUser;
@@ -153,9 +141,9 @@ class __$$_MessageCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? sentAt = null,
+    Object? sendAt = null,
     Object? text = null,
-    Object? messageIamageURL = null,
+    Object? messageIamageURL = freezed,
     Object? fromUser = null,
     Object? readCount = null,
   }) {
@@ -164,18 +152,18 @@ class __$$_MessageCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      sentAt: null == sentAt
-          ? _value.sentAt
-          : sentAt // ignore: cast_nullable_to_non_nullable
-              as String,
+      sendAt: null == sendAt
+          ? _value.sendAt
+          : sendAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
       text: null == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
               as String,
-      messageIamageURL: null == messageIamageURL
+      messageIamageURL: freezed == messageIamageURL
           ? _value.messageIamageURL
           : messageIamageURL // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       fromUser: null == fromUser
           ? _value.fromUser
           : fromUser // ignore: cast_nullable_to_non_nullable
@@ -192,18 +180,12 @@ class __$$_MessageCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_Message implements _Message {
   const _$_Message(
-      {@JsonKey(name: "id")
-          required this.id,
-      @JsonKey(name: "sentAt")
-          required this.sentAt,
-      @JsonKey(name: "text")
-          required this.text,
-      @JsonKey(name: "messageIamageURL", nullable: true)
-          required this.messageIamageURL,
-      @JsonKey(name: "fromUser")
-          required this.fromUser,
-      @JsonKey(name: "readCount")
-          required this.readCount});
+      {@JsonKey(name: "id") required this.id,
+      @JsonKey(name: "sentAt") required this.sendAt,
+      @JsonKey(name: "text") required this.text,
+      @JsonKey(name: "messageIamageURL") required this.messageIamageURL,
+      @JsonKey(name: "fromUser") required this.fromUser,
+      @JsonKey(name: "readCount") required this.readCount});
 
   factory _$_Message.fromJson(Map<String, dynamic> json) =>
       _$$_MessageFromJson(json);
@@ -213,13 +195,13 @@ class _$_Message implements _Message {
   final String id;
   @override
   @JsonKey(name: "sentAt")
-  final String sentAt;
+  final DateTime sendAt;
   @override
   @JsonKey(name: "text")
   final String text;
   @override
-  @JsonKey(name: "messageIamageURL", nullable: true)
-  final String messageIamageURL;
+  @JsonKey(name: "messageIamageURL")
+  final String? messageIamageURL;
   @override
   @JsonKey(name: "fromUser")
   final MessageFromUser fromUser;
@@ -229,7 +211,7 @@ class _$_Message implements _Message {
 
   @override
   String toString() {
-    return 'Message(id: $id, sentAt: $sentAt, text: $text, messageIamageURL: $messageIamageURL, fromUser: $fromUser, readCount: $readCount)';
+    return 'Message(id: $id, sendAt: $sendAt, text: $text, messageIamageURL: $messageIamageURL, fromUser: $fromUser, readCount: $readCount)';
   }
 
   @override
@@ -238,7 +220,7 @@ class _$_Message implements _Message {
         (other.runtimeType == runtimeType &&
             other is _$_Message &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.sentAt, sentAt) || other.sentAt == sentAt) &&
+            (identical(other.sendAt, sendAt) || other.sendAt == sendAt) &&
             (identical(other.text, text) || other.text == text) &&
             (identical(other.messageIamageURL, messageIamageURL) ||
                 other.messageIamageURL == messageIamageURL) &&
@@ -251,7 +233,7 @@ class _$_Message implements _Message {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType, id, sentAt, text, messageIamageURL, fromUser, readCount);
+      runtimeType, id, sendAt, text, messageIamageURL, fromUser, readCount);
 
   @JsonKey(ignore: true)
   @override
@@ -272,11 +254,11 @@ abstract class _Message implements Message {
       {@JsonKey(name: "id")
           required final String id,
       @JsonKey(name: "sentAt")
-          required final String sentAt,
+          required final DateTime sendAt,
       @JsonKey(name: "text")
           required final String text,
-      @JsonKey(name: "messageIamageURL", nullable: true)
-          required final String messageIamageURL,
+      @JsonKey(name: "messageIamageURL")
+          required final String? messageIamageURL,
       @JsonKey(name: "fromUser")
           required final MessageFromUser fromUser,
       @JsonKey(name: "readCount")
@@ -289,13 +271,13 @@ abstract class _Message implements Message {
   String get id;
   @override
   @JsonKey(name: "sentAt")
-  String get sentAt;
+  DateTime get sendAt;
   @override
   @JsonKey(name: "text")
   String get text;
   @override
-  @JsonKey(name: "messageIamageURL", nullable: true)
-  String get messageIamageURL;
+  @JsonKey(name: "messageIamageURL")
+  String? get messageIamageURL;
   @override
   @JsonKey(name: "fromUser")
   MessageFromUser get fromUser;

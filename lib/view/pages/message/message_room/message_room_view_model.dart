@@ -1,56 +1,59 @@
 // ignore_for_file: depend_on_referenced_packages
 
-import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
-import 'package:file_picker/file_picker.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:fortune_client/gen/assets.gen.dart';
-import 'package:fortune_client/view/pages/message/message_room/message_room_state.dart';
-import 'package:uuid/uuid.dart';
-import 'package:mime/mime.dart';
-import 'package:open_filex/open_filex.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:uuid/uuid.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:fortune_client/data/model/base/message/message.dart';
+import 'package:fortune_client/data/model/base/message_from_user/message_from_user.dart';
+import 'package:fortune_client/data/repository/repository.dart';
+import 'package:fortune_client/util/converter/message_converter.dart';
+import 'package:fortune_client/view/pages/message/message_room/message_room_state.dart';
+import 'package:flutter_chat_types/flutter_chat_types.dart' as chat_types;
 import 'package:http/http.dart' as http;
-import 'package:flutter/services.dart' show rootBundle;
+import 'package:open_filex/open_filex.dart';
 
-final messageRoomViewModelProvider =
-    StateNotifierProvider<MessageRoomViewModel, AsyncValue<MessageRoomState>>(
-        (ref) {
-  return MessageRoomViewModel(ref)..initialize();
+final messageRoomViewModelProvider = StateNotifierProvider.family<
+    MessageRoomViewModel, MessageRoomState, String>((_, messageRoomId) {
+  return MessageRoomViewModel(
+    MessageRoomState(
+      messageRoomId: messageRoomId,
+      myUserInfo: chat_types.User(id: const Uuid().v4()),
+      messages: const AsyncLoading(),
+    ),
+  )..initialize();
 });
 
-class MessageRoomViewModel extends StateNotifier<AsyncValue<MessageRoomState>> {
-  MessageRoomViewModel(this._ref)
-      : super(const AsyncValue<MessageRoomState>.loading());
+class MessageRoomViewModel extends StateNotifier<MessageRoomState> {
+  MessageRoomViewModel(super.state);
 
-  final Ref _ref;
+  initialize() => loadMessages();
 
-  initialize() => fetch();
-
-  fetch() async {
-    state = await AsyncValue.guard(() async {
-      return MessageRoomState(messages: await loadMessages());
-    });
+  /// メッセージデータ変換
+  chat_types.Message message(Message message) {
+    return MessageConverter.convertToTextMessage(message);
   }
 
-  types.User user() => types.User(id: state.value!.userId);
+  /// メッセージユーザーデータ変換
+  chat_types.User formUser(MessageFromUser user) {
+    return MessageConverter.convertToUser(user);
+  }
 
   loadMessages() async {
-    final json = await rootBundle.loadString(Assets.stub.message);
-    final messages = (jsonDecode(json) as List)
-        .map((e) => types.Message.fromJson(e as Map<String, dynamic>))
-        .toList();
-
-    return messages;
+    state = state.copyWith(
+      messages: await AsyncValue.guard(() async {
+        final messages = await Repository.messages.getMessages();
+        return messages.map((e) => message(e)).toList();
+      }),
+    );
   }
 
-  void handleSendPressed(types.PartialText message) {
-    final textMessage = types.TextMessage(
-      author: user(),
+  void handleSendPressed(chat_types.PartialText message) {
+    final textMessage = chat_types.TextMessage(
+      author: state.myUserInfo,
       createdAt: DateTime.now().millisecondsSinceEpoch,
       id: const Uuid().v4(),
       text: message.text,
@@ -59,34 +62,35 @@ class MessageRoomViewModel extends StateNotifier<AsyncValue<MessageRoomState>> {
     _addMessage(textMessage);
   }
 
-  _addMessage(types.Message message) {
-    final data = state.value;
-    if (data == null) return;
-    state = AsyncValue.data(data.copyWith(
-      messages: [message, ...data.messages],
-    ));
-  }
-
-  void handleFileSelection() async {
-    final result = await FilePicker.platform.pickFiles(
-      type: FileType.any,
+  _addMessage(chat_types.Message message) async {
+    state = state.copyWith(
+      messages: await AsyncValue.guard(() async {
+        return [message, ...?state.messages.value];
+      }),
     );
-
-    if (result != null && result.files.single.path != null) {
-      final message = types.FileMessage(
-        author: user(),
-        createdAt: DateTime.now().millisecondsSinceEpoch,
-        id: const Uuid().v4(),
-        mimeType: lookupMimeType(result.files.single.path!),
-        name: result.files.single.name,
-        size: result.files.single.size,
-        uri: result.files.single.path!,
-      );
-
-      _addMessage(message);
-    }
   }
 
+  // void handleFileSelection() async {
+  //   final result = await FilePicker.platform.pickFiles(
+  //     type: FileType.any,
+  //   );
+
+  //   if (result != null && result.files.single.path != null) {
+  //     final message = chat_types.FileMessage(
+  //       author: user(),
+  //       createdAt: DateTime.now().millisecondsSinceEpoch,
+  //       id: const Uuid().v4(),
+  //       mimeType: lookupMimeType(result.files.single.path!),
+  //       name: result.files.single.name,
+  //       size: result.files.single.size,
+  //       uri: result.files.single.path!,
+  //     );
+
+  //     _addMessage(message);
+  //   }
+  // }
+
+  /// 画像データ選択ハンドラ
   void handleImageSelection() async {
     final result = await ImagePicker().pickImage(
       imageQuality: 70,
@@ -98,8 +102,8 @@ class MessageRoomViewModel extends StateNotifier<AsyncValue<MessageRoomState>> {
       final bytes = await result.readAsBytes();
       final image = await decodeImageFromList(bytes);
 
-      final message = types.ImageMessage(
-        author: user(),
+      final message = chat_types.ImageMessage(
+        author: state.myUserInfo,
         createdAt: DateTime.now().millisecondsSinceEpoch,
         height: image.height.toDouble(),
         id: const Uuid().v4(),
@@ -113,23 +117,23 @@ class MessageRoomViewModel extends StateNotifier<AsyncValue<MessageRoomState>> {
     }
   }
 
-  void handleMessageTap(BuildContext _, types.Message message) async {
-    final data = state.value;
-    if (data == null) return;
-    if (message is types.FileMessage) {
+  void handleMessageTap(_, chat_types.Message message) async {
+    final messages = state.messages.value;
+    if (messages == null) return;
+    if (message is chat_types.FileMessage) {
       var localPath = message.uri;
 
       if (message.uri.startsWith('http')) {
         try {
           final index =
-              data.messages.indexWhere((element) => element.id == message.id);
+              messages.indexWhere((element) => element.id == message.id);
           final updatedMessage =
-              (data.messages[index] as types.FileMessage).copyWith(
+              (messages[index] as chat_types.FileMessage).copyWith(
             isLoading: true,
           );
 
-          data.messages[index] = updatedMessage;
-          state = AsyncData(data);
+          messages[index] = updatedMessage;
+          state = state.copyWith(messages: AsyncData(messages));
 
           final client = http.Client();
           final request = await client.get(Uri.parse(message.uri));
@@ -143,14 +147,14 @@ class MessageRoomViewModel extends StateNotifier<AsyncValue<MessageRoomState>> {
           }
         } finally {
           final index =
-              data.messages.indexWhere((element) => element.id == message.id);
+              messages.indexWhere((element) => element.id == message.id);
           final updatedMessage =
-              (data.messages[index] as types.FileMessage).copyWith(
+              (messages[index] as chat_types.FileMessage).copyWith(
             isLoading: null,
           );
 
-          data.messages[index] = updatedMessage;
-          state = AsyncData(data);
+          messages[index] = updatedMessage;
+          state = state.copyWith(messages: AsyncData(messages));
         }
       }
 
@@ -159,18 +163,18 @@ class MessageRoomViewModel extends StateNotifier<AsyncValue<MessageRoomState>> {
   }
 
   void handlePreviewDataFetched(
-    types.TextMessage message,
-    types.PreviewData previewData,
+    chat_types.TextMessage message,
+    chat_types.PreviewData previewData,
   ) {
-    final data = state.value;
-    if (data == null) return;
-    final index =
-        data.messages.indexWhere((element) => element.id == message.id);
-    final updatedMessage = (data.messages[index] as types.TextMessage).copyWith(
+    final messages = state.messages.value;
+
+    if (messages == null) return;
+    final index = messages.indexWhere((element) => element.id == message.id);
+    final updatedMessage = (messages[index] as chat_types.TextMessage).copyWith(
       previewData: previewData,
     );
 
-    // data.messages[index] = updatedMessage;
-    state = AsyncData(data);
+    messages[index] = updatedMessage;
+    state = state.copyWith(messages: AsyncData(messages));
   }
 }

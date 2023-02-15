@@ -9,9 +9,9 @@
             "id": "3bca12b0-5e5a-468c-9e88-5db92bedd2cd",
             "messageIamageURL": null,
             "readCount": 0,
-            "sentAt": "2023-02-15",
+            "sentAt": "2023-02-13T23:02:01.332501+09:00",
             "text": "hello"
         }
     ],
-    "nextToken": ""
+    "nextToken": "GetV1MessageRoomsIdMessagesResponse"
 }

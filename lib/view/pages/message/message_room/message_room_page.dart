@@ -7,8 +7,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fortune_client/view/pages/message/message_room/message_room_view_model.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
-import 'package:fortune_client/view/widgets/other/error_widget.dart';
-import 'package:fortune_client/view/widgets/other/loading_widget.dart';
+import 'package:fortune_client/view/widgets/other/async_value_widget.dart';
 
 class MessageRoomPage extends ConsumerWidget {
   const MessageRoomPage({super.key, @PathParam() required this.id});
@@ -18,8 +17,8 @@ class MessageRoomPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = ref.watch(appThemeProvider);
-    final state = ref.watch(messageRoomViewModelProvider);
-    final viewModel = ref.watch(messageRoomViewModelProvider.notifier);
+    final state = ref.watch(messageRoomViewModelProvider(id));
+    final viewModel = ref.watch(messageRoomViewModelProvider(id).notifier);
 
     return Scaffold(
       backgroundColor: theme.appColors.onBackground,
@@ -32,8 +31,9 @@ class MessageRoomPage extends ConsumerWidget {
         elevation: 0,
         backgroundColor: Colors.transparent,
       ),
-      body: state.when(
-        data: (data) {
+      body: AsyncValueWidget(
+        data: state.messages,
+        builder: (messages) {
           return Chat(
             theme: DefaultChatTheme(
               backgroundColor: theme.appColors.onBackground,
@@ -52,15 +52,14 @@ class MessageRoomPage extends ConsumerWidget {
               inputTextCursorColor: theme.appColors.subText2,
               inputTextColor: theme.appColors.subText1,
             ),
-            messages: data.messages,
-            onAttachmentPressed: () =>
-                _handleAtachmentPressed(context, viewModel),
+            messages: messages,
+            onAttachmentPressed: () => _onAttachmentPressed(context, viewModel),
             onMessageTap: viewModel.handleMessageTap,
             onPreviewDataFetched: viewModel.handlePreviewDataFetched,
             onSendPressed: viewModel.handleSendPressed,
             showUserAvatars: true,
             showUserNames: true,
-            user: viewModel.user(),
+            user: state.myUserInfo,
             l10n: const ChatL10nEn(
               attachmentButtonAccessibilityLabel: '画像アップロード',
               emptyChatPlaceholder: 'メッセージがありません。',
@@ -70,15 +69,16 @@ class MessageRoomPage extends ConsumerWidget {
             ),
           );
         },
-        error: (error, stackTrace) => errorWidget(error, stackTrace),
-        loading: () => loadingWidget(),
       ),
     );
   }
 
-  Future<void> _handleAtachmentPressed(
-      BuildContext context, MessageRoomViewModel viewModel) async {
-    return await showModalBottomSheet<void>(
+  /// オプションボタンクリック時
+  Future<void> _onAttachmentPressed(
+    BuildContext context,
+    MessageRoomViewModel viewModel,
+  ) {
+    return showModalBottomSheet<void>(
       context: context,
       builder: (BuildContext context) => SafeArea(
         child: SizedBox(
@@ -86,36 +86,39 @@ class MessageRoomPage extends ConsumerWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              TextButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                  viewModel.handleImageSelection();
-                },
-                child: const Align(
-                  alignment: AlignmentDirectional.centerStart,
-                  child: Text('Photo'),
-                ),
-              ),
-              TextButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                  viewModel.handleFileSelection();
-                },
-                child: const Align(
-                  alignment: AlignmentDirectional.centerStart,
-                  child: Text('File'),
-                ),
-              ),
-              TextButton(
-                onPressed: () => Navigator.pop(context),
-                child: const Align(
-                  alignment: AlignmentDirectional.centerStart,
-                  child: Text('Cancel'),
-                ),
-              ),
+              _photoPicker(context, viewModel),
+              _cancelButton(context),
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  /// キャンセルボタン
+  TextButton _cancelButton(BuildContext context) {
+    return TextButton(
+      onPressed: () => Navigator.pop(context),
+      child: const Align(
+        alignment: AlignmentDirectional.centerStart,
+        child: Text('Cancel'),
+      ),
+    );
+  }
+
+  /// 画像選択
+  TextButton _photoPicker(
+    BuildContext context,
+    MessageRoomViewModel viewModel,
+  ) {
+    return TextButton(
+      onPressed: () {
+        Navigator.pop(context);
+        viewModel.handleImageSelection();
+      },
+      child: const Align(
+        alignment: AlignmentDirectional.centerStart,
+        child: Text('Photo'),
       ),
     );
   }
