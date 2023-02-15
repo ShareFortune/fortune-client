@@ -29,6 +29,7 @@
     "message_room_list_page": {
         "title": "メッセージ",
         "guide": "参加中のメッセージルーム  {}",
+        "empty": "参加中のメッセージルームが存在しません。",
         "tabs" : {
             "host": "ホスト",
             "guest": "ゲスト"

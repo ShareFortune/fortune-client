@@ -23,6 +23,7 @@ abstract class  LocaleKeys {
   static const message_room_page = 'message_room_page';
   static const message_room_list_page_title = 'message_room_list_page.title';
   static const message_room_list_page_guide = 'message_room_list_page.guide';
+  static const message_room_list_page_empty = 'message_room_list_page.empty';
   static const message_room_list_page_tabs_host = 'message_room_list_page.tabs.host';
   static const message_room_list_page_tabs_guest = 'message_room_list_page.tabs.guest';
   static const message_room_list_page_tabs = 'message_room_list_page.tabs';
