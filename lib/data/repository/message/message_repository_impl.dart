@@ -29,4 +29,15 @@ class MessagesRepositoryImpl implements MessagesRepository {
       return [];
     }
   }
+
+  @override
+  Future<List<MessageRoom>> fetchGuest() async {
+    try {
+      final result = await _dataSource.getMessageRoomsGuest();
+      return result.data;
+    } catch (e) {
+      logger.e(e);
+      return [];
+    }
+  }
 }

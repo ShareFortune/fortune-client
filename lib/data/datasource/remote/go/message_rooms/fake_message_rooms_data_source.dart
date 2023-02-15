@@ -5,14 +5,15 @@ import 'package:fortune_client/util/common/json_loader.dart';
 
 class FakeMessageRoomsDataSource implements MessageRoomsDataSource {
   @override
-  Future<GetV1MessageRoomsResponse> getMessageRoomsGuest() async {
+  Future<GetV1MessageRoomsResponse> getMessageRoomsHost() async {
     return GetV1MessageRoomsResponse.fromJson(
       await JsonLoader.load(Assets.stub.getV1MessageRoomsResponse),
     );
   }
 
   @override
-  Future<GetV1MessageRoomsResponse> getMessageRoomsHost() async {
+  Future<GetV1MessageRoomsResponse> getMessageRoomsGuest() async {
+    return const GetV1MessageRoomsResponse(nextToken: "token", data: []);
     return GetV1MessageRoomsResponse.fromJson(
       await JsonLoader.load(Assets.stub.getV1MessageRoomsResponse),
     );

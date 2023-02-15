@@ -7,23 +7,23 @@ part 'message_room_list_state.freezed.dart';
 @freezed
 class MessageRoomListState with _$MessageRoomListState {
   const factory MessageRoomListState({
-    required AsyncValue<StatusMessageRoomListState> host,
-    required AsyncValue<StatusMessageRoomListState> guest,
+    required AsyncValue<List<MessageRoom>> host,
+    required AsyncValue<List<MessageRoom>> guest,
   }) = _MessageRoomListState;
 }
 
-@freezed
-class StatusMessageRoomListState with _$StatusMessageRoomListState {
-  const StatusMessageRoomListState._();
-  const factory StatusMessageRoomListState({
-    required List<MessageRoom> messageRooms,
-    required List<MessageRoom> newMessageRooms,
-  }) = _StatusMessageRoomListState;
+// @freezed
+// class StatusMessageRoomListState with _$StatusMessageRoomListState {
+//   const StatusMessageRoomListState._();
+//   const factory StatusMessageRoomListState({
+//     required List<MessageRoom> messageRooms,
+//     required List<MessageRoom> newMessageRooms,
+//   }) = _StatusMessageRoomListState;
 
-  bool isEmpty() {
-    return messageRooms.isEmpty && newMessageRooms.isEmpty;
-  }
-}
+//   bool isEmpty() {
+//     return messageRooms.isEmpty && newMessageRooms.isEmpty;
+//   }
+// }
 
 // @freezed
 // class MessageRoomListItemState with _$MessageRoomListItemState {

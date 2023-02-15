@@ -4,4 +4,5 @@ abstract class MessagesRepository {
   Future<String> create();
   Future<String> update();
   Future<List<MessageRoom>> fetchHost();
+  Future<List<MessageRoom>> fetchGuest();
 }
