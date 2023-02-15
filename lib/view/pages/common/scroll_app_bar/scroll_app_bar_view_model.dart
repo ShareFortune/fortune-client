@@ -4,14 +4,14 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final scrollAppBarViewModelProvider =
     StateNotifierProvider<ScrollAppBarViewModel, AsyncValue<ScrollAppBarState>>(
-  (ref) => ScrollAppBarViewModel()..init(),
+  (ref) => ScrollAppBarViewModel(const AsyncLoading())..initialize(),
 );
 
 class ScrollAppBarViewModel
     extends StateNotifier<AsyncValue<ScrollAppBarState>> {
-  ScrollAppBarViewModel() : super(const AsyncValue.loading());
+  ScrollAppBarViewModel(super.state);
 
-  init() => fetch();
+  initialize() => fetch();
 
   fetch() async {
     state = await AsyncValue.guard(() async {

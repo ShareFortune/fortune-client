@@ -5,13 +5,11 @@ import 'package:shared_preferences/shared_preferences.dart';
 class SharedPreferencesDataSourceImpl implements SharedPreferencesDataSource {
   SharedPreferencesDataSourceImpl(this._sharedPreferences);
 
-  static const _prefix = 'SharedPrefService';
   final SharedPreferences _sharedPreferences;
 
-  Future<bool> _logger<T>(
-      Future<bool> Function(String, T) setter, String key, T value) {
+  Future<bool> _logger<T>(Future<bool> Function(String, T) setter, String key, T value) {
     return setter(key, value).whenComplete(
-      () => logger.i('[$_prefix] set ${T.runtimeType} for key: $key'),
+      () => logger.i('[$runtimeType] set ${T.runtimeType} for key: $key'),
     );
   }
 
@@ -69,13 +67,13 @@ class SharedPreferencesDataSourceImpl implements SharedPreferencesDataSource {
   Future<bool> remove(String key) {
     return _sharedPreferences
         .remove(key)
-        .whenComplete(() => logger.i('[$_prefix] removed value for key: $key'));
+        .whenComplete(() => logger.i('[$runtimeType] removed value for key: $key'));
   }
 
   @override
   Future<bool> clear() async {
     return _sharedPreferences.clear().whenComplete(
-          () => logger.i('[$_prefix] cleared all sharedPreferences.'),
+          () => logger.i('[$runtimeType] cleared all sharedPreferences.'),
         );
   }
 

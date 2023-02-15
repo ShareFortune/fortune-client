@@ -1,17 +1,17 @@
 import 'package:fortune_client/data/datasource/local/shared_pref_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/go/users/users_data_source.dart';
 import 'package:fortune_client/data/model/users/post_v1_users/post_v1_users.dart';
-import 'package:fortune_client/data/repository/auth/auth_repository.dart';
+import 'package:fortune_client/data/repository/repository.dart';
 import 'package:fortune_client/data/repository/users/users_repository.dart';
 import 'package:fortune_client/util/logger/logger.dart';
 import 'package:fortune_client/util/storage/app_pref_key.dart';
 
 class UsersRepositoryImpl implements UsersRepository {
+  final Repository _repository;
   final UsersDataSource _usersDataSource;
-  final AuthRepository _authRepository;
   final SharedPreferencesDataSource _prefs;
 
-  UsersRepositoryImpl(this._usersDataSource, this._authRepository, this._prefs);
+  UsersRepositoryImpl(this._usersDataSource, this._repository, this._prefs);
 
   @override
   Future<bool> create(String username, String birthday) async {
@@ -20,7 +20,7 @@ class UsersRepositoryImpl implements UsersRepository {
       logger.i("終わった？");
 
       final form = PostV1UsersRequest(
-        firebaseId: _authRepository.firebaseId,
+        firebaseId: Repository.auth.firebaseId,
         username: username,
         birthday: birthday,
       );

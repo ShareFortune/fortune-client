@@ -1,5 +1,5 @@
 import 'package:fortune_client/data/model/base/tag/tag.dart';
-import 'package:fortune_client/data/repository/tags/tags_repository.dart';
+import 'package:fortune_client/data/repository/repository.dart';
 import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/view/pages/tags/create/create_tag_state.dart';
 import 'package:fortune_client/view/routes/app_router.dart';
@@ -7,13 +7,11 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final createTagViewModelProvider =
     StateNotifierProvider<CreateTagViewModel, CreateTagState>(
-  (_) => CreateTagViewModel(getIt()),
+  (_) => CreateTagViewModel(const CreateTagState()),
 );
 
 class CreateTagViewModel extends StateNotifier<CreateTagState> {
-  CreateTagViewModel(this._tagsRepository) : super(const CreateTagState());
-
-  final TagsRepository _tagsRepository;
+  CreateTagViewModel(super.state);
 
   bool isPossibleToCreate() {
     return state.name != null &&
@@ -33,7 +31,7 @@ class CreateTagViewModel extends StateNotifier<CreateTagState> {
   Future<bool> create() async {
     try {
       if (!isPossibleToCreate()) return false;
-      final id = await _tagsRepository.create(state.name!, state.description!);
+      final id = await Repository.tags.create(state.name!, state.description!);
       return getIt<AppRouter>().pop(Tag(id: id, name: state.name!));
     } catch (e) {
       return false;

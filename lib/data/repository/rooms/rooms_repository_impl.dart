@@ -38,7 +38,7 @@ class RoomsRepositoryImpl implements RoomsRepository {
           ageGroup: ageGroup,
           addressId: addressWithId.id,
           explanation: explanation,
-          applicationDeadline: DateTimeConverter.convertDateTimeYYYYMMDD(
+          applicationDeadline: DateTimeConverter.convertToYYYYMMDD(
             DateTime.now(),
             delimiter: "-",
           ),

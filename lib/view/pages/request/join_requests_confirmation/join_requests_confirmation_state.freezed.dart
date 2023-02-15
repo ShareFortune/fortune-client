@@ -16,6 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$JoinRequestsConfirmationState {
+  String get roomId => throw _privateConstructorUsedError;
   AsyncValue<List<RoomJoinRequest>> get joinRequests =>
       throw _privateConstructorUsedError;
 
@@ -32,7 +33,7 @@ abstract class $JoinRequestsConfirmationStateCopyWith<$Res> {
       _$JoinRequestsConfirmationStateCopyWithImpl<$Res,
           JoinRequestsConfirmationState>;
   @useResult
-  $Res call({AsyncValue<List<RoomJoinRequest>> joinRequests});
+  $Res call({String roomId, AsyncValue<List<RoomJoinRequest>> joinRequests});
 }
 
 /// @nodoc
@@ -49,9 +50,14 @@ class _$JoinRequestsConfirmationStateCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? roomId = null,
     Object? joinRequests = null,
   }) {
     return _then(_value.copyWith(
+      roomId: null == roomId
+          ? _value.roomId
+          : roomId // ignore: cast_nullable_to_non_nullable
+              as String,
       joinRequests: null == joinRequests
           ? _value.joinRequests
           : joinRequests // ignore: cast_nullable_to_non_nullable
@@ -69,7 +75,7 @@ abstract class _$$_JoinRequestsConfirmationStateCopyWith<$Res>
       __$$_JoinRequestsConfirmationStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({AsyncValue<List<RoomJoinRequest>> joinRequests});
+  $Res call({String roomId, AsyncValue<List<RoomJoinRequest>> joinRequests});
 }
 
 /// @nodoc
@@ -85,9 +91,14 @@ class __$$_JoinRequestsConfirmationStateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? roomId = null,
     Object? joinRequests = null,
   }) {
     return _then(_$_JoinRequestsConfirmationState(
+      roomId: null == roomId
+          ? _value.roomId
+          : roomId // ignore: cast_nullable_to_non_nullable
+              as String,
       joinRequests: null == joinRequests
           ? _value.joinRequests
           : joinRequests // ignore: cast_nullable_to_non_nullable
@@ -101,15 +112,16 @@ class __$$_JoinRequestsConfirmationStateCopyWithImpl<$Res>
 class _$_JoinRequestsConfirmationState
     implements _JoinRequestsConfirmationState {
   const _$_JoinRequestsConfirmationState(
-      {this.joinRequests = const AsyncLoading()});
+      {required this.roomId, required this.joinRequests});
 
   @override
-  @JsonKey()
+  final String roomId;
+  @override
   final AsyncValue<List<RoomJoinRequest>> joinRequests;
 
   @override
   String toString() {
-    return 'JoinRequestsConfirmationState(joinRequests: $joinRequests)';
+    return 'JoinRequestsConfirmationState(roomId: $roomId, joinRequests: $joinRequests)';
   }
 
   @override
@@ -117,12 +129,13 @@ class _$_JoinRequestsConfirmationState
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_JoinRequestsConfirmationState &&
+            (identical(other.roomId, roomId) || other.roomId == roomId) &&
             (identical(other.joinRequests, joinRequests) ||
                 other.joinRequests == joinRequests));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, joinRequests);
+  int get hashCode => Object.hash(runtimeType, roomId, joinRequests);
 
   @JsonKey(ignore: true)
   @override
@@ -135,9 +148,12 @@ class _$_JoinRequestsConfirmationState
 abstract class _JoinRequestsConfirmationState
     implements JoinRequestsConfirmationState {
   const factory _JoinRequestsConfirmationState(
-          {final AsyncValue<List<RoomJoinRequest>> joinRequests}) =
+          {required final String roomId,
+          required final AsyncValue<List<RoomJoinRequest>> joinRequests}) =
       _$_JoinRequestsConfirmationState;
 
+  @override
+  String get roomId;
   @override
   AsyncValue<List<RoomJoinRequest>> get joinRequests;
   @override

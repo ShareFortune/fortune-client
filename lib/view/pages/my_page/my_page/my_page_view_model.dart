@@ -1,8 +1,6 @@
-import 'dart:io';
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:fortune_client/data/model/base/tag/tag.dart';
-import 'package:fortune_client/data/repository/profile/profile_repository.dart';
+import 'package:fortune_client/data/repository/repository.dart';
 import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/l10n/locale_keys.g.dart';
 import 'package:fortune_client/view/pages/my_page/my_page/my_page_state.dart';
@@ -11,23 +9,20 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final myPageViewModelProvider =
     StateNotifierProvider<MyPageViewModel, MyPageState>((_) {
-  return MyPageViewModel(getIt())..initialize();
+  return MyPageViewModel(
+    const MyPageState(profile: AsyncLoading()),
+  )..initialize();
 });
 
 class MyPageViewModel extends StateNotifier<MyPageState> {
-  MyPageViewModel(this._repository)
-      : super(const MyPageState(
-          profile: AsyncLoading(),
-        ));
-
-  final ProfileRepository _repository;
+  MyPageViewModel(super.state);
 
   Future<void> initialize() async => await fetch();
 
   Future fetch() async {
     state = state.copyWith(
       profile: await AsyncValue.guard(() async {
-        return await _repository.get();
+        return await Repository.profile.get();
       }),
     );
   }
@@ -52,7 +47,9 @@ class MyPageViewModel extends StateNotifier<MyPageState> {
 
     /// 更新
     if (result != null) {
-      _repository.updateSelfIntroduction(result).whenComplete(() => fetch());
+      Repository.profile
+          .updateSelfIntroduction(result)
+          .whenComplete(() => fetch());
     }
   }
 
@@ -68,7 +65,7 @@ class MyPageViewModel extends StateNotifier<MyPageState> {
 
     /// 更新
     if (result != null) {
-      _repository.updateTags(result).whenComplete(() => fetch());
+      Repository.profile.updateTags(result).whenComplete(() => fetch());
     }
   }
 
