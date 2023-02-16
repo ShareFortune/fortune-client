@@ -1,6 +1,6 @@
 import 'package:fortune_client/data/model/base/message/message.dart';
 
 abstract class MessagesRepository {
-  sendMessage();
-  Future<List<Message>> getMessages();
+  sendMessage(String messageRoomId);
+  Future<List<Message>> getMessages(String messageRoomId);
 }

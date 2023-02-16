@@ -32,20 +32,21 @@ class MessageRoomViewModel extends StateNotifier<MessageRoomState> {
 
   initialize() => loadMessages();
 
-  /// メッセージデータ変換
-  chat_types.Message message(Message message) {
-    return MessageConverter.convertToTextMessage(message);
-  }
-
   /// メッセージユーザーデータ変換
   chat_types.User formUser(MessageFromUser user) {
     return MessageConverter.convertToUser(user);
   }
 
+  /// メッセージデータ変換
+  chat_types.Message message(Message message) {
+    return MessageConverter.convertToTextMessage(message);
+  }
+
   loadMessages() async {
     state = state.copyWith(
       messages: await AsyncValue.guard(() async {
-        final messages = await Repository.messages.getMessages();
+        final messages =
+            await Repository.messages.getMessages(state.messageRoomId);
         return messages.map((e) => message(e)).toList();
       }),
     );
@@ -69,26 +70,6 @@ class MessageRoomViewModel extends StateNotifier<MessageRoomState> {
       }),
     );
   }
-
-  // void handleFileSelection() async {
-  //   final result = await FilePicker.platform.pickFiles(
-  //     type: FileType.any,
-  //   );
-
-  //   if (result != null && result.files.single.path != null) {
-  //     final message = chat_types.FileMessage(
-  //       author: user(),
-  //       createdAt: DateTime.now().millisecondsSinceEpoch,
-  //       id: const Uuid().v4(),
-  //       mimeType: lookupMimeType(result.files.single.path!),
-  //       name: result.files.single.name,
-  //       size: result.files.single.size,
-  //       uri: result.files.single.path!,
-  //     );
-
-  //     _addMessage(message);
-  //   }
-  // }
 
   /// 画像データ選択ハンドラ
   void handleImageSelection() async {

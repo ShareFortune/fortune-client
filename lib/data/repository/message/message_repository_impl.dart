@@ -9,15 +9,14 @@ class MessagesRepositoryImpl implements MessagesRepository {
   final MessagesDataSource _dataSource;
 
   @override
-  sendMessage() {
-    // TODO: implement sendMessage
-    throw UnimplementedError();
+  sendMessage(String messageRoomId) {
+    _dataSource.send("messageRoomId");
   }
 
   @override
-  Future<List<Message>> getMessages() async {
+  Future<List<Message>> getMessages(String messageRoomId) async {
     try {
-      final result = await _dataSource.get("");
+      final result = await _dataSource.get(messageRoomId);
       return result.data;
     } catch (e) {
       logger.e(e);
