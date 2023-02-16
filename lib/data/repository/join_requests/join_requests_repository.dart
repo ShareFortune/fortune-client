@@ -1,4 +1,4 @@
-import 'package:fortune_client/data/model/base/room_join_request/room_join_request.dart';
+import 'package:fortune_client/data/model/core/base/room_join_request/room_join_request.dart';
 
 abstract class JoinRequestsRepository {
   /// 参加申請

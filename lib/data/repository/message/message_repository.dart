@@ -1,4 +1,4 @@
-import 'package:fortune_client/data/model/base/message/message.dart';
+import 'package:fortune_client/data/model/core/base/message/message.dart';
 
 abstract class MessagesRepository {
   /// メッセージ送信

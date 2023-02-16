@@ -1,5 +1,5 @@
-import 'package:fortune_client/data/model/base/address_with_id/address_with_id.dart';
-import 'package:fortune_client/data/model/base/tag/tag.dart';
+import 'package:fortune_client/data/model/core/base/address_with_id/address_with_id.dart';
+import 'package:fortune_client/data/model/core/base/tag/tag.dart';
 import 'package:fortune_client/data/model/rooms/get_v1_rooms/get_v1_rooms.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';

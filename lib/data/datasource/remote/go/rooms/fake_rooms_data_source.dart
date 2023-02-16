@@ -3,7 +3,7 @@ import 'package:fortune_client/data/model/rooms/get_v1_rooms/get_v1_rooms.dart';
 import 'package:fortune_client/data/model/rooms/room_id_response/room_id_response.dart';
 import 'package:fortune_client/data/model/rooms/get_v1_rooms_host/get_v1_rooms_host.dart';
 import 'package:fortune_client/data/model/rooms/get_v1_rooms_guest/get_v1_rooms_guest.dart';
-import 'package:fortune_client/data/model/base/room/room.dart';
+import 'package:fortune_client/data/model/core/base/room/room.dart';
 import 'package:fortune_client/gen/assets.gen.dart';
 import 'package:fortune_client/util/common/json_loader.dart';
 

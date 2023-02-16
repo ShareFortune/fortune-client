@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'get_v1_message_rooms_id_messages_response.dart';
+part of 'get_v1_message_rooms_id_messages.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator

@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:fortune_client/data/datasource/core/annotations_headers.dart.dart';
-import 'package:fortune_client/data/model/messages/get_v1_message_rooms_id_messages_response/get_v1_message_rooms_id_messages_response.dart';
+import 'package:fortune_client/data/model/messages/get_v1_message_rooms_id_messages/get_v1_message_rooms_id_messages.dart';
 import 'package:retrofit/retrofit.dart';
 
 part 'messages_data_source.g.dart';
@@ -9,11 +9,20 @@ part 'messages_data_source.g.dart';
 abstract class MessagesDataSource {
   factory MessagesDataSource(Dio dio) = _MessagesDataSource;
 
-  /// メッセージ送信
+  /// メッセージ送信・テキスト
   /// [messageRoomId]送信するメッセージルームのID
   @POST('/messageRooms/{messageRoomId}/messages')
   @authenticatedRequest
-  Future<void> send(
+  Future<void> sendText(
+    @Path('messageRoomId') String messageRoomId,
+    @Body() Map<String, dynamic> body,
+  );
+
+  /// メッセージ送信・画像
+  /// [messageRoomId]送信するメッセージルームのID
+  @POST('/messageRooms/{messageRoomId}/messageImages')
+  @authenticatedRequest
+  Future<void> sendImage(
     @Path('messageRoomId') String messageRoomId,
     @Body() Map<String, dynamic> body,
   );

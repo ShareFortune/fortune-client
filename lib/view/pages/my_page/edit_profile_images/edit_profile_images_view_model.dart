@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:fortune_client/data/repository/repository.dart';
 import 'package:fortune_client/injector.dart';
-import 'package:fortune_client/data/model/enum/profile_images_type.dart';
+import 'package:fortune_client/data/model/core/enum/profile_images_type.dart';
 import 'package:fortune_client/view/pages/my_page/edit_profile_images/edit_profile_images_state.dart';
 import 'package:fortune_client/view/routes/app_router.gr.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';

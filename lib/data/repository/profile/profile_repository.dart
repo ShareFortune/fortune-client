@@ -1,12 +1,12 @@
 import 'dart:io';
 
-import 'package:fortune_client/data/model/base/address_with_id/address_with_id.dart';
-import 'package:fortune_client/data/model/base/profiles_files/profiles_files.dart';
-import 'package:fortune_client/data/model/base/tag/tag.dart';
-import 'package:fortune_client/data/model/enum/cigarette_frequency.dart';
-import 'package:fortune_client/data/model/enum/drink_frequency.dart';
-import 'package:fortune_client/data/model/enum/gender.dart';
-import 'package:fortune_client/data/model/enum/profile_images_type.dart';
+import 'package:fortune_client/data/model/core/base/address_with_id/address_with_id.dart';
+import 'package:fortune_client/data/model/core/base/profiles_files/profiles_files.dart';
+import 'package:fortune_client/data/model/core/base/tag/tag.dart';
+import 'package:fortune_client/data/model/core/enum/cigarette_frequency.dart';
+import 'package:fortune_client/data/model/core/enum/drink_frequency.dart';
+import 'package:fortune_client/data/model/core/enum/gender.dart';
+import 'package:fortune_client/data/model/core/enum/profile_images_type.dart';
 import 'package:fortune_client/data/model/profiles/get_v1_profiles/get_v1_profiles.dart';
 
 abstract class ProfileRepository {

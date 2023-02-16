@@ -1,7 +1,7 @@
 // ignore_for_file: invalid_annotation_target
 
-import 'package:fortune_client/data/model/base/tag/tag.dart';
-import 'package:fortune_client/data/model/enum/age_group.dart';
+import 'package:fortune_client/data/model/core/base/tag/tag.dart';
+import 'package:fortune_client/data/model/core/enum/age_group.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'post_v1_rooms.freezed.dart';

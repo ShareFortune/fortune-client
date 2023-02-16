@@ -1,6 +1,6 @@
 // ignore_for_file: invalid_annotation_target
 
-import 'package:fortune_client/data/model/enum/gender.dart';
+import 'package:fortune_client/data/model/core/enum/gender.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'fortune_user.freezed.dart';

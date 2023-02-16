@@ -14,7 +14,7 @@
 import 'package:auto_route/auto_route.dart' as _i29;
 import 'package:auto_route/empty_router_widgets.dart' as _i2;
 import 'package:flutter/material.dart' as _i30;
-import 'package:fortune_client/data/model/base/tag/tag.dart' as _i33;
+import 'package:fortune_client/data/model/core/base/tag/tag.dart' as _i33;
 import 'package:fortune_client/data/model/rooms/get_v1_rooms_guest/get_v1_rooms_guest.dart'
     as _i36;
 import 'package:fortune_client/data/model/rooms/get_v1_rooms_host/get_v1_rooms_host.dart'

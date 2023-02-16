@@ -1,6 +1,6 @@
 // ignore_for_file: invalid_annotation_target
 
-import 'package:fortune_client/data/model/base/message_room/messege_room.dart';
+import 'package:fortune_client/data/model/core/base/message_room/messege_room.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'get_v1_message_rooms_response.freezed.dart';

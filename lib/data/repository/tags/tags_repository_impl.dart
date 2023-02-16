@@ -1,5 +1,5 @@
 import 'package:fortune_client/data/datasource/remote/go/tags/tags_data_source.dart';
-import 'package:fortune_client/data/model/base/tag/tag.dart';
+import 'package:fortune_client/data/model/core/base/tag/tag.dart';
 import 'package:fortune_client/data/model/tags/post_v1_tags/post_v1_tags.dart';
 import 'package:fortune_client/data/repository/tags/tags_repository.dart';
 import 'package:fortune_client/util/logger/logger.dart';

@@ -1,6 +1,6 @@
 // ignore_for_file: invalid_annotation_target
 
-import 'package:fortune_client/data/model/base/message_from_user/message_from_user.dart';
+import 'package:fortune_client/data/model/core/base/message_from_user/message_from_user.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'message.freezed.dart';

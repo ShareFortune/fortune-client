@@ -4,9 +4,9 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 
-import 'package:fortune_client/data/model/base/message/message.dart';
+import 'package:fortune_client/data/model/core/base/message/message.dart';
 import 'package:flutter_chat_types/flutter_chat_types.dart' as chat_types;
-import 'package:fortune_client/data/model/base/message_from_user/message_from_user.dart';
+import 'package:fortune_client/data/model/core/base/message_from_user/message_from_user.dart';
 import 'package:uuid/uuid.dart';
 import 'package:file/memory.dart';
 import 'package:http/http.dart' as http;

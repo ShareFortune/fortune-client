@@ -19,7 +19,7 @@ class _MessagesDataSource implements MessagesDataSource {
   String? baseUrl;
 
   @override
-  Future<void> send(
+  Future<void> sendText(
     messageRoomId,
     body,
   ) async {
@@ -36,6 +36,31 @@ class _MessagesDataSource implements MessagesDataSource {
         .compose(
           _dio.options,
           '/messageRooms/${messageRoomId}/messages',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    return null;
+  }
+
+  @override
+  Future<void> sendImage(
+    messageRoomId,
+    body,
+  ) async {
+    const _extra = <String, dynamic>{'append-token': true};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(body);
+    await _dio.fetch<void>(_setStreamType<void>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+        .compose(
+          _dio.options,
+          '/messageRooms/${messageRoomId}/messageImages',
           queryParameters: queryParameters,
           data: _data,
         )

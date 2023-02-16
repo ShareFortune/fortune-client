@@ -1,4 +1,4 @@
-import 'package:fortune_client/data/model/base/message_room/messege_room.dart';
+import 'package:fortune_client/data/model/core/base/message_room/messege_room.dart';
 
 abstract class MessageRoomsRepository {
   Future<String> create();
