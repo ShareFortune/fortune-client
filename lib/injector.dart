@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:fortune_client/data/datasource/core/append_token_interceptor.dart';
+import 'package:fortune_client/data/datasource/core/dio_client.dart';
 import 'package:fortune_client/data/datasource/local/shared_pref_data_source.dart';
 import 'package:fortune_client/data/datasource/local/shared_pref_data_source_impl.dart';
 import 'package:fortune_client/data/datasource/remote/firebase/firebase_auth_data_source.dart';
@@ -10,8 +10,12 @@ import 'package:fortune_client/data/datasource/remote/go/favorites/fake_favorite
 import 'package:fortune_client/data/datasource/remote/go/favorites/favorites_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/go/join_requests/fake_join_requests_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/go/join_requests/join_requests_data_source.dart';
+import 'package:fortune_client/data/datasource/remote/go/message_images/fake_message_images_data_source.dart';
+import 'package:fortune_client/data/datasource/remote/go/message_images/message_images_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/go/message_rooms/fake_message_rooms_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/go/message_rooms/message_rooms_data_source.dart';
+import 'package:fortune_client/data/datasource/remote/go/messages/fake_messages_data_source.dart';
+import 'package:fortune_client/data/datasource/remote/go/messages/messages_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/go/profile/fake_profile_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/go/profile/profile_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/go/rooms/fake_rooms_data_source.dart';
@@ -30,20 +34,19 @@ import 'package:fortune_client/data/repository/join_requests/join_requests_repos
 import 'package:fortune_client/data/repository/join_requests/join_requests_repository_impl.dart';
 import 'package:fortune_client/data/repository/message/message_repository.dart';
 import 'package:fortune_client/data/repository/message/message_repository_impl.dart';
+import 'package:fortune_client/data/repository/message_rooms/message_rooms_repository.dart';
+import 'package:fortune_client/data/repository/message_rooms/message_rooms_repository_impl.dart';
 import 'package:fortune_client/data/repository/profile/profile_repository.dart';
 import 'package:fortune_client/data/repository/profile/profile_repository_impl.dart';
-import 'package:fortune_client/data/repository/repository.dart';
 import 'package:fortune_client/data/repository/rooms/rooms_repository.dart';
 import 'package:fortune_client/data/repository/rooms/rooms_repository_impl.dart';
 import 'package:fortune_client/data/repository/tags/tags_repository.dart';
 import 'package:fortune_client/data/repository/tags/tags_repository_impl.dart';
 import 'package:fortune_client/data/repository/users/users_repository.dart';
 import 'package:fortune_client/data/repository/users/users_repository_impl.dart';
-import 'package:fortune_client/foundation/constants.dart';
 import 'package:fortune_client/view/routes/app_router.gr.dart';
 import 'package:fortune_client/view/routes/route_guard.dart';
 import 'package:get_it/get_it.dart';
-import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'data/datasource/remote/go/tags/fake_tags_data_source.dart';
@@ -57,28 +60,7 @@ Future<void> initDependencies({bool testMode = false}) async {
   );
 
   /// Dio
-  getIt.registerLazySingleton<Dio>(
-    () => Dio(
-      BaseOptions(
-          baseUrl: Constants.of().baseUrl,
-          contentType: Headers.jsonContentType,
-          responseType: ResponseType.json,
-          connectTimeout: 30 * 1000, // 30 seconds
-          receiveTimeout: 30 * 1000 // 30 seconds
-          ),
-    )..interceptors.addAll([
-        AppendTokenInterceptor(),
-        PrettyDioLogger(
-          requestHeader: true,
-          requestBody: true,
-          responseBody: true,
-          responseHeader: true,
-          error: true,
-          compact: true,
-          maxWidth: 90,
-        ),
-      ]),
-  );
+  getIt.registerLazySingleton<Dio>(() => DioClient.client);
 
   ///
   /// Router
@@ -104,7 +86,10 @@ Future<void> initDependencies({bool testMode = false}) async {
     () => UsersRepositoryImpl(getIt(), getIt(), getIt()),
   );
   getIt.registerLazySingleton<MessagesRepository>(
-    () => MessagesRepositoryImpl(getIt()),
+    () => MessagesRepositoryImpl(getIt(), getIt()),
+  );
+  getIt.registerLazySingleton<MessageRoomsRepository>(
+    () => MessageRoomsRepositoryImpl(getIt()),
   );
   getIt.registerLazySingleton<ProfileRepository>(
     () => ProfileRepositoryImpl(getIt(), getIt()),
@@ -131,32 +116,38 @@ Future<void> initDependencies({bool testMode = false}) async {
   getIt.registerLazySingleton<SharedPreferencesDataSource>(
     () => SharedPreferencesDataSourceImpl(getIt()),
   );
-  getIt.registerLazySingleton<FirebaseAuthDataSource>(
-    () => FirebaseAuthDataSourceImpl(),
+  getIt.registerSingleton<FirebaseAuthDataSource>(
+    FirebaseAuthDataSourceImpl(),
   );
-  getIt.registerLazySingleton<UsersDataSource>(
-    () => UsersDataSource(getIt()),
+  getIt.registerSingleton<UsersDataSource>(
+    UsersDataSource(getIt()),
   );
-  getIt.registerLazySingleton<RoomsDataSource>(
-    () => RoomsDataSource(getIt()),
+  getIt.registerSingleton<RoomsDataSource>(
+    RoomsDataSource(getIt()),
   );
-  getIt.registerLazySingleton<ProfileDataSource>(
-    () => ProfileDataSource(getIt()),
+  getIt.registerSingleton<ProfileDataSource>(
+    ProfileDataSource(getIt()),
   );
-  getIt.registerLazySingleton<MessageRoomsDataSource>(
-    () => MessageRoomsDataSource(getIt()),
+  getIt.registerSingleton<MessagesDataSource>(
+    MessagesDataSource(getIt()),
   );
-  getIt.registerLazySingleton<TagsDataSource>(
-    () => TagsDataSource(getIt()),
+  getIt.registerSingleton<MessageImagesDataSource>(
+    MessageImagesDataSource(getIt()),
   );
-  getIt.registerLazySingleton<JoinRequestsDataSource>(
-    () => JoinRequestsDataSource(getIt()),
+  getIt.registerSingleton<MessageRoomsDataSource>(
+    MessageRoomsDataSource(getIt()),
   );
-  getIt.registerLazySingleton<AddressesDataSource>(
-    () => AddressesDataSource(getIt()),
+  getIt.registerSingleton<TagsDataSource>(
+    TagsDataSource(getIt()),
   );
-  getIt.registerLazySingleton<FavoritesDataSource>(
-    () => FavoritesDataSource(getIt()),
+  getIt.registerSingleton<JoinRequestsDataSource>(
+    JoinRequestsDataSource(getIt()),
+  );
+  getIt.registerSingleton<AddressesDataSource>(
+    AddressesDataSource(getIt()),
+  );
+  getIt.registerSingleton<FavoritesDataSource>(
+    FavoritesDataSource(getIt()),
   );
 
   ///
@@ -170,6 +161,12 @@ Future<void> initDependencies({bool testMode = false}) async {
     );
     getIt.registerLazySingleton<ProfileDataSource>(
       () => FakeProfileDataSource(),
+    );
+    getIt.registerLazySingleton<MessagesDataSource>(
+      () => FakeMessagesDataSource(),
+    );
+    getIt.registerLazySingleton<MessageImagesDataSource>(
+      () => FakeMessageImagesDataSource(),
     );
     getIt.registerLazySingleton<MessageRoomsDataSource>(
       () => FakeMessageRoomsDataSource(),

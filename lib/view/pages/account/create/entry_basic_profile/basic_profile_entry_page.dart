@@ -18,10 +18,11 @@ class BasicProfileEntryPage extends HookConsumerWidget {
     final state = ref.watch(basicProfileEntryViewModelProvider);
     final viewModel = ref.watch(basicProfileEntryViewModelProvider.notifier);
 
-    /// 誕生日フォーマッター
+    /// 誕生日
     String? birthdayStr;
-    const birthdayFormater = DateTimeConverter.convertToYYYYMMDD;
-    if (state.birthday != null) birthdayStr = birthdayFormater(state.birthday!);
+    if (state.birthday != null) {
+      birthdayStr = DateTimeConverter.toYYYYMMDD(state.birthday!);
+    }
 
     return Scaffold(
       backgroundColor: theme.appColors.onBackground,

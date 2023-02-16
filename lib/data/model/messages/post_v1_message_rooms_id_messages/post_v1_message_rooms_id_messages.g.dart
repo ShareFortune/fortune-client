@@ -10,7 +10,7 @@ _$_PostV1MessageRoomsIdMessagesRequest
     _$$_PostV1MessageRoomsIdMessagesRequestFromJson(
             Map<String, dynamic> json) =>
         _$_PostV1MessageRoomsIdMessagesRequest(
-          text: json['text'] as String,
+          json['text'] as String,
         );
 
 Map<String, dynamic> _$$_PostV1MessageRoomsIdMessagesRequestToJson(

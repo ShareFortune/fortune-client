@@ -1,176 +1,99 @@
 // ignore_for_file: depend_on_referenced_packages
 
-import 'dart:convert';
 import 'dart:io';
 
-import 'package:flutter/material.dart';
-import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
-import 'package:file_picker/file_picker.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:fortune_client/gen/assets.gen.dart';
-import 'package:fortune_client/view/pages/message/message_room/message_room_state.dart';
 import 'package:uuid/uuid.dart';
-import 'package:mime/mime.dart';
-import 'package:open_filex/open_filex.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:http/http.dart' as http;
-import 'package:flutter/services.dart' show rootBundle;
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:fortune_client/data/repository/repository.dart';
+import 'package:fortune_client/view/pages/message/message_room/message_converter.dart';
+import 'package:fortune_client/view/pages/message/message_room/message_room_state.dart';
+import 'package:flutter_chat_types/flutter_chat_types.dart' as chat_types;
 
-final messageRoomViewModelProvider =
-    StateNotifierProvider<MessageRoomViewModel, AsyncValue<MessageRoomState>>(
-        (ref) {
-  return MessageRoomViewModel(ref)..initialize();
+final messageRoomViewModelProvider = StateNotifierProvider.family<
+    MessageRoomViewModel, MessageRoomState, String>((_, messageRoomId) {
+  return MessageRoomViewModel(
+    MessageRoomState(
+      messageRoomId: messageRoomId,
+      author: chat_types.User(id: const Uuid().v4()),
+      messages: const AsyncLoading(),
+    ),
+  )..initialize();
 });
 
-class MessageRoomViewModel extends StateNotifier<AsyncValue<MessageRoomState>> {
-  MessageRoomViewModel(this._ref)
-      : super(const AsyncValue<MessageRoomState>.loading());
+class MessageRoomViewModel extends StateNotifier<MessageRoomState> {
+  MessageRoomViewModel(super.state);
 
-  final Ref _ref;
+  initialize() => loadMessages();
 
-  initialize() => fetch();
-
-  fetch() async {
-    state = await AsyncValue.guard(() async {
-      return MessageRoomState(messages: await loadMessages());
-    });
-  }
-
-  types.User user() => types.User(id: state.value!.userId);
-
+  /// メッセージ読み込み
   loadMessages() async {
-    final json = await rootBundle.loadString(Assets.stub.message);
-    final messages = (jsonDecode(json) as List)
-        .map((e) => types.Message.fromJson(e as Map<String, dynamic>))
-        .toList();
+    final List<chat_types.Message> messages = [];
 
-    return messages;
+    state = state.copyWith(
+      messages: await AsyncValue.guard(() async {
+        final data = await Repository.messages.getMessages(state.messageRoomId);
+        for (var message in data) {
+          messages.add(await MessageConverter.toMessage(message));
+        }
+        return messages;
+      }),
+    );
   }
 
-  void handleSendPressed(types.PartialText message) {
-    final textMessage = types.TextMessage(
-      author: user(),
-      createdAt: DateTime.now().millisecondsSinceEpoch,
-      id: const Uuid().v4(),
+  /// メッセージ送信・テキスト
+  void handleSendPressed(chat_types.PartialText message) {
+    /// サーバーに送信
+    Repository.messages.sendMessage(
+      messageRoomId: state.messageRoomId,
       text: message.text,
     );
-
-    _addMessage(textMessage);
-  }
-
-  _addMessage(types.Message message) {
-    final data = state.value;
-    if (data == null) return;
-    state = AsyncValue.data(data.copyWith(
-      messages: [message, ...data.messages],
-    ));
-  }
-
-  void handleFileSelection() async {
-    final result = await FilePicker.platform.pickFiles(
-      type: FileType.any,
+    _addMessage(
+      MessageConverter.toTextMessageByString(
+        message.text,
+        state.author,
+      ),
     );
-
-    if (result != null && result.files.single.path != null) {
-      final message = types.FileMessage(
-        author: user(),
-        createdAt: DateTime.now().millisecondsSinceEpoch,
-        id: const Uuid().v4(),
-        mimeType: lookupMimeType(result.files.single.path!),
-        name: result.files.single.name,
-        size: result.files.single.size,
-        uri: result.files.single.path!,
-      );
-
-      _addMessage(message);
-    }
   }
 
-  void handleImageSelection() async {
-    final result = await ImagePicker().pickImage(
-      imageQuality: 70,
-      maxWidth: 1440,
-      source: ImageSource.gallery,
+  /// 画像データ選択ハンドラ
+  void handleImageSelection(File file) async {
+    /// サーバーに送信
+    Repository.messages.sendImage(
+      messageRoomId: state.messageRoomId,
+      file: file,
     );
-
-    if (result != null) {
-      final bytes = await result.readAsBytes();
-      final image = await decodeImageFromList(bytes);
-
-      final message = types.ImageMessage(
-        author: user(),
-        createdAt: DateTime.now().millisecondsSinceEpoch,
-        height: image.height.toDouble(),
-        id: const Uuid().v4(),
-        name: result.name,
-        size: bytes.length,
-        uri: result.path,
-        width: image.width.toDouble(),
-      );
-
-      _addMessage(message);
-    }
+    _addMessage(
+      await MessageConverter.toImageMessageFromFile(
+        state.author,
+        file,
+      ),
+    );
   }
 
-  void handleMessageTap(BuildContext _, types.Message message) async {
-    final data = state.value;
-    if (data == null) return;
-    if (message is types.FileMessage) {
-      var localPath = message.uri;
-
-      if (message.uri.startsWith('http')) {
-        try {
-          final index =
-              data.messages.indexWhere((element) => element.id == message.id);
-          final updatedMessage =
-              (data.messages[index] as types.FileMessage).copyWith(
-            isLoading: true,
-          );
-
-          data.messages[index] = updatedMessage;
-          state = AsyncData(data);
-
-          final client = http.Client();
-          final request = await client.get(Uri.parse(message.uri));
-          final bytes = request.bodyBytes;
-          final documentsDir = (await getApplicationDocumentsDirectory()).path;
-          localPath = '$documentsDir/${message.name}';
-
-          if (!File(localPath).existsSync()) {
-            final file = File(localPath);
-            await file.writeAsBytes(bytes);
-          }
-        } finally {
-          final index =
-              data.messages.indexWhere((element) => element.id == message.id);
-          final updatedMessage =
-              (data.messages[index] as types.FileMessage).copyWith(
-            isLoading: null,
-          );
-
-          data.messages[index] = updatedMessage;
-          state = AsyncData(data);
-        }
-      }
-
-      await OpenFilex.open(localPath);
-    }
+  /// Stateに[chat_types.Message]を追加
+  _addMessage(chat_types.Message message) async {
+    state = state.copyWith(
+      messages: await AsyncValue.guard(() async {
+        return [message, ...?state.messages.value];
+      }),
+    );
   }
 
+  /// [chat_types.Message.id]で[chat_types.Message]を検索
+  int _findMessageById(String id) {
+    return state.messages.value?.indexWhere((e) => e.id == id) ?? -1;
+  }
+
+  /// 前データ読み込み
   void handlePreviewDataFetched(
-    types.TextMessage message,
-    types.PreviewData previewData,
+    chat_types.TextMessage message,
+    chat_types.PreviewData previewData,
   ) {
-    final data = state.value;
-    if (data == null) return;
-    final index =
-        data.messages.indexWhere((element) => element.id == message.id);
-    final updatedMessage = (data.messages[index] as types.TextMessage).copyWith(
-      previewData: previewData,
-    );
-
-    // data.messages[index] = updatedMessage;
-    state = AsyncData(data);
+    final messages = state.messages.value;
+    if (messages == null) return;
+    final messageIndex = _findMessageById(message.id);
+    final updatedMessage = messages[messageIndex] as chat_types.TextMessage;
+    messages[messageIndex] = updatedMessage.copyWith(previewData: previewData);
+    state = state.copyWith(messages: AsyncData(messages));
   }
 }

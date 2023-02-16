@@ -1,10 +1,10 @@
 // ignore_for_file: invalid_annotation_target
 
-import 'package:fortune_client/data/model/base/address/address.dart';
-import 'package:fortune_client/data/model/base/tag/tag.dart';
-import 'package:fortune_client/data/model/enum/cigarette_frequency.dart';
-import 'package:fortune_client/data/model/enum/drink_frequency.dart';
-import 'package:fortune_client/data/model/enum/gender.dart';
+import 'package:fortune_client/data/model/core/base/address/address.dart';
+import 'package:fortune_client/data/model/core/base/tag/tag.dart';
+import 'package:fortune_client/data/model/core/enum/cigarette_frequency.dart';
+import 'package:fortune_client/data/model/core/enum/drink_frequency.dart';
+import 'package:fortune_client/data/model/core/enum/gender.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'get_v1_profiles.freezed.dart';

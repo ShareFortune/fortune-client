@@ -1,6 +1,6 @@
-import 'package:fortune_client/data/model/base/address_with_id/address_with_id.dart';
-import 'package:fortune_client/data/model/enum/cigarette_frequency.dart';
-import 'package:fortune_client/data/model/enum/drink_frequency.dart';
+import 'package:fortune_client/data/model/core/base/address_with_id/address_with_id.dart';
+import 'package:fortune_client/data/model/core/enum/cigarette_frequency.dart';
+import 'package:fortune_client/data/model/core/enum/drink_frequency.dart';
 import 'package:fortune_client/data/repository/repository.dart';
 import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/view/pages/my_page/update/profile_update_state.dart';

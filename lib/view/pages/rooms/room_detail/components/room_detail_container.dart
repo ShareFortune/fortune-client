@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:fortune_client/data/model/base/room/room.dart';
-import 'package:fortune_client/data/model/base/tag/tag.dart';
+import 'package:fortune_client/data/model/core/base/room/room.dart';
+import 'package:fortune_client/data/model/core/base/tag/tag.dart';
 import 'package:fortune_client/l10n/locale_keys.g.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';

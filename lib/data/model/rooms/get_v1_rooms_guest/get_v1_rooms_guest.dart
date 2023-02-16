@@ -1,9 +1,9 @@
 // ignore_for_file: invalid_annotation_target
 
-import 'package:fortune_client/data/model/base/address/address.dart';
-import 'package:fortune_client/data/model/base/members_num/members_num.dart';
-import 'package:fortune_client/data/model/enum/join_request_status.dart';
-import 'package:fortune_client/data/model/enum/room_status.dart';
+import 'package:fortune_client/data/model/core/base/address/address.dart';
+import 'package:fortune_client/data/model/core/base/members_num/members_num.dart';
+import 'package:fortune_client/data/model/core/enum/join_request_status.dart';
+import 'package:fortune_client/data/model/core/enum/room_status.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'get_v1_rooms_guest.freezed.dart';

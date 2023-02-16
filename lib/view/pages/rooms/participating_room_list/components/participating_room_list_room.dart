@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fortune_client/data/model/base/members_num/members_num.dart';
+import 'package:fortune_client/data/model/core/base/members_num/members_num.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/room/room_body.dart';

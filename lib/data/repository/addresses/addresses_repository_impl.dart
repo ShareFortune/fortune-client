@@ -1,6 +1,6 @@
 import 'package:fortune_client/data/datasource/remote/go/addresses/addresses_data_source.dart';
-import 'package:fortune_client/data/model/base/address/address.dart';
-import 'package:fortune_client/data/model/base/address_with_id/address_with_id.dart';
+import 'package:fortune_client/data/model/core/base/address/address.dart';
+import 'package:fortune_client/data/model/core/base/address_with_id/address_with_id.dart';
 import 'package:fortune_client/data/repository/addresses/addresses_repository.dart';
 import 'package:fortune_client/util/logger/logger.dart';
 

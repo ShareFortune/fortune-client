@@ -1,6 +1,6 @@
 // ignore_for_file: invalid_annotation_target
 
-import 'package:fortune_client/data/model/base/room/room.dart';
+import 'package:fortune_client/data/model/core/base/room/room.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'get_v1_rooms_search.freezed.dart';

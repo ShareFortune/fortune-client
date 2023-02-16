@@ -1,4 +1,4 @@
-import 'package:fortune_client/data/model/base/tag/tag.dart';
+import 'package:fortune_client/data/model/core/base/tag/tag.dart';
 import 'package:fortune_client/data/repository/repository.dart';
 import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/view/pages/tags/select/select_tags_state.dart';

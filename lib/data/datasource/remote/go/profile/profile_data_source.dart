@@ -9,7 +9,7 @@ part 'profile_data_source.g.dart';
 
 @RestApi()
 abstract class ProfileDataSource {
-  factory ProfileDataSource(Dio dio, {String baseUrl}) = _ProfileDataSource;
+  factory ProfileDataSource(Dio dio) = _ProfileDataSource;
 
   @GET('/profiles')
   @authenticatedRequest

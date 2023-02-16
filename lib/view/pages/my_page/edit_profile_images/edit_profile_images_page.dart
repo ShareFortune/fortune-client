@@ -2,7 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/l10n/locale_keys.g.dart';
-import 'package:fortune_client/data/model/enum/profile_images_type.dart';
+import 'package:fortune_client/data/model/core/enum/profile_images_type.dart';
 import 'package:fortune_client/view/pages/my_page/edit_profile_images/components/edit_image_container.dart';
 import 'package:fortune_client/view/pages/my_page/edit_profile_images/components/edit_image_controller.dart';
 import 'package:fortune_client/view/pages/my_page/edit_profile_images/edit_profile_images_state.dart';

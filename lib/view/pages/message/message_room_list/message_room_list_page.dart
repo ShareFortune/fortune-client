@@ -1,6 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:fortune_client/data/model/base/message_room/messege_room.dart';
+import 'package:fortune_client/data/model/core/base/message_room/messege_room.dart';
 import 'package:fortune_client/l10n/locale_keys.g.dart';
 import 'package:fortune_client/view/pages/common/scroll_app_bar/scroll_app_bar.dart';
 import 'package:fortune_client/view/pages/message/message_room_list/components/empty_message_room_list_view.dart';

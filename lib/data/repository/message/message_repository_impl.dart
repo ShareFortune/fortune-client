@@ -1,43 +1,65 @@
-import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
-import 'package:fortune_client/data/datasource/remote/go/message_rooms/message_rooms_data_source.dart';
-import 'package:fortune_client/data/model/base/message_room/messege_room.dart';
+import 'dart:io';
+
+import 'package:fortune_client/data/datasource/remote/go/message_images/message_images_data_source.dart';
+import 'package:fortune_client/data/datasource/remote/go/messages/messages_data_source.dart';
+import 'package:fortune_client/data/model/core/base/message/message.dart';
+import 'package:fortune_client/data/model/message_images/post_v1_message_rooms_id_message_images/post_v1_message_rooms_id_message_images.dart';
+import 'package:fortune_client/data/model/messages/post_v1_message_rooms_id_messages/post_v1_message_rooms_id_messages.dart';
 import 'package:fortune_client/data/repository/message/message_repository.dart';
+import 'package:fortune_client/util/converter/image_converter.dart';
 import 'package:fortune_client/util/logger/logger.dart';
 
 class MessagesRepositoryImpl implements MessagesRepository {
-  MessagesRepositoryImpl(this._dataSource);
+  MessagesRepositoryImpl(
+    this._messagesDataSource,
+    this._messageImagesDataSource,
+  );
 
-  final MessageRoomsDataSource _dataSource;
-
-  @override
-  Future<String> create() {
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<String> update() {
-    throw UnimplementedError();
-  }
+  final MessagesDataSource _messagesDataSource;
+  final MessageImagesDataSource _messageImagesDataSource;
 
   @override
-  Future<List<MessageRoom>> fetchHost() async {
+  Future<void> sendMessage({
+    required String messageRoomId,
+    required String text,
+  }) async {
     try {
-      final result = await _dataSource.getMessageRoomsHost();
-      return result.data;
+      await _messagesDataSource.send(
+        messageRoomId,
+        PostV1MessageRoomsIdMessagesRequest(text).toJson(),
+      );
     } catch (e) {
       logger.e(e);
-      return [];
+      rethrow;
     }
   }
 
   @override
-  Future<List<MessageRoom>> fetchGuest() async {
+  Future<void> sendImage({
+    required String messageRoomId,
+    required File file,
+  }) async {
     try {
-      final result = await _dataSource.getMessageRoomsGuest();
+      await _messageImagesDataSource.send(
+        messageRoomId,
+        PostV1MessageRoomsIdMessageImagesRequest(
+          await ImageConverter.toBase64(file),
+        ).toJson(),
+      );
+    } catch (e) {
+      logger.e(e);
+      rethrow;
+    }
+  }
+
+  @override
+  Future<List<Message>> getMessages(String messageRoomId) async {
+    try {
+      final result = await _messagesDataSource.get(messageRoomId);
       return result.data;
     } catch (e) {
       logger.e(e);
-      return [];
+      rethrow;
     }
   }
 }

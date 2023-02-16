@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:fortune_client/data/model/base/address_with_id/address_with_id.dart';
-import 'package:fortune_client/data/model/base/tag/tag.dart';
+import 'package:fortune_client/data/model/core/base/address_with_id/address_with_id.dart';
+import 'package:fortune_client/data/model/core/base/tag/tag.dart';
 import 'package:fortune_client/l10n/locale_keys.g.dart';
 import 'package:fortune_client/view/pages/rooms/room_list/components/rooms_filter_expanded_tile.dart';
 import 'package:fortune_client/view/pages/rooms/room_list/components/rooms_filter_tile.dart';

@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:fortune_client/data/model/enum/profile_images_type.dart';
+import 'package:fortune_client/data/model/core/enum/profile_images_type.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'edit_profile_images_state.freezed.dart';

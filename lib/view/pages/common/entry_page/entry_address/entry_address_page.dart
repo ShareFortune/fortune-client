@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:fortune_client/data/model/base/address/address.dart';
-import 'package:fortune_client/data/model/base/address_with_id/address_with_id.dart';
+import 'package:fortune_client/data/model/core/base/address/address.dart';
+import 'package:fortune_client/data/model/core/base/address_with_id/address_with_id.dart';
 import 'package:fortune_client/gen/assets.gen.dart';
 import 'package:fortune_client/view/pages/common/entry_page/entry_address/components/entry_address_text_field.dart';
 import 'package:fortune_client/view/pages/common/entry_page/entry_address/entry_address_view_model.dart';
