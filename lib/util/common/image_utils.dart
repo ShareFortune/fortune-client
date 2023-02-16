@@ -12,10 +12,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 
-class ImagePickerService {
-  /// 圧縮処理
-  static const _compress = ImageConverter.compress;
-
+class ImageUtils {
   /// ドキュメントのパスを取得
   static Future<String> get localPath async {
     final directory = await getApplicationDocumentsDirectory();
@@ -37,7 +34,6 @@ class ImagePickerService {
     final statuses = await permissions.request();
     if (permissions.any((permission) => !statuses[permission]!.isGranted)) {
       /// 権限が存在しないのでアプリの設定ページへ遷移
-      /// TODO: ダイアログ表示
       openAppSettings();
       return false;
     }
@@ -57,7 +53,7 @@ class ImagePickerService {
         );
 
         if (image != null) {
-          return await _compress(File(image.path));
+          return await ImageConverter.compress(File(image.path));
         }
       }
     } on PlatformException catch (_) {
@@ -81,7 +77,7 @@ class ImagePickerService {
         );
 
         if (image != null) {
-          return await _compress(File(image.path));
+          return await ImageConverter.compress(File(image.path));
         }
       }
     } on PlatformException catch (_) {

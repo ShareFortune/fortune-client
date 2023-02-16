@@ -3,9 +3,9 @@ import 'package:fortune_client/util/converter/datetime_converter.dart';
 
 void main() {
   final now = DateTime(2021, 10, 15, 15, 15);
-  const converter = DateTimeConverter.convertToLastSendAt;
+  const converter = DateTimeConverter.toLastSendAt;
 
-  group("DateTimeConverter.convertToLastSendAt", () {
+  group("DateTimeConverter.toLastSendAt", () {
     test("１分以内の場合は「⚪︎秒前」を返す", () {
       final datetime = now.add(const Duration(seconds: -5));
 
@@ -28,7 +28,7 @@ void main() {
 
       expect(
         converter(now, datetime),
-        DateTimeConverter.convertToHHmm(datetime),
+        DateTimeConverter.toHHmm(datetime),
       );
     });
 
@@ -46,7 +46,7 @@ void main() {
 
       expect(
         converter(now, datetime),
-        DateTimeConverter.convertToMMdd(datetime),
+        DateTimeConverter.toMMdd(datetime),
       );
     });
 
@@ -55,7 +55,7 @@ void main() {
 
       expect(
         converter(now, datetime),
-        DateTimeConverter.convertToYYYYMMDD(datetime),
+        DateTimeConverter.toYYYYMMDD(datetime),
       );
     });
   });

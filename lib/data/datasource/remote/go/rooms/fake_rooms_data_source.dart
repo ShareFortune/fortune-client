@@ -5,7 +5,7 @@ import 'package:fortune_client/data/model/rooms/get_v1_rooms_host/get_v1_rooms_h
 import 'package:fortune_client/data/model/rooms/get_v1_rooms_guest/get_v1_rooms_guest.dart';
 import 'package:fortune_client/data/model/core/base/room/room.dart';
 import 'package:fortune_client/gen/assets.gen.dart';
-import 'package:fortune_client/util/common/json_loader.dart';
+import 'package:fortune_client/util/common/json_utils.dart';
 
 class FakeRoomsDataSource implements RoomsDataSource {
   @override
@@ -26,7 +26,7 @@ class FakeRoomsDataSource implements RoomsDataSource {
     int? perPage,
   }) async {
     return GetV1RoomsGuestResponse.fromJson(
-      await JsonLoader.load(Assets.stub.getV1RoomsGuestResponse),
+      await JsonUtils.load(Assets.stub.getV1RoomsGuestResponse),
     );
   }
 
@@ -36,7 +36,7 @@ class FakeRoomsDataSource implements RoomsDataSource {
     int? perPage,
   }) async {
     return GetV1RoomsHostResponse.fromJson(
-      await JsonLoader.load(Assets.stub.getV1RoomsHostResponse),
+      await JsonUtils.load(Assets.stub.getV1RoomsHostResponse),
     );
   }
 
@@ -50,7 +50,7 @@ class FakeRoomsDataSource implements RoomsDataSource {
     int? perPage,
   }) async {
     return GetV1RoomsResponse.fromJson(
-      await JsonLoader.load(Assets.stub.getV1RoomsResponse),
+      await JsonUtils.load(Assets.stub.getV1RoomsResponse),
     );
   }
 

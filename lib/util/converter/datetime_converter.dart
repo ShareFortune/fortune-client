@@ -21,43 +21,38 @@ class DateTimeConverter {
   }
 
   /// DateTime to String YYYY{/}MM{/}DD 形式
-  static String convertToYYYYMMDD(DateTime dateTime, {String delimiter = "/"}) {
+  static String toYYYYMMDD(DateTime dateTime, {String delimiter = "/"}) {
     return DateFormat('yyyy${delimiter}MM${delimiter}dd').format(dateTime);
   }
 
   /// DateTime to String YYYY/MM/DD HH:mm 形式
-  static String convertYYYYMMDDHHmm(DateTime dateTime) {
+  static String toYYYYMMDDHHmm(DateTime dateTime) {
     return DateFormat('yyyy/MM/dd HH:mm').format(dateTime);
   }
 
   /// DateTime to String MM/DD HH:mm 形式
-  static String convertToMMdd(DateTime dateTime) {
+  static String toMMdd(DateTime dateTime) {
     return DateFormat('MM/dd').format(dateTime);
   }
 
   /// DateTime to String MM/DD HH:mm 形式
-  static String convertToMMddHHmm(DateTime dateTime) {
+  static String toMMddHHmm(DateTime dateTime) {
     return DateFormat('MM/dd HH:mm').format(dateTime);
   }
 
   /// DateTime to String HH:mm 形式
-  static String convertToHHmm(DateTime dateTime) {
+  static String toHHmm(DateTime dateTime) {
     return DateFormat('HH:mm').format(dateTime);
   }
 
   /// DateTime to String YY/MM 形式
-  static String convertToYYMM(DateTime dateTime) {
+  static String toYYMM(DateTime dateTime) {
     return DateFormat('yy/MM').format(dateTime);
   }
 
   /// DateTime to String YY/MM/DD 形式
-  static String convertToYYMMDD(DateTime dateTime) {
+  static String toYYMMDD(DateTime dateTime) {
     return DateFormat('yy/MM/dd').format(dateTime);
-  }
-
-  /// String YYYY/MM/DD HH:mm to String MM/DD HH:mm 形式
-  static String convertDateTimeStringForMMDDHHmm(String dateTime) {
-    return dateTime.substring(5, dateTime.length);
   }
 
   /// 現在時刻から経過時間または時刻に変換する
@@ -70,7 +65,7 @@ class DateTimeConverter {
   /// 5. 今月中ではない場合は月日
   /// 6. 今年中でない場合は年月日
   ///
-  static String convertToLastSendAt(
+  static String toLastSendAt(
     DateTime now,
     DateTime lastSendAt,
   ) {
@@ -78,12 +73,12 @@ class DateTimeConverter {
 
     /// 今年中でない場合は年月日
     if (lastSendAt.year != now.year) {
-      return convertToYYYYMMDD(lastSendAt);
+      return toYYYYMMDD(lastSendAt);
     }
 
     /// 今月中ではない場合は月日
     if (lastSendAt.month != now.month) {
-      return convertToMMdd(lastSendAt);
+      return toMMdd(lastSendAt);
     }
 
     /// 当日中ではない場合は「○日前」
@@ -93,7 +88,7 @@ class DateTimeConverter {
 
     /// １時間以降の場合は時刻
     if (difference.inMinutes > 60) {
-      return convertToHHmm(lastSendAt);
+      return toHHmm(lastSendAt);
     }
 
     /// １分以降の場合は「⚪︎分前」

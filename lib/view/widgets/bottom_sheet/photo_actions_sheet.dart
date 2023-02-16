@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:fortune_client/l10n/locale_keys.g.dart';
-import 'package:fortune_client/util/common/image_picker.dart';
+import 'package:fortune_client/util/common/image_utils.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 
 class PhotoActionsSheet {
@@ -18,7 +18,7 @@ class PhotoActionsSheet {
       File? result;
 
       if (file != null) {
-        result = await ImagePickerService.saveImageLocally(file);
+        result = await ImageUtils.saveImageLocally(file);
       }
 
       return result;
@@ -27,14 +27,14 @@ class PhotoActionsSheet {
     /// 写真から取得
     Future<File?> takePicture() {
       return getPhotoByMethod(() {
-        return ImagePickerService.takePicture(context);
+        return ImageUtils.takePicture(context);
       });
     }
 
     /// 撮影して取得
     Future<File?> choosePhoto() {
       return getPhotoByMethod(() {
-        return ImagePickerService.choosePhoto(context);
+        return ImageUtils.choosePhoto(context);
       });
     }
 

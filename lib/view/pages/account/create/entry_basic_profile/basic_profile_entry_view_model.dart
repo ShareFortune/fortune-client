@@ -24,7 +24,7 @@ class BasicProfileEntryViewModel extends StateNotifier<BasicProfileEntryState> {
   onCreate() async {
     if (state.birthday == null) return;
 
-    final birthday = DateTimeConverter.convertToYYYYMMDD(
+    final birthday = DateTimeConverter.toYYYYMMDD(
       state.birthday!,
       delimiter: "-",
     );

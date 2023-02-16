@@ -117,7 +117,7 @@ class MessageRoomListTile extends StatelessWidget {
   /// [lastSendAt]を文字列に変換する
   String convertLastSendAtToString() {
     if (messageRoom.lastSendAt == null) return "";
-    return DateTimeConverter.convertToLastSendAt(
+    return DateTimeConverter.toLastSendAt(
       DateTime.now(),
       messageRoom.lastSendAt!,
     );

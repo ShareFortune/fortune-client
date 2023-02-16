@@ -43,7 +43,7 @@ class MessagesRepositoryImpl implements MessagesRepository {
       await _messageImagesDataSource.send(
         messageRoomId,
         PostV1MessageRoomsIdMessageImagesRequest(
-          await ImageConverter.convertToBase64(file),
+          await ImageConverter.toBase64(file),
         ).toJson(),
       );
     } catch (e) {

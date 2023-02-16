@@ -23,9 +23,6 @@ class ProfileRepositoryImpl implements ProfileRepository {
   final ProfileDataSource _profileDataSource;
   final SharedPreferencesDataSource _shared;
 
-  /// 画像変換
-  final toBase64 = ImageConverter.convertToBase64;
-
   ProfileRepositoryImpl(
     this._profileDataSource,
     this._shared,
@@ -199,7 +196,10 @@ class ProfileRepositoryImpl implements ProfileRepository {
 
   /// プロおフィール画像をローカル保存
   Future<void> _saveImageLocally(String key, File? file) async {
-    _shared.setString(key, file != null ? await toBase64(file) : "");
+    _shared.setString(
+      key,
+      file != null ? await ImageConverter.toBase64(file) : "",
+    );
   }
 
   @override
