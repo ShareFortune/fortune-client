@@ -5,7 +5,7 @@ import 'package:fortune_client/util/common/json_loader.dart';
 
 class FakeMessagesDataSource implements MessagesDataSource {
   @override
-  Future<void> send(String messageRoomId) {
+  Future<void> send(String messageRoomId, Map<String, dynamic> body) {
     // TODO: implement send
     throw UnimplementedError();
   }

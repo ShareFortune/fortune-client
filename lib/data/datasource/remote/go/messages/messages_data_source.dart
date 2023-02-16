@@ -15,6 +15,7 @@ abstract class MessagesDataSource {
   @authenticatedRequest
   Future<void> send(
     @Path('messageRoomId') String messageRoomId,
+    @Body() Map<String, dynamic> body,
   );
 
   /// メッセージ一覧取得

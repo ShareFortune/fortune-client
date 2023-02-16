@@ -2,7 +2,6 @@
 
 import 'dart:io';
 
-import 'package:fortune_client/util/logger/logger.dart';
 import 'package:uuid/uuid.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:fortune_client/data/repository/repository.dart';
@@ -43,6 +42,13 @@ class MessageRoomViewModel extends StateNotifier<MessageRoomState> {
 
   /// メッセージ送信・テキスト
   void handleSendPressed(chat_types.PartialText message) {
+    /// サーバーに送信
+    Repository.messages.sendMessage(
+      messageRoomId: state.messageRoomId,
+      text: message.text,
+    );
+
+    /// Stateに追加
     _addMessage(MessageConverter.convertToTextMessageByString(
       message.text,
       state.author,
