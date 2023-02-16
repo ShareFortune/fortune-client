@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'messages_data_source.dart';
+part of 'message_images_data_source.dart';
 
 // **************************************************************************
 // RetrofitGenerator
@@ -8,8 +8,8 @@ part of 'messages_data_source.dart';
 
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers
 
-class _MessagesDataSource implements MessagesDataSource {
-  _MessagesDataSource(
+class _MessageImagesDataSource implements MessageImagesDataSource {
+  _MessageImagesDataSource(
     this._dio, {
     this.baseUrl,
   });
@@ -19,7 +19,7 @@ class _MessagesDataSource implements MessagesDataSource {
   String? baseUrl;
 
   @override
-  Future<void> send(
+  Future<PostV1MessageRoomsIdMessageImagesResponse> send(
     messageRoomId,
     body,
   ) async {
@@ -28,49 +28,21 @@ class _MessagesDataSource implements MessagesDataSource {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(body);
-    await _dio.fetch<void>(_setStreamType<void>(Options(
-      method: 'POST',
-      headers: _headers,
-      extra: _extra,
-    )
-        .compose(
-          _dio.options,
-          '/messageRooms/${messageRoomId}/messages',
-          queryParameters: queryParameters,
-          data: _data,
-        )
-        .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    return null;
-  }
-
-  @override
-  Future<GetV1MessageRoomsIdMessagesResponse> get(
-    messageRoomId, {
-    nextToken,
-    perPage,
-  }) async {
-    const _extra = <String, dynamic>{'append-token': true};
-    final queryParameters = <String, dynamic>{
-      r'nextToken': nextToken,
-      r'perPage': perPage,
-    };
-    queryParameters.removeWhere((k, v) => v == null);
-    final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<GetV1MessageRoomsIdMessagesResponse>(Options(
-      method: 'GET',
+        _setStreamType<PostV1MessageRoomsIdMessageImagesResponse>(Options(
+      method: 'POST',
       headers: _headers,
       extra: _extra,
     )
             .compose(
               _dio.options,
-              '/messageRooms/${messageRoomId}/messages',
+              '/messageRooms/${messageRoomId}/messageImages',
               queryParameters: queryParameters,
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = GetV1MessageRoomsIdMessagesResponse.fromJson(_result.data!);
+    final value =
+        PostV1MessageRoomsIdMessageImagesResponse.fromJson(_result.data!);
     return value;
   }
 

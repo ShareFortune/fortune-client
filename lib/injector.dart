@@ -10,6 +10,8 @@ import 'package:fortune_client/data/datasource/remote/go/favorites/fake_favorite
 import 'package:fortune_client/data/datasource/remote/go/favorites/favorites_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/go/join_requests/fake_join_requests_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/go/join_requests/join_requests_data_source.dart';
+import 'package:fortune_client/data/datasource/remote/go/message_images/fake_message_images_data_source.dart';
+import 'package:fortune_client/data/datasource/remote/go/message_images/message_images_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/go/message_rooms/fake_message_rooms_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/go/message_rooms/message_rooms_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/go/messages/fake_messages_data_source.dart';
@@ -84,7 +86,7 @@ Future<void> initDependencies({bool testMode = false}) async {
     () => UsersRepositoryImpl(getIt(), getIt(), getIt()),
   );
   getIt.registerLazySingleton<MessagesRepository>(
-    () => MessagesRepositoryImpl(getIt()),
+    () => MessagesRepositoryImpl(getIt(), getIt()),
   );
   getIt.registerLazySingleton<MessageRoomsRepository>(
     () => MessageRoomsRepositoryImpl(getIt()),
@@ -114,35 +116,38 @@ Future<void> initDependencies({bool testMode = false}) async {
   getIt.registerLazySingleton<SharedPreferencesDataSource>(
     () => SharedPreferencesDataSourceImpl(getIt()),
   );
-  getIt.registerLazySingleton<FirebaseAuthDataSource>(
-    () => FirebaseAuthDataSourceImpl(),
+  getIt.registerSingleton<FirebaseAuthDataSource>(
+    FirebaseAuthDataSourceImpl(),
   );
-  getIt.registerLazySingleton<UsersDataSource>(
-    () => UsersDataSource(getIt()),
+  getIt.registerSingleton<UsersDataSource>(
+    UsersDataSource(getIt()),
   );
-  getIt.registerLazySingleton<RoomsDataSource>(
-    () => RoomsDataSource(getIt()),
+  getIt.registerSingleton<RoomsDataSource>(
+    RoomsDataSource(getIt()),
   );
-  getIt.registerLazySingleton<ProfileDataSource>(
-    () => ProfileDataSource(getIt()),
+  getIt.registerSingleton<ProfileDataSource>(
+    ProfileDataSource(getIt()),
   );
-  getIt.registerLazySingleton<MessagesDataSource>(
-    () => MessagesDataSource(getIt()),
+  getIt.registerSingleton<MessagesDataSource>(
+    MessagesDataSource(getIt()),
   );
-  getIt.registerLazySingleton<MessageRoomsDataSource>(
-    () => MessageRoomsDataSource(getIt()),
+  getIt.registerSingleton<MessageImagesDataSource>(
+    MessageImagesDataSource(getIt()),
   );
-  getIt.registerLazySingleton<TagsDataSource>(
-    () => TagsDataSource(getIt()),
+  getIt.registerSingleton<MessageRoomsDataSource>(
+    MessageRoomsDataSource(getIt()),
   );
-  getIt.registerLazySingleton<JoinRequestsDataSource>(
-    () => JoinRequestsDataSource(getIt()),
+  getIt.registerSingleton<TagsDataSource>(
+    TagsDataSource(getIt()),
   );
-  getIt.registerLazySingleton<AddressesDataSource>(
-    () => AddressesDataSource(getIt()),
+  getIt.registerSingleton<JoinRequestsDataSource>(
+    JoinRequestsDataSource(getIt()),
   );
-  getIt.registerLazySingleton<FavoritesDataSource>(
-    () => FavoritesDataSource(getIt()),
+  getIt.registerSingleton<AddressesDataSource>(
+    AddressesDataSource(getIt()),
+  );
+  getIt.registerSingleton<FavoritesDataSource>(
+    FavoritesDataSource(getIt()),
   );
 
   ///
@@ -159,6 +164,9 @@ Future<void> initDependencies({bool testMode = false}) async {
     );
     getIt.registerLazySingleton<MessagesDataSource>(
       () => FakeMessagesDataSource(),
+    );
+    getIt.registerLazySingleton<MessageImagesDataSource>(
+      () => FakeMessageImagesDataSource(),
     );
     getIt.registerLazySingleton<MessageRoomsDataSource>(
       () => FakeMessageRoomsDataSource(),

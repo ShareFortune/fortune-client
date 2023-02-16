@@ -16,13 +16,7 @@ class FakeMessagesDataSource implements MessagesDataSource {
   }
 
   @override
-  Future<void> sendImage(String messageRoomId, Map<String, dynamic> body) {
-    // TODO: implement sendImage
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<void> sendText(String messageRoomId, Map<String, dynamic> body) {
+  Future<void> send(String messageRoomId, Map<String, dynamic> body) {
     // TODO: implement sendText
     throw UnimplementedError();
   }

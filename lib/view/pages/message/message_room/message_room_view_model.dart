@@ -33,7 +33,7 @@ class MessageRoomViewModel extends StateNotifier<MessageRoomState> {
       messages: await AsyncValue.guard(() async {
         final data = await Repository.messages.getMessages(state.messageRoomId);
         for (var message in data) {
-          messages.add(await MessageConverter.convertToMessage(message));
+          messages.add(await MessageConverter.toMessage(message));
         }
         return messages;
       }),
@@ -47,20 +47,27 @@ class MessageRoomViewModel extends StateNotifier<MessageRoomState> {
       messageRoomId: state.messageRoomId,
       text: message.text,
     );
-
-    /// Stateに追加
-    _addMessage(MessageConverter.convertToTextMessageByString(
-      message.text,
-      state.author,
-    ));
+    _addMessage(
+      MessageConverter.toTextMessageByString(
+        message.text,
+        state.author,
+      ),
+    );
   }
 
   /// 画像データ選択ハンドラ
   void handleImageSelection(File file) async {
-    _addMessage(await MessageConverter.convertToImageMessageFromFile(
-      state.author,
-      file,
-    ));
+    /// サーバーに送信
+    Repository.messages.sendImage(
+      messageRoomId: state.messageRoomId,
+      file: file,
+    );
+    _addMessage(
+      await MessageConverter.toImageMessageFromFile(
+        state.author,
+        file,
+      ),
+    );
   }
 
   /// Stateに[chat_types.Message]を追加

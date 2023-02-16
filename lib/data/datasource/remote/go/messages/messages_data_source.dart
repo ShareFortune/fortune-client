@@ -13,16 +13,7 @@ abstract class MessagesDataSource {
   /// [messageRoomId]送信するメッセージルームのID
   @POST('/messageRooms/{messageRoomId}/messages')
   @authenticatedRequest
-  Future<void> sendText(
-    @Path('messageRoomId') String messageRoomId,
-    @Body() Map<String, dynamic> body,
-  );
-
-  /// メッセージ送信・画像
-  /// [messageRoomId]送信するメッセージルームのID
-  @POST('/messageRooms/{messageRoomId}/messageImages')
-  @authenticatedRequest
-  Future<void> sendImage(
+  Future<void> send(
     @Path('messageRoomId') String messageRoomId,
     @Body() Map<String, dynamic> body,
   );

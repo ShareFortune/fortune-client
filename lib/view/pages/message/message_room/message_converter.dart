@@ -14,7 +14,7 @@ import 'package:http/http.dart' as http;
 /// [chat_types.User]へのコンバーター
 class MessageConverter {
   /// [MessageFromUser] -> [chat_types.User]
-  static chat_types.User convertToUser(MessageFromUser user) {
+  static chat_types.User toUser(MessageFromUser user) {
     return chat_types.User(
       id: user.id,
       firstName: user.name,
@@ -24,24 +24,24 @@ class MessageConverter {
 
   /// [Message] -> [chat_types.Message]
   /// [chat_types.TextMessage] or [chat_types.ImageMessage]
-  static Future<chat_types.Message> convertToMessage(Message message) async {
+  static Future<chat_types.Message> toMessage(Message message) async {
     return message.messageIamageURL != null
-        ? await convertToImageMessage(message) // 画像データ
-        : convertToTextMessage(message); // テキストデータ
+        ? await toImageMessage(message) // 画像データ
+        : toTextMessage(message); // テキストデータ
   }
 
   /// [Message] -> [chat_types.TextMessage]
-  static chat_types.TextMessage convertToTextMessage(Message message) {
+  static chat_types.TextMessage toTextMessage(Message message) {
     return chat_types.TextMessage(
       id: message.id,
-      author: convertToUser(message.fromUser),
+      author: toUser(message.fromUser),
       createdAt: message.sendAt.millisecondsSinceEpoch,
       text: message.text,
     );
   }
 
   /// [String] -> [chat_types.TextMessage]
-  static chat_types.TextMessage convertToTextMessageByString(
+  static chat_types.TextMessage toTextMessageByString(
     String text,
     chat_types.User user,
   ) {
@@ -54,7 +54,7 @@ class MessageConverter {
   }
 
   /// [Message] -> [chat_types.ImageMessage]
-  static Future<chat_types.ImageMessage> convertToImageMessage(
+  static Future<chat_types.ImageMessage> toImageMessage(
     Message message,
   ) async {
     final uri = message.messageIamageURL!;
@@ -67,7 +67,7 @@ class MessageConverter {
       id: message.id,
       uri: uri,
       name: uri,
-      author: convertToUser(message.fromUser),
+      author: toUser(message.fromUser),
       createdAt: message.sendAt.millisecondsSinceEpoch,
       size: bytes.length,
       height: image.height.toDouble(),
@@ -76,7 +76,7 @@ class MessageConverter {
   }
 
   /// [MessageFromUser, File] -> [chat_types.ImageMessage]
-  static Future<chat_types.ImageMessage> convertToImageMessageFromFile(
+  static Future<chat_types.ImageMessage> toImageMessageFromFile(
     chat_types.User user,
     File file,
   ) async {

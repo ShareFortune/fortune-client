@@ -1,13 +1,22 @@
+import 'dart:io';
+
+import 'package:fortune_client/data/datasource/remote/go/message_images/message_images_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/go/messages/messages_data_source.dart';
 import 'package:fortune_client/data/model/core/base/message/message.dart';
+import 'package:fortune_client/data/model/message_images/post_v1_message_rooms_id_message_images/post_v1_message_rooms_id_message_images.dart';
 import 'package:fortune_client/data/model/messages/post_v1_message_rooms_id_messages/post_v1_message_rooms_id_messages.dart';
 import 'package:fortune_client/data/repository/message/message_repository.dart';
+import 'package:fortune_client/util/converter/image_converter.dart';
 import 'package:fortune_client/util/logger/logger.dart';
 
 class MessagesRepositoryImpl implements MessagesRepository {
-  MessagesRepositoryImpl(this._dataSource);
+  MessagesRepositoryImpl(
+    this._messagesDataSource,
+    this._messageImagesDataSource,
+  );
 
-  final MessagesDataSource _dataSource;
+  final MessagesDataSource _messagesDataSource;
+  final MessageImagesDataSource _messageImagesDataSource;
 
   @override
   Future<void> sendMessage({
@@ -15,9 +24,27 @@ class MessagesRepositoryImpl implements MessagesRepository {
     required String text,
   }) async {
     try {
-      await _dataSource.sendText(
+      await _messagesDataSource.send(
         messageRoomId,
-        PostV1MessageRoomsIdMessagesRequest(text: text).toJson(),
+        PostV1MessageRoomsIdMessagesRequest(text).toJson(),
+      );
+    } catch (e) {
+      logger.e(e);
+      rethrow;
+    }
+  }
+
+  @override
+  Future<void> sendImage({
+    required String messageRoomId,
+    required File file,
+  }) async {
+    try {
+      await _messageImagesDataSource.send(
+        messageRoomId,
+        PostV1MessageRoomsIdMessageImagesRequest(
+          await ImageConverter.convertToBase64(file),
+        ).toJson(),
       );
     } catch (e) {
       logger.e(e);
@@ -28,7 +55,7 @@ class MessagesRepositoryImpl implements MessagesRepository {
   @override
   Future<List<Message>> getMessages(String messageRoomId) async {
     try {
-      final result = await _dataSource.get(messageRoomId);
+      final result = await _messagesDataSource.get(messageRoomId);
       return result.data;
     } catch (e) {
       logger.e(e);
