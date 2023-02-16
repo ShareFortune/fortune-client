@@ -35,10 +35,7 @@ class EditImageController extends StatelessWidget {
       /// プロフィール写真の選択
       onTap: onChange != null
           ? () async {
-              final file = await PhotoActionsSheet.getPhoto(
-                theme: theme,
-                context: context,
-              );
+              final file = await PhotoActionsSheet.getPhoto(theme, context);
               if (file != null) {
                 onChange!(file);
               }

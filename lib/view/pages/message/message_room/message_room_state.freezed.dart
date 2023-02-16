@@ -17,7 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$MessageRoomState {
   String get messageRoomId => throw _privateConstructorUsedError;
-  User get myUserInfo => throw _privateConstructorUsedError;
+  User get author => throw _privateConstructorUsedError;
   AsyncValue<List<Message>> get messages => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -32,9 +32,7 @@ abstract class $MessageRoomStateCopyWith<$Res> {
       _$MessageRoomStateCopyWithImpl<$Res, MessageRoomState>;
   @useResult
   $Res call(
-      {String messageRoomId,
-      User myUserInfo,
-      AsyncValue<List<Message>> messages});
+      {String messageRoomId, User author, AsyncValue<List<Message>> messages});
 }
 
 /// @nodoc
@@ -51,7 +49,7 @@ class _$MessageRoomStateCopyWithImpl<$Res, $Val extends MessageRoomState>
   @override
   $Res call({
     Object? messageRoomId = null,
-    Object? myUserInfo = null,
+    Object? author = null,
     Object? messages = null,
   }) {
     return _then(_value.copyWith(
@@ -59,9 +57,9 @@ class _$MessageRoomStateCopyWithImpl<$Res, $Val extends MessageRoomState>
           ? _value.messageRoomId
           : messageRoomId // ignore: cast_nullable_to_non_nullable
               as String,
-      myUserInfo: null == myUserInfo
-          ? _value.myUserInfo
-          : myUserInfo // ignore: cast_nullable_to_non_nullable
+      author: null == author
+          ? _value.author
+          : author // ignore: cast_nullable_to_non_nullable
               as User,
       messages: null == messages
           ? _value.messages
@@ -80,9 +78,7 @@ abstract class _$$_MessageRoomStateCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String messageRoomId,
-      User myUserInfo,
-      AsyncValue<List<Message>> messages});
+      {String messageRoomId, User author, AsyncValue<List<Message>> messages});
 }
 
 /// @nodoc
@@ -97,7 +93,7 @@ class __$$_MessageRoomStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? messageRoomId = null,
-    Object? myUserInfo = null,
+    Object? author = null,
     Object? messages = null,
   }) {
     return _then(_$_MessageRoomState(
@@ -105,9 +101,9 @@ class __$$_MessageRoomStateCopyWithImpl<$Res>
           ? _value.messageRoomId
           : messageRoomId // ignore: cast_nullable_to_non_nullable
               as String,
-      myUserInfo: null == myUserInfo
-          ? _value.myUserInfo
-          : myUserInfo // ignore: cast_nullable_to_non_nullable
+      author: null == author
+          ? _value.author
+          : author // ignore: cast_nullable_to_non_nullable
               as User,
       messages: null == messages
           ? _value.messages
@@ -122,19 +118,19 @@ class __$$_MessageRoomStateCopyWithImpl<$Res>
 class _$_MessageRoomState implements _MessageRoomState {
   const _$_MessageRoomState(
       {required this.messageRoomId,
-      required this.myUserInfo,
+      required this.author,
       required this.messages});
 
   @override
   final String messageRoomId;
   @override
-  final User myUserInfo;
+  final User author;
   @override
   final AsyncValue<List<Message>> messages;
 
   @override
   String toString() {
-    return 'MessageRoomState(messageRoomId: $messageRoomId, myUserInfo: $myUserInfo, messages: $messages)';
+    return 'MessageRoomState(messageRoomId: $messageRoomId, author: $author, messages: $messages)';
   }
 
   @override
@@ -144,15 +140,13 @@ class _$_MessageRoomState implements _MessageRoomState {
             other is _$_MessageRoomState &&
             (identical(other.messageRoomId, messageRoomId) ||
                 other.messageRoomId == messageRoomId) &&
-            (identical(other.myUserInfo, myUserInfo) ||
-                other.myUserInfo == myUserInfo) &&
+            (identical(other.author, author) || other.author == author) &&
             (identical(other.messages, messages) ||
                 other.messages == messages));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, messageRoomId, myUserInfo, messages);
+  int get hashCode => Object.hash(runtimeType, messageRoomId, author, messages);
 
   @JsonKey(ignore: true)
   @override
@@ -164,13 +158,13 @@ class _$_MessageRoomState implements _MessageRoomState {
 abstract class _MessageRoomState implements MessageRoomState {
   const factory _MessageRoomState(
       {required final String messageRoomId,
-      required final User myUserInfo,
+      required final User author,
       required final AsyncValue<List<Message>> messages}) = _$_MessageRoomState;
 
   @override
   String get messageRoomId;
   @override
-  User get myUserInfo;
+  User get author;
   @override
   AsyncValue<List<Message>> get messages;
   @override

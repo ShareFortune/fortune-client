@@ -10,10 +10,7 @@ class PhotoActionsSheet {
   ///
   /// 写真を取得
   ///
-  static Future<File?> getPhoto({
-    required AppTheme theme,
-    required BuildContext context,
-  }) {
+  static Future<File?> getPhoto(AppTheme theme, BuildContext context) {
     /// 取得方法に応じて写真を取得
     /// [method] 取得方法
     Future<File?> getPhotoByMethod(Future<File?> Function() method) async {
