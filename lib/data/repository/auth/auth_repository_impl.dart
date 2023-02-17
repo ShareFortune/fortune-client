@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:fortune_client/data/datasource/remote/firebase/firebase_auth_data_source.dart';
+import 'package:fortune_client/data/datasource/remote/firebase/authentication_interface.dart';
 
 import 'auth_repository.dart';
 

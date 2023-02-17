@@ -1,9 +1,8 @@
-import 'package:auto_route/auto_route.dart';
+import 'package:fortune_client/data/model/enum/auth_type.dart';
 import 'package:fortune_client/data/repository/auth/auth_repository.dart';
 import 'package:fortune_client/data/repository/debug/debug_repository.dart';
 import 'package:fortune_client/foundation/constants.dart';
 import 'package:fortune_client/injector.dart';
-import 'package:fortune_client/view/pages/auth/login/login_state.dart';
 import 'package:fortune_client/view/routes/app_router.gr.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 

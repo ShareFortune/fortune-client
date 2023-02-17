@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:fortune_client/view/pages/auth/login/login_state.dart';
+import 'package:fortune_client/data/model/enum/auth_type.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:fortune_client/view/pages/auth/login/auth_type_extension.dart';
 
 class AuthButton extends HookConsumerWidget {
   const AuthButton({

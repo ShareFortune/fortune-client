@@ -1,14 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:fortune_client/data/model/enum/auth_type.dart';
 import 'package:fortune_client/gen/assets.gen.dart';
 import 'package:fortune_client/l10n/locale_keys.g.dart';
 
-enum AuthType {
-  apple,
-  google,
-  twitter,
-}
-
-extension AuthTypeColor on AuthType {
+extension AuthTypeEx on AuthType {
   Color get color {
     switch (this) {
       case AuthType.apple:
