@@ -5,6 +5,11 @@ enum AppPrefKey {
   /// 自動ログイン
   automaticLogin,
 
+  /// AccessToken
+  accessTokenApple,
+  accessTokenGoogle,
+  accessTokenTwitter,
+
   /// Fortune ID
   fortuneId,
 
@@ -22,12 +27,6 @@ enum AppPrefKey {
   profileFourthImage,
   profileFifthImage,
   profileSixthImage,
-
-  /// 写真選択
-  isShowPhotoOSDialogValue,
-
-  /// カメラ
-  isShowCameraOSDialogValue,
 }
 
 extension AppPrefKeyEx on AppPrefKey {

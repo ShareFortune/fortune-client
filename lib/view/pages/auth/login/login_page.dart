@@ -1,8 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:fortune_client/data/model/enum/auth_type.dart';
 import 'package:fortune_client/l10n/locale_keys.g.dart';
 import 'package:fortune_client/view/pages/auth/login/components/auth_button.dart';
-import 'package:fortune_client/view/pages/auth/login/login_state.dart';
 import 'package:fortune_client/view/pages/auth/login/login_view_model.dart';
 import 'package:fortune_client/view/widgets/dialog/Info_dialog.dart';
 import 'package:fortune_client/view/widgets/other/error_widget.dart';

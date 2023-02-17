@@ -1,11 +1,9 @@
 abstract class AuthRepository {
   /// ログイン中かどうか
-  // bool get isLogin;
+  bool get isLogin;
 
   /// Firebase ID
   String get firebaseId;
-
-  bool get isLogin;
 
   /// Token
   Future<String> idToken();
@@ -21,11 +19,4 @@ abstract class AuthRepository {
 
   /// ログアウト
   Future<void> logout();
-
-  /// テスト用機能
-  ///
-  /// 自動ログイン
-  ///
-  /// ダミーログイン API
-
 }
