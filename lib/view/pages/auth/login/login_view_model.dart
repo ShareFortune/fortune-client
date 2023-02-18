@@ -1,4 +1,6 @@
-import 'package:fortune_client/data/repository/repository.dart';
+import 'package:fortune_client/data/model/enum/auth_type.dart';
+import 'package:fortune_client/data/repository/auth/auth_repository.dart';
+import 'package:fortune_client/data/repository/debug/debug_repository.dart';
 import 'package:fortune_client/foundation/constants.dart';
 import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/view/routes/app_router.gr.dart';
@@ -36,7 +38,9 @@ class LoginViewModel extends StateNotifier<AsyncValue<void>> {
     state = await AsyncValue.guard(() async {
       switch (type) {
         case AuthType.apple:
-          return await Repository.auth.signInWithApple();
+          final user = await _authRepository.signIn(AuthType.apple);
+          print(user);
+          return;
         case AuthType.google:
           return await Repository.auth.signInWithGoogle();
         case AuthType.twitter:
