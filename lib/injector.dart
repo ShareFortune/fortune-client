@@ -80,10 +80,10 @@ Future<void> initDependencies({bool testMode = false}) async {
     () => DebugRepositoryImpl(getIt()),
   );
   getIt.registerLazySingleton<AuthRepository>(
-    () => AuthRepositoryImpl(getIt()),
+    () => AuthRepositoryImpl(getIt(), getIt()),
   );
   getIt.registerLazySingleton<UsersRepository>(
-    () => UsersRepositoryImpl(getIt(), getIt(), getIt()),
+    () => UsersRepositoryImpl(getIt(), getIt()),
   );
   getIt.registerLazySingleton<MessagesRepository>(
     () => MessagesRepositoryImpl(getIt(), getIt()),

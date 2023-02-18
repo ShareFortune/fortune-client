@@ -29,20 +29,7 @@ class MessageRoomListPage extends HookConsumerWidget {
             SliverToBoxAdapter(
               child: Container(
                 color: theme.appColors.onBackground,
-                child: TabBar(
-                  labelColor: theme.appColors.linkColor,
-                  labelStyle: theme.textTheme.h20.bold(),
-                  unselectedLabelColor: theme.appColors.subText1,
-                  unselectedLabelStyle: theme.textTheme.h20.bold(),
-                  tabs: [
-                    Tab(
-                      text: LocaleKeys.message_room_list_page_tabs_host.tr(),
-                    ),
-                    Tab(
-                      text: LocaleKeys.message_room_list_page_tabs_guest.tr(),
-                    ),
-                  ],
-                ),
+                child: _tabBar(theme),
               ),
             ),
           ];
@@ -57,6 +44,19 @@ class MessageRoomListPage extends HookConsumerWidget {
           ],
         ),
       ),
+    );
+  }
+
+  TabBar _tabBar(AppTheme theme) {
+    return TabBar(
+      labelColor: theme.appColors.linkColor,
+      labelStyle: theme.textTheme.h20.bold(),
+      unselectedLabelColor: theme.appColors.subText1,
+      unselectedLabelStyle: theme.textTheme.h20.bold(),
+      tabs: [
+        Tab(text: LocaleKeys.message_room_list_page_tabs_host.tr()),
+        Tab(text: LocaleKeys.message_room_list_page_tabs_guest.tr()),
+      ],
     );
   }
 

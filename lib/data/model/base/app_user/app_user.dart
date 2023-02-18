@@ -8,7 +8,6 @@ class AppUser {
   final String? pictureUrl;
   final String? idToken;
   final String? accountId;
-  final bool hasEmailAccount;
   final bool hasLineAccount;
   final bool hasGoogleAccount;
   final bool hasAppleAccount;
@@ -22,7 +21,6 @@ class AppUser {
     this.pictureUrl,
     this.idToken,
     this.accountId,
-    this.hasEmailAccount = false,
     this.hasLineAccount = false,
     this.hasGoogleAccount = false,
     this.hasAppleAccount = false,
