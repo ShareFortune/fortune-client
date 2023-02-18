@@ -19,11 +19,11 @@ class ParticipatingRoomAsHost extends HookConsumerWidget {
     final theme = ref.watch(appThemeProvider);
     final viewModel = ref.watch(participatingViewModelProvider.notifier);
 
+    /// データが空の場合
+    if (rooms.isEmpty) return _noRooms(theme);
+
     return Row(
       children: rooms.map((room) {
-        /// データが空の場合
-        if (rooms.isEmpty) return _noRooms(theme);
-
         /// データが存在する場合
         return ParticipatingRoom(
           theme: theme,
