@@ -57,11 +57,11 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<AppUser?> signIn(AuthType type) {
     switch (type) {
       case AuthType.twitter:
-        return AppleSignInDataSource().login();
+        return AppleSignInDataSource.instance.login();
       case AuthType.apple:
-        return AppleSignInDataSource().login();
+        return AppleSignInDataSource.instance.login();
       case AuthType.google:
-        return AppleSignInDataSource().login();
+        return AppleSignInDataSource.instance.login();
     }
   }
 }
