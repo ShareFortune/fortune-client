@@ -46,6 +46,19 @@ class AuthRepositoryImpl implements AuthRepository {
 
   @override
   Future<AppUser?> login(AuthType type) async {
+    /// ログイン
+    final appUser = await _loginWithSns(type);
+
+    /// 認証タイプを保存
+    if (appUser != null) {
+      _prefs.setString(AppPrefKey.authType.keyString, type.name);
+    }
+
+    return appUser;
+  }
+
+  /// 各種SNSでログイン
+  Future<AppUser?> _loginWithSns(AuthType type) async {
     switch (type) {
       case AuthType.twitter:
         return null;
