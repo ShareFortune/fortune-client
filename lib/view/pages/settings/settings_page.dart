@@ -1,9 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:fortune_client/data/datasource/remote/firebase/apple_sign_in_data_source.dart';
-import 'package:fortune_client/data/datasource/remote/firebase/google_sign_in_data_source.dart';
-import 'package:fortune_client/data/repository/auth/auth_repository.dart';
-import 'package:fortune_client/data/repository/auth/auth_repository_impl.dart';
 import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/l10n/locale_keys.g.dart';
 import 'package:fortune_client/view/routes/app_router.gr.dart';
@@ -66,7 +62,7 @@ class SettingsPage extends HookConsumerWidget {
                   theme,
                   LocaleKeys.settings_page_help_logout.tr(),
                   callback: () {
-                    AppleSignInDataSource.instance.logout();
+                    // AppleSignInDataSource.instance.logout();
                   },
                 ),
 

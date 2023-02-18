@@ -10,6 +10,9 @@ enum AppPrefKey {
   accessTokenGoogle,
   accessTokenTwitter,
 
+  /// 認証タイプ
+  authType,
+
   /// Fortune ID
   fortuneId,
 

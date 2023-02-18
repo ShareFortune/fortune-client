@@ -1,8 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
 import 'package:fortune_client/data/datasource/remote/firebase/auth_method_interface.dart';
+import 'package:fortune_client/data/datasource/remote/firebase/firebase_auth_data_source.dart';
 import 'package:fortune_client/data/model/base/app_user/app_user.dart';
 import 'package:fortune_client/data/model/enum/auth_type.dart';
+import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/util/logger/logger.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
@@ -11,18 +13,21 @@ class GoogleSignInDataSource implements AuthMethodInterface {
   GoogleSignInDataSource._();
 
   @override
-  Future<GoogleLoginResult?> getLoginResult() async {
+  Future<AppUser?> getLoginResult() async {
     try {
       final account = await GoogleSignIn().signIn();
-      if (account == null) {
-        return null;
-      }
+      if (account == null) return null;
 
-      final authentication = await account.authentication;
-
-      return GoogleLoginResult(
+      /// ログイン結果
+      final googleLoginResult = GoogleLoginResult(
         account: account,
-        authentication: authentication,
+        authentication: await account.authentication,
+      );
+
+      /// サインインユーザー情報の生成
+      return _generateAppUser(
+        googleLoginResult.account,
+        googleLoginResult.authentication,
       );
     } on PlatformException catch (e) {
       logger.e(e.toString());
@@ -51,7 +56,10 @@ class GoogleSignInDataSource implements AuthMethodInterface {
       await FirebaseAuth.instance.signInWithCredential(credential);
 
       /// サインインユーザー情報の生成
-      return _generateAppUser(loginResult, authentication);
+      return _generateAppUser(
+        loginResult,
+        authentication,
+      );
     } on PlatformException catch (e) {
       logger.e(e.toString());
       rethrow;
@@ -78,7 +86,7 @@ class GoogleSignInDataSource implements AuthMethodInterface {
       final googleSignIn = GoogleSignIn();
       if (await googleSignIn.isSignedIn()) {
         await googleSignIn.disconnect();
-        await FirebaseAuth.instance.signOut();
+        await getIt<FirebaseAuthDataSource>().logout();
         logger.i("ログアウトしました。");
       }
     } on PlatformException catch (e) {
