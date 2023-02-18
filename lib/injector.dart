@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:fortune_client/data/datasource/core/dio_client.dart';
 import 'package:fortune_client/data/datasource/local/shared_pref_data_source.dart';
 import 'package:fortune_client/data/datasource/local/shared_pref_data_source_impl.dart';
-import 'package:fortune_client/data/datasource/remote/firebase/authentication_interface.dart';
+import 'package:fortune_client/data/datasource/remote/firebase/firebase_auth_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/firebase/firebase_auth_data_source_impl.dart';
 import 'package:fortune_client/data/datasource/remote/go/addresses/addresses_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/go/addresses/fake_addresses_data_source.dart';

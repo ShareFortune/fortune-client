@@ -24,10 +24,6 @@ class LoginViewModel extends StateNotifier<AsyncValue<void>> {
   }
 
   Future<void> onTapLoginBtn(AuthType type) async {
-    /// DEBUG
-    // if (await _debugRepository.getDummyRoginApi()) {
-    //   return await navigateToHome();
-    // }
     final result = await loginWithSns(type);
     if (result && Repository.auth.isLogin) {
       await navigateToHome();

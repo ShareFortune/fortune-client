@@ -1,8 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:fortune_client/data/datasource/remote/firebase/authentication_interface.dart';
+import 'package:fortune_client/data/datasource/remote/firebase/firebase_auth_data_source.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-
-import 'firebase_auth_data_source.dart';
 
 class FirebaseAuthDataSourceImpl implements FirebaseAuthDataSource {
   FirebaseAuthDataSourceImpl();

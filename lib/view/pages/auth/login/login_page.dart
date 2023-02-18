@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:fortune_client/data/model/enum/auth_type.dart';
 import 'package:fortune_client/l10n/locale_keys.g.dart';
@@ -35,7 +36,7 @@ class LoginPage extends HookConsumerWidget {
                       // if (result != null) showDebugDialog(context, result);
                     },
                     child: Text(
-                      LocaleKeys.loginPage_title.trim(),
+                      LocaleKeys.loginPage_title.tr(),
                       style: const TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 32,
