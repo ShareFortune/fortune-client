@@ -1,10 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fortune_client/data/datasource/local/shared_pref_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/firebase/apple_sign_in_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/firebase/auth_method_interface.dart';
 import 'package:fortune_client/data/datasource/remote/firebase/facebook_sign_in_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/firebase/firebase_auth_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/firebase/google_sign_in_data_source.dart';
-import 'package:fortune_client/data/model/base/app_user/app_user.dart';
 import 'package:fortune_client/data/model/enum/auth_type.dart';
 import 'package:fortune_client/util/storage/app_pref_key.dart';
 
@@ -52,23 +52,20 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<String> idToken() => _firebaseAuthDataSource.idToken();
 
   @override
-  Future<AppUser?> getLoginResult() => _signInMethod.getLoginResult();
-
-  @override
-  Future<AppUser?> login(AuthType type) async {
-    /// ログイン
-    final appUser = await _loginWithSns(type);
+  Future<UserCredential?> login(AuthType type) async {
+    /// 各種SNSの認証情報取得
+    final credential = await _loginWithSns(type);
+    if (credential == null) return null;
 
     /// 認証タイプを保存
-    if (appUser != null) {
-      _prefs.setString(AppPrefKey.authType.keyString, type.name);
-    }
+    _prefs.setString(AppPrefKey.authType.keyString, type.name);
 
-    return appUser;
+    /// Firebaseにログイン
+    return _firebaseAuthDataSource.login(credential);
   }
 
   /// 各種SNSでログイン
-  Future<AppUser?> _loginWithSns(AuthType type) async {
+  Future<OAuthCredential?> _loginWithSns(AuthType type) async {
     switch (type) {
       case AuthType.facebook:
         return _facebookSignInDataSource.login();
@@ -80,5 +77,8 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<void> logout() => _signInMethod.logout();
+  Future<void> logout() async {
+    await _signInMethod.logout();
+    await _firebaseAuthDataSource.logout();
+  }
 }
