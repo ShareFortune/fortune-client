@@ -2,8 +2,11 @@ import 'package:dio/dio.dart';
 import 'package:fortune_client/data/datasource/core/dio_client.dart';
 import 'package:fortune_client/data/datasource/local/shared_pref_data_source.dart';
 import 'package:fortune_client/data/datasource/local/shared_pref_data_source_impl.dart';
+import 'package:fortune_client/data/datasource/remote/firebase/apple_sign_in_data_source.dart';
+import 'package:fortune_client/data/datasource/remote/firebase/facebook_sign_in_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/firebase/firebase_auth_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/firebase/firebase_auth_data_source_impl.dart';
+import 'package:fortune_client/data/datasource/remote/firebase/google_sign_in_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/go/addresses/addresses_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/go/addresses/fake_addresses_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/go/favorites/fake_favorites_data_source.dart';
@@ -80,7 +83,7 @@ Future<void> initDependencies({bool testMode = false}) async {
     () => DebugRepositoryImpl(getIt()),
   );
   getIt.registerLazySingleton<AuthRepository>(
-    () => AuthRepositoryImpl(getIt(), getIt()),
+    () => AuthRepositoryImpl(getIt(), getIt(), getIt(), getIt(), getIt()),
   );
   getIt.registerLazySingleton<UsersRepository>(
     () => UsersRepositoryImpl(getIt(), getIt()),
@@ -118,6 +121,15 @@ Future<void> initDependencies({bool testMode = false}) async {
   );
   getIt.registerSingleton<FirebaseAuthDataSource>(
     FirebaseAuthDataSourceImpl(),
+  );
+  getIt.registerSingleton<FacebookSignInDataSource>(
+    FacebookSignInDataSource(),
+  );
+  getIt.registerSingleton<AppleSignInDataSource>(
+    AppleSignInDataSource(),
+  );
+  getIt.registerSingleton<GoogleSignInDataSource>(
+    GoogleSignInDataSource(),
   );
   getIt.registerSingleton<UsersDataSource>(
     UsersDataSource(getIt()),

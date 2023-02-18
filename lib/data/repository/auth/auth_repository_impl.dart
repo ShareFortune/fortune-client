@@ -1,6 +1,7 @@
 import 'package:fortune_client/data/datasource/local/shared_pref_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/firebase/apple_sign_in_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/firebase/auth_method_interface.dart';
+import 'package:fortune_client/data/datasource/remote/firebase/facebook_sign_in_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/firebase/firebase_auth_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/firebase/google_sign_in_data_source.dart';
 import 'package:fortune_client/data/model/base/app_user/app_user.dart';
@@ -12,17 +13,26 @@ import 'auth_repository.dart';
 class AuthRepositoryImpl implements AuthRepository {
   final SharedPreferencesDataSource _prefs;
   final FirebaseAuthDataSource _firebaseAuthDataSource;
+  final FacebookSignInDataSource _facebookSignInDataSource;
+  final AppleSignInDataSource _appleSignInDataSource;
+  final GoogleSignInDataSource _googleSignInDataSource;
 
-  AuthRepositoryImpl(this._prefs, this._firebaseAuthDataSource);
+  AuthRepositoryImpl(
+    this._prefs,
+    this._firebaseAuthDataSource,
+    this._facebookSignInDataSource,
+    this._appleSignInDataSource,
+    this._googleSignInDataSource,
+  );
 
   AuthMethodInterface get _signInMethod {
     switch (authType()) {
-      case AuthType.twitter:
-        return AppleSignInDataSource.instance;
+      case AuthType.facebook:
+        return _facebookSignInDataSource;
       case AuthType.apple:
-        return AppleSignInDataSource.instance;
+        return _appleSignInDataSource;
       case AuthType.google:
-        return GoogleSignInDataSource.instance;
+        return _googleSignInDataSource;
     }
   }
 
@@ -60,12 +70,12 @@ class AuthRepositoryImpl implements AuthRepository {
   /// 各種SNSでログイン
   Future<AppUser?> _loginWithSns(AuthType type) async {
     switch (type) {
-      case AuthType.twitter:
-        return null;
+      case AuthType.facebook:
+        return _facebookSignInDataSource.login();
       case AuthType.apple:
-        return AppleSignInDataSource.instance.login();
+        return _appleSignInDataSource.login();
       case AuthType.google:
-        return GoogleSignInDataSource.instance.login();
+        return _googleSignInDataSource.login();
     }
   }
 

@@ -59,9 +59,9 @@ class LoginPage extends HookConsumerWidget {
                   ),
                   const Gap(30),
                   AuthButton(
-                    authType: AuthType.twitter,
+                    authType: AuthType.facebook,
                     onTap: () async {
-                      await viewModel.onTapLoginBtn(AuthType.twitter);
+                      await viewModel.onTapLoginBtn(AuthType.facebook);
                     },
                   ),
                 ],

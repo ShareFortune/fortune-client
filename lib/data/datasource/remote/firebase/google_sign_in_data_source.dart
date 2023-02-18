@@ -9,9 +9,6 @@ import 'package:fortune_client/util/logger/logger.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class GoogleSignInDataSource implements AuthMethodInterface {
-  static final instance = GoogleSignInDataSource._();
-  GoogleSignInDataSource._();
-
   @override
   Future<AppUser?> getLoginResult() async {
     try {
