@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:fortune_client/data/model/enum/auth_type.dart';
 import 'package:fortune_client/gen/assets.gen.dart';
@@ -18,11 +19,11 @@ extension AuthTypeEx on AuthType {
   String get text {
     switch (this) {
       case AuthType.apple:
-        return LocaleKeys.loginPage_login_apple.trim();
+        return LocaleKeys.loginPage_login_apple.tr();
       case AuthType.google:
-        return LocaleKeys.loginPage_login_google.trim();
+        return LocaleKeys.loginPage_login_google.tr();
       case AuthType.twitter:
-        return LocaleKeys.loginPage_login_twitter.trim();
+        return LocaleKeys.loginPage_login_twitter.tr();
     }
   }
 

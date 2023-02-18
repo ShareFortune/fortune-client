@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:fortune_client/data/datasource/remote/firebase/authentication_interface.dart';
+import 'package:fortune_client/data/datasource/remote/firebase/apple_sign_in_data_source.dart';
+import 'package:fortune_client/data/datasource/remote/firebase/firebase_auth_data_source.dart';
+import 'package:fortune_client/data/model/base/app_user/app_user.dart';
+import 'package:fortune_client/data/model/enum/auth_type.dart';
 
 import 'auth_repository.dart';
 
@@ -14,14 +16,7 @@ class AuthRepositoryImpl implements AuthRepository {
   String get firebaseId => _user!.uid;
 
   @override
-  bool get isLogin {
-    Fluttertoast.showToast(
-      gravity: ToastGravity.CENTER,
-      msg: "ログインユーザー: ${_user?.email}",
-    );
-    final result = _user != null;
-    return result;
-  }
+  bool get isLogin => _user != null;
 
   @override
   Future<String> idToken() => _user!.getIdToken();
@@ -55,6 +50,18 @@ class AuthRepositoryImpl implements AuthRepository {
       await _dataSource.sigInWithGoogle();
     } catch (e) {
       rethrow;
+    }
+  }
+
+  @override
+  Future<AppUser?> signIn(AuthType type) {
+    switch (type) {
+      case AuthType.twitter:
+        return AppleSignInDataSource().login();
+      case AuthType.apple:
+        return AppleSignInDataSource().login();
+      case AuthType.google:
+        return AppleSignInDataSource().login();
     }
   }
 }

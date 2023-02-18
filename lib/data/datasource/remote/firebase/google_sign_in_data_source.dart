@@ -1,14 +1,16 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
-import 'package:fortune_client/data/datasource/remote/firebase/authentication_interface.dart';
+import 'package:fortune_client/data/datasource/remote/firebase/auth_method_interface.dart';
 import 'package:fortune_client/data/model/base/app_user/app_user.dart';
 import 'package:fortune_client/data/model/enum/auth_type.dart';
 import 'package:fortune_client/util/logger/logger.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
-class GoogleAuthentication implements AuthenticationInterface {
-  static final instance = GoogleAuthentication._();
-  GoogleAuthentication._();
+class GoogleSignInDataSource implements AuthMethodInterface {
+  static final instance = GoogleSignInDataSource._();
+  GoogleSignInDataSource._();
 
+  @override
   Future<GoogleLoginResult?> getLoginResult() async {
     try {
       final account = await GoogleSignIn().signIn();
@@ -32,24 +34,42 @@ class GoogleAuthentication implements AuthenticationInterface {
   @override
   Future<AppUser?> login() async {
     try {
+      /// Googleにサインイン
       final GoogleSignInAccount? loginResult = await GoogleSignIn().signIn();
+
+      /// SignInできなかったらnullを返す
       if (loginResult == null) return null;
 
+      /// Credentialの生成
       final authentication = await loginResult.authentication;
-      logger.i('authentication idToken : ${authentication.idToken}');
-
-      return AppUser(
-        type: AuthType.google,
-        openId: loginResult.id,
-        nickName: loginResult.displayName,
-        email: loginResult.email,
-        pictureUrl: loginResult.photoUrl,
+      final credential = GoogleAuthProvider.credential(
+        accessToken: authentication.accessToken,
         idToken: authentication.idToken,
       );
+
+      /// Firebaseにサインイン
+      await FirebaseAuth.instance.signInWithCredential(credential);
+
+      /// サインインユーザー情報の生成
+      return _generateAppUser(loginResult, authentication);
     } on PlatformException catch (e) {
       logger.e(e.toString());
       rethrow;
     }
+  }
+
+  AppUser _generateAppUser(
+    GoogleSignInAccount loginResult,
+    GoogleSignInAuthentication authentication,
+  ) {
+    return AppUser(
+      type: AuthType.google,
+      openId: loginResult.id,
+      nickName: loginResult.displayName,
+      email: loginResult.email,
+      pictureUrl: loginResult.photoUrl,
+      idToken: authentication.idToken,
+    );
   }
 
   @override
@@ -58,6 +78,8 @@ class GoogleAuthentication implements AuthenticationInterface {
       final googleSignIn = GoogleSignIn();
       if (await googleSignIn.isSignedIn()) {
         await googleSignIn.disconnect();
+        await FirebaseAuth.instance.signOut();
+        logger.i("ログアウトしました。");
       }
     } on PlatformException catch (e) {
       logger.e(e.toString());

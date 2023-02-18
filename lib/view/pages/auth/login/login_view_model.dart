@@ -30,10 +30,6 @@ class LoginViewModel extends StateNotifier<AsyncValue<void>> {
   }
 
   Future<void> onTapLoginBtn(AuthType type) async {
-    /// DEBUG
-    // if (await _debugRepository.getDummyRoginApi()) {
-    //   return await navigateToHome();
-    // }
     final result = await loginWithSns(type);
     if (result && _authRepository.isLogin) {
       await navigateToHome();
@@ -46,7 +42,9 @@ class LoginViewModel extends StateNotifier<AsyncValue<void>> {
     state = await AsyncValue.guard(() async {
       switch (type) {
         case AuthType.apple:
-          return await _authRepository.signInWithApple();
+          final user = await _authRepository.signIn(AuthType.apple);
+          print(user);
+          return;
         case AuthType.google:
           return await _authRepository.signInWithGoogle();
         case AuthType.twitter:
