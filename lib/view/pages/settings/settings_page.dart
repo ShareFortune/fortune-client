@@ -1,5 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:fortune_client/data/datasource/remote/firebase/apple_sign_in_data_source.dart';
+import 'package:fortune_client/data/datasource/remote/firebase/google_sign_in_data_source.dart';
+import 'package:fortune_client/data/repository/auth/auth_repository.dart';
+import 'package:fortune_client/data/repository/auth/auth_repository_impl.dart';
 import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/l10n/locale_keys.g.dart';
 import 'package:fortune_client/view/routes/app_router.gr.dart';
@@ -61,6 +65,9 @@ class SettingsPage extends HookConsumerWidget {
                 _settingsRow(
                   theme,
                   LocaleKeys.settings_page_help_logout.tr(),
+                  callback: () {
+                    AppleSignInDataSource.instance.logout();
+                  },
                 ),
 
                 /// 退会
@@ -117,23 +124,28 @@ class SettingsPage extends HookConsumerWidget {
     );
   }
 
-  Widget _settingsRow(AppTheme theme, String title) {
-    return Container(
-      padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
-      decoration: const BoxDecoration(
-        color: Colors.white,
-        border: Border(bottom: BorderSide(color: Color(0xFFF3F3F3), width: 1)),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(title, style: theme.textTheme.h30),
-          const Icon(
-            size: 16,
-            Icons.arrow_forward_ios,
-            color: Color(0xFF969696),
+  Widget _settingsRow(AppTheme theme, String title, {VoidCallback? callback}) {
+    return InkWell(
+      onTap: callback,
+      child: Container(
+        padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+        decoration: const BoxDecoration(
+          color: Colors.white,
+          border: Border(
+            bottom: BorderSide(color: Color(0xFFF3F3F3), width: 1),
           ),
-        ],
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(title, style: theme.textTheme.h30),
+            const Icon(
+              size: 16,
+              Icons.arrow_forward_ios,
+              color: Color(0xFF969696),
+            ),
+          ],
+        ),
       ),
     );
   }

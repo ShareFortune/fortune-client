@@ -68,6 +68,9 @@ PODS:
     - Mantle
     - SDWebImage
     - SDWebImageWebPCoder
+  - flutter_line_sdk (2.3.1):
+    - Flutter
+    - LineSDKSwift (~> 5.3)
   - fluttertoast (0.0.2):
     - Flutter
     - Toast
@@ -108,6 +111,9 @@ PODS:
   - libwebp/mux (1.2.4):
     - libwebp/demux
   - libwebp/webp (1.2.4)
+  - LineSDKSwift (5.9.0):
+    - LineSDKSwift/Core (= 5.9.0)
+  - LineSDKSwift/Core (5.9.0)
   - Mantle (2.2.0):
     - Mantle/extobjc (= 2.2.0)
   - Mantle/extobjc (2.2.0)
@@ -130,6 +136,8 @@ PODS:
   - shared_preferences_foundation (0.0.1):
     - Flutter
     - FlutterMacOS
+  - sign_in_with_apple (0.0.1):
+    - Flutter
   - speech_bubble (0.0.1):
     - Flutter
   - SwiftyGif (5.4.4)
@@ -143,6 +151,7 @@ DEPENDENCIES:
   - firebase_core (from `.symlinks/plugins/firebase_core/ios`)
   - Flutter (from `Flutter`)
   - flutter_image_compress (from `.symlinks/plugins/flutter_image_compress/ios`)
+  - flutter_line_sdk (from `.symlinks/plugins/flutter_line_sdk/ios`)
   - fluttertoast (from `.symlinks/plugins/fluttertoast/ios`)
   - google_sign_in_ios (from `.symlinks/plugins/google_sign_in_ios/ios`)
   - image_picker_ios (from `.symlinks/plugins/image_picker_ios/ios`)
@@ -151,6 +160,7 @@ DEPENDENCIES:
   - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/ios`)
   - permission_handler_apple (from `.symlinks/plugins/permission_handler_apple/ios`)
   - shared_preferences_foundation (from `.symlinks/plugins/shared_preferences_foundation/ios`)
+  - sign_in_with_apple (from `.symlinks/plugins/sign_in_with_apple/ios`)
   - speech_bubble (from `.symlinks/plugins/speech_bubble/ios`)
   - url_launcher_ios (from `.symlinks/plugins/url_launcher_ios/ios`)
 
@@ -168,6 +178,7 @@ SPEC REPOS:
     - GTMAppAuth
     - GTMSessionFetcher
     - libwebp
+    - LineSDKSwift
     - Mantle
     - PromisesObjC
     - SDWebImage
@@ -186,6 +197,8 @@ EXTERNAL SOURCES:
     :path: Flutter
   flutter_image_compress:
     :path: ".symlinks/plugins/flutter_image_compress/ios"
+  flutter_line_sdk:
+    :path: ".symlinks/plugins/flutter_line_sdk/ios"
   fluttertoast:
     :path: ".symlinks/plugins/fluttertoast/ios"
   google_sign_in_ios:
@@ -202,6 +215,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/permission_handler_apple/ios"
   shared_preferences_foundation:
     :path: ".symlinks/plugins/shared_preferences_foundation/ios"
+  sign_in_with_apple:
+    :path: ".symlinks/plugins/sign_in_with_apple/ios"
   speech_bubble:
     :path: ".symlinks/plugins/speech_bubble/ios"
   url_launcher_ios:
@@ -220,6 +235,7 @@ SPEC CHECKSUMS:
   FirebaseCoreInternal: e463f41bb935cd049505bf7e9a5bdd7dcea90df6
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
   flutter_image_compress: 5a5e9aee05b6553048b8df1c3bc456d0afaac433
+  flutter_line_sdk: a86e7072a47b7fe0e251c11354c5b7dd04d9947b
   fluttertoast: eb263d302cc92e04176c053d2385237e9f43fad0
   google_sign_in_ios: 4f85eb9f937450765c8573bb85fd8cd6a5af675c
   GoogleSignIn: 5651ce3a61e56ca864160e79b484cd9ed3f49b7a
@@ -228,6 +244,7 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: 3a63d75eecd6aa32c2fc79f578064e1214dfdec2
   image_picker_ios: b786a5dcf033a8336a657191401bfdf12017dabb
   libwebp: f62cb61d0a484ba548448a4bd52aabf150ff6eef
+  LineSDKSwift: 97d6306ca17ae41520f29eb5dff4077dd81f08b2
   Mantle: c5aa8794a29a022dfbbfc9799af95f477a69b62d
   open_filex: 6e26e659846ec990262224a12ef1c528bb4edbe4
   package_info_plus: 6c92f08e1f853dc01228d6f553146438dafcd14e
@@ -237,6 +254,7 @@ SPEC CHECKSUMS:
   SDWebImage: 8ab87d4b3e5cc4927bd47f78db6ceb0b94442577
   SDWebImageWebPCoder: 4851414d9f8894e328e8b97c93ea4f4f4e4418ae
   shared_preferences_foundation: 297b3ebca31b34ec92be11acd7fb0ba932c822ca
+  sign_in_with_apple: f3bf75217ea4c2c8b91823f225d70230119b8440
   speech_bubble: 51ae0c27684a0d858d4283cafd66591337a851c2
   SwiftyGif: 93a1cc87bf3a51916001cf8f3d63835fb64c819f
   Toast: 91b396c56ee72a5790816f40d3a94dd357abc196
