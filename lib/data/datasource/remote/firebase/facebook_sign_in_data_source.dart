@@ -19,7 +19,7 @@ class FacebookSignInDataSource implements AuthMethodInterface {
         loginResult.accessToken!.token,
       );
     } on Exception catch (e) {
-      logger.d(e);
+      logger.e(e);
       rethrow;
     }
   }
