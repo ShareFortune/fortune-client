@@ -10,6 +10,8 @@ abstract class FirebaseAuthDataSource {
   /// Token
   Future<String> idToken();
 
+  Future<UserCredential> login(OAuthCredential credential);
+
   /// ログアウト
   Future<void> logout();
 }

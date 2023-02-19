@@ -53,6 +53,8 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	
+	<!-- Google -->
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -64,5 +66,35 @@
 			</array>
 		</dict>
 	</array>
+	<!-- /Google -->
+
+	<!-- Facebook -->
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>fb1126326644713787</string>
+			</array>
+		</dict>
+	</array>
+
+	<key>FacebookAppID</key>
+	<string>1126326644713787</string>
+
+	<key>FacebookClientToken</key>
+	<string>998fe899f8565f8476bb5cea12c49ac7</string>
+	
+	<key>FacebookDisplayName</key>
+	<string>fortune</string>
+
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>fbapi</string>
+		<string>fb-messenger-share-api</string>
+	</array>
+	<!-- /Facebook -->
+
 </dict>
 </plist>
+

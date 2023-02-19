@@ -14,5 +14,10 @@ class FirebaseAuthDataSourceImpl implements FirebaseAuthDataSource {
   Future<String> idToken() => user!.getIdToken();
 
   @override
+  Future<UserCredential> login(AuthCredential credential) {
+    return FirebaseAuth.instance.signInWithCredential(credential);
+  }
+
+  @override
   logout() => FirebaseAuth.instance.signOut();
 }

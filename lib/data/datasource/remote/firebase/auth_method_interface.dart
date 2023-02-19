@@ -1,11 +1,8 @@
-import 'package:fortune_client/data/model/base/app_user/app_user.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 abstract class AuthMethodInterface {
-  /// ログイン結果を取得
-  Future<AppUser?> getLoginResult();
-
   /// ログイン
-  Future<AppUser?> login();
+  Future<OAuthCredential?> login();
 
   /// ログアウト
   Future<void> logout();

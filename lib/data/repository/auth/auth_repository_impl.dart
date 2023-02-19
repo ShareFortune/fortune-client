@@ -1,10 +1,12 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fortune_client/data/datasource/local/shared_pref_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/firebase/apple_sign_in_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/firebase/auth_method_interface.dart';
+import 'package:fortune_client/data/datasource/remote/firebase/facebook_sign_in_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/firebase/firebase_auth_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/firebase/google_sign_in_data_source.dart';
-import 'package:fortune_client/data/model/base/app_user/app_user.dart';
 import 'package:fortune_client/data/model/enum/auth_type.dart';
+import 'package:fortune_client/util/logger/logger.dart';
 import 'package:fortune_client/util/storage/app_pref_key.dart';
 
 import 'auth_repository.dart';
@@ -12,17 +14,26 @@ import 'auth_repository.dart';
 class AuthRepositoryImpl implements AuthRepository {
   final SharedPreferencesDataSource _prefs;
   final FirebaseAuthDataSource _firebaseAuthDataSource;
+  final FacebookSignInDataSource _facebookSignInDataSource;
+  final AppleSignInDataSource _appleSignInDataSource;
+  final GoogleSignInDataSource _googleSignInDataSource;
 
-  AuthRepositoryImpl(this._prefs, this._firebaseAuthDataSource);
+  AuthRepositoryImpl(
+    this._prefs,
+    this._firebaseAuthDataSource,
+    this._facebookSignInDataSource,
+    this._appleSignInDataSource,
+    this._googleSignInDataSource,
+  );
 
   AuthMethodInterface get _signInMethod {
     switch (authType()) {
-      case AuthType.twitter:
-        return AppleSignInDataSource.instance;
+      case AuthType.facebook:
+        return _facebookSignInDataSource;
       case AuthType.apple:
-        return AppleSignInDataSource.instance;
+        return _appleSignInDataSource;
       case AuthType.google:
-        return GoogleSignInDataSource.instance;
+        return _googleSignInDataSource;
     }
   }
 
@@ -42,33 +53,43 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<String> idToken() => _firebaseAuthDataSource.idToken();
 
   @override
-  Future<AppUser?> getLoginResult() => _signInMethod.getLoginResult();
+  Future<UserCredential?> login(AuthType type) async {
+    try {
+      /// 各種SNSの認証情報取得
+      final credential = await _loginWithSns(type);
+      if (credential == null) return null;
 
-  @override
-  Future<AppUser?> login(AuthType type) async {
-    /// ログイン
-    final appUser = await _loginWithSns(type);
-
-    /// 認証タイプを保存
-    if (appUser != null) {
+      /// 認証タイプを保存
       _prefs.setString(AppPrefKey.authType.keyString, type.name);
-    }
 
-    return appUser;
+      /// Firebaseにログイン
+      return _firebaseAuthDataSource.login(credential);
+    } catch (e) {
+      logger.e(e);
+      rethrow;
+    }
   }
 
   /// 各種SNSでログイン
-  Future<AppUser?> _loginWithSns(AuthType type) async {
+  Future<OAuthCredential?> _loginWithSns(AuthType type) async {
     switch (type) {
-      case AuthType.twitter:
-        return null;
+      case AuthType.facebook:
+        return _facebookSignInDataSource.login();
       case AuthType.apple:
-        return AppleSignInDataSource.instance.login();
+        return _appleSignInDataSource.login();
       case AuthType.google:
-        return GoogleSignInDataSource.instance.login();
+        return _googleSignInDataSource.login();
     }
   }
 
   @override
-  Future<void> logout() => _signInMethod.logout();
+  Future<void> logout() async {
+    try {
+      await _signInMethod.logout();
+      await _firebaseAuthDataSource.logout();
+    } catch (e) {
+      logger.e(e);
+      rethrow;
+    }
+  }
 }
