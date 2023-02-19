@@ -1,54 +1,65 @@
-import 'package:fortune_client/data/datasource/remote/go/message_rooms/message_rooms_data_source.dart';
-import 'package:fortune_client/data/model/base/message_room/messege_room.dart';
+import 'dart:io';
+
+import 'package:fortune_client/data/datasource/remote/go/message_images/message_images_data_source.dart';
+import 'package:fortune_client/data/datasource/remote/go/messages/messages_data_source.dart';
+import 'package:fortune_client/data/model/core/base/message/message.dart';
+import 'package:fortune_client/data/model/message_images/post_v1_message_rooms_id_message_images/post_v1_message_rooms_id_message_images.dart';
+import 'package:fortune_client/data/model/messages/post_v1_message_rooms_id_messages/post_v1_message_rooms_id_messages.dart';
 import 'package:fortune_client/data/repository/message/message_repository.dart';
+import 'package:fortune_client/util/converter/image_converter.dart';
+import 'package:fortune_client/util/logger/logger.dart';
 
-class MessageRepositoryImpl implements MessageRepository {
-  MessageRepositoryImpl(this._dataSource);
+class MessagesRepositoryImpl implements MessagesRepository {
+  MessagesRepositoryImpl(
+    this._messagesDataSource,
+    this._messageImagesDataSource,
+  );
 
-  final MessageRoomsDataSource _dataSource;
+  final MessagesDataSource _messagesDataSource;
+  final MessageImagesDataSource _messageImagesDataSource;
 
   @override
-  Future<String> create() {
-    throw UnimplementedError();
+  Future<void> sendMessage({
+    required String messageRoomId,
+    required String text,
+  }) async {
+    try {
+      await _messagesDataSource.send(
+        messageRoomId,
+        PostV1MessageRoomsIdMessagesRequest(text).toJson(),
+      );
+    } catch (e) {
+      logger.e(e);
+      rethrow;
+    }
   }
 
   @override
-  Future<String> update() {
-    throw UnimplementedError();
+  Future<void> sendImage({
+    required String messageRoomId,
+    required File file,
+  }) async {
+    try {
+      await _messageImagesDataSource.send(
+        messageRoomId,
+        PostV1MessageRoomsIdMessageImagesRequest(
+          await ImageConverter.toBase64(file),
+        ).toJson(),
+      );
+    } catch (e) {
+      logger.e(e);
+      rethrow;
+    }
   }
 
   @override
-  Future<List<MessageRoom>> fetchHost() async {
-    final datas = [
-      const MessageRoom(
-        id: "id",
-        roomName: "渋谷で飲み会しませんか？",
-        lastSendAt: "2022-09-20",
-        lastSendMessage: "最後に送信したメッセージ",
-        hostMainImageURL: "hostMainImageURL",
-        participantMainImageURLs: ["", ""],
-        unreadCount: 3,
-      ),
-      const MessageRoom(
-        id: "id",
-        roomName: "サッカー",
-        lastSendAt: "2022-09-20",
-        lastSendMessage: "最後に送信したメッセージ",
-        hostMainImageURL: "hostMainImageURL",
-        participantMainImageURLs: ["", ""],
-        unreadCount: 3,
-      ),
-      const MessageRoom(
-        id: "id",
-        roomName: "テスト",
-        lastSendAt: "2022-09-20",
-        lastSendMessage: "最後に送信したメッセージ",
-        hostMainImageURL: "hostMainImageURL",
-        participantMainImageURLs: ["", ""],
-        unreadCount: 3,
-      ),
-    ];
-
-    return datas;
+  Future<List<Message>> getMessages(String messageRoomId) async {
+    try {
+      final result = await _messagesDataSource.get(messageRoomId);
+      return result.data;
+    } catch (e) {
+      logger.e(e);
+      rethrow;
+    }
   }
 }

@@ -1,8 +1,6 @@
-import 'dart:io';
-
 import 'package:easy_localization/easy_localization.dart';
-import 'package:fortune_client/data/model/base/tag/tag.dart';
-import 'package:fortune_client/data/repository/profile/profile_repository.dart';
+import 'package:fortune_client/data/model/core/base/tag/tag.dart';
+import 'package:fortune_client/data/repository/repository.dart';
 import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/l10n/locale_keys.g.dart';
 import 'package:fortune_client/view/pages/my_page/my_page/my_page_state.dart';
@@ -11,30 +9,27 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final myPageViewModelProvider =
     StateNotifierProvider<MyPageViewModel, MyPageState>((_) {
-  return MyPageViewModel(sl())..initialize();
+  return MyPageViewModel(
+    const MyPageState(profile: AsyncLoading()),
+  )..initialize();
 });
 
 class MyPageViewModel extends StateNotifier<MyPageState> {
-  MyPageViewModel(this._repository)
-      : super(const MyPageState(
-          profile: AsyncLoading(),
-        ));
-
-  final ProfileRepository _repository;
+  MyPageViewModel(super.state);
 
   Future<void> initialize() async => await fetch();
 
   Future fetch() async {
     state = state.copyWith(
       profile: await AsyncValue.guard(() async {
-        return await _repository.get();
+        return await Repository.profile.get();
       }),
     );
   }
 
   /// 設定ページへ
   navigateToSettingPage() {
-    sl<AppRouter>().push(const SettingsRoute());
+    getIt<AppRouter>().push(const SettingsRoute());
   }
 
   /// 自己紹介を編集
@@ -43,7 +38,7 @@ class MyPageViewModel extends StateNotifier<MyPageState> {
     if (data == null) return;
 
     /// 自己紹介取得
-    final result = await sl<AppRouter>().push(
+    final result = await getIt<AppRouter>().push(
       EntryDescriptionRoute(
         title: LocaleKeys.myPage_profiles_selfIntroduction_editTitle.tr(),
         value: data.selfIntroduction,
@@ -52,7 +47,9 @@ class MyPageViewModel extends StateNotifier<MyPageState> {
 
     /// 更新
     if (result != null) {
-      _repository.updateSelfIntroduction(result).whenComplete(() => fetch());
+      Repository.profile
+          .updateSelfIntroduction(result)
+          .whenComplete(() => fetch());
     }
   }
 
@@ -62,25 +59,25 @@ class MyPageViewModel extends StateNotifier<MyPageState> {
     if (data == null) return;
 
     /// タグ取得
-    final result = await sl<AppRouter>().push(
+    final result = await getIt<AppRouter>().push(
       SelectTagsRoute(beingSet: data.tags ?? List.empty()),
     ) as List<Tag>?;
 
     /// 更新
     if (result != null) {
-      _repository.updateTags(result).whenComplete(() => fetch());
+      Repository.profile.updateTags(result).whenComplete(() => fetch());
     }
   }
 
   /// 基本情報を編集
   navigateToUpdateBasic() async {
-    sl<AppRouter>()
+    getIt<AppRouter>()
         .push(const ProfileUpdateRoute())
         .whenComplete(() => fetch());
   }
 
   navigateToEditProfilePicture() async {
-    sl<AppRouter>().push(
+    getIt<AppRouter>().push(
       const BottomSheetRouter(children: [EditProfilePicture()]),
     );
   }

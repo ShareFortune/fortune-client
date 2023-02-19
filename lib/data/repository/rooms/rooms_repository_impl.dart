@@ -1,12 +1,12 @@
 import 'package:fortune_client/data/datasource/remote/go/rooms/rooms_data_source.dart';
-import 'package:fortune_client/data/model/base/address_with_id/address_with_id.dart';
-import 'package:fortune_client/data/model/base/profiles_files/profiles_files.dart';
-import 'package:fortune_client/data/model/base/room/room.dart';
-import 'package:fortune_client/data/model/base/tag/tag.dart';
-import 'package:fortune_client/data/model/enum/age_group.dart';
-import 'package:fortune_client/data/model/enum/cigarette_frequency.dart';
-import 'package:fortune_client/data/model/enum/drink_frequency.dart';
-import 'package:fortune_client/data/model/enum/gender.dart';
+import 'package:fortune_client/data/model/core/base/address_with_id/address_with_id.dart';
+import 'package:fortune_client/data/model/core/base/profiles_files/profiles_files.dart';
+import 'package:fortune_client/data/model/core/base/room/room.dart';
+import 'package:fortune_client/data/model/core/base/tag/tag.dart';
+import 'package:fortune_client/data/model/core/enum/age_group.dart';
+import 'package:fortune_client/data/model/core/enum/cigarette_frequency.dart';
+import 'package:fortune_client/data/model/core/enum/drink_frequency.dart';
+import 'package:fortune_client/data/model/core/enum/gender.dart';
 import 'package:fortune_client/data/model/rooms/get_v1_rooms/get_v1_rooms.dart';
 import 'package:fortune_client/data/model/rooms/get_v1_rooms_guest/get_v1_rooms_guest.dart';
 import 'package:fortune_client/data/model/rooms/get_v1_rooms_host/get_v1_rooms_host.dart';
@@ -38,7 +38,7 @@ class RoomsRepositoryImpl implements RoomsRepository {
           ageGroup: ageGroup,
           addressId: addressWithId.id,
           explanation: explanation,
-          applicationDeadline: DateTimeConverter.convertDateTimeYYYYMMDD(
+          applicationDeadline: DateTimeConverter.toYYYYMMDD(
             DateTime.now(),
             delimiter: "-",
           ),

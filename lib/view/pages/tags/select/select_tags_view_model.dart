@@ -1,5 +1,5 @@
-import 'package:fortune_client/data/model/base/tag/tag.dart';
-import 'package:fortune_client/data/repository/tags/tags_repository.dart';
+import 'package:fortune_client/data/model/core/base/tag/tag.dart';
+import 'package:fortune_client/data/repository/repository.dart';
 import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/view/pages/tags/select/select_tags_state.dart';
 import 'package:fortune_client/view/routes/app_router.gr.dart';
@@ -7,13 +7,11 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final selectTagsViewModelProvider = StateNotifierProvider.autoDispose
     .family<SelectTagsViewModel, SelectTagsState, List<Tag>>(
-  (ref, beingSet) => SelectTagsViewModel(sl())..initialize(beingSet),
+  (ref, beingSet) => SelectTagsViewModel()..initialize(beingSet),
 );
 
 class SelectTagsViewModel extends StateNotifier<SelectTagsState> {
-  SelectTagsViewModel(this._repository) : super(const SelectTagsState());
-
-  final TagsRepository _repository;
+  SelectTagsViewModel() : super(const SelectTagsState());
 
   initialize(List<Tag> beingSet) {
     state = state.copyWith(
@@ -43,7 +41,7 @@ class SelectTagsViewModel extends StateNotifier<SelectTagsState> {
 
   search(String keyword) async {
     final tags = await AsyncValue.guard<List<TagState>>(() async {
-      final result = await _repository.search(keyword);
+      final result = await Repository.tags.search(keyword);
       return result.map((e) => TagState.from(e)).toList();
     });
     state = state.copyWith(searchResult: tags);
@@ -51,20 +49,20 @@ class SelectTagsViewModel extends StateNotifier<SelectTagsState> {
 
   Future<void> getRecommendedTags() async {
     final tags = await AsyncValue.guard<List<TagState>>(() async {
-      final result = await _repository.recommend();
+      final result = await Repository.tags.recommend();
       return result.map((e) => TagState.from(e)).toList();
     });
     state = state.copyWith(recommendation: tags);
   }
 
   saveSetData() {
-    sl<AppRouter>().pop(state.beingSet.isEmpty
+    getIt<AppRouter>().pop(state.beingSet.isEmpty
         ? null
         : state.beingSet.map((e) => e.data).toList());
   }
 
   navigateToTagCreation() async {
-    final tag = await sl<AppRouter>().push(CreateTagRoute()) as Tag?;
+    final tag = await getIt<AppRouter>().push(CreateTagRoute()) as Tag?;
     if (tag != null) {
       state = state.copyWith(
         beingSet: [...state.beingSet, TagState(data: tag, isSelected: true)],

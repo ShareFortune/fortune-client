@@ -10,11 +10,9 @@ dependencies:
   flutter:
     sdk: flutter
   intl: ^0.17.0
-  easy_localization: ^3.0.1
   uuid: ^3.0.6
   mime: ^1.0.2
   open_filex: ^4.1.1
-  google_sign_in: ^5.4.2
   freezed_annotation: ^2.2.0
   flutter_svg: ^2.0.0+1
   google_fonts: ^4.0.3
@@ -38,6 +36,7 @@ dependencies:
   dotted_border: ^2.0.0+3
   fluttertoast: ^8.0.9
   speech_bubble: ^0.0.9
+  badges: ^3.0.2
   modal_bottom_sheet:
     git:
       url: https://github.com/followthemoney1/modal_bottom_sheet.git
@@ -53,6 +52,9 @@ dependencies:
   # state management
   hooks_riverpod: ^2.1.1
 
+  # localization
+  easy_localization: ^3.0.1
+
   # networking
   dio: ^4.0.6
   retrofit: ^3.3.1
@@ -61,6 +63,11 @@ dependencies:
   # firebase
   firebase_auth: ^4.2.1
   firebase_core: ^2.4.0
+
+  # sign in 
+  google_sign_in: ^5.4.2
+  sign_in_with_apple: ^4.3.0
+  flutter_facebook_auth: ^5.0.7
 
   # storage
   shared_preferences: ^2.0.15
@@ -73,6 +80,7 @@ dependencies:
 
   # route
   auto_route: ^5.0.2
+  flutter_line_sdk: ^2.3.1
 
 dev_dependencies:
   flutter_test:

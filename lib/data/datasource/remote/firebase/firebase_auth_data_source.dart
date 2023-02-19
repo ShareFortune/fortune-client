@@ -4,7 +4,14 @@ abstract class FirebaseAuthDataSource {
   /// ログイン中のユーザー
   User? get user;
 
-  logout();
-  update();
-  Future<void> sigInWithGoogle();
+  /// Firebase ID
+  String get firebaseId;
+
+  /// Token
+  Future<String> idToken();
+
+  Future<UserCredential> login(OAuthCredential credential);
+
+  /// ログアウト
+  Future<void> logout();
 }

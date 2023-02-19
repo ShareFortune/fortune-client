@@ -1,4 +1,4 @@
-import 'package:fortune_client/data/model/enum/gender.dart';
+import 'package:fortune_client/data/model/core/enum/gender.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'basic_profile_entry_state.freezed.dart';

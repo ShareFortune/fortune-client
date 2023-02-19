@@ -1,5 +1,4 @@
-import 'package:fortune_client/data/repository/profile/profile_repository.dart';
-import 'package:fortune_client/injector.dart';
+import 'package:fortune_client/data/repository/repository.dart';
 import 'package:fortune_client/view/pages/profile/profile/profile_state.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -10,14 +9,11 @@ final profileViewModelProvider =
       profileId: id,
       profile: const AsyncLoading(),
     ),
-    sl(),
   )..initialize(),
 );
 
 class ProfileViewModel extends StateNotifier<ProfileState> {
-  ProfileViewModel(super.state, this._repository);
-
-  final ProfileRepository _repository;
+  ProfileViewModel(super.state);
 
   Future<void> initialize() => getProfile();
 
@@ -26,10 +22,10 @@ class ProfileViewModel extends StateNotifier<ProfileState> {
       profile: await AsyncValue.guard(() async {
         /// マイプロフィール
         if (state.isMy) {
-          return _repository.getCache();
+          return Repository.profile.getCache();
         }
 
-        return _repository.getCache();
+        return Repository.profile.getCache();
       }),
     );
   }

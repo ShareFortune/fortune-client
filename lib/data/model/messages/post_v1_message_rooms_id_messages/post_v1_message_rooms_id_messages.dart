@@ -8,9 +8,9 @@ part 'post_v1_message_rooms_id_messages.g.dart';
 @freezed
 class PostV1MessageRoomsIdMessagesRequest
     with _$PostV1MessageRoomsIdMessagesRequest {
-  const factory PostV1MessageRoomsIdMessagesRequest({
-    @JsonKey(name: 'text') required String text,
-  }) = _PostV1MessageRoomsIdMessagesRequest;
+  const factory PostV1MessageRoomsIdMessagesRequest(
+    @JsonKey(name: 'text') String text,
+  ) = _PostV1MessageRoomsIdMessagesRequest;
 
   factory PostV1MessageRoomsIdMessagesRequest.fromJson(
           Map<String, dynamic> json) =>

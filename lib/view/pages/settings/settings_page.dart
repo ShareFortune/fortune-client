@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/l10n/locale_keys.g.dart';
+import 'package:fortune_client/view/pages/settings/settings_view_model.dart';
 import 'package:fortune_client/view/routes/app_router.gr.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
@@ -15,6 +16,7 @@ class SettingsPage extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = ref.watch(appThemeProvider);
+    final viewModel = ref.watch(settingsViewModelProvider.notifier);
 
     return Scaffold(
       backgroundColor: const Color(0xFFF2F2F6),
@@ -61,6 +63,7 @@ class SettingsPage extends HookConsumerWidget {
                 _settingsRow(
                   theme,
                   LocaleKeys.settings_page_help_logout.tr(),
+                  callback: () => viewModel.logout(),
                 ),
 
                 /// 退会
@@ -89,7 +92,7 @@ class SettingsPage extends HookConsumerWidget {
               ),
               onPressed: () {},
               onLongPress: () {
-                sl<AppRouter>().push(const DebugRoute());
+                getIt<AppRouter>().push(const DebugRoute());
               },
             ),
             const Gap(100),
@@ -117,23 +120,32 @@ class SettingsPage extends HookConsumerWidget {
     );
   }
 
-  Widget _settingsRow(AppTheme theme, String title) {
-    return Container(
-      padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
-      decoration: const BoxDecoration(
-        color: Colors.white,
-        border: Border(bottom: BorderSide(color: Color(0xFFF3F3F3), width: 1)),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(title, style: theme.textTheme.h30),
-          const Icon(
-            size: 16,
-            Icons.arrow_forward_ios,
-            color: Color(0xFF969696),
+  Widget _settingsRow(
+    AppTheme theme,
+    String title, {
+    VoidCallback? callback,
+  }) {
+    return InkWell(
+      onTap: callback,
+      child: Container(
+        padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+        decoration: const BoxDecoration(
+          color: Colors.white,
+          border: Border(
+            bottom: BorderSide(color: Color(0xFFF3F3F3), width: 1),
           ),
-        ],
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(title, style: theme.textTheme.h30),
+            const Icon(
+              size: 16,
+              Icons.arrow_forward_ios,
+              color: Color(0xFF969696),
+            ),
+          ],
+        ),
       ),
     );
   }

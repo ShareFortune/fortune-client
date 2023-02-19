@@ -1,4 +1,6 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:fortune_client/l10n/locale_keys.g.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:gap/gap.dart';
@@ -11,20 +13,26 @@ class EmptyMessageRoomListView extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = ref.watch(appThemeProvider);
 
-    /// アイコン
-    const iconSize = 80.0;
-    final iconColor = theme.appColors.disable;
-    final iconWidget = Icon(Icons.email, size: iconSize, color: iconColor);
-
-    /// 注釈テキスト
-    final textStyleColor = theme.appColors.subText3;
-    final textStyle = theme.textTheme.h20.paint(textStyleColor);
-    final textWidget = Text("参加中のメッセージルームが存在しません。", style: textStyle);
-
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: [iconWidget, const Gap(30), textWidget],
+        children: [
+          /// アイコン
+          Icon(
+            Icons.email,
+            size: 80.0,
+            color: theme.appColors.disable,
+          ),
+          const Gap(30),
+
+          /// 注釈テキスト
+          Text(
+            LocaleKeys.message_room_list_page_empty.tr(),
+            style: theme.textTheme.h20.paint(
+              theme.appColors.subText3,
+            ),
+          ),
+        ],
       ),
     );
   }

@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:fortune_client/data/repository/profile/profile_repository.dart';
+import 'package:fortune_client/data/repository/repository.dart';
 import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/view/pages/account/create/entry_basic_profile/basic_profile_entry_view_model.dart';
 import 'package:fortune_client/view/pages/account/create/entry_detailed_profile/detailed_profile_entry_view_model.dart';
@@ -12,16 +12,15 @@ import 'package:image_picker/image_picker.dart';
 
 final entryProfileSubImageViewModelProvider = StateNotifierProvider<
     EntryProfileSubImageViewModel, AsyncValue<EntryProfileSubImageState>>(
-  (ref) => EntryProfileSubImageViewModel(ref, sl()),
+  (ref) => EntryProfileSubImageViewModel(ref),
 );
 
 class EntryProfileSubImageViewModel
     extends StateNotifier<AsyncValue<EntryProfileSubImageState>> {
-  EntryProfileSubImageViewModel(this._ref, this.repository)
+  EntryProfileSubImageViewModel(this._ref)
       : super(const AsyncData(EntryProfileSubImageState()));
 
   final Ref _ref;
-  final ProfileRepository repository;
 
   Future<void> pickImageFirst() async {
     final data = state.value;
@@ -65,7 +64,7 @@ class EntryProfileSubImageViewModel
     final detail = _ref.read(detailedProfileEntryViewModelProvider);
     final icon = _ref.read(profileIconImageEntryViewModelProvider);
 
-    return await repository.create(
+    return await Repository.profile.create(
       mainImage: icon.imageFile!,
       secondImage: data.firstImageFile,
       thirdImage: data.secondImageFile,
@@ -91,6 +90,6 @@ class EntryProfileSubImageViewModel
   }
 
   navigateToHome() async {
-    await sl<AppRouter>().push(const HomeRouter());
+    await getIt<AppRouter>().push(const HomeRouter());
   }
 }

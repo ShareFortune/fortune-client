@@ -63,7 +63,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '688355271453',
     projectId: 'sharefortune-cde7a',
     storageBucket: 'sharefortune-cde7a.appspot.com',
-    iosClientId: '688355271453-78nl88t147rjnn9bftjpip6q99g869ok.apps.googleusercontent.com',
+    iosClientId:
+        '688355271453-78nl88t147rjnn9bftjpip6q99g869ok.apps.googleusercontent.com',
     iosBundleId: 'com.ShareFortune.fortune',
   );
 }

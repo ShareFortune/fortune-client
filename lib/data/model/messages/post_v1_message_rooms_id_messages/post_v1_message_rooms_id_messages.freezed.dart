@@ -95,7 +95,7 @@ class __$$_PostV1MessageRoomsIdMessagesRequestCopyWithImpl<$Res>
     Object? text = null,
   }) {
     return _then(_$_PostV1MessageRoomsIdMessagesRequest(
-      text: null == text
+      null == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
               as String,
@@ -108,7 +108,7 @@ class __$$_PostV1MessageRoomsIdMessagesRequestCopyWithImpl<$Res>
 class _$_PostV1MessageRoomsIdMessagesRequest
     implements _PostV1MessageRoomsIdMessagesRequest {
   const _$_PostV1MessageRoomsIdMessagesRequest(
-      {@JsonKey(name: 'text') required this.text});
+      @JsonKey(name: 'text') this.text);
 
   factory _$_PostV1MessageRoomsIdMessagesRequest.fromJson(
           Map<String, dynamic> json) =>
@@ -154,7 +154,7 @@ class _$_PostV1MessageRoomsIdMessagesRequest
 abstract class _PostV1MessageRoomsIdMessagesRequest
     implements PostV1MessageRoomsIdMessagesRequest {
   const factory _PostV1MessageRoomsIdMessagesRequest(
-          {@JsonKey(name: 'text') required final String text}) =
+          @JsonKey(name: 'text') final String text) =
       _$_PostV1MessageRoomsIdMessagesRequest;
 
   factory _PostV1MessageRoomsIdMessagesRequest.fromJson(

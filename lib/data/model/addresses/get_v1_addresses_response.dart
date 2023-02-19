@@ -1,6 +1,6 @@
 // ignore_for_file: invalid_annotation_target
 
-import 'package:fortune_client/data/model/base/address_with_id/address_with_id.dart';
+import 'package:fortune_client/data/model/core/base/address_with_id/address_with_id.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'get_v1_addresses_response.freezed.dart';

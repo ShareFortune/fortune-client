@@ -2,7 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/l10n/locale_keys.g.dart';
-import 'package:fortune_client/data/model/enum/profile_images_type.dart';
+import 'package:fortune_client/data/model/core/enum/profile_images_type.dart';
 import 'package:fortune_client/view/pages/my_page/edit_profile_images/components/edit_image_container.dart';
 import 'package:fortune_client/view/pages/my_page/edit_profile_images/components/edit_image_controller.dart';
 import 'package:fortune_client/view/pages/my_page/edit_profile_images/edit_profile_images_state.dart';
@@ -30,7 +30,7 @@ class EditProfileImagesPage extends HookConsumerWidget {
       appBar: BackAppBar(
         title: LocaleKeys.edit_profile_picture_page_title.tr(),
         leading: IconButton(
-          onPressed: sl<AppRouter>().pop,
+          onPressed: getIt<AppRouter>().pop,
           icon: const Icon(Icons.close),
         ),
         action: [
@@ -156,6 +156,9 @@ class EditProfileImagesPage extends HookConsumerWidget {
           data: (data) {
             const spacing = 15.0;
 
+            /// Padding分を引く
+            final width = (MediaQuery.of(context).size.width - 40);
+
             return Container(
               alignment: Alignment.center,
               child: Wrap(
@@ -165,7 +168,7 @@ class EditProfileImagesPage extends HookConsumerWidget {
                   return EditImageContainer(
                     theme: theme,
                     data: data.image(imageType),
-                    sideLength: MediaQuery.of(context).size.width - spacing * 3,
+                    sideLength: (width - (spacing * 3)) / 3,
                     onChange: (file) async {
                       viewModel.updateImage(imageType, file);
                     },

@@ -5,17 +5,17 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final entryDescriptionViewModelProvider =
     StateNotifierProvider<EntryDescriptionViewModel, EntryDescriptionState>(
-  (ref) => EntryDescriptionViewModel(),
+  (ref) => EntryDescriptionViewModel(const EntryDescriptionState()),
 );
 
 class EntryDescriptionViewModel extends StateNotifier<EntryDescriptionState> {
-  EntryDescriptionViewModel() : super(const EntryDescriptionState());
+  EntryDescriptionViewModel(super.state);
 
   changeDescription(String value) {
     state = state.copyWith(description: value);
   }
 
   save() {
-    sl<AppRouter>().pop(state.description);
+    getIt<AppRouter>().pop(state.description);
   }
 }

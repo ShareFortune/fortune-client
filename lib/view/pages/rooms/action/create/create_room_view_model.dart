@@ -1,7 +1,7 @@
-import 'package:fortune_client/data/model/base/address_with_id/address_with_id.dart';
-import 'package:fortune_client/data/model/base/tag/tag.dart';
-import 'package:fortune_client/data/model/enum/age_group.dart';
-import 'package:fortune_client/data/repository/rooms/rooms_repository.dart';
+import 'package:fortune_client/data/model/core/base/address_with_id/address_with_id.dart';
+import 'package:fortune_client/data/model/core/base/tag/tag.dart';
+import 'package:fortune_client/data/model/core/enum/age_group.dart';
+import 'package:fortune_client/data/repository/repository.dart';
 import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/view/pages/rooms/action/create/create_room_state.dart';
 import 'package:fortune_client/view/routes/app_router.gr.dart';
@@ -9,13 +9,11 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final createRoomViewModelProvider =
     StateNotifierProvider<CreateRoomViewModel, CreateRoomState>(
-  (_) => CreateRoomViewModel(sl()),
+  (_) => CreateRoomViewModel(const CreateRoomState()),
 );
 
 class CreateRoomViewModel extends StateNotifier<CreateRoomState> {
-  CreateRoomViewModel(this._roomsRepository) : super(const CreateRoomState());
-
-  final RoomsRepository _roomsRepository;
+  CreateRoomViewModel(super._state);
 
   /// タグ以外はNull非許容
   bool isPossibleToCreate() {
@@ -45,7 +43,7 @@ class CreateRoomViewModel extends StateNotifier<CreateRoomState> {
 
   Future<bool> create() async {
     if (isPossibleToCreate()) {
-      final result = await _roomsRepository.create(
+      final result = await Repository.rooms.create(
         title: state.title!,
         membersNum: state.membersNum!,
         ageGroup: state.ageGroup!,
@@ -61,20 +59,20 @@ class CreateRoomViewModel extends StateNotifier<CreateRoomState> {
   }
 
   navigateToCreatedRoom(String roomId) async {
-    sl<AppRouter>().push(HomeRouter(children: [
+    getIt<AppRouter>().push(HomeRouter(children: [
       RoomsTab(children: [RoomDetailRoute(roomId: roomId)]),
     ]));
   }
 
   navigateToEntryAddress() async {
-    final result = await sl<AppRouter>().push(
+    final result = await getIt<AppRouter>().push(
       EntryAddressRoute(),
     ) as AddressWithId?;
     state = state.copyWith(addressWithId: result ?? state.addressWithId);
   }
 
   navigateToTagsSelection() async {
-    final result = await sl<AppRouter>().push(
+    final result = await getIt<AppRouter>().push(
       SelectTagsRoute(beingSet: state.tags ?? List.empty()),
     ) as List<Tag>?;
     state = state.copyWith(tags: result ?? state.tags);

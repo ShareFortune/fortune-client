@@ -6,7 +6,7 @@ import 'package:flutter_image_compress/flutter_image_compress.dart';
 class ImageConverter {
   /// カメラロールから選択した画像ファイルをBase64に変換
   /// [file] 変換まえの画像ファイル
-  static Future<String> convertToBase64(File file) async {
+  static Future<String> toBase64(File file) async {
     final imageExtension = path.extension(file.path).replaceAll('.', '');
 
     //写真をBase64に変換
@@ -48,13 +48,9 @@ class ImageConverter {
     var result = await FlutterImageCompress.compressAndGetFile(
       file.absolute.path,
       outPath,
-      // minWidth: 80,
-      // minHeight: 80,
-      // quality: 50,
-
-      minWidth: 50,
-      minHeight: 50,
-      quality: 10,
+      minWidth: 80,
+      minHeight: 80,
+      quality: 50,
       format: format,
     );
 

@@ -23,7 +23,8 @@ import 'package:fortune_client/view/pages/profile/profile/profile_page.dart';
 import 'package:fortune_client/view/pages/request/join_requests_confirmation/join_requests_confirmation_page.dart';
 import 'package:fortune_client/view/pages/rooms/action/create/create_room_page.dart';
 import 'package:fortune_client/view/pages/rooms/action/edit/edit_room_page.dart';
-import 'package:fortune_client/view/pages/rooms/participating/participating_room_list_page.dart';
+import 'package:fortune_client/view/pages/rooms/participating/participating_page.dart';
+import 'package:fortune_client/view/pages/rooms/participating_room_list/participating_room_list_page.dart';
 import 'package:fortune_client/view/pages/rooms/room_detail/room_detail_page.dart';
 import 'package:fortune_client/view/pages/rooms/room_list/room_list_page.dart';
 import 'package:fortune_client/view/pages/tags/create/create_tag_page.dart';
@@ -63,14 +64,25 @@ export 'app_router.gr.dart';
           path: RoutePath.participatingRooms,
           page: EmptyRouterPage,
           children: [
-            AutoRoute(path: '', page: ParticipatingRoomListPage),
             AutoRoute(
-                path: RoutePath.roomDetail, page: RoomDetailPage), // ルーム詳細
+              path: '',
+              page: ParticipatingPage,
+            ),
+            AutoRoute(
+              path: RoutePath.roomDetail,
+              page: RoomDetailPage,
+            ), // ルーム詳細
 
             /// 参加リクエスト
             AutoRoute(
-                path: RoutePath.requestConfirmation,
-                page: JoinRequestsConfirmationPage),
+              path: RoutePath.requestConfirmation,
+              page: JoinRequestsConfirmationPage,
+            ),
+
+            AutoRoute(
+              path: RoutePath.participatingroomsAll,
+              page: ParticipatingRoomListPage,
+            ),
           ],
         ),
 

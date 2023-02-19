@@ -1,0 +1,41 @@
+{
+    "messages": [
+        {
+            "fromUser": {
+                "id": "2a4b7ece-0a25-4a81-a024-5ffd7c76dad5",
+                "mainImageURL": "https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg",
+                "name": "テスト"
+            },
+            "id": "3bca12b0-5e5a-468c-9e88-5db92bedd2cd",
+            "messageIamageURL": null,
+            "readCount": 0,
+            "sentAt": "2023-02-13T23:02:01.332501+09:00",
+            "text": "hello"
+        },
+        {
+            "fromUser": {
+                "id": "2a4b7ece-0a25-4a81-a024-5ffd7c76dad5",
+                "mainImageURL": "https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg",
+                "name": "テスト"
+            },
+            "id": "3bca12b0-5e5a-468c-9e88-5db92bedd2cd",
+            "messageIamageURL": null,
+            "readCount": 0,
+            "sentAt": "2023-02-13T23:02:01.332501+09:00",
+            "text": "hello"
+        },
+        {
+            "fromUser": {
+                "id": "2a4b7ece-0a25-4a81-a024-5ffd7c76dad5",
+                "mainImageURL": "https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg",
+                "name": "テスト"
+            },
+            "id": "3bca12b0-5e5a-468c-9e88-5db92bedd2cd",
+            "messageIamageURL": null,
+            "readCount": 0,
+            "sentAt": "2023-02-13T23:02:01.332501+09:00",
+            "text": "hello"
+        }
+    ],
+    "nextToken": "GetV1MessageRoomsIdMessagesResponse"
+}

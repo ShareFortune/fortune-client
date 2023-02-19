@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fortune_client/data/model/base/fortune_user/fortune_user.dart';
+import 'package:fortune_client/data/model/core/base/fortune_user/fortune_user.dart';
 import 'package:fortune_client/gen/assets.gen.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';

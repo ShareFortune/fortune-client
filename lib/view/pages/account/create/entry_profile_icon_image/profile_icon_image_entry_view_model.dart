@@ -8,12 +8,12 @@ import 'package:image_picker/image_picker.dart';
 
 final profileIconImageEntryViewModelProvider = StateNotifierProvider<
     ProfileIconImageEntryViewModel, ProfileIconImageEntryState>(
-  (ref) => ProfileIconImageEntryViewModel(),
+  (ref) => ProfileIconImageEntryViewModel(const ProfileIconImageEntryState()),
 );
 
 class ProfileIconImageEntryViewModel
     extends StateNotifier<ProfileIconImageEntryState> {
-  ProfileIconImageEntryViewModel() : super(const ProfileIconImageEntryState());
+  ProfileIconImageEntryViewModel(super.state);
 
   Future<void> pickImage() async {
     final image = await ImagePicker().pickImage(source: ImageSource.gallery);
@@ -28,6 +28,6 @@ class ProfileIconImageEntryViewModel
   }
 
   navigateToEntryProfileSubImage() async {
-    await sl<AppRouter>().push(const EntryProfileSubImageRoute());
+    await getIt<AppRouter>().push(const EntryProfileSubImageRoute());
   }
 }

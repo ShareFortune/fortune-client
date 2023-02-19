@@ -1,4 +1,4 @@
-import 'package:fortune_client/data/model/base/tag/tag.dart';
+import 'package:fortune_client/data/model/core/base/tag/tag.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 

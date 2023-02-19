@@ -1,8 +1,9 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:fortune_client/data/model/enum/auth_type.dart';
 import 'package:fortune_client/l10n/locale_keys.g.dart';
 import 'package:fortune_client/view/pages/auth/login/components/auth_button.dart';
-import 'package:fortune_client/view/pages/auth/login/login_state.dart';
 import 'package:fortune_client/view/pages/auth/login/login_view_model.dart';
 import 'package:fortune_client/view/widgets/dialog/Info_dialog.dart';
 import 'package:fortune_client/view/widgets/other/error_widget.dart';
@@ -35,7 +36,7 @@ class LoginPage extends HookConsumerWidget {
                       // if (result != null) showDebugDialog(context, result);
                     },
                     child: Text(
-                      LocaleKeys.loginPage_title.trim(),
+                      LocaleKeys.loginPage_title.tr(),
                       style: const TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 32,
@@ -58,9 +59,9 @@ class LoginPage extends HookConsumerWidget {
                   ),
                   const Gap(30),
                   AuthButton(
-                    authType: AuthType.twitter,
+                    authType: AuthType.facebook,
                     onTap: () async {
-                      await viewModel.onTapLoginBtn(AuthType.twitter);
+                      await viewModel.onTapLoginBtn(AuthType.facebook);
                     },
                   ),
                 ],

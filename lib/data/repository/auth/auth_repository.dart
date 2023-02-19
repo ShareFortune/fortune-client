@@ -1,31 +1,21 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fortune_client/data/model/enum/auth_type.dart';
+
 abstract class AuthRepository {
+  /// 認証タイプ
+  AuthType authType();
+
   /// ログイン中かどうか
-  // bool get isLogin;
+  bool get isLogin;
 
   /// Firebase ID
   String get firebaseId;
 
-  bool get isLogin;
-
   /// Token
   Future<String> idToken();
 
-  /// Googleでサインイン
-  Future<void> signInWithGoogle();
-
-  /// Googleでサインイン
-  Future<void> signInWithApple();
-
-  /// Googleでサインイン
-  Future<void> signInWithTwitter();
+  Future<UserCredential?> login(AuthType type);
 
   /// ログアウト
   Future<void> logout();
-
-  /// テスト用機能
-  ///
-  /// 自動ログイン
-  ///
-  /// ダミーログイン API
-
 }

@@ -1,14 +1,27 @@
 import 'package:dio/dio.dart';
-import 'package:fortune_client/data/datasource/core/append_token_interceptor.dart';
+import 'package:fortune_client/data/datasource/core/dio_client.dart';
 import 'package:fortune_client/data/datasource/local/shared_pref_data_source.dart';
 import 'package:fortune_client/data/datasource/local/shared_pref_data_source_impl.dart';
+import 'package:fortune_client/data/datasource/remote/firebase/apple_sign_in_data_source.dart';
+import 'package:fortune_client/data/datasource/remote/firebase/facebook_sign_in_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/firebase/firebase_auth_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/firebase/firebase_auth_data_source_impl.dart';
+import 'package:fortune_client/data/datasource/remote/firebase/google_sign_in_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/go/addresses/addresses_data_source.dart';
+import 'package:fortune_client/data/datasource/remote/go/addresses/fake_addresses_data_source.dart';
+import 'package:fortune_client/data/datasource/remote/go/favorites/fake_favorites_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/go/favorites/favorites_data_source.dart';
+import 'package:fortune_client/data/datasource/remote/go/join_requests/fake_join_requests_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/go/join_requests/join_requests_data_source.dart';
+import 'package:fortune_client/data/datasource/remote/go/message_images/fake_message_images_data_source.dart';
+import 'package:fortune_client/data/datasource/remote/go/message_images/message_images_data_source.dart';
+import 'package:fortune_client/data/datasource/remote/go/message_rooms/fake_message_rooms_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/go/message_rooms/message_rooms_data_source.dart';
+import 'package:fortune_client/data/datasource/remote/go/messages/fake_messages_data_source.dart';
+import 'package:fortune_client/data/datasource/remote/go/messages/messages_data_source.dart';
+import 'package:fortune_client/data/datasource/remote/go/profile/fake_profile_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/go/profile/profile_data_source.dart';
+import 'package:fortune_client/data/datasource/remote/go/rooms/fake_rooms_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/go/rooms/rooms_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/go/tags/tags_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/go/users/users_data_source.dart';
@@ -24,6 +37,8 @@ import 'package:fortune_client/data/repository/join_requests/join_requests_repos
 import 'package:fortune_client/data/repository/join_requests/join_requests_repository_impl.dart';
 import 'package:fortune_client/data/repository/message/message_repository.dart';
 import 'package:fortune_client/data/repository/message/message_repository_impl.dart';
+import 'package:fortune_client/data/repository/message_rooms/message_rooms_repository.dart';
+import 'package:fortune_client/data/repository/message_rooms/message_rooms_repository_impl.dart';
 import 'package:fortune_client/data/repository/profile/profile_repository.dart';
 import 'package:fortune_client/data/repository/profile/profile_repository_impl.dart';
 import 'package:fortune_client/data/repository/rooms/rooms_repository.dart';
@@ -32,118 +47,155 @@ import 'package:fortune_client/data/repository/tags/tags_repository.dart';
 import 'package:fortune_client/data/repository/tags/tags_repository_impl.dart';
 import 'package:fortune_client/data/repository/users/users_repository.dart';
 import 'package:fortune_client/data/repository/users/users_repository_impl.dart';
-import 'package:fortune_client/foundation/constants.dart';
 import 'package:fortune_client/view/routes/app_router.gr.dart';
 import 'package:fortune_client/view/routes/route_guard.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
-final sl = GetIt.instance;
+import 'data/datasource/remote/go/tags/fake_tags_data_source.dart';
 
-Future<void> initDependencies(bool isRelease) async {
+final getIt = GetIt.instance;
+
+Future<void> initDependencies({bool testMode = false}) async {
   /// SharedPreferences
-  sl.registerSingletonAsync<SharedPreferences>(
-      () => SharedPreferences.getInstance());
+  getIt.registerSingletonAsync<SharedPreferences>(
+    () => SharedPreferences.getInstance(),
+  );
 
   /// Dio
-  sl.registerLazySingleton<Dio>(
-    () => Dio(
-      BaseOptions(
-          baseUrl: Constants.of().baseUrl,
-          contentType: Headers.jsonContentType,
-          responseType: ResponseType.json,
-          connectTimeout: 30 * 1000, // 30 seconds
-          receiveTimeout: 30 * 1000 // 30 seconds
-          ),
-    )..interceptors.addAll([
-        AppendTokenInterceptor(sl()),
-        PrettyDioLogger(
-          requestHeader: true,
-          requestBody: true,
-          responseBody: true,
-          responseHeader: true,
-          error: true,
-          compact: true,
-          maxWidth: 90,
-        ),
-      ]),
-  );
+  getIt.registerLazySingleton<Dio>(() => DioClient.client);
 
+  ///
   /// Router
-  sl.registerLazySingleton<AuthGuard>(
-    () => AuthGuard(sl()),
+  ///
+  getIt.registerLazySingleton<AuthGuard>(() => AuthGuard());
+  getIt.registerLazySingleton<CheckIfMyProfileExists>(
+    () => CheckIfMyProfileExists(),
   );
-  sl.registerLazySingleton<CheckIfMyProfileExists>(
-    () => CheckIfMyProfileExists(sl()),
-  );
-  sl.registerLazySingleton<AppRouter>(
-    () => AppRouter(authGuard: sl(), checkIfMyProfileExists: sl()),
+  getIt.registerLazySingleton<AppRouter>(
+    () => AppRouter(authGuard: getIt(), checkIfMyProfileExists: getIt()),
   );
 
+  ///
   /// Repository
-  sl.registerLazySingleton<AuthRepository>(
-    () => AuthRepositoryImpl(sl()),
+  ///
+  getIt.registerLazySingleton<DebugRepository>(
+    () => DebugRepositoryImpl(getIt()),
   );
-  sl.registerLazySingleton<UsersRepository>(
-    () => UsersRepositoryImpl(sl(), sl(), sl()),
+  getIt.registerLazySingleton<AuthRepository>(
+    () => AuthRepositoryImpl(getIt(), getIt(), getIt(), getIt(), getIt()),
   );
-  sl.registerLazySingleton<MessageRepository>(
-    () => MessageRepositoryImpl(sl()),
+  getIt.registerLazySingleton<UsersRepository>(
+    () => UsersRepositoryImpl(getIt(), getIt()),
   );
-  sl.registerLazySingleton<ProfileRepository>(
-    () => ProfileRepositoryImpl(sl(), sl()),
+  getIt.registerLazySingleton<MessagesRepository>(
+    () => MessagesRepositoryImpl(getIt(), getIt()),
   );
-  sl.registerLazySingleton<RoomsRepository>(
-    () => RoomsRepositoryImpl(sl()),
+  getIt.registerLazySingleton<MessageRoomsRepository>(
+    () => MessageRoomsRepositoryImpl(getIt()),
   );
-  sl.registerLazySingleton<DebugRepository>(
-    () => DebugRepositoryImpl(sl()),
+  getIt.registerLazySingleton<ProfileRepository>(
+    () => ProfileRepositoryImpl(getIt(), getIt()),
   );
-  sl.registerLazySingleton<TagsRepository>(
-    () => TagsRepositoryImpl(sl()),
+  getIt.registerLazySingleton<RoomsRepository>(
+    () => RoomsRepositoryImpl(getIt()),
   );
-  sl.registerLazySingleton<JoinRequestsRepository>(
-    () => JoinRequestsRepositoryImpl(sl()),
+  getIt.registerLazySingleton<TagsRepository>(
+    () => TagsRepositoryImpl(getIt()),
   );
-  sl.registerLazySingleton<AddressesRepository>(
-    () => AddressesRepositoryImpl(sl()),
+  getIt.registerLazySingleton<JoinRequestsRepository>(
+    () => JoinRequestsRepositoryImpl(getIt()),
   );
-  sl.registerLazySingleton<FavoritesRepository>(
-    () => FavoritesRepositoryImpl(sl()),
+  getIt.registerLazySingleton<AddressesRepository>(
+    () => AddressesRepositoryImpl(getIt()),
+  );
+  getIt.registerLazySingleton<FavoritesRepository>(
+    () => FavoritesRepositoryImpl(getIt()),
   );
 
+  ///
   /// DataSource
-  sl.registerLazySingleton<SharedPreferencesDataSource>(
-    () => SharedPreferencesDataSourceImpl(sl()),
+  ///
+  getIt.registerLazySingleton<SharedPreferencesDataSource>(
+    () => SharedPreferencesDataSourceImpl(getIt()),
   );
-  sl.registerLazySingleton<FirebaseAuthDataSource>(
-    () => FirebaseAuthDataSourceImpl(),
+  getIt.registerSingleton<FirebaseAuthDataSource>(
+    FirebaseAuthDataSourceImpl(),
   );
-  sl.registerLazySingleton<UsersDataSource>(
-    () => UsersDataSource(sl()),
+  getIt.registerSingleton<FacebookSignInDataSource>(
+    FacebookSignInDataSource(),
   );
-  sl.registerLazySingleton<RoomsDataSource>(
-    () => RoomsDataSource(sl()),
+  getIt.registerSingleton<AppleSignInDataSource>(
+    AppleSignInDataSource(),
   );
-  sl.registerLazySingleton<ProfileDataSource>(
-    () => ProfileDataSource(sl()),
+  getIt.registerSingleton<GoogleSignInDataSource>(
+    GoogleSignInDataSource(),
   );
-  sl.registerLazySingleton<MessageRoomsDataSource>(
-    () => MessageRoomsDataSource(sl()),
+  getIt.registerSingleton<UsersDataSource>(
+    UsersDataSource(getIt()),
   );
-  sl.registerLazySingleton<TagsDataSource>(
-    () => TagsDataSource(sl()),
+  getIt.registerSingleton<RoomsDataSource>(
+    RoomsDataSource(getIt()),
   );
-  sl.registerLazySingleton<JoinRequestsDataSource>(
-    () => JoinRequestsDataSource(sl()),
+  getIt.registerSingleton<ProfileDataSource>(
+    ProfileDataSource(getIt()),
   );
-  sl.registerLazySingleton<AddressesDataSource>(
-    () => AddressesDataSource(sl()),
+  getIt.registerSingleton<MessagesDataSource>(
+    MessagesDataSource(getIt()),
   );
-  sl.registerLazySingleton<FavoritesDataSource>(
-    () => FavoritesDataSource(sl()),
+  getIt.registerSingleton<MessageImagesDataSource>(
+    MessageImagesDataSource(getIt()),
+  );
+  getIt.registerSingleton<MessageRoomsDataSource>(
+    MessageRoomsDataSource(getIt()),
+  );
+  getIt.registerSingleton<TagsDataSource>(
+    TagsDataSource(getIt()),
+  );
+  getIt.registerSingleton<JoinRequestsDataSource>(
+    JoinRequestsDataSource(getIt()),
+  );
+  getIt.registerSingleton<AddressesDataSource>(
+    AddressesDataSource(getIt()),
+  );
+  getIt.registerSingleton<FavoritesDataSource>(
+    FavoritesDataSource(getIt()),
   );
 
-  return await sl.allReady();
+  ///
+  /// Test DataSource
+  ///
+  if (testMode) {
+    getIt.pushNewScope();
+
+    getIt.registerLazySingleton<RoomsDataSource>(
+      () => FakeRoomsDataSource(),
+    );
+    getIt.registerLazySingleton<ProfileDataSource>(
+      () => FakeProfileDataSource(),
+    );
+    getIt.registerLazySingleton<MessagesDataSource>(
+      () => FakeMessagesDataSource(),
+    );
+    getIt.registerLazySingleton<MessageImagesDataSource>(
+      () => FakeMessageImagesDataSource(),
+    );
+    getIt.registerLazySingleton<MessageRoomsDataSource>(
+      () => FakeMessageRoomsDataSource(),
+    );
+    getIt.registerLazySingleton<TagsDataSource>(
+      () => FakeTagsDataSource(),
+    );
+    getIt.registerLazySingleton<JoinRequestsDataSource>(
+      () => FakeJoinRequestsDataSource(),
+    );
+    getIt.registerLazySingleton<AddressesDataSource>(
+      () => FakeAddressesDataSource(),
+    );
+    getIt.registerLazySingleton<FavoritesDataSource>(
+      () => FakeFavoritesDataSource(),
+    );
+  }
+
+  return await getIt.allReady();
 }

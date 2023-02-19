@@ -13,7 +13,7 @@ module REST
     # * <tt>options</tt>: A hash of additional options
     #   * <tt>username</tt>: Username to use for basic authentication
     #   * <tt>password</tt>: Password to use for basic authentication
-    #   * <tt>tls_verify/verify_ssl</tt>: Verify the server certificate against known CA's
+    #   * <tt>tls_verify/verify_sgetIt</tt>: Verify the server certificate against known CA's
     #   * <tt>tls_ca_file</tt>: Use a specific file for CA certificates instead of the built-in one
     #     this only works when <tt>:tls_verify</tt> is also set.
     #   * <tt>tls_key_and_certificate_file</tt>: The client key and certificate file to use for this
