@@ -6,6 +6,7 @@ import 'package:fortune_client/data/datasource/remote/firebase/facebook_sign_in_
 import 'package:fortune_client/data/datasource/remote/firebase/firebase_auth_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/firebase/google_sign_in_data_source.dart';
 import 'package:fortune_client/data/model/enum/auth_type.dart';
+import 'package:fortune_client/util/logger/logger.dart';
 import 'package:fortune_client/util/storage/app_pref_key.dart';
 
 import 'auth_repository.dart';
@@ -53,15 +54,20 @@ class AuthRepositoryImpl implements AuthRepository {
 
   @override
   Future<UserCredential?> login(AuthType type) async {
-    /// 各種SNSの認証情報取得
-    final credential = await _loginWithSns(type);
-    if (credential == null) return null;
+    try {
+      /// 各種SNSの認証情報取得
+      final credential = await _loginWithSns(type);
+      if (credential == null) return null;
 
-    /// 認証タイプを保存
-    _prefs.setString(AppPrefKey.authType.keyString, type.name);
+      /// 認証タイプを保存
+      _prefs.setString(AppPrefKey.authType.keyString, type.name);
 
-    /// Firebaseにログイン
-    return _firebaseAuthDataSource.login(credential);
+      /// Firebaseにログイン
+      return _firebaseAuthDataSource.login(credential);
+    } catch (e) {
+      logger.e(e);
+      rethrow;
+    }
   }
 
   /// 各種SNSでログイン
@@ -78,7 +84,12 @@ class AuthRepositoryImpl implements AuthRepository {
 
   @override
   Future<void> logout() async {
-    await _signInMethod.logout();
-    await _firebaseAuthDataSource.logout();
+    try {
+      await _signInMethod.logout();
+      await _firebaseAuthDataSource.logout();
+    } catch (e) {
+      logger.e(e);
+      rethrow;
+    }
   }
 }

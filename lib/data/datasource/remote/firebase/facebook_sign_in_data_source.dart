@@ -5,10 +5,11 @@ import 'package:fortune_client/data/datasource/remote/firebase/auth_method_inter
 import 'package:fortune_client/util/logger/logger.dart';
 
 class FacebookSignInDataSource implements AuthMethodInterface {
+  final facebookAuth = FacebookAuth.instance;
+
   @override
   Future<OAuthCredential?> login() async {
     try {
-      final facebookAuth = FacebookAuth.instance;
       final loginResult = await facebookAuth.login();
 
       if (loginResult.accessToken == null) {
@@ -25,8 +26,7 @@ class FacebookSignInDataSource implements AuthMethodInterface {
   }
 
   @override
-  Future<void> logout() {
-    // TODO: implement logout
-    throw UnimplementedError();
+  Future<void> logout() async {
+    await facebookAuth.logOut();
   }
 }

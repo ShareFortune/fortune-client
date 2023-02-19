@@ -34,8 +34,6 @@ class GoogleSignInDataSource implements AuthMethodInterface {
       final googleSignIn = GoogleSignIn();
       if (await googleSignIn.isSignedIn()) {
         await googleSignIn.disconnect();
-        await getIt<FirebaseAuthDataSource>().logout();
-        logger.i("ログアウトしました。");
       }
     } on PlatformException catch (e) {
       logger.e(e.toString());

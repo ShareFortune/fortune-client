@@ -1,8 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fortune_client/data/datasource/remote/firebase/auth_method_interface.dart';
-import 'package:fortune_client/data/datasource/remote/firebase/firebase_auth_data_source.dart';
-import 'package:fortune_client/injector.dart';
-import 'package:fortune_client/util/logger/logger.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 class AppleSignInDataSource implements AuthMethodInterface {
@@ -53,12 +50,6 @@ class AppleSignInDataSource implements AuthMethodInterface {
 
   @override
   logout() async {
-    try {
-      await getIt<FirebaseAuthDataSource>().logout();
-      logger.i("ログアウトしました。");
-    } catch (e) {
-      logger.e(e);
-      rethrow;
-    }
+    return;
   }
 }
