@@ -6,7 +6,7 @@ import 'package:fortune_client/view/widgets/other/error_widget.dart';
 import 'package:fortune_client/view/widgets/other/loading_widget.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class AsyncValueWidget<T> extends HookConsumerWidget {
+class AsyncValueWidget<T> extends StatelessWidget {
   const AsyncValueWidget({
     Key? key,
     required this.data,
@@ -17,7 +17,7 @@ class AsyncValueWidget<T> extends HookConsumerWidget {
   final Widget Function(T) builder;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     return data.when(
       data: (data) {
         return builder(data);
@@ -27,7 +27,6 @@ class AsyncValueWidget<T> extends HookConsumerWidget {
         WidgetsBinding.instance.addPostFrameCallback((_) {
           FortuneError(
             type: catchFortuneException(err).type,
-            ref: ref,
           ).handle(context: context);
         });
 

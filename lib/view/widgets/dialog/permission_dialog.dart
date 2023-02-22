@@ -20,7 +20,7 @@ Future<void> showPermissionDialog(
             builder: (context) {
               return PlatformDialogAction(
                 child: PlatformText(
-                  LocaleKeys.permission_dialog_btn_cancel.tr(),
+                  LocaleKeys.permission_menu_cancel.tr(),
                 ),
                 onPressed: () {
                   Navigator.pop(context);
@@ -32,7 +32,7 @@ Future<void> showPermissionDialog(
             builder: (context) {
               return PlatformDialogAction(
                 child: PlatformText(
-                  LocaleKeys.permission_dialog_btn_btn.tr(),
+                  LocaleKeys.permission_menu_toSettings.tr(),
                 ),
                 onPressed: () {
                   openAppSettings();

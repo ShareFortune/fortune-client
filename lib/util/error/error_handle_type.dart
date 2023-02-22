@@ -1,7 +1,16 @@
 enum ErrorHandleType {
-  dialogWithClose, //閉じるボタンのダイアログ表示
-  dialogWithReload, //再読み込みボタンのダイアログ
-  dialogWithReloadAndCancel, //再読み込み、キャンセルボタンのダイアログ
-  toast, //トースト表示
-  inline, //インライン表示
+  /// 閉じるボタンのダイアログ表示
+  dialogWithClose,
+
+  ///再読み込みボタンのダイアログ
+  dialogWithReload,
+
+  ///再読み込み、キャンセルボタンのダイアログ
+  dialogWithReloadAndCancel,
+
+  ///トースト表示
+  toast,
+
+  ///インライン表示
+  inline,
 }

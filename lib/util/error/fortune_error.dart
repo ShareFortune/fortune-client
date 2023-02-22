@@ -2,15 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:fortune_client/util/error/error_handle_type.dart';
 import 'package:fortune_client/util/error/error_type.dart';
 import 'package:fortune_client/view/widgets/dialog/error_dialog.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class FortuneError extends Error {
   final ErrorType type;
-  final WidgetRef ref;
 
   FortuneError({
-    required this.type,
-    required this.ref,
+    this.type = ErrorType.undefined,
   });
 
   handle({
