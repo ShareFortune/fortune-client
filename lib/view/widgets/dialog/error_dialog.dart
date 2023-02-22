@@ -5,11 +5,12 @@ class ErrorDialog {
   static bool _isDisplay = false;
 
   /// ダイアログが表示されているか確認
-  static checkIsDisplay(VoidCallback? callback) {
+  static checkIsDisplay(Future<void> Function()? callback) async {
     if (_isDisplay) return;
     _isDisplay = true;
-    callback?.call();
-    _isDisplay = false;
+    callback?.call().then((_) {
+      _isDisplay = false;
+    });
   }
 
   /// 基本的なエラーダイアログ
@@ -21,13 +22,13 @@ class ErrorDialog {
   static showWithReload(
     BuildContext context,
     String content,
-    VoidCallback? callback,
+    VoidCallback? reload,
   ) {
     checkIsDisplay(
       () => _showErrorDialogWithReload(
         context,
         content,
-        () => _reload(callback),
+        () => _clickHandler(context, reload),
       ),
     );
   }
@@ -36,22 +37,23 @@ class ErrorDialog {
   static showWithReloadAndCancel(
     BuildContext context,
     String content,
-    VoidCallback? callback,
+    VoidCallback? reload,
     VoidCallback? onCancel,
   ) {
     checkIsDisplay(
       () => _showErrorDialogWithReloadAndCancel(
         context,
         content,
-        () => _reload(callback),
-        onCancel,
+        () => _clickHandler(context, reload),
+        () => onCancel?.call(),
       ),
     );
   }
 
-  static void _reload(VoidCallback? callback) {
+  /// ボタンクリック時処理
+  static _clickHandler(BuildContext context, VoidCallback? callback) {
     _isDisplay = false;
-    checkIsDisplay(callback);
+    checkIsDisplay(() async => callback?.call());
   }
 }
 
@@ -83,7 +85,7 @@ Future<void> _showErrorDialog(BuildContext context, String content) {
 Future<dynamic> _showErrorDialogWithReload(
   BuildContext context,
   String content,
-  VoidCallback reload,
+  VoidCallback? onReload,
 ) {
   return showPlatformDialog(
     context: context,
@@ -92,10 +94,14 @@ Future<dynamic> _showErrorDialogWithReload(
         title: Text("タイトル"),
         content: Text(content),
         actions: <Widget>[
-          PlatformDialogAction(
-            child: PlatformText("テキスト"),
-            onPressed: reload,
-          ),
+          Builder(builder: (context) {
+            return PlatformDialogAction(
+                child: PlatformText("テキスト"),
+                onPressed: () {
+                  Navigator.pop(context);
+                  onReload?.call();
+                });
+          }),
         ],
       ),
       onWillPop: () async => false,
@@ -106,7 +112,7 @@ Future<dynamic> _showErrorDialogWithReload(
 Future<void> _showErrorDialogWithReloadAndCancel(
   BuildContext context,
   String content,
-  VoidCallback? onPressed,
+  VoidCallback? onReload,
   VoidCallback? onCancel,
 ) async {
   await showPlatformDialog(
@@ -116,14 +122,24 @@ Future<void> _showErrorDialogWithReloadAndCancel(
         title: Text("タイトル"),
         content: Text(content),
         actions: <Widget>[
-          PlatformDialogAction(
-            child: PlatformText(content),
-            onPressed: onPressed,
-          ),
-          PlatformDialogAction(
-            child: PlatformText('キャンセル'),
-            onPressed: onCancel,
-          ),
+          Builder(builder: (context) {
+            return PlatformDialogAction(
+              child: PlatformText(content),
+              onPressed: () {
+                Navigator.pop(context);
+                onReload?.call();
+              },
+            );
+          }),
+          Builder(builder: (context) {
+            return PlatformDialogAction(
+              child: PlatformText('キャンセル'),
+              onPressed: () {
+                Navigator.pop(context);
+                onCancel?.call();
+              },
+            );
+          }),
         ],
       ),
       onWillPop: () async => false,

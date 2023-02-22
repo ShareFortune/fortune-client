@@ -21,44 +21,32 @@ class FortuneError extends Error {
 
     switch (handleType) {
       case ErrorHandleType.dialogWithClose:
-        ErrorDialog.show(context, errMsg);
+        // ErrorDialog.show(context, errMsg);
+        ErrorDialog.showWithReload(
+          context,
+          errMsg,
+          () => reload?.call(),
+        );
         break;
       case ErrorHandleType.dialogWithReload:
         ErrorDialog.showWithReload(
           context,
           errMsg,
-          () => _reload(context, reload),
+          () => reload?.call(),
         );
         break;
       case ErrorHandleType.dialogWithReloadAndCancel:
         ErrorDialog.showWithReloadAndCancel(
           context,
           errMsg,
-          () => _reload(context, reload),
-          () => _cancel(context, cancel),
+          () => reload?.call(),
+          () => cancel?.call(),
         );
         break;
       case ErrorHandleType.toast:
-        // TODO: Handle this case.
         break;
       case ErrorHandleType.inline:
-        // TODO: Handle this case.
         break;
-    }
-  }
-
-  _reload(BuildContext context, VoidCallback? reload) {
-    if (reload != null) {
-      Navigator.pop(context);
-      reload();
-    }
-  }
-
-  _cancel(BuildContext context, VoidCallback? cancel) {
-    if (cancel != null) {
-      cancel();
-    } else {
-      Navigator.pop(context);
     }
   }
 }

@@ -1,5 +1,4 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/material.dart';
 import 'package:fortune_client/l10n/locale_keys.g.dart';
 import 'package:fortune_client/util/error/error_handle_type.dart';
 
