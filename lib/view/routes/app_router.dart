@@ -52,9 +52,14 @@ export 'app_router.gr.dart';
           path: RoutePath.rooms,
           page: EmptyRouterPage,
           children: [
-            AutoRoute(path: '', page: RoomListPage),
             AutoRoute(
-                path: RoutePath.roomDetail, page: RoomDetailPage), // ルーム詳細
+              path: '',
+              page: RoomListPage,
+            ),
+            AutoRoute(
+              path: RoutePath.roomDetail,
+              page: RoomDetailPage,
+            ),
           ],
         ),
 
@@ -92,9 +97,14 @@ export 'app_router.gr.dart';
           path: RoutePath.rooms,
           page: EmptyRouterPage,
           children: [
-            AutoRoute(path: '', page: MessageRoomListPage),
             AutoRoute(
-                path: RoutePath.roomDetail, page: RoomDetailPage), // ルーム詳細
+              path: '',
+              page: MessageRoomListPage,
+            ),
+            AutoRoute(
+              path: RoutePath.roomDetail,
+              page: RoomDetailPage,
+            ),
           ],
         ),
       ],
@@ -106,7 +116,10 @@ export 'app_router.gr.dart';
       page: EmptyRouterPage,
       guards: [AuthGuard],
       children: [
-        RedirectRoute(path: "", redirectTo: RoutePath.createProfileBasic),
+        RedirectRoute(
+          path: "",
+          redirectTo: RoutePath.createProfileBasic,
+        ),
         AutoRoute(
           path: RoutePath.createProfileBasic,
           page: BasicProfileEntryPage,

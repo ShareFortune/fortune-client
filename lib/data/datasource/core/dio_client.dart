@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:fortune_client/data/datasource/core/append_token_interceptor.dart';
+import 'package:fortune_client/data/datasource/core/error_interceptor.dart';
 import 'package:fortune_client/foundation/constants.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
@@ -16,6 +17,7 @@ class DioClient {
 
   static get interceptors => [
         AppendTokenInterceptor(),
+        ErrorInterceptor(),
         PrettyDioLogger(
           requestHeader: true,
           requestBody: true,
