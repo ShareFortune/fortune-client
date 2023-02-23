@@ -23,11 +23,19 @@ class AsyncValueWidget<T> extends StatelessWidget {
         return builder(data);
       },
       error: (err, msg) {
-        /// エラーハンドラ
+        /// Widgetの生成を待機
         WidgetsBinding.instance.addPostFrameCallback((_) {
-          FortuneError(
-            type: catchFortuneException(err).type,
-          ).handle(context: context);
+          /// Exception
+          final exception = catchFortuneError<FortuneException>(err);
+          if (exception != null) {
+            FortuneError(type: exception.type).handle(context: context);
+          }
+
+          /// Error
+          final error = catchFortuneError<FortuneError>(err);
+          if (error != null) {
+            error.handle(context: context);
+          }
         });
 
         return errorWidget(err, msg);
@@ -38,13 +46,13 @@ class AsyncValueWidget<T> extends StatelessWidget {
     );
   }
 
-  /// 取得した例外を[FortuneException]にキャスト
-  /// キャストできない場合は想定外エラーとして返却
-  FortuneException catchFortuneException(Object error) {
-    if (error is FortuneException) return error;
+  /// 取得した例外またはエラーをキャスト
+  /// キャストできない場合はNullとして返却
+  ErrorT? catchFortuneError<ErrorT>(Object error) {
+    if (error is ErrorT) return error as ErrorT;
     if (error is DioError) {
-      if (error.error is FortuneException) return error.error;
+      if (error.error is ErrorT) return error.error as ErrorT;
     }
-    return FortuneException('9999');
+    return null;
   }
 }

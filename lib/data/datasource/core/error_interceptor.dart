@@ -1,22 +1,35 @@
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
-import 'package:fortune_client/util/error/fortune_exception.dart';
+import 'package:fortune_client/util/error/error_type.dart';
+import 'package:fortune_client/util/error/fortune_error.dart';
 
 class ErrorInterceptor extends InterceptorsWrapper {
   @override
-  void onError(DioError err, ErrorInterceptorHandler handler) {
+  void onRequest(options, handler) async {
+    /// オフラインチェック
+    final result = await (Connectivity().checkConnectivity());
+    if (result == ConnectivityResult.none) {
+      throw FortuneError(type: ErrorType.offline);
+    } else {
+      super.onRequest(options, handler);
+    }
+  }
+
+  @override
+  void onError(err, handler) {
     switch (err.type) {
       case DioErrorType.connectTimeout:
-        throw FortuneException('1006');
+        throw FortuneError(type: ErrorType.timeout);
       case DioErrorType.sendTimeout:
-        throw FortuneException('1006');
+        throw FortuneError(type: ErrorType.timeout);
       case DioErrorType.receiveTimeout:
-        throw FortuneException('1006');
+        throw FortuneError(type: ErrorType.timeout);
       case DioErrorType.response:
-        throw FortuneException('1003');
+        throw FortuneError(type: ErrorType.apiFailure);
       case DioErrorType.cancel:
-        throw FortuneException('9999');
+        throw FortuneError();
       case DioErrorType.other:
-        throw FortuneException('9999');
+        throw FortuneError();
     }
   }
 }
