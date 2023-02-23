@@ -15,8 +15,6 @@ import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/dialog/toast.dart';
 import 'package:fortune_client/view/widgets/other/async_value_widget.dart';
 import 'package:fortune_client/view/widgets/other/list_animation.dart';
-import 'package:fortune_client/view/widgets/other/error_widget.dart';
-import 'package:fortune_client/view/widgets/other/loading_widget.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 

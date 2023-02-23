@@ -14,6 +14,7 @@ abstract class AuthRepository {
   /// Token
   Future<String> idToken();
 
+  /// ログイン
   Future<UserCredential?> login(AuthType type);
 
   /// ログアウト
