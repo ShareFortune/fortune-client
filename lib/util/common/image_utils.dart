@@ -59,8 +59,8 @@ class ImageUtils {
     } on PlatformException catch (_) {
       await showPermissionDialog(
         context,
-        LocaleKeys.permission_dialog_photo_title.tr(),
-        LocaleKeys.permission_dialog_photo_message.tr(),
+        LocaleKeys.permission_photo_title.tr(),
+        LocaleKeys.permission_photo_message.tr(),
       );
     }
     return null;
@@ -83,8 +83,8 @@ class ImageUtils {
     } on PlatformException catch (_) {
       await showPermissionDialog(
         context,
-        LocaleKeys.permission_dialog_camera_title.tr(),
-        LocaleKeys.permission_dialog_camera_message.tr(),
+        LocaleKeys.permission_camera_title.tr(),
+        LocaleKeys.permission_camera_message.tr(),
       );
     }
     return null;

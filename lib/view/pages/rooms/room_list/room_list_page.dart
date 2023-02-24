@@ -13,9 +13,8 @@ import 'package:fortune_client/view/pages/rooms/room_list/room_list_view_model.d
 import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/dialog/toast.dart';
+import 'package:fortune_client/view/widgets/other/async_value_widget.dart';
 import 'package:fortune_client/view/widgets/other/list_animation.dart';
-import 'package:fortune_client/view/widgets/other/error_widget.dart';
-import 'package:fortune_client/view/widgets/other/loading_widget.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -35,15 +34,6 @@ class RoomListPage extends HookConsumerWidget {
         ? Container()
         : _noSearchResultsFoundView(theme);
 
-    ///
-    /// ルームリスト
-    ///
-    final roomListViewAsync = state.rooms.when(
-      data: (data) => _roomListView(data, theme, viewModel, context),
-      error: (e, msg) => SliverToBoxAdapter(child: errorWidget(e, msg)),
-      loading: () => SliverToBoxAdapter(child: loadingWidget()),
-    );
-
     return Container(
       color: theme.appColors.onBackground,
       child: CustomScrollView(
@@ -62,9 +52,18 @@ class RoomListPage extends HookConsumerWidget {
             },
           ),
           SliverToBoxAdapter(child: noSearchResultsFoundViewAsync),
-          SliverPadding(
-            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-            sliver: roomListViewAsync,
+
+          /// ルームリスト
+          SliverToBoxAdapter(
+            child: Container(
+              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+              child: AsyncValueWidget(
+                data: state.rooms,
+                builder: (room) {
+                  return _roomListView(room, theme, viewModel, context);
+                },
+              ),
+            ),
           ),
         ],
       ),

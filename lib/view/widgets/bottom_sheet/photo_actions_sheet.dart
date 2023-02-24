@@ -53,7 +53,7 @@ class PhotoActionsSheet {
                 );
               },
               child: Text(
-                LocaleKeys.camera_or_photo_menu_camera.tr(),
+                LocaleKeys.permission_menu_camera.tr(),
                 style: TextStyle(color: textColor),
               ),
             ),
@@ -66,14 +66,14 @@ class PhotoActionsSheet {
                 );
               },
               child: Text(
-                LocaleKeys.camera_or_photo_menu_photo.tr(),
+                LocaleKeys.permission_menu_photo.tr(),
                 style: TextStyle(color: textColor),
               ),
             ),
           ],
           cancelButton: CupertinoButton(
             child: Text(
-              LocaleKeys.camera_or_photo_btn_cancel.tr(),
+              LocaleKeys.permission_menu_cancel.tr(),
               style: TextStyle(color: textColor),
             ),
             onPressed: () => Navigator.of(context).pop(),
@@ -101,14 +101,14 @@ class PhotoActionsSheet {
             CupertinoActionSheetAction(
               onPressed: () => Navigator.of(context).pop(true),
               child: Text(
-                LocaleKeys.camera_or_photo_menu_delete.tr(),
+                LocaleKeys.permission_menu_deletePhoto.tr(),
                 style: TextStyle(color: theme.appColors.error),
               ),
             ),
           ],
           cancelButton: CupertinoButton(
             child: Text(
-              LocaleKeys.camera_or_photo_btn_cancel.tr(),
+              LocaleKeys.permission_menu_cancel.tr(),
               style: TextStyle(color: theme.appColors.linkColor),
             ),
             onPressed: () => Navigator.of(context).pop(false),

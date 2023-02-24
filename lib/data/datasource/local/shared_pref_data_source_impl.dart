@@ -3,11 +3,18 @@ import 'package:fortune_client/util/logger/logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SharedPreferencesDataSourceImpl implements SharedPreferencesDataSource {
-  SharedPreferencesDataSourceImpl(this._sharedPreferences);
+  /// コンストラクタで非同期生成するのは良くないみたい
+  /// でもグローバルで定義したくもないから、エラー発生したら修正するかも
+  SharedPreferencesDataSourceImpl._(this._sharedPreferences);
+  SharedPreferencesDataSourceImpl() {
+    () async => SharedPreferencesDataSourceImpl._(
+        await SharedPreferences.getInstance());
+  }
 
-  final SharedPreferences _sharedPreferences;
+  late SharedPreferences _sharedPreferences;
 
-  Future<bool> _logger<T>(Future<bool> Function(String, T) setter, String key, T value) {
+  Future<bool> _logger<T>(
+      Future<bool> Function(String, T) setter, String key, T value) {
     return setter(key, value).whenComplete(
       () => logger.i('[$runtimeType] set ${T.runtimeType} for key: $key'),
     );
@@ -65,9 +72,8 @@ class SharedPreferencesDataSourceImpl implements SharedPreferencesDataSource {
 
   @override
   Future<bool> remove(String key) {
-    return _sharedPreferences
-        .remove(key)
-        .whenComplete(() => logger.i('[$runtimeType] removed value for key: $key'));
+    return _sharedPreferences.remove(key).whenComplete(
+        () => logger.i('[$runtimeType] removed value for key: $key'));
   }
 
   @override
