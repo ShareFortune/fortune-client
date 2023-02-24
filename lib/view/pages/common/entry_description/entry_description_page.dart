@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fortune_client/view/pages/common/entry_page/entry_description/entry_description_view_model.dart';
+import 'package:fortune_client/view/pages/common/entry_description/entry_description_view_model.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/app_bar/back_app_bar.dart';
