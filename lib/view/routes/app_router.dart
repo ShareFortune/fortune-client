@@ -7,12 +7,12 @@ import 'package:fortune_client/view/pages/account/create/entry_basic_profile/bas
 import 'package:fortune_client/view/pages/account/create/entry_detailed_profile/detailed_profile_entry_page.dart';
 import 'package:fortune_client/view/pages/account/create/entry_profile_icon_image/profile_icon_image_entry_page.dart';
 import 'package:fortune_client/view/pages/account/create/entry_profile_sub_image/entry_profile_sub_image_page.dart';
-import 'package:fortune_client/view/pages/common/bottom_sheet/room_actions/guest/guest_room_actions_bottom_sheet.dart';
-import 'package:fortune_client/view/pages/common/bottom_sheet/room_actions/host/host_room_actions_bottom_sheet.dart';
 import 'package:fortune_client/view/pages/auth/login/login_page.dart';
 import 'package:fortune_client/view/pages/common/bottom_navigation_bar/bottom_navigation_bar.dart';
-import 'package:fortune_client/view/pages/common/entry_page/entry_address/entry_address_page.dart';
-import 'package:fortune_client/view/pages/common/entry_page/entry_description/entry_description_page.dart';
+import 'package:fortune_client/view/pages/common/entry_address/entry_address_page.dart';
+import 'package:fortune_client/view/pages/common/entry_description/entry_description_page.dart';
+import 'package:fortune_client/view/pages/common/guest_room_actions_bottom_sheet/guest_room_actions_bottom_sheet.dart';
+import 'package:fortune_client/view/pages/common/host_room_actions_bottom_sheet/host_room_actions_bottom_sheet.dart';
 import 'package:fortune_client/view/pages/debug/debug_page.dart';
 import 'package:fortune_client/view/pages/message/message_room/message_room_page.dart';
 import 'package:fortune_client/view/pages/message/message_room_list/message_room_list_page.dart';
