@@ -30,7 +30,7 @@ platform :ios do
     gym()
 
     # canagelog作成
-    sh('git log -n 1 > ./latest_commit_log.txt')
+    sh('git log -n 1 --merges > ./latest_commit_log.txt')
     sh('cat ./latest_commit_log.txt')
     # リリースノート
     changelog = ENV['PWD'] + "/fastlane/latest_commit_log.txt"
