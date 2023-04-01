@@ -58,11 +58,10 @@ class RoomListPage extends HookConsumerWidget {
             child: Container(
               padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
               child: AsyncValueWidget(
-                data: state.rooms,
-                builder: (room) {
-                  return _roomListView(room, theme, viewModel, context);
-                },
-              ),
+                  data: state.rooms,
+                  builder: (room) {
+                    return _roomListView(room, theme, viewModel, context);
+                  }),
             ),
           ),
         ],
@@ -84,7 +83,7 @@ class RoomListPage extends HookConsumerWidget {
           theme: theme,
           room: room,
           onTapRoom: () => viewModel.navigateToRoomDetail(room.data.id),
-          onTapHeart: (bool value) async {
+          onTapHeart: (value) async {
             if (!await viewModel.saveOrReleaseRoom(room.data.id, value)) {
               await _showFailedToRegisterToast(context, theme);
             }
