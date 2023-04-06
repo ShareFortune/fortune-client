@@ -20,31 +20,50 @@ class ListAnimationWidget<T> extends HookConsumerWidget {
     final theme = ref.watch(appThemeProvider);
 
     return AnimationLimiter(
-      child: SliverList(
-        delegate: SliverChildBuilderDelegate(
-          childCount: items.length,
-          (context, index) {
-            return AnimationConfiguration.staggeredList(
-              position: index,
-              duration: const Duration(milliseconds: 175),
-              child: SlideAnimation(
-                verticalOffset: 50.0,
-                child: FadeInAnimation(
-                  child: _content(theme, container(items[index])),
+      child: ListView.builder(
+        shrinkWrap: true,
+        itemCount: items.length,
+        physics: const NeverScrollableScrollPhysics(),
+        itemBuilder: (BuildContext context, int index) {
+          return AnimationConfiguration.staggeredList(
+            position: index,
+            duration: const Duration(milliseconds: 175),
+            child: SlideAnimation(
+              verticalOffset: 50.0,
+              child: FadeInAnimation(
+                child: Container(
+                  color: theme.appColors.onBackground,
+                  padding: EdgeInsets.only(bottom: spacing),
+                  child: container(items[index]),
                 ),
               ),
-            );
-          },
-        ),
+            ),
+          );
+        },
       ),
     );
-  }
-
-  _content(AppTheme theme, Widget child) {
-    return Container(
-      color: theme.appColors.onBackground,
-      padding: EdgeInsets.only(bottom: spacing),
-      child: child,
-    );
+    // return AnimationLimiter(
+    //   child: SliverList(
+    //     delegate: SliverChildBuilderDelegate(
+    //       childCount: items.length,
+    //       (context, index) {
+    //         return AnimationConfiguration.staggeredList(
+    //           position: index,
+    //           duration: const Duration(milliseconds: 175),
+    //           child: SlideAnimation(
+    //             verticalOffset: 50.0,
+    //             child: FadeInAnimation(
+    //               child: Container(
+    //                 color: theme.appColors.onBackground,
+    //                 padding: EdgeInsets.only(bottom: spacing),
+    //                 child: container(items[index]),
+    //               ),
+    //             ),
+    //           ),
+    //         );
+    //       },
+    //     ),
+    //   ),
+    // );
   }
 }

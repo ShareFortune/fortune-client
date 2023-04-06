@@ -29,16 +29,14 @@ class ParticipatingRoomListPage extends HookConsumerWidget {
       body: AsyncValueWidget(
           data: state.rooms,
           builder: (rooms) {
-            return ListView(
-              children: rooms.map((room) {
-                return Column(
-                  children: [
-                    if (room is GetV1RoomsHostResponseRoom) hostRoom(room),
-                    if (room is GetV1RoomsGuestResponseRoom) guestRoom(room),
-                    const Gap(10),
-                  ],
-                );
-              }).toList(),
+            return ListView.separated(
+              itemCount: rooms.length,
+              itemBuilder: (context, index) {
+                final room = rooms[index];
+                final isHost = room is GetV1RoomsHostResponseRoom;
+                return isHost ? hostRoom(room) : guestRoom(room);
+              },
+              separatorBuilder: (_, __) => const Gap(10),
             );
           }),
     );
