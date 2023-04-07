@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:fortune_client/data/model/core/base/members_num/members_num.dart';
-import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/room/room_body.dart';
 import 'package:fortune_client/view/widgets/room/room_header.dart';
@@ -30,8 +29,20 @@ class ParticipatingRoomListRoom extends HookConsumerWidget {
     final theme = ref.watch(appThemeProvider);
 
     return Container(
-      color: background,
       padding: const EdgeInsets.fromLTRB(20, 15, 20, 20),
+      decoration: BoxDecoration(
+        color: background,
+        border: const Border(
+          top: BorderSide(
+            color: Colors.black12,
+            width: 0.5,
+          ),
+          bottom: BorderSide(
+            color: Colors.black12,
+            width: 0.5,
+          ),
+        ),
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
