@@ -9,8 +9,8 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 ///
 /// ステータスに応じたRoomWidgetを生成
 ///
-class RoomLayoutDelegate extends HookConsumerWidget {
-  const RoomLayoutDelegate({
+class RoomThemeBuilder extends HookConsumerWidget {
+  const RoomThemeBuilder({
     Key? key,
     required this.roomStatus,
     this.joinRequestStatus,

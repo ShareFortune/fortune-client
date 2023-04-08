@@ -3,13 +3,11 @@ import 'package:fortune_client/data/model/rooms/get_v1_rooms_guest/get_v1_rooms_
 import 'package:fortune_client/data/model/rooms/get_v1_rooms_host/get_v1_rooms_host.dart';
 import 'package:fortune_client/view/pages/rooms/participating/participating_type.dart';
 import 'package:fortune_client/view/pages/rooms/participating_room_list/components/participating_room_list_room.dart';
-import 'package:fortune_client/view/theme/app_text_theme.dart';
-import 'package:fortune_client/view/widgets/room/room_layout_delegate.dart';
+import 'package:fortune_client/view/widgets/room/room_theme_builder.dart';
 import 'package:fortune_client/view/pages/rooms/participating_room_list/participating_room_list_view_model.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/app_bar/back_app_bar.dart';
 import 'package:fortune_client/view/widgets/other/async_value_widget.dart';
-import 'package:fortune_client/view/widgets/room/room_theme.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -45,13 +43,11 @@ class ParticipatingRoomListPage extends HookConsumerWidget {
   }
 
   hostRoom(AppTheme theme, GetV1RoomsHostResponseRoom room) {
-    return RoomLayoutDelegate(
+    return RoomThemeBuilder(
       roomStatus: room.status,
       builder: (roomTheme) {
         return ParticipatingRoomListRoom(
-          infoText: roomTheme.description,
-          background: roomTheme.backgroundColor,
-          bodyBackground: roomTheme.userBackgroundColor,
+          roomTheme: roomTheme,
           hostIconUrl: "",
           membersNum: room.membersNum,
           participantImageUrls: [...?room.participantMainImageURLs],
@@ -61,14 +57,12 @@ class ParticipatingRoomListPage extends HookConsumerWidget {
   }
 
   guestRoom(AppTheme theme, GetV1RoomsGuestResponseRoom room) {
-    return RoomLayoutDelegate(
+    return RoomThemeBuilder(
       roomStatus: room.roomStatus,
       joinRequestStatus: room.joinRequestStatus,
       builder: (roomTheme) {
         return ParticipatingRoomListRoom(
-          infoText: roomTheme.description,
-          background: roomTheme.backgroundColor,
-          bodyBackground: roomTheme.userBackgroundColor,
+          roomTheme: roomTheme,
           hostIconUrl: room.hostMainImageURL,
           membersNum: room.membersNum,
           participantImageUrls: [...?room.participantMainImageURLs],
