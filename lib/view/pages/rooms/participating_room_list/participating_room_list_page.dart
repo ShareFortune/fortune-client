@@ -3,7 +3,7 @@ import 'package:fortune_client/data/model/rooms/get_v1_rooms_guest/get_v1_rooms_
 import 'package:fortune_client/data/model/rooms/get_v1_rooms_host/get_v1_rooms_host.dart';
 import 'package:fortune_client/view/pages/rooms/participating/participating_type.dart';
 import 'package:fortune_client/view/pages/rooms/participating_room_list/components/participating_room_list_room.dart';
-import 'package:fortune_client/view/pages/rooms/participating_room_list/components/participating_room_list_room_controller.dart';
+import 'package:fortune_client/view/widgets/room/room_theme_builder.dart';
 import 'package:fortune_client/view/pages/rooms/participating_room_list/participating_room_list_view_model.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/app_bar/back_app_bar.dart';
@@ -29,34 +29,25 @@ class ParticipatingRoomListPage extends HookConsumerWidget {
       body: AsyncValueWidget(
           data: state.rooms,
           builder: (rooms) {
-            return ListView(
-              children: rooms.map((room) {
-                return Column(
-                  children: [
-                    if (room is GetV1RoomsHostResponseRoom) hostRoom(room),
-                    if (room is GetV1RoomsGuestResponseRoom) guestRoom(room),
-                    const Gap(10),
-                  ],
-                );
-              }).toList(),
+            return ListView.separated(
+              itemCount: rooms.length,
+              separatorBuilder: (_, __) => const Gap(10),
+              itemBuilder: (context, index) {
+                final room = rooms[index];
+                final isHost = room is GetV1RoomsHostResponseRoom;
+                return isHost ? hostRoom(theme, room) : guestRoom(theme, room);
+              },
             );
           }),
     );
   }
 
-  hostRoom(GetV1RoomsHostResponseRoom room) {
-    return ParticipatingRoomListRoomController(
+  hostRoom(AppTheme theme, GetV1RoomsHostResponseRoom room) {
+    return RoomThemeBuilder(
       roomStatus: room.status,
-      joinRequestStatus: null,
-      builder: ({
-        required infoText,
-        required background,
-        required bodyBackground,
-      }) {
+      builder: (roomTheme) {
         return ParticipatingRoomListRoom(
-          infoText: infoText,
-          background: background,
-          bodyBackground: bodyBackground,
+          roomTheme: roomTheme,
           hostIconUrl: "",
           membersNum: room.membersNum,
           participantImageUrls: [...?room.participantMainImageURLs],
@@ -65,19 +56,13 @@ class ParticipatingRoomListPage extends HookConsumerWidget {
     );
   }
 
-  guestRoom(GetV1RoomsGuestResponseRoom room) {
-    return ParticipatingRoomListRoomController(
+  guestRoom(AppTheme theme, GetV1RoomsGuestResponseRoom room) {
+    return RoomThemeBuilder(
       roomStatus: room.roomStatus,
       joinRequestStatus: room.joinRequestStatus,
-      builder: ({
-        required infoText,
-        required background,
-        required bodyBackground,
-      }) {
+      builder: (roomTheme) {
         return ParticipatingRoomListRoom(
-          infoText: infoText,
-          background: background,
-          bodyBackground: bodyBackground,
+          roomTheme: roomTheme,
           hostIconUrl: room.hostMainImageURL,
           membersNum: room.membersNum,
           participantImageUrls: [...?room.participantMainImageURLs],

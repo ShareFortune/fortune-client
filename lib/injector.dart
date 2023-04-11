@@ -50,12 +50,16 @@ import 'package:fortune_client/data/repository/users/users_repository_impl.dart'
 import 'package:fortune_client/view/routes/app_router.gr.dart';
 import 'package:fortune_client/view/routes/route_guard.dart';
 import 'package:get_it/get_it.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'data/datasource/remote/go/tags/fake_tags_data_source.dart';
 
 final getIt = GetIt.instance;
 
 Future<void> initDependencies({bool testMode = false}) async {
+  /// SharedPreferences
+  final sharedPreferences = await SharedPreferences.getInstance();
+
   /// Dio
   getIt.registerSingleton<Dio>(DioClient.client);
 
@@ -107,7 +111,7 @@ Future<void> initDependencies({bool testMode = false}) async {
 
   /// DataSource
   getIt.registerLazySingleton<SharedPreferencesDataSource>(
-    () => SharedPreferencesDataSourceImpl(),
+    () => SharedPreferencesDataSourceImpl(sharedPreferences),
   );
   getIt.registerLazySingleton<FirebaseAuthDataSource>(
     () => FirebaseAuthDataSourceImpl(),

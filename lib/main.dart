@@ -21,7 +21,9 @@ void main() async {
     Future(() async {
       await Firebase.initializeApp();
       await EasyLocalization.ensureInitialized();
-      await initDependencies(testMode: false);
+      bool testMode = false;
+      testMode = true;
+      await initDependencies(testMode: testMode);
     }),
   ]);
 

@@ -10,11 +10,9 @@ class AuthGuard extends AutoRouteGuard {
     NavigationResolver resolver,
     StackRouter router,
   ) async {
-    if (Repository.auth.isLogin) {
-      resolver.next(true);
-    } else {
-      router.push(const LoginRoute());
-    }
+    Repository.auth.isLogin
+        ? resolver.next(true)
+        : router.push(const LoginRoute());
   }
 }
 
@@ -26,10 +24,8 @@ class CheckIfMyProfileExists extends AutoRouteGuard {
     NavigationResolver resolver,
     StackRouter router,
   ) async {
-    if (await Repository.profile.isCreated()) {
-      resolver.next(true);
-    } else {
-      router.push(const CreateProfileRoute());
-    }
+    await Repository.profile.isCreated()
+        ? resolver.next(true)
+        : router.push(const CreateProfileRoute());
   }
 }

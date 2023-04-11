@@ -58,11 +58,10 @@ class RoomListPage extends HookConsumerWidget {
             child: Container(
               padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
               child: AsyncValueWidget(
-                data: state.rooms,
-                builder: (room) {
-                  return _roomListView(room, theme, viewModel, context);
-                },
-              ),
+                  data: state.rooms,
+                  builder: (room) {
+                    return _roomListView(context, theme, room, viewModel);
+                  }),
             ),
           ),
         ],
@@ -71,31 +70,30 @@ class RoomListPage extends HookConsumerWidget {
   }
 
   Widget _roomListView(
-    List<RoomListStateRoom> data,
-    AppTheme theme,
-    RoomListViewModel viewModel,
     BuildContext context,
+    AppTheme theme,
+    List<RoomListStateRoom> data,
+    RoomListViewModel viewModel,
   ) {
     return ListAnimationWidget(
-      items: data,
-      spacing: 10,
-      container: (room) {
-        return RoomListCard(
-          theme: theme,
-          room: room,
-          onTapRoom: () => viewModel.navigateToRoomDetail(room.data.id),
-          onTapHeart: (bool value) async {
-            if (!await viewModel.saveOrReleaseRoom(room.data.id, value)) {
-              await _showFailedToRegisterToast(context, theme);
-            }
-          },
-          onTapJoinRequestBtn: () async {
-            final result = await viewModel.sendJoinRequest(room.data.id);
-            await _showJoinRequestToast(context, theme, result);
-          },
-        );
-      },
-    );
+        items: data,
+        spacing: 10,
+        container: (room) {
+          return RoomListCard(
+            theme: theme,
+            room: room,
+            onTapRoom: () => viewModel.navigateToRoomDetail(room.data.id),
+            onTapHeart: (value) async {
+              if (!await viewModel.saveOrReleaseRoom(room.data.id, value)) {
+                await _showFailedToRegisterToast(context, theme);
+              }
+            },
+            onTapJoinRequestBtn: () async {
+              final result = await viewModel.sendJoinRequest(room.data.id);
+              await _showJoinRequestToast(context, theme, result);
+            },
+          );
+        });
   }
 
   Widget _noSearchResultsFoundView(AppTheme theme) {
