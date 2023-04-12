@@ -1,0 +1,29 @@
+{
+    "address": {
+        "city": "横手市",
+        "country": "日本",
+        "prefecture": "秋田県"
+    },
+    "applicationDeadline": "2023-01-22",
+    "hostUser": {
+        "gender": "MAN",
+        "id": "a82d2785-56f8-4739-b192-1efe44ebd695",
+        "mainImageURL": "https://fortune-s3-bucket.s3.ap-northeast-1.amazonaws.com/userImage/20230219/33ed67aa-00ca-45a0-9c1f-89fed90120ff.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQB3D6IMBEFXWBFW7%2F20230412%2Fap-northeast-1%2Fs3%2Faws4_request&X-Amz-Date=20230412T102031Z&X-Amz-Expires=900&X-Amz-SignedHeaders=host&X-Amz-Signature=a0f4d1f6a72b213f0517728c49a3527a3d550ba821d52deb5bf950f8e1d9d105",
+        "name": "こうすけ"
+    },
+    "id": "ad3c1da2-7e53-449f-808f-6da62b4fd4c0",
+    "isHost": false,
+    "isMember": false,
+    "membersNum": 0,
+    "participants": [
+        {
+            "gender": "MAN",
+            "id": "cf7840c5-c6a6-444f-aa80-fe31783de1de",
+            "mainImageURL": "https://fortune-s3-bucket.s3.ap-northeast-1.amazonaws.com/userImage/20230122/e9cce6a4-36f2-482f-b8bd-bc2152e77012.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQB3D6IMBEFXWBFW7%2F20230412%2Fap-northeast-1%2Fs3%2Faws4_request&X-Amz-Date=20230412T102031Z&X-Amz-Expires=900&X-Amz-SignedHeaders=host&X-Amz-Signature=f9fc698dd230e6e1e23e8b5d84101aa527b906b967c47a9bebfe8cdde97a7032",
+            "name": "kosuke-test"
+        }
+    ],
+    "roomName": "テストルーム",
+    "status": "PENDING",
+    "tags": []
+}
