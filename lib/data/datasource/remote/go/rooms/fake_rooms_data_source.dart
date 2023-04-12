@@ -15,9 +15,10 @@ class FakeRoomsDataSource implements RoomsDataSource {
   }
 
   @override
-  Future<Room> getDetail(String id) {
-    // TODO: implement getDetail
-    throw UnimplementedError();
+  Future<Room> getDetail(String id) async {
+    return Room.fromJson(
+      await JsonUtils.load(Assets.stub.getV1RoomsResponseRoom),
+    );
   }
 
   @override
