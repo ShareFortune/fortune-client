@@ -8,7 +8,7 @@
     "hostUser": {
         "gender": "MAN",
         "id": "a82d2785-56f8-4739-b192-1efe44ebd695",
-        "mainImageURL": "https://fortune-s3-bucket.s3.ap-northeast-1.amazonaws.com/userImage/20230219/33ed67aa-00ca-45a0-9c1f-89fed90120ff.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQB3D6IMBEFXWBFW7%2F20230413%2Fap-northeast-1%2Fs3%2Faws4_request&X-Amz-Date=20230413T120201Z&X-Amz-Expires=900&X-Amz-SignedHeaders=host&X-Amz-Signature=3d54155ed5fe57870edac10ea372eb4a42c76db7760ddae5446af98c19672c74",
+        "mainImageURL": "https://dol.ismcdn.jp/mwimgs/7/e/1320w/img_7e0b8adba77c91687a8078920dedc7be160077.jpg",
         "name": "こうすけ"
     },
     "id": "ad3c1da2-7e53-449f-808f-6da62b4fd4c0",
@@ -19,11 +19,36 @@
         {
             "gender": "MAN",
             "id": "cf7840c5-c6a6-444f-aa80-fe31783de1de",
-            "mainImageURL": "https://fortune-s3-bucket.s3.ap-northeast-1.amazonaws.com/userImage/20230219/33ed67aa-00ca-45a0-9c1f-89fed90120ff.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQB3D6IMBEFXWBFW7%2F20230413%2Fap-northeast-1%2Fs3%2Faws4_request&X-Amz-Date=20230413T120201Z&X-Amz-Expires=900&X-Amz-SignedHeaders=host&X-Amz-Signature=3d54155ed5fe57870edac10ea372eb4a42c76db7760ddae5446af98c19672c74",
+            "mainImageURL": "https://dol.ismcdn.jp/mwimgs/7/e/1320w/img_7e0b8adba77c91687a8078920dedc7be160077.jpg",
             "name": "kosuke-test"
         }
     ],
     "roomName": "テストルーム",
     "status": "PENDING",
-    "tags": []
+    "tags": [
+        {
+            "id": "9e859233-a284-445e-ae0b-d52560c67d9c",
+            "name": "YouTube"
+        },
+        {
+            "id": "9e859233-a284-445e-ae0b-d52560c67d9c",
+            "name": "サッカー"
+        },
+        {
+            "id": "9e859233-a284-445e-ae0b-d52560c67d9c",
+            "name": "アニメ"
+        },
+        {
+            "id": "9e859233-a284-445e-ae0b-d52560c67d9c",
+            "name": "大学生"
+        },
+        {
+            "id": "9e859233-a284-445e-ae0b-d52560c67d9c",
+            "name": "麻雀"
+        },
+        {
+            "id": "9e859233-a284-445e-ae0b-d52560c67d9c",
+            "name": "映画"
+        }
+    ]
 }

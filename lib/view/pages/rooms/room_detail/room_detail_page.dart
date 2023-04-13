@@ -1,12 +1,16 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:fortune_client/data/model/core/base/fortune_user/fortune_user.dart';
+import 'package:fortune_client/data/model/core/base/tag/tag.dart';
+import 'package:fortune_client/l10n/locale_keys.g.dart';
 import 'package:fortune_client/view/pages/rooms/room_detail/room_detail_view_model.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/app_bar/back_app_bar.dart';
 import 'package:fortune_client/view/widgets/icon/user_icon_widget.dart';
 import 'package:fortune_client/view/widgets/other/async_value_widget.dart';
+import 'package:fortune_client/view/widgets/other/tag_widget.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -30,8 +34,9 @@ class RoomDetailPage extends HookConsumerWidget {
             children: [
               _RoomDetailPageItem(
                 title: "メンバー",
-                mainAxisExtent: 15,
+                middleMargin: 15,
                 childPadding: EdgeInsets.zero,
+                titlePadding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
                 child: _MemberListView([room.hostUser, ...?room.participants]),
               ),
               const Gap(10),
@@ -52,7 +57,8 @@ class RoomDetailPage extends HookConsumerWidget {
               ),
               _RoomDetailPageItem(
                 title: "タグ",
-                child: Text("テキスト", style: theme.textTheme.h20),
+                middleMargin: 10,
+                child: _TagsWrapper(room.tags),
               ),
               _RoomDetailPageItem(
                 title: "説明",
@@ -74,14 +80,14 @@ class _RoomDetailPageItem extends HookConsumerWidget {
   const _RoomDetailPageItem({
     required this.title,
     required this.child,
-    this.mainAxisExtent = 5,
+    this.middleMargin = 5,
     this.titlePadding,
     this.childPadding,
   });
 
   final String title;
   final Widget child;
-  final double mainAxisExtent;
+  final double middleMargin;
   final EdgeInsetsGeometry? titlePadding;
   final EdgeInsetsGeometry? childPadding;
   final horizontalPadding = const EdgeInsets.symmetric(horizontal: 20);
@@ -93,7 +99,7 @@ class _RoomDetailPageItem extends HookConsumerWidget {
     return Container(
       width: double.infinity,
       color: theme.appColors.onBackground,
-      padding: const EdgeInsets.only(bottom: 15),
+      padding: const EdgeInsets.only(bottom: 20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -101,7 +107,7 @@ class _RoomDetailPageItem extends HookConsumerWidget {
             padding: titlePadding ?? horizontalPadding,
             child: Text(title, style: theme.textTheme.h20.bold()),
           ),
-          Gap(mainAxisExtent),
+          Gap(middleMargin),
           Container(
             padding: childPadding ?? horizontalPadding,
             child: child,
@@ -118,10 +124,10 @@ class _MemberListView extends HookConsumerWidget {
   final List<FortuneUser> users;
 
   final double iconRadius = 25.0;
-  final double margin = 5.0;
+  final double middleMargin = 8.0;
   final double nameHeight = 15.0;
 
-  double get height => iconRadius * 2 + margin + nameHeight;
+  double get height => iconRadius * 2 + middleMargin + nameHeight;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -133,13 +139,13 @@ class _MemberListView extends HookConsumerWidget {
         itemCount: users.length,
         scrollDirection: Axis.horizontal,
         padding: const EdgeInsets.symmetric(horizontal: 20),
-        separatorBuilder: (BuildContext context, int index) => const Gap(10),
+        separatorBuilder: (BuildContext context, int index) => const Gap(15),
         itemBuilder: (BuildContext context, int index) {
           final user = users.elementAt(index);
 
           return Column(children: [
             UserIconWidget(user.mainImageURL, radius: iconRadius),
-            Gap(margin),
+            Gap(middleMargin),
             SizedBox(
               height: nameHeight,
               child: Text(user.name, style: theme.textTheme.h10),
@@ -147,6 +153,32 @@ class _MemberListView extends HookConsumerWidget {
           ]);
         },
       ),
+    );
+  }
+}
+
+class _TagsWrapper extends HookConsumerWidget {
+  const _TagsWrapper(this.tags);
+
+  final List<Tag>? tags;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final theme = ref.watch(appThemeProvider);
+
+    if (tags?.isNotEmpty != true) {
+      return Text(
+        LocaleKeys.myPage_profiles_tags_empty.tr(),
+        style: theme.textTheme.h30.paint(
+          theme.appColors.subText3,
+        ),
+      );
+    }
+
+    return Wrap(
+      spacing: 10,
+      runSpacing: 10,
+      children: tags!.map((e) => TagWidget(value: e.name)).toList(),
     );
   }
 }
