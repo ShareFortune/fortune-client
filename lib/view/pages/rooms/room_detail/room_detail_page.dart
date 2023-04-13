@@ -30,31 +30,38 @@ class RoomDetailPage extends HookConsumerWidget {
             children: [
               _RoomDetailPageItem(
                 title: "メンバー",
-                mainAxisExtent: 10,
+                mainAxisExtent: 15,
                 childPadding: EdgeInsets.zero,
                 child: _MemberListView([room.hostUser, ...?room.participants]),
               ),
               const Gap(10),
+              Container(
+                width: double.infinity,
+                color: theme.appColors.onBackground,
+                padding:
+                    const EdgeInsets.symmetric(vertical: 30, horizontal: 20),
+                child: Text(room.roomName, style: theme.textTheme.h40.bold()),
+              ),
               _RoomDetailPageItem(
                 title: "集合場所",
-                mainAxisExtent: 10,
-                child: Text("テキスト", style: theme.textTheme.h20),
+                child: Text(room.address.text, style: theme.textTheme.h20),
               ),
               _RoomDetailPageItem(
                 title: "集合人数",
-                mainAxisExtent: 10,
-                child: Text("テキスト", style: theme.textTheme.h20),
+                child: Text("${room.membersNum}人", style: theme.textTheme.h20),
               ),
               _RoomDetailPageItem(
                 title: "タグ",
-                mainAxisExtent: 10,
                 child: Text("テキスト", style: theme.textTheme.h20),
               ),
               _RoomDetailPageItem(
                 title: "説明",
-                mainAxisExtent: 10,
-                child: Text("テキスト", style: theme.textTheme.h20),
+                child: Text(
+                  "テキスト・テキスト・テキスト・テキスト・テキスト・テキスト・テキスト・テキスト・テキスト・テキスト・テキスト・テキスト・テキスト・テキスト・テキスト・テキスト",
+                  style: theme.textTheme.h20,
+                ),
               ),
+              Expanded(child: Container(color: Colors.white)),
             ],
           );
         },
@@ -67,7 +74,7 @@ class _RoomDetailPageItem extends HookConsumerWidget {
   const _RoomDetailPageItem({
     required this.title,
     required this.child,
-    this.mainAxisExtent = 10,
+    this.mainAxisExtent = 5,
     this.titlePadding,
     this.childPadding,
   });
@@ -86,7 +93,7 @@ class _RoomDetailPageItem extends HookConsumerWidget {
     return Container(
       width: double.infinity,
       color: theme.appColors.onBackground,
-      padding: const EdgeInsets.symmetric(vertical: 15),
+      padding: const EdgeInsets.only(bottom: 15),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
