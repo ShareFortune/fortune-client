@@ -81,7 +81,7 @@ class RoomDetailPage extends HookConsumerWidget {
               margin: const EdgeInsets.only(bottom: 30),
               padding: const EdgeInsets.symmetric(horizontal: 30),
               child: MaterialButton(
-                onPressed: () {},
+                onPressed: () => viewModel.joinRoomRequest(),
                 color: theme.appColors.primary,
                 textColor: theme.appColors.onPrimary,
                 child: Text("ルームに参加する", style: theme.textTheme.h30.bold()),

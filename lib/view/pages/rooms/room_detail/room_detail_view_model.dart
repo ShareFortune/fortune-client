@@ -24,7 +24,7 @@ class RoomDetailViewModel extends StateNotifier<RoomDetailState> {
     );
   }
 
-  Future<bool> joinRequest() {
+  Future<bool> joinRoomRequest() {
     return Repository.joinRequests.request(state.roomId);
   }
 
