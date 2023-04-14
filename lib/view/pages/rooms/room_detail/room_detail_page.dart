@@ -2,7 +2,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:fortune_client/data/model/core/base/fortune_user/fortune_user.dart';
-import 'package:fortune_client/data/model/core/base/room/room.dart';
 import 'package:fortune_client/data/model/core/base/tag/tag.dart';
 import 'package:fortune_client/l10n/locale_keys.g.dart';
 import 'package:fortune_client/view/pages/rooms/room_detail/room_detail_view_model.dart';
@@ -30,72 +29,66 @@ class RoomDetailPage extends HookConsumerWidget {
       appBar: const BackAppBar(centerTitle: false, title: "タイトル"),
       body: AsyncValueWidget(
         data: state.detail,
-        builder: (room) => Stack(
-          children: [
-            _buildBody(theme, room),
-            _buildParticipateButton(theme),
-          ],
-        ),
-      ),
-    );
-  }
+        builder: (room) => Stack(children: [
+          /// ルーム詳細
+          Column(children: [
+            _RoomDetailPageItem(
+              title: "メンバー",
+              middleMargin: 15,
+              childPadding: EdgeInsets.zero,
+              titlePadding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
+              child: _MemberListView(
+                [room.hostUser, ...?room.participants],
+                (user) => viewModel.navigateToProfile(user.id),
+              ),
+            ),
+            const Gap(10),
+            Container(
+              width: double.infinity,
+              color: theme.appColors.onBackground,
+              padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 20),
+              child: Text(room.roomName, style: theme.textTheme.h40.bold()),
+            ),
+            _RoomDetailPageItem(
+              title: "集合場所",
+              child: Text(room.address.text, style: theme.textTheme.h20),
+            ),
+            _RoomDetailPageItem(
+              title: "募集人数",
+              child: Text("${room.membersNum}人", style: theme.textTheme.h20),
+            ),
+            _RoomDetailPageItem(
+              title: "タグ",
+              middleMargin: 10,
+              child: _TagsWrapper(room.tags),
+            ),
+            _RoomDetailPageItem(
+              title: "説明",
+              child: Text(
+                "テキスト・テキスト・テキスト・テキスト・テキスト・テキスト・テキスト・テキスト・テキスト・テキスト・テキスト・テキスト・テキスト・テキスト・テキスト・テキスト",
+                style: theme.textTheme.h20,
+              ),
+            ),
+            Expanded(child: Container(color: Colors.white)),
+          ]),
 
-  Widget _buildBody(AppTheme theme, Room room) {
-    return Column(
-      children: [
-        _RoomDetailPageItem(
-          title: "メンバー",
-          middleMargin: 15,
-          childPadding: EdgeInsets.zero,
-          titlePadding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
-          child: _MemberListView([room.hostUser, ...?room.participants]),
-        ),
-        const Gap(10),
-        Container(
-          width: double.infinity,
-          color: theme.appColors.onBackground,
-          padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 20),
-          child: Text(room.roomName, style: theme.textTheme.h40.bold()),
-        ),
-        _RoomDetailPageItem(
-          title: "集合場所",
-          child: Text(room.address.text, style: theme.textTheme.h20),
-        ),
-        _RoomDetailPageItem(
-          title: "募集人数",
-          child: Text("${room.membersNum}人", style: theme.textTheme.h20),
-        ),
-        _RoomDetailPageItem(
-          title: "タグ",
-          middleMargin: 10,
-          child: _TagsWrapper(room.tags),
-        ),
-        _RoomDetailPageItem(
-          title: "説明",
-          child: Text(
-            "テキスト・テキスト・テキスト・テキスト・テキスト・テキスト・テキスト・テキスト・テキスト・テキスト・テキスト・テキスト・テキスト・テキスト・テキスト・テキスト",
-            style: theme.textTheme.h20,
+          /// 参加ボタン
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Container(
+              height: 45,
+              width: double.infinity,
+              margin: const EdgeInsets.only(bottom: 30),
+              padding: const EdgeInsets.symmetric(horizontal: 30),
+              child: MaterialButton(
+                onPressed: () {},
+                color: theme.appColors.primary,
+                textColor: theme.appColors.onPrimary,
+                child: Text("ルームに参加する", style: theme.textTheme.h30.bold()),
+              ),
+            ),
           ),
-        ),
-        Expanded(child: Container(color: Colors.white)),
-      ],
-    );
-  }
-
-  Widget _buildParticipateButton(AppTheme theme) {
-    return Align(
-      alignment: Alignment.bottomCenter,
-      child: Container(
-        height: 45,
-        width: double.infinity,
-        margin: const EdgeInsets.only(bottom: 30),
-        padding: const EdgeInsets.symmetric(horizontal: 30),
-        child: MaterialButton(
-          onPressed: () {},
-          color: theme.appColors.primary,
-          textColor: theme.appColors.onPrimary,
-          child: Text("ルームに参加する", style: theme.textTheme.h30.bold()),
-        ),
+        ]),
       ),
     );
   }
@@ -144,9 +137,10 @@ class _RoomDetailPageItem extends HookConsumerWidget {
 }
 
 class _MemberListView extends HookConsumerWidget {
-  const _MemberListView(this.users);
+  const _MemberListView(this.users, this.onTap);
 
   final List<FortuneUser> users;
+  final Function(FortuneUser) onTap;
 
   final double iconRadius = 25.0;
   final double middleMargin = 8.0;
@@ -168,14 +162,17 @@ class _MemberListView extends HookConsumerWidget {
         itemBuilder: (BuildContext context, int index) {
           final user = users.elementAt(index);
 
-          return Column(children: [
-            UserIconWidget(user.mainImageURL, radius: iconRadius),
-            Gap(middleMargin),
-            SizedBox(
-              height: nameHeight,
-              child: Text(user.name, style: theme.textTheme.h10),
-            ),
-          ]);
+          return GestureDetector(
+            onTap: () => onTap(user),
+            child: Column(children: [
+              UserIconWidget(user.mainImageURL, radius: iconRadius),
+              Gap(middleMargin),
+              SizedBox(
+                height: nameHeight,
+                child: Text(user.name, style: theme.textTheme.h10),
+              ),
+            ]),
+          );
         },
       ),
     );
@@ -203,7 +200,9 @@ class _TagsWrapper extends HookConsumerWidget {
     return Wrap(
       spacing: 10,
       runSpacing: 10,
-      children: tags!.map((e) => TagWidget(value: e.name)).toList(),
+      children: tags!.map((e) {
+        return TagWidget(value: e.name);
+      }).toList(),
     );
   }
 }
