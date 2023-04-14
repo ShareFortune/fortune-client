@@ -4,7 +4,6 @@ import 'package:fortune_client/data/repository/repository.dart';
 import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/l10n/locale_keys.g.dart';
 import 'package:fortune_client/view/pages/my_page/my_page/my_page_state.dart';
-import 'package:fortune_client/view/routes/app_router.gr.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final myPageViewModelProvider =
@@ -29,7 +28,7 @@ class MyPageViewModel extends StateNotifier<MyPageState> {
 
   /// 設定ページへ
   navigateToSettingPage() {
-    getIt<AppRouter>().push(const SettingsRoute());
+    // getIt<AppRouter>().push(const SettingsRoute());
   }
 
   /// 自己紹介を編集
@@ -38,19 +37,19 @@ class MyPageViewModel extends StateNotifier<MyPageState> {
     if (data == null) return;
 
     /// 自己紹介取得
-    final result = await getIt<AppRouter>().push(
-      EntryDescriptionRoute(
-        title: LocaleKeys.myPage_profiles_selfIntroduction_editTitle.tr(),
-        value: data.selfIntroduction,
-      ),
-    ) as String?;
+    // final result = await getIt<AppRouter>().push(
+    //   EntryDescriptionRoute(
+    //     title: LocaleKeys.myPage_profiles_selfIntroduction_editTitle.tr(),
+    //     value: data.selfIntroduction,
+    //   ),
+    // ) as String?;
 
     /// 更新
-    if (result != null) {
-      Repository.profile
-          .updateSelfIntroduction(result)
-          .whenComplete(() => fetch());
-    }
+    // if (result != null) {
+    //   Repository.profile
+    //       .updateSelfIntroduction(result)
+    //       .whenComplete(() => fetch());
+    // }
   }
 
   /// タグを編集
@@ -59,26 +58,26 @@ class MyPageViewModel extends StateNotifier<MyPageState> {
     if (data == null) return;
 
     /// タグ取得
-    final result = await getIt<AppRouter>().push(
-      SelectTagsRoute(beingSet: data.tags ?? List.empty()),
-    ) as List<Tag>?;
+    // final result = await getIt<AppRouter>().push(
+    //   SelectTagsRoute(beingSet: data.tags ?? List.empty()),
+    // ) as List<Tag>?;
 
-    /// 更新
-    if (result != null) {
-      Repository.profile.updateTags(result).whenComplete(() => fetch());
-    }
+    // /// 更新
+    // if (result != null) {
+    //   Repository.profile.updateTags(result).whenComplete(() => fetch());
+    // }
   }
 
   /// 基本情報を編集
   navigateToUpdateBasic() async {
-    getIt<AppRouter>()
-        .push(const ProfileUpdateRoute())
-        .whenComplete(() => fetch());
+    // getIt<AppRouter>()
+    //     .push(const ProfileUpdateRoute())
+    //     .whenComplete(() => fetch());
   }
 
   navigateToEditProfilePicture() async {
-    getIt<AppRouter>().push(
-      const BottomSheetRouter(children: [EditProfilePicture()]),
-    );
+    // getIt<AppRouter>().push(
+    //   const BottomSheetRouter(children: [EditProfilePicture()]),
+    // );
   }
 }

@@ -4,7 +4,7 @@ import 'package:fortune_client/data/repository/repository.dart';
 import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/view/pages/rooms/room_list/room_list_state.dart';
 import 'package:fortune_client/view/routes/app_router.dart';
-import 'package:fortune_client/view/routes/app_router.gr.dart';
+
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final roomListViewModelProvider =
@@ -88,20 +88,20 @@ class RoomListViewModel extends StateNotifier<RoomListState> {
 
   /// 場所検索ページへ遷移
   Future<AddressWithId?> navigateToEntryAddress() async {
-    return await getIt<AppRouter>().push(
-      EntryAddressRoute(),
-    ) as AddressWithId?;
+    // return await getIt<AppRouter>().push(
+    //   EntryAddressRoute(),
+    // ) as AddressWithId?;
   }
 
   /// タグ検索ページへ遷移
   Future<List<Tag>?> navigateToTagsSelection() async {
-    return await getIt<AppRouter>().push(
-      SelectTagsRoute(beingSet: state.filter.tags ?? List.empty()),
-    ) as List<Tag>?;
+    // return await getIt<AppRouter>().push(
+    //   SelectTagsRoute(beingSet: state.filter.tags ?? List.empty()),
+    // ) as List<Tag>?;
   }
 
   /// ルーム詳細ページへ遷移
   navigateToRoomDetail(String id) async {
-    await getIt<AppRouter>().push(RoomDetailRoute(roomId: id));
+    // await getIt<AppRouter>().push(RoomDetailRoute(roomId: id));
   }
 }

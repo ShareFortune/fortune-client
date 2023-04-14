@@ -4,7 +4,6 @@ import 'package:fortune_client/data/model/core/enum/age_group.dart';
 import 'package:fortune_client/data/repository/repository.dart';
 import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/view/pages/rooms/action/create/create_room_state.dart';
-import 'package:fortune_client/view/routes/app_router.gr.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final createRoomViewModelProvider =
@@ -59,22 +58,22 @@ class CreateRoomViewModel extends StateNotifier<CreateRoomState> {
   }
 
   navigateToCreatedRoom(String roomId) async {
-    getIt<AppRouter>().push(HomeRouter(children: [
-      RoomsTab(children: [RoomDetailRoute(roomId: roomId)]),
-    ]));
+    // getIt<AppRouter>().push(HomeRouter(children: [
+    //   RoomsTab(children: [RoomDetailRoute(roomId: roomId)]),
+    // ]));
   }
 
   navigateToEntryAddress() async {
-    final result = await getIt<AppRouter>().push(
-      EntryAddressRoute(),
-    ) as AddressWithId?;
-    state = state.copyWith(addressWithId: result ?? state.addressWithId);
+    // final result = await getIt<AppRouter>().push(
+    //   EntryAddressRoute(),
+    // ) as AddressWithId?;
+    // state = state.copyWith(addressWithId: result ?? state.addressWithId);
   }
 
   navigateToTagsSelection() async {
-    final result = await getIt<AppRouter>().push(
-      SelectTagsRoute(beingSet: state.tags ?? List.empty()),
-    ) as List<Tag>?;
-    state = state.copyWith(tags: result ?? state.tags);
+    //   final result = await getIt<AppRouter>().push(
+    //     SelectTagsRoute(beingSet: state.tags ?? List.empty()),
+    //   ) as List<Tag>?;
+    //   state = state.copyWith(tags: result ?? state.tags);
   }
 }

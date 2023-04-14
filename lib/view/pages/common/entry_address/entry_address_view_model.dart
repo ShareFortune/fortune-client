@@ -2,7 +2,6 @@ import 'package:fortune_client/data/model/core/base/address_with_id/address_with
 import 'package:fortune_client/data/repository/repository.dart';
 import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/view/pages/common/entry_address/entry_address_state.dart';
-import 'package:fortune_client/view/routes/app_router.gr.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final entryAddressViewModelProvider =
@@ -18,7 +17,7 @@ class EntryAddressViewModel extends StateNotifier<EntryAddressState> {
   }
 
   select(AddressWithId address) {
-    getIt<AppRouter>().pop(address);
+    // getIt<AppRouter>().pop(address);
   }
 
   search(String keyword) async {

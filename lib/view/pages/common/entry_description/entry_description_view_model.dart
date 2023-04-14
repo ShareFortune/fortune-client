@@ -16,6 +16,6 @@ class EntryDescriptionViewModel extends StateNotifier<EntryDescriptionState> {
   }
 
   save() {
-    getIt<AppRouter>().pop(state.description);
+    // getIt<AppRouter>().pop(state.description);
   }
 }

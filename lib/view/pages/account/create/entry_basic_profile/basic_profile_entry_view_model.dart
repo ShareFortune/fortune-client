@@ -2,7 +2,6 @@ import 'package:fortune_client/data/repository/repository.dart';
 import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/util/converter/datetime_converter.dart';
 import 'package:fortune_client/view/pages/account/create/entry_basic_profile/basic_profile_entry_state.dart';
-import 'package:fortune_client/view/routes/app_router.gr.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final basicProfileEntryViewModelProvider =
@@ -37,6 +36,6 @@ class BasicProfileEntryViewModel extends StateNotifier<BasicProfileEntryState> {
   }
 
   navigateToEntryDetailedProfile() async {
-    await getIt<AppRouter>().push(DetailedProfileEntryRoute());
+    // await getIt<AppRouter>().push(DetailedProfileEntryRoute());
   }
 }

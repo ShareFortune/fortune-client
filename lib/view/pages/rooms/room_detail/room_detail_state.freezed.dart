@@ -103,13 +103,11 @@ class __$$_RoomDetailStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_RoomDetailState implements _RoomDetailState {
-  const _$_RoomDetailState(
-      {required this.roomId, this.detail = const AsyncLoading()});
+  const _$_RoomDetailState({required this.roomId, required this.detail});
 
   @override
   final String roomId;
   @override
-  @JsonKey()
   final AsyncValue<Room> detail;
 
   @override
@@ -139,7 +137,7 @@ class _$_RoomDetailState implements _RoomDetailState {
 abstract class _RoomDetailState implements RoomDetailState {
   const factory _RoomDetailState(
       {required final String roomId,
-      final AsyncValue<Room> detail}) = _$_RoomDetailState;
+      required final AsyncValue<Room> detail}) = _$_RoomDetailState;
 
   @override
   String get roomId;

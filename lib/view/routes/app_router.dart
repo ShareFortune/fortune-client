@@ -1,215 +1,161 @@
-// ignore_for_file: implementation_imports
-
-import 'package:auto_route/auto_route.dart';
-import 'package:auto_route/empty_router_widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:fortune_client/view/pages/account/create/entry_basic_profile/basic_profile_entry_page.dart';
-import 'package:fortune_client/view/pages/account/create/entry_detailed_profile/detailed_profile_entry_page.dart';
-import 'package:fortune_client/view/pages/account/create/entry_profile_icon_image/profile_icon_image_entry_page.dart';
-import 'package:fortune_client/view/pages/account/create/entry_profile_sub_image/entry_profile_sub_image_page.dart';
-import 'package:fortune_client/view/pages/auth/login/login_page.dart';
-import 'package:fortune_client/view/pages/common/bottom_navigation_bar/bottom_navigation_bar.dart';
-import 'package:fortune_client/view/pages/common/entry_address/entry_address_page.dart';
-import 'package:fortune_client/view/pages/common/entry_description/entry_description_page.dart';
-import 'package:fortune_client/view/pages/common/guest_room_actions_bottom_sheet/guest_room_actions_bottom_sheet.dart';
-import 'package:fortune_client/view/pages/common/host_room_actions_bottom_sheet/host_room_actions_bottom_sheet.dart';
-import 'package:fortune_client/view/pages/debug/debug_page.dart';
-import 'package:fortune_client/view/pages/message/message_room/message_room_page.dart';
-import 'package:fortune_client/view/pages/message/message_room_list/message_room_list_page.dart';
-import 'package:fortune_client/view/pages/my_page/edit_profile_images/edit_profile_images_page.dart';
-import 'package:fortune_client/view/pages/my_page/my_page/my_page.dart';
-import 'package:fortune_client/view/pages/my_page/update/profile_update_page.dart';
-import 'package:fortune_client/view/pages/profile/profile/profile_page.dart';
-import 'package:fortune_client/view/pages/request/join_requests_confirmation/join_requests_confirmation_page.dart';
-import 'package:fortune_client/view/pages/rooms/action/create/create_room_page.dart';
-import 'package:fortune_client/view/pages/rooms/action/edit/edit_room_page.dart';
-import 'package:fortune_client/view/pages/rooms/participating/participating_page.dart';
-import 'package:fortune_client/view/pages/rooms/participating_room_list/participating_room_list_page.dart';
-import 'package:fortune_client/view/pages/rooms/room_detail/room_detail_page.dart';
-import 'package:fortune_client/view/pages/rooms/room_list/room_list_page.dart';
-import 'package:fortune_client/view/pages/tags/create/create_tag_page.dart';
-import 'package:fortune_client/view/pages/tags/select/select_tags_page.dart';
-import 'package:fortune_client/view/pages/settings/settings_page.dart';
-import 'package:fortune_client/view/routes/route_guard.dart';
+import 'package:fortune_client/view/pages/common/home/home_page.dart';
+import 'package:fortune_client/view/pages/launch/launch_page.dart';
 import 'package:fortune_client/view/routes/route_path.dart';
-import 'package:modal_bottom_sheet/src/bottom_sheet_route.dart' as mbs;
 
-export 'app_router.gr.dart';
+class AppRouter {
+  static Route<dynamic>? onGenerateRoute(RouteSettings settings) {
+    print(settings.name);
+    switch (RoutePath.from(settings.name)) {
+      case RoutePath.launch:
+        return _buildRoute(
+          const LaunchPage(),
+          settings: settings,
+        );
+      case RoutePath.debug:
+        // TODO: Handle this case.
+        break;
+      case RoutePath.login:
+        // TODO: Handle this case.
+        break;
+      case RoutePath.home:
+        print('home');
+        return _fadePageRouteBuilder(
+          const HomePage(),
+        );
+      case RoutePath.profileInput:
+        // TODO: Handle this case.
+        break;
+      case RoutePath.profileEdit:
+        // TODO: Handle this case.
+        break;
+      case RoutePath.profile:
+        // TODO: Handle this case.
+        break;
+      case RoutePath.my:
+        // TODO: Handle this case.
+        break;
+      case RoutePath.room:
+        // TODO: Handle this case.
+        break;
+      case RoutePath.roomInput:
+        // TODO: Handle this case.
+        break;
+      case RoutePath.roomEdit:
+        // TODO: Handle this case.
+        break;
+      case RoutePath.roomDetail:
+        // TODO: Handle this case.
+        break;
+      case RoutePath.participatingRoom:
+        // TODO: Handle this case.
+        break;
+      case RoutePath.participatingRoomAll:
+        // TODO: Handle this case.
+        break;
+      case RoutePath.message:
+        // TODO: Handle this case.
+        break;
+      case RoutePath.messageRoom:
+        // TODO: Handle this case.
+        break;
+      case RoutePath.tag:
+        // TODO: Handle this case.
+        break;
+      case RoutePath.tagInput:
+        // TODO: Handle this case.
+        break;
+      case RoutePath.setting:
+        // TODO: Handle this case.
+        break;
+      case RoutePath.settingAccount:
+        // TODO: Handle this case.
+        break;
+      case RoutePath.settingNotification:
+        // TODO: Handle this case.
+        break;
+      case RoutePath.settingPrivacy:
+        // TODO: Handle this case.
+        break;
+      case RoutePath.settingTerms:
+        // TODO: Handle this case.
+        break;
+      case RoutePath.settingHelp:
+        // TODO: Handle this case.
+        break;
+      case RoutePath.settingAbout:
+        // TODO: Handle this case.
+        break;
+      case RoutePath.searchRoom:
+        // TODO: Handle this case.
+        break;
+      case RoutePath.searchTag:
+        // TODO: Handle this case.
+        break;
+      case RoutePath.searchAddress:
+        // TODO: Handle this case.
+        break;
+      case RoutePath.error:
+        // TODO: Handle this case.
+        break;
+      case RoutePath.unknown:
+        // TODO: Handle this case.
+        break;
+    }
+    return null;
+  }
 
-@AdaptiveAutoRouter(
-  replaceInRouteName: 'Page,Route',
-  routes: <AutoRoute>[
-    /// ボトムナビゲータで管理するページ
-    AutoRoute(
-      initial: true,
-      name: "HomeRouter",
-      page: MyBottomNavigationBar,
-      guards: [AuthGuard, CheckIfMyProfileExists],
-      children: [
-        /// ルームリスト
-        AutoRoute(
-          name: "RoomsTab",
-          path: RoutePath.rooms,
-          page: EmptyRouterPage,
-          children: [
-            AutoRoute(
-              path: '',
-              page: RoomListPage,
-            ),
-            AutoRoute(
-              path: RoutePath.roomDetail,
-              page: RoomDetailPage,
-            ),
-          ],
-        ),
+  static Route<dynamic>? _buildRoute(
+    Widget child, {
+    RouteSettings? settings,
+    bool fullscreenDialog = false,
+  }) {
+    return MaterialPageRoute<dynamic>(
+      builder: (BuildContext context) => child,
+      settings: settings,
+      fullscreenDialog: fullscreenDialog,
+    );
+  }
 
-        /// 参加ルームリスト
-        AutoRoute(
-          name: "ParticipatingTab",
-          path: RoutePath.participatingRooms,
-          page: EmptyRouterPage,
-          children: [
-            AutoRoute(
-              path: '',
-              page: ParticipatingPage,
-            ),
-            AutoRoute(
-              path: RoutePath.roomDetail,
-              page: RoomDetailPage,
-            ), // ルーム詳細
+  static PageRouteBuilder<dynamic> _slidePageRouteBuilder(
+    Widget child,
+    Offset offset, {
+    RouteSettings? settings,
+  }) {
+    return PageRouteBuilder(
+      settings: settings,
+      transitionDuration: const Duration(milliseconds: 300),
+      reverseTransitionDuration: const Duration(milliseconds: 300),
+      pageBuilder: (context, animation, secondaryAnimation) => child,
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        final Animatable<Offset> tween = Tween(begin: offset, end: Offset.zero);
 
-            /// 参加リクエスト
-            AutoRoute(
-              path: RoutePath.requestConfirmation,
-              page: JoinRequestsConfirmationPage,
-            ),
+        return SlideTransition(
+          position: animation.drive(tween),
+          child: child,
+        );
+      },
+    );
+  }
 
-            AutoRoute(
-              path: RoutePath.participatingroomsAll,
-              page: ParticipatingRoomListPage,
-            ),
-          ],
-        ),
+  static PageRouteBuilder<dynamic> _fadePageRouteBuilder(
+    Widget child, {
+    RouteSettings? settings,
+    int transitionDuration = 300,
+  }) {
+    return PageRouteBuilder(
+      settings: settings,
+      transitionDuration: Duration(milliseconds: transitionDuration),
+      reverseTransitionDuration: const Duration(milliseconds: 300),
+      pageBuilder: (context, animation, secondaryAnimation) => child,
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        final Animatable<double> tween = Tween(begin: 0.0, end: 1.0);
 
-        /// メッセージルームリスト
-        AutoRoute(
-          name: "MessagesTab",
-          path: RoutePath.rooms,
-          page: EmptyRouterPage,
-          children: [
-            AutoRoute(
-              path: '',
-              page: MessageRoomListPage,
-            ),
-            AutoRoute(
-              path: RoutePath.roomDetail,
-              page: RoomDetailPage,
-            ),
-          ],
-        ),
-      ],
-    ),
-
-    /// プロフィール作成
-    AutoRoute(
-      name: "CreateProfileRoute",
-      page: EmptyRouterPage,
-      guards: [AuthGuard],
-      children: [
-        RedirectRoute(
-          path: "",
-          redirectTo: RoutePath.createProfileBasic,
-        ),
-        AutoRoute(
-          path: RoutePath.createProfileBasic,
-          page: BasicProfileEntryPage,
-        ),
-        AutoRoute(
-          path: RoutePath.createProfileDetail,
-          page: DetailedProfileEntryPage,
-        ),
-        AutoRoute(
-          path: RoutePath.createProfileIconImage,
-          page: ProfileIconImageEntryPage,
-        ),
-        AutoRoute(
-          path: RoutePath.createProfileSubImage,
-          page: EntryProfileSubImagePage,
-        ),
-      ],
-    ),
-
-    /// ログイン
-    AutoRoute(path: RoutePath.login, page: LoginPage),
-
-    /// メッセージ
-    AutoRoute(path: RoutePath.messageRoom, page: MessageRoomPage),
-
-    /// デバッグ
-    AutoRoute(path: RoutePath.debug, page: DebugPage),
-
-    /// プロフィール
-    AutoRoute(path: RoutePath.profile, page: ProfilePage),
-
-    /// ルーム作成
-    AutoRoute(path: RoutePath.createRoom, page: CreateRoomPage),
-
-    /// ルーム編集
-    AutoRoute(path: RoutePath.editRoom, page: EditRoomPage),
-
-    /// 住所検索
-    AutoRoute(path: RoutePath.enterAddress, page: EntryAddressPage),
-
-    /// アカウント
-    AutoRoute(path: RoutePath.account, page: MyPage),
-
-    /// プロフィール更新
-    AutoRoute(path: RoutePath.updateProfile, page: ProfileUpdatePage),
-
-    /// 設定
-    AutoRoute(path: RoutePath.setting, page: SettingsPage),
-
-    /// タグ作成
-    AutoRoute(path: RoutePath.createTag, page: CreateTagPage),
-
-    /// タグ選択
-    AutoRoute(path: RoutePath.selectTag, page: SelectTagsPage),
-
-    /// 説明入力
-    AutoRoute(path: RoutePath.entryDescription, page: EntryDescriptionPage),
-
-    CustomRoute(
-      name: RoutePath.bottomSheet,
-      page: EmptyRouterPage,
-      customRouteBuilder: modalSheetBuilder,
-      children: [
-        AutoRoute(
-          name: RoutePath.hostRoomActions,
-          page: HostRoomActionsBottomSheet,
-        ),
-        AutoRoute(
-          name: RoutePath.guestRoomActions,
-          page: GuestRoomActionsBottomSheet,
-        ),
-        AutoRoute(
-          name: RoutePath.editProfilePicture,
-          page: EditProfileImagesPage,
-        ),
-      ],
-    ),
-  ],
-)
-class $AppRouter {}
-
-Route<T> modalSheetBuilder<T>(
-  BuildContext context,
-  Widget child,
-  CustomPage<T> page,
-) {
-  return mbs.ModalBottomSheetRoute(
-    settings: page,
-    builder: (context) => child,
-    expanded: true,
-    duration: const Duration(milliseconds: 300),
-  );
+        return FadeTransition(
+          opacity: animation.drive(tween),
+          child: child,
+        );
+      },
+    );
+  }
 }

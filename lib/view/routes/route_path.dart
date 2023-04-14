@@ -55,9 +55,9 @@ enum RoutePath {
   error('/error'),
 
   /// Unknown
-  unknown(null);
+  unknown('unknown');
 
-  final String? name;
+  final String name;
   const RoutePath(this.name);
 
   factory RoutePath.from(String? name) {

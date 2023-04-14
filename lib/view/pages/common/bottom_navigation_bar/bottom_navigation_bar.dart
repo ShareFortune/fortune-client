@@ -1,7 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:fortune_client/view/routes/app_router.dart';
-import 'package:fortune_client/view/routes/app_router.gr.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -13,9 +12,9 @@ class MyBottomNavigationBar extends HookConsumerWidget {
 
     return AutoTabsScaffold(
       routes: const [
-        RoomsTab(),
-        ParticipatingTab(),
-        MessagesTab(),
+        // RoomsTab(),
+        // ParticipatingTab(),
+        // MessagesTab(),
       ],
       bottomNavigationBuilder: (_, tabsRouter) {
         return BottomNavigationBar(
