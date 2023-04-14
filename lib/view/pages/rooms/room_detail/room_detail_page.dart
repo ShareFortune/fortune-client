@@ -30,19 +30,17 @@ class RoomDetailPage extends HookConsumerWidget {
       appBar: const BackAppBar(centerTitle: false, title: "タイトル"),
       body: AsyncValueWidget(
         data: state.detail,
-        builder: (room) {
-          return Stack(
-            children: [
-              _buildBody(room, theme),
-              _buildParticipateButton(theme),
-            ],
-          );
-        },
+        builder: (room) => Stack(
+          children: [
+            _buildBody(theme, room),
+            _buildParticipateButton(theme),
+          ],
+        ),
       ),
     );
   }
 
-  Column _buildBody(Room room, AppTheme theme) {
+  Widget _buildBody(AppTheme theme, Room room) {
     return Column(
       children: [
         _RoomDetailPageItem(
@@ -84,7 +82,7 @@ class RoomDetailPage extends HookConsumerWidget {
     );
   }
 
-  Align _buildParticipateButton(AppTheme theme) {
+  Widget _buildParticipateButton(AppTheme theme) {
     return Align(
       alignment: Alignment.bottomCenter,
       child: Container(

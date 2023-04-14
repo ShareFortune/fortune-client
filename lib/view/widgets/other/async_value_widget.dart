@@ -11,47 +11,47 @@ class AsyncValueWidget<T> extends StatelessWidget {
     Key? key,
     required this.data,
     required this.builder,
+    this.errorBuilder,
+    this.loadingBuilder,
   }) : super(key: key);
 
   final AsyncValue<T> data;
   final Widget Function(T) builder;
+  final Widget Function(Object, StackTrace)? errorBuilder;
+  final Widget Function()? loadingBuilder;
 
   @override
   Widget build(BuildContext context) {
     return data.when(
-      data: (data) {
-        return builder(data);
-      },
-      error: (err, msg) {
+      data: (data) => builder(data),
+      loading: () => loadingBuilder?.call() ?? loadingWidget(),
+      error: (e, stk) {
         /// Widgetの生成を待機
         WidgetsBinding.instance.addPostFrameCallback((_) {
           /// Exception
-          final exception = catchFortuneError<FortuneException>(err);
+          final exception = catchFortuneError<FortuneException>(e);
           if (exception != null) {
             FortuneError(type: exception.type).handle(context: context);
           }
 
           /// Error
-          final error = catchFortuneError<FortuneError>(err);
+          final error = catchFortuneError<FortuneError>(e);
           if (error != null) {
             error.handle(context: context);
           }
         });
 
-        return errorWidget(err, msg);
-      },
-      loading: () {
-        return loadingWidget();
+        return errorBuilder?.call(e, stk) ?? errorWidget(e, stk);
       },
     );
   }
 
   /// 取得した例外またはエラーをキャスト
   /// キャストできない場合はNullとして返却
-  ErrorT? catchFortuneError<ErrorT>(Object error) {
-    if (error is ErrorT) return error as ErrorT;
+  ErrorType? catchFortuneError<ErrorType>(Object error) {
+    if (error is ErrorType) return error as ErrorType;
     if (error is DioError) {
-      if (error.error is ErrorT) return error.error as ErrorT;
+      if (error.error is ErrorType) return error.error as ErrorType;
     }
     return null;
   }
