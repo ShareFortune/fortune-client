@@ -21,10 +21,7 @@ class UserIconWidget extends StatelessWidget {
         fit: BoxFit.cover,
         errorBuilder: (_, error, __) {
           logger.e(error);
-          return const Icon(
-            Icons.error,
-            color: Colors.red,
-          );
+          return Icon(Icons.error, color: Colors.red, size: radius * 2);
         },
       ),
     );

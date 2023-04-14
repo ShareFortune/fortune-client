@@ -8,6 +8,6 @@ part 'room_detail_state.freezed.dart';
 class RoomDetailState with _$RoomDetailState {
   const factory RoomDetailState({
     required String roomId,
-    @Default(AsyncLoading()) AsyncValue<Room> detail,
+    required AsyncValue<Room> detail,
   }) = _RoomDetailState;
 }

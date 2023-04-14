@@ -30,6 +30,9 @@ class $StubGen {
   /// File path: stub/GetV1RoomsResponse.json
   String get getV1RoomsResponse => 'stub/GetV1RoomsResponse.json';
 
+  /// File path: stub/GetV1RoomsResponseRoom.json
+  String get getV1RoomsResponseRoom => 'stub/GetV1RoomsResponseRoom.json';
+
   /// File path: stub/message.json
   String get message => 'stub/message.json';
 
@@ -58,6 +61,7 @@ class $StubGen {
         getV1RoomsGuestResponse,
         getV1RoomsHostResponse,
         getV1RoomsResponse,
+        getV1RoomsResponseRoom,
         message,
         messageRoomsHost,
         participatingRoomList,
