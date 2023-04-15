@@ -1,0 +1,18 @@
+{
+    "address": {
+        "city": "岩見沢市",
+        "country": "日本",
+        "id": 10,
+        "prefecture": "北海道"
+    },
+    "cigaretteFrequency": "OFTEN",
+    "drinkFrequency": "OFTEN",
+    "gender": "MAN",
+    "height": 177,
+    "id": "7ace8c25-159f-4508-8ee0-684dd23bc07a",
+    "mainImageURL": "https://dol.ismcdn.jp/mwimgs/7/e/1320w/img_7e0b8adba77c91687a8078920dedc7be160077.jpg",
+    "name": "こうすけ",
+    "selfIntroduction": "初めまして。恋人が欲しくて始めました。",
+    "tags": [],
+    "username": "maki"
+}

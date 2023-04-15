@@ -14,29 +14,34 @@ import 'package:flutter/services.dart';
 class $StubGen {
   const $StubGen();
 
-  /// File path: stub/GetV1MessageRoomsIdMessagesResponse.json
+  /// File path: stub/get_v1_message_rooms_id_messages_response.json
   String get getV1MessageRoomsIdMessagesResponse =>
-      'stub/GetV1MessageRoomsIdMessagesResponse.json';
+      'stub/get_v1_message_rooms_id_messages_response.json';
 
-  /// File path: stub/GetV1MessageRoomsResponse.json
-  String get getV1MessageRoomsResponse => 'stub/GetV1MessageRoomsResponse.json';
+  /// File path: stub/get_v1_message_rooms_response.json
+  String get getV1MessageRoomsResponse =>
+      'stub/get_v1_message_rooms_response.json';
 
-  /// File path: stub/GetV1RoomsGuestResponse.json
-  String get getV1RoomsGuestResponse => 'stub/GetV1RoomsGuestResponse.json';
+  /// File path: stub/get_v1_profiles_response.json
+  String get getV1ProfilesResponse => 'stub/get_v1_profiles_response.json';
 
-  /// File path: stub/GetV1RoomsHostResponse.json
-  String get getV1RoomsHostResponse => 'stub/GetV1RoomsHostResponse.json';
+  /// File path: stub/get_v1_rooms_guest_response.json
+  String get getV1RoomsGuestResponse => 'stub/get_v1_rooms_guest_response.json';
 
-  /// File path: stub/GetV1RoomsResponse.json
-  String get getV1RoomsResponse => 'stub/GetV1RoomsResponse.json';
+  /// File path: stub/get_v1_rooms_host_response.json
+  String get getV1RoomsHostResponse => 'stub/get_v1_rooms_host_response.json';
 
-  /// File path: stub/GetV1RoomsResponseRoom.json
-  String get getV1RoomsResponseRoom => 'stub/GetV1RoomsResponseRoom.json';
+  /// File path: stub/get_v1_rooms_response.json
+  String get getV1RoomsResponse => 'stub/get_v1_rooms_response.json';
+
+  /// File path: stub/get_v1_rooms_response_room.json
+  String get getV1RoomsResponseRoom => 'stub/get_v1_rooms_response_room.json';
 
   /// List of all assets
   List<String> get values => [
         getV1MessageRoomsIdMessagesResponse,
         getV1MessageRoomsResponse,
+        getV1ProfilesResponse,
         getV1RoomsGuestResponse,
         getV1RoomsHostResponse,
         getV1RoomsResponse,

@@ -21,11 +21,11 @@ class ProfileViewModel extends StateNotifier<ProfileState> {
     state = state.copyWith(
       profile: await AsyncValue.guard(() async {
         /// マイプロフィール
-        if (state.isMy) {
-          return Repository.profile.getCache();
-        }
+        // if (state.isMy) {
+        //   return Repository.profile.getCache();
+        // }
 
-        return Repository.profile.getCache();
+        return Repository.profile.get();
       }),
     );
   }

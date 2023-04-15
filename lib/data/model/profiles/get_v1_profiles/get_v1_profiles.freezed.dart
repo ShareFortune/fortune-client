@@ -21,41 +21,26 @@ GetV1ProfilesResponse _$GetV1ProfilesResponseFromJson(
 
 /// @nodoc
 mixin _$GetV1ProfilesResponse {
-  @JsonKey(name: "id")
   String get id => throw _privateConstructorUsedError;
-  @JsonKey(name: "username")
   String get username => throw _privateConstructorUsedError;
-  @JsonKey(name: "name")
   String get name => throw _privateConstructorUsedError;
-  @JsonKey(name: "mainImageURL")
   String get mainImageURL => throw _privateConstructorUsedError;
-  @JsonKey(name: "secondImageURL")
   String? get secondImageURL => throw _privateConstructorUsedError;
-  @JsonKey(name: "thirdImageURL")
   String? get thirdImageURL => throw _privateConstructorUsedError;
-  @JsonKey(name: "fourthImageURL")
   String? get fourthImageURL => throw _privateConstructorUsedError;
-  @JsonKey(name: "fifthImageURL")
   String? get fifthImageURL => throw _privateConstructorUsedError;
-  @JsonKey(name: "sixthImageURL")
   String? get sixthImageURL => throw _privateConstructorUsedError;
-  @JsonKey(name: "gender")
   @GenderConverter()
   Gender get gender => throw _privateConstructorUsedError;
-  @JsonKey(name: "height")
   int? get height => throw _privateConstructorUsedError;
-  @JsonKey(name: "drinkFrequency")
   @DrinkFrequencyConverter()
   DrinkFrequency? get drinkFrequency => throw _privateConstructorUsedError;
-  @JsonKey(name: "cigaretteFrequency")
   @CigaretteFrequencyConverter()
   CigaretteFrequency? get cigaretteFrequency =>
       throw _privateConstructorUsedError;
-  @JsonKey(name: "selfIntroduction")
   String? get selfIntroduction => throw _privateConstructorUsedError;
-  @JsonKey(name: "address")
+  String? get occupation => throw _privateConstructorUsedError;
   Address get address => throw _privateConstructorUsedError;
-  @JsonKey(name: "tags")
   List<Tag>? get tags => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -71,41 +56,23 @@ abstract class $GetV1ProfilesResponseCopyWith<$Res> {
       _$GetV1ProfilesResponseCopyWithImpl<$Res, GetV1ProfilesResponse>;
   @useResult
   $Res call(
-      {@JsonKey(name: "id")
-          String id,
-      @JsonKey(name: "username")
-          String username,
-      @JsonKey(name: "name")
-          String name,
-      @JsonKey(name: "mainImageURL")
-          String mainImageURL,
-      @JsonKey(name: "secondImageURL")
-          String? secondImageURL,
-      @JsonKey(name: "thirdImageURL")
-          String? thirdImageURL,
-      @JsonKey(name: "fourthImageURL")
-          String? fourthImageURL,
-      @JsonKey(name: "fifthImageURL")
-          String? fifthImageURL,
-      @JsonKey(name: "sixthImageURL")
-          String? sixthImageURL,
-      @JsonKey(name: "gender")
-      @GenderConverter()
-          Gender gender,
-      @JsonKey(name: "height")
-          int? height,
-      @JsonKey(name: "drinkFrequency")
-      @DrinkFrequencyConverter()
-          DrinkFrequency? drinkFrequency,
-      @JsonKey(name: "cigaretteFrequency")
-      @CigaretteFrequencyConverter()
-          CigaretteFrequency? cigaretteFrequency,
-      @JsonKey(name: "selfIntroduction")
-          String? selfIntroduction,
-      @JsonKey(name: "address")
-          Address address,
-      @JsonKey(name: "tags")
-          List<Tag>? tags});
+      {String id,
+      String username,
+      String name,
+      String mainImageURL,
+      String? secondImageURL,
+      String? thirdImageURL,
+      String? fourthImageURL,
+      String? fifthImageURL,
+      String? sixthImageURL,
+      @GenderConverter() Gender gender,
+      int? height,
+      @DrinkFrequencyConverter() DrinkFrequency? drinkFrequency,
+      @CigaretteFrequencyConverter() CigaretteFrequency? cigaretteFrequency,
+      String? selfIntroduction,
+      String? occupation,
+      Address address,
+      List<Tag>? tags});
 
   $AddressCopyWith<$Res> get address;
 }
@@ -138,6 +105,7 @@ class _$GetV1ProfilesResponseCopyWithImpl<$Res,
     Object? drinkFrequency = freezed,
     Object? cigaretteFrequency = freezed,
     Object? selfIntroduction = freezed,
+    Object? occupation = freezed,
     Object? address = null,
     Object? tags = freezed,
   }) {
@@ -198,6 +166,10 @@ class _$GetV1ProfilesResponseCopyWithImpl<$Res,
           ? _value.selfIntroduction
           : selfIntroduction // ignore: cast_nullable_to_non_nullable
               as String?,
+      occupation: freezed == occupation
+          ? _value.occupation
+          : occupation // ignore: cast_nullable_to_non_nullable
+              as String?,
       address: null == address
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
@@ -227,41 +199,23 @@ abstract class _$$_GetV1ProfilesResponseCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: "id")
-          String id,
-      @JsonKey(name: "username")
-          String username,
-      @JsonKey(name: "name")
-          String name,
-      @JsonKey(name: "mainImageURL")
-          String mainImageURL,
-      @JsonKey(name: "secondImageURL")
-          String? secondImageURL,
-      @JsonKey(name: "thirdImageURL")
-          String? thirdImageURL,
-      @JsonKey(name: "fourthImageURL")
-          String? fourthImageURL,
-      @JsonKey(name: "fifthImageURL")
-          String? fifthImageURL,
-      @JsonKey(name: "sixthImageURL")
-          String? sixthImageURL,
-      @JsonKey(name: "gender")
-      @GenderConverter()
-          Gender gender,
-      @JsonKey(name: "height")
-          int? height,
-      @JsonKey(name: "drinkFrequency")
-      @DrinkFrequencyConverter()
-          DrinkFrequency? drinkFrequency,
-      @JsonKey(name: "cigaretteFrequency")
-      @CigaretteFrequencyConverter()
-          CigaretteFrequency? cigaretteFrequency,
-      @JsonKey(name: "selfIntroduction")
-          String? selfIntroduction,
-      @JsonKey(name: "address")
-          Address address,
-      @JsonKey(name: "tags")
-          List<Tag>? tags});
+      {String id,
+      String username,
+      String name,
+      String mainImageURL,
+      String? secondImageURL,
+      String? thirdImageURL,
+      String? fourthImageURL,
+      String? fifthImageURL,
+      String? sixthImageURL,
+      @GenderConverter() Gender gender,
+      int? height,
+      @DrinkFrequencyConverter() DrinkFrequency? drinkFrequency,
+      @CigaretteFrequencyConverter() CigaretteFrequency? cigaretteFrequency,
+      String? selfIntroduction,
+      String? occupation,
+      Address address,
+      List<Tag>? tags});
 
   @override
   $AddressCopyWith<$Res> get address;
@@ -292,6 +246,7 @@ class __$$_GetV1ProfilesResponseCopyWithImpl<$Res>
     Object? drinkFrequency = freezed,
     Object? cigaretteFrequency = freezed,
     Object? selfIntroduction = freezed,
+    Object? occupation = freezed,
     Object? address = null,
     Object? tags = freezed,
   }) {
@@ -352,6 +307,10 @@ class __$$_GetV1ProfilesResponseCopyWithImpl<$Res>
           ? _value.selfIntroduction
           : selfIntroduction // ignore: cast_nullable_to_non_nullable
               as String?,
+      occupation: freezed == occupation
+          ? _value.occupation
+          : occupation // ignore: cast_nullable_to_non_nullable
+              as String?,
       address: null == address
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
@@ -367,98 +326,66 @@ class __$$_GetV1ProfilesResponseCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_GetV1ProfilesResponse implements _GetV1ProfilesResponse {
-  _$_GetV1ProfilesResponse(
-      {@JsonKey(name: "id")
-          required this.id,
-      @JsonKey(name: "username")
-          required this.username,
-      @JsonKey(name: "name")
-          required this.name,
-      @JsonKey(name: "mainImageURL")
-          required this.mainImageURL,
-      @JsonKey(name: "secondImageURL")
-          this.secondImageURL,
-      @JsonKey(name: "thirdImageURL")
-          this.thirdImageURL,
-      @JsonKey(name: "fourthImageURL")
-          this.fourthImageURL,
-      @JsonKey(name: "fifthImageURL")
-          this.fifthImageURL,
-      @JsonKey(name: "sixthImageURL")
-          this.sixthImageURL,
-      @JsonKey(name: "gender")
-      @GenderConverter()
-          required this.gender,
-      @JsonKey(name: "height")
-          this.height,
-      @JsonKey(name: "drinkFrequency")
-      @DrinkFrequencyConverter()
-          this.drinkFrequency,
-      @JsonKey(name: "cigaretteFrequency")
-      @CigaretteFrequencyConverter()
-          this.cigaretteFrequency,
-      @JsonKey(name: "selfIntroduction")
-          this.selfIntroduction,
-      @JsonKey(name: "address")
-          required this.address,
-      @JsonKey(name: "tags")
-          final List<Tag>? tags})
+  const _$_GetV1ProfilesResponse(
+      {required this.id,
+      required this.username,
+      required this.name,
+      required this.mainImageURL,
+      this.secondImageURL,
+      this.thirdImageURL,
+      this.fourthImageURL,
+      this.fifthImageURL,
+      this.sixthImageURL,
+      @GenderConverter() required this.gender,
+      this.height,
+      @DrinkFrequencyConverter() this.drinkFrequency,
+      @CigaretteFrequencyConverter() this.cigaretteFrequency,
+      this.selfIntroduction,
+      this.occupation,
+      required this.address,
+      final List<Tag>? tags})
       : _tags = tags;
 
   factory _$_GetV1ProfilesResponse.fromJson(Map<String, dynamic> json) =>
       _$$_GetV1ProfilesResponseFromJson(json);
 
   @override
-  @JsonKey(name: "id")
   final String id;
   @override
-  @JsonKey(name: "username")
   final String username;
   @override
-  @JsonKey(name: "name")
   final String name;
   @override
-  @JsonKey(name: "mainImageURL")
   final String mainImageURL;
   @override
-  @JsonKey(name: "secondImageURL")
   final String? secondImageURL;
   @override
-  @JsonKey(name: "thirdImageURL")
   final String? thirdImageURL;
   @override
-  @JsonKey(name: "fourthImageURL")
   final String? fourthImageURL;
   @override
-  @JsonKey(name: "fifthImageURL")
   final String? fifthImageURL;
   @override
-  @JsonKey(name: "sixthImageURL")
   final String? sixthImageURL;
   @override
-  @JsonKey(name: "gender")
   @GenderConverter()
   final Gender gender;
   @override
-  @JsonKey(name: "height")
   final int? height;
   @override
-  @JsonKey(name: "drinkFrequency")
   @DrinkFrequencyConverter()
   final DrinkFrequency? drinkFrequency;
   @override
-  @JsonKey(name: "cigaretteFrequency")
   @CigaretteFrequencyConverter()
   final CigaretteFrequency? cigaretteFrequency;
   @override
-  @JsonKey(name: "selfIntroduction")
   final String? selfIntroduction;
   @override
-  @JsonKey(name: "address")
+  final String? occupation;
+  @override
   final Address address;
   final List<Tag>? _tags;
   @override
-  @JsonKey(name: "tags")
   List<Tag>? get tags {
     final value = _tags;
     if (value == null) return null;
@@ -469,7 +396,7 @@ class _$_GetV1ProfilesResponse implements _GetV1ProfilesResponse {
 
   @override
   String toString() {
-    return 'GetV1ProfilesResponse(id: $id, username: $username, name: $name, mainImageURL: $mainImageURL, secondImageURL: $secondImageURL, thirdImageURL: $thirdImageURL, fourthImageURL: $fourthImageURL, fifthImageURL: $fifthImageURL, sixthImageURL: $sixthImageURL, gender: $gender, height: $height, drinkFrequency: $drinkFrequency, cigaretteFrequency: $cigaretteFrequency, selfIntroduction: $selfIntroduction, address: $address, tags: $tags)';
+    return 'GetV1ProfilesResponse(id: $id, username: $username, name: $name, mainImageURL: $mainImageURL, secondImageURL: $secondImageURL, thirdImageURL: $thirdImageURL, fourthImageURL: $fourthImageURL, fifthImageURL: $fifthImageURL, sixthImageURL: $sixthImageURL, gender: $gender, height: $height, drinkFrequency: $drinkFrequency, cigaretteFrequency: $cigaretteFrequency, selfIntroduction: $selfIntroduction, occupation: $occupation, address: $address, tags: $tags)';
   }
 
   @override
@@ -501,6 +428,8 @@ class _$_GetV1ProfilesResponse implements _GetV1ProfilesResponse {
                 other.cigaretteFrequency == cigaretteFrequency) &&
             (identical(other.selfIntroduction, selfIntroduction) ||
                 other.selfIntroduction == selfIntroduction) &&
+            (identical(other.occupation, occupation) ||
+                other.occupation == occupation) &&
             (identical(other.address, address) || other.address == address) &&
             const DeepCollectionEquality().equals(other._tags, _tags));
   }
@@ -523,6 +452,7 @@ class _$_GetV1ProfilesResponse implements _GetV1ProfilesResponse {
       drinkFrequency,
       cigaretteFrequency,
       selfIntroduction,
+      occupation,
       address,
       const DeepCollectionEquality().hash(_tags));
 
@@ -542,96 +472,67 @@ class _$_GetV1ProfilesResponse implements _GetV1ProfilesResponse {
 }
 
 abstract class _GetV1ProfilesResponse implements GetV1ProfilesResponse {
-  factory _GetV1ProfilesResponse(
-      {@JsonKey(name: "id")
-          required final String id,
-      @JsonKey(name: "username")
-          required final String username,
-      @JsonKey(name: "name")
-          required final String name,
-      @JsonKey(name: "mainImageURL")
-          required final String mainImageURL,
-      @JsonKey(name: "secondImageURL")
-          final String? secondImageURL,
-      @JsonKey(name: "thirdImageURL")
-          final String? thirdImageURL,
-      @JsonKey(name: "fourthImageURL")
-          final String? fourthImageURL,
-      @JsonKey(name: "fifthImageURL")
-          final String? fifthImageURL,
-      @JsonKey(name: "sixthImageURL")
-          final String? sixthImageURL,
-      @JsonKey(name: "gender")
+  const factory _GetV1ProfilesResponse(
+      {required final String id,
+      required final String username,
+      required final String name,
+      required final String mainImageURL,
+      final String? secondImageURL,
+      final String? thirdImageURL,
+      final String? fourthImageURL,
+      final String? fifthImageURL,
+      final String? sixthImageURL,
       @GenderConverter()
           required final Gender gender,
-      @JsonKey(name: "height")
-          final int? height,
-      @JsonKey(name: "drinkFrequency")
+      final int? height,
       @DrinkFrequencyConverter()
           final DrinkFrequency? drinkFrequency,
-      @JsonKey(name: "cigaretteFrequency")
       @CigaretteFrequencyConverter()
           final CigaretteFrequency? cigaretteFrequency,
-      @JsonKey(name: "selfIntroduction")
-          final String? selfIntroduction,
-      @JsonKey(name: "address")
-          required final Address address,
-      @JsonKey(name: "tags")
-          final List<Tag>? tags}) = _$_GetV1ProfilesResponse;
+      final String? selfIntroduction,
+      final String? occupation,
+      required final Address address,
+      final List<Tag>? tags}) = _$_GetV1ProfilesResponse;
 
   factory _GetV1ProfilesResponse.fromJson(Map<String, dynamic> json) =
       _$_GetV1ProfilesResponse.fromJson;
 
   @override
-  @JsonKey(name: "id")
   String get id;
   @override
-  @JsonKey(name: "username")
   String get username;
   @override
-  @JsonKey(name: "name")
   String get name;
   @override
-  @JsonKey(name: "mainImageURL")
   String get mainImageURL;
   @override
-  @JsonKey(name: "secondImageURL")
   String? get secondImageURL;
   @override
-  @JsonKey(name: "thirdImageURL")
   String? get thirdImageURL;
   @override
-  @JsonKey(name: "fourthImageURL")
   String? get fourthImageURL;
   @override
-  @JsonKey(name: "fifthImageURL")
   String? get fifthImageURL;
   @override
-  @JsonKey(name: "sixthImageURL")
   String? get sixthImageURL;
   @override
-  @JsonKey(name: "gender")
   @GenderConverter()
   Gender get gender;
   @override
-  @JsonKey(name: "height")
   int? get height;
   @override
-  @JsonKey(name: "drinkFrequency")
   @DrinkFrequencyConverter()
   DrinkFrequency? get drinkFrequency;
   @override
-  @JsonKey(name: "cigaretteFrequency")
   @CigaretteFrequencyConverter()
   CigaretteFrequency? get cigaretteFrequency;
   @override
-  @JsonKey(name: "selfIntroduction")
   String? get selfIntroduction;
   @override
-  @JsonKey(name: "address")
+  String? get occupation;
+  @override
   Address get address;
   @override
-  @JsonKey(name: "tags")
   List<Tag>? get tags;
   @override
   @JsonKey(ignore: true)

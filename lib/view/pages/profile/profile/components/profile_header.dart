@@ -23,6 +23,7 @@ class ProfileHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(iconURL);
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Row(

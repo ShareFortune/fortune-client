@@ -11,28 +11,25 @@ part 'get_v1_profiles.freezed.dart';
 part 'get_v1_profiles.g.dart';
 
 @freezed
-class GetV1ProfilesResponse with _$GetV1ProfilesResponse {
-  factory GetV1ProfilesResponse({
-    @JsonKey(name: "id") required String id,
-    @JsonKey(name: "username") required String username,
-    @JsonKey(name: "name") required String name,
-    @JsonKey(name: "mainImageURL") required String mainImageURL,
-    @JsonKey(name: "secondImageURL") String? secondImageURL,
-    @JsonKey(name: "thirdImageURL") String? thirdImageURL,
-    @JsonKey(name: "fourthImageURL") String? fourthImageURL,
-    @JsonKey(name: "fifthImageURL") String? fifthImageURL,
-    @JsonKey(name: "sixthImageURL") String? sixthImageURL,
-    @JsonKey(name: "gender") @GenderConverter() required Gender gender,
-    @JsonKey(name: "height") int? height,
-    @JsonKey(name: "drinkFrequency")
-    @DrinkFrequencyConverter()
-        DrinkFrequency? drinkFrequency,
-    @JsonKey(name: "cigaretteFrequency")
-    @CigaretteFrequencyConverter()
-        CigaretteFrequency? cigaretteFrequency,
-    @JsonKey(name: "selfIntroduction") String? selfIntroduction,
-    @JsonKey(name: "address") required Address address,
-    @JsonKey(name: "tags") List<Tag>? tags,
+abstract class GetV1ProfilesResponse with _$GetV1ProfilesResponse {
+  const factory GetV1ProfilesResponse({
+    required String id,
+    required String username,
+    required String name,
+    required String mainImageURL,
+    String? secondImageURL,
+    String? thirdImageURL,
+    String? fourthImageURL,
+    String? fifthImageURL,
+    String? sixthImageURL,
+    @GenderConverter() required Gender gender,
+    int? height,
+    @DrinkFrequencyConverter() DrinkFrequency? drinkFrequency,
+    @CigaretteFrequencyConverter() CigaretteFrequency? cigaretteFrequency,
+    String? selfIntroduction,
+    String? occupation,
+    required Address address,
+    List<Tag>? tags,
   }) = _GetV1ProfilesResponse;
 
   factory GetV1ProfilesResponse.fromJson(Map<String, dynamic> json) =>
