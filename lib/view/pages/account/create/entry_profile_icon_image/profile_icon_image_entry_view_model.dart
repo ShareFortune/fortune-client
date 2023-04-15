@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/view/pages/account/create/entry_profile_icon_image/profile_icon_image_entry_state.dart';
-import 'package:fortune_client/view/routes/app_router.gr.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -28,6 +27,6 @@ class ProfileIconImageEntryViewModel
   }
 
   navigateToEntryProfileSubImage() async {
-    await getIt<AppRouter>().push(const EntryProfileSubImageRoute());
+    // await getIt<AppRouter>().push(const EntryProfileSubImageRoute());
   }
 }

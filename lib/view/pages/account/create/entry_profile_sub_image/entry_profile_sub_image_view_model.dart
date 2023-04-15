@@ -6,7 +6,6 @@ import 'package:fortune_client/view/pages/account/create/entry_basic_profile/bas
 import 'package:fortune_client/view/pages/account/create/entry_detailed_profile/detailed_profile_entry_view_model.dart';
 import 'package:fortune_client/view/pages/account/create/entry_profile_icon_image/profile_icon_image_entry_view_model.dart';
 import 'package:fortune_client/view/pages/account/create/entry_profile_sub_image/entry_profile_sub_image_state.dart';
-import 'package:fortune_client/view/routes/app_router.gr.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -90,6 +89,6 @@ class EntryProfileSubImageViewModel
   }
 
   navigateToHome() async {
-    await getIt<AppRouter>().push(const HomeRouter());
+    // await getIt<AppRouter>().push(const HomeRouter());
   }
 }

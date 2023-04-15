@@ -2,7 +2,6 @@ import 'package:fortune_client/data/model/core/base/tag/tag.dart';
 import 'package:fortune_client/data/repository/repository.dart';
 import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/view/pages/tags/select/select_tags_state.dart';
-import 'package:fortune_client/view/routes/app_router.gr.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final selectTagsViewModelProvider = StateNotifierProvider.autoDispose
@@ -56,17 +55,17 @@ class SelectTagsViewModel extends StateNotifier<SelectTagsState> {
   }
 
   saveSetData() {
-    getIt<AppRouter>().pop(state.beingSet.isEmpty
-        ? null
-        : state.beingSet.map((e) => e.data).toList());
+    // getIt<AppRouter>().pop(state.beingSet.isEmpty
+    //     ? null
+    //     : state.beingSet.map((e) => e.data).toList());
   }
 
   navigateToTagCreation() async {
-    final tag = await getIt<AppRouter>().push(CreateTagRoute()) as Tag?;
-    if (tag != null) {
-      state = state.copyWith(
-        beingSet: [...state.beingSet, TagState(data: tag, isSelected: true)],
-      );
-    }
+    // final tag = await getIt<AppRouter>().push(CreateTagRoute()) as Tag?;
+    // if (tag != null) {
+    //   state = state.copyWith(
+    //     beingSet: [...state.beingSet, TagState(data: tag, isSelected: true)],
+    //   );
+    // }
   }
 }

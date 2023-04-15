@@ -1,7 +1,7 @@
 import 'package:fortune_client/data/repository/repository.dart';
-import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/view/pages/rooms/room_detail/room_detail_state.dart';
-import 'package:fortune_client/view/routes/app_router.gr.dart';
+import 'package:fortune_client/view/routes/route_navigator.dart';
+import 'package:fortune_client/view/routes/route_path.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final roomDetailViewModelProvider =
@@ -29,6 +29,6 @@ class RoomDetailViewModel extends StateNotifier<RoomDetailState> {
   }
 
   navigateToProfile(String id) async {
-    await getIt<AppRouter>().push(ProfileRoute(id: id));
+    await routeNavigator.navigateTo(RoutePath.profile);
   }
 }

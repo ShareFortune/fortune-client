@@ -45,10 +45,10 @@ class ProfileUpdateViewModel extends StateNotifier<ProfileUpdateState> {
   }
 
   navigateToEntryAddress() async {
-    final result = await getIt<AppRouter>().push(
-      EntryAddressRoute(),
-    ) as AddressWithId?;
-    state = state.copyWith(addressWithId: result ?? state.addressWithId);
+    // final result = await getIt<AppRouter>().push(
+    //   EntryAddressRoute(),
+    // ) as AddressWithId?;
+    // state = state.copyWith(addressWithId: result ?? state.addressWithId);
   }
 
   update() async {
@@ -58,6 +58,6 @@ class ProfileUpdateViewModel extends StateNotifier<ProfileUpdateState> {
       drinkFrequency: state.drinkFrequency,
       cigaretteFrequency: state.cigaretteFrequency,
     );
-    await getIt<AppRouter>().pop();
+    // await getIt<AppRouter>().pop();
   }
 }

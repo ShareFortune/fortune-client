@@ -8,6 +8,7 @@ import 'package:fortune_client/view/pages/my_page/edit_profile_images/components
 import 'package:fortune_client/view/pages/my_page/edit_profile_images/edit_profile_images_state.dart';
 import 'package:fortune_client/view/pages/my_page/edit_profile_images/edit_profile_images_view_model.dart';
 import 'package:fortune_client/view/routes/app_router.dart';
+import 'package:fortune_client/view/routes/route_navigator.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/app_bar/back_app_bar.dart';
@@ -30,7 +31,7 @@ class EditProfileImagesPage extends HookConsumerWidget {
       appBar: BackAppBar(
         title: LocaleKeys.edit_profile_picture_page_title.tr(),
         leading: IconButton(
-          onPressed: getIt<AppRouter>().pop,
+          onPressed: () => routeNavigator.goBack(),
           icon: const Icon(Icons.close),
         ),
         action: [

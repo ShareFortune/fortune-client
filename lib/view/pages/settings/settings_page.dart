@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/l10n/locale_keys.g.dart';
 import 'package:fortune_client/view/pages/settings/settings_view_model.dart';
-import 'package:fortune_client/view/routes/app_router.gr.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/app_bar/back_app_bar.dart';
@@ -92,7 +91,7 @@ class SettingsPage extends HookConsumerWidget {
               ),
               onPressed: () {},
               onLongPress: () {
-                getIt<AppRouter>().push(const DebugRoute());
+                // getIt<AppRouter>().push(const DebugRoute());
               },
             ),
             const Gap(100),

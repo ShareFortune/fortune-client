@@ -21,6 +21,7 @@ dependencies:
   device_preview: ^1.1.0
 
   # util
+  lottie: ^2.3.2
   json_serializable: ^6.5.4
   flutter_staggered_animations: ^1.1.1
   flutter_chat_ui: ^1.6.5
@@ -106,8 +107,13 @@ flutter:
   assets:
     # stub
     - stub/
+    
     # l10n
     - assets/l10n/
+    
     # images
     - assets/images/
     - assets/images/icons/
+
+    # animation
+    - assets/animations/

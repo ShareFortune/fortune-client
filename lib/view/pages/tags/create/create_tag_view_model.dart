@@ -29,12 +29,12 @@ class CreateTagViewModel extends StateNotifier<CreateTagState> {
   }
 
   Future<bool> create() async {
-    try {
-      if (!isPossibleToCreate()) return false;
-      final id = await Repository.tags.create(state.name!, state.description!);
-      return getIt<AppRouter>().pop(Tag(id: id, name: state.name!));
-    } catch (e) {
-      return false;
-    }
+    // try {
+    //   if (!isPossibleToCreate()) return false;
+    //   final id = await Repository.tags.create(state.name!, state.description!);
+    //   // return getIt<AppRouter>().pop(Tag(id: id, name: state.name!));
+    // } catch (e) {
+    return false;
+    // }
   }
 }

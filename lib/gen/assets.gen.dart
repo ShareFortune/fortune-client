@@ -33,27 +33,6 @@ class $StubGen {
   /// File path: stub/GetV1RoomsResponseRoom.json
   String get getV1RoomsResponseRoom => 'stub/GetV1RoomsResponseRoom.json';
 
-  /// File path: stub/message.json
-  String get message => 'stub/message.json';
-
-  /// File path: stub/message_rooms_host.json
-  String get messageRoomsHost => 'stub/message_rooms_host.json';
-
-  /// File path: stub/participating_room_list.json
-  String get participatingRoomList => 'stub/participating_room_list.json';
-
-  /// File path: stub/profile.json
-  String get profile => 'stub/profile.json';
-
-  /// File path: stub/profile_create.json
-  String get profileCreate => 'stub/profile_create.json';
-
-  /// File path: stub/room_detail.json
-  String get roomDetail => 'stub/room_detail.json';
-
-  /// File path: stub/room_list.json
-  String get roomList => 'stub/room_list.json';
-
   /// List of all assets
   List<String> get values => [
         getV1MessageRoomsIdMessagesResponse,
@@ -61,15 +40,18 @@ class $StubGen {
         getV1RoomsGuestResponse,
         getV1RoomsHostResponse,
         getV1RoomsResponse,
-        getV1RoomsResponseRoom,
-        message,
-        messageRoomsHost,
-        participatingRoomList,
-        profile,
-        profileCreate,
-        roomDetail,
-        roomList
+        getV1RoomsResponseRoom
       ];
+}
+
+class $AssetsAnimationsGen {
+  const $AssetsAnimationsGen();
+
+  /// File path: assets/animations/splash.json
+  String get splash => 'assets/animations/splash.json';
+
+  /// List of all assets
+  List<String> get values => [splash];
 }
 
 class $AssetsImagesGen {
@@ -216,6 +198,7 @@ class $AssetsImagesIconsGen {
 class Assets {
   Assets._();
 
+  static const $AssetsAnimationsGen animations = $AssetsAnimationsGen();
   static const $AssetsImagesGen images = $AssetsImagesGen();
   static const $AssetsL10nGen l10n = $AssetsL10nGen();
   static const $StubGen stub = $StubGen();
