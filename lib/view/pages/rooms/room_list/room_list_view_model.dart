@@ -4,6 +4,8 @@ import 'package:fortune_client/data/repository/repository.dart';
 import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/view/pages/rooms/room_list/room_list_state.dart';
 import 'package:fortune_client/view/routes/app_router.dart';
+import 'package:fortune_client/view/routes/route_navigator.dart';
+import 'package:fortune_client/view/routes/route_path.dart';
 
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -102,6 +104,6 @@ class RoomListViewModel extends StateNotifier<RoomListState> {
 
   /// ルーム詳細ページへ遷移
   navigateToRoomDetail(String id) async {
-    // await getIt<AppRouter>().push(RoomDetailRoute(roomId: id));
+    await routeNavigator.navigateTo(RoutePath.roomDetail);
   }
 }

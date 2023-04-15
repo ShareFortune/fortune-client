@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:fortune_client/view/pages/common/home/home_page.dart';
 import 'package:fortune_client/view/pages/launch/launch_page.dart';
+import 'package:fortune_client/view/pages/profile/profile/profile_page.dart';
+import 'package:fortune_client/view/pages/rooms/room_detail/room_detail_page.dart';
 import 'package:fortune_client/view/routes/route_path.dart';
 
 class AppRouter {
@@ -19,10 +21,8 @@ class AppRouter {
         // TODO: Handle this case.
         break;
       case RoutePath.home:
-        print('home');
-        return _fadePageRouteBuilder(
-          const HomePage(),
-        );
+        return _fadePageRouteBuilder(const HomePage());
+
       case RoutePath.profileInput:
         // TODO: Handle this case.
         break;
@@ -30,8 +30,10 @@ class AppRouter {
         // TODO: Handle this case.
         break;
       case RoutePath.profile:
-        // TODO: Handle this case.
-        break;
+
+        /// ここで、ProfilePageに渡す引数を設定する
+        return _fadePageRouteBuilder(const ProfilePage(id: ''));
+
       case RoutePath.my:
         // TODO: Handle this case.
         break;
@@ -45,8 +47,10 @@ class AppRouter {
         // TODO: Handle this case.
         break;
       case RoutePath.roomDetail:
-        // TODO: Handle this case.
-        break;
+
+        /// ここで、RoomDetailPageに渡す引数を設定する
+        return _slidePageRouteBuilder(const RoomDetailPage(""));
+
       case RoutePath.participatingRoom:
         // TODO: Handle this case.
         break;
@@ -118,8 +122,8 @@ class AppRouter {
   }
 
   static PageRouteBuilder<dynamic> _slidePageRouteBuilder(
-    Widget child,
-    Offset offset, {
+    Widget child, {
+    Offset offset = const Offset(1.0, 0.0),
     RouteSettings? settings,
   }) {
     return PageRouteBuilder(

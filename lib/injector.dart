@@ -47,7 +47,7 @@ import 'package:fortune_client/data/repository/tags/tags_repository.dart';
 import 'package:fortune_client/data/repository/tags/tags_repository_impl.dart';
 import 'package:fortune_client/data/repository/users/users_repository.dart';
 import 'package:fortune_client/data/repository/users/users_repository_impl.dart';
-import 'package:fortune_client/view/routes/navigate_handler.dart';
+import 'package:fortune_client/view/routes/route_navigator.dart';
 import 'package:fortune_client/view/routes/route_guard.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -64,7 +64,7 @@ Future<void> initDependencies({bool testMode = false}) async {
   getIt.registerSingleton<Dio>(DioClient.client);
 
   /// Router
-  getIt.registerLazySingleton<NavigateHandler>(() => NavigateHandler());
+  getIt.registerLazySingleton<RouteNavigator>(() => RouteNavigator());
 
   /// Repository
   getIt.registerLazySingleton<DebugRepository>(

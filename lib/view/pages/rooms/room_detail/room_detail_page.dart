@@ -78,7 +78,7 @@ class RoomDetailPage extends HookConsumerWidget {
             child: Container(
               height: 45,
               width: double.infinity,
-              margin: const EdgeInsets.only(bottom: 30),
+              margin: const EdgeInsets.only(bottom: 60),
               padding: const EdgeInsets.symmetric(horizontal: 30),
               child: MaterialButton(
                 onPressed: () => viewModel.joinRoomRequest(),

@@ -55,7 +55,7 @@ enum RoutePath {
   error('/error'),
 
   /// Unknown
-  unknown('unknown');
+  unknown('/unknown');
 
   final String name;
   const RoutePath(this.name);

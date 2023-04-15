@@ -4,6 +4,8 @@ import 'package:fortune_client/data/repository/repository.dart';
 import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/l10n/locale_keys.g.dart';
 import 'package:fortune_client/view/pages/my_page/my_page/my_page_state.dart';
+import 'package:fortune_client/view/routes/route_navigator.dart';
+import 'package:fortune_client/view/routes/route_path.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final myPageViewModelProvider =
@@ -28,7 +30,7 @@ class MyPageViewModel extends StateNotifier<MyPageState> {
 
   /// 設定ページへ
   navigateToSettingPage() {
-    // getIt<AppRouter>().push(const SettingsRoute());
+    routeNavigator.navigateTo(RoutePath.setting);
   }
 
   /// 自己紹介を編集
