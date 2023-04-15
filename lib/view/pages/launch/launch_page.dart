@@ -13,18 +13,18 @@ class LaunchPage extends StatelessWidget {
     /// バージョンチェック
     /// ログインチェック
     /// プロフィール作成チェック
-    /// アプリ情報を取得
     /// アプリ情報を保存
     /// リモート設定を初期化
 
     /// ホーム画面へ
-    Future.delayed(const Duration(milliseconds: 5000)).whenComplete(
+    Future.delayed(const Duration(milliseconds: 1000)).whenComplete(
       () => getIt<NavigateHandler>().navigateTo(RoutePath.home),
     );
 
     /// 起動アニメーション
     /// TODO: アニメーションを作成する
-    return Expanded(child: Lottie.asset(Assets.animations.splash));
+    // return Expanded(child: Lottie.asset(Assets.animations.splash));
+    return Container();
   }
 
   applyAppInfo() {
@@ -42,7 +42,7 @@ class LaunchPage extends StatelessWidget {
     /// ログインしていない場合はログイン画面へ
   }
 
-  vertifyNeesProfile() {
+  vertifyNeesCreateProfile() {
     /// プロフィール作成チェック
     /// プロフィールが作成されていない場合はプロフィール作成画面へ
   }
