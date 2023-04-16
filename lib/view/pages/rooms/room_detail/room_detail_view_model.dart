@@ -29,6 +29,6 @@ class RoomDetailViewModel extends StateNotifier<RoomDetailState> {
   }
 
   navigateToProfile(String id) async {
-    await routeNavigator.navigateTo(RoutePath.profile);
+    await navigator.navigateTo(RoutePath.profile);
   }
 }

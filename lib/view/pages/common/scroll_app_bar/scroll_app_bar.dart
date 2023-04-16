@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fortune_client/gen/assets.gen.dart';
-import 'package:fortune_client/injector.dart';
-import 'package:fortune_client/view/pages/common/scroll_app_bar/scroll_app_bar_view_model.dart';
 import 'package:fortune_client/view/routes/route_navigator.dart';
 import 'package:fortune_client/view/routes/route_path.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
@@ -62,7 +60,7 @@ class ScrollAppBar extends HookConsumerWidget implements PreferredSizeWidget {
                   ),
                 ),
                 InkWell(
-                  onTap: () => routeNavigator.navigateTo(RoutePath.my),
+                  onTap: () => navigator.navigateTo(RoutePath.my),
                   child: SvgPicture.asset(
                     Assets.images.icons.iconProfile.path,
                     fit: BoxFit.contain,

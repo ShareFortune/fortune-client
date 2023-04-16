@@ -32,7 +32,7 @@ class RoomDetailPage extends HookConsumerWidget {
         builder: (room) => Stack(children: [
           /// ルーム詳細
           Column(children: [
-            _RoomDetailPageItem(
+            _Item(
               title: "メンバー",
               middleMargin: 15,
               childPadding: EdgeInsets.zero,
@@ -49,20 +49,20 @@ class RoomDetailPage extends HookConsumerWidget {
               padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 20),
               child: Text(room.roomName, style: theme.textTheme.h40.bold()),
             ),
-            _RoomDetailPageItem(
+            _Item(
               title: "集合場所",
               child: Text(room.address.text, style: theme.textTheme.h20),
             ),
-            _RoomDetailPageItem(
+            _Item(
               title: "募集人数",
               child: Text("${room.membersNum}人", style: theme.textTheme.h20),
             ),
-            _RoomDetailPageItem(
+            _Item(
               title: "タグ",
               middleMargin: 10,
               child: _TagsWrapper(room.tags),
             ),
-            _RoomDetailPageItem(
+            _Item(
               title: "説明",
               child: Text(
                 "テキスト・テキスト・テキスト・テキスト・テキスト・テキスト・テキスト・テキスト・テキスト・テキスト・テキスト・テキスト・テキスト・テキスト・テキスト・テキスト",
@@ -73,29 +73,26 @@ class RoomDetailPage extends HookConsumerWidget {
           ]),
 
           /// 参加ボタン
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Container(
+          Positioned(
+            left: 30,
+            right: 30,
+            bottom: 80,
+            child: MaterialButton(
               height: 45,
-              width: double.infinity,
-              margin: const EdgeInsets.only(bottom: 60),
-              padding: const EdgeInsets.symmetric(horizontal: 30),
-              child: MaterialButton(
-                onPressed: () => viewModel.joinRoomRequest(),
-                color: theme.appColors.primary,
-                textColor: theme.appColors.onPrimary,
-                child: Text("ルームに参加する", style: theme.textTheme.h30.bold()),
-              ),
+              onPressed: () => viewModel.joinRoomRequest(),
+              color: theme.appColors.primary,
+              textColor: theme.appColors.onPrimary,
+              child: Text("ルームに参加する", style: theme.textTheme.h30.bold()),
             ),
-          ),
+          )
         ]),
       ),
     );
   }
 }
 
-class _RoomDetailPageItem extends HookConsumerWidget {
-  const _RoomDetailPageItem({
+class _Item extends HookConsumerWidget {
+  const _Item({
     required this.title,
     required this.child,
     this.middleMargin = 5,

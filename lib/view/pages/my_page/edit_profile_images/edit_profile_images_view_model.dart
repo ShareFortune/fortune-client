@@ -59,6 +59,6 @@ class EditProfileImagesViewModel
 
   /// マイプロフィール
   navigateToProfile() async {
-    routeNavigator.navigateTo(RoutePath.profile);
+    navigator.navigateTo(RoutePath.profile);
   }
 }
