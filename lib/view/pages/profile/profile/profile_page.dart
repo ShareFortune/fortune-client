@@ -21,7 +21,9 @@ class ProfilePage extends HookConsumerWidget {
         elevation: 0,
         backgroundColor: Colors.transparent,
         foregroundColor: theme.appColors.iconBtn1,
+        automaticallyImplyLeading: false,
         leading: Container(
+          margin: const EdgeInsets.fromLTRB(10, 5, 0, 5),
           decoration: BoxDecoration(
             color: theme.appColors.background,
             borderRadius: BorderRadius.circular(50),

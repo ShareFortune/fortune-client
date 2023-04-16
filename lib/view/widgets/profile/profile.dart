@@ -7,7 +7,7 @@ import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/icon/user_icon_widget.dart';
 import 'package:fortune_client/view/widgets/other/tag_widget.dart';
 import 'package:fortune_client/view/widgets/profile/profile_basic_info_list_view.dart';
-import 'package:fortune_client/view/widgets/profile/profile_image_page_view.dart';
+import 'package:fortune_client/view/widgets/profile/profile_photo_view.dart';
 import 'package:fortune_client/view/widgets/profile/profile_view_item.dart';
 import 'package:fortune_client/data/model/core/enum/cigarette_frequency.dart';
 import 'package:fortune_client/data/model/core/enum/drink_frequency.dart';
@@ -18,12 +18,11 @@ class ProfileView {
   final AppTheme theme;
   final GetV1ProfilesResponse profile;
 
-  Widget images() {
-    return ProfileImagePageView([
-      profile.mainImageURL,
-      profile.mainImageURL,
-      profile.mainImageURL,
-    ]);
+  Widget images({int visiblePhotoIndex = 0}) {
+    return ProfilePhotoView(
+      images: profile.images(),
+      visiblePhotoIndex: visiblePhotoIndex,
+    );
   }
 
   Widget header() {

@@ -325,7 +325,7 @@ class __$$_GetV1ProfilesResponseCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_GetV1ProfilesResponse implements _GetV1ProfilesResponse {
+class _$_GetV1ProfilesResponse extends _GetV1ProfilesResponse {
   const _$_GetV1ProfilesResponse(
       {required this.id,
       required this.username,
@@ -344,7 +344,8 @@ class _$_GetV1ProfilesResponse implements _GetV1ProfilesResponse {
       this.occupation,
       required this.address,
       required final List<Tag> tags})
-      : _tags = tags;
+      : _tags = tags,
+        super._();
 
   factory _$_GetV1ProfilesResponse.fromJson(Map<String, dynamic> json) =>
       _$$_GetV1ProfilesResponseFromJson(json);
@@ -469,7 +470,7 @@ class _$_GetV1ProfilesResponse implements _GetV1ProfilesResponse {
   }
 }
 
-abstract class _GetV1ProfilesResponse implements GetV1ProfilesResponse {
+abstract class _GetV1ProfilesResponse extends GetV1ProfilesResponse {
   const factory _GetV1ProfilesResponse(
       {required final String id,
       required final String username,
@@ -491,6 +492,7 @@ abstract class _GetV1ProfilesResponse implements GetV1ProfilesResponse {
       final String? occupation,
       required final Address address,
       required final List<Tag> tags}) = _$_GetV1ProfilesResponse;
+  const _GetV1ProfilesResponse._() : super._();
 
   factory _GetV1ProfilesResponse.fromJson(Map<String, dynamic> json) =
       _$_GetV1ProfilesResponse.fromJson;

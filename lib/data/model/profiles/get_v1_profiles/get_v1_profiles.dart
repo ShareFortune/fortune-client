@@ -11,7 +11,8 @@ part 'get_v1_profiles.freezed.dart';
 part 'get_v1_profiles.g.dart';
 
 @freezed
-abstract class GetV1ProfilesResponse with _$GetV1ProfilesResponse {
+class GetV1ProfilesResponse with _$GetV1ProfilesResponse {
+  const GetV1ProfilesResponse._();
   const factory GetV1ProfilesResponse({
     required String id,
     required String username,
@@ -34,4 +35,13 @@ abstract class GetV1ProfilesResponse with _$GetV1ProfilesResponse {
 
   factory GetV1ProfilesResponse.fromJson(Map<String, dynamic> json) =>
       _$GetV1ProfilesResponseFromJson(json);
+
+  List<String> images() => [
+        mainImageURL,
+        secondImageURL,
+        thirdImageURL,
+        fourthImageURL,
+        fifthImageURL,
+        sixthImageURL,
+      ].whereType<String>().toList();
 }
