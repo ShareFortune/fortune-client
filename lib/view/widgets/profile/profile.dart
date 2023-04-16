@@ -18,6 +18,14 @@ class ProfileView {
   final AppTheme theme;
   final GetV1ProfilesResponse profile;
 
+  Widget images() {
+    return ProfileImagePageView([
+      profile.mainImageURL,
+      profile.mainImageURL,
+      profile.mainImageURL,
+    ]);
+  }
+
   Widget header() {
     return ProfileItemContainer(
       title: profile.name,
@@ -51,14 +59,6 @@ class ProfileView {
         }).toList(),
       ),
     );
-  }
-
-  Widget images() {
-    return ProfileImagePageView([
-      profile.mainImageURL,
-      profile.mainImageURL,
-      profile.mainImageURL,
-    ]);
   }
 
   Widget basicInfo() {
