@@ -104,6 +104,6 @@ class RoomListViewModel extends StateNotifier<RoomListState> {
 
   /// ルーム詳細ページへ遷移
   navigateToRoomDetail(String id) async {
-    await routeNavigator.navigateTo(RoutePath.roomDetail);
+    await navigator.navigateTo(RoutePath.roomDetail);
   }
 }

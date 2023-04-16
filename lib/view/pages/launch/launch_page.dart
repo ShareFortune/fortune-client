@@ -18,7 +18,7 @@ class LaunchPage extends StatelessWidget {
 
     /// ホーム画面へ
     Future.delayed(const Duration(milliseconds: 100)).whenComplete(
-      () => routeNavigator.navigateToRemoveUntil(RoutePath.home),
+      () => navigator.navigateToRemoveUntil(RoutePath.home),
     );
 
     /// 起動アニメーション

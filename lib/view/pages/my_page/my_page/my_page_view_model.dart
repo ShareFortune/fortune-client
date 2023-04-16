@@ -30,7 +30,7 @@ class MyPageViewModel extends StateNotifier<MyPageState> {
 
   /// 設定ページへ
   navigateToSettingPage() {
-    routeNavigator.navigateTo(RoutePath.setting);
+    navigator.navigateTo(RoutePath.setting);
   }
 
   /// 自己紹介を編集

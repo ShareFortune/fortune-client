@@ -31,7 +31,7 @@ class EditProfileImagesPage extends HookConsumerWidget {
       appBar: BackAppBar(
         title: LocaleKeys.edit_profile_picture_page_title.tr(),
         leading: IconButton(
-          onPressed: () => routeNavigator.goBack(),
+          onPressed: () => navigator.goBack(),
           icon: const Icon(Icons.close),
         ),
         action: [

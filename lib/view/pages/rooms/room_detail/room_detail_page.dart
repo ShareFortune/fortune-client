@@ -73,21 +73,18 @@ class RoomDetailPage extends HookConsumerWidget {
           ]),
 
           /// 参加ボタン
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Container(
+          Positioned(
+            left: 30,
+            right: 30,
+            bottom: 80,
+            child: MaterialButton(
               height: 45,
-              width: double.infinity,
-              margin: const EdgeInsets.only(bottom: 60),
-              padding: const EdgeInsets.symmetric(horizontal: 30),
-              child: MaterialButton(
-                onPressed: () => viewModel.joinRoomRequest(),
-                color: theme.appColors.primary,
-                textColor: theme.appColors.onPrimary,
-                child: Text("ルームに参加する", style: theme.textTheme.h30.bold()),
-              ),
+              onPressed: () => viewModel.joinRoomRequest(),
+              color: theme.appColors.primary,
+              textColor: theme.appColors.onPrimary,
+              child: Text("ルームに参加する", style: theme.textTheme.h30.bold()),
             ),
-          ),
+          )
         ]),
       ),
     );

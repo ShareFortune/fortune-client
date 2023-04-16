@@ -28,6 +28,6 @@ class MessageRoomListViewModel extends StateNotifier<MessageRoomListState> {
   }
 
   navigateToMessagePage(String id) async {
-    routeNavigator.navigateTo(RoutePath.messageRoom);
+    navigator.navigateTo(RoutePath.messageRoom);
   }
 }

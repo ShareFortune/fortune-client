@@ -27,7 +27,7 @@ class ProfilePage extends HookConsumerWidget {
             borderRadius: BorderRadius.circular(50),
           ),
           child: IconButton(
-            onPressed: () => routeNavigator.goBack(),
+            onPressed: () => navigator.goBack(),
             icon: const Icon(Icons.clear, size: 30),
           ),
         ),
