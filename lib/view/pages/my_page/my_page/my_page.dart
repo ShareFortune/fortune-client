@@ -3,12 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:fortune_client/l10n/locale_keys.g.dart';
 import 'package:fortune_client/view/pages/my_page/my_page/components/my_page_header.dart';
 import 'package:fortune_client/view/pages/my_page/my_page/my_page_view_model.dart';
-import 'package:fortune_client/view/pages/profile/profile/components/profile_basic_info_container.dart';
-import 'package:fortune_client/view/pages/profile/profile/components/profile_self_introduction_container.dart';
-import 'package:fortune_client/view/pages/profile/profile/components/profile_tags_container.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/app_bar/back_app_bar.dart';
 import 'package:fortune_client/view/widgets/other/loading_widget.dart';
+import 'package:fortune_client/view/widgets/profile/profile.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -35,21 +33,15 @@ class MyPage extends HookConsumerWidget {
       body: state.profile.maybeWhen(
         orElse: () => loadingWidget(),
         data: (profile) {
+          final profileView = ProfileView(theme, profile);
+
           return SingleChildScrollView(
             child: Column(
               children: [
                 const Gap(30),
 
                 /// ヘッダー
-                MyPageHeader(
-                  theme: theme,
-                  iconUrl: profile.mainImageURL,
-                  name: profile.name,
-                  age: 22,
-                  gender: profile.gender,
-                  onSave: () => viewModel.navigateToEditProfilePicture(),
-                ),
-                const Gap(30),
+                profileView.header(),
 
                 /// 広告
                 Container(
@@ -63,31 +55,10 @@ class MyPage extends HookConsumerWidget {
                   ),
                 ),
 
-                /// 自己紹介
-                ProfileSelfIntroductionContainer(
-                  theme: theme,
-                  selfIntroduction: profile.selfIntroduction ?? "",
-                  onTap: () => viewModel.navigateToEntrySelfIntroduction(),
-                ),
-                const Divider(height: 1),
+                profileView.introduction(),
+                profileView.tags(),
+                profileView.basicInfo(),
 
-                /// タグ
-                ProfileTagsContainer(
-                  theme: theme,
-                  tags: profile.tags ?? List.empty(),
-                  onTap: () => viewModel.navigateToTagsSelection(),
-                ),
-                const Divider(height: 1),
-
-                /// 基本情報
-                ProfileBasicInfoContainer(
-                  theme: theme,
-                  address: profile.address,
-                  stature: profile.height,
-                  drinkFrequency: profile.drinkFrequency,
-                  cigaretteFrequency: profile.cigaretteFrequency,
-                  onUpdate: () => viewModel.navigateToUpdateBasic(),
-                ),
                 const Gap(100),
               ],
             ),

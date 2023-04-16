@@ -28,8 +28,8 @@ _$_GetV1ProfilesResponse _$$_GetV1ProfilesResponseFromJson(
       selfIntroduction: json['selfIntroduction'] as String?,
       occupation: json['occupation'] as String?,
       address: Address.fromJson(json['address'] as Map<String, dynamic>),
-      tags: (json['tags'] as List<dynamic>?)
-          ?.map((e) => Tag.fromJson(e as Map<String, dynamic>))
+      tags: (json['tags'] as List<dynamic>)
+          .map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 

@@ -29,7 +29,7 @@ abstract class GetV1ProfilesResponse with _$GetV1ProfilesResponse {
     String? selfIntroduction,
     String? occupation,
     required Address address,
-    List<Tag>? tags,
+    required List<Tag> tags,
   }) = _GetV1ProfilesResponse;
 
   factory GetV1ProfilesResponse.fromJson(Map<String, dynamic> json) =>

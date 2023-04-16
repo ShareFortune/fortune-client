@@ -3,7 +3,6 @@ import 'package:fortune_client/view/pages/common/home/home_view_model.dart';
 import 'package:fortune_client/view/pages/message/message_room_list/message_room_list_page.dart';
 import 'package:fortune_client/view/pages/rooms/participating/participating_page.dart';
 import 'package:fortune_client/view/pages/rooms/room_list/room_list_page.dart';
-import 'package:fortune_client/view/routes/route_path.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class HomePage extends HookConsumerWidget {
@@ -14,16 +13,15 @@ class HomePage extends HookConsumerWidget {
     final state = ref.watch(homeViewModelProvider);
     final viewModel = ref.watch(homeViewModelProvider.notifier);
 
+    final pages = [
+      const RoomListPage(),
+      const ParticipatingPage(),
+      const MessageRoomListPage(),
+    ];
+
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      body: IndexedStack(
-        index: state.pageIndex,
-        children: const [
-          RoomListPage(),
-          ParticipatingPage(),
-          MessageRoomListPage(),
-        ],
-      ),
+      body: IndexedStack(index: state.pageIndex, children: pages),
       bottomNavigationBar: const BottomMenuWidget(),
     );
   }

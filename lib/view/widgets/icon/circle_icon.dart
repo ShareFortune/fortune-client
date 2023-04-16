@@ -67,10 +67,7 @@ class CircleIconWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return CircleAvatar(
       radius: radius,
-      backgroundImage: Image.network(
-        url,
-        fit: BoxFit.cover,
-      ).image,
+      backgroundImage: Image.network(url, fit: BoxFit.cover).image,
     );
   }
 }

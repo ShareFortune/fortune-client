@@ -13,6 +13,19 @@
     "mainImageURL": "https://dol.ismcdn.jp/mwimgs/7/e/1320w/img_7e0b8adba77c91687a8078920dedc7be160077.jpg",
     "name": "こうすけ",
     "selfIntroduction": "初めまして。恋人が欲しくて始めました。",
-    "tags": [],
+    "tags": [
+        {
+            "id": "9e859233-a284-445e-ae0b-d52560c67d9c",
+            "name": "YouTube"
+        },
+        {
+            "id": "9e859233-a284-445e-ae0b-d52560c67d9c",
+            "name": "サッカー"
+        },
+        {
+            "id": "9e859233-a284-445e-ae0b-d52560c67d9c",
+            "name": "アニメ"
+        }
+    ],
     "username": "maki"
 }

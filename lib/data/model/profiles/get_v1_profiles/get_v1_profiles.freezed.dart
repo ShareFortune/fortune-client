@@ -41,7 +41,7 @@ mixin _$GetV1ProfilesResponse {
   String? get selfIntroduction => throw _privateConstructorUsedError;
   String? get occupation => throw _privateConstructorUsedError;
   Address get address => throw _privateConstructorUsedError;
-  List<Tag>? get tags => throw _privateConstructorUsedError;
+  List<Tag> get tags => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -72,7 +72,7 @@ abstract class $GetV1ProfilesResponseCopyWith<$Res> {
       String? selfIntroduction,
       String? occupation,
       Address address,
-      List<Tag>? tags});
+      List<Tag> tags});
 
   $AddressCopyWith<$Res> get address;
 }
@@ -107,7 +107,7 @@ class _$GetV1ProfilesResponseCopyWithImpl<$Res,
     Object? selfIntroduction = freezed,
     Object? occupation = freezed,
     Object? address = null,
-    Object? tags = freezed,
+    Object? tags = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -174,10 +174,10 @@ class _$GetV1ProfilesResponseCopyWithImpl<$Res,
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
               as Address,
-      tags: freezed == tags
+      tags: null == tags
           ? _value.tags
           : tags // ignore: cast_nullable_to_non_nullable
-              as List<Tag>?,
+              as List<Tag>,
     ) as $Val);
   }
 
@@ -215,7 +215,7 @@ abstract class _$$_GetV1ProfilesResponseCopyWith<$Res>
       String? selfIntroduction,
       String? occupation,
       Address address,
-      List<Tag>? tags});
+      List<Tag> tags});
 
   @override
   $AddressCopyWith<$Res> get address;
@@ -248,7 +248,7 @@ class __$$_GetV1ProfilesResponseCopyWithImpl<$Res>
     Object? selfIntroduction = freezed,
     Object? occupation = freezed,
     Object? address = null,
-    Object? tags = freezed,
+    Object? tags = null,
   }) {
     return _then(_$_GetV1ProfilesResponse(
       id: null == id
@@ -315,10 +315,10 @@ class __$$_GetV1ProfilesResponseCopyWithImpl<$Res>
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
               as Address,
-      tags: freezed == tags
+      tags: null == tags
           ? _value._tags
           : tags // ignore: cast_nullable_to_non_nullable
-              as List<Tag>?,
+              as List<Tag>,
     ));
   }
 }
@@ -343,7 +343,7 @@ class _$_GetV1ProfilesResponse implements _GetV1ProfilesResponse {
       this.selfIntroduction,
       this.occupation,
       required this.address,
-      final List<Tag>? tags})
+      required final List<Tag> tags})
       : _tags = tags;
 
   factory _$_GetV1ProfilesResponse.fromJson(Map<String, dynamic> json) =>
@@ -384,14 +384,12 @@ class _$_GetV1ProfilesResponse implements _GetV1ProfilesResponse {
   final String? occupation;
   @override
   final Address address;
-  final List<Tag>? _tags;
+  final List<Tag> _tags;
   @override
-  List<Tag>? get tags {
-    final value = _tags;
-    if (value == null) return null;
+  List<Tag> get tags {
     if (_tags is EqualUnmodifiableListView) return _tags;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
+    return EqualUnmodifiableListView(_tags);
   }
 
   @override
@@ -492,7 +490,7 @@ abstract class _GetV1ProfilesResponse implements GetV1ProfilesResponse {
       final String? selfIntroduction,
       final String? occupation,
       required final Address address,
-      final List<Tag>? tags}) = _$_GetV1ProfilesResponse;
+      required final List<Tag> tags}) = _$_GetV1ProfilesResponse;
 
   factory _GetV1ProfilesResponse.fromJson(Map<String, dynamic> json) =
       _$_GetV1ProfilesResponse.fromJson;
@@ -533,7 +531,7 @@ abstract class _GetV1ProfilesResponse implements GetV1ProfilesResponse {
   @override
   Address get address;
   @override
-  List<Tag>? get tags;
+  List<Tag> get tags;
   @override
   @JsonKey(ignore: true)
   _$$_GetV1ProfilesResponseCopyWith<_$_GetV1ProfilesResponse> get copyWith =>
