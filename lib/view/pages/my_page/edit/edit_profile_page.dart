@@ -119,8 +119,12 @@ class _ProfileImageEditor extends HookConsumerWidget {
               /// 画像が最大数に達していない場合は再以後の要素に追加ボタンを表示する
               if (!_isMaxImageCount && index == _imageCount - 1) {
                 return InkWell(
-                  onTap: () {
-                    // viewModel.addProfileImage();
+                  onTap: () async {
+                    final file =
+                        await PhotoActionsSheet.getPhoto(theme, context);
+                    if (file != null) {
+                      viewModel.addImage(ProfileImage(FileImage(file)));
+                    }
                   },
                   child: DottedBorder(
                     color: theme.appColors.border1,

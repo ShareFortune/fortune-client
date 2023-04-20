@@ -10,7 +10,6 @@ import 'package:fortune_client/view/routes/route_path.dart';
 
 class AppRouter {
   static Route<dynamic>? onGenerateRoute(RouteSettings settings) {
-    print(settings.name);
     switch (RoutePath.from(settings.name)) {
       case RoutePath.launch:
         return _buildRoute(
