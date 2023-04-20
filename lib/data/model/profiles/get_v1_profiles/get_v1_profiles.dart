@@ -42,6 +42,6 @@ class GetV1ProfilesResponse with _$GetV1ProfilesResponse {
         thirdImageURL,
         fourthImageURL,
         fifthImageURL,
-        // sixthImageURL,
+        sixthImageURL,
       ].whereType<String>().toList();
 }
