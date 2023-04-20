@@ -17,13 +17,13 @@ class LaunchPage extends StatelessWidget {
     /// リモート設定を初期化
 
     /// ホーム画面へ
-    Future.delayed(const Duration(milliseconds: 100)).whenComplete(
+    Future.delayed(const Duration(milliseconds: 1000)).whenComplete(
       () => navigator.navigateToRemoveUntil(RoutePath.home),
     );
 
     /// 起動アニメーション
     /// TODO: アニメーションを作成する
-    return Expanded(child: Lottie.asset(Assets.animations.splash));
+    return Lottie.asset(Assets.animations.splash);
   }
 
   applyAppInfo() {

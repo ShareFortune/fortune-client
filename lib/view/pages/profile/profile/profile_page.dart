@@ -38,15 +38,15 @@ class ProfilePage extends HookConsumerWidget {
       body: AsyncValueWidget(
         data: state.profile,
         builder: (profile) {
-          final profileView = ProfileView(theme, profile);
+          final profileWidget = ProfileWidget(theme, profile);
 
           return ListView(
             children: [
-              profileView.images(),
-              profileView.header(),
-              profileView.introduction(),
-              profileView.tags(),
-              profileView.basicInfo(),
+              profileWidget.images(),
+              profileWidget.header(),
+              profileWidget.introduction(),
+              profileWidget.tags(),
+              profileWidget.basicInfo(),
             ],
           );
         },

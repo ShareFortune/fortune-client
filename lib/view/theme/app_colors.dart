@@ -44,7 +44,7 @@ class AppColors {
       subText2: const Color(0xFF6C6C6C),
       subText3: const Color(0xFF969696),
       iconBtn1: const Color(0xFF000000),
-      iconBtn2: const Color(0xFFD9D9D9),
+      iconBtn2: const Color(0xFF9A9A9A),
       shadow: const Color(0xFFF3F3F3),
       border1: const Color(0xFFDDDDDD),
       border2: const Color(0xFFF3F3F3),

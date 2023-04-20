@@ -9,13 +9,17 @@ class RouteNavigator {
   // グローバルキーで共有されるNavigatorStateオブジェクトを格納する
   final navigatorKey = GlobalKey<NavigatorState>();
 
-  Future<dynamic>? navigateTo(RoutePath route) {
-    return navigatorKey.currentState?.pushNamed(route.name);
+  Future<dynamic>? navigateTo(RoutePath route, {Object? arguments}) {
+    return navigatorKey.currentState?.pushNamed(
+      route.name,
+      arguments: arguments,
+    );
   }
 
-  Future<dynamic>? navigateToRemoveUntil(RoutePath route) {
+  Future<dynamic>? navigateToRemoveUntil(RoutePath route, {Object? arguments}) {
     return navigatorKey.currentState?.pushNamedAndRemoveUntil(
       route.name,
+      arguments: arguments,
       (Route<dynamic> route) => false,
     );
   }

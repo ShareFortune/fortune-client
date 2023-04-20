@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fortune_client/view/pages/common/home/home_page.dart';
 import 'package:fortune_client/view/pages/launch/launch_page.dart';
+import 'package:fortune_client/view/pages/my_page/edit/edit_profile_page.dart';
 import 'package:fortune_client/view/pages/my_page/my_page/my_page.dart';
 import 'package:fortune_client/view/pages/profile/profile/profile_page.dart';
 import 'package:fortune_client/view/pages/rooms/room_detail/room_detail_page.dart';
@@ -29,9 +30,14 @@ class AppRouter {
       case RoutePath.profileInput:
         // TODO: Handle this case.
         break;
+
       case RoutePath.profileEdit:
-        // TODO: Handle this case.
-        break;
+        return _fadePageRouteBuilder(
+          EditProfilePage(
+            arguments: settings.arguments as EditProfilePageArguments,
+          ),
+        );
+
       case RoutePath.profile:
 
         /// ここで、ProfilePageに渡す引数を設定する

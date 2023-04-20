@@ -77,7 +77,7 @@ class _PhotoViewState extends ConsumerState<ProfilePhotoView> {
                 visiblePhotoIndex: visiblePhotoIndex,
               ),
             ),
-            PhotoController(
+            _PhotoController(
               onPrev: onPrev,
               onNext: onNext,
             ),
@@ -89,9 +89,8 @@ class _PhotoViewState extends ConsumerState<ProfilePhotoView> {
 }
 
 /// 画像の切り替え制御
-class PhotoController extends StatelessWidget {
-  const PhotoController({
-    super.key,
+class _PhotoController extends StatelessWidget {
+  const _PhotoController({
     required this.onPrev,
     required this.onNext,
   });

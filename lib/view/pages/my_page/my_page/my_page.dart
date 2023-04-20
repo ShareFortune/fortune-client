@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:fortune_client/l10n/locale_keys.g.dart';
+import 'package:fortune_client/view/pages/my_page/edit/edit_profile_page.dart';
 import 'package:fortune_client/view/pages/my_page/my_page/my_page_view_model.dart';
 import 'package:fortune_client/view/routes/route_navigator.dart';
 import 'package:fortune_client/view/routes/route_path.dart';
@@ -35,7 +36,7 @@ class MyPage extends HookConsumerWidget {
       body: AsyncValueWidget(
         data: state.profile,
         builder: (profile) {
-          final profileView = ProfileView(theme, profile);
+          final profileWidget = ProfileWidget(theme, profile);
 
           return Stack(
             children: [
@@ -43,7 +44,7 @@ class MyPage extends HookConsumerWidget {
                 child: Column(
                   children: [
                     /// ヘッダー
-                    profileView.header(),
+                    profileWidget.header(),
 
                     /// 広告
                     Container(
@@ -57,9 +58,9 @@ class MyPage extends HookConsumerWidget {
                       ),
                     ),
 
-                    profileView.introduction(),
-                    profileView.tags(),
-                    profileView.basicInfo(),
+                    profileWidget.introduction(),
+                    profileWidget.tags(),
+                    profileWidget.basicInfo(),
 
                     const Gap(100),
                   ],
@@ -70,7 +71,12 @@ class MyPage extends HookConsumerWidget {
                 bottom: 60,
                 child: MaterialButton(
                   height: 45,
-                  onPressed: () {},
+                  onPressed: () {
+                    navigator.navigateTo(
+                      RoutePath.profileEdit,
+                      arguments: EditProfilePageArguments(profile),
+                    );
+                  },
                   color: theme.appColors.primary,
                   textColor: theme.appColors.onPrimary,
                   shape: RoundedRectangleBorder(
