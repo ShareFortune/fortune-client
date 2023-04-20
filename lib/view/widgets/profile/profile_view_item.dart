@@ -10,17 +10,17 @@ class ProfileItemContainer extends HookConsumerWidget {
     required this.title,
     required this.child,
     this.leading,
-    this.padding,
     this.middleMargin = 10,
     this.hasData = true,
     this.border = const BorderSide(width: 0.5),
+    this.isEditable = false,
     this.onTapped,
+    this.isArrow = true,
   });
 
   final String title;
   final Widget child;
   final Widget? leading;
-  final EdgeInsetsGeometry? padding;
 
   /// [title]と[child]間の余白
   final double middleMargin;
@@ -29,7 +29,12 @@ class ProfileItemContainer extends HookConsumerWidget {
   final bool hasData;
   final BorderSide border;
 
+  /// 編集可能かどうか
+  final bool isEditable;
   final VoidCallback? onTapped;
+
+  /// 矢印を表示するかどうか
+  final bool isArrow;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -40,17 +45,18 @@ class ProfileItemContainer extends HookConsumerWidget {
     return InkWell(
       onTap: onTapped,
       child: Container(
-        padding: padding ??
-            EdgeInsets.only(
-              left: 20,
-              top: 30,
-              right: onTapped != null ? 10 : 20,
-              bottom: 30,
-            ),
+        padding: EdgeInsets.only(
+          left: 20,
+          top: 30,
+          right: isEditable ? 10 : 20,
+          bottom: 30,
+        ),
         decoration: BoxDecoration(
           color: theme.appColors.onBackground,
           border: Border(
-            bottom: border.copyWith(color: theme.appColors.border1),
+            bottom: border.copyWith(
+              color: theme.appColors.border1,
+            ),
           ),
         ),
         child: Row(
@@ -68,7 +74,7 @@ class ProfileItemContainer extends HookConsumerWidget {
                 ],
               ),
             ),
-            if (onTapped != null) const Icon(Icons.chevron_right),
+            if (isEditable && isArrow) const Icon(Icons.chevron_right),
           ],
         ),
       ),

@@ -3,7 +3,11 @@ import 'package:fortune_client/view/pages/profile/profile/profile_view_model.dar
 import 'package:fortune_client/view/routes/route_navigator.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/other/async_value_widget.dart';
-import 'package:fortune_client/view/widgets/profile/profile.dart';
+import 'package:fortune_client/view/widgets/profile/profile_basic_info.dart';
+import 'package:fortune_client/view/widgets/profile/profile_header.dart';
+import 'package:fortune_client/view/widgets/profile/profile_photo_view.dart';
+import 'package:fortune_client/view/widgets/profile/profile_self_introduction.dart';
+import 'package:fortune_client/view/widgets/profile/profile_tag.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class ProfilePage extends HookConsumerWidget {
@@ -38,15 +42,26 @@ class ProfilePage extends HookConsumerWidget {
       body: AsyncValueWidget(
         data: state.profile,
         builder: (profile) {
-          final profileWidget = ProfileWidget(theme, profile);
-
           return ListView(
             children: [
-              profileWidget.images(),
-              profileWidget.header(),
-              profileWidget.introduction(),
-              profileWidget.tags(),
-              profileWidget.basicInfo(),
+              ProfilePhotoView(images: profile.images()),
+              ProfileHeaderWidget(
+                name: profile.name,
+                iconUrl: profile.mainImageURL,
+                gender: profile.gender,
+                address: profile.address,
+              ),
+              ProfileSelfIntroductionWidget(
+                selfIntroduction: profile.selfIntroduction,
+              ),
+              ProfileTagWidget(tags: profile.tags),
+              ProfileBasicInfoWidget(
+                name: profile.name,
+                address: profile.address,
+                height: profile.height,
+                drinkFrequency: profile.drinkFrequency,
+                cigaretteFrequency: profile.cigaretteFrequency,
+              ),
             ],
           );
         },

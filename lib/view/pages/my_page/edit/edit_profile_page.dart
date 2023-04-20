@@ -13,7 +13,9 @@ import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/app_bar/back_app_bar.dart';
 import 'package:fortune_client/view/widgets/bottom_sheet/photo_actions_sheet.dart';
-import 'package:fortune_client/view/widgets/profile/profile.dart';
+import 'package:fortune_client/view/widgets/profile/profile_basic_info.dart';
+import 'package:fortune_client/view/widgets/profile/profile_self_introduction.dart';
+import 'package:fortune_client/view/widgets/profile/profile_tag.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -35,8 +37,6 @@ class EditProfilePage extends HookConsumerWidget {
     final viewModel =
         ref.watch(editProfileViewModelProvider(arguments.profile).notifier);
 
-    final profileWidget = ProfileWidget(theme, state.profile);
-
     return Scaffold(
       backgroundColor: theme.appColors.onBackground,
       appBar: const BackAppBar(title: "写真編集"),
@@ -47,18 +47,25 @@ class EditProfilePage extends HookConsumerWidget {
             images: state.images,
             viewModel: viewModel,
           ),
-          profileWidget.introduction(
-            onTapped: () {},
+          ProfileSelfIntroductionWidget(
+            onEdited: (p0) {},
+            selfIntroduction: state.profile.selfIntroduction,
           ),
-          profileWidget.tags(
-            onTapped: () {},
+          ProfileTagWidget(
+            onEdited: (p0) {},
+            tags: state.profile.tags,
           ),
-          profileWidget.basicInfo(
+          ProfileBasicInfoWidget(
+            name: state.profile.name,
+            address: state.profile.address,
+            height: state.profile.height,
+            drinkFrequency: state.profile.drinkFrequency,
+            cigaretteFrequency: state.profile.cigaretteFrequency,
             changeName: () {},
             changeAddress: () {},
             changeHeight: () {},
-            changeCigaretteFrequency: () {},
             changeDrinkFrequency: () {},
+            changeCigaretteFrequency: () {},
           ),
         ],
       ),

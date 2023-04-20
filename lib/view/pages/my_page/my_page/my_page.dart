@@ -9,7 +9,10 @@ import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/app_bar/back_app_bar.dart';
 import 'package:fortune_client/view/widgets/other/async_value_widget.dart';
-import 'package:fortune_client/view/widgets/profile/profile.dart';
+import 'package:fortune_client/view/widgets/profile/profile_basic_info.dart';
+import 'package:fortune_client/view/widgets/profile/profile_header.dart';
+import 'package:fortune_client/view/widgets/profile/profile_self_introduction.dart';
+import 'package:fortune_client/view/widgets/profile/profile_tag.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -36,15 +39,18 @@ class MyPage extends HookConsumerWidget {
       body: AsyncValueWidget(
         data: state.profile,
         builder: (profile) {
-          final profileWidget = ProfileWidget(theme, profile);
-
           return Stack(
             children: [
               SingleChildScrollView(
                 child: Column(
                   children: [
                     /// ヘッダー
-                    profileWidget.header(),
+                    ProfileHeaderWidget(
+                      name: profile.name,
+                      iconUrl: profile.mainImageURL,
+                      gender: profile.gender,
+                      address: profile.address,
+                    ),
 
                     /// 広告
                     Container(
@@ -58,9 +64,19 @@ class MyPage extends HookConsumerWidget {
                       ),
                     ),
 
-                    profileWidget.introduction(),
-                    profileWidget.tags(),
-                    profileWidget.basicInfo(),
+                    ProfileSelfIntroductionWidget(
+                      selfIntroduction: profile.selfIntroduction,
+                    ),
+
+                    ProfileTagWidget(tags: profile.tags),
+
+                    ProfileBasicInfoWidget(
+                      name: profile.name,
+                      address: profile.address,
+                      height: profile.height,
+                      drinkFrequency: profile.drinkFrequency,
+                      cigaretteFrequency: profile.cigaretteFrequency,
+                    ),
 
                     const Gap(100),
                   ],
