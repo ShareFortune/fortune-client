@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:fortune_client/gen/assets.gen.dart';
-import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/view/routes/route_navigator.dart';
 import 'package:fortune_client/view/routes/route_path.dart';
 import 'package:lottie/lottie.dart';
@@ -17,7 +16,7 @@ class LaunchPage extends StatelessWidget {
     /// リモート設定を初期化
 
     /// ホーム画面へ
-    Future.delayed(const Duration(milliseconds: 1000)).whenComplete(
+    Future.delayed(const Duration(milliseconds: 100)).whenComplete(
       () => navigator.navigateToRemoveUntil(RoutePath.home),
     );
 
