@@ -15,11 +15,11 @@ class EditProfileState with _$EditProfileState {
 
 @freezed
 class ProfileImage with _$ProfileImage {
-  const factory ProfileImage({
-    required ImageProvider image,
-  }) = _ProfileImage;
+  const factory ProfileImage(
+    ImageProvider image,
+  ) = _ProfileImage;
 
   factory ProfileImage.url(String url) {
-    return ProfileImage(image: Image.network(url).image);
+    return ProfileImage(Image.network(url).image);
   }
 }

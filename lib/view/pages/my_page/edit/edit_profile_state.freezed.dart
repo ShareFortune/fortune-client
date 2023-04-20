@@ -244,7 +244,7 @@ class __$$_ProfileImageCopyWithImpl<$Res>
     Object? image = null,
   }) {
     return _then(_$_ProfileImage(
-      image: null == image
+      null == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
               as ImageProvider<Object>,
@@ -255,7 +255,7 @@ class __$$_ProfileImageCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_ProfileImage implements _ProfileImage {
-  const _$_ProfileImage({required this.image});
+  const _$_ProfileImage(this.image);
 
   @override
   final ImageProvider<Object> image;
@@ -284,7 +284,7 @@ class _$_ProfileImage implements _ProfileImage {
 }
 
 abstract class _ProfileImage implements ProfileImage {
-  const factory _ProfileImage({required final ImageProvider<Object> image}) =
+  const factory _ProfileImage(final ImageProvider<Object> image) =
       _$_ProfileImage;
 
   @override

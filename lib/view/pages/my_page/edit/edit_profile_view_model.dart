@@ -20,17 +20,17 @@ class EditProfileViewModel extends StateNotifier<EditProfileState> {
 
   List<ProfileImage> get images => [...state.images];
 
-  void addProfileImage(ProfileImage image) {
-    state = state.copyWith(images: state.images..add(image));
+  void addImage(ProfileImage image) {
+    state = state.copyWith(images: images..add(image));
   }
 
-  void removeProfileImage(int index) {
+  void removeImage(int index) {
     state = state.copyWith(images: images..removeAt(index));
   }
 
-  void changeProfileImage(int index, ProfileImage image) {
+  void changeImage(int index, ProfileImage image) {
     state = state.copyWith(
-      images: state.images
+      images: images
         ..removeAt(index)
         ..insert(index, image),
     );

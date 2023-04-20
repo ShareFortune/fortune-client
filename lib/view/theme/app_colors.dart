@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 
 class AppColors {
   AppColors({
@@ -38,7 +38,7 @@ class AppColors {
       surface: const Color(0xFFD61355),
       onSurface: const Color(0xFFFFFFFF),
       linkColor: const Color(0xFF0078FE),
-      error: const Color(0xFFB83231),
+      error: CupertinoColors.systemRed,
       onError: const Color(0xFFFFFFFF),
       subText1: const Color(0xFF000000),
       subText2: const Color(0xFF6C6C6C),

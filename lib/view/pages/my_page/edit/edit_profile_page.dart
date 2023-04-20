@@ -1,5 +1,6 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fortune_client/data/model/profiles/get_v1_profiles/get_v1_profiles.dart';
@@ -7,9 +8,11 @@ import 'package:fortune_client/gen/assets.gen.dart';
 import 'package:fortune_client/l10n/locale_keys.g.dart';
 import 'package:fortune_client/view/pages/my_page/edit/edit_profile_state.dart';
 import 'package:fortune_client/view/pages/my_page/edit/edit_profile_view_model.dart';
+import 'package:fortune_client/view/routes/route_navigator.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/app_bar/back_app_bar.dart';
+import 'package:fortune_client/view/widgets/bottom_sheet/photo_actions_sheet.dart';
 import 'package:fortune_client/view/widgets/profile/profile.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -150,8 +153,12 @@ class _ProfileImageEditor extends HookConsumerWidget {
               /// プロフィール写真
               return GestureDetector(
                 onTap: () {
-                  /// TODO: 画像を削除する
-                  viewModel.removeProfileImage(index);
+                  _showActionSheet(
+                    context: context,
+                    theme: theme,
+                    update: (image) => viewModel.changeImage(index, image),
+                    delete: () => viewModel.removeImage(index),
+                  );
                 },
                 child: Container(
                   height: _imageSize,
@@ -171,6 +178,61 @@ class _ProfileImageEditor extends HookConsumerWidget {
         const Gap(20),
         Divider(height: 0.5, color: theme.appColors.border1),
       ],
+    );
+  }
+
+  /// アクションシートを表示する
+  /// [update] 画像を更新する
+  /// [delete] 画像を削除する
+  void _showActionSheet({
+    required BuildContext context,
+    required AppTheme theme,
+    required Function(ProfileImage) update,
+    required VoidCallback delete,
+  }) {
+    final textStyle = theme.textTheme.h50;
+    final defaultTextStyle = textStyle.paint(theme.appColors.linkColor);
+    final deleteTextStyle = textStyle.paint(theme.appColors.error);
+
+    showCupertinoModalPopup<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return CupertinoActionSheet(
+          message: const Text(
+            'プロフィール写真を変更しますか？',
+            style: TextStyle(fontSize: 15),
+          ),
+          actions: <Widget>[
+            /// 画像を変更する
+            CupertinoActionSheetAction(
+              isDestructiveAction: true,
+              child: Text('変更する', style: defaultTextStyle),
+              onPressed: () async {
+                /// 写真選択前にボトムシートを閉じる
+                navigator.goBack();
+                final file = await PhotoActionsSheet.getPhoto(theme, context);
+                if (file != null) update(ProfileImage(FileImage(file)));
+              },
+            ),
+
+            /// 画像を削除する
+            CupertinoActionSheetAction(
+              isDestructiveAction: true,
+              child: Text('削除する', style: deleteTextStyle),
+              onPressed: () {
+                delete.call();
+                Navigator.pop(context);
+              },
+            )
+          ],
+          cancelButton: CupertinoActionSheetAction(
+            child: Text("キャンセル", style: defaultTextStyle),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
+        );
+      },
     );
   }
 }
