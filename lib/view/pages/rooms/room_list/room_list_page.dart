@@ -30,12 +30,21 @@ class RoomListPage extends HookConsumerWidget {
             child: Container(
               padding: const EdgeInsets.fromLTRB(20, 5, 20, 20),
               child: Row(
-                children: const [
-                  _RoomsFilter(title: "場所"),
-                  Gap(10),
-                  _RoomsFilter(title: "人数"),
-                  Gap(10),
-                  _RoomsFilter(title: "タグ"),
+                children: [
+                  _RoomsFilter(
+                    title: "場所",
+                    onTap: () {},
+                  ),
+                  const Gap(15),
+                  _RoomsFilter(
+                    title: "人数",
+                    onTap: () {},
+                  ),
+                  const Gap(15),
+                  _RoomsFilter(
+                    title: "タグ",
+                    onTap: () {},
+                  ),
                 ],
               ),
             ),
@@ -69,35 +78,40 @@ class RoomListPage extends HookConsumerWidget {
 class _RoomsFilter extends HookConsumerWidget {
   const _RoomsFilter({
     required this.title,
+    required this.onTap,
   });
 
   final String title;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = ref.watch(appThemeProvider);
 
-    return Container(
-      padding: const EdgeInsets.fromLTRB(20, 6, 12, 6),
-      decoration: BoxDecoration(
-        color: theme.appColors.onBackground,
-        border: Border.all(width: 1, color: theme.appColors.border1),
-        borderRadius: BorderRadius.circular(30),
-      ),
-      child: Row(
-        children: [
-          Text(
-            title,
-            style: theme.textTheme.h30.paint(theme.appColors.subText2),
-          ),
-          const Gap(6),
-          SvgPicture.asset(
-            Assets.images.icons.iconArrowDropDown.path,
-            width: 20,
-            fit: BoxFit.contain,
-            color: theme.appColors.iconBtn2,
-          ),
-        ],
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.fromLTRB(20, 6, 12, 6),
+        decoration: BoxDecoration(
+          color: theme.appColors.onBackground,
+          border: Border.all(width: 1, color: theme.appColors.border1),
+          borderRadius: BorderRadius.circular(30),
+        ),
+        child: Row(
+          children: [
+            Text(
+              title,
+              style: theme.textTheme.h30.paint(theme.appColors.subText2),
+            ),
+            const Gap(6),
+            SvgPicture.asset(
+              Assets.images.icons.iconArrowDropDown.path,
+              width: 20,
+              fit: BoxFit.contain,
+              color: theme.appColors.iconBtn2,
+            ),
+          ],
+        ),
       ),
     );
   }
