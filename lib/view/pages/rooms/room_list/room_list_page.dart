@@ -31,18 +31,18 @@ class RoomListPage extends HookConsumerWidget {
               padding: const EdgeInsets.fromLTRB(20, 5, 20, 20),
               child: Row(
                 children: [
-                  _RoomsFilter(
+                  _RoomsFilterButton(
                     title: "場所",
                     isAppliedFilter: true,
                     onTap: () {},
                   ),
                   const Gap(15),
-                  _RoomsFilter(
+                  _RoomsFilterButton(
                     title: "人数",
                     onTap: () {},
                   ),
                   const Gap(15),
-                  _RoomsFilter(
+                  _RoomsFilterButton(
                     title: "タグ",
                     onTap: () {},
                   ),
@@ -75,9 +75,9 @@ class RoomListPage extends HookConsumerWidget {
   }
 }
 
-/// フィルター部分
-class _RoomsFilter extends HookConsumerWidget {
-  const _RoomsFilter({
+/// フィルターボタン
+class _RoomsFilterButton extends HookConsumerWidget {
+  const _RoomsFilterButton({
     required this.title,
     required this.onTap,
     this.isAppliedFilter = false,
