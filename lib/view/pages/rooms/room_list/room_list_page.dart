@@ -33,6 +33,7 @@ class RoomListPage extends HookConsumerWidget {
                 children: [
                   _RoomsFilter(
                     title: "場所",
+                    isAppliedFilter: true,
                     onTap: () {},
                   ),
                   const Gap(15),
@@ -79,10 +80,14 @@ class _RoomsFilter extends HookConsumerWidget {
   const _RoomsFilter({
     required this.title,
     required this.onTap,
+    this.isAppliedFilter = false,
   });
 
   final String title;
   final VoidCallback? onTap;
+
+  /// フィルターが適用されているか
+  final bool isAppliedFilter;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -93,22 +98,38 @@ class _RoomsFilter extends HookConsumerWidget {
       child: Container(
         padding: const EdgeInsets.fromLTRB(20, 6, 12, 6),
         decoration: BoxDecoration(
-          color: theme.appColors.onBackground,
-          border: Border.all(width: 1, color: theme.appColors.border1),
+          border: Border.all(
+            width: 1,
+            color: isAppliedFilter
+                ? theme.appColors.primary.withOpacity(0.1)
+                : theme.appColors.border1,
+          ),
           borderRadius: BorderRadius.circular(30),
+          color: isAppliedFilter
+              ? theme.appColors.primary.withOpacity(0.1)
+              : theme.appColors.onBackground,
         ),
         child: Row(
           children: [
             Text(
               title,
-              style: theme.textTheme.h30.paint(theme.appColors.subText2),
+              style: theme.textTheme.h30.paint(
+                isAppliedFilter
+                    ? theme.appColors.primary
+                    : theme.appColors.subText2,
+              ),
             ),
             const Gap(6),
             SvgPicture.asset(
               Assets.images.icons.iconArrowDropDown.path,
               width: 20,
               fit: BoxFit.contain,
-              color: theme.appColors.iconBtn2,
+              colorFilter: ColorFilter.mode(
+                isAppliedFilter
+                    ? theme.appColors.primary
+                    : theme.appColors.iconBtn2,
+                BlendMode.srcIn,
+              ),
             ),
           ],
         ),
