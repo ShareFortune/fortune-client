@@ -18,9 +18,6 @@ class ProfileSelfIntroductionWidget extends StatelessWidget {
   /// 自己紹介があるかどうか
   bool get hasData => selfIntroduction?.isNotEmpty == true;
 
-  /// 編集可能かどうか
-  bool get isEditable => onEdited != null;
-
   @override
   Widget build(BuildContext context) {
     return ProfileItemContainer(

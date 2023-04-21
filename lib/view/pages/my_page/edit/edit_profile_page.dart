@@ -40,7 +40,7 @@ class EditProfilePage extends HookConsumerWidget {
     return Scaffold(
       backgroundColor: theme.appColors.onBackground,
       appBar: const BackAppBar(title: "写真編集"),
-      body: Column(
+      body: ListView(
         children: [
           const Gap(20),
           _ProfileImageEditor(

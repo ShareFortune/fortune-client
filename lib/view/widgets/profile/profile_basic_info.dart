@@ -219,7 +219,7 @@ class _Item extends HookConsumerWidget {
     final theme = ref.watch(appThemeProvider);
 
     return GestureDetector(
-      onTap: onTapped,
+      onTap: isEdit ? onTapped : null,
       child: Container(
         padding: EdgeInsets.symmetric(vertical: isEdit ? 12 : 10),
         child: Row(

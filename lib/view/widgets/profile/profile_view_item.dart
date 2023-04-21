@@ -43,7 +43,7 @@ class ProfileItemContainer extends HookConsumerWidget {
     if (!hasData) return const SizedBox.shrink();
 
     return InkWell(
-      onTap: onTapped,
+      onTap: isEditable ? onTapped : null,
       child: Container(
         padding: EdgeInsets.only(
           left: 20,
