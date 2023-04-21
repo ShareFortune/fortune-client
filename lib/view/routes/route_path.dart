@@ -51,6 +51,9 @@ enum RoutePath {
   searchTag('/searchTag'),
   searchAddress('/searchAddress'),
 
+  /// Input
+  inputText('/inputText'),
+
   /// Error
   error('/error'),
 

@@ -26,7 +26,7 @@ class EditProfilePageArguments {
 }
 
 class EditProfilePage extends HookConsumerWidget {
-  const EditProfilePage({super.key, required this.arguments});
+  const EditProfilePage(this.arguments, {super.key});
 
   final EditProfilePageArguments arguments;
 

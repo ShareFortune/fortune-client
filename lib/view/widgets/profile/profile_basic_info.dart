@@ -6,6 +6,9 @@ import 'package:flutter_japanese_address_picker/flutter_japanese_address_picker.
 import 'package:fortune_client/data/model/core/enum/cigarette_frequency.dart';
 import 'package:fortune_client/data/model/core/enum/drink_frequency.dart';
 import 'package:fortune_client/l10n/locale_keys.g.dart';
+import 'package:fortune_client/view/pages/common/input/input_text.dart';
+import 'package:fortune_client/view/routes/route_navigator.dart';
+import 'package:fortune_client/view/routes/route_path.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/picker/base_bottom_picker.dart';
@@ -65,7 +68,16 @@ class ProfileBasicInfoWidget extends ConsumerWidget {
             title: "名前",
             value: name,
             onTapped: () {
-              changeName?.call("");
+              navigator.navigateTo(
+                RoutePath.inputText,
+                arguments: InputTextPageArguments(
+                  title: "名前",
+                  initialValue: name,
+                  onChanged: (value) {
+                    changeName?.call(value);
+                  },
+                ),
+              );
             },
           ),
 
