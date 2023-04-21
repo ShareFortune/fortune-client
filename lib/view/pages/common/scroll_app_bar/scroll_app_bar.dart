@@ -12,7 +12,7 @@ class ScrollAppBar extends HookConsumerWidget implements PreferredSizeWidget {
   const ScrollAppBar({
     super.key,
     required this.title,
-    this.hieght = 140,
+    this.hieght = 120,
     this.onTapTitle,
   });
 
@@ -54,7 +54,6 @@ class ScrollAppBar extends HookConsumerWidget implements PreferredSizeWidget {
                           Assets.images.icons.iconArrowDropDown.path,
                           fit: BoxFit.contain,
                           width: 20,
-                          color: theme.appColors.iconBtn1,
                         ),
                     ],
                   ),
@@ -70,7 +69,7 @@ class ScrollAppBar extends HookConsumerWidget implements PreferredSizeWidget {
                 ),
               ],
             ),
-            const Gap(15),
+            const Gap(10),
           ],
         ),
       ),

@@ -36,21 +36,27 @@ class RoomListCard extends StatelessWidget {
           offset: offset,
         );
 
-    return InkWell(
-      onTap: onTapRoom,
-      child: Container(
-        padding: const EdgeInsets.all(10),
-        decoration: BoxDecoration(
-          color: theme.appColors.onBackground,
-          borderRadius: BorderRadius.circular(10),
-          boxShadow: [shadow(shadowOffset), shadow(-shadowOffset)],
-        ),
-        child: Column(
-          children: [
-            _titleWidget(theme),
-            const Gap(10),
-            _contentsWidget(theme),
-          ],
+    return Container(
+      padding: const EdgeInsets.symmetric(
+        vertical: 6,
+        horizontal: 20,
+      ),
+      child: InkWell(
+        onTap: onTapRoom,
+        child: Container(
+          padding: const EdgeInsets.all(10),
+          decoration: BoxDecoration(
+            color: theme.appColors.onBackground,
+            borderRadius: BorderRadius.circular(10),
+            boxShadow: [shadow(shadowOffset), shadow(-shadowOffset)],
+          ),
+          child: Column(
+            children: [
+              _titleWidget(theme),
+              const Gap(10),
+              _contentsWidget(theme),
+            ],
+          ),
         ),
       ),
     );
