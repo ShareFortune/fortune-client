@@ -119,7 +119,26 @@ class ProfileBasicInfoWidget extends ConsumerWidget {
           title: LocaleKeys.data_profile_stature_title.tr(),
           format: LocaleKeys.data_profile_stature_data.tr(),
           args: [height.toString()],
-          onTapped: () async {},
+          onTapped: () async {
+            await showModalBottomSheet(
+              constraints: BoxConstraints(
+                maxHeight: MediaQuery.of(context).size.height * 0.3,
+              ),
+              context: context,
+              builder: (BuildContext context) {
+                return BaseBottomPicker(
+                  items: List.generate(71, (index) {
+                    return LocaleKeys.data_profile_stature_data.tr(
+                      args: [(index + 130).toString()],
+                    );
+                  }).toList(),
+                  onChanged: (index) {
+                    changeHeight?.call(index + 130);
+                  },
+                );
+              },
+            );
+          },
         ),
 
         /// お酒
