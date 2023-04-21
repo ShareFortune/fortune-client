@@ -27,7 +27,7 @@ class ProfileTagWidget extends StatelessWidget {
     return ProfileItemContainer(
       title: "タグ",
       onTapped: () {
-        navigator.navigateTo(RoutePath.tag);
+        navigator.navigateTo(RoutePath.searchTag);
       },
       isEditable: onEdited != null,
       child: Wrap(

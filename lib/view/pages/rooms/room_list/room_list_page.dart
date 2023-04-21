@@ -6,6 +6,8 @@ import 'package:fortune_client/l10n/locale_keys.g.dart';
 import 'package:fortune_client/view/pages/common/scroll_app_bar/scroll_app_bar.dart';
 import 'package:fortune_client/view/pages/rooms/room_list/components/room_list_card.dart';
 import 'package:fortune_client/view/pages/rooms/room_list/room_list_view_model.dart';
+import 'package:fortune_client/view/routes/route_navigator.dart';
+import 'package:fortune_client/view/routes/route_path.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/other/async_value_widget.dart';
@@ -34,7 +36,9 @@ class RoomListPage extends HookConsumerWidget {
                   _RoomsFilterButton(
                     title: "場所",
                     isAppliedFilter: true,
-                    onTap: () {},
+                    onTap: () {
+                      navigator.navigateTo(RoutePath.searchAddress);
+                    },
                   ),
                   const Gap(15),
                   _RoomsFilterButton(
@@ -44,7 +48,9 @@ class RoomListPage extends HookConsumerWidget {
                   const Gap(15),
                   _RoomsFilterButton(
                     title: "タグ",
-                    onTap: () {},
+                    onTap: () async {
+                      await navigator.navigateTo(RoutePath.searchTag);
+                    },
                   ),
                 ],
               ),
@@ -59,8 +65,9 @@ class RoomListPage extends HookConsumerWidget {
                     return RoomListCard(
                       theme: theme,
                       room: room,
-                      onTapRoom: () =>
-                          viewModel.navigateToRoomDetail(room.data.id),
+                      onTapRoom: () async {
+                        await navigator.navigateTo(RoutePath.roomDetail);
+                      },
                       onTapHeart: (value) async {},
                       onTapJoinRequestBtn: () async {},
                     );

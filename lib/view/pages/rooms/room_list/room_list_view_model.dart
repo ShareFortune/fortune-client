@@ -1,12 +1,7 @@
 import 'package:fortune_client/data/model/core/base/address_with_id/address_with_id.dart';
 import 'package:fortune_client/data/model/core/base/tag/tag.dart';
 import 'package:fortune_client/data/repository/repository.dart';
-import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/view/pages/rooms/room_list/room_list_state.dart';
-import 'package:fortune_client/view/routes/app_router.dart';
-import 'package:fortune_client/view/routes/route_navigator.dart';
-import 'package:fortune_client/view/routes/route_path.dart';
-
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final roomListViewModelProvider =
@@ -80,12 +75,32 @@ class RoomListViewModel extends StateNotifier<RoomListState> {
     return true;
   }
 
-  /// フィルター更新
-  changeFilter(RoomListStateFilter? filter) async {
-    if (filter != null) {
-      state = state.copyWith(filter: filter);
-      await fetchList();
-    }
+  /// フィルタリング
+  Future<void> filtering(RoomListStateFilter? filter) async {
+    if (filter == null) return;
+    state = state.copyWith(filter: filter);
+    await fetchList();
+  }
+
+  /// タグでフィルタリング
+  Future<void> filteringByTags(List<Tag>? tags) async {
+    await filtering(state.filter.copyWith(tags: tags));
+  }
+
+  /// 場所でフィルタリング
+  Future<void> filteringByAddress(AddressWithId? addressWithId) async {
+    await filtering(state.filter.copyWith(addressWithId: addressWithId));
+  }
+
+  /// 参加人数でフィルタリング
+  Future<void> filteringByMemberNum(int? memberNum) async {
+    await filtering(state.filter.copyWith(memberNum: memberNum));
+  }
+
+  /// フィルターのリセット
+  void resetFilter() async {
+    state = state.copyWith(filter: const RoomListStateFilter());
+    await fetchList();
   }
 
   /// 場所検索ページへ遷移
@@ -103,7 +118,5 @@ class RoomListViewModel extends StateNotifier<RoomListState> {
   }
 
   /// ルーム詳細ページへ遷移
-  navigateToRoomDetail(String id) async {
-    await navigator.navigateTo(RoutePath.roomDetail);
-  }
+  navigateToRoomDetail(String id) async {}
 }

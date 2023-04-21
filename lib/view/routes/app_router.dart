@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fortune_client/view/pages/common/entry_address/entry_address_page.dart';
 import 'package:fortune_client/view/pages/common/home/home_page.dart';
 import 'package:fortune_client/view/pages/common/input/input_long_text_page.dart';
 import 'package:fortune_client/view/pages/common/input/input_text_page.dart';
@@ -71,8 +72,6 @@ class AppRouter {
       case RoutePath.messageRoom:
         // TODO: Handle this case.
         break;
-      case RoutePath.tag:
-        return _slidePageRouteBuilder(SelectTagsPage(List.empty()));
 
       case RoutePath.tagInput:
         // TODO: Handle this case.
@@ -102,11 +101,16 @@ class AppRouter {
         // TODO: Handle this case.
         break;
       case RoutePath.searchTag:
-        // TODO: Handle this case.
-        break;
+        return _slidePageRouteBuilder(
+          SelectTagsPage(List.empty()),
+          offset: const Offset(0.0, 1.0),
+        );
+
       case RoutePath.searchAddress:
-        // TODO: Handle this case.
-        break;
+        return _slidePageRouteBuilder(
+          EntryAddressPage(),
+          offset: const Offset(0.0, 1.0),
+        );
 
       case RoutePath.inputText:
         arguments as InputTextPageArguments;
