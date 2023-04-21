@@ -53,6 +53,7 @@ enum RoutePath {
 
   /// Input
   inputText('/inputText'),
+  inputLongText('/inputLongText'),
 
   /// Error
   error('/error'),

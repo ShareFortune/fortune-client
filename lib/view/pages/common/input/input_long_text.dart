@@ -3,35 +3,37 @@ import 'package:fortune_client/view/routes/route_navigator.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/app_bar/back_app_bar.dart';
-import 'package:fortune_client/view/widgets/form_field/base_text_field.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class InputTextPageArguments {
+class InputLongTextPageArguments {
   final String? title;
   final String? initialValue;
   final Function(String)? onChanged;
 
-  InputTextPageArguments({
+  InputLongTextPageArguments({
     this.title,
     this.initialValue,
     this.onChanged,
   });
 }
 
-class InputTextPage extends StatefulHookConsumerWidget {
-  const InputTextPage(this.arguments, {super.key});
+class InputLongTextPage extends StatefulHookConsumerWidget {
+  const InputLongTextPage(this.arguments, {super.key});
 
-  final InputTextPageArguments arguments;
+  final InputLongTextPageArguments arguments;
 
   @override
-  ConsumerState<InputTextPage> createState() => _InputPageState();
+  ConsumerState<InputLongTextPage> createState() => _InputLongTextPageState();
 }
 
-class _InputPageState extends ConsumerState<InputTextPage> {
-  InputTextPageArguments get arguments => widget.arguments;
+class _InputLongTextPageState extends ConsumerState<InputLongTextPage> {
+  InputLongTextPageArguments get arguments => widget.arguments;
 
   /// 入力コントローラ
   late TextEditingController _controller;
+
+  /// 現在のフォーカス
+  FocusNode? get focus => FocusManager.instance.primaryFocus;
 
   @override
   void initState() {
@@ -44,7 +46,7 @@ class _InputPageState extends ConsumerState<InputTextPage> {
     final theme = ref.watch(appThemeProvider);
 
     return GestureDetector(
-      onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+      onTap: () => focus?.unfocus(),
       behavior: HitTestBehavior.opaque,
       child: Scaffold(
         backgroundColor: theme.appColors.onBackground,
@@ -60,15 +62,22 @@ class _InputPageState extends ConsumerState<InputTextPage> {
             ),
           ],
         ),
-        body: Container(
-          padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 20),
-          child: BaseTextField(
-            controller: _controller,
-            enabledBorder: UnderlineInputBorder(
-              borderSide: BorderSide(color: theme.appColors.border1),
-            ),
-            focusedBorder: UnderlineInputBorder(
-              borderSide: BorderSide(color: theme.appColors.primary),
+        body: GestureDetector(
+          onTap: () {
+            if (focus?.hasFocus == false) focus?.requestFocus();
+          },
+          child: SizedBox(
+            height: MediaQuery.of(context).size.height,
+            child: TextFormField(
+              autofocus: true,
+              maxLines: null,
+              controller: _controller,
+              keyboardType: TextInputType.multiline,
+              style: theme.textTheme.h50,
+              decoration: const InputDecoration(
+                contentPadding: EdgeInsets.all(30),
+                border: InputBorder.none,
+              ),
             ),
           ),
         ),

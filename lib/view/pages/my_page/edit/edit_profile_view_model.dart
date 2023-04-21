@@ -48,9 +48,9 @@ class EditProfileViewModel extends StateNotifier<EditProfileState> {
   }
 
   /// 自己紹介を更新する
-  void changeIntroduction(String introduction) {
+  void changeIntroduction(String selfIntroduction) {
     state = state.copyWith(
-      profile: state.profile.copyWith(selfIntroduction: introduction),
+      profile: state.profile.copyWith(selfIntroduction: selfIntroduction),
     );
   }
 

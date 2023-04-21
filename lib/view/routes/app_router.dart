@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fortune_client/view/pages/common/home/home_page.dart';
+import 'package:fortune_client/view/pages/common/input/input_long_text.dart';
 import 'package:fortune_client/view/pages/common/input/input_text.dart';
 import 'package:fortune_client/view/pages/launch/launch_page.dart';
 import 'package:fortune_client/view/pages/my_page/edit/edit_profile_page.dart';
@@ -112,6 +113,10 @@ class AppRouter {
       case RoutePath.inputText:
         arguments as InputTextPageArguments;
         return _slidePageRouteBuilder(InputTextPage(arguments));
+
+      case RoutePath.inputLongText:
+        arguments as InputLongTextPageArguments;
+        return _slidePageRouteBuilder(InputLongTextPage(arguments));
 
       case RoutePath.error:
         // TODO: Handle this case.

@@ -25,11 +25,11 @@ class ProfileBasicInfoWidget extends ConsumerWidget {
     required this.height,
     required this.drinkFrequency,
     required this.cigaretteFrequency,
-    this.changeName,
-    this.changeAddress,
-    this.changeHeight,
-    this.changeDrinkFrequency,
-    this.changeCigaretteFrequency,
+    this.onEditedName,
+    this.onEditedAddress,
+    this.onEditedHeight,
+    this.onEditedDrinkFrequency,
+    this.onEditedCigaretteFrequency,
   }) : super(key: key);
 
   final String name;
@@ -38,18 +38,18 @@ class ProfileBasicInfoWidget extends ConsumerWidget {
   final DrinkFrequency? drinkFrequency;
   final CigaretteFrequency? cigaretteFrequency;
 
-  final Function(String)? changeName;
-  final Function(Address)? changeAddress;
-  final Function(int)? changeHeight;
-  final Function(DrinkFrequency)? changeDrinkFrequency;
-  final Function(CigaretteFrequency)? changeCigaretteFrequency;
+  final Function(String)? onEditedName;
+  final Function(Address)? onEditedAddress;
+  final Function(int)? onEditedHeight;
+  final Function(DrinkFrequency)? onEditedDrinkFrequency;
+  final Function(CigaretteFrequency)? onEditedCigaretteFrequency;
 
   bool get isEditable =>
-      changeName != null ||
-      changeAddress != null ||
-      changeHeight != null ||
-      changeDrinkFrequency != null ||
-      changeCigaretteFrequency != null;
+      onEditedName != null ||
+      onEditedAddress != null ||
+      onEditedHeight != null ||
+      onEditedDrinkFrequency != null ||
+      onEditedCigaretteFrequency != null;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -62,7 +62,7 @@ class ProfileBasicInfoWidget extends ConsumerWidget {
       isArrow: false,
       child: Column(children: [
         /// 名前
-        if (changeName != null)
+        if (onEditedName != null)
           _Item(
             isEdit: true,
             title: "名前",
@@ -74,7 +74,7 @@ class ProfileBasicInfoWidget extends ConsumerWidget {
                   title: "名前",
                   initialValue: name,
                   onChanged: (value) {
-                    changeName?.call(value);
+                    onEditedName?.call(value);
                   },
                 ),
               );
@@ -83,7 +83,7 @@ class ProfileBasicInfoWidget extends ConsumerWidget {
 
         /// 住所
         _Item(
-          isEdit: changeAddress != null,
+          isEdit: onEditedAddress != null,
           title: LocaleKeys.data_profile_address_title.tr(),
           value: address.prefecture,
           onTapped: () async {
@@ -106,7 +106,7 @@ class ProfileBasicInfoWidget extends ConsumerWidget {
                   prefecture: address.prefecture.name,
                   city: address.city.name,
                 );
-                changeAddress?.call(newAddress);
+                onEditedAddress?.call(newAddress);
               },
             );
           },
@@ -115,7 +115,7 @@ class ProfileBasicInfoWidget extends ConsumerWidget {
         /// 身長
         /// nullの場合は表示しない
         _Item(
-          isEdit: changeHeight != null,
+          isEdit: onEditedHeight != null,
           title: LocaleKeys.data_profile_stature_title.tr(),
           format: LocaleKeys.data_profile_stature_data.tr(),
           args: [height.toString()],
@@ -133,7 +133,7 @@ class ProfileBasicInfoWidget extends ConsumerWidget {
                     );
                   }).toList(),
                   onChanged: (index) {
-                    changeHeight?.call(index + 130);
+                    onEditedHeight?.call(index + 130);
                   },
                 );
               },
@@ -143,7 +143,7 @@ class ProfileBasicInfoWidget extends ConsumerWidget {
 
         /// お酒
         _Item(
-          isEdit: changeDrinkFrequency != null,
+          isEdit: onEditedDrinkFrequency != null,
           title: LocaleKeys.data_profile_drinkFrequency_title.tr(),
           value: drinkFrequency?.text,
           onTapped: () async {
@@ -156,7 +156,7 @@ class ProfileBasicInfoWidget extends ConsumerWidget {
                 return BaseBottomPicker(
                   items: DrinkFrequency.values.map((e) => e.text).toList(),
                   onChanged: (index) {
-                    changeDrinkFrequency?.call(DrinkFrequency.values[index]);
+                    onEditedDrinkFrequency?.call(DrinkFrequency.values[index]);
                   },
                 );
               },
@@ -166,7 +166,7 @@ class ProfileBasicInfoWidget extends ConsumerWidget {
 
         /// タバコ
         _Item(
-          isEdit: changeCigaretteFrequency != null,
+          isEdit: onEditedCigaretteFrequency != null,
           title: LocaleKeys.data_profile_cigaretteFrequency_title.tr(),
           value: cigaretteFrequency?.text,
           onTapped: () async {
@@ -179,7 +179,7 @@ class ProfileBasicInfoWidget extends ConsumerWidget {
                 return BaseBottomPicker(
                   items: CigaretteFrequency.values.map((e) => e.text).toList(),
                   onChanged: (index) {
-                    changeCigaretteFrequency
+                    onEditedCigaretteFrequency
                         ?.call(CigaretteFrequency.values[index]);
                   },
                 );
