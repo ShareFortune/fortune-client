@@ -6,10 +6,13 @@ import 'package:fortune_client/view/pages/my_page/my_page/my_page.dart';
 import 'package:fortune_client/view/pages/profile/profile/profile_page.dart';
 import 'package:fortune_client/view/pages/rooms/room_detail/room_detail_page.dart';
 import 'package:fortune_client/view/pages/settings/settings_page.dart';
+import 'package:fortune_client/view/pages/tags/select/select_tags_page.dart';
 import 'package:fortune_client/view/routes/route_path.dart';
 
 class AppRouter {
   static Route<dynamic>? onGenerateRoute(RouteSettings settings) {
+    final arguments = settings.arguments;
+
     switch (RoutePath.from(settings.name)) {
       case RoutePath.launch:
         return _buildRoute(
@@ -33,7 +36,7 @@ class AppRouter {
       case RoutePath.profileEdit:
         return _fadePageRouteBuilder(
           EditProfilePage(
-            arguments: settings.arguments as EditProfilePageArguments,
+            arguments: arguments as EditProfilePageArguments,
           ),
         );
 
@@ -72,8 +75,8 @@ class AppRouter {
         // TODO: Handle this case.
         break;
       case RoutePath.tag:
-        // TODO: Handle this case.
-        break;
+        return _slidePageRouteBuilder(SelectTagsPage(List.empty()));
+
       case RoutePath.tagInput:
         // TODO: Handle this case.
         break;
