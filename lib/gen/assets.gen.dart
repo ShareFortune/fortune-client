@@ -37,6 +37,9 @@ class $StubGen {
   /// File path: stub/get_v1_rooms_response_room.json
   String get getV1RoomsResponseRoom => 'stub/get_v1_rooms_response_room.json';
 
+  /// File path: stub/get_v1_tags_response.json
+  String get getV1TagsResponse => 'stub/get_v1_tags_response.json';
+
   /// List of all assets
   List<String> get values => [
         getV1MessageRoomsIdMessagesResponse,
@@ -45,7 +48,8 @@ class $StubGen {
         getV1RoomsGuestResponse,
         getV1RoomsHostResponse,
         getV1RoomsResponse,
-        getV1RoomsResponseRoom
+        getV1RoomsResponseRoom,
+        getV1TagsResponse
       ];
 }
 

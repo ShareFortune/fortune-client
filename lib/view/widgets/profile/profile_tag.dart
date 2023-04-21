@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fortune_client/data/model/core/base/tag/tag.dart';
+import 'package:fortune_client/view/pages/tags/search/search_tags_page.dart';
 import 'package:fortune_client/view/routes/route_navigator.dart';
 import 'package:fortune_client/view/routes/route_path.dart';
 import 'package:fortune_client/view/widgets/other/tag_widget.dart';
@@ -26,8 +27,11 @@ class ProfileTagWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return ProfileItemContainer(
       title: "タグ",
-      onTapped: () {
-        navigator.navigateTo(RoutePath.tag);
+      onTapped: () async {
+        await navigator.navigateTo(
+          RoutePath.searchTag,
+          arguments: SearchTagsPageAuguments(tags: tags),
+        );
       },
       isEditable: onEdited != null,
       child: Wrap(
