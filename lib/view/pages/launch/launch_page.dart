@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:fortune_client/gen/assets.gen.dart';
-import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/view/routes/route_navigator.dart';
 import 'package:fortune_client/view/routes/route_path.dart';
 import 'package:lottie/lottie.dart';
@@ -23,7 +22,7 @@ class LaunchPage extends StatelessWidget {
 
     /// 起動アニメーション
     /// TODO: アニメーションを作成する
-    return Expanded(child: Lottie.asset(Assets.animations.splash));
+    return Lottie.asset(Assets.animations.splash);
   }
 
   applyAppInfo() {

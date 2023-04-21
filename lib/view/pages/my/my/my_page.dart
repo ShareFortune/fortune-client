@@ -1,14 +1,18 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:fortune_client/l10n/locale_keys.g.dart';
-import 'package:fortune_client/view/pages/my_page/my_page/my_page_view_model.dart';
+import 'package:fortune_client/view/pages/my/edit/edit_profile_page.dart';
+import 'package:fortune_client/view/pages/my/my/my_page_view_model.dart';
 import 'package:fortune_client/view/routes/route_navigator.dart';
 import 'package:fortune_client/view/routes/route_path.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/app_bar/back_app_bar.dart';
 import 'package:fortune_client/view/widgets/other/async_value_widget.dart';
-import 'package:fortune_client/view/widgets/profile/profile.dart';
+import 'package:fortune_client/view/widgets/profile/profile_basic_info.dart';
+import 'package:fortune_client/view/widgets/profile/profile_header.dart';
+import 'package:fortune_client/view/widgets/profile/profile_self_introduction.dart';
+import 'package:fortune_client/view/widgets/profile/profile_tag.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -35,15 +39,18 @@ class MyPage extends HookConsumerWidget {
       body: AsyncValueWidget(
         data: state.profile,
         builder: (profile) {
-          final profileView = ProfileView(theme, profile);
-
           return Stack(
             children: [
               SingleChildScrollView(
                 child: Column(
                   children: [
                     /// ヘッダー
-                    profileView.header(),
+                    ProfileHeaderWidget(
+                      name: profile.name,
+                      iconUrl: profile.mainImageURL,
+                      gender: profile.gender,
+                      address: profile.address,
+                    ),
 
                     /// 広告
                     Container(
@@ -57,9 +64,19 @@ class MyPage extends HookConsumerWidget {
                       ),
                     ),
 
-                    profileView.introduction(),
-                    profileView.tags(),
-                    profileView.basicInfo(),
+                    ProfileSelfIntroductionWidget(
+                      selfIntroduction: profile.selfIntroduction,
+                    ),
+
+                    ProfileTagWidget(tags: profile.tags),
+
+                    ProfileBasicInfoWidget(
+                      name: profile.name,
+                      address: profile.address,
+                      height: profile.height,
+                      drinkFrequency: profile.drinkFrequency,
+                      cigaretteFrequency: profile.cigaretteFrequency,
+                    ),
 
                     const Gap(100),
                   ],
@@ -70,7 +87,12 @@ class MyPage extends HookConsumerWidget {
                 bottom: 60,
                 child: MaterialButton(
                   height: 45,
-                  onPressed: () {},
+                  onPressed: () {
+                    navigator.navigateTo(
+                      RoutePath.profileEdit,
+                      arguments: EditProfilePageArguments(profile),
+                    );
+                  },
                   color: theme.appColors.primary,
                   textColor: theme.appColors.onPrimary,
                   shape: RoundedRectangleBorder(

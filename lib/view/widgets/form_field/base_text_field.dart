@@ -165,7 +165,8 @@ class _BaseTextFieldState extends ConsumerState<BaseTextField> {
         labelStyle: theme.textTheme.h30.paint(theme.appColors.subText2),
         hintStyle: theme.textTheme.h30.paint(theme.appColors.subText3),
         errorStyle: theme.textTheme.h10.paint(theme.appColors.error),
-        contentPadding: const EdgeInsets.symmetric(horizontal: 15, vertical: 6),
+        contentPadding:
+            const EdgeInsets.symmetric(horizontal: 15, vertical: 13),
         filled: true,
         suffixIcon: isDisplaySuffixIcon
             ? IconButton(
