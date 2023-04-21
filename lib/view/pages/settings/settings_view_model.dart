@@ -1,5 +1,4 @@
 import 'package:fortune_client/data/repository/repository.dart';
-import 'package:fortune_client/injector.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final settingsViewModelProvider =

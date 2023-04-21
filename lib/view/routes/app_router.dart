@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:fortune_client/view/pages/common/home/home_page.dart';
-import 'package:fortune_client/view/pages/common/input/input_long_text.dart';
-import 'package:fortune_client/view/pages/common/input/input_text.dart';
+import 'package:fortune_client/view/pages/common/input/input_long_text_page.dart';
+import 'package:fortune_client/view/pages/common/input/input_text_page.dart';
+import 'package:fortune_client/view/pages/debug/debug_page.dart';
 import 'package:fortune_client/view/pages/launch/launch_page.dart';
-import 'package:fortune_client/view/pages/my_page/edit/edit_profile_page.dart';
-import 'package:fortune_client/view/pages/my_page/my_page/my_page.dart';
+import 'package:fortune_client/view/pages/my/edit/edit_profile_page.dart';
+import 'package:fortune_client/view/pages/my/my/my_page.dart';
 import 'package:fortune_client/view/pages/profile/profile/profile_page.dart';
 import 'package:fortune_client/view/pages/rooms/room_detail/room_detail_page.dart';
 import 'package:fortune_client/view/pages/settings/settings_page.dart';
@@ -17,14 +18,11 @@ class AppRouter {
 
     switch (RoutePath.from(settings.name)) {
       case RoutePath.launch:
-        return _buildRoute(
-          const LaunchPage(),
-          settings: settings,
-        );
+        return _buildRoute(const LaunchPage());
 
       case RoutePath.debug:
-        // TODO: Handle this case.
-        break;
+        return _buildRoute(const DebugPage());
+
       case RoutePath.login:
         // TODO: Handle this case.
         break;
@@ -134,21 +132,22 @@ class AppRouter {
     bool fullscreenDialog = false,
   }) {
     return MaterialPageRoute<dynamic>(
-      builder: (BuildContext context) => child,
       settings: settings,
       fullscreenDialog: fullscreenDialog,
+      builder: (BuildContext context) => child,
     );
   }
 
   static PageRouteBuilder<dynamic> _slidePageRouteBuilder(
     Widget child, {
-    Offset offset = const Offset(1.0, 0.0),
     RouteSettings? settings,
+    Offset offset = const Offset(1.0, 0.0),
+    Duration transitionDuration = const Duration(milliseconds: 200),
   }) {
     return PageRouteBuilder(
       settings: settings,
-      transitionDuration: const Duration(milliseconds: 300),
-      reverseTransitionDuration: const Duration(milliseconds: 300),
+      transitionDuration: transitionDuration,
+      reverseTransitionDuration: transitionDuration,
       pageBuilder: (context, animation, secondaryAnimation) => child,
       transitionsBuilder: (context, animation, secondaryAnimation, child) {
         final Animatable<Offset> tween = Tween(begin: offset, end: Offset.zero);
@@ -164,12 +163,12 @@ class AppRouter {
   static PageRouteBuilder<dynamic> _fadePageRouteBuilder(
     Widget child, {
     RouteSettings? settings,
-    int transitionDuration = 300,
+    Duration transitionDuration = const Duration(milliseconds: 200),
   }) {
     return PageRouteBuilder(
       settings: settings,
-      transitionDuration: Duration(milliseconds: transitionDuration),
-      reverseTransitionDuration: const Duration(milliseconds: 300),
+      transitionDuration: transitionDuration,
+      reverseTransitionDuration: transitionDuration,
       pageBuilder: (context, animation, secondaryAnimation) => child,
       transitionsBuilder: (context, animation, secondaryAnimation, child) {
         final Animatable<double> tween = Tween(begin: 0.0, end: 1.0);

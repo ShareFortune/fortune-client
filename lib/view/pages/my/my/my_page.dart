@@ -1,8 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:fortune_client/l10n/locale_keys.g.dart';
-import 'package:fortune_client/view/pages/my_page/edit/edit_profile_page.dart';
-import 'package:fortune_client/view/pages/my_page/my_page/my_page_view_model.dart';
+import 'package:fortune_client/view/pages/my/edit/edit_profile_page.dart';
+import 'package:fortune_client/view/pages/my/my/my_page_view_model.dart';
 import 'package:fortune_client/view/routes/route_navigator.dart';
 import 'package:fortune_client/view/routes/route_path.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';

@@ -6,7 +6,7 @@ import 'package:flutter_japanese_address_picker/flutter_japanese_address_picker.
 import 'package:fortune_client/data/model/core/enum/cigarette_frequency.dart';
 import 'package:fortune_client/data/model/core/enum/drink_frequency.dart';
 import 'package:fortune_client/l10n/locale_keys.g.dart';
-import 'package:fortune_client/view/pages/common/input/input_text.dart';
+import 'package:fortune_client/view/pages/common/input/input_text_page.dart';
 import 'package:fortune_client/view/routes/route_navigator.dart';
 import 'package:fortune_client/view/routes/route_path.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
