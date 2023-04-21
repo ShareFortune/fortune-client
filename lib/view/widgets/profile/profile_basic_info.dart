@@ -1,17 +1,20 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:fortune_client/data/model/core/base/address/address.dart';
+import 'package:flutter_japanese_address_picker/flutter_japanese_address_picker.dart'
+    hide Address;
 import 'package:fortune_client/data/model/core/enum/cigarette_frequency.dart';
 import 'package:fortune_client/data/model/core/enum/drink_frequency.dart';
 import 'package:fortune_client/l10n/locale_keys.g.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
+import 'package:fortune_client/view/widgets/picker/base_bottom_picker.dart';
 import 'package:fortune_client/view/widgets/profile/profile_view_item.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 /// 基本情報
-class ProfileBasicInfoWidget extends StatelessWidget {
+class ProfileBasicInfoWidget extends ConsumerWidget {
   const ProfileBasicInfoWidget({
     Key? key,
     required this.name,
@@ -32,11 +35,11 @@ class ProfileBasicInfoWidget extends StatelessWidget {
   final DrinkFrequency? drinkFrequency;
   final CigaretteFrequency? cigaretteFrequency;
 
-  final VoidCallback? changeName;
-  final VoidCallback? changeAddress;
-  final VoidCallback? changeHeight;
-  final VoidCallback? changeDrinkFrequency;
-  final VoidCallback? changeCigaretteFrequency;
+  final Function(String)? changeName;
+  final Function(Address)? changeAddress;
+  final Function(int)? changeHeight;
+  final Function(DrinkFrequency)? changeDrinkFrequency;
+  final Function(CigaretteFrequency)? changeCigaretteFrequency;
 
   bool get isEditable =>
       changeName != null ||
@@ -46,10 +49,13 @@ class ProfileBasicInfoWidget extends StatelessWidget {
       changeCigaretteFrequency != null;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final theme = ref.watch(appThemeProvider);
+
     return ProfileItemContainer(
       title: "基本情報",
       isEditable: isEditable,
+      border: BorderSide.none,
       isArrow: false,
       child: Column(children: [
         /// 名前
@@ -58,7 +64,9 @@ class ProfileBasicInfoWidget extends StatelessWidget {
             isEdit: true,
             title: "名前",
             value: name,
-            onTapped: () {},
+            onTapped: () {
+              changeName?.call("");
+            },
           ),
 
         /// 住所
@@ -66,7 +74,30 @@ class ProfileBasicInfoWidget extends StatelessWidget {
           isEdit: changeAddress != null,
           title: LocaleKeys.data_profile_address_title.tr(),
           value: address.prefecture,
-          onTapped: () {},
+          onTapped: () async {
+            await JapaneseAddressPicker.showBottomSheet(
+              context,
+              theme: JapaneseAddressPickerTheme(
+                headerCanselStyle:
+                    theme.textTheme.h30.paint(theme.appColors.subText2),
+                headerSaveStyle:
+                    theme.textTheme.h30.paint(theme.appColors.linkColor),
+                headerColor: theme.appColors.background,
+              ),
+              initialValue: AddressValue(
+                cityName: address.city,
+                prefectureName: address.prefecture,
+              ),
+              onChanged: (address) {
+                final newAddress = Address(
+                  country: '日本',
+                  prefecture: address.prefecture.name,
+                  city: address.city.name,
+                );
+                changeAddress?.call(newAddress);
+              },
+            );
+          },
         ),
 
         /// 身長
@@ -76,7 +107,7 @@ class ProfileBasicInfoWidget extends StatelessWidget {
           title: LocaleKeys.data_profile_stature_title.tr(),
           format: LocaleKeys.data_profile_stature_data.tr(),
           args: [height.toString()],
-          onTapped: () {},
+          onTapped: () async {},
         ),
 
         /// お酒
@@ -84,7 +115,22 @@ class ProfileBasicInfoWidget extends StatelessWidget {
           isEdit: changeDrinkFrequency != null,
           title: LocaleKeys.data_profile_drinkFrequency_title.tr(),
           value: drinkFrequency?.text,
-          onTapped: () {},
+          onTapped: () async {
+            await showModalBottomSheet(
+              constraints: BoxConstraints(
+                maxHeight: MediaQuery.of(context).size.height * 0.3,
+              ),
+              context: context,
+              builder: (BuildContext context) {
+                return BaseBottomPicker(
+                  items: DrinkFrequency.values.map((e) => e.text).toList(),
+                  onChanged: (index) {
+                    changeDrinkFrequency?.call(DrinkFrequency.values[index]);
+                  },
+                );
+              },
+            );
+          },
         ),
 
         /// タバコ
@@ -92,7 +138,23 @@ class ProfileBasicInfoWidget extends StatelessWidget {
           isEdit: changeCigaretteFrequency != null,
           title: LocaleKeys.data_profile_cigaretteFrequency_title.tr(),
           value: cigaretteFrequency?.text,
-          onTapped: () {},
+          onTapped: () async {
+            await showModalBottomSheet(
+              constraints: BoxConstraints(
+                maxHeight: MediaQuery.of(context).size.height * 0.3,
+              ),
+              context: context,
+              builder: (BuildContext context) {
+                return BaseBottomPicker(
+                  items: CigaretteFrequency.values.map((e) => e.text).toList(),
+                  onChanged: (index) {
+                    changeCigaretteFrequency
+                        ?.call(CigaretteFrequency.values[index]);
+                  },
+                );
+              },
+            );
+          },
         ),
       ]),
     );
@@ -125,30 +187,33 @@ class _Item extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = ref.watch(appThemeProvider);
 
-    return Container(
-      padding: EdgeInsets.symmetric(vertical: isEdit ? 12 : 10),
-      child: Row(
-        children: [
-          Expanded(
-            child: Text(title, style: theme.textTheme.h30),
-          ),
-          Expanded(
-            flex: isEdit ? 0 : 1,
-            child: Text(
-              _value,
-              style: theme.textTheme.h30.paint(
-                isEdit ? theme.appColors.subText1 : theme.appColors.primary,
+    return GestureDetector(
+      onTap: onTapped,
+      child: Container(
+        padding: EdgeInsets.symmetric(vertical: isEdit ? 12 : 10),
+        child: Row(
+          children: [
+            Expanded(
+              child: Text(title, style: theme.textTheme.h30),
+            ),
+            Expanded(
+              flex: isEdit ? 0 : 1,
+              child: Text(
+                _value,
+                style: theme.textTheme.h30.paint(
+                  isEdit ? theme.appColors.subText1 : theme.appColors.primary,
+                ),
               ),
             ),
-          ),
-          if (isEdit)
-            Row(
-              children: [
-                const Gap(20),
-                Icon(Icons.chevron_right, color: theme.appColors.iconBtn1),
-              ],
-            ),
-        ],
+            if (isEdit)
+              Row(
+                children: [
+                  const Gap(20),
+                  Icon(Icons.chevron_right, color: theme.appColors.iconBtn1),
+                ],
+              ),
+          ],
+        ),
       ),
     );
   }

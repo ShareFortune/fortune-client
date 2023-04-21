@@ -40,7 +40,7 @@ class EditProfilePage extends HookConsumerWidget {
     return Scaffold(
       backgroundColor: theme.appColors.onBackground,
       appBar: const BackAppBar(title: "写真編集"),
-      body: ListView(
+      body: Column(
         children: [
           const Gap(20),
           _ProfileImageEditor(
@@ -48,11 +48,11 @@ class EditProfilePage extends HookConsumerWidget {
             viewModel: viewModel,
           ),
           ProfileSelfIntroductionWidget(
-            onEdited: (p0) {},
+            onEdited: (value) {},
             selfIntroduction: state.profile.selfIntroduction,
           ),
           ProfileTagWidget(
-            onEdited: (p0) {},
+            onEdited: (value) {},
             tags: state.profile.tags,
           ),
           ProfileBasicInfoWidget(
@@ -61,11 +61,11 @@ class EditProfilePage extends HookConsumerWidget {
             height: state.profile.height,
             drinkFrequency: state.profile.drinkFrequency,
             cigaretteFrequency: state.profile.cigaretteFrequency,
-            changeName: () {},
-            changeAddress: () {},
-            changeHeight: () {},
-            changeDrinkFrequency: () {},
-            changeCigaretteFrequency: () {},
+            changeName: viewModel.changeName,
+            changeAddress: viewModel.changeAddress,
+            changeHeight: viewModel.changeHeight,
+            changeDrinkFrequency: viewModel.changeDrinkFrequency,
+            changeCigaretteFrequency: viewModel.changeCigaretteFrequency,
           ),
         ],
       ),

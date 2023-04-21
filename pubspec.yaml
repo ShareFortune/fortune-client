@@ -26,7 +26,6 @@ dependencies:
   flutter_staggered_animations: ^1.1.1
   flutter_chat_ui: ^1.6.5
   path_provider: ^2.0.11
-  bottom_picker: ^2.0.1
   image_picker: ^0.8.6
   package_info_plus: ^3.0.2
   shimmer: ^2.0.0
@@ -38,11 +37,6 @@ dependencies:
   fluttertoast: ^8.0.9
   speech_bubble: ^0.0.9
   badges: ^3.0.2
-  modal_bottom_sheet:
-    git:
-      url: https://github.com/followthemoney1/modal_bottom_sheet.git
-      ref: main
-      path: modal_bottom_sheet
 
   # camera & album
   file_picker: ^5.2.5
@@ -83,6 +77,18 @@ dependencies:
   # route
   auto_route: ^5.0.2
   get: ^4.6.5
+
+  # picker
+  # modal_bottom_sheet:
+  #   git:
+  #     url: https://github.com/followthemoney1/modal_bottom_sheet.git
+  #     ref: main
+  #     path: modal_bottom_sheet
+
+  flutter_japanese_address_picker:
+    git:
+      url: https://github.com/daisukemaki1003/flutter-japanese-address-picker.git
+      ref: main
 
 dev_dependencies:
   flutter_test:
