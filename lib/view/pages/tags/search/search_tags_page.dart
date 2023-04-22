@@ -22,7 +22,7 @@ class SearchTagsPageAuguments {
   });
 }
 
-class SearchTagsPage extends ConsumerWidget {
+class SearchTagsPage extends HookConsumerWidget {
   const SearchTagsPage(this.arguments, {super.key});
 
   final SearchTagsPageAuguments arguments;
@@ -56,34 +56,28 @@ class SearchTagsPage extends ConsumerWidget {
               const Gap(20),
 
               /// 検索バー
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: BaseTextField(
-                  controller: TextEditingController(),
-                  hintText: LocaleKeys.select_tags_page_search_hint.tr(),
-                  // onClear: clearCallBack,
-                  // onEditingComplete: onEditingComplete,
-                ),
+              _SearchBar(
+                focusNode: state.focusNode,
+                controller: state.textEditingController,
+                onSearch: viewModel.search,
+                onClear: viewModel.clearSearchResults,
               ),
               const Gap(50),
 
               /// おすすめのタグ or 検索結果
-              _Item(
-                title: 'おすすめのタグ',
-                child: AsyncValueWidget(
-                  data: state.recommendation,
-                  builder: (tags) => TagsWraper(tags: tags),
-                ),
-              ),
+              state.shouldShowSearchResults
+                  ? _TagsWraper(title: '検索結果', tags: state.searchResults)
+                  : _TagsWraper(title: 'おすすめのタグ', tags: state.recommendation),
             ],
           ),
 
           /// 設定されたタグ
           Positioned(
-            bottom: 80,
-            child: _Item(
+            bottom: state.focusNode.hasFocus ? 20 : 80,
+            child: _TagsWraper(
               title: '設定中のタグ',
-              child: TagsWraper(tags: state.selected),
+              isSelected: true,
+              tags: AsyncData(state.selected),
             ),
           ),
         ],
@@ -92,68 +86,94 @@ class SearchTagsPage extends ConsumerWidget {
   }
 }
 
-class _Item extends ConsumerWidget {
-  const _Item({
-    required this.title,
-    required this.child,
+/// 検索バー
+class _SearchBar extends HookConsumerWidget {
+  const _SearchBar({
+    required this.focusNode,
+    required this.controller,
+    required this.onSearch,
+    required this.onClear,
   });
 
-  final String title;
-  final Widget? child;
+  final FocusNode focusNode;
+  final TextEditingController controller;
+  final Function(String) onSearch;
+  final VoidCallback onClear;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final theme = ref.watch(appThemeProvider);
-
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            title,
-            style: theme.textTheme.h30.paint(theme.appColors.subText1).bold(),
-          ),
-          const Gap(15),
-          Container(child: child),
-        ],
+      child: BaseTextField(
+        focusNode: focusNode,
+        controller: controller,
+        hintText: LocaleKeys.select_tags_page_search_hint.tr(),
+        onClear: () {
+          controller.clear();
+          onClear();
+        },
+        onEditingComplete: () {
+          focusNode.unfocus();
+          onSearch(controller.text);
+        },
       ),
     );
   }
 }
 
-class TagsWraper extends ConsumerWidget {
-  const TagsWraper({
-    super.key,
+class _TagsWraper extends HookConsumerWidget {
+  const _TagsWraper({
     required this.tags,
     this.isSelected = false,
+    required this.title,
   });
 
-  final List<Tag> tags;
+  final String title;
   final bool isSelected;
+  final AsyncValue<List<Tag>> tags;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = ref.watch(appThemeProvider);
 
-    return Wrap(
-      spacing: 10,
-      runSpacing: 10,
-      children: tags.map((tag) {
-        return TagWidget(
-          value: tag.name,
-          backGraundColor: isSelected
-              ? theme.appColors.primary //
-              : theme.appColors.onBackground,
-          borderColor: isSelected
-              ? theme.appColors.primary //
-              : theme.appColors.border1,
-          textColor: isSelected
-              ? theme.appColors.onPrimary //
-              : theme.appColors.subText2,
-          onTap: () {},
+    return AsyncValueWidget(
+      data: tags,
+      builder: (tags) {
+        return Container(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                title,
+                style: theme.textTheme.h30.bold().paint(
+                      theme.appColors.subText1,
+                    ),
+              ),
+              const Gap(15),
+              Wrap(
+                spacing: 10,
+                runSpacing: 10,
+                children: tags.map((tag) {
+                  return TagWidget(
+                    value: tag.name,
+                    backGraundColor: isSelected
+                        ? theme.appColors.primary //
+                        : theme.appColors.onBackground,
+                    borderColor: isSelected
+                        ? theme.appColors.primary //
+                        : theme.appColors.border1,
+                    textColor: isSelected
+                        ? theme.appColors.onPrimary //
+                        : theme.appColors.subText2,
+                    onTap: () {},
+                  );
+                }).toList(),
+              ),
+            ],
+          ),
         );
-      }).toList(),
+      },
     );
   }
 }
