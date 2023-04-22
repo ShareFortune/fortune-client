@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:fortune_client/data/model/core/base/tag/tag.dart';
@@ -31,7 +29,7 @@ class SearchTagsPage extends HookConsumerWidget {
   final SearchTagsPageAuguments arguments;
 
   /// アニメーションの時間
-  static const _animationDuration = Duration(milliseconds: 200);
+  static const _animationDuration = Duration(milliseconds: 2000);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -44,12 +42,34 @@ class SearchTagsPage extends HookConsumerWidget {
       color: theme.appColors.onBackground,
       child: Stack(
         children: [
+          /// デフォルトで表示する画面
+          /// AppBarとおすすめのタグ
+          /// 検索バーがフォーカスされたら非表示にする
+          _AnimatedVisibility(
+            visible: !state.shouldShowSearchResults,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const BackAppBar(title: 'タグ', action: [SaveButton()]),
+                Container(
+                  padding: const EdgeInsets.only(top: 100),
+                  child: _Item(
+                    title: 'おすすめのタグ',
+                    asyncValue: state.recommendation,
+                    builder: (tags) => _TagsWraper(tags: tags),
+                  ),
+                ),
+              ],
+            ),
+          ),
+
           /// 検索バー
           _SearchBar(
             focusNode: state.focusNode,
             controller: state.textEditingController,
             onSearch: viewModel.search,
             onClear: viewModel.clearSearchResults,
+            shouldAnimate: state.shouldShowSearchResults,
           ),
 
           /// 設定されたタグ
@@ -71,36 +91,13 @@ class SearchTagsPage extends HookConsumerWidget {
           /// 検索バーがフォーカスされたら表示にする
           Positioned(
             top: kToolbarHeight + 100,
-            child: AnimatedOpacity(
-              duration: _animationDuration,
-              opacity: state.focusNode.hasFocus ? 1 : 0,
+            child: _AnimatedVisibility(
+              visible: state.shouldShowSearchResults,
               child: _Item(
                 title: '検索結果',
                 asyncValue: state.searchResults,
                 builder: (tags) => _TagsWraper(tags: tags),
               ),
-            ),
-          ),
-
-          /// デフォルトで表示する画面
-          /// AppBarとおすすめのタグ
-          /// 検索バーがフォーカスされたら非表示にする
-          AnimatedOpacity(
-            duration: _animationDuration,
-            opacity: state.focusNode.hasFocus ? 0 : 1,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const BackAppBar(title: 'タグ', action: [SaveButton()]),
-                Container(
-                  padding: const EdgeInsets.only(top: 100),
-                  child: _Item(
-                    title: 'おすすめのタグ',
-                    asyncValue: state.recommendation,
-                    builder: (tags) => _TagsWraper(tags: tags),
-                  ),
-                ),
-              ],
             ),
           ),
         ],
@@ -151,12 +148,16 @@ class _SearchBar extends HookConsumerWidget {
     required this.controller,
     required this.onSearch,
     required this.onClear,
+    required this.shouldAnimate,
   });
 
   final FocusNode focusNode;
   final TextEditingController controller;
   final Function(String) onSearch;
   final VoidCallback onClear;
+
+  /// アニメーションを実行するかどうか
+  final bool shouldAnimate;
 
   /// 右側のアイコンのサイズ
   Size get trailingIconSize => const Size(30, 30);
@@ -175,7 +176,7 @@ class _SearchBar extends HookConsumerWidget {
   double get endPosition => 135;
 
   /// 現在位置の高さ
-  double get position => focusNode.hasFocus ? startPosition : endPosition;
+  double get position => shouldAnimate ? startPosition : endPosition;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -191,7 +192,7 @@ class _SearchBar extends HookConsumerWidget {
             duration: SearchTagsPage._animationDuration,
             padding: EdgeInsets.only(
               left: defaultPadding,
-              right: focusNode.hasFocus ? focusRightPadding : defaultPadding,
+              right: shouldAnimate ? focusRightPadding : defaultPadding,
             ),
             child: BaseTextField(
               focusNode: focusNode,
@@ -212,7 +213,7 @@ class _SearchBar extends HookConsumerWidget {
             duration: SearchTagsPage._animationDuration,
             padding: const EdgeInsets.only(right: 10),
             child: AnimatedOpacity(
-              opacity: focusNode.hasFocus ? 1 : 0,
+              opacity: shouldAnimate ? 1 : 0,
               duration: SearchTagsPage._animationDuration,
               child: IconButton(
                 iconSize: trailingIconSize.width,
@@ -255,9 +256,36 @@ class _TagsWraper extends HookConsumerWidget {
           textColor: isSelected
               ? theme.appColors.onPrimary //
               : theme.appColors.subText2,
-          onTap: () {},
+          onTap: () {
+            print("タップされたタグ: ${tag.name}");
+          },
         );
       }).toList(),
+    );
+  }
+}
+
+/// 透過時にタップを無効にする
+class _AnimatedVisibility extends StatelessWidget {
+  /// 表示するかどうか
+  /// trueの場合は透過しない
+  final bool visible;
+  final Widget child;
+
+  const _AnimatedVisibility({
+    required this.visible,
+    required this.child,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return IgnorePointer(
+      ignoring: !visible,
+      child: AnimatedOpacity(
+        duration: SearchTagsPage._animationDuration,
+        opacity: visible ? 1 : 0,
+        child: Container(child: child),
+      ),
     );
   }
 }

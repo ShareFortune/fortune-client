@@ -33,16 +33,15 @@ class SearchTagsViewModel extends StateNotifier<SearchTagsState> {
   }
 
   /// 検索結果を表示すべきかどうかを判定する
-  /// 検索した結果、検索結果がない時は「検索結果なし」を表示する
-  /// 検索結果がある場合は検索結果を表示する
   void mightShowSearchResults() {
-    bool shouldShow = true;
+    bool shouldShow = false;
 
     /// 検索していない時は検索結果を表示しない
-    if (!state.didSearch) shouldShow = false;
+    if (state.didSearch) shouldShow = true;
 
-    /// 検索結果がない時は検索結果を表示しない
-    if (state.searchResults is! AsyncData) shouldShow = false;
+    /// フォーカスが当たっている時は検索結果を表示する
+    if (state.focusNode.hasFocus) shouldShow = true;
+
     state = state.copyWith(shouldShowSearchResults: shouldShow);
   }
 
