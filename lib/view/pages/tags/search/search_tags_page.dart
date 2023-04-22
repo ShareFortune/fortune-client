@@ -5,6 +5,7 @@ import 'package:fortune_client/l10n/locale_keys.g.dart';
 import 'package:fortune_client/view/pages/tags/search/search_tags_view_model.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
+import 'package:fortune_client/view/widgets/animation/animated_visibility.dart';
 import 'package:fortune_client/view/widgets/app_bar/back_app_bar.dart';
 import 'package:fortune_client/view/widgets/button/save_button.dart';
 import 'package:fortune_client/view/widgets/form_field/base_text_field.dart';
@@ -29,7 +30,7 @@ class SearchTagsPage extends HookConsumerWidget {
   final SearchTagsPageAuguments arguments;
 
   /// アニメーションの時間
-  static const _animationDuration = Duration(milliseconds: 2000);
+  static const _animationDuration = Duration(milliseconds: 200);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -45,7 +46,7 @@ class SearchTagsPage extends HookConsumerWidget {
           /// デフォルトで表示する画面
           /// AppBarとおすすめのタグ
           /// 検索バーがフォーカスされたら非表示にする
-          _AnimatedVisibility(
+          AnimatedVisibility(
             visible: !state.shouldShowSearchResults,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -91,7 +92,7 @@ class SearchTagsPage extends HookConsumerWidget {
           /// 検索バーがフォーカスされたら表示にする
           Positioned(
             top: kToolbarHeight + 100,
-            child: _AnimatedVisibility(
+            child: AnimatedVisibility(
               visible: state.shouldShowSearchResults,
               child: _Item(
                 title: '検索結果',
@@ -228,6 +229,7 @@ class _SearchBar extends HookConsumerWidget {
   }
 }
 
+/// タグのラッパー
 class _TagsWraper extends HookConsumerWidget {
   const _TagsWraper({
     required this.tags,
@@ -261,31 +263,6 @@ class _TagsWraper extends HookConsumerWidget {
           },
         );
       }).toList(),
-    );
-  }
-}
-
-/// 透過時にタップを無効にする
-class _AnimatedVisibility extends StatelessWidget {
-  /// 表示するかどうか
-  /// trueの場合は透過しない
-  final bool visible;
-  final Widget child;
-
-  const _AnimatedVisibility({
-    required this.visible,
-    required this.child,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return IgnorePointer(
-      ignoring: !visible,
-      child: AnimatedOpacity(
-        duration: SearchTagsPage._animationDuration,
-        opacity: visible ? 1 : 0,
-        child: Container(child: child),
-      ),
     );
   }
 }
