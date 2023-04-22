@@ -39,69 +39,74 @@ class SearchTagsPage extends HookConsumerWidget {
     final viewModel =
         ref.watch(searchTagsViewModelProvider(arguments).notifier);
 
-    return Material(
-      color: theme.appColors.onBackground,
-      child: Stack(
-        children: [
-          /// デフォルトで表示する画面
-          /// AppBarとおすすめのタグ
-          /// 検索バーがフォーカスされたら非表示にする
-          AnimatedVisibility(
-            visible: !state.shouldShowSearchResults,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const BackAppBar(title: 'タグ', action: [SaveButton()]),
-                Container(
-                  padding: const EdgeInsets.only(top: 100),
-                  child: _Item(
-                    title: 'おすすめのタグ',
-                    asyncValue: state.recommendation,
-                    builder: (tags) => _TagsWraper(tags: tags),
+    return GestureDetector(
+      onTap: () => FocusScope.of(context).unfocus(),
+      child: Material(
+        color: theme.appColors.onBackground,
+        child: Stack(
+          children: [
+            /// デフォルトで表示する画面
+            /// AppBarとおすすめのタグ
+            /// 検索バーがフォーカスされたら非表示にする
+            AnimatedVisibility(
+              visible: !state.shouldShowSearchResults,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const BackAppBar(title: 'タグ', action: [SaveButton()]),
+                  Container(
+                    padding: const EdgeInsets.only(top: 100),
+                    child: _Item(
+                      title: 'おすすめのタグ',
+                      asyncValue: state.recommendation,
+                      builder: (tags) => _TagsWraper(tags: tags),
+                    ),
                   ),
-                ),
-              ],
-            ),
-          ),
-
-          /// 検索バー
-          _SearchBar(
-            focusNode: state.focusNode,
-            controller: state.textEditingController,
-            onSearch: viewModel.search,
-            onClear: viewModel.clearSearchResults,
-            shouldAnimate: state.shouldShowSearchResults,
-          ),
-
-          /// 設定されたタグ
-          /// キーボードの表示に合わせて位置を変更する
-          AnimatedPositioned(
-            duration: _animationDuration,
-            bottom: state.focusNode.hasFocus
-                // キーボードの高さ + 余白(20)
-                ? MediaQuery.of(context).viewInsets.bottom + 20
-                : 80,
-            child: _Item(
-              title: '設定中のタグ',
-              asyncValue: AsyncData(state.selected),
-              builder: (tags) => _TagsWraper(tags: tags, isSelected: true),
-            ),
-          ),
-
-          /// 検索結果
-          /// 検索バーがフォーカスされたら表示にする
-          Positioned(
-            top: kToolbarHeight + 100,
-            child: AnimatedVisibility(
-              visible: state.shouldShowSearchResults,
-              child: _Item(
-                title: '検索結果',
-                asyncValue: state.searchResults,
-                builder: (tags) => _TagsWraper(tags: tags),
+                ],
               ),
             ),
-          ),
-        ],
+
+            /// 検索バー
+            _SearchBar(
+              focusNode: state.focusNode,
+              controller: state.textEditingController,
+              onSearch: viewModel.search,
+              onClear: viewModel.clearSearchResults,
+              shouldAnimate: state.shouldShowSearchResults,
+            ),
+
+            /// 設定されたタグ
+            /// キーボードの表示に合わせて位置を変更する
+            AnimatedPositioned(
+              duration: _animationDuration,
+              bottom: state.focusNode.hasFocus
+                  // キーボードの高さ + 余白(20)
+                  ? MediaQuery.of(context).viewInsets.bottom + 20
+                  : 80,
+              child: _Item(
+                title: '設定中のタグ',
+                asyncValue: AsyncData(state.selected),
+                builder: (tags) => _TagsWraper(tags: tags, isSelected: true),
+              ),
+            ),
+
+            /// 検索結果
+            /// 検索バーがフォーカスされたら表示にする
+            Positioned(
+              top: kToolbarHeight + 100,
+              child: AnimatedVisibility(
+                visible: state.shouldShowSearchResults,
+                child: state.didSearch
+                    ? _Item(
+                        title: '検索結果',
+                        asyncValue: state.searchResults,
+                        builder: (tags) => _TagsWraper(tags: tags),
+                      )
+                    : Container(),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -125,6 +130,7 @@ class _Item<T> extends HookConsumerWidget {
     return AsyncValueWidget(
       data: asyncValue,
       builder: (value) => Container(
+        width: MediaQuery.of(context).size.width,
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -199,10 +205,7 @@ class _SearchBar extends HookConsumerWidget {
               focusNode: focusNode,
               controller: controller,
               hintText: LocaleKeys.select_tags_page_search_hint.tr(),
-              onClear: () {
-                controller.clear();
-                onClear();
-              },
+              onClear: () => controller.clear(),
               onEditingComplete: () {
                 focusNode.unfocus();
                 onSearch(controller.text);
@@ -218,7 +221,11 @@ class _SearchBar extends HookConsumerWidget {
               duration: SearchTagsPage._animationDuration,
               child: IconButton(
                 iconSize: trailingIconSize.width,
-                onPressed: onClear,
+                onPressed: () {
+                  focusNode.unfocus();
+                  controller.clear();
+                  onClear();
+                },
                 icon: const Icon(Icons.clear),
               ),
             ),
