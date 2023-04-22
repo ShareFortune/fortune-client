@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:fortune_client/data/model/core/base/tag/tag.dart';
@@ -50,14 +52,6 @@ class SearchTagsPage extends HookConsumerWidget {
             onClear: viewModel.clearSearchResults,
           ),
 
-          /// 検索結果
-          /// 検索バーがフォーカスされたら表示にする
-          AnimatedOpacity(
-            duration: _animationDuration,
-            opacity: state.focusNode.hasFocus ? 1 : 0,
-            child: Container(),
-          ),
-
           /// 設定されたタグ
           /// キーボードの表示に合わせて位置を変更する
           AnimatedPositioned(
@@ -66,10 +60,25 @@ class SearchTagsPage extends HookConsumerWidget {
                 // キーボードの高さ + 余白(20)
                 ? MediaQuery.of(context).viewInsets.bottom + 20
                 : 80,
-            child: _TagsWraper(
+            child: _Item(
               title: '設定中のタグ',
-              isSelected: true,
-              tags: AsyncData(state.selected),
+              asyncValue: AsyncData(state.selected),
+              builder: (tags) => _TagsWraper(tags: tags, isSelected: true),
+            ),
+          ),
+
+          /// 検索結果
+          /// 検索バーがフォーカスされたら表示にする
+          Positioned(
+            top: kToolbarHeight + 100,
+            child: AnimatedOpacity(
+              duration: _animationDuration,
+              opacity: state.focusNode.hasFocus ? 1 : 0,
+              child: _Item(
+                title: '検索結果',
+                asyncValue: state.searchResults,
+                builder: (tags) => _TagsWraper(tags: tags),
+              ),
             ),
           ),
 
@@ -82,21 +91,54 @@ class SearchTagsPage extends HookConsumerWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const BackAppBar(
-                  title: 'タグ',
-                  action: [SaveButton()],
-                ),
+                const BackAppBar(title: 'タグ', action: [SaveButton()]),
                 Container(
                   padding: const EdgeInsets.only(top: 100),
-                  child: _TagsWraper(
+                  child: _Item(
                     title: 'おすすめのタグ',
-                    tags: state.recommendation,
+                    asyncValue: state.recommendation,
+                    builder: (tags) => _TagsWraper(tags: tags),
                   ),
                 ),
               ],
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class _Item<T> extends HookConsumerWidget {
+  const _Item({
+    required this.title,
+    required this.asyncValue,
+    required this.builder,
+  });
+
+  final String title;
+  final AsyncValue<T> asyncValue;
+  final Widget? Function(T) builder;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final theme = ref.watch(appThemeProvider);
+
+    return AsyncValueWidget(
+      data: asyncValue,
+      builder: (value) => Container(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              title,
+              style: theme.textTheme.h30.paint(theme.appColors.subText1).bold(),
+            ),
+            const Gap(15),
+            Container(child: builder(value)),
+          ],
+        ),
       ),
     );
   }
@@ -132,15 +174,15 @@ class _SearchBar extends HookConsumerWidget {
   /// アニメーション終了後の高さ
   double get endPosition => 135;
 
-  /// 現在の高さ
-  double get height => focusNode.hasFocus ? startPosition : endPosition;
+  /// 現在位置の高さ
+  double get position => focusNode.hasFocus ? startPosition : endPosition;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return AnimatedContainer(
       width: MediaQuery.of(context).size.width,
       duration: SearchTagsPage._animationDuration,
-      transform: Matrix4.translationValues(0, height, 0),
+      transform: Matrix4.translationValues(0, position, 0),
       constraints: const BoxConstraints(maxHeight: 50),
       child: Stack(
         children: [
@@ -185,60 +227,37 @@ class _SearchBar extends HookConsumerWidget {
   }
 }
 
-/// タグのラッパー
 class _TagsWraper extends HookConsumerWidget {
   const _TagsWraper({
     required this.tags,
     this.isSelected = false,
-    required this.title,
   });
 
-  final String title;
   final bool isSelected;
-  final AsyncValue<List<Tag>> tags;
+  final List<Tag> tags;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = ref.watch(appThemeProvider);
 
-    return AsyncValueWidget(
-      data: tags,
-      builder: (tags) {
-        return Container(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                title,
-                style: theme.textTheme.h30.bold().paint(
-                      theme.appColors.subText1,
-                    ),
-              ),
-              const Gap(15),
-              Wrap(
-                spacing: 10,
-                runSpacing: 10,
-                children: tags.map((tag) {
-                  return TagWidget(
-                    value: tag.name,
-                    backGraundColor: isSelected
-                        ? theme.appColors.primary //
-                        : theme.appColors.onBackground,
-                    borderColor: isSelected
-                        ? theme.appColors.primary //
-                        : theme.appColors.border1,
-                    textColor: isSelected
-                        ? theme.appColors.onPrimary //
-                        : theme.appColors.subText2,
-                    onTap: () {},
-                  );
-                }).toList(),
-              ),
-            ],
-          ),
+    return Wrap(
+      spacing: 10,
+      runSpacing: 10,
+      children: tags.map((tag) {
+        return TagWidget(
+          value: tag.name,
+          backGraundColor: isSelected
+              ? theme.appColors.primary //
+              : theme.appColors.onBackground,
+          borderColor: isSelected
+              ? theme.appColors.primary //
+              : theme.appColors.border1,
+          textColor: isSelected
+              ? theme.appColors.onPrimary //
+              : theme.appColors.subText2,
+          onTap: () {},
         );
-      },
+      }).toList(),
     );
   }
 }
