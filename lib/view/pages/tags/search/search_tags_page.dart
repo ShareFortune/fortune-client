@@ -28,6 +28,9 @@ class SearchTagsPage extends HookConsumerWidget {
 
   final SearchTagsPageAuguments arguments;
 
+  /// アニメーションの時間
+  static const _animationDuration = Duration(milliseconds: 200);
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = ref.watch(appThemeProvider);
@@ -36,27 +39,9 @@ class SearchTagsPage extends HookConsumerWidget {
         ref.watch(searchTagsViewModelProvider(arguments).notifier);
 
     return Material(
+      color: theme.appColors.onBackground,
       child: Stack(
         children: [
-          AnimatedOpacity(
-            duration: const Duration(milliseconds: 200),
-            opacity: state.focusNode.hasFocus ? 0 : 1,
-            child: Scaffold(
-              backgroundColor: theme.appColors.onBackground,
-              appBar: const BackAppBar(
-                title: 'タグ',
-                action: [SaveButton()],
-              ),
-              body: Container(
-                padding: const EdgeInsets.only(top: 100),
-                child: _TagsWraper(
-                  title: 'おすすめのタグ',
-                  tags: state.recommendation,
-                ),
-              ),
-            ),
-          ),
-
           /// 検索バー
           _SearchBar(
             focusNode: state.focusNode,
@@ -65,16 +50,50 @@ class SearchTagsPage extends HookConsumerWidget {
             onClear: viewModel.clearSearchResults,
           ),
 
+          /// 検索結果
+          /// 検索バーがフォーカスされたら表示にする
+          AnimatedOpacity(
+            duration: _animationDuration,
+            opacity: state.focusNode.hasFocus ? 1 : 0,
+            child: Container(),
+          ),
+
           /// 設定されたタグ
+          /// キーボードの表示に合わせて位置を変更する
           AnimatedPositioned(
-            duration: const Duration(milliseconds: 200),
+            duration: _animationDuration,
             bottom: state.focusNode.hasFocus
+                // キーボードの高さ + 余白(20)
                 ? MediaQuery.of(context).viewInsets.bottom + 20
                 : 80,
             child: _TagsWraper(
               title: '設定中のタグ',
               isSelected: true,
               tags: AsyncData(state.selected),
+            ),
+          ),
+
+          /// デフォルトで表示する画面
+          /// AppBarとおすすめのタグ
+          /// 検索バーがフォーカスされたら非表示にする
+          AnimatedOpacity(
+            duration: _animationDuration,
+            opacity: state.focusNode.hasFocus ? 0 : 1,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const BackAppBar(
+                  title: 'タグ',
+                  action: [SaveButton()],
+                ),
+                Container(
+                  padding: const EdgeInsets.only(top: 100),
+                  child: _TagsWraper(
+                    title: 'おすすめのタグ',
+                    tags: state.recommendation,
+                  ),
+                ),
+              ],
             ),
           ),
         ],
@@ -120,7 +139,7 @@ class _SearchBar extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return AnimatedContainer(
       width: MediaQuery.of(context).size.width,
-      duration: const Duration(milliseconds: 200),
+      duration: SearchTagsPage._animationDuration,
       padding: EdgeInsets.only(
         left: defaultPadding,
         right: focusNode.hasFocus ? focusRightPadding : defaultPadding,
