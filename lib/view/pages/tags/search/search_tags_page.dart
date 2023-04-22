@@ -140,23 +140,46 @@ class _SearchBar extends HookConsumerWidget {
     return AnimatedContainer(
       width: MediaQuery.of(context).size.width,
       duration: SearchTagsPage._animationDuration,
-      padding: EdgeInsets.only(
-        left: defaultPadding,
-        right: focusNode.hasFocus ? focusRightPadding : defaultPadding,
-      ),
       transform: Matrix4.translationValues(0, height, 0),
-      child: BaseTextField(
-        focusNode: focusNode,
-        controller: controller,
-        hintText: LocaleKeys.select_tags_page_search_hint.tr(),
-        onClear: () {
-          controller.clear();
-          onClear();
-        },
-        onEditingComplete: () {
-          focusNode.unfocus();
-          onSearch(controller.text);
-        },
+      constraints: const BoxConstraints(maxHeight: 50),
+      child: Stack(
+        children: [
+          AnimatedContainer(
+            alignment: Alignment.centerLeft,
+            duration: SearchTagsPage._animationDuration,
+            padding: EdgeInsets.only(
+              left: defaultPadding,
+              right: focusNode.hasFocus ? focusRightPadding : defaultPadding,
+            ),
+            child: BaseTextField(
+              focusNode: focusNode,
+              controller: controller,
+              hintText: LocaleKeys.select_tags_page_search_hint.tr(),
+              onClear: () {
+                controller.clear();
+                onClear();
+              },
+              onEditingComplete: () {
+                focusNode.unfocus();
+                onSearch(controller.text);
+              },
+            ),
+          ),
+          AnimatedContainer(
+            alignment: Alignment.centerRight,
+            duration: SearchTagsPage._animationDuration,
+            padding: const EdgeInsets.only(right: 10),
+            child: AnimatedOpacity(
+              opacity: focusNode.hasFocus ? 1 : 0,
+              duration: SearchTagsPage._animationDuration,
+              child: IconButton(
+                iconSize: trailingIconSize.width,
+                onPressed: onClear,
+                icon: const Icon(Icons.clear),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
