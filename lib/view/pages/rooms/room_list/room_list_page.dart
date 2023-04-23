@@ -6,6 +6,7 @@ import 'package:fortune_client/l10n/locale_keys.g.dart';
 import 'package:fortune_client/view/pages/common/scroll_app_bar/scroll_app_bar.dart';
 import 'package:fortune_client/view/pages/rooms/room_list/components/room_list_card.dart';
 import 'package:fortune_client/view/pages/rooms/room_list/room_list_view_model.dart';
+import 'package:fortune_client/view/pages/tags/search/search_tags_page.dart';
 import 'package:fortune_client/view/routes/route_navigator.dart';
 import 'package:fortune_client/view/routes/route_path.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
@@ -49,7 +50,13 @@ class RoomListPage extends HookConsumerWidget {
                   _RoomsFilterButton(
                     title: "タグ",
                     onTap: () async {
-                      await navigator.navigateTo(RoutePath.searchTag);
+                      await navigator.navigateTo(
+                        RoutePath.searchTag,
+                        arguments: SearchTagsPageAuguments(
+                          tags: state.filter.tags ?? [],
+                          onChanged: (tags) {},
+                        ),
+                      );
                     },
                   ),
                 ],
