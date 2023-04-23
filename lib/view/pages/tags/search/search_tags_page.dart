@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:fortune_client/data/model/core/base/tag/tag.dart';
 import 'package:fortune_client/l10n/locale_keys.g.dart';
+import 'package:fortune_client/view/pages/tags/search/search_tags_state.dart';
 import 'package:fortune_client/view/pages/tags/search/search_tags_view_model.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
@@ -53,13 +54,20 @@ class SearchTagsPage extends HookConsumerWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const BackAppBar(title: 'タグ', action: [SaveButton()]),
+                  BackAppBar(title: 'タグ', action: [
+                    SaveButton(
+                      () => arguments.onChanged?.call(state.selectedTags),
+                    )
+                  ]),
                   Container(
                     padding: const EdgeInsets.only(top: 100),
                     child: _Item(
                       title: 'おすすめのタグ',
                       asyncValue: state.recommendation,
-                      builder: (tags) => _TagsWraper(tags: tags),
+                      builder: (tags) => _TagsWraper(
+                        tags: tags,
+                        onSelected: viewModel.selectTag,
+                      ),
                     ),
                   ),
                 ],
@@ -70,7 +78,7 @@ class SearchTagsPage extends HookConsumerWidget {
             _SearchBar(
               focusNode: state.focusNode,
               controller: state.textEditingController,
-              onSearch: viewModel.search,
+              onSearch: viewModel.searchTags,
               onClear: viewModel.clearSearchResults,
               shouldAnimate: state.shouldShowSearchResults,
             ),
@@ -86,7 +94,10 @@ class SearchTagsPage extends HookConsumerWidget {
               child: _Item(
                 title: '設定中のタグ',
                 asyncValue: AsyncData(state.selected),
-                builder: (tags) => _TagsWraper(tags: tags, isSelected: true),
+                builder: (tags) => _TagsWraper(
+                  tags: tags,
+                  onSelected: viewModel.selectTag,
+                ),
               ),
             ),
 
@@ -100,7 +111,10 @@ class SearchTagsPage extends HookConsumerWidget {
                     ? _Item(
                         title: '検索結果',
                         asyncValue: state.searchResults,
-                        builder: (tags) => _TagsWraper(tags: tags),
+                        builder: (tags) => _TagsWraper(
+                          tags: tags,
+                          onSelected: viewModel.selectTag,
+                        ),
                       )
                     : Container(),
               ),
@@ -240,11 +254,11 @@ class _SearchBar extends HookConsumerWidget {
 class _TagsWraper extends HookConsumerWidget {
   const _TagsWraper({
     required this.tags,
-    this.isSelected = false,
+    required this.onSelected,
   });
 
-  final List<Tag> tags;
-  final bool isSelected;
+  final List<TagState> tags;
+  final Function(TagState) onSelected;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -253,21 +267,19 @@ class _TagsWraper extends HookConsumerWidget {
     return Wrap(
       spacing: 10,
       runSpacing: 10,
-      children: tags.map((tag) {
+      children: tags.map((tagState) {
         return TagWidget(
-          value: tag.name,
-          backGraundColor: isSelected
+          value: tagState.tag.name,
+          backGraundColor: tagState.isSelected
               ? theme.appColors.primary //
               : theme.appColors.background,
-          borderColor: isSelected
+          borderColor: tagState.isSelected
               ? theme.appColors.primary //
               : theme.appColors.border1,
-          textColor: isSelected
+          textColor: tagState.isSelected
               ? theme.appColors.onPrimary //
               : theme.appColors.subText2,
-          onTap: () {
-            print("タップされたタグ: ${tag.name}");
-          },
+          onTap: () => onSelected(tagState),
         );
       }).toList(),
     );

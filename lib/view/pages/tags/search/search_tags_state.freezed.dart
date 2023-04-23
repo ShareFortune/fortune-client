@@ -30,14 +30,15 @@ mixin _$SearchTagsState {
   bool get shouldShowSearchResults => throw _privateConstructorUsedError;
 
   /// 設定中のタグ
-  List<Tag> get selected => throw _privateConstructorUsedError;
+  List<TagState> get selected => throw _privateConstructorUsedError;
 
   /// おすすめのタグ
-  AsyncValue<List<Tag>> get recommendation =>
+  AsyncValue<List<TagState>> get recommendation =>
       throw _privateConstructorUsedError;
 
   /// 検索結果
-  AsyncValue<List<Tag>> get searchResults => throw _privateConstructorUsedError;
+  AsyncValue<List<TagState>> get searchResults =>
+      throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SearchTagsStateCopyWith<SearchTagsState> get copyWith =>
@@ -55,9 +56,9 @@ abstract class $SearchTagsStateCopyWith<$Res> {
       FocusNode focusNode,
       TextEditingController textEditingController,
       bool shouldShowSearchResults,
-      List<Tag> selected,
-      AsyncValue<List<Tag>> recommendation,
-      AsyncValue<List<Tag>> searchResults});
+      List<TagState> selected,
+      AsyncValue<List<TagState>> recommendation,
+      AsyncValue<List<TagState>> searchResults});
 }
 
 /// @nodoc
@@ -101,15 +102,15 @@ class _$SearchTagsStateCopyWithImpl<$Res, $Val extends SearchTagsState>
       selected: null == selected
           ? _value.selected
           : selected // ignore: cast_nullable_to_non_nullable
-              as List<Tag>,
+              as List<TagState>,
       recommendation: null == recommendation
           ? _value.recommendation
           : recommendation // ignore: cast_nullable_to_non_nullable
-              as AsyncValue<List<Tag>>,
+              as AsyncValue<List<TagState>>,
       searchResults: null == searchResults
           ? _value.searchResults
           : searchResults // ignore: cast_nullable_to_non_nullable
-              as AsyncValue<List<Tag>>,
+              as AsyncValue<List<TagState>>,
     ) as $Val);
   }
 }
@@ -127,9 +128,9 @@ abstract class _$$_SearchTagsStateCopyWith<$Res>
       FocusNode focusNode,
       TextEditingController textEditingController,
       bool shouldShowSearchResults,
-      List<Tag> selected,
-      AsyncValue<List<Tag>> recommendation,
-      AsyncValue<List<Tag>> searchResults});
+      List<TagState> selected,
+      AsyncValue<List<TagState>> recommendation,
+      AsyncValue<List<TagState>> searchResults});
 }
 
 /// @nodoc
@@ -171,31 +172,32 @@ class __$$_SearchTagsStateCopyWithImpl<$Res>
       selected: null == selected
           ? _value._selected
           : selected // ignore: cast_nullable_to_non_nullable
-              as List<Tag>,
+              as List<TagState>,
       recommendation: null == recommendation
           ? _value.recommendation
           : recommendation // ignore: cast_nullable_to_non_nullable
-              as AsyncValue<List<Tag>>,
+              as AsyncValue<List<TagState>>,
       searchResults: null == searchResults
           ? _value.searchResults
           : searchResults // ignore: cast_nullable_to_non_nullable
-              as AsyncValue<List<Tag>>,
+              as AsyncValue<List<TagState>>,
     ));
   }
 }
 
 /// @nodoc
 
-class _$_SearchTagsState implements _SearchTagsState {
+class _$_SearchTagsState extends _SearchTagsState {
   const _$_SearchTagsState(
       {required this.didSearch,
       required this.focusNode,
       required this.textEditingController,
       required this.shouldShowSearchResults,
-      required final List<Tag> selected,
+      required final List<TagState> selected,
       required this.recommendation,
       required this.searchResults})
-      : _selected = selected;
+      : _selected = selected,
+        super._();
 
   /// 検索したかどうか
   @override
@@ -214,11 +216,11 @@ class _$_SearchTagsState implements _SearchTagsState {
   final bool shouldShowSearchResults;
 
   /// 設定中のタグ
-  final List<Tag> _selected;
+  final List<TagState> _selected;
 
   /// 設定中のタグ
   @override
-  List<Tag> get selected {
+  List<TagState> get selected {
     if (_selected is EqualUnmodifiableListView) return _selected;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_selected);
@@ -226,11 +228,11 @@ class _$_SearchTagsState implements _SearchTagsState {
 
   /// おすすめのタグ
   @override
-  final AsyncValue<List<Tag>> recommendation;
+  final AsyncValue<List<TagState>> recommendation;
 
   /// 検索結果
   @override
-  final AsyncValue<List<Tag>> searchResults;
+  final AsyncValue<List<TagState>> searchResults;
 
   @override
   String toString() {
@@ -276,15 +278,17 @@ class _$_SearchTagsState implements _SearchTagsState {
       __$$_SearchTagsStateCopyWithImpl<_$_SearchTagsState>(this, _$identity);
 }
 
-abstract class _SearchTagsState implements SearchTagsState {
+abstract class _SearchTagsState extends SearchTagsState {
   const factory _SearchTagsState(
-      {required final bool didSearch,
-      required final FocusNode focusNode,
-      required final TextEditingController textEditingController,
-      required final bool shouldShowSearchResults,
-      required final List<Tag> selected,
-      required final AsyncValue<List<Tag>> recommendation,
-      required final AsyncValue<List<Tag>> searchResults}) = _$_SearchTagsState;
+          {required final bool didSearch,
+          required final FocusNode focusNode,
+          required final TextEditingController textEditingController,
+          required final bool shouldShowSearchResults,
+          required final List<TagState> selected,
+          required final AsyncValue<List<TagState>> recommendation,
+          required final AsyncValue<List<TagState>> searchResults}) =
+      _$_SearchTagsState;
+  const _SearchTagsState._() : super._();
 
   @override
 
@@ -305,17 +309,175 @@ abstract class _SearchTagsState implements SearchTagsState {
   @override
 
   /// 設定中のタグ
-  List<Tag> get selected;
+  List<TagState> get selected;
   @override
 
   /// おすすめのタグ
-  AsyncValue<List<Tag>> get recommendation;
+  AsyncValue<List<TagState>> get recommendation;
   @override
 
   /// 検索結果
-  AsyncValue<List<Tag>> get searchResults;
+  AsyncValue<List<TagState>> get searchResults;
   @override
   @JsonKey(ignore: true)
   _$$_SearchTagsStateCopyWith<_$_SearchTagsState> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$TagState {
+  /// タグ
+  Tag get tag => throw _privateConstructorUsedError;
+
+  /// 選択されているかどうか
+  bool get isSelected => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $TagStateCopyWith<TagState> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $TagStateCopyWith<$Res> {
+  factory $TagStateCopyWith(TagState value, $Res Function(TagState) then) =
+      _$TagStateCopyWithImpl<$Res, TagState>;
+  @useResult
+  $Res call({Tag tag, bool isSelected});
+
+  $TagCopyWith<$Res> get tag;
+}
+
+/// @nodoc
+class _$TagStateCopyWithImpl<$Res, $Val extends TagState>
+    implements $TagStateCopyWith<$Res> {
+  _$TagStateCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? tag = null,
+    Object? isSelected = null,
+  }) {
+    return _then(_value.copyWith(
+      tag: null == tag
+          ? _value.tag
+          : tag // ignore: cast_nullable_to_non_nullable
+              as Tag,
+      isSelected: null == isSelected
+          ? _value.isSelected
+          : isSelected // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $TagCopyWith<$Res> get tag {
+    return $TagCopyWith<$Res>(_value.tag, (value) {
+      return _then(_value.copyWith(tag: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$_TagStateCopyWith<$Res> implements $TagStateCopyWith<$Res> {
+  factory _$$_TagStateCopyWith(
+          _$_TagState value, $Res Function(_$_TagState) then) =
+      __$$_TagStateCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({Tag tag, bool isSelected});
+
+  @override
+  $TagCopyWith<$Res> get tag;
+}
+
+/// @nodoc
+class __$$_TagStateCopyWithImpl<$Res>
+    extends _$TagStateCopyWithImpl<$Res, _$_TagState>
+    implements _$$_TagStateCopyWith<$Res> {
+  __$$_TagStateCopyWithImpl(
+      _$_TagState _value, $Res Function(_$_TagState) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? tag = null,
+    Object? isSelected = null,
+  }) {
+    return _then(_$_TagState(
+      tag: null == tag
+          ? _value.tag
+          : tag // ignore: cast_nullable_to_non_nullable
+              as Tag,
+      isSelected: null == isSelected
+          ? _value.isSelected
+          : isSelected // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_TagState extends _TagState {
+  const _$_TagState({required this.tag, this.isSelected = false}) : super._();
+
+  /// タグ
+  @override
+  final Tag tag;
+
+  /// 選択されているかどうか
+  @override
+  @JsonKey()
+  final bool isSelected;
+
+  @override
+  String toString() {
+    return 'TagState(tag: $tag, isSelected: $isSelected)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_TagState &&
+            (identical(other.tag, tag) || other.tag == tag) &&
+            (identical(other.isSelected, isSelected) ||
+                other.isSelected == isSelected));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, tag, isSelected);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_TagStateCopyWith<_$_TagState> get copyWith =>
+      __$$_TagStateCopyWithImpl<_$_TagState>(this, _$identity);
+}
+
+abstract class _TagState extends TagState {
+  const factory _TagState({required final Tag tag, final bool isSelected}) =
+      _$_TagState;
+  const _TagState._() : super._();
+
+  @override
+
+  /// タグ
+  Tag get tag;
+  @override
+
+  /// 選択されているかどうか
+  bool get isSelected;
+  @override
+  @JsonKey(ignore: true)
+  _$$_TagStateCopyWith<_$_TagState> get copyWith =>
       throw _privateConstructorUsedError;
 }

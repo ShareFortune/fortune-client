@@ -34,7 +34,6 @@ enum RoutePath {
   messageRoom('/messageRoom'),
 
   /// Tag
-  tag('/tag'),
   tagInput('/tagInput'),
 
   /// Setting
