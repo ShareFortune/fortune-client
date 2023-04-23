@@ -13,6 +13,7 @@ import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/picker/address_picker.dart';
 import 'package:fortune_client/view/widgets/picker/base_bottom_picker.dart';
+import 'package:fortune_client/view/widgets/picker/height_picker.dart';
 import 'package:fortune_client/view/widgets/profile/profile_view_item.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -74,9 +75,7 @@ class ProfileBasicInfoWidget extends ConsumerWidget {
                 arguments: InputTextPageArguments(
                   title: "名前",
                   initialValue: name,
-                  onChanged: (value) {
-                    onEditedName?.call(value);
-                  },
+                  onChanged: onEditedName,
                 ),
               );
             },
@@ -105,23 +104,9 @@ class ProfileBasicInfoWidget extends ConsumerWidget {
           format: LocaleKeys.data_profile_stature_data.tr(),
           args: [height.toString()],
           onTapped: () async {
-            await showModalBottomSheet(
+            await HeightPicker.show(
               context: context,
-              constraints: BoxConstraints(
-                maxHeight: MediaQuery.of(context).size.height * 0.3,
-              ),
-              builder: (BuildContext context) {
-                return BaseBottomPicker(
-                  items: List.generate(71, (index) {
-                    return LocaleKeys.data_profile_stature_data.tr(
-                      args: [(index + 130).toString()],
-                    );
-                  }).toList(),
-                  onChanged: (index) {
-                    onEditedHeight?.call(index + 130);
-                  },
-                );
-              },
+              onChanged: onEditedHeight,
             );
           },
         ),

@@ -15,7 +15,7 @@ class BaseBottomPicker extends StatefulHookConsumerWidget {
   });
 
   final List<String> items;
-  final Function(int) onChanged;
+  final Function(int)? onChanged;
   final int initialIndex;
   final FixedExtentScrollController? scrollController;
 
@@ -43,7 +43,7 @@ class _BaseBottomPickerState extends ConsumerState<BaseBottomPicker> {
       children: [
         BottomSheetPickerHeader(
           onSaved: () {
-            widget.onChanged(selectedIndex);
+            widget.onChanged?.call(selectedIndex);
             navigator.goBack();
           },
         ),
