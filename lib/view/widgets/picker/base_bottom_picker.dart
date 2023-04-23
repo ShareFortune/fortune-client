@@ -11,29 +11,50 @@ class BaseBottomPicker extends StatefulHookConsumerWidget {
     required this.items,
     required this.onChanged,
     this.initialIndex = 0,
-    this.scrollController,
+    this.hasUnselected = true,
   });
 
+  /// 選択肢
   final List<String> items;
-  final Function(int)? onChanged;
+
+  /// [index]選択された値のIndex
+  /// 未選択の場合は[-1]
+  final Function(int index)? onChanged;
+
+  /// 初期選択インデックス
   final int initialIndex;
-  final FixedExtentScrollController? scrollController;
+
+  /// 未選択の項目を表示するかどうか
+  final bool hasUnselected;
 
   @override
   ConsumerState<BaseBottomPicker> createState() => _BaseBottomPickerState();
 }
 
 class _BaseBottomPickerState extends ConsumerState<BaseBottomPicker> {
-  /// 選択された値
-  int get selectedIndex => scrollController.selectedItem;
-
   /// スクロールコントローラー
   late FixedExtentScrollController scrollController;
 
+  /// アイテム
+  List<String> get items => widget.hasUnselected
+      ? ['未選択', ...widget.items] //
+      : widget.items;
+
+  /// アイテム数
+  int get itemCount => widget.hasUnselected
+      ? widget.items.length + 1 //
+      : widget.items.length;
+
+  /// 選択された値
+  int get selectedIndex => widget.hasUnselected
+      ? scrollController.selectedItem - 1 //
+      : scrollController.selectedItem;
+
   @override
   void initState() {
-    scrollController = widget.scrollController ??
-        FixedExtentScrollController(initialItem: widget.initialIndex);
+    scrollController = FixedExtentScrollController(
+      initialItem: widget.initialIndex,
+    );
     super.initState();
   }
 
@@ -53,13 +74,13 @@ class _BaseBottomPickerState extends ConsumerState<BaseBottomPicker> {
             useMagnifier: true,
             backgroundColor: Colors.white,
             scrollController: scrollController,
-            onSelectedItemChanged: (index) {},
-            childCount: widget.items.length,
+            onSelectedItemChanged: null,
+            childCount: itemCount,
             itemBuilder: (context, index) {
               return Container(
                 alignment: Alignment.center,
                 child: Text(
-                  widget.items[index],
+                  items[index],
                   textAlign: TextAlign.start,
                 ),
               );

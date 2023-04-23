@@ -106,7 +106,7 @@ class RoomListViewModel extends StateNotifier<RoomListState> {
   }
 
   /// 参加人数でフィルタリング
-  Future<void> filteringByMemberNum(int? memberNum) async {
+  Future<void> filteringByMemberNum(int memberNum) async {
     await _filtering(filter.copyWith(memberNum: memberNum));
   }
 

@@ -15,12 +15,18 @@ class MyApp extends HookConsumerWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       useInheritedMediaQuery: true,
+
+      /// Theme
       theme: ref.watch(appThemeProvider).data,
-      darkTheme: AppTheme.dark().data,
       themeMode: ref.watch(appThemeModeProvider),
-      localizationsDelegates: context.localizationDelegates,
-      supportedLocales: context.supportedLocales,
+      darkTheme: AppTheme.dark().data,
+
+      /// Localization
       locale: context.locale,
+      supportedLocales: context.supportedLocales,
+      localizationsDelegates: context.localizationDelegates,
+
+      /// Route
       navigatorKey: getIt<RouteNavigator>().navigatorKey,
       initialRoute: RoutePath.launch.name,
       onGenerateRoute: AppRouter.onGenerateRoute,

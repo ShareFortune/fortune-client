@@ -1,8 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:fortune_client/data/model/core/base/address/address.dart';
-import 'package:flutter_japanese_address_picker/flutter_japanese_address_picker.dart'
-    hide Address;
 import 'package:fortune_client/data/model/core/enum/cigarette_frequency.dart';
 import 'package:fortune_client/data/model/core/enum/drink_frequency.dart';
 import 'package:fortune_client/l10n/locale_keys.g.dart';
@@ -68,7 +66,7 @@ class ProfileBasicInfoWidget extends ConsumerWidget {
           _Item(
             isEdit: true,
             title: "名前",
-            value: name,
+            format: name,
             onTapped: () {
               navigator.navigateTo(
                 RoutePath.inputText,
@@ -85,7 +83,7 @@ class ProfileBasicInfoWidget extends ConsumerWidget {
         _Item(
           isEdit: onEditedAddress != null,
           title: LocaleKeys.data_profile_address_title.tr(),
-          value: address.prefecture,
+          format: address.prefecture,
           onTapped: () async {
             await AddressPicker.show(
               context: context,
@@ -103,6 +101,7 @@ class ProfileBasicInfoWidget extends ConsumerWidget {
           title: LocaleKeys.data_profile_stature_title.tr(),
           format: LocaleKeys.data_profile_stature_data.tr(),
           args: [height.toString()],
+          hasValue: height?.isNegative == false,
           onTapped: () async {
             await NumberPicker.height().show(
               context: context,
@@ -115,7 +114,7 @@ class ProfileBasicInfoWidget extends ConsumerWidget {
         _Item(
           isEdit: onEditedDrinkFrequency != null,
           title: LocaleKeys.data_profile_drinkFrequency_title.tr(),
-          value: drinkFrequency?.text,
+          format: drinkFrequency?.text,
           onTapped: () async {
             await showModalBottomSheet(
               constraints: BoxConstraints(
@@ -138,7 +137,8 @@ class ProfileBasicInfoWidget extends ConsumerWidget {
         _Item(
           isEdit: onEditedCigaretteFrequency != null,
           title: LocaleKeys.data_profile_cigaretteFrequency_title.tr(),
-          value: cigaretteFrequency?.text,
+          format: cigaretteFrequency?.text,
+          hasValue: cigaretteFrequency?.text != null,
           onTapped: () async {
             await showModalBottomSheet(
               constraints: BoxConstraints(
@@ -165,23 +165,35 @@ class ProfileBasicInfoWidget extends ConsumerWidget {
 class _Item extends HookConsumerWidget {
   const _Item({
     required this.title,
-    this.value,
+    this.hasValue = true,
     this.format,
     this.args = const [],
     this.isEdit = false,
     this.onTapped,
   });
 
+  /// タイトル
   final String title;
-  final String? value;
+
+  /// 表示テキスト
   final String? format;
+
+  /// formatの引数
   final List<String> args;
+
+  /// 編集可能か
   final bool isEdit;
+
+  /// 編集時にタップされた時の処理
   final VoidCallback? onTapped;
 
+  /// 値が存在するか
+  final bool hasValue;
+
   String get _value {
-    if (format == null) return value ?? "未設定";
-    return format!.tr(args: args);
+    if (!hasValue) return "未設定";
+    final text = format?.tr(args: args);
+    return text ?? "未設定";
   }
 
   @override

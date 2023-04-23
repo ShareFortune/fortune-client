@@ -30,7 +30,7 @@ class RoomListStateFilter with _$RoomListStateFilter {
   const RoomListStateFilter._();
   const factory RoomListStateFilter({
     /// 募集人数
-    int? memberNum,
+    @Default(-1) int memberNum,
 
     /// 開催地
     Address? address,
@@ -46,7 +46,7 @@ class RoomListStateFilter with _$RoomListStateFilter {
   bool get isFilteredByAddress => address != null;
 
   /// 募集人数でフィルタリングされているか
-  bool get isFilteredByMemberNum => memberNum != null;
+  bool get isFilteredByMemberNum => memberNum > 0;
 }
 
 @freezed

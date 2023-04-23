@@ -10,17 +10,26 @@ class NumberPicker {
   /// 最大の値
   final int maxValue;
 
-  /// 表示する値の数
-  int get count => maxValue - minValue + 1;
-
-  /// Indexから値を取得
-  int getValue(int index) => minValue + index;
-
   /// フォーマット
   final String format;
 
   /// フォーマットの引数
   final List<String> Function(int)? args;
+
+  /// 表示する値の数
+  int get count => maxValue - minValue + 1;
+
+  /// 未選択の値
+  static const int unselected = -1;
+
+  /// 未選択かどうか判定
+  bool isUnselected(int value) => value < minValue;
+
+  /// Indexから値を取得
+  int getValue(int index) {
+    final value = minValue + index;
+    return isUnselected(value) ? unselected : value;
+  }
 
   NumberPicker._({
     required this.minValue,
