@@ -1,5 +1,4 @@
-import 'package:fortune_client/data/model/core/base/address_with_id/address_with_id.dart';
-import 'package:fortune_client/data/model/core/base/tag/tag.dart';
+import 'package:fortune_client/data/model/core/base/address/address.dart';
 import 'package:fortune_client/data/repository/repository.dart';
 import 'package:fortune_client/view/pages/rooms/room_list/room_list_state.dart';
 import 'package:fortune_client/view/pages/tags/search/search_tags_page.dart';
@@ -17,16 +16,21 @@ final roomListViewModelProvider =
 class RoomListViewModel extends StateNotifier<RoomListState> {
   RoomListViewModel(super.state);
 
-  Future<void> initialize() async => await fetchList();
+  /// フィルター
+  RoomListStateFilter get filter => state.filter;
+
+  Future<void> initialize() async {
+    await fetchList();
+  }
 
   Future<void> fetchList() async {
     bool hasRoomSearchResult = false;
     state = state.copyWith(
       rooms: await AsyncValue.guard(() async {
         final result = await Repository.rooms.fetchList(
-          memberNum: state.filter.memberNum,
-          tags: state.filter.tags,
-          addressWithId: state.filter.addressWithId,
+          memberNum: filter.memberNum,
+          tags: filter.tags,
+          address: filter.address,
         );
 
         /// 検索結果が存在しない場合
@@ -90,22 +94,20 @@ class RoomListViewModel extends StateNotifier<RoomListState> {
     await navigator.navigateTo(
       RoutePath.searchTag,
       arguments: SearchTagsPageAuguments(
-        tags: state.filter.tags,
-        onChanged: (tags) => _filtering(
-          state.filter.copyWith(tags: tags),
-        ),
+        tags: filter.tags,
+        onChanged: (tags) => _filtering(filter.copyWith(tags: tags)),
       ),
     );
   }
 
   /// 場所でフィルタリング
-  Future<void> filteringByAddress(AddressWithId? addressWithId) async {
-    await _filtering(state.filter.copyWith(addressWithId: addressWithId));
+  Future<void> filteringByAddress(Address? address) async {
+    await _filtering(filter.copyWith(address: address));
   }
 
   /// 参加人数でフィルタリング
   Future<void> filteringByMemberNum(int? memberNum) async {
-    await _filtering(state.filter.copyWith(memberNum: memberNum));
+    await _filtering(filter.copyWith(memberNum: memberNum));
   }
 
   /// フィルターのリセット

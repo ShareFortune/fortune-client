@@ -11,6 +11,7 @@ import 'package:fortune_client/view/routes/route_navigator.dart';
 import 'package:fortune_client/view/routes/route_path.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
+import 'package:fortune_client/view/widgets/picker/address_picker.dart';
 import 'package:fortune_client/view/widgets/picker/base_bottom_picker.dart';
 import 'package:fortune_client/view/widgets/profile/profile_view_item.dart';
 import 'package:gap/gap.dart';
@@ -87,27 +88,11 @@ class ProfileBasicInfoWidget extends ConsumerWidget {
           title: LocaleKeys.data_profile_address_title.tr(),
           value: address.prefecture,
           onTapped: () async {
-            await JapaneseAddressPicker.showBottomSheet(
-              context,
-              theme: JapaneseAddressPickerTheme(
-                headerCanselStyle:
-                    theme.textTheme.h30.paint(theme.appColors.subText2),
-                headerSaveStyle:
-                    theme.textTheme.h30.paint(theme.appColors.linkColor),
-                headerColor: theme.appColors.background,
-              ),
-              initialValue: AddressValue(
-                cityName: address.city,
-                prefectureName: address.prefecture,
-              ),
-              onChanged: (address) {
-                final newAddress = Address(
-                  country: '日本',
-                  prefecture: address.prefecture.name,
-                  city: address.city.name,
-                );
-                onEditedAddress?.call(newAddress);
-              },
+            await AddressPicker.show(
+              context: context,
+              theme: theme,
+              address: address,
+              onChanged: onEditedAddress,
             );
           },
         ),
@@ -121,10 +106,10 @@ class ProfileBasicInfoWidget extends ConsumerWidget {
           args: [height.toString()],
           onTapped: () async {
             await showModalBottomSheet(
+              context: context,
               constraints: BoxConstraints(
                 maxHeight: MediaQuery.of(context).size.height * 0.3,
               ),
-              context: context,
               builder: (BuildContext context) {
                 return BaseBottomPicker(
                   items: List.generate(71, (index) {

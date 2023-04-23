@@ -14,6 +14,9 @@ import 'package:flutter/services.dart';
 class $StubGen {
   const $StubGen();
 
+  /// File path: stub/get_v1_addresses_response.json
+  String get getV1AddressesResponse => 'stub/get_v1_addresses_response.json';
+
   /// File path: stub/get_v1_message_rooms_id_messages_response.json
   String get getV1MessageRoomsIdMessagesResponse =>
       'stub/get_v1_message_rooms_id_messages_response.json';
@@ -42,6 +45,7 @@ class $StubGen {
 
   /// List of all assets
   List<String> get values => [
+        getV1AddressesResponse,
         getV1MessageRoomsIdMessagesResponse,
         getV1MessageRoomsResponse,
         getV1ProfilesResponse,

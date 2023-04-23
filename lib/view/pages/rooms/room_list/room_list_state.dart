@@ -1,4 +1,4 @@
-import 'package:fortune_client/data/model/core/base/address_with_id/address_with_id.dart';
+import 'package:fortune_client/data/model/core/base/address/address.dart';
 import 'package:fortune_client/data/model/core/base/tag/tag.dart';
 import 'package:fortune_client/data/model/rooms/get_v1_rooms/get_v1_rooms.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -33,7 +33,7 @@ class RoomListStateFilter with _$RoomListStateFilter {
     int? memberNum,
 
     /// 開催地
-    AddressWithId? addressWithId,
+    Address? address,
 
     /// タグ
     @Default([]) List<Tag> tags,
@@ -43,7 +43,7 @@ class RoomListStateFilter with _$RoomListStateFilter {
   bool get isFilteredByTag => tags.isNotEmpty;
 
   /// 開催地でフィルタリングされているか
-  bool get isFilteredByAddress => addressWithId != null;
+  bool get isFilteredByAddress => address != null;
 
   /// 募集人数でフィルタリングされているか
   bool get isFilteredByMemberNum => memberNum != null;

@@ -228,7 +228,7 @@ mixin _$RoomListStateFilter {
   int? get memberNum => throw _privateConstructorUsedError;
 
   /// 開催地
-  AddressWithId? get addressWithId => throw _privateConstructorUsedError;
+  Address? get address => throw _privateConstructorUsedError;
 
   /// タグ
   List<Tag> get tags => throw _privateConstructorUsedError;
@@ -244,9 +244,9 @@ abstract class $RoomListStateFilterCopyWith<$Res> {
           RoomListStateFilter value, $Res Function(RoomListStateFilter) then) =
       _$RoomListStateFilterCopyWithImpl<$Res, RoomListStateFilter>;
   @useResult
-  $Res call({int? memberNum, AddressWithId? addressWithId, List<Tag> tags});
+  $Res call({int? memberNum, Address? address, List<Tag> tags});
 
-  $AddressWithIdCopyWith<$Res>? get addressWithId;
+  $AddressCopyWith<$Res>? get address;
 }
 
 /// @nodoc
@@ -263,7 +263,7 @@ class _$RoomListStateFilterCopyWithImpl<$Res, $Val extends RoomListStateFilter>
   @override
   $Res call({
     Object? memberNum = freezed,
-    Object? addressWithId = freezed,
+    Object? address = freezed,
     Object? tags = null,
   }) {
     return _then(_value.copyWith(
@@ -271,10 +271,10 @@ class _$RoomListStateFilterCopyWithImpl<$Res, $Val extends RoomListStateFilter>
           ? _value.memberNum
           : memberNum // ignore: cast_nullable_to_non_nullable
               as int?,
-      addressWithId: freezed == addressWithId
-          ? _value.addressWithId
-          : addressWithId // ignore: cast_nullable_to_non_nullable
-              as AddressWithId?,
+      address: freezed == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as Address?,
       tags: null == tags
           ? _value.tags
           : tags // ignore: cast_nullable_to_non_nullable
@@ -284,13 +284,13 @@ class _$RoomListStateFilterCopyWithImpl<$Res, $Val extends RoomListStateFilter>
 
   @override
   @pragma('vm:prefer-inline')
-  $AddressWithIdCopyWith<$Res>? get addressWithId {
-    if (_value.addressWithId == null) {
+  $AddressCopyWith<$Res>? get address {
+    if (_value.address == null) {
       return null;
     }
 
-    return $AddressWithIdCopyWith<$Res>(_value.addressWithId!, (value) {
-      return _then(_value.copyWith(addressWithId: value) as $Val);
+    return $AddressCopyWith<$Res>(_value.address!, (value) {
+      return _then(_value.copyWith(address: value) as $Val);
     });
   }
 }
@@ -303,10 +303,10 @@ abstract class _$$_RoomListStateFilterCopyWith<$Res>
       __$$_RoomListStateFilterCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int? memberNum, AddressWithId? addressWithId, List<Tag> tags});
+  $Res call({int? memberNum, Address? address, List<Tag> tags});
 
   @override
-  $AddressWithIdCopyWith<$Res>? get addressWithId;
+  $AddressCopyWith<$Res>? get address;
 }
 
 /// @nodoc
@@ -321,7 +321,7 @@ class __$$_RoomListStateFilterCopyWithImpl<$Res>
   @override
   $Res call({
     Object? memberNum = freezed,
-    Object? addressWithId = freezed,
+    Object? address = freezed,
     Object? tags = null,
   }) {
     return _then(_$_RoomListStateFilter(
@@ -329,10 +329,10 @@ class __$$_RoomListStateFilterCopyWithImpl<$Res>
           ? _value.memberNum
           : memberNum // ignore: cast_nullable_to_non_nullable
               as int?,
-      addressWithId: freezed == addressWithId
-          ? _value.addressWithId
-          : addressWithId // ignore: cast_nullable_to_non_nullable
-              as AddressWithId?,
+      address: freezed == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as Address?,
       tags: null == tags
           ? _value._tags
           : tags // ignore: cast_nullable_to_non_nullable
@@ -345,7 +345,7 @@ class __$$_RoomListStateFilterCopyWithImpl<$Res>
 
 class _$_RoomListStateFilter extends _RoomListStateFilter {
   const _$_RoomListStateFilter(
-      {this.memberNum, this.addressWithId, final List<Tag> tags = const []})
+      {this.memberNum, this.address, final List<Tag> tags = const []})
       : _tags = tags,
         super._();
 
@@ -355,7 +355,7 @@ class _$_RoomListStateFilter extends _RoomListStateFilter {
 
   /// 開催地
   @override
-  final AddressWithId? addressWithId;
+  final Address? address;
 
   /// タグ
   final List<Tag> _tags;
@@ -371,7 +371,7 @@ class _$_RoomListStateFilter extends _RoomListStateFilter {
 
   @override
   String toString() {
-    return 'RoomListStateFilter(memberNum: $memberNum, addressWithId: $addressWithId, tags: $tags)';
+    return 'RoomListStateFilter(memberNum: $memberNum, address: $address, tags: $tags)';
   }
 
   @override
@@ -381,13 +381,12 @@ class _$_RoomListStateFilter extends _RoomListStateFilter {
             other is _$_RoomListStateFilter &&
             (identical(other.memberNum, memberNum) ||
                 other.memberNum == memberNum) &&
-            (identical(other.addressWithId, addressWithId) ||
-                other.addressWithId == addressWithId) &&
+            (identical(other.address, address) || other.address == address) &&
             const DeepCollectionEquality().equals(other._tags, _tags));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, memberNum, addressWithId,
+  int get hashCode => Object.hash(runtimeType, memberNum, address,
       const DeepCollectionEquality().hash(_tags));
 
   @JsonKey(ignore: true)
@@ -401,7 +400,7 @@ class _$_RoomListStateFilter extends _RoomListStateFilter {
 abstract class _RoomListStateFilter extends RoomListStateFilter {
   const factory _RoomListStateFilter(
       {final int? memberNum,
-      final AddressWithId? addressWithId,
+      final Address? address,
       final List<Tag> tags}) = _$_RoomListStateFilter;
   const _RoomListStateFilter._() : super._();
 
@@ -412,7 +411,7 @@ abstract class _RoomListStateFilter extends RoomListStateFilter {
   @override
 
   /// 開催地
-  AddressWithId? get addressWithId;
+  Address? get address;
   @override
 
   /// タグ

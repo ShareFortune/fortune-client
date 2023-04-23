@@ -6,12 +6,12 @@ import 'package:fortune_client/l10n/locale_keys.g.dart';
 import 'package:fortune_client/view/pages/common/scroll_app_bar/scroll_app_bar.dart';
 import 'package:fortune_client/view/pages/rooms/room_list/components/room_list_card.dart';
 import 'package:fortune_client/view/pages/rooms/room_list/room_list_view_model.dart';
-import 'package:fortune_client/view/pages/tags/search/search_tags_page.dart';
 import 'package:fortune_client/view/routes/route_navigator.dart';
 import 'package:fortune_client/view/routes/route_path.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/other/async_value_widget.dart';
+import 'package:fortune_client/view/widgets/picker/address_picker.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -37,7 +37,15 @@ class RoomListPage extends HookConsumerWidget {
                   _RoomsFilterButton(
                     title: "場所",
                     isAppliedFilter: state.filter.isFilteredByAddress,
-                    onTap: () {},
+                    onTap: () async {
+                      viewModel.filteringByAddress(
+                        await AddressPicker.show(
+                          context: context,
+                          theme: theme,
+                          address: state.filter.address,
+                        ),
+                      );
+                    },
                   ),
                   const Gap(15),
                   _RoomsFilterButton(
