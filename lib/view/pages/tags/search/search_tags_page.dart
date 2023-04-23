@@ -243,8 +243,8 @@ class _TagsWraper extends HookConsumerWidget {
     this.isSelected = false,
   });
 
-  final bool isSelected;
   final List<Tag> tags;
+  final bool isSelected;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -258,7 +258,7 @@ class _TagsWraper extends HookConsumerWidget {
           value: tag.name,
           backGraundColor: isSelected
               ? theme.appColors.primary //
-              : theme.appColors.onBackground,
+              : theme.appColors.background,
           borderColor: isSelected
               ? theme.appColors.primary //
               : theme.appColors.border1,

@@ -38,9 +38,9 @@ class TagWidget extends ConsumerWidget {
           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
           child: Text(
             "# $value",
-            style: theme.textTheme.h20.paint(
-              textColor ?? theme.appColors.subText2,
-            ),
+            style: theme.textTheme.h20
+                .paint(textColor ?? theme.appColors.subText2)
+                .bold(),
           ),
         ),
       ),
