@@ -10,7 +10,7 @@ import 'package:fortune_client/view/pages/my/my/my_page.dart';
 import 'package:fortune_client/view/pages/profile/profile/profile_page.dart';
 import 'package:fortune_client/view/pages/rooms/room_detail/room_detail_page.dart';
 import 'package:fortune_client/view/pages/settings/settings_page.dart';
-import 'package:fortune_client/view/pages/tags/select/select_tags_page.dart';
+import 'package:fortune_client/view/pages/tags/search/search_tags_page.dart';
 import 'package:fortune_client/view/routes/route_path.dart';
 
 class AppRouter {
@@ -101,10 +101,8 @@ class AppRouter {
         // TODO: Handle this case.
         break;
       case RoutePath.searchTag:
-        return _slidePageRouteBuilder(
-          SelectTagsPage(List.empty()),
-          offset: const Offset(0.0, 1.0),
-        );
+        arguments as SearchTagsPageAuguments;
+        return _slidePageRouteBuilder(SearchTagsPage(arguments));
 
       case RoutePath.searchAddress:
         return _slidePageRouteBuilder(
