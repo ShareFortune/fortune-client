@@ -343,10 +343,11 @@ class __$$_RoomListStateFilterCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_RoomListStateFilter implements _RoomListStateFilter {
+class _$_RoomListStateFilter extends _RoomListStateFilter {
   const _$_RoomListStateFilter(
       {this.memberNum, this.addressWithId, final List<Tag> tags = const []})
-      : _tags = tags;
+      : _tags = tags,
+        super._();
 
   /// 募集人数
   @override
@@ -397,11 +398,12 @@ class _$_RoomListStateFilter implements _RoomListStateFilter {
           this, _$identity);
 }
 
-abstract class _RoomListStateFilter implements RoomListStateFilter {
+abstract class _RoomListStateFilter extends RoomListStateFilter {
   const factory _RoomListStateFilter(
       {final int? memberNum,
       final AddressWithId? addressWithId,
       final List<Tag> tags}) = _$_RoomListStateFilter;
+  const _RoomListStateFilter._() : super._();
 
   @override
 

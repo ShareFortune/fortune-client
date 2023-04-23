@@ -27,6 +27,7 @@ class RoomListState with _$RoomListState {
 /// ルームリスト検索条件
 @freezed
 class RoomListStateFilter with _$RoomListStateFilter {
+  const RoomListStateFilter._();
   const factory RoomListStateFilter({
     /// 募集人数
     int? memberNum,
@@ -37,6 +38,15 @@ class RoomListStateFilter with _$RoomListStateFilter {
     /// タグ
     @Default([]) List<Tag> tags,
   }) = _RoomListStateFilter;
+
+  /// タグでフィルタリングされているか
+  bool get isFilteredByTag => tags.isNotEmpty;
+
+  /// 開催地でフィルタリングされているか
+  bool get isFilteredByAddress => addressWithId != null;
+
+  /// 募集人数でフィルタリングされているか
+  bool get isFilteredByMemberNum => memberNum != null;
 }
 
 @freezed

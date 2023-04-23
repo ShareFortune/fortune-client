@@ -36,20 +36,20 @@ class RoomListPage extends HookConsumerWidget {
                 children: [
                   _RoomsFilterButton(
                     title: "場所",
-                    isAppliedFilter: true,
-                    onTap: () {
-                      navigator.navigateTo(RoutePath.searchAddress);
-                    },
+                    isAppliedFilter: state.filter.isFilteredByAddress,
+                    onTap: () {},
                   ),
                   const Gap(15),
                   _RoomsFilterButton(
                     title: "人数",
                     onTap: () {},
+                    isAppliedFilter: state.filter.isFilteredByMemberNum,
                   ),
                   const Gap(15),
                   _RoomsFilterButton(
                     title: "タグ",
                     onTap: viewModel.filteringByTags,
+                    isAppliedFilter: state.filter.isFilteredByTag,
                   ),
                 ],
               ),
