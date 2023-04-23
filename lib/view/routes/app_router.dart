@@ -41,7 +41,10 @@ class AppRouter {
       case RoutePath.profile:
 
         /// ここで、ProfilePageに渡す引数を設定する
-        return _fadePageRouteBuilder(const ProfilePage());
+        return _slidePageRouteBuilder(
+          const ProfilePage(),
+          offset: const Offset(0.0, 1.0),
+        );
 
       case RoutePath.my:
         return _fadePageRouteBuilder(const MyPage());
