@@ -12,7 +12,6 @@ class TagsRepositoryImpl implements TagsRepository {
   @override
   Future<String> create(String name, String description) async {
     try {
-      logger.i("[$runtimeType] create");
       final request = PostV1TagsRequest(name: name, explanation: description);
       final result = await _tagsDataSource.create(request.toJson());
       return result.id;
@@ -25,7 +24,6 @@ class TagsRepositoryImpl implements TagsRepository {
   @override
   Future<List<Tag>> search(String keyword) async {
     try {
-      logger.i("[$runtimeType] search");
       final result = await _tagsDataSource.search(name: keyword);
       return result.data;
     } catch (e) {
@@ -37,7 +35,6 @@ class TagsRepositoryImpl implements TagsRepository {
   @override
   Future<List<Tag>> recommend() async {
     try {
-      logger.i("[$runtimeType] search");
       final result = await _tagsDataSource.search();
       return result.data;
     } catch (e) {

@@ -1,6 +1,5 @@
 import 'package:fortune_client/data/model/core/base/address_with_id/address_with_id.dart';
 import 'package:fortune_client/data/repository/repository.dart';
-import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/view/pages/common/entry_address/entry_address_state.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 

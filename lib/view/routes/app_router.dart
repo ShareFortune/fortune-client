@@ -9,7 +9,7 @@ import 'package:fortune_client/view/pages/my/my/my_page.dart';
 import 'package:fortune_client/view/pages/profile/profile/profile_page.dart';
 import 'package:fortune_client/view/pages/rooms/room_detail/room_detail_page.dart';
 import 'package:fortune_client/view/pages/settings/settings_page.dart';
-import 'package:fortune_client/view/pages/tags/select/select_tags_page.dart';
+import 'package:fortune_client/view/pages/tags/search/search_tags_page.dart';
 import 'package:fortune_client/view/routes/route_path.dart';
 
 class AppRouter {
@@ -71,8 +71,6 @@ class AppRouter {
       case RoutePath.messageRoom:
         // TODO: Handle this case.
         break;
-      case RoutePath.tag:
-        return _slidePageRouteBuilder(SelectTagsPage(List.empty()));
 
       case RoutePath.tagInput:
         // TODO: Handle this case.
@@ -102,8 +100,9 @@ class AppRouter {
         // TODO: Handle this case.
         break;
       case RoutePath.searchTag:
-        // TODO: Handle this case.
-        break;
+        arguments as SearchTagsPageAuguments;
+        return _slidePageRouteBuilder(SearchTagsPage(arguments));
+
       case RoutePath.searchAddress:
         // TODO: Handle this case.
         break;
