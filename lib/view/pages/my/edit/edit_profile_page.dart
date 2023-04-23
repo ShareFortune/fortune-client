@@ -52,7 +52,7 @@ class EditProfilePage extends HookConsumerWidget {
             selfIntroduction: state.profile.selfIntroduction,
           ),
           ProfileTagWidget(
-            onEdited: (value) {},
+            onEdited: viewModel.changeTags,
             tags: state.profile.tags,
           ),
           ProfileBasicInfoWidget(
