@@ -2,6 +2,9 @@ import 'package:fortune_client/data/model/core/base/address_with_id/address_with
 import 'package:fortune_client/data/model/core/base/tag/tag.dart';
 import 'package:fortune_client/data/repository/repository.dart';
 import 'package:fortune_client/view/pages/rooms/room_list/room_list_state.dart';
+import 'package:fortune_client/view/pages/tags/search/search_tags_page.dart';
+import 'package:fortune_client/view/routes/route_navigator.dart';
+import 'package:fortune_client/view/routes/route_path.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final roomListViewModelProvider =
@@ -76,25 +79,33 @@ class RoomListViewModel extends StateNotifier<RoomListState> {
   }
 
   /// フィルタリング
-  Future<void> filtering(RoomListStateFilter? filter) async {
+  Future<void> _filtering(RoomListStateFilter? filter) async {
     if (filter == null) return;
     state = state.copyWith(filter: filter);
     await fetchList();
   }
 
   /// タグでフィルタリング
-  Future<void> filteringByTags(List<Tag>? tags) async {
-    await filtering(state.filter.copyWith(tags: tags));
+  Future<void> filteringByTags() async {
+    await navigator.navigateTo(
+      RoutePath.searchTag,
+      arguments: SearchTagsPageAuguments(
+        tags: state.filter.tags,
+        onChanged: (tags) => _filtering(
+          state.filter.copyWith(tags: tags),
+        ),
+      ),
+    );
   }
 
   /// 場所でフィルタリング
   Future<void> filteringByAddress(AddressWithId? addressWithId) async {
-    await filtering(state.filter.copyWith(addressWithId: addressWithId));
+    await _filtering(state.filter.copyWith(addressWithId: addressWithId));
   }
 
   /// 参加人数でフィルタリング
   Future<void> filteringByMemberNum(int? memberNum) async {
-    await filtering(state.filter.copyWith(memberNum: memberNum));
+    await _filtering(state.filter.copyWith(memberNum: memberNum));
   }
 
   /// フィルターのリセット
@@ -102,21 +113,4 @@ class RoomListViewModel extends StateNotifier<RoomListState> {
     state = state.copyWith(filter: const RoomListStateFilter());
     await fetchList();
   }
-
-  /// 場所検索ページへ遷移
-  Future<AddressWithId?> navigateToEntryAddress() async {
-    // return await getIt<AppRouter>().push(
-    //   EntryAddressRoute(),
-    // ) as AddressWithId?;
-  }
-
-  /// タグ検索ページへ遷移
-  Future<List<Tag>?> navigateToTagsSelection() async {
-    // return await getIt<AppRouter>().push(
-    //   SelectTagsRoute(beingSet: state.filter.tags ?? List.empty()),
-    // ) as List<Tag>?;
-  }
-
-  /// ルーム詳細ページへ遷移
-  navigateToRoomDetail(String id) async {}
 }

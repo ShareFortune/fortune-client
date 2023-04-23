@@ -231,7 +231,7 @@ mixin _$RoomListStateFilter {
   AddressWithId? get addressWithId => throw _privateConstructorUsedError;
 
   /// タグ
-  List<Tag>? get tags => throw _privateConstructorUsedError;
+  List<Tag> get tags => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $RoomListStateFilterCopyWith<RoomListStateFilter> get copyWith =>
@@ -244,7 +244,7 @@ abstract class $RoomListStateFilterCopyWith<$Res> {
           RoomListStateFilter value, $Res Function(RoomListStateFilter) then) =
       _$RoomListStateFilterCopyWithImpl<$Res, RoomListStateFilter>;
   @useResult
-  $Res call({int? memberNum, AddressWithId? addressWithId, List<Tag>? tags});
+  $Res call({int? memberNum, AddressWithId? addressWithId, List<Tag> tags});
 
   $AddressWithIdCopyWith<$Res>? get addressWithId;
 }
@@ -264,7 +264,7 @@ class _$RoomListStateFilterCopyWithImpl<$Res, $Val extends RoomListStateFilter>
   $Res call({
     Object? memberNum = freezed,
     Object? addressWithId = freezed,
-    Object? tags = freezed,
+    Object? tags = null,
   }) {
     return _then(_value.copyWith(
       memberNum: freezed == memberNum
@@ -275,10 +275,10 @@ class _$RoomListStateFilterCopyWithImpl<$Res, $Val extends RoomListStateFilter>
           ? _value.addressWithId
           : addressWithId // ignore: cast_nullable_to_non_nullable
               as AddressWithId?,
-      tags: freezed == tags
+      tags: null == tags
           ? _value.tags
           : tags // ignore: cast_nullable_to_non_nullable
-              as List<Tag>?,
+              as List<Tag>,
     ) as $Val);
   }
 
@@ -303,7 +303,7 @@ abstract class _$$_RoomListStateFilterCopyWith<$Res>
       __$$_RoomListStateFilterCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int? memberNum, AddressWithId? addressWithId, List<Tag>? tags});
+  $Res call({int? memberNum, AddressWithId? addressWithId, List<Tag> tags});
 
   @override
   $AddressWithIdCopyWith<$Res>? get addressWithId;
@@ -322,7 +322,7 @@ class __$$_RoomListStateFilterCopyWithImpl<$Res>
   $Res call({
     Object? memberNum = freezed,
     Object? addressWithId = freezed,
-    Object? tags = freezed,
+    Object? tags = null,
   }) {
     return _then(_$_RoomListStateFilter(
       memberNum: freezed == memberNum
@@ -333,10 +333,10 @@ class __$$_RoomListStateFilterCopyWithImpl<$Res>
           ? _value.addressWithId
           : addressWithId // ignore: cast_nullable_to_non_nullable
               as AddressWithId?,
-      tags: freezed == tags
+      tags: null == tags
           ? _value._tags
           : tags // ignore: cast_nullable_to_non_nullable
-              as List<Tag>?,
+              as List<Tag>,
     ));
   }
 }
@@ -345,7 +345,7 @@ class __$$_RoomListStateFilterCopyWithImpl<$Res>
 
 class _$_RoomListStateFilter implements _RoomListStateFilter {
   const _$_RoomListStateFilter(
-      {this.memberNum, this.addressWithId, final List<Tag>? tags})
+      {this.memberNum, this.addressWithId, final List<Tag> tags = const []})
       : _tags = tags;
 
   /// 募集人数
@@ -357,16 +357,15 @@ class _$_RoomListStateFilter implements _RoomListStateFilter {
   final AddressWithId? addressWithId;
 
   /// タグ
-  final List<Tag>? _tags;
+  final List<Tag> _tags;
 
   /// タグ
   @override
-  List<Tag>? get tags {
-    final value = _tags;
-    if (value == null) return null;
+  @JsonKey()
+  List<Tag> get tags {
     if (_tags is EqualUnmodifiableListView) return _tags;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
+    return EqualUnmodifiableListView(_tags);
   }
 
   @override
@@ -402,7 +401,7 @@ abstract class _RoomListStateFilter implements RoomListStateFilter {
   const factory _RoomListStateFilter(
       {final int? memberNum,
       final AddressWithId? addressWithId,
-      final List<Tag>? tags}) = _$_RoomListStateFilter;
+      final List<Tag> tags}) = _$_RoomListStateFilter;
 
   @override
 
@@ -415,7 +414,7 @@ abstract class _RoomListStateFilter implements RoomListStateFilter {
   @override
 
   /// タグ
-  List<Tag>? get tags;
+  List<Tag> get tags;
   @override
   @JsonKey(ignore: true)
   _$$_RoomListStateFilterCopyWith<_$_RoomListStateFilter> get copyWith =>

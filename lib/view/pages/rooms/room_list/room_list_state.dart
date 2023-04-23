@@ -35,7 +35,7 @@ class RoomListStateFilter with _$RoomListStateFilter {
     AddressWithId? addressWithId,
 
     /// タグ
-    List<Tag>? tags,
+    @Default([]) List<Tag> tags,
   }) = _RoomListStateFilter;
 }
 

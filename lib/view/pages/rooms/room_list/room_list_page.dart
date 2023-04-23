@@ -49,15 +49,7 @@ class RoomListPage extends HookConsumerWidget {
                   const Gap(15),
                   _RoomsFilterButton(
                     title: "タグ",
-                    onTap: () async {
-                      await navigator.navigateTo(
-                        RoutePath.searchTag,
-                        arguments: SearchTagsPageAuguments(
-                          tags: state.filter.tags ?? [],
-                          onChanged: (tags) {},
-                        ),
-                      );
-                    },
+                    onTap: viewModel.filteringByTags,
                   ),
                 ],
               ),
