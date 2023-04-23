@@ -12,7 +12,7 @@ import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/other/async_value_widget.dart';
 import 'package:fortune_client/view/widgets/picker/address_picker.dart';
-import 'package:fortune_client/view/widgets/picker/height_picker.dart';
+import 'package:fortune_client/view/widgets/picker/number_picker.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -52,7 +52,7 @@ class RoomListPage extends HookConsumerWidget {
                   _RoomsFilterButton(
                     title: "人数",
                     onTap: () async {
-                      await HeightPicker.show(
+                      await NumberPicker.participants().show(
                         context: context,
                         onChanged: viewModel.filteringByMemberNum,
                       );
