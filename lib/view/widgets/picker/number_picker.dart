@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:fortune_client/l10n/locale_keys.g.dart';
 import 'package:fortune_client/view/widgets/picker/base_bottom_picker.dart';
 
-class NumberPicker {
+class NumberPicker extends BasePicker {
   /// 最小の値
   final int minValue;
 
@@ -19,10 +19,8 @@ class NumberPicker {
   /// 表示する値の数
   int get count => maxValue - minValue + 1;
 
-  /// 未選択の値
-  static const int unselected = -1;
-
   /// 未選択かどうか判定
+  @override
   bool isUnselected(int value) => value < minValue;
 
   /// Indexから値を取得
@@ -64,9 +62,7 @@ class NumberPicker {
   }) async {
     await showModalBottomSheet(
       context: context,
-      constraints: BoxConstraints(
-        maxHeight: MediaQuery.of(context).size.height * 0.3,
-      ),
+      constraints: BoxConstraints(maxHeight: height),
       builder: (BuildContext context) {
         return BaseBottomPicker(
           items: List.generate(count, (index) {

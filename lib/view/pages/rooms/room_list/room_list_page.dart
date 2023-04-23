@@ -40,7 +40,7 @@ class RoomListPage extends HookConsumerWidget {
                     isAppliedFilter: state.filter.isFilteredByAddress,
                     onTap: () async {
                       viewModel.filteringByAddress(
-                        await AddressPicker.show(
+                        await AddressPicker().show(
                           context: context,
                           theme: theme,
                           address: state.filter.address,

@@ -5,6 +5,17 @@ import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+class BasePicker {
+  /// 高さ
+  double get height => 350;
+
+  /// 未選択の値
+  final int unselected = -1;
+
+  /// 未選択かどうか判定
+  bool isUnselected(int index) => index == unselected;
+}
+
 class BaseBottomPicker extends StatefulHookConsumerWidget {
   const BaseBottomPicker({
     super.key,

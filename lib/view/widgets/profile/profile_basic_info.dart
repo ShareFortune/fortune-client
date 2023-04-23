@@ -11,6 +11,7 @@ import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/picker/address_picker.dart';
 import 'package:fortune_client/view/widgets/picker/base_bottom_picker.dart';
+import 'package:fortune_client/view/widgets/picker/enum_picker.dart';
 import 'package:fortune_client/view/widgets/picker/number_picker.dart';
 import 'package:fortune_client/view/widgets/profile/profile_view_item.dart';
 import 'package:gap/gap.dart';
@@ -41,8 +42,8 @@ class ProfileBasicInfoWidget extends ConsumerWidget {
   final Function(String)? onEditedName;
   final Function(Address)? onEditedAddress;
   final Function(int)? onEditedHeight;
-  final Function(DrinkFrequency)? onEditedDrinkFrequency;
-  final Function(CigaretteFrequency)? onEditedCigaretteFrequency;
+  final Function(DrinkFrequency?)? onEditedDrinkFrequency;
+  final Function(CigaretteFrequency?)? onEditedCigaretteFrequency;
 
   bool get isEditable =>
       onEditedName != null ||
@@ -85,7 +86,7 @@ class ProfileBasicInfoWidget extends ConsumerWidget {
           title: LocaleKeys.data_profile_address_title.tr(),
           format: address.prefecture,
           onTapped: () async {
-            await AddressPicker.show(
+            await AddressPicker().show(
               context: context,
               theme: theme,
               address: address,
@@ -116,18 +117,11 @@ class ProfileBasicInfoWidget extends ConsumerWidget {
           title: LocaleKeys.data_profile_drinkFrequency_title.tr(),
           format: drinkFrequency?.text,
           onTapped: () async {
-            await showModalBottomSheet(
-              constraints: BoxConstraints(
-                maxHeight: MediaQuery.of(context).size.height * 0.3,
-              ),
+            EnumPicker<DrinkFrequency>.drinkFrequency().show(
               context: context,
-              builder: (BuildContext context) {
-                return BaseBottomPicker(
-                  items: DrinkFrequency.values.map((e) => e.text).toList(),
-                  onChanged: (index) {
-                    onEditedDrinkFrequency?.call(DrinkFrequency.values[index]);
-                  },
-                );
+              onConvert: DrinkFrequencyEx.fromText,
+              onChanged: (drinkFrequency) {
+                onEditedDrinkFrequency?.call(drinkFrequency);
               },
             );
           },
@@ -139,20 +133,12 @@ class ProfileBasicInfoWidget extends ConsumerWidget {
           title: LocaleKeys.data_profile_cigaretteFrequency_title.tr(),
           format: cigaretteFrequency?.text,
           hasValue: cigaretteFrequency?.text != null,
-          onTapped: () async {
-            await showModalBottomSheet(
-              constraints: BoxConstraints(
-                maxHeight: MediaQuery.of(context).size.height * 0.3,
-              ),
+          onTapped: () {
+            EnumPicker<CigaretteFrequency>.cigaretteFrequency().show(
               context: context,
-              builder: (BuildContext context) {
-                return BaseBottomPicker(
-                  items: CigaretteFrequency.values.map((e) => e.text).toList(),
-                  onChanged: (index) {
-                    onEditedCigaretteFrequency
-                        ?.call(CigaretteFrequency.values[index]);
-                  },
-                );
+              onConvert: CigaretteFrequencyEx.fromText,
+              onChanged: (cigaretteFrequency) {
+                onEditedCigaretteFrequency?.call(cigaretteFrequency);
               },
             );
           },

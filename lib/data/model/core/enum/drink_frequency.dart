@@ -24,10 +24,6 @@ extension DrinkFrequencyEx on DrinkFrequency {
 
   String get rawValue => rawValues[this]!;
 
-  static DrinkFrequency from(String rawValue) {
-    return rawValues.keys.firstWhere((key) => rawValues[key] == rawValue);
-  }
-
   String get text {
     switch (this) {
       case DrinkFrequency.always:
@@ -39,6 +35,19 @@ extension DrinkFrequencyEx on DrinkFrequency {
       case DrinkFrequency.never:
         return "飲まない";
     }
+  }
+
+  /// [rawValue]から[DrinkFrequency]を取得
+  static DrinkFrequency from(String rawValue) {
+    return rawValues.keys.firstWhere((key) => rawValues[key] == rawValue);
+  }
+
+  /// [text]から[DrinkFrequency]を取得
+  static DrinkFrequency? fromText(String text) {
+    for (var value in DrinkFrequency.values) {
+      if (value.text == text) return value;
+    }
+    return null;
   }
 }
 

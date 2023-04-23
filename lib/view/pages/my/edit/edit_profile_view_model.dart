@@ -73,14 +73,14 @@ class EditProfileViewModel extends StateNotifier<EditProfileState> {
   }
 
   /// 飲酒頻度を更新する
-  void changeDrinkFrequency(DrinkFrequency drinkFrequency) {
+  void changeDrinkFrequency(DrinkFrequency? drinkFrequency) {
     state = state.copyWith(
       profile: profile.copyWith(drinkFrequency: drinkFrequency),
     );
   }
 
   /// 喫煙頻度を更新する
-  void changeCigaretteFrequency(CigaretteFrequency cigaretteFrequency) {
+  void changeCigaretteFrequency(CigaretteFrequency? cigaretteFrequency) {
     state = state.copyWith(
       profile: profile.copyWith(cigaretteFrequency: cigaretteFrequency),
     );
