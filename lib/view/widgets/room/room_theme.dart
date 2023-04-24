@@ -21,13 +21,15 @@ class RoomTheme {
   final TextStyle descriptionStyle;
 
   /// 枠線（上下）
-  final BorderSide? border;
+  final BorderSide border;
 
   /// ルーム状態の説明文
-  Text get description => Text(
-        descriptionText,
-        style: descriptionStyle.paint(descriptionColor),
-      );
+  Text get description {
+    return Text(
+      descriptionText,
+      style: descriptionStyle.paint(descriptionColor),
+    );
+  }
 
   RoomTheme({
     required this.backgroundColor,
@@ -35,7 +37,7 @@ class RoomTheme {
     required this.descriptionText,
     required this.descriptionColor,
     required this.descriptionStyle,
-    this.border,
+    this.border = BorderSide.none,
   });
 
   RoomTheme copyWith({
@@ -170,7 +172,7 @@ class RoomThemeFactory {
       descriptionStyle: theme.textTheme.h20.bold(),
       backgroundColor: theme.appColors.onBackground,
       userBackgroundColor: theme.appColors.onBackground,
-      border: const BorderSide(color: Colors.black12, width: 1),
+      border: BorderSide(color: theme.appColors.border1, width: 0.5),
       descriptionText: '',
     );
   }

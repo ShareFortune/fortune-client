@@ -8,11 +8,32 @@ import 'package:fortune_client/view/widgets/room/room_state.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class ParticipatingPage extends HookConsumerWidget {
+class ParticipatingPage extends StatefulHookConsumerWidget {
   const ParticipatingPage({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<ParticipatingPage> createState() => _ParticipatingPageState();
+}
+
+class _ParticipatingPageState extends ConsumerState<ParticipatingPage>
+    with SingleTickerProviderStateMixin {
+  TabController? _tabController;
+
+  @override
+  void initState() {
+    _tabController = TabController(length: 2, vsync: this);
+    _tabController?.animation?.addListener(() => setState(() {}));
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _tabController?.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final theme = ref.watch(appThemeProvider);
     final state = ref.watch(participatingViewModelProvider);
     final viewModel = ref.watch(participatingViewModelProvider.notifier);
@@ -24,17 +45,27 @@ class ParticipatingPage extends HookConsumerWidget {
           headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
             return <Widget>[
               const ScrollAppBar(title: '見つける'),
-              const SliverPersistentHeader(
+              SliverPersistentHeader(
                 delegate: _StickyTabBarDelegate(
+                  theme: theme,
                   tabBar: TabBar(
-                    labelColor: Colors.black,
-                    tabs: [Tab(text: '1'), Tab(text: '2')],
+                    controller: _tabController,
+                    indicatorColor: Colors.transparent,
+                    labelColor: theme.appColors.onPrimary,
+                    labelStyle: theme.textTheme.h20.bold(),
+                    unselectedLabelColor: theme.appColors.primary,
+                    unselectedLabelStyle: theme.textTheme.h20.bold(),
+                    tabs: [
+                      'ホスト',
+                      'ゲスト',
+                    ].map((e) => Tab(text: e)).toList(),
                   ),
                 ),
-              )
+              ),
             ];
           },
           body: TabBarView(
+            controller: _tabController,
             children: [
               /// ホスト
               _Item(
@@ -88,8 +119,12 @@ class _Item<RoomType> extends HookConsumerWidget {
 
 //SliverPersistentHeaderDelegateを継承したTabBarを作る
 class _StickyTabBarDelegate extends SliverPersistentHeaderDelegate {
-  const _StickyTabBarDelegate({required this.tabBar});
+  const _StickyTabBarDelegate({
+    required this.theme,
+    required this.tabBar,
+  });
 
+  final AppTheme theme;
   final TabBar tabBar;
 
   @override
@@ -98,9 +133,44 @@ class _StickyTabBarDelegate extends SliverPersistentHeaderDelegate {
   @override
   double get maxExtent => tabBar.preferredSize.height;
 
+  TabController? get controller => tabBar.controller;
+
+  /// PageViewのスクロール量を[0~1]で取得する
+  double get animationValue => controller?.animation?.value ?? 0;
+
+  /// [0~1]で生成されるデータを[-1~1]に変換する
+  double get indicatorPosition => animationValue * 2 - 1;
+
+  /// 現在表示されているWidget
+  Widget get currentWidget => tabBar.tabs[controller?.index ?? 0];
+
   @override
   Widget build(context, shrinkOffset, overlapsContent) {
-    return Container(color: Colors.white, child: tabBar);
+    return Container(
+      color: theme.appColors.onBackground,
+      child: Stack(
+        children: [
+          AnimatedAlign(
+            alignment: Alignment(indicatorPosition, 0),
+            duration: const Duration(milliseconds: 1),
+            child: Container(
+              alignment: Alignment.center,
+              padding: const EdgeInsets.symmetric(vertical: 8),
+              width: MediaQuery.of(context).size.width / 2,
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(30),
+                  color: theme.appColors.primary,
+                ),
+                child: Opacity(opacity: 0, child: currentWidget),
+              ),
+            ),
+          ),
+          Container(color: Colors.transparent, child: tabBar),
+        ],
+      ),
+    );
   }
 
   @override
@@ -108,3 +178,28 @@ class _StickyTabBarDelegate extends SliverPersistentHeaderDelegate {
     return tabBar != oldDelegate.tabBar;
   }
 }
+
+
+        //  AnimatedAlign(
+        //     alignment: Alignment(indicatorPosition, 0),
+        //     duration: const Duration(milliseconds: 1),
+        //     child: SizedBox(
+        //       width: MediaQuery.of(context).size.width / 2,
+        //       child: Container(
+        //         alignment: Alignment.center,
+        //         decoration: BoxDecoration(
+        //           borderRadius: BorderRadius.circular(30),
+        //           color: theme.appColors.primary,
+        //         ),
+        //         padding: const EdgeInsets.symmetric(
+        //           vertical: 6,
+        //           horizontal: 20,
+        //         ),
+        //         child: FittedBox(
+        //           fit: BoxFit.fill,
+        //           child: tabBar.tabs.first,
+        //         ),
+        //         // child: Opacity(opacity: 0, child: tabBar.tabs.first),
+        //       ),
+        //     ),
+        //   ),

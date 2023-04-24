@@ -19,16 +19,7 @@ class ParticipatingRoom extends HookConsumerWidget {
       padding: const EdgeInsets.fromLTRB(20, 15, 20, 20),
       decoration: BoxDecoration(
         color: room.theme.backgroundColor,
-        border: const Border(
-          top: BorderSide(
-            color: Colors.black12,
-            width: 0.5,
-          ),
-          bottom: BorderSide(
-            color: Colors.black12,
-            width: 0.5,
-          ),
-        ),
+        border: Border(top: room.theme.border, bottom: room.theme.border),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
