@@ -33,9 +33,7 @@ class GetV1ProfilesResponse with _$GetV1ProfilesResponse {
     required List<Tag> tags,
   }) = _GetV1ProfilesResponse;
 
-  factory GetV1ProfilesResponse.fromJson(Map<String, dynamic> json) =>
-      _$GetV1ProfilesResponseFromJson(json);
-
+  /// プロフィール画像のURLのリストを返す
   List<String> images() => [
         mainImageURL,
         secondImageURL,
@@ -44,4 +42,7 @@ class GetV1ProfilesResponse with _$GetV1ProfilesResponse {
         fifthImageURL,
         sixthImageURL,
       ].whereType<String>().toList();
+
+  factory GetV1ProfilesResponse.fromJson(Map<String, dynamic> json) =>
+      _$GetV1ProfilesResponseFromJson(json);
 }

@@ -12,9 +12,23 @@ class AddressesRepositoryImpl implements AddressesRepository {
   @override
   Future<List<AddressWithId>> search(String keyword) async {
     try {
-      logger.i("[$runtimeType] search");
       final result = await _addressesDataSource.search(city: keyword);
       return result.data;
+    } catch (e) {
+      logger.e(e);
+      rethrow;
+    }
+  }
+
+  @override
+  Future<int> getId(Address address) async {
+    try {
+      final result = await _addressesDataSource.search(city: address.city);
+      return result.data.firstWhere((e) {
+        if (e.city != address.city) return false;
+        if (e.prefecture != address.prefecture) return false;
+        return true;
+      }).id;
     } catch (e) {
       logger.e(e);
       rethrow;

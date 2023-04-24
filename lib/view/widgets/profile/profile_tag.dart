@@ -3,8 +3,9 @@ import 'package:fortune_client/data/model/core/base/tag/tag.dart';
 import 'package:fortune_client/view/pages/tags/search/search_tags_page.dart';
 import 'package:fortune_client/view/routes/route_navigator.dart';
 import 'package:fortune_client/view/routes/route_path.dart';
-import 'package:fortune_client/view/widgets/other/tag_widget.dart';
+import 'package:fortune_client/view/widgets/tag/tag_widget.dart';
 import 'package:fortune_client/view/widgets/profile/profile_view_item.dart';
+import 'package:fortune_client/view/widgets/tag/tags_wraper.dart';
 
 /// タグ
 class ProfileTagWidget extends StatelessWidget {
@@ -37,13 +38,7 @@ class ProfileTagWidget extends StatelessWidget {
         );
       },
       isEditable: onEdited != null,
-      child: Wrap(
-        spacing: 10,
-        runSpacing: 10,
-        children: tags.map((e) {
-          return TagWidget(value: e.name);
-        }).toList(),
-      ),
+      child: TagsWraper(tags),
     );
   }
 }

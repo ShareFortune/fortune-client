@@ -24,10 +24,6 @@ extension CigaretteFrequencyEx on CigaretteFrequency {
 
   String get rawValue => rawValues[this]!;
 
-  static CigaretteFrequency from(String rawValue) {
-    return rawValues.keys.firstWhere((key) => rawValues[key] == rawValue);
-  }
-
   String get text {
     switch (this) {
       case CigaretteFrequency.always:
@@ -39,6 +35,19 @@ extension CigaretteFrequencyEx on CigaretteFrequency {
       case CigaretteFrequency.never:
         return "吸わない";
     }
+  }
+
+  /// [rawValue]から[CigaretteFrequency]を取得
+  static CigaretteFrequency from(String rawValue) {
+    return rawValues.keys.firstWhere((key) => rawValues[key] == rawValue);
+  }
+
+  /// [text]から[CigaretteFrequency]を取得
+  static CigaretteFrequency? fromText(String text) {
+    for (var value in CigaretteFrequency.values) {
+      if (value.text == text) return value;
+    }
+    return null;
   }
 }
 

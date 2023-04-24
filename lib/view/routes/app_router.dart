@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fortune_client/view/pages/common/entry_address/entry_address_page.dart';
 import 'package:fortune_client/view/pages/common/home/home_page.dart';
 import 'package:fortune_client/view/pages/common/input/input_long_text_page.dart';
 import 'package:fortune_client/view/pages/common/input/input_text_page.dart';
@@ -40,7 +41,10 @@ class AppRouter {
       case RoutePath.profile:
 
         /// ここで、ProfilePageに渡す引数を設定する
-        return _fadePageRouteBuilder(const ProfilePage());
+        return _slidePageRouteBuilder(
+          const ProfilePage(),
+          offset: const Offset(0.0, 1.0),
+        );
 
       case RoutePath.my:
         return _fadePageRouteBuilder(const MyPage());
@@ -104,8 +108,10 @@ class AppRouter {
         return _slidePageRouteBuilder(SearchTagsPage(arguments));
 
       case RoutePath.searchAddress:
-        // TODO: Handle this case.
-        break;
+        return _slidePageRouteBuilder(
+          EntryAddressPage(),
+          offset: const Offset(0.0, 1.0),
+        );
 
       case RoutePath.inputText:
         arguments as InputTextPageArguments;

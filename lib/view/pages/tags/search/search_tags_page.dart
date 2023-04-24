@@ -11,7 +11,7 @@ import 'package:fortune_client/view/widgets/app_bar/back_app_bar.dart';
 import 'package:fortune_client/view/widgets/button/save_button.dart';
 import 'package:fortune_client/view/widgets/form_field/base_text_field.dart';
 import 'package:fortune_client/view/widgets/other/async_value_widget.dart';
-import 'package:fortune_client/view/widgets/other/tag_widget.dart';
+import 'package:fortune_client/view/widgets/tag/tag_widget.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -275,7 +275,7 @@ class _TagsWraper extends HookConsumerWidget {
               : theme.appColors.background,
           borderColor: tagState.isSelected
               ? theme.appColors.primary //
-              : theme.appColors.border1,
+              : theme.appColors.border2,
           textColor: tagState.isSelected
               ? theme.appColors.onPrimary //
               : theme.appColors.subText2,

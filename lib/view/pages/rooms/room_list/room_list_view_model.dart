@@ -1,12 +1,9 @@
-import 'package:fortune_client/data/model/core/base/address_with_id/address_with_id.dart';
-import 'package:fortune_client/data/model/core/base/tag/tag.dart';
+import 'package:fortune_client/data/model/core/base/address/address.dart';
 import 'package:fortune_client/data/repository/repository.dart';
-import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/view/pages/rooms/room_list/room_list_state.dart';
-import 'package:fortune_client/view/routes/app_router.dart';
+import 'package:fortune_client/view/pages/tags/search/search_tags_page.dart';
 import 'package:fortune_client/view/routes/route_navigator.dart';
 import 'package:fortune_client/view/routes/route_path.dart';
-
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final roomListViewModelProvider =
@@ -19,16 +16,21 @@ final roomListViewModelProvider =
 class RoomListViewModel extends StateNotifier<RoomListState> {
   RoomListViewModel(super.state);
 
-  Future<void> initialize() async => await fetchList();
+  /// フィルター
+  RoomListStateFilter get filter => state.filter;
+
+  Future<void> initialize() async {
+    await fetchList();
+  }
 
   Future<void> fetchList() async {
     bool hasRoomSearchResult = false;
     state = state.copyWith(
       rooms: await AsyncValue.guard(() async {
         final result = await Repository.rooms.fetchList(
-          memberNum: state.filter.memberNum,
-          tags: state.filter.tags,
-          addressWithId: state.filter.addressWithId,
+          memberNum: filter.memberNum,
+          tags: filter.tags,
+          address: filter.address,
         );
 
         /// 検索結果が存在しない場合
@@ -80,30 +82,37 @@ class RoomListViewModel extends StateNotifier<RoomListState> {
     return true;
   }
 
-  /// フィルター更新
-  changeFilter(RoomListStateFilter? filter) async {
-    if (filter != null) {
-      state = state.copyWith(filter: filter);
-      await fetchList();
-    }
+  /// フィルタリング
+  Future<void> _filtering(RoomListStateFilter? filter) async {
+    if (filter == null) return;
+    state = state.copyWith(filter: filter);
+    await fetchList();
   }
 
-  /// 場所検索ページへ遷移
-  Future<AddressWithId?> navigateToEntryAddress() async {
-    // return await getIt<AppRouter>().push(
-    //   EntryAddressRoute(),
-    // ) as AddressWithId?;
+  /// タグでフィルタリング
+  Future<void> filteringByTags() async {
+    await navigator.navigateTo(
+      RoutePath.searchTag,
+      arguments: SearchTagsPageAuguments(
+        tags: filter.tags,
+        onChanged: (tags) => _filtering(filter.copyWith(tags: tags)),
+      ),
+    );
   }
 
-  /// タグ検索ページへ遷移
-  Future<List<Tag>?> navigateToTagsSelection() async {
-    // return await getIt<AppRouter>().push(
-    //   SelectTagsRoute(beingSet: state.filter.tags ?? List.empty()),
-    // ) as List<Tag>?;
+  /// 場所でフィルタリング
+  Future<void> filteringByAddress(Address? address) async {
+    await _filtering(filter.copyWith(address: address));
   }
 
-  /// ルーム詳細ページへ遷移
-  navigateToRoomDetail(String id) async {
-    await navigator.navigateTo(RoutePath.roomDetail);
+  /// 参加人数でフィルタリング
+  Future<void> filteringByMemberNum(int memberNum) async {
+    await _filtering(filter.copyWith(memberNum: memberNum));
+  }
+
+  /// フィルターのリセット
+  void resetFilter() async {
+    state = state.copyWith(filter: const RoomListStateFilter());
+    await fetchList();
   }
 }

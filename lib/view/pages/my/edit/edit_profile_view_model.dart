@@ -21,6 +21,7 @@ final editProfileViewModelProvider = StateNotifierProvider.family<
 class EditProfileViewModel extends StateNotifier<EditProfileState> {
   EditProfileViewModel(super.state);
 
+  GetV1ProfilesResponse get profile => state.profile;
   List<ProfileImage> get images => [...state.images];
 
   /// 画像を追加する
@@ -44,44 +45,44 @@ class EditProfileViewModel extends StateNotifier<EditProfileState> {
 
   /// 住所を更新する
   void changeAddress(Address address) {
-    state = state.copyWith(profile: state.profile.copyWith(address: address));
+    state = state.copyWith(profile: profile.copyWith(address: address));
   }
 
   /// 自己紹介を更新する
   void changeIntroduction(String selfIntroduction) {
     state = state.copyWith(
-      profile: state.profile.copyWith(selfIntroduction: selfIntroduction),
+      profile: profile.copyWith(selfIntroduction: selfIntroduction),
     );
   }
 
   /// 趣味を更新する
   void changeTags(List<Tag> tags) {
     state = state.copyWith(
-      profile: state.profile.copyWith(tags: tags),
+      profile: profile.copyWith(tags: tags),
     );
   }
 
   /// 名前を更新する
   void changeName(String name) {
-    state = state.copyWith(profile: state.profile.copyWith(name: name));
+    state = state.copyWith(profile: profile.copyWith(name: name));
   }
 
   /// 身長を更新する
   void changeHeight(int height) {
-    state = state.copyWith(profile: state.profile.copyWith(height: height));
+    state = state.copyWith(profile: profile.copyWith(height: height));
   }
 
   /// 飲酒頻度を更新する
-  void changeDrinkFrequency(DrinkFrequency drinkFrequency) {
+  void changeDrinkFrequency(DrinkFrequency? drinkFrequency) {
     state = state.copyWith(
-      profile: state.profile.copyWith(drinkFrequency: drinkFrequency),
+      profile: profile.copyWith(drinkFrequency: drinkFrequency),
     );
   }
 
   /// 喫煙頻度を更新する
-  void changeCigaretteFrequency(CigaretteFrequency cigaretteFrequency) {
+  void changeCigaretteFrequency(CigaretteFrequency? cigaretteFrequency) {
     state = state.copyWith(
-      profile: state.profile.copyWith(cigaretteFrequency: cigaretteFrequency),
+      profile: profile.copyWith(cigaretteFrequency: cigaretteFrequency),
     );
   }
 }

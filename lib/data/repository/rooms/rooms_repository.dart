@@ -1,3 +1,4 @@
+import 'package:fortune_client/data/model/core/base/address/address.dart';
 import 'package:fortune_client/data/model/core/base/address_with_id/address_with_id.dart';
 import 'package:fortune_client/data/model/core/base/profiles_files/profiles_files.dart';
 import 'package:fortune_client/data/model/core/base/room/room.dart';
@@ -40,7 +41,7 @@ abstract class RoomsRepository {
   Future<List<GetV1RoomsResponseRoom>> fetchList({
     int? memberNum,
     List<Tag>? tags,
-    AddressWithId? addressWithId,
+    Address? address,
   });
 
   /// ルームリストを取得・ホスト

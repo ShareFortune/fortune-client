@@ -1,8 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:fortune_client/data/model/core/base/address/address.dart';
-import 'package:flutter_japanese_address_picker/flutter_japanese_address_picker.dart'
-    hide Address;
 import 'package:fortune_client/data/model/core/enum/cigarette_frequency.dart';
 import 'package:fortune_client/data/model/core/enum/drink_frequency.dart';
 import 'package:fortune_client/l10n/locale_keys.g.dart';
@@ -11,7 +9,10 @@ import 'package:fortune_client/view/routes/route_navigator.dart';
 import 'package:fortune_client/view/routes/route_path.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
+import 'package:fortune_client/view/widgets/picker/address_picker.dart';
 import 'package:fortune_client/view/widgets/picker/base_bottom_picker.dart';
+import 'package:fortune_client/view/widgets/picker/enum_picker.dart';
+import 'package:fortune_client/view/widgets/picker/number_picker.dart';
 import 'package:fortune_client/view/widgets/profile/profile_view_item.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -41,8 +42,8 @@ class ProfileBasicInfoWidget extends ConsumerWidget {
   final Function(String)? onEditedName;
   final Function(Address)? onEditedAddress;
   final Function(int)? onEditedHeight;
-  final Function(DrinkFrequency)? onEditedDrinkFrequency;
-  final Function(CigaretteFrequency)? onEditedCigaretteFrequency;
+  final Function(DrinkFrequency?)? onEditedDrinkFrequency;
+  final Function(CigaretteFrequency?)? onEditedCigaretteFrequency;
 
   bool get isEditable =>
       onEditedName != null ||
@@ -66,16 +67,14 @@ class ProfileBasicInfoWidget extends ConsumerWidget {
           _Item(
             isEdit: true,
             title: "名前",
-            value: name,
+            format: name,
             onTapped: () {
               navigator.navigateTo(
                 RoutePath.inputText,
                 arguments: InputTextPageArguments(
                   title: "名前",
                   initialValue: name,
-                  onChanged: (value) {
-                    onEditedName?.call(value);
-                  },
+                  onChanged: onEditedName,
                 ),
               );
             },
@@ -85,29 +84,13 @@ class ProfileBasicInfoWidget extends ConsumerWidget {
         _Item(
           isEdit: onEditedAddress != null,
           title: LocaleKeys.data_profile_address_title.tr(),
-          value: address.prefecture,
+          format: address.prefecture,
           onTapped: () async {
-            await JapaneseAddressPicker.showBottomSheet(
-              context,
-              theme: JapaneseAddressPickerTheme(
-                headerCanselStyle:
-                    theme.textTheme.h30.paint(theme.appColors.subText2),
-                headerSaveStyle:
-                    theme.textTheme.h30.paint(theme.appColors.linkColor),
-                headerColor: theme.appColors.background,
-              ),
-              initialValue: AddressValue(
-                cityName: address.city,
-                prefectureName: address.prefecture,
-              ),
-              onChanged: (address) {
-                final newAddress = Address(
-                  country: '日本',
-                  prefecture: address.prefecture.name,
-                  city: address.city.name,
-                );
-                onEditedAddress?.call(newAddress);
-              },
+            await AddressPicker().show(
+              context: context,
+              theme: theme,
+              address: address,
+              onChanged: onEditedAddress,
             );
           },
         ),
@@ -119,24 +102,11 @@ class ProfileBasicInfoWidget extends ConsumerWidget {
           title: LocaleKeys.data_profile_stature_title.tr(),
           format: LocaleKeys.data_profile_stature_data.tr(),
           args: [height.toString()],
+          hasValue: height?.isNegative == false,
           onTapped: () async {
-            await showModalBottomSheet(
-              constraints: BoxConstraints(
-                maxHeight: MediaQuery.of(context).size.height * 0.3,
-              ),
+            await NumberPicker.height().show(
               context: context,
-              builder: (BuildContext context) {
-                return BaseBottomPicker(
-                  items: List.generate(71, (index) {
-                    return LocaleKeys.data_profile_stature_data.tr(
-                      args: [(index + 130).toString()],
-                    );
-                  }).toList(),
-                  onChanged: (index) {
-                    onEditedHeight?.call(index + 130);
-                  },
-                );
-              },
+              onChanged: onEditedHeight,
             );
           },
         ),
@@ -145,20 +115,13 @@ class ProfileBasicInfoWidget extends ConsumerWidget {
         _Item(
           isEdit: onEditedDrinkFrequency != null,
           title: LocaleKeys.data_profile_drinkFrequency_title.tr(),
-          value: drinkFrequency?.text,
+          format: drinkFrequency?.text,
           onTapped: () async {
-            await showModalBottomSheet(
-              constraints: BoxConstraints(
-                maxHeight: MediaQuery.of(context).size.height * 0.3,
-              ),
+            EnumPicker<DrinkFrequency>.drinkFrequency().show(
               context: context,
-              builder: (BuildContext context) {
-                return BaseBottomPicker(
-                  items: DrinkFrequency.values.map((e) => e.text).toList(),
-                  onChanged: (index) {
-                    onEditedDrinkFrequency?.call(DrinkFrequency.values[index]);
-                  },
-                );
+              onConvert: DrinkFrequencyEx.fromText,
+              onChanged: (drinkFrequency) {
+                onEditedDrinkFrequency?.call(drinkFrequency);
               },
             );
           },
@@ -168,21 +131,14 @@ class ProfileBasicInfoWidget extends ConsumerWidget {
         _Item(
           isEdit: onEditedCigaretteFrequency != null,
           title: LocaleKeys.data_profile_cigaretteFrequency_title.tr(),
-          value: cigaretteFrequency?.text,
-          onTapped: () async {
-            await showModalBottomSheet(
-              constraints: BoxConstraints(
-                maxHeight: MediaQuery.of(context).size.height * 0.3,
-              ),
+          format: cigaretteFrequency?.text,
+          hasValue: cigaretteFrequency?.text != null,
+          onTapped: () {
+            EnumPicker<CigaretteFrequency>.cigaretteFrequency().show(
               context: context,
-              builder: (BuildContext context) {
-                return BaseBottomPicker(
-                  items: CigaretteFrequency.values.map((e) => e.text).toList(),
-                  onChanged: (index) {
-                    onEditedCigaretteFrequency
-                        ?.call(CigaretteFrequency.values[index]);
-                  },
-                );
+              onConvert: CigaretteFrequencyEx.fromText,
+              onChanged: (cigaretteFrequency) {
+                onEditedCigaretteFrequency?.call(cigaretteFrequency);
               },
             );
           },
@@ -195,23 +151,35 @@ class ProfileBasicInfoWidget extends ConsumerWidget {
 class _Item extends HookConsumerWidget {
   const _Item({
     required this.title,
-    this.value,
+    this.hasValue = true,
     this.format,
     this.args = const [],
     this.isEdit = false,
     this.onTapped,
   });
 
+  /// タイトル
   final String title;
-  final String? value;
+
+  /// 表示テキスト
   final String? format;
+
+  /// formatの引数
   final List<String> args;
+
+  /// 編集可能か
   final bool isEdit;
+
+  /// 編集時にタップされた時の処理
   final VoidCallback? onTapped;
 
+  /// 値が存在するか
+  final bool hasValue;
+
   String get _value {
-    if (format == null) return value ?? "未設定";
-    return format!.tr(args: args);
+    if (!hasValue) return "未設定";
+    final text = format?.tr(args: args);
+    return text ?? "未設定";
   }
 
   @override

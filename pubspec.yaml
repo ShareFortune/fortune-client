@@ -35,7 +35,6 @@ dependencies:
   gap: ^2.0.1
   dotted_border: ^2.0.0+3
   fluttertoast: ^8.0.9
-  speech_bubble: ^0.0.9
   badges: ^3.0.2
 
   # camera & album

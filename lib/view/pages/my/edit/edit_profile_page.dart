@@ -232,15 +232,13 @@ class _ProfileImageEditor extends HookConsumerWidget {
               child: Text('削除する', style: deleteTextStyle),
               onPressed: () {
                 delete.call();
-                Navigator.pop(context);
+                navigator.goBack();
               },
             )
           ],
           cancelButton: CupertinoActionSheetAction(
+            onPressed: navigator.goBack,
             child: Text("キャンセル", style: defaultTextStyle),
-            onPressed: () {
-              Navigator.pop(context);
-            },
           ),
         );
       },

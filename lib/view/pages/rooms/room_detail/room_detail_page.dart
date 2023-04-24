@@ -10,7 +10,8 @@ import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/app_bar/back_app_bar.dart';
 import 'package:fortune_client/view/widgets/icon/user_icon_widget.dart';
 import 'package:fortune_client/view/widgets/other/async_value_widget.dart';
-import 'package:fortune_client/view/widgets/other/tag_widget.dart';
+import 'package:fortune_client/view/widgets/tag/tag_widget.dart';
+import 'package:fortune_client/view/widgets/tag/tags_wraper.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -60,7 +61,7 @@ class RoomDetailPage extends HookConsumerWidget {
             _Item(
               title: "タグ",
               middleMargin: 10,
-              child: _TagsWrapper(room.tags),
+              child: TagsWraper(room.tags ?? []),
             ),
             _Item(
               title: "説明",
@@ -176,30 +177,30 @@ class _MemberListView extends HookConsumerWidget {
   }
 }
 
-class _TagsWrapper extends HookConsumerWidget {
-  const _TagsWrapper(this.tags);
+// class _TagsWrapper extends HookConsumerWidget {
+//   const _TagsWrapper(this.tags);
 
-  final List<Tag>? tags;
+//   final List<Tag>? tags;
 
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final theme = ref.watch(appThemeProvider);
+//   @override
+//   Widget build(BuildContext context, WidgetRef ref) {
+//     final theme = ref.watch(appThemeProvider);
 
-    if (tags?.isNotEmpty != true) {
-      return Text(
-        LocaleKeys.myPage_profiles_tags_empty.tr(),
-        style: theme.textTheme.h30.paint(
-          theme.appColors.subText3,
-        ),
-      );
-    }
+//     if (tags?.isNotEmpty != true) {
+//       return Text(
+//         LocaleKeys.myPage_profiles_tags_empty.tr(),
+//         style: theme.textTheme.h30.paint(
+//           theme.appColors.subText3,
+//         ),
+//       );
+//     }
 
-    return Wrap(
-      spacing: 10,
-      runSpacing: 10,
-      children: tags!.map((e) {
-        return TagWidget(value: e.name);
-      }).toList(),
-    );
-  }
-}
+//     return Wrap(
+//       spacing: 10,
+//       runSpacing: 10,
+//       children: tags!.map((e) {
+//         return TagWidget(value: e.name);
+//       }).toList(),
+//     );
+//   }
+// }
