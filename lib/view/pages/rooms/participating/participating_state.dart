@@ -5,10 +5,12 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 part 'participating_state.freezed.dart';
 
+typedef RoomList<T> = AsyncValue<List<T>>;
+
 @freezed
 class ParticipatingState with _$ParticipatingState {
-  const factory ParticipatingState(
-    AsyncValue<List<GetV1RoomsHostResponseRoom>> host,
-    AsyncValue<List<GetV1RoomsGuestResponseRoom>> guest,
-  ) = _ParticipatingState;
+  const factory ParticipatingState({
+    required RoomList<GetV1RoomsHostResponseRoom> host,
+    required RoomList<GetV1RoomsGuestResponseRoom> guest,
+  }) = _ParticipatingState;
 }

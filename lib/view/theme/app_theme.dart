@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:fortune_client/view/theme/app_colors.dart';
+import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import 'app_colors.dart';
-import 'app_text_theme.dart';
+export 'package:fortune_client/view/theme/app_colors.dart';
+export 'package:fortune_client/view/theme/app_text_theme.dart';
 
 final appThemeModeProvider =
     StateNotifierProvider<StateController<ThemeMode>, ThemeMode>(
