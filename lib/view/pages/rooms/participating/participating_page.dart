@@ -40,54 +40,52 @@ class _ParticipatingPageState extends ConsumerState<ParticipatingPage>
     final state = ref.watch(participatingViewModelProvider);
     final viewModel = ref.watch(participatingViewModelProvider.notifier);
 
-    return Scaffold(
-      body: DefaultTabController(
-        length: 2,
-        child: NestedScrollView(
-          headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
-            return <Widget>[
-              ScrollAppBar(
-                title: LocaleKeys.participating_room_list_page_title.tr(),
-              ),
-              SliverPersistentHeader(
-                delegate: _StickyTabBarDelegate(
-                  theme: theme,
-                  tabBar: TabBar(
-                    controller: _tabController,
-                    indicatorColor: Colors.transparent,
-                    labelColor: theme.appColors.onPrimary,
-                    labelStyle: theme.textTheme.h20.bold(),
-                    unselectedLabelColor: theme.appColors.primary,
-                    unselectedLabelStyle: theme.textTheme.h20.bold(),
-                    tabs: [
-                      'ホスト',
-                      'ゲスト',
-                    ].map((e) => Tab(text: e)).toList(),
-                  ),
+    return DefaultTabController(
+      length: 2,
+      child: NestedScrollView(
+        headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+          return <Widget>[
+            ScrollAppBar(
+              title: LocaleKeys.participating_room_list_page_title.tr(),
+            ),
+            SliverPersistentHeader(
+              delegate: _StickyTabBarDelegate(
+                theme: theme,
+                tabBar: TabBar(
+                  controller: _tabController,
+                  indicatorColor: Colors.transparent,
+                  labelColor: theme.appColors.onPrimary,
+                  labelStyle: theme.textTheme.h20.bold(),
+                  unselectedLabelColor: theme.appColors.primary,
+                  unselectedLabelStyle: theme.textTheme.h20.bold(),
+                  tabs: [
+                    'ホスト',
+                    'ゲスト',
+                  ].map((e) => Tab(text: e)).toList(),
                 ),
               ),
-            ];
-          },
-          body: TabBarView(
-            controller: _tabController,
-            children: [
-              /// ホスト
-              _Item(
-                data: state.host,
-                builder: (room) => ParticipatingRoom(
-                  HostRoomState(theme, room),
-                ),
+            ),
+          ];
+        },
+        body: TabBarView(
+          controller: _tabController,
+          children: [
+            /// ホスト
+            _Item(
+              data: state.host,
+              builder: (room) => ParticipatingRoom(
+                HostRoomState(theme, room),
               ),
+            ),
 
-              /// ゲスト
-              _Item(
-                data: state.guest,
-                builder: (room) => ParticipatingRoom(
-                  GuestRoomState(theme, room),
-                ),
+            /// ゲスト
+            _Item(
+              data: state.guest,
+              builder: (room) => ParticipatingRoom(
+                GuestRoomState(theme, room),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
@@ -182,28 +180,3 @@ class _StickyTabBarDelegate extends SliverPersistentHeaderDelegate {
     return tabBar != oldDelegate.tabBar;
   }
 }
-
-
-        //  AnimatedAlign(
-        //     alignment: Alignment(indicatorPosition, 0),
-        //     duration: const Duration(milliseconds: 1),
-        //     child: SizedBox(
-        //       width: MediaQuery.of(context).size.width / 2,
-        //       child: Container(
-        //         alignment: Alignment.center,
-        //         decoration: BoxDecoration(
-        //           borderRadius: BorderRadius.circular(30),
-        //           color: theme.appColors.primary,
-        //         ),
-        //         padding: const EdgeInsets.symmetric(
-        //           vertical: 6,
-        //           horizontal: 20,
-        //         ),
-        //         child: FittedBox(
-        //           fit: BoxFit.fill,
-        //           child: tabBar.tabs.first,
-        //         ),
-        //         // child: Opacity(opacity: 0, child: tabBar.tabs.first),
-        //       ),
-        //     ),
-        //   ),
