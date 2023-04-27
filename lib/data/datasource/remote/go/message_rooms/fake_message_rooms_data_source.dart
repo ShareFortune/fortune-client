@@ -7,14 +7,14 @@ class FakeMessageRoomsDataSource implements MessageRoomsDataSource {
   @override
   Future<GetV1MessageRoomsResponse> getMessageRoomsHost() async {
     return GetV1MessageRoomsResponse.fromJson(
-      await JsonUtils.load(Assets.stub.getV1MessageRoomsResponse),
+      await JsonUtils.load(Assets.stub.messageRoomsResponseHost),
     );
   }
 
   @override
   Future<GetV1MessageRoomsResponse> getMessageRoomsGuest() async {
     return GetV1MessageRoomsResponse.fromJson(
-      await JsonUtils.load(Assets.stub.getV1MessageRoomsResponse),
+      await JsonUtils.load(Assets.stub.messageRoomsResponseGuest),
     );
   }
 }

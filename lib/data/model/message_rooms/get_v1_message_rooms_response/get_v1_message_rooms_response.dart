@@ -9,8 +9,8 @@ part 'get_v1_message_rooms_response.g.dart';
 @freezed
 class GetV1MessageRoomsResponse with _$GetV1MessageRoomsResponse {
   const factory GetV1MessageRoomsResponse({
-    @JsonKey(name: "nextToken") required String nextToken,
-    @JsonKey(name: "messageRooms") required List<MessageRoom> data,
+    required String nextToken,
+    required List<MessageRoom> messageRooms,
   }) = _GetV1MessageRoomsResponse;
 
   factory GetV1MessageRoomsResponse.fromJson(Map<String, dynamic> json) =>

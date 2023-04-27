@@ -34,7 +34,25 @@ class MessageRoomPage extends HookConsumerWidget {
         data: state.messages,
         builder: (messages) {
           return Chat(
-            theme: _defaultChatTheme(theme),
+            theme: DefaultChatTheme(
+              backgroundColor: theme.appColors.onBackground,
+              primaryColor: theme.appColors.primary,
+              inputBackgroundColor: theme.appColors.background,
+              inputTextColor: theme.appColors.subText1,
+              inputTextCursorColor: theme.appColors.subText2,
+              messageInsetsHorizontal: 20,
+              messageInsetsVertical: 12,
+              inputBorderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(30),
+                topRight: Radius.circular(30),
+              ),
+              inputContainerDecoration: const BoxDecoration(
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(30),
+                  topRight: Radius.circular(30),
+                ),
+              ),
+            ),
             messages: messages,
             onAttachmentPressed: () async {
               final file = await PhotoActionsSheet.getPhoto(theme, context);
@@ -44,43 +62,15 @@ class MessageRoomPage extends HookConsumerWidget {
             showUserAvatars: true,
             showUserNames: true,
             user: state.author,
-            l10n: _l10n(),
+            l10n: const ChatL10nEn(
+              attachmentButtonAccessibilityLabel: '画像アップロード',
+              emptyChatPlaceholder: 'メッセージがありません。',
+              inputPlaceholder: 'メッセージを入力してください',
+              sendButtonAccessibilityLabel: '送信',
+            ),
           );
         },
       ),
-    );
-  }
-
-  /// Default chat theme [DefaultChatTheme].
-  DefaultChatTheme _defaultChatTheme(AppTheme theme) {
-    return DefaultChatTheme(
-      backgroundColor: theme.appColors.onBackground,
-      primaryColor: theme.appColors.primary,
-      inputBackgroundColor: theme.appColors.background,
-      inputTextColor: theme.appColors.subText1,
-      inputTextCursorColor: theme.appColors.subText2,
-      messageInsetsHorizontal: 20,
-      messageInsetsVertical: 12,
-      inputBorderRadius: const BorderRadius.only(
-        topLeft: Radius.circular(30),
-        topRight: Radius.circular(30),
-      ),
-      inputContainerDecoration: const BoxDecoration(
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(30),
-          topRight: Radius.circular(30),
-        ),
-      ),
-    );
-  }
-
-  /// 多言語化
-  ChatL10nEn _l10n() {
-    return const ChatL10nEn(
-      attachmentButtonAccessibilityLabel: '画像アップロード',
-      emptyChatPlaceholder: 'メッセージがありません。',
-      inputPlaceholder: 'メッセージを入力してください',
-      sendButtonAccessibilityLabel: '送信',
     );
   }
 }

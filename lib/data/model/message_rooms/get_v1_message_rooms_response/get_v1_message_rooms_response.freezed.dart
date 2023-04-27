@@ -21,10 +21,8 @@ GetV1MessageRoomsResponse _$GetV1MessageRoomsResponseFromJson(
 
 /// @nodoc
 mixin _$GetV1MessageRoomsResponse {
-  @JsonKey(name: "nextToken")
   String get nextToken => throw _privateConstructorUsedError;
-  @JsonKey(name: "messageRooms")
-  List<MessageRoom> get data => throw _privateConstructorUsedError;
+  List<MessageRoom> get messageRooms => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -38,9 +36,7 @@ abstract class $GetV1MessageRoomsResponseCopyWith<$Res> {
           $Res Function(GetV1MessageRoomsResponse) then) =
       _$GetV1MessageRoomsResponseCopyWithImpl<$Res, GetV1MessageRoomsResponse>;
   @useResult
-  $Res call(
-      {@JsonKey(name: "nextToken") String nextToken,
-      @JsonKey(name: "messageRooms") List<MessageRoom> data});
+  $Res call({String nextToken, List<MessageRoom> messageRooms});
 }
 
 /// @nodoc
@@ -58,16 +54,16 @@ class _$GetV1MessageRoomsResponseCopyWithImpl<$Res,
   @override
   $Res call({
     Object? nextToken = null,
-    Object? data = null,
+    Object? messageRooms = null,
   }) {
     return _then(_value.copyWith(
       nextToken: null == nextToken
           ? _value.nextToken
           : nextToken // ignore: cast_nullable_to_non_nullable
               as String,
-      data: null == data
-          ? _value.data
-          : data // ignore: cast_nullable_to_non_nullable
+      messageRooms: null == messageRooms
+          ? _value.messageRooms
+          : messageRooms // ignore: cast_nullable_to_non_nullable
               as List<MessageRoom>,
     ) as $Val);
   }
@@ -82,9 +78,7 @@ abstract class _$$_GetV1MessageRoomsResponseCopyWith<$Res>
       __$$_GetV1MessageRoomsResponseCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: "nextToken") String nextToken,
-      @JsonKey(name: "messageRooms") List<MessageRoom> data});
+  $Res call({String nextToken, List<MessageRoom> messageRooms});
 }
 
 /// @nodoc
@@ -101,16 +95,16 @@ class __$$_GetV1MessageRoomsResponseCopyWithImpl<$Res>
   @override
   $Res call({
     Object? nextToken = null,
-    Object? data = null,
+    Object? messageRooms = null,
   }) {
     return _then(_$_GetV1MessageRoomsResponse(
       nextToken: null == nextToken
           ? _value.nextToken
           : nextToken // ignore: cast_nullable_to_non_nullable
               as String,
-      data: null == data
-          ? _value._data
-          : data // ignore: cast_nullable_to_non_nullable
+      messageRooms: null == messageRooms
+          ? _value._messageRooms
+          : messageRooms // ignore: cast_nullable_to_non_nullable
               as List<MessageRoom>,
     ));
   }
@@ -120,28 +114,25 @@ class __$$_GetV1MessageRoomsResponseCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_GetV1MessageRoomsResponse implements _GetV1MessageRoomsResponse {
   const _$_GetV1MessageRoomsResponse(
-      {@JsonKey(name: "nextToken") required this.nextToken,
-      @JsonKey(name: "messageRooms") required final List<MessageRoom> data})
-      : _data = data;
+      {required this.nextToken, required final List<MessageRoom> messageRooms})
+      : _messageRooms = messageRooms;
 
   factory _$_GetV1MessageRoomsResponse.fromJson(Map<String, dynamic> json) =>
       _$$_GetV1MessageRoomsResponseFromJson(json);
 
   @override
-  @JsonKey(name: "nextToken")
   final String nextToken;
-  final List<MessageRoom> _data;
+  final List<MessageRoom> _messageRooms;
   @override
-  @JsonKey(name: "messageRooms")
-  List<MessageRoom> get data {
-    if (_data is EqualUnmodifiableListView) return _data;
+  List<MessageRoom> get messageRooms {
+    if (_messageRooms is EqualUnmodifiableListView) return _messageRooms;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_data);
+    return EqualUnmodifiableListView(_messageRooms);
   }
 
   @override
   String toString() {
-    return 'GetV1MessageRoomsResponse(nextToken: $nextToken, data: $data)';
+    return 'GetV1MessageRoomsResponse(nextToken: $nextToken, messageRooms: $messageRooms)';
   }
 
   @override
@@ -151,13 +142,14 @@ class _$_GetV1MessageRoomsResponse implements _GetV1MessageRoomsResponse {
             other is _$_GetV1MessageRoomsResponse &&
             (identical(other.nextToken, nextToken) ||
                 other.nextToken == nextToken) &&
-            const DeepCollectionEquality().equals(other._data, _data));
+            const DeepCollectionEquality()
+                .equals(other._messageRooms, _messageRooms));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, nextToken, const DeepCollectionEquality().hash(_data));
+  int get hashCode => Object.hash(runtimeType, nextToken,
+      const DeepCollectionEquality().hash(_messageRooms));
 
   @JsonKey(ignore: true)
   @override
@@ -176,21 +168,17 @@ class _$_GetV1MessageRoomsResponse implements _GetV1MessageRoomsResponse {
 
 abstract class _GetV1MessageRoomsResponse implements GetV1MessageRoomsResponse {
   const factory _GetV1MessageRoomsResponse(
-          {@JsonKey(name: "nextToken")
-              required final String nextToken,
-          @JsonKey(name: "messageRooms")
-              required final List<MessageRoom> data}) =
+          {required final String nextToken,
+          required final List<MessageRoom> messageRooms}) =
       _$_GetV1MessageRoomsResponse;
 
   factory _GetV1MessageRoomsResponse.fromJson(Map<String, dynamic> json) =
       _$_GetV1MessageRoomsResponse.fromJson;
 
   @override
-  @JsonKey(name: "nextToken")
   String get nextToken;
   @override
-  @JsonKey(name: "messageRooms")
-  List<MessageRoom> get data;
+  List<MessageRoom> get messageRooms;
   @override
   @JsonKey(ignore: true)
   _$$_GetV1MessageRoomsResponseCopyWith<_$_GetV1MessageRoomsResponse>

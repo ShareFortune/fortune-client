@@ -17,12 +17,24 @@ final messageRoomListViewModelProvider =
 class MessageRoomListViewModel extends StateNotifier<MessageRoomListState> {
   MessageRoomListViewModel(super.state);
 
-  initialize() => fetch();
+  Future<void> initialize() async {
+    await fetchMessageRoomsHost();
+    await fetchMessageRoomsGuest();
+  }
 
-  fetch() async {
+  Future<void> fetchMessageRoomsHost() async {
     state = state.copyWith(
-      host: await AsyncValue.guard(() => Repository.messageRooms.fetchHost()),
-      guest: await AsyncValue.guard(() => Repository.messageRooms.fetchGuest()),
+      host: await AsyncValue.guard(
+        () => Repository.messageRooms.fetchHost(),
+      ),
+    );
+  }
+
+  Future<void> fetchMessageRoomsGuest() async {
+    state = state.copyWith(
+      guest: await AsyncValue.guard(
+        () => Repository.messageRooms.fetchGuest(),
+      ),
     );
   }
 

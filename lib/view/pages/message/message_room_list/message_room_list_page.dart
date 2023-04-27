@@ -58,11 +58,14 @@ class _MessageRoomListPageState extends ConsumerState<MessageRoomListPage>
           controller: _tabController,
           children: [state.host, state.guest].map((messageRoom) {
             return AsyncValueWidget(
-              data: messageRoom,
-              builder: (data) => data.isEmpty
-                  ? const EmptyMessageRoomListView()
-                  : MessageRoomListView(data),
-            );
+                data: messageRoom,
+                builder: (data) {
+                  print(data);
+                  if (data?.isNotEmpty == true) {
+                    return MessageRoomListView(data!);
+                  }
+                  return const EmptyMessageRoomListView();
+                });
           }).toList(),
         ),
       ),

@@ -16,8 +16,7 @@ class FakeMessagesDataSource implements MessagesDataSource {
   }
 
   @override
-  Future<void> send(String messageRoomId, Map<String, dynamic> body) {
-    // TODO: implement sendText
+  Future<void> send(String messageRoomId, Map<String, dynamic> body) async {
     throw UnimplementedError();
   }
 }
