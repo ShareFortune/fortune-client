@@ -2,12 +2,12 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:fortune_client/data/model/core/base/message_room/messege_room.dart';
 import 'package:fortune_client/l10n/locale_keys.g.dart';
-import 'package:fortune_client/view/pages/common/scroll_app_bar/scroll_app_bar.dart';
 import 'package:fortune_client/view/pages/message/message_room_list/components/empty_message_room_list_view.dart';
 import 'package:fortune_client/view/pages/message/message_room_list/components/message_room_list_view.dart';
 import 'package:fortune_client/view/pages/message/message_room_list/message_room_list_view_model.dart';
 import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
+import 'package:fortune_client/view/widgets/app_bar/scroll_app_bar.dart';
 import 'package:fortune_client/view/widgets/other/async_value_widget.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 

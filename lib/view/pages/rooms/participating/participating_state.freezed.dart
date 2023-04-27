@@ -94,11 +94,11 @@ class __$$_ParticipatingStateCopyWithImpl<$Res>
     Object? guest = null,
   }) {
     return _then(_$_ParticipatingState(
-      null == host
+      host: null == host
           ? _value.host
           : host // ignore: cast_nullable_to_non_nullable
               as AsyncValue<List<GetV1RoomsHostResponseRoom>>,
-      null == guest
+      guest: null == guest
           ? _value.guest
           : guest // ignore: cast_nullable_to_non_nullable
               as AsyncValue<List<GetV1RoomsGuestResponseRoom>>,
@@ -109,7 +109,7 @@ class __$$_ParticipatingStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_ParticipatingState implements _ParticipatingState {
-  const _$_ParticipatingState(this.host, this.guest);
+  const _$_ParticipatingState({required this.host, required this.guest});
 
   @override
   final AsyncValue<List<GetV1RoomsHostResponseRoom>> host;
@@ -143,8 +143,8 @@ class _$_ParticipatingState implements _ParticipatingState {
 
 abstract class _ParticipatingState implements ParticipatingState {
   const factory _ParticipatingState(
-          final AsyncValue<List<GetV1RoomsHostResponseRoom>> host,
-          final AsyncValue<List<GetV1RoomsGuestResponseRoom>> guest) =
+          {required final AsyncValue<List<GetV1RoomsHostResponseRoom>> host,
+          required final AsyncValue<List<GetV1RoomsGuestResponseRoom>> guest}) =
       _$_ParticipatingState;
 
   @override
