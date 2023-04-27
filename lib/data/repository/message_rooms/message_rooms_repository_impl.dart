@@ -19,7 +19,7 @@ class MessageRoomsRepositoryImpl implements MessageRoomsRepository {
   }
 
   @override
-  Future<List<MessageRoom>?> fetchHost() async {
+  Future<List<MessageRoom>> fetchHost() async {
     try {
       final result = await _dataSource.getMessageRoomsHost();
       return result.messageRooms;
@@ -30,7 +30,7 @@ class MessageRoomsRepositoryImpl implements MessageRoomsRepository {
   }
 
   @override
-  Future<List<MessageRoom>?> fetchGuest() async {
+  Future<List<MessageRoom>> fetchGuest() async {
     try {
       final result = await _dataSource.getMessageRoomsGuest();
       return result.messageRooms;

@@ -43,7 +43,7 @@ class _RoomsDataSource implements RoomsDataSource {
   }
 
   @override
-  Future<GetV1RoomsResponse> fetchList({
+  Future<Rooms> fetchList({
     addressId,
     applicationDeadline,
     memberNum,
@@ -63,8 +63,8 @@ class _RoomsDataSource implements RoomsDataSource {
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<GetV1RoomsResponse>(Options(
+    final _result =
+        await _dio.fetch<Map<String, dynamic>>(_setStreamType<Rooms>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -76,18 +76,18 @@ class _RoomsDataSource implements RoomsDataSource {
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = GetV1RoomsResponse.fromJson(_result.data!);
+    final value = Rooms.fromJson(_result.data!);
     return value;
   }
 
   @override
-  Future<Room> getDetail(id) async {
+  Future<RoomDetail> getDetail(id) async {
     const _extra = <String, dynamic>{'append-token': true};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<Room>(Options(
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<RoomDetail>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -99,7 +99,7 @@ class _RoomsDataSource implements RoomsDataSource {
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = Room.fromJson(_result.data!);
+    final value = RoomDetail.fromJson(_result.data!);
     return value;
   }
 

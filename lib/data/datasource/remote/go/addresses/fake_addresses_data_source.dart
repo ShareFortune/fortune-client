@@ -7,7 +7,7 @@ class FakeAddressesDataSource implements AddressesDataSource {
   @override
   Future<GetV1AddressesResponse> search({String? city}) async {
     return GetV1AddressesResponse.fromJson(
-      await JsonUtils.load(Assets.stub.getV1AddressesResponse),
+      await JsonUtils.load(Assets.stub.addressesResponse),
     );
   }
 }

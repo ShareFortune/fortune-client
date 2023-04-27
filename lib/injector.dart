@@ -25,8 +25,7 @@ import 'package:fortune_client/data/datasource/remote/go/rooms/fake_rooms_data_s
 import 'package:fortune_client/data/datasource/remote/go/rooms/rooms_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/go/tags/tags_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/go/users/users_data_source.dart';
-import 'package:fortune_client/data/repository/addresses/addresses_repository.dart';
-import 'package:fortune_client/data/repository/addresses/addresses_repository_impl.dart';
+
 import 'package:fortune_client/data/repository/auth/auth_repository.dart';
 import 'package:fortune_client/data/repository/auth/auth_repository_impl.dart';
 import 'package:fortune_client/data/repository/debug/debug_repository.dart';
@@ -94,9 +93,7 @@ Future<void> initDependencies({bool testMode = false}) async {
   getIt.registerLazySingleton<JoinRequestsRepository>(
     () => JoinRequestsRepositoryImpl(getIt()),
   );
-  getIt.registerLazySingleton<AddressesRepository>(
-    () => AddressesRepositoryImpl(getIt()),
-  );
+
   getIt.registerLazySingleton<FavoritesRepository>(
     () => FavoritesRepositoryImpl(getIt()),
   );

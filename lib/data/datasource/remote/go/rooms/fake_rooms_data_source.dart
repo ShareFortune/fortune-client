@@ -1,9 +1,9 @@
 import 'package:fortune_client/data/datasource/remote/go/rooms/rooms_data_source.dart';
-import 'package:fortune_client/data/model/rooms/get_v1_rooms/get_v1_rooms.dart';
+import 'package:fortune_client/data/model/rooms/room_detail/room_detail.dart';
 import 'package:fortune_client/data/model/rooms/room_id_response/room_id_response.dart';
 import 'package:fortune_client/data/model/rooms/get_v1_rooms_host/get_v1_rooms_host.dart';
 import 'package:fortune_client/data/model/rooms/get_v1_rooms_guest/get_v1_rooms_guest.dart';
-import 'package:fortune_client/data/model/core/base/room/room.dart';
+import 'package:fortune_client/data/model/rooms/rooms/rooms.dart';
 import 'package:fortune_client/gen/assets.gen.dart';
 import 'package:fortune_client/util/common/json_utils.dart';
 
@@ -15,9 +15,9 @@ class FakeRoomsDataSource implements RoomsDataSource {
   }
 
   @override
-  Future<Room> getDetail(String id) async {
-    return Room.fromJson(
-      await JsonUtils.load(Assets.stub.getV1RoomsResponseRoom),
+  Future<RoomDetail> getDetail(String id) async {
+    return RoomDetail.fromJson(
+      await JsonUtils.load(Assets.stub.roomsResponseRoom),
     );
   }
 
@@ -27,7 +27,7 @@ class FakeRoomsDataSource implements RoomsDataSource {
     int? perPage,
   }) async {
     return GetV1RoomsGuestResponse.fromJson(
-      await JsonUtils.load(Assets.stub.getV1RoomsGuestResponse),
+      await JsonUtils.load(Assets.stub.roomsGuestResponse),
     );
   }
 
@@ -37,12 +37,12 @@ class FakeRoomsDataSource implements RoomsDataSource {
     int? perPage,
   }) async {
     return GetV1RoomsHostResponse.fromJson(
-      await JsonUtils.load(Assets.stub.getV1RoomsHostResponse),
+      await JsonUtils.load(Assets.stub.roomsHostResponse),
     );
   }
 
   @override
-  Future<GetV1RoomsResponse> fetchList({
+  Future<Rooms> fetchList({
     String? addressId,
     String? applicationDeadline,
     int? memberNum,
@@ -50,9 +50,7 @@ class FakeRoomsDataSource implements RoomsDataSource {
     String? nextToken,
     int? perPage,
   }) async {
-    return GetV1RoomsResponse.fromJson(
-      await JsonUtils.load(Assets.stub.getV1RoomsResponse),
-    );
+    return Rooms.fromJson(await JsonUtils.load(Assets.stub.roomsResponse));
   }
 
   @override

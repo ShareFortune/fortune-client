@@ -1,4 +1,4 @@
-import 'package:fortune_client/data/model/core/base/room/room.dart';
+import 'package:fortune_client/data/model/rooms/room_detail/room_detail.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -8,6 +8,6 @@ part 'room_detail_state.freezed.dart';
 class RoomDetailState with _$RoomDetailState {
   const factory RoomDetailState({
     required String roomId,
-    required AsyncValue<Room> detail,
+    required AsyncValue<RoomDetail> detail,
   }) = _RoomDetailState;
 }

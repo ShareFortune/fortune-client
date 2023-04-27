@@ -18,7 +18,7 @@ class FakeTagsDataSource implements TagsDataSource {
     int? perPage,
   }) async {
     return GetV1TagsResponse.fromJson(
-      await JsonUtils.load(Assets.stub.getV1TagsResponse),
+      await JsonUtils.load(Assets.stub.tagsResponse),
     );
   }
 }

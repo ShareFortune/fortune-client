@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'get_v1_rooms.dart';
+part of 'rooms.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,38 +14,36 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-GetV1RoomsResponse _$GetV1RoomsResponseFromJson(Map<String, dynamic> json) {
-  return _GetV1RoomsResponse.fromJson(json);
+Rooms _$RoomsFromJson(Map<String, dynamic> json) {
+  return _Rooms.fromJson(json);
 }
 
 /// @nodoc
-mixin _$GetV1RoomsResponse {
+mixin _$Rooms {
   @JsonKey(name: "nextToken")
   String get nextToken => throw _privateConstructorUsedError;
   @JsonKey(name: "rooms")
-  List<GetV1RoomsResponseRoom> get data => throw _privateConstructorUsedError;
+  List<Room> get data => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $GetV1RoomsResponseCopyWith<GetV1RoomsResponse> get copyWith =>
-      throw _privateConstructorUsedError;
+  $RoomsCopyWith<Rooms> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $GetV1RoomsResponseCopyWith<$Res> {
-  factory $GetV1RoomsResponseCopyWith(
-          GetV1RoomsResponse value, $Res Function(GetV1RoomsResponse) then) =
-      _$GetV1RoomsResponseCopyWithImpl<$Res, GetV1RoomsResponse>;
+abstract class $RoomsCopyWith<$Res> {
+  factory $RoomsCopyWith(Rooms value, $Res Function(Rooms) then) =
+      _$RoomsCopyWithImpl<$Res, Rooms>;
   @useResult
   $Res call(
       {@JsonKey(name: "nextToken") String nextToken,
-      @JsonKey(name: "rooms") List<GetV1RoomsResponseRoom> data});
+      @JsonKey(name: "rooms") List<Room> data});
 }
 
 /// @nodoc
-class _$GetV1RoomsResponseCopyWithImpl<$Res, $Val extends GetV1RoomsResponse>
-    implements $GetV1RoomsResponseCopyWith<$Res> {
-  _$GetV1RoomsResponseCopyWithImpl(this._value, this._then);
+class _$RoomsCopyWithImpl<$Res, $Val extends Rooms>
+    implements $RoomsCopyWith<$Res> {
+  _$RoomsCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -66,30 +64,26 @@ class _$GetV1RoomsResponseCopyWithImpl<$Res, $Val extends GetV1RoomsResponse>
       data: null == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as List<GetV1RoomsResponseRoom>,
+              as List<Room>,
     ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$_GetV1RoomsResponseCopyWith<$Res>
-    implements $GetV1RoomsResponseCopyWith<$Res> {
-  factory _$$_GetV1RoomsResponseCopyWith(_$_GetV1RoomsResponse value,
-          $Res Function(_$_GetV1RoomsResponse) then) =
-      __$$_GetV1RoomsResponseCopyWithImpl<$Res>;
+abstract class _$$_RoomsCopyWith<$Res> implements $RoomsCopyWith<$Res> {
+  factory _$$_RoomsCopyWith(_$_Rooms value, $Res Function(_$_Rooms) then) =
+      __$$_RoomsCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
       {@JsonKey(name: "nextToken") String nextToken,
-      @JsonKey(name: "rooms") List<GetV1RoomsResponseRoom> data});
+      @JsonKey(name: "rooms") List<Room> data});
 }
 
 /// @nodoc
-class __$$_GetV1RoomsResponseCopyWithImpl<$Res>
-    extends _$GetV1RoomsResponseCopyWithImpl<$Res, _$_GetV1RoomsResponse>
-    implements _$$_GetV1RoomsResponseCopyWith<$Res> {
-  __$$_GetV1RoomsResponseCopyWithImpl(
-      _$_GetV1RoomsResponse _value, $Res Function(_$_GetV1RoomsResponse) _then)
+class __$$_RoomsCopyWithImpl<$Res> extends _$RoomsCopyWithImpl<$Res, _$_Rooms>
+    implements _$$_RoomsCopyWith<$Res> {
+  __$$_RoomsCopyWithImpl(_$_Rooms _value, $Res Function(_$_Rooms) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -98,7 +92,7 @@ class __$$_GetV1RoomsResponseCopyWithImpl<$Res>
     Object? nextToken = null,
     Object? data = null,
   }) {
-    return _then(_$_GetV1RoomsResponse(
+    return _then(_$_Rooms(
       nextToken: null == nextToken
           ? _value.nextToken
           : nextToken // ignore: cast_nullable_to_non_nullable
@@ -106,29 +100,29 @@ class __$$_GetV1RoomsResponseCopyWithImpl<$Res>
       data: null == data
           ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
-              as List<GetV1RoomsResponseRoom>,
+              as List<Room>,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$_GetV1RoomsResponse implements _GetV1RoomsResponse {
-  const _$_GetV1RoomsResponse(
+class _$_Rooms implements _Rooms {
+  const _$_Rooms(
       {@JsonKey(name: "nextToken") required this.nextToken,
-      @JsonKey(name: "rooms") required final List<GetV1RoomsResponseRoom> data})
+      @JsonKey(name: "rooms") required final List<Room> data})
       : _data = data;
 
-  factory _$_GetV1RoomsResponse.fromJson(Map<String, dynamic> json) =>
-      _$$_GetV1RoomsResponseFromJson(json);
+  factory _$_Rooms.fromJson(Map<String, dynamic> json) =>
+      _$$_RoomsFromJson(json);
 
   @override
   @JsonKey(name: "nextToken")
   final String nextToken;
-  final List<GetV1RoomsResponseRoom> _data;
+  final List<Room> _data;
   @override
   @JsonKey(name: "rooms")
-  List<GetV1RoomsResponseRoom> get data {
+  List<Room> get data {
     if (_data is EqualUnmodifiableListView) return _data;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_data);
@@ -136,14 +130,14 @@ class _$_GetV1RoomsResponse implements _GetV1RoomsResponse {
 
   @override
   String toString() {
-    return 'GetV1RoomsResponse(nextToken: $nextToken, data: $data)';
+    return 'Rooms(nextToken: $nextToken, data: $data)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_GetV1RoomsResponse &&
+            other is _$_Rooms &&
             (identical(other.nextToken, nextToken) ||
                 other.nextToken == nextToken) &&
             const DeepCollectionEquality().equals(other._data, _data));
@@ -157,48 +151,42 @@ class _$_GetV1RoomsResponse implements _GetV1RoomsResponse {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_GetV1RoomsResponseCopyWith<_$_GetV1RoomsResponse> get copyWith =>
-      __$$_GetV1RoomsResponseCopyWithImpl<_$_GetV1RoomsResponse>(
-          this, _$identity);
+  _$$_RoomsCopyWith<_$_Rooms> get copyWith =>
+      __$$_RoomsCopyWithImpl<_$_Rooms>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_GetV1RoomsResponseToJson(
+    return _$$_RoomsToJson(
       this,
     );
   }
 }
 
-abstract class _GetV1RoomsResponse implements GetV1RoomsResponse {
-  const factory _GetV1RoomsResponse(
-          {@JsonKey(name: "nextToken")
-              required final String nextToken,
-          @JsonKey(name: "rooms")
-              required final List<GetV1RoomsResponseRoom> data}) =
-      _$_GetV1RoomsResponse;
+abstract class _Rooms implements Rooms {
+  const factory _Rooms(
+      {@JsonKey(name: "nextToken") required final String nextToken,
+      @JsonKey(name: "rooms") required final List<Room> data}) = _$_Rooms;
 
-  factory _GetV1RoomsResponse.fromJson(Map<String, dynamic> json) =
-      _$_GetV1RoomsResponse.fromJson;
+  factory _Rooms.fromJson(Map<String, dynamic> json) = _$_Rooms.fromJson;
 
   @override
   @JsonKey(name: "nextToken")
   String get nextToken;
   @override
   @JsonKey(name: "rooms")
-  List<GetV1RoomsResponseRoom> get data;
+  List<Room> get data;
   @override
   @JsonKey(ignore: true)
-  _$$_GetV1RoomsResponseCopyWith<_$_GetV1RoomsResponse> get copyWith =>
+  _$$_RoomsCopyWith<_$_Rooms> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
-GetV1RoomsResponseRoom _$GetV1RoomsResponseRoomFromJson(
-    Map<String, dynamic> json) {
-  return _GetV1RoomsResponseRoom.fromJson(json);
+Room _$RoomFromJson(Map<String, dynamic> json) {
+  return _Room.fromJson(json);
 }
 
 /// @nodoc
-mixin _$GetV1RoomsResponseRoom {
+mixin _$Room {
   @JsonKey(name: "id")
   String get id => throw _privateConstructorUsedError;
   @JsonKey(name: "roomName")
@@ -217,15 +205,13 @@ mixin _$GetV1RoomsResponseRoom {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $GetV1RoomsResponseRoomCopyWith<GetV1RoomsResponseRoom> get copyWith =>
-      throw _privateConstructorUsedError;
+  $RoomCopyWith<Room> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $GetV1RoomsResponseRoomCopyWith<$Res> {
-  factory $GetV1RoomsResponseRoomCopyWith(GetV1RoomsResponseRoom value,
-          $Res Function(GetV1RoomsResponseRoom) then) =
-      _$GetV1RoomsResponseRoomCopyWithImpl<$Res, GetV1RoomsResponseRoom>;
+abstract class $RoomCopyWith<$Res> {
+  factory $RoomCopyWith(Room value, $Res Function(Room) then) =
+      _$RoomCopyWithImpl<$Res, Room>;
   @useResult
   $Res call(
       {@JsonKey(name: "id")
@@ -248,10 +234,9 @@ abstract class $GetV1RoomsResponseRoomCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$GetV1RoomsResponseRoomCopyWithImpl<$Res,
-        $Val extends GetV1RoomsResponseRoom>
-    implements $GetV1RoomsResponseRoomCopyWith<$Res> {
-  _$GetV1RoomsResponseRoomCopyWithImpl(this._value, this._then);
+class _$RoomCopyWithImpl<$Res, $Val extends Room>
+    implements $RoomCopyWith<$Res> {
+  _$RoomCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -319,11 +304,9 @@ class _$GetV1RoomsResponseRoomCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_GetV1RoomsResponseRoomCopyWith<$Res>
-    implements $GetV1RoomsResponseRoomCopyWith<$Res> {
-  factory _$$_GetV1RoomsResponseRoomCopyWith(_$_GetV1RoomsResponseRoom value,
-          $Res Function(_$_GetV1RoomsResponseRoom) then) =
-      __$$_GetV1RoomsResponseRoomCopyWithImpl<$Res>;
+abstract class _$$_RoomCopyWith<$Res> implements $RoomCopyWith<$Res> {
+  factory _$$_RoomCopyWith(_$_Room value, $Res Function(_$_Room) then) =
+      __$$_RoomCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -349,12 +332,9 @@ abstract class _$$_GetV1RoomsResponseRoomCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_GetV1RoomsResponseRoomCopyWithImpl<$Res>
-    extends _$GetV1RoomsResponseRoomCopyWithImpl<$Res,
-        _$_GetV1RoomsResponseRoom>
-    implements _$$_GetV1RoomsResponseRoomCopyWith<$Res> {
-  __$$_GetV1RoomsResponseRoomCopyWithImpl(_$_GetV1RoomsResponseRoom _value,
-      $Res Function(_$_GetV1RoomsResponseRoom) _then)
+class __$$_RoomCopyWithImpl<$Res> extends _$RoomCopyWithImpl<$Res, _$_Room>
+    implements _$$_RoomCopyWith<$Res> {
+  __$$_RoomCopyWithImpl(_$_Room _value, $Res Function(_$_Room) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -368,7 +348,7 @@ class __$$_GetV1RoomsResponseRoomCopyWithImpl<$Res>
     Object? membersNum = null,
     Object? isFavorite = null,
   }) {
-    return _then(_$_GetV1RoomsResponseRoom(
+    return _then(_$_Room(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -403,8 +383,8 @@ class __$$_GetV1RoomsResponseRoomCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_GetV1RoomsResponseRoom implements _GetV1RoomsResponseRoom {
-  const _$_GetV1RoomsResponseRoom(
+class _$_Room implements _Room {
+  const _$_Room(
       {@JsonKey(name: "id")
           required this.id,
       @JsonKey(name: "roomName")
@@ -421,8 +401,7 @@ class _$_GetV1RoomsResponseRoom implements _GetV1RoomsResponseRoom {
           required this.isFavorite})
       : _participantMainImageURLs = participantMainImageURLs;
 
-  factory _$_GetV1RoomsResponseRoom.fromJson(Map<String, dynamic> json) =>
-      _$$_GetV1RoomsResponseRoomFromJson(json);
+  factory _$_Room.fromJson(Map<String, dynamic> json) => _$$_RoomFromJson(json);
 
   @override
   @JsonKey(name: "id")
@@ -457,14 +436,14 @@ class _$_GetV1RoomsResponseRoom implements _GetV1RoomsResponseRoom {
 
   @override
   String toString() {
-    return 'GetV1RoomsResponseRoom(id: $id, roomName: $roomName, hostMainImageURL: $hostMainImageURL, participantMainImageURLs: $participantMainImageURLs, address: $address, membersNum: $membersNum, isFavorite: $isFavorite)';
+    return 'Room(id: $id, roomName: $roomName, hostMainImageURL: $hostMainImageURL, participantMainImageURLs: $participantMainImageURLs, address: $address, membersNum: $membersNum, isFavorite: $isFavorite)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_GetV1RoomsResponseRoom &&
+            other is _$_Room &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.roomName, roomName) ||
                 other.roomName == roomName) &&
@@ -494,20 +473,19 @@ class _$_GetV1RoomsResponseRoom implements _GetV1RoomsResponseRoom {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_GetV1RoomsResponseRoomCopyWith<_$_GetV1RoomsResponseRoom> get copyWith =>
-      __$$_GetV1RoomsResponseRoomCopyWithImpl<_$_GetV1RoomsResponseRoom>(
-          this, _$identity);
+  _$$_RoomCopyWith<_$_Room> get copyWith =>
+      __$$_RoomCopyWithImpl<_$_Room>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_GetV1RoomsResponseRoomToJson(
+    return _$$_RoomToJson(
       this,
     );
   }
 }
 
-abstract class _GetV1RoomsResponseRoom implements GetV1RoomsResponseRoom {
-  const factory _GetV1RoomsResponseRoom(
+abstract class _Room implements Room {
+  const factory _Room(
       {@JsonKey(name: "id")
           required final String id,
       @JsonKey(name: "roomName")
@@ -521,10 +499,9 @@ abstract class _GetV1RoomsResponseRoom implements GetV1RoomsResponseRoom {
       @JsonKey(name: "membersNum")
           required final MembersNum membersNum,
       @JsonKey(name: "isFavorite")
-          required final bool isFavorite}) = _$_GetV1RoomsResponseRoom;
+          required final bool isFavorite}) = _$_Room;
 
-  factory _GetV1RoomsResponseRoom.fromJson(Map<String, dynamic> json) =
-      _$_GetV1RoomsResponseRoom.fromJson;
+  factory _Room.fromJson(Map<String, dynamic> json) = _$_Room.fromJson;
 
   @override
   @JsonKey(name: "id")
@@ -549,6 +526,5 @@ abstract class _GetV1RoomsResponseRoom implements GetV1RoomsResponseRoom {
   bool get isFavorite;
   @override
   @JsonKey(ignore: true)
-  _$$_GetV1RoomsResponseRoomCopyWith<_$_GetV1RoomsResponseRoom> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$_RoomCopyWith<_$_Room> get copyWith => throw _privateConstructorUsedError;
 }

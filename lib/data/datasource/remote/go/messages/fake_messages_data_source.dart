@@ -11,7 +11,7 @@ class FakeMessagesDataSource implements MessagesDataSource {
     int? perPage,
   }) async {
     return GetV1MessageRoomsIdMessagesResponse.fromJson(
-      await JsonUtils.load(Assets.stub.getV1MessageRoomsIdMessagesResponse),
+      await JsonUtils.load(Assets.stub.messageRoomsIdMessagesResponse),
     );
   }
 

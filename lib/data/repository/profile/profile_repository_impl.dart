@@ -146,7 +146,7 @@ class ProfileRepositoryImpl implements ProfileRepository {
       selfIntroduction: profile.selfIntroduction,
       occupationId: null,
       addressId: 65, // TODO: アドレスデータにID追加
-      tagIds: profile.tags?.map((e) => e.id).toList(),
+      tagIds: profile.tags.map((e) => e.id).toList(),
       files: getProfileImages(),
     );
     update(request);

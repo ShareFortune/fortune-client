@@ -1,31 +1,24 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'get_v1_rooms.dart';
+part of 'rooms.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_GetV1RoomsResponse _$$_GetV1RoomsResponseFromJson(
-        Map<String, dynamic> json) =>
-    _$_GetV1RoomsResponse(
+_$_Rooms _$$_RoomsFromJson(Map<String, dynamic> json) => _$_Rooms(
       nextToken: json['nextToken'] as String,
       data: (json['rooms'] as List<dynamic>)
-          .map(
-              (e) => GetV1RoomsResponseRoom.fromJson(e as Map<String, dynamic>))
+          .map((e) => Room.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
-Map<String, dynamic> _$$_GetV1RoomsResponseToJson(
-        _$_GetV1RoomsResponse instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$$_RoomsToJson(_$_Rooms instance) => <String, dynamic>{
       'nextToken': instance.nextToken,
       'rooms': instance.data,
     };
 
-_$_GetV1RoomsResponseRoom _$$_GetV1RoomsResponseRoomFromJson(
-        Map<String, dynamic> json) =>
-    _$_GetV1RoomsResponseRoom(
+_$_Room _$$_RoomFromJson(Map<String, dynamic> json) => _$_Room(
       id: json['id'] as String,
       roomName: json['roomName'] as String,
       hostMainImageURL: json['hostMainImageURL'] as String,
@@ -39,9 +32,7 @@ _$_GetV1RoomsResponseRoom _$$_GetV1RoomsResponseRoomFromJson(
       isFavorite: json['isFavorite'] as bool,
     );
 
-Map<String, dynamic> _$$_GetV1RoomsResponseRoomToJson(
-        _$_GetV1RoomsResponseRoom instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$$_RoomToJson(_$_Room instance) => <String, dynamic>{
       'id': instance.id,
       'roomName': instance.roomName,
       'hostMainImageURL': instance.hostMainImageURL,

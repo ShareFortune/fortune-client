@@ -1,4 +1,3 @@
-import 'package:fortune_client/data/repository/addresses/addresses_repository.dart';
 import 'package:fortune_client/data/repository/auth/auth_repository.dart';
 import 'package:fortune_client/data/repository/debug/debug_repository.dart';
 import 'package:fortune_client/data/repository/favorites/favorites_repository.dart';
@@ -21,6 +20,5 @@ class Repository {
   static RoomsRepository get rooms => getIt();
   static TagsRepository get tags => getIt();
   static JoinRequestsRepository get joinRequests => getIt();
-  static AddressesRepository get addresses => getIt();
   static FavoritesRepository get favorites => getIt();
 }

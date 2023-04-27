@@ -15,7 +15,7 @@ class FakeProfileDataSource implements ProfileDataSource {
 
   @override
   Future<GetV1ProfilesResponse> get() async {
-    final data = await JsonUtils.load(Assets.stub.getV1ProfilesResponse);
+    final data = await JsonUtils.load(Assets.stub.profilesResponse);
     return GetV1ProfilesResponse.fromJson(data);
   }
 

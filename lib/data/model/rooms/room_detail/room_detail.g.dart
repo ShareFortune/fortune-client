@@ -1,12 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'room.dart';
+part of 'room_detail.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_Room _$$_RoomFromJson(Map<String, dynamic> json) => _$_Room(
+_$_RoomDetail _$$_RoomDetailFromJson(Map<String, dynamic> json) =>
+    _$_RoomDetail(
       id: json['id'] as String,
       roomName: json['roomName'] as String,
       applicationDeadline: json['applicationDeadline'] as String,
@@ -18,8 +19,7 @@ _$_Room _$$_RoomFromJson(Map<String, dynamic> json) => _$_Room(
       tags: (json['tags'] as List<dynamic>?)
           ?.map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
-      roomStatus:
-          const RoomStatusConverter().fromJson(json['status'] as String),
+      status: const RoomStatusConverter().fromJson(json['status'] as String),
       joinRequestStatus: _$JsonConverterFromJson<String, JoinRequestStatus>(
           json['joinRequestStatus'],
           const JoinRequestStatusConverter().fromJson),
@@ -28,7 +28,8 @@ _$_Room _$$_RoomFromJson(Map<String, dynamic> json) => _$_Room(
       isMember: json['isMember'] as bool,
     );
 
-Map<String, dynamic> _$$_RoomToJson(_$_Room instance) => <String, dynamic>{
+Map<String, dynamic> _$$_RoomDetailToJson(_$_RoomDetail instance) =>
+    <String, dynamic>{
       'id': instance.id,
       'roomName': instance.roomName,
       'applicationDeadline': instance.applicationDeadline,
@@ -36,7 +37,7 @@ Map<String, dynamic> _$$_RoomToJson(_$_Room instance) => <String, dynamic>{
       'participants': instance.participants,
       'address': instance.address,
       'tags': instance.tags,
-      'status': const RoomStatusConverter().toJson(instance.roomStatus),
+      'status': const RoomStatusConverter().toJson(instance.status),
       'joinRequestStatus': _$JsonConverterToJson<String, JoinRequestStatus>(
           instance.joinRequestStatus,
           const JoinRequestStatusConverter().toJson),
