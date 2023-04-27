@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fortune_client/data/model/core/base/message_room/messege_room.dart';
 import 'package:fortune_client/util/converter/datetime_converter.dart';
-import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/icon/user_icon_widget.dart';
 import 'package:gap/gap.dart';

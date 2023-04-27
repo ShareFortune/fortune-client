@@ -5,6 +5,7 @@ import 'package:fortune_client/view/pages/common/input/input_long_text_page.dart
 import 'package:fortune_client/view/pages/common/input/input_text_page.dart';
 import 'package:fortune_client/view/pages/debug/debug_page.dart';
 import 'package:fortune_client/view/pages/launch/launch_page.dart';
+import 'package:fortune_client/view/pages/message/message_room/message_room_page.dart';
 import 'package:fortune_client/view/pages/my/edit/edit_profile_page.dart';
 import 'package:fortune_client/view/pages/my/my/my_page.dart';
 import 'package:fortune_client/view/pages/profile/profile/profile_page.dart';
@@ -25,14 +26,11 @@ class AppRouter {
         return _buildRoute(const DebugPage());
 
       case RoutePath.login:
-        // TODO: Handle this case.
-        break;
+
       case RoutePath.home:
         return _fadePageRouteBuilder(const HomePage());
 
       case RoutePath.profileInput:
-        // TODO: Handle this case.
-        break;
 
       case RoutePath.profileEdit:
         arguments as EditProfilePageArguments;
@@ -50,59 +48,45 @@ class AppRouter {
         return _fadePageRouteBuilder(const MyPage());
 
       case RoutePath.room:
-        // TODO: Handle this case.
-        break;
+
       case RoutePath.roomInput:
-        // TODO: Handle this case.
-        break;
+
       case RoutePath.roomEdit:
-        // TODO: Handle this case.
-        break;
+
       case RoutePath.roomDetail:
 
         /// ここで、RoomDetailPageに渡す引数を設定する
         return _slidePageRouteBuilder(const RoomDetailPage(""));
 
       case RoutePath.participatingRoom:
-        // TODO: Handle this case.
-        break;
+
       case RoutePath.participatingRoomAll:
-        // TODO: Handle this case.
-        break;
-      case RoutePath.message:
-        // TODO: Handle this case.
-        break;
+
       case RoutePath.messageRoom:
-        // TODO: Handle this case.
-        break;
+        arguments as MessageRoomPageArguments;
+        return _slidePageRouteBuilder(MessageRoomPage(arguments));
+
+      case RoutePath.messageRoomList:
 
       case RoutePath.tagInput:
-        // TODO: Handle this case.
-        break;
+
       case RoutePath.setting:
         return _slidePageRouteBuilder(const SettingsPage());
 
       case RoutePath.settingAccount:
-        // TODO: Handle this case.
-        break;
+
       case RoutePath.settingNotification:
-        // TODO: Handle this case.
-        break;
+
       case RoutePath.settingPrivacy:
-        // TODO: Handle this case.
-        break;
+
       case RoutePath.settingTerms:
-        // TODO: Handle this case.
-        break;
+
       case RoutePath.settingHelp:
-        // TODO: Handle this case.
-        break;
+
       case RoutePath.settingAbout:
-        // TODO: Handle this case.
-        break;
+
       case RoutePath.searchRoom:
-        // TODO: Handle this case.
-        break;
+
       case RoutePath.searchTag:
         arguments as SearchTagsPageAuguments;
         return _slidePageRouteBuilder(SearchTagsPage(arguments));
@@ -122,10 +106,8 @@ class AppRouter {
         return _slidePageRouteBuilder(InputLongTextPage(arguments));
 
       case RoutePath.error:
-        // TODO: Handle this case.
-        break;
       case RoutePath.unknown:
-        // TODO: Handle this case.
+      default:
         break;
     }
     return null;

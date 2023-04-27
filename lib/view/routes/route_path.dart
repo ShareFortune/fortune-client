@@ -30,8 +30,8 @@ enum RoutePath {
   participatingRoomAll('/participatingRoomAll'),
 
   /// Message
-  message('/message'),
   messageRoom('/messageRoom'),
+  messageRoomList('/messageRoomList'),
 
   /// Tag
   tagInput('/tagInput'),
