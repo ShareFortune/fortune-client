@@ -1,25 +1,31 @@
-// ignore_for_file: depend_on_referenced_packages
-
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_chat_ui/flutter_chat_ui.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fortune_client/view/pages/message/message_room/message_room_view_model.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/app_bar/back_app_bar.dart';
 import 'package:fortune_client/view/widgets/bottom_sheet/photo_actions_sheet.dart';
 import 'package:fortune_client/view/widgets/other/async_value_widget.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class MessageRoomPage extends ConsumerWidget {
-  const MessageRoomPage({super.key, @PathParam() required this.id});
+class MessageRoomPageArguments {
+  const MessageRoomPageArguments({
+    required this.id,
+  });
 
   final String id;
+}
+
+class MessageRoomPage extends HookConsumerWidget {
+  const MessageRoomPage(this.arguments, {super.key});
+
+  final MessageRoomPageArguments arguments;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = ref.watch(appThemeProvider);
-    final state = ref.watch(messageRoomViewModelProvider(id));
-    final viewModel = ref.watch(messageRoomViewModelProvider(id).notifier);
+    final state = ref.watch(messageRoomViewModelProvider(arguments.id));
+    final viewModel =
+        ref.watch(messageRoomViewModelProvider(arguments.id).notifier);
 
     return Scaffold(
       backgroundColor: theme.appColors.onBackground,
@@ -34,7 +40,6 @@ class MessageRoomPage extends ConsumerWidget {
               final file = await PhotoActionsSheet.getPhoto(theme, context);
               if (file != null) viewModel.handleImageSelection(file);
             },
-            // onPreviewDataFetched: viewModel.handlePreviewDataFetched,
             onSendPressed: viewModel.handleSendPressed,
             showUserAvatars: true,
             showUserNames: true,

@@ -4,7 +4,6 @@ import 'package:fortune_client/data/model/core/base/message_room/messege_room.da
 import 'package:fortune_client/l10n/locale_keys.g.dart';
 import 'package:fortune_client/view/pages/message/message_room_list/components/message_room_list_tile.dart';
 import 'package:fortune_client/view/pages/message/message_room_list/message_room_list_view_model.dart';
-import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
