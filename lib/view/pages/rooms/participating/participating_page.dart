@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:fortune_client/l10n/locale_keys.g.dart';
 import 'package:fortune_client/view/pages/rooms/participating/participating_view_model.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
+import 'package:fortune_client/view/widgets/animation/animated_sticky_tab_bar.dart';
 import 'package:fortune_client/view/widgets/app_bar/scroll_app_bar.dart';
 import 'package:fortune_client/view/widgets/other/async_value_widget.dart';
 import 'package:fortune_client/view/widgets/room/participating_room.dart';
@@ -48,22 +49,9 @@ class _ParticipatingPageState extends ConsumerState<ParticipatingPage>
             ScrollAppBar(
               title: LocaleKeys.participating_room_list_page_title.tr(),
             ),
-            SliverPersistentHeader(
-              delegate: _StickyTabBarDelegate(
-                theme: theme,
-                tabBar: TabBar(
-                  controller: _tabController,
-                  indicatorColor: Colors.transparent,
-                  labelColor: theme.appColors.onPrimary,
-                  labelStyle: theme.textTheme.h20.bold(),
-                  unselectedLabelColor: theme.appColors.primary,
-                  unselectedLabelStyle: theme.textTheme.h20.bold(),
-                  tabs: [
-                    'ホスト',
-                    'ゲスト',
-                  ].map((e) => Tab(text: e)).toList(),
-                ),
-              ),
+            AnimatedStickyTabBar(
+              controller: _tabController,
+              tabs: ['ホスト', 'ゲスト'].map((e) => Tab(text: e)).toList(),
             ),
           ];
         },
@@ -116,67 +104,5 @@ class _Item<RoomType> extends HookConsumerWidget {
         );
       },
     );
-  }
-}
-
-//SliverPersistentHeaderDelegateを継承したTabBarを作る
-class _StickyTabBarDelegate extends SliverPersistentHeaderDelegate {
-  const _StickyTabBarDelegate({
-    required this.theme,
-    required this.tabBar,
-  });
-
-  final AppTheme theme;
-  final TabBar tabBar;
-
-  @override
-  double get minExtent => tabBar.preferredSize.height;
-
-  @override
-  double get maxExtent => tabBar.preferredSize.height;
-
-  TabController? get controller => tabBar.controller;
-
-  /// PageViewのスクロール量を[0~1]で取得する
-  double get animationValue => controller?.animation?.value ?? 0;
-
-  /// [0~1]で生成されるデータを[-1~1]に変換する
-  double get indicatorPosition => animationValue * 2 - 1;
-
-  /// 現在表示されているWidget
-  Widget get currentWidget => tabBar.tabs[controller?.index ?? 0];
-
-  @override
-  Widget build(context, shrinkOffset, overlapsContent) {
-    return Container(
-      color: theme.appColors.onBackground,
-      child: Stack(
-        children: [
-          AnimatedAlign(
-            alignment: Alignment(indicatorPosition, 0),
-            duration: const Duration(milliseconds: 1),
-            child: Container(
-              alignment: Alignment.center,
-              padding: const EdgeInsets.symmetric(vertical: 8),
-              width: MediaQuery.of(context).size.width / 2,
-              child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(30),
-                  color: theme.appColors.primary,
-                ),
-                child: Opacity(opacity: 0, child: currentWidget),
-              ),
-            ),
-          ),
-          Container(color: Colors.transparent, child: tabBar),
-        ],
-      ),
-    );
-  }
-
-  @override
-  bool shouldRebuild(_StickyTabBarDelegate oldDelegate) {
-    return tabBar != oldDelegate.tabBar;
   }
 }
