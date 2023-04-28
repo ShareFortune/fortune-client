@@ -41,41 +41,66 @@ class _ParticipatingPageState extends ConsumerState<ParticipatingPage>
     final state = ref.watch(participatingViewModelProvider);
     final viewModel = ref.watch(participatingViewModelProvider.notifier);
 
-    return DefaultTabController(
-      length: 2,
-      child: NestedScrollView(
-        headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
-          return <Widget>[
-            ScrollAppBar(
-              title: LocaleKeys.participating_room_list_page_title.tr(),
-            ),
-            AnimatedStickyTabBar(
+    return Stack(
+      children: [
+        DefaultTabController(
+          length: 2,
+          child: NestedScrollView(
+            headerSliverBuilder: (context, innerBoxIsScrolled) {
+              return <Widget>[
+                ScrollAppBar(
+                  title: LocaleKeys.participating_room_list_page_title.tr(),
+                ),
+                AnimatedStickyTabBar(
+                  controller: _tabController,
+                  tabs: ['ホスト', 'ゲスト'].map((e) => Tab(text: e)).toList(),
+                ),
+              ];
+            },
+            body: TabBarView(
               controller: _tabController,
-              tabs: ['ホスト', 'ゲスト'].map((e) => Tab(text: e)).toList(),
-            ),
-          ];
-        },
-        body: TabBarView(
-          controller: _tabController,
-          children: [
-            /// ホスト
-            _Item(
-              data: state.host,
-              builder: (room) => ParticipatingRoom(
-                HostRoomState(theme, room),
-              ),
-            ),
+              children: [
+                /// ホスト
+                _Item(
+                  data: state.host,
+                  builder: (room) => ParticipatingRoom(
+                    HostRoomState(theme, room),
+                  ),
+                ),
 
-            /// ゲスト
-            _Item(
-              data: state.guest,
-              builder: (room) => ParticipatingRoom(
-                GuestRoomState(theme, room),
-              ),
+                /// ゲスト
+                _Item(
+                  data: state.guest,
+                  builder: (room) => ParticipatingRoom(
+                    GuestRoomState(theme, room),
+                  ),
+                ),
+              ],
             ),
-          ],
+          ),
         ),
-      ),
+        Align(
+          alignment: const Alignment(0.9, 0.9),
+          child: MaterialButton(
+            height: 45,
+            onPressed: () {},
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            color: theme.appColors.primary,
+            textColor: theme.appColors.onPrimary,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20),
+            ),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text("作成", style: theme.textTheme.h30.bold()),
+                const Gap(10),
+                const Icon(Icons.edit, size: 20),
+              ],
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
