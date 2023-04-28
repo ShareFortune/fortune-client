@@ -1,26 +1,33 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:fortune_client/data/model/enum/age_group.dart';
 import 'package:fortune_client/l10n/locale_keys.g.dart';
 import 'package:fortune_client/view/pages/rooms/action/components/room_state_input_field.dart';
-import 'package:fortune_client/view/pages/rooms/action/create/create_room_view_model.dart';
+import 'package:fortune_client/view/pages/rooms/input/room_input_view_model.dart';
+import 'package:fortune_client/view/routes/route_navigator.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/app_bar/back_app_bar.dart';
 import 'package:fortune_client/view/widgets/dialog/toast.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class CreateRoomPage extends HookConsumerWidget {
-  CreateRoomPage({super.key});
-
-  final titleController = TextEditingController();
-  final explanationController = TextEditingController();
+class RoomInputPage extends StatefulHookConsumerWidget {
+  const RoomInputPage({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<RoomInputPage> createState() => _RoomInputPageState();
+}
+
+class _RoomInputPageState extends ConsumerState<RoomInputPage> {
+  @override
+  Widget build(BuildContext context) {
     final theme = ref.watch(appThemeProvider);
-    final state = ref.watch(createRoomViewModelProvider);
-    final viewModel = ref.watch(createRoomViewModelProvider.notifier);
+    final state = ref.watch(roomInputViewModelProvider);
+    final viewModel = ref.watch(roomInputViewModelProvider.notifier);
+
+    final titleController = useTextEditingController();
+    final explanationController = useTextEditingController();
 
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
@@ -32,13 +39,24 @@ class CreateRoomPage extends HookConsumerWidget {
             Container(
               padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
               child: ElevatedButton(
-                onPressed: viewModel.isPossibleToCreate()
-                    ? () async {
-                        if (!await viewModel.create()) {
-                          _showFailedToCreateToast(context, theme);
+                onPressed: !viewModel.isPossibleToCreate()
+                    ? null
+                    : () async {
+                        final roomId = await viewModel.create();
+
+                        /// 成功
+                        if (roomId != null) {
+                          return navigator.navigateTo(RoutePath.roomDetail);
                         }
-                      }
-                    : null,
+
+                        /// エラー
+                        if (!mounted) return;
+                        return showErrorToast(
+                          context,
+                          theme,
+                          LocaleKeys.data_room_action_create_failure.tr(),
+                        );
+                      },
                 child: Text(LocaleKeys.create_room_page_create.tr()),
               ),
             ),
@@ -112,14 +130,6 @@ class CreateRoomPage extends HookConsumerWidget {
           ),
         ),
       ),
-    );
-  }
-
-  _showFailedToCreateToast(BuildContext context, AppTheme theme) {
-    showErrorToast(
-      context,
-      theme,
-      LocaleKeys.data_room_action_create_failure.tr(),
     );
   }
 }

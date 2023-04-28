@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'create_room_state.dart';
+part of 'room_input_state.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$CreateRoomState {
+mixin _$RoomInputState {
   String? get title => throw _privateConstructorUsedError;
   List<Tag>? get tags => throw _privateConstructorUsedError;
   AddressWithId? get addressWithId => throw _privateConstructorUsedError;
@@ -24,15 +24,15 @@ mixin _$CreateRoomState {
   String? get explanation => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $CreateRoomStateCopyWith<CreateRoomState> get copyWith =>
+  $RoomInputStateCopyWith<RoomInputState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $CreateRoomStateCopyWith<$Res> {
-  factory $CreateRoomStateCopyWith(
-          CreateRoomState value, $Res Function(CreateRoomState) then) =
-      _$CreateRoomStateCopyWithImpl<$Res, CreateRoomState>;
+abstract class $RoomInputStateCopyWith<$Res> {
+  factory $RoomInputStateCopyWith(
+          RoomInputState value, $Res Function(RoomInputState) then) =
+      _$RoomInputStateCopyWithImpl<$Res, RoomInputState>;
   @useResult
   $Res call(
       {String? title,
@@ -46,9 +46,9 @@ abstract class $CreateRoomStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$CreateRoomStateCopyWithImpl<$Res, $Val extends CreateRoomState>
-    implements $CreateRoomStateCopyWith<$Res> {
-  _$CreateRoomStateCopyWithImpl(this._value, this._then);
+class _$RoomInputStateCopyWithImpl<$Res, $Val extends RoomInputState>
+    implements $RoomInputStateCopyWith<$Res> {
+  _$RoomInputStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -107,11 +107,11 @@ class _$CreateRoomStateCopyWithImpl<$Res, $Val extends CreateRoomState>
 }
 
 /// @nodoc
-abstract class _$$_CreateRoomStateCopyWith<$Res>
-    implements $CreateRoomStateCopyWith<$Res> {
-  factory _$$_CreateRoomStateCopyWith(
-          _$_CreateRoomState value, $Res Function(_$_CreateRoomState) then) =
-      __$$_CreateRoomStateCopyWithImpl<$Res>;
+abstract class _$$_RoomInputStateCopyWith<$Res>
+    implements $RoomInputStateCopyWith<$Res> {
+  factory _$$_RoomInputStateCopyWith(
+          _$_RoomInputState value, $Res Function(_$_RoomInputState) then) =
+      __$$_RoomInputStateCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -127,11 +127,11 @@ abstract class _$$_CreateRoomStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_CreateRoomStateCopyWithImpl<$Res>
-    extends _$CreateRoomStateCopyWithImpl<$Res, _$_CreateRoomState>
-    implements _$$_CreateRoomStateCopyWith<$Res> {
-  __$$_CreateRoomStateCopyWithImpl(
-      _$_CreateRoomState _value, $Res Function(_$_CreateRoomState) _then)
+class __$$_RoomInputStateCopyWithImpl<$Res>
+    extends _$RoomInputStateCopyWithImpl<$Res, _$_RoomInputState>
+    implements _$$_RoomInputStateCopyWith<$Res> {
+  __$$_RoomInputStateCopyWithImpl(
+      _$_RoomInputState _value, $Res Function(_$_RoomInputState) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -144,7 +144,7 @@ class __$$_CreateRoomStateCopyWithImpl<$Res>
     Object? ageGroup = freezed,
     Object? explanation = freezed,
   }) {
-    return _then(_$_CreateRoomState(
+    return _then(_$_RoomInputState(
       title: freezed == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -175,8 +175,8 @@ class __$$_CreateRoomStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_CreateRoomState implements _CreateRoomState {
-  const _$_CreateRoomState(
+class _$_RoomInputState implements _RoomInputState {
+  const _$_RoomInputState(
       {this.title,
       final List<Tag>? tags,
       this.addressWithId,
@@ -208,14 +208,14 @@ class _$_CreateRoomState implements _CreateRoomState {
 
   @override
   String toString() {
-    return 'CreateRoomState(title: $title, tags: $tags, addressWithId: $addressWithId, membersNum: $membersNum, ageGroup: $ageGroup, explanation: $explanation)';
+    return 'RoomInputState(title: $title, tags: $tags, addressWithId: $addressWithId, membersNum: $membersNum, ageGroup: $ageGroup, explanation: $explanation)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_CreateRoomState &&
+            other is _$_RoomInputState &&
             (identical(other.title, title) || other.title == title) &&
             const DeepCollectionEquality().equals(other._tags, _tags) &&
             (identical(other.addressWithId, addressWithId) ||
@@ -241,18 +241,18 @@ class _$_CreateRoomState implements _CreateRoomState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_CreateRoomStateCopyWith<_$_CreateRoomState> get copyWith =>
-      __$$_CreateRoomStateCopyWithImpl<_$_CreateRoomState>(this, _$identity);
+  _$$_RoomInputStateCopyWith<_$_RoomInputState> get copyWith =>
+      __$$_RoomInputStateCopyWithImpl<_$_RoomInputState>(this, _$identity);
 }
 
-abstract class _CreateRoomState implements CreateRoomState {
-  const factory _CreateRoomState(
+abstract class _RoomInputState implements RoomInputState {
+  const factory _RoomInputState(
       {final String? title,
       final List<Tag>? tags,
       final AddressWithId? addressWithId,
       final int? membersNum,
       final AgeGroup? ageGroup,
-      final String? explanation}) = _$_CreateRoomState;
+      final String? explanation}) = _$_RoomInputState;
 
   @override
   String? get title;
@@ -268,6 +268,6 @@ abstract class _CreateRoomState implements CreateRoomState {
   String? get explanation;
   @override
   @JsonKey(ignore: true)
-  _$$_CreateRoomStateCopyWith<_$_CreateRoomState> get copyWith =>
+  _$$_RoomInputStateCopyWith<_$_RoomInputState> get copyWith =>
       throw _privateConstructorUsedError;
 }

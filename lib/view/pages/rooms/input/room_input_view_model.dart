@@ -1,18 +1,21 @@
-import 'package:fortune_client/data/model/addresses/address_with_id/address_with_id.dart';
-import 'package:fortune_client/data/model/tags/tag/tag.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:fortune_client/data/model/enum/age_group.dart';
 import 'package:fortune_client/data/repository/repository.dart';
-import 'package:fortune_client/injector.dart';
-import 'package:fortune_client/view/pages/rooms/action/create/create_room_state.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:fortune_client/l10n/locale_keys.g.dart';
+import 'package:fortune_client/view/pages/rooms/input/room_input_state.dart';
+import 'package:fortune_client/view/routes/route_navigator.dart';
+import 'package:fortune_client/view/theme/app_theme.dart';
+import 'package:fortune_client/view/widgets/dialog/toast.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-final createRoomViewModelProvider =
-    StateNotifierProvider<CreateRoomViewModel, CreateRoomState>(
-  (_) => CreateRoomViewModel(const CreateRoomState()),
-);
+part 'room_input_view_model.g.dart';
 
-class CreateRoomViewModel extends StateNotifier<CreateRoomState> {
-  CreateRoomViewModel(super._state);
+@riverpod
+class RoomInputViewModel extends _$RoomInputViewModel {
+  @override
+  RoomInputState build() {
+    return const RoomInputState();
+  }
 
   /// タグ以外はNull非許容
   bool isPossibleToCreate() {
@@ -40,21 +43,16 @@ class CreateRoomViewModel extends StateNotifier<CreateRoomState> {
     state = state.copyWith(explanation: value);
   }
 
-  Future<bool> create() async {
-    if (isPossibleToCreate()) {
-      final result = await Repository.rooms.create(
-        title: state.title!,
-        membersNum: state.membersNum!,
-        ageGroup: state.ageGroup!,
-        addressWithId: state.addressWithId!,
-        tagIds: state.tags,
-        explanation: state.explanation!,
-      );
-      if (result.isEmpty) return false;
-      navigateToCreatedRoom(result);
-      return true;
-    }
-    return false;
+  Future<String?> create() async {
+    if (isPossibleToCreate()) return null;
+    return await Repository.rooms.create(
+      title: state.title!,
+      membersNum: state.membersNum!,
+      ageGroup: state.ageGroup!,
+      addressWithId: state.addressWithId!,
+      tagIds: state.tags,
+      explanation: state.explanation!,
+    );
   }
 
   navigateToCreatedRoom(String roomId) async {
