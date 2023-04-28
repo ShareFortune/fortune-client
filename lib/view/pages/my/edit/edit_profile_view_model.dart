@@ -1,15 +1,13 @@
-import 'package:fortune_client/data/model/core/base/address/address.dart';
-import 'package:fortune_client/data/model/core/base/tag/tag.dart';
-import 'package:fortune_client/data/model/core/enum/cigarette_frequency.dart';
-import 'package:fortune_client/data/model/core/enum/drink_frequency.dart';
-import 'package:fortune_client/data/model/profiles/get_v1_profiles/get_v1_profiles.dart';
+import 'package:fortune_client/data/model/addresses/address/address.dart';
+import 'package:fortune_client/data/model/tags/tag/tag.dart';
+import 'package:fortune_client/data/model/enum/cigarette_frequency.dart';
+import 'package:fortune_client/data/model/enum/drink_frequency.dart';
+import 'package:fortune_client/data/model/profile/profile_response/profile_response.dart';
 import 'package:fortune_client/view/pages/my/edit/edit_profile_state.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final editProfileViewModelProvider = StateNotifierProvider.family<
-    EditProfileViewModel,
-    EditProfileState,
-    GetV1ProfilesResponse>((ref, profile) {
+    EditProfileViewModel, EditProfileState, ProfileResponse>((ref, profile) {
   return EditProfileViewModel(
     EditProfileState(
       profile: profile,
@@ -21,7 +19,7 @@ final editProfileViewModelProvider = StateNotifierProvider.family<
 class EditProfileViewModel extends StateNotifier<EditProfileState> {
   EditProfileViewModel(super.state);
 
-  GetV1ProfilesResponse get profile => state.profile;
+  ProfileResponse get profile => state.profile;
   List<ProfileImage> get images => [...state.images];
 
   /// 画像を追加する

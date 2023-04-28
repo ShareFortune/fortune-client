@@ -19,14 +19,14 @@ class _TagsDataSource implements TagsDataSource {
   String? baseUrl;
 
   @override
-  Future<PostV1TagsResponse> create(body) async {
+  Future<TagIdResponse> create(body) async {
     const _extra = <String, dynamic>{'append-token': true};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(body);
     final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<PostV1TagsResponse>(Options(
+        .fetch<Map<String, dynamic>>(_setStreamType<TagIdResponse>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -38,12 +38,12 @@ class _TagsDataSource implements TagsDataSource {
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = PostV1TagsResponse.fromJson(_result.data!);
+    final value = TagIdResponse.fromJson(_result.data!);
     return value;
   }
 
   @override
-  Future<GetV1TagsResponse> search({
+  Future<TagsResponse> search({
     name,
     nextToken,
     perPage,
@@ -58,7 +58,7 @@ class _TagsDataSource implements TagsDataSource {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<GetV1TagsResponse>(Options(
+        .fetch<Map<String, dynamic>>(_setStreamType<TagsResponse>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -70,7 +70,7 @@ class _TagsDataSource implements TagsDataSource {
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = GetV1TagsResponse.fromJson(_result.data!);
+    final value = TagsResponse.fromJson(_result.data!);
     return value;
   }
 

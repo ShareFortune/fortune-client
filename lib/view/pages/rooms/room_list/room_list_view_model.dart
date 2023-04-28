@@ -1,9 +1,8 @@
-import 'package:fortune_client/data/model/core/base/address/address.dart';
+import 'package:fortune_client/data/model/addresses/address/address.dart';
 import 'package:fortune_client/data/repository/repository.dart';
 import 'package:fortune_client/view/pages/rooms/room_list/room_list_state.dart';
 import 'package:fortune_client/view/pages/tags/search/search_tags_page.dart';
 import 'package:fortune_client/view/routes/route_navigator.dart';
-import 'package:fortune_client/view/routes/route_path.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final roomListViewModelProvider =
@@ -27,7 +26,7 @@ class RoomListViewModel extends StateNotifier<RoomListState> {
     bool hasRoomSearchResult = false;
     state = state.copyWith(
       rooms: await AsyncValue.guard(() async {
-        final result = await Repository.rooms.fetchList(
+        final result = await Repository.rooms.fetchRooms(
           memberNum: filter.memberNum,
           tags: filter.tags,
           address: filter.address,

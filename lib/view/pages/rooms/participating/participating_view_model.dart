@@ -25,7 +25,7 @@ class ParticipatingViewModel extends StateNotifier<ParticipatingState> {
   Future<void> getHostRooms() async {
     state = state.copyWith(
       host: await AsyncValue.guard(() async {
-        return await Repository.rooms.getRoomsToParticipateAsHost();
+        return await Repository.rooms.fetchRoomsHost();
       }),
     );
   }
@@ -33,7 +33,7 @@ class ParticipatingViewModel extends StateNotifier<ParticipatingState> {
   Future<void> getGuestRooms() async {
     state = state.copyWith(
       guest: await AsyncValue.guard(() async {
-        return await Repository.rooms.getRoomsToParticipateAsGuest();
+        return await Repository.rooms.fetchRoomsGuest();
       }),
     );
   }

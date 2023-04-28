@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:fortune_client/data/model/core/enum/cigarette_frequency.dart';
-import 'package:fortune_client/data/model/core/enum/drink_frequency.dart';
+import 'package:fortune_client/data/model/enum/cigarette_frequency.dart';
+import 'package:fortune_client/data/model/enum/drink_frequency.dart';
 import 'package:fortune_client/view/widgets/picker/base_bottom_picker.dart';
 
 class EnumPicker<T> extends BasePicker {

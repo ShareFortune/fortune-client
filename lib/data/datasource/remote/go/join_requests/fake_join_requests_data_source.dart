@@ -1,6 +1,6 @@
 import 'package:fortune_client/data/datasource/remote/go/join_requests/join_requests_data_source.dart';
-import 'package:fortune_client/data/model/rooms/room_id_response/room_id_response.dart';
-import 'package:fortune_client/data/model/room_join_requests/get_v1_room_join_requests/get_v1_room_join_requests.dart';
+import 'package:fortune_client/data/model/join_requests/join_requests_response/join_requests_response.dart';
+import 'package:fortune_client/data/model/rooms/rooms_response/rooms_response.dart';
 
 class FakeJoinRequestsDataSource implements JoinRequestsDataSource {
   @override
@@ -10,7 +10,7 @@ class FakeJoinRequestsDataSource implements JoinRequestsDataSource {
   }
 
   @override
-  Future<GetV1RoomJoinRequestsResponse> getJoinRequest(String id,
+  Future<JoinRequestsResponse> getJoinRequest(String id,
       {String? nextToken, int? perPage}) {
     // TODO: implement getJoinRequest
     throw UnimplementedError();

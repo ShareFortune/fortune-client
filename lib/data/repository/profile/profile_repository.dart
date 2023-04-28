@@ -1,23 +1,22 @@
 import 'dart:io';
 
-import 'package:fortune_client/data/model/core/base/address_with_id/address_with_id.dart';
-import 'package:fortune_client/data/model/core/base/profiles_files/profiles_files.dart';
-import 'package:fortune_client/data/model/core/base/tag/tag.dart';
-import 'package:fortune_client/data/model/core/enum/cigarette_frequency.dart';
-import 'package:fortune_client/data/model/core/enum/drink_frequency.dart';
-import 'package:fortune_client/data/model/core/enum/gender.dart';
-import 'package:fortune_client/data/model/core/enum/profile_images_type.dart';
-import 'package:fortune_client/data/model/profiles/get_v1_profiles/get_v1_profiles.dart';
+import 'package:fortune_client/data/model/addresses/address_with_id/address_with_id.dart';
+import 'package:fortune_client/data/model/enum/cigarette_frequency.dart';
+import 'package:fortune_client/data/model/enum/drink_frequency.dart';
+import 'package:fortune_client/data/model/enum/gender.dart';
+import 'package:fortune_client/data/model/enum/profile_images_type.dart';
+import 'package:fortune_client/data/model/profile/profile_response/profile_response.dart';
+import 'package:fortune_client/data/model/tags/tag/tag.dart';
 
 abstract class ProfileRepository {
   /// 作成済みかどうか
   Future<bool> isCreated();
 
   /// 取得
-  Future<GetV1ProfilesResponse> get();
+  Future<ProfileResponse> get();
 
   /// キャッシュに保存されたプロフィールを取得
-  GetV1ProfilesResponse getCache();
+  ProfileResponse getCache();
 
   /// 作成
   Future<bool> create({
@@ -62,7 +61,7 @@ abstract class ProfileRepository {
 
   /// ローカル保存されたプロフィール画像を取得
   /// [ProfilesFiles]
-  ProfilesFiles getProfileImages();
+  ProfileFiles getProfileImages();
 
   /// [ProfileImagesType]に応じて画像を取得
   /// 文字列が存在しない場合はnullを返す

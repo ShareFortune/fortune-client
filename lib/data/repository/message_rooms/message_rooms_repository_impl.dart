@@ -1,5 +1,5 @@
 import 'package:fortune_client/data/datasource/remote/go/message_rooms/message_rooms_data_source.dart';
-import 'package:fortune_client/data/model/core/base/message_room/messege_room.dart';
+import 'package:fortune_client/data/model/messages/message_rooms_response/message_rooms_response.dart';
 import 'package:fortune_client/data/repository/message_rooms/message_rooms_repository.dart';
 import 'package:fortune_client/util/logger/logger.dart';
 

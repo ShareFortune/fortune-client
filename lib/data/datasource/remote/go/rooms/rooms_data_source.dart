@@ -1,9 +1,8 @@
 import 'package:dio/dio.dart';
-import 'package:fortune_client/data/model/rooms/get_v1_rooms_guest/get_v1_rooms_guest.dart';
-import 'package:fortune_client/data/model/rooms/get_v1_rooms_host/get_v1_rooms_host.dart';
 import 'package:fortune_client/data/model/rooms/room_detail/room_detail.dart';
-import 'package:fortune_client/data/model/rooms/room_id_response/room_id_response.dart';
-import 'package:fortune_client/data/model/rooms/rooms/rooms.dart';
+import 'package:fortune_client/data/model/rooms/rooms_guest_response/rooms_guest_response.dart';
+import 'package:fortune_client/data/model/rooms/rooms_host_response/rooms_host_response.dart';
+import 'package:fortune_client/data/model/rooms/rooms_response/rooms_response.dart';
 import 'package:retrofit/retrofit.dart';
 import 'package:fortune_client/data/datasource/core/annotations_headers.dart.dart';
 
@@ -21,7 +20,7 @@ abstract class RoomsDataSource {
 
   @GET('/rooms')
   @authenticatedRequest
-  Future<Rooms> fetchList({
+  Future<RoomsResponse> fetchRooms({
     @Query("addressId") String? addressId,
     @Query("applicationDeadline") String? applicationDeadline,
     @Query("memberNum") int? memberNum,
@@ -38,14 +37,14 @@ abstract class RoomsDataSource {
 
   @GET('/rooms/host')
   @authenticatedRequest
-  Future<GetV1RoomsHostResponse> getRoomsHost({
+  Future<RoomsHostResponse> getRoomsHost({
     @Query("nextToken") String? nextToken,
     @Query("perPage") int? perPage,
   });
 
   @GET('/rooms/guest')
   @authenticatedRequest
-  Future<GetV1RoomsGuestResponse> getRoomsGuest({
+  Future<RoomsGuestResponse> getRoomsGuest({
     @Query("nextToken") String? nextToken,
     @Query("perPage") int? perPage,
   });

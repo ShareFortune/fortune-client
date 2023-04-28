@@ -1,6 +1,6 @@
 import 'package:fortune_client/data/datasource/local/shared_pref_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/go/users/users_data_source.dart';
-import 'package:fortune_client/data/model/users/post_v1_users/post_v1_users.dart';
+import 'package:fortune_client/data/model/users/users_request/users_request.dart';
 import 'package:fortune_client/data/repository/repository.dart';
 import 'package:fortune_client/data/repository/users/users_repository.dart';
 import 'package:fortune_client/util/logger/logger.dart';
@@ -15,7 +15,7 @@ class UsersRepositoryImpl implements UsersRepository {
   @override
   Future<bool> create(String username, String birthday) async {
     try {
-      final form = PostV1UsersRequest(
+      final form = UsersCreateRequest(
         firebaseId: Repository.auth.firebaseId,
         username: username,
         birthday: birthday,

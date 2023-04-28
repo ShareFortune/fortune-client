@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:fortune_client/data/model/rooms/get_v1_rooms_guest/get_v1_rooms_guest.dart';
+import 'package:fortune_client/data/model/rooms/rooms_guest_response/rooms_guest_response.dart';
 import 'package:fortune_client/gen/assets.gen.dart';
-import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/view/pages/common/host_room_actions_bottom_sheet/host_room_actions_bottom_sheet_view_model.dart';
 import 'package:fortune_client/view/widgets/bottom_sheet/bottom_sheet_menu_item.dart';
-import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -12,7 +10,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 class GuestRoomActionsBottomSheet extends HookConsumerWidget {
   const GuestRoomActionsBottomSheet(this.room, {super.key});
 
-  final GetV1RoomsGuestResponseRoom room;
+  final RoomsGuestResponseRoom room;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

@@ -19,7 +19,7 @@ class _MessageImagesDataSource implements MessageImagesDataSource {
   String? baseUrl;
 
   @override
-  Future<PostV1MessageRoomsIdMessageImagesResponse> send(
+  Future<ImageMessageIdResponse> send(
     messageRoomId,
     body,
   ) async {
@@ -29,7 +29,7 @@ class _MessageImagesDataSource implements MessageImagesDataSource {
     final _data = <String, dynamic>{};
     _data.addAll(body);
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<PostV1MessageRoomsIdMessageImagesResponse>(Options(
+        _setStreamType<ImageMessageIdResponse>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -41,8 +41,7 @@ class _MessageImagesDataSource implements MessageImagesDataSource {
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value =
-        PostV1MessageRoomsIdMessageImagesResponse.fromJson(_result.data!);
+    final value = ImageMessageIdResponse.fromJson(_result.data!);
     return value;
   }
 

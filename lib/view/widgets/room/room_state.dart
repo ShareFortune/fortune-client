@@ -1,9 +1,9 @@
-import 'package:fortune_client/data/model/core/base/address/address.dart';
-import 'package:fortune_client/data/model/core/base/members_num/members_num.dart';
-import 'package:fortune_client/data/model/core/enum/join_request_status.dart';
-import 'package:fortune_client/data/model/core/enum/room_status.dart';
-import 'package:fortune_client/data/model/rooms/get_v1_rooms_guest/get_v1_rooms_guest.dart';
-import 'package:fortune_client/data/model/rooms/get_v1_rooms_host/get_v1_rooms_host.dart';
+import 'package:fortune_client/data/model/addresses/address/address.dart';
+import 'package:fortune_client/data/model/enum/join_request_status.dart';
+import 'package:fortune_client/data/model/enum/room_status.dart';
+import 'package:fortune_client/data/model/profile/members_num/members_num.dart';
+import 'package:fortune_client/data/model/rooms/rooms_guest_response/rooms_guest_response.dart';
+import 'package:fortune_client/data/model/rooms/rooms_host_response/rooms_host_response.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/room/room_theme.dart';
 
@@ -64,7 +64,7 @@ class HostRoomState extends RoomState {
     required this.joinRequestCount,
   });
 
-  factory HostRoomState(AppTheme theme, GetV1RoomsHostResponseRoom room) {
+  factory HostRoomState(AppTheme theme, RoomsHostResponseRoom room) {
     return HostRoomState._(
       title: room.roomName,
       address: room.address,
@@ -99,7 +99,7 @@ class GuestRoomState extends RoomState {
     required this.joinRequestStatus,
   });
 
-  factory GuestRoomState(AppTheme theme, GetV1RoomsGuestResponseRoom room) {
+  factory GuestRoomState(AppTheme theme, RoomsGuestResponseRoom room) {
     return GuestRoomState._(
       id: room.id,
       title: room.roomName,

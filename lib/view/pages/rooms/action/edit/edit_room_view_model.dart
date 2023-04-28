@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:fortune_client/data/model/core/base/address_with_id/address_with_id.dart';
-import 'package:fortune_client/data/model/core/base/tag/tag.dart';
-import 'package:fortune_client/data/model/core/enum/age_group.dart';
+import 'package:fortune_client/data/model/addresses/address_with_id/address_with_id.dart';
+import 'package:fortune_client/data/model/tags/tag/tag.dart';
+import 'package:fortune_client/data/model/enum/age_group.dart';
 import 'package:fortune_client/data/repository/repository.dart';
-import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/view/pages/rooms/action/edit/edit_room_state.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 

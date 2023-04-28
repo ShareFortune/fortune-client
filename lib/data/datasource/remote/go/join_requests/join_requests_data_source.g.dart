@@ -42,7 +42,7 @@ class _JoinRequestsDataSource implements JoinRequestsDataSource {
   }
 
   @override
-  Future<GetV1RoomJoinRequestsResponse> getJoinRequest(
+  Future<JoinRequestsResponse> getJoinRequest(
     id, {
     nextToken,
     perPage,
@@ -56,7 +56,7 @@ class _JoinRequestsDataSource implements JoinRequestsDataSource {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<GetV1RoomJoinRequestsResponse>(Options(
+        _setStreamType<JoinRequestsResponse>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -68,7 +68,7 @@ class _JoinRequestsDataSource implements JoinRequestsDataSource {
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = GetV1RoomJoinRequestsResponse.fromJson(_result.data!);
+    final value = JoinRequestsResponse.fromJson(_result.data!);
     return value;
   }
 

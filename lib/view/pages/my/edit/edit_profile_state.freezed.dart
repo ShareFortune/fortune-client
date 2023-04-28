@@ -18,7 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$EditProfileState {
   /// 編集用プロフィール写真
   List<ProfileImage> get images => throw _privateConstructorUsedError;
-  GetV1ProfilesResponse get profile => throw _privateConstructorUsedError;
+  ProfileResponse get profile => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $EditProfileStateCopyWith<EditProfileState> get copyWith =>
@@ -31,9 +31,9 @@ abstract class $EditProfileStateCopyWith<$Res> {
           EditProfileState value, $Res Function(EditProfileState) then) =
       _$EditProfileStateCopyWithImpl<$Res, EditProfileState>;
   @useResult
-  $Res call({List<ProfileImage> images, GetV1ProfilesResponse profile});
+  $Res call({List<ProfileImage> images, ProfileResponse profile});
 
-  $GetV1ProfilesResponseCopyWith<$Res> get profile;
+  $ProfileResponseCopyWith<$Res> get profile;
 }
 
 /// @nodoc
@@ -60,14 +60,14 @@ class _$EditProfileStateCopyWithImpl<$Res, $Val extends EditProfileState>
       profile: null == profile
           ? _value.profile
           : profile // ignore: cast_nullable_to_non_nullable
-              as GetV1ProfilesResponse,
+              as ProfileResponse,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $GetV1ProfilesResponseCopyWith<$Res> get profile {
-    return $GetV1ProfilesResponseCopyWith<$Res>(_value.profile, (value) {
+  $ProfileResponseCopyWith<$Res> get profile {
+    return $ProfileResponseCopyWith<$Res>(_value.profile, (value) {
       return _then(_value.copyWith(profile: value) as $Val);
     });
   }
@@ -81,10 +81,10 @@ abstract class _$$_EditProfileStateCopyWith<$Res>
       __$$_EditProfileStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<ProfileImage> images, GetV1ProfilesResponse profile});
+  $Res call({List<ProfileImage> images, ProfileResponse profile});
 
   @override
-  $GetV1ProfilesResponseCopyWith<$Res> get profile;
+  $ProfileResponseCopyWith<$Res> get profile;
 }
 
 /// @nodoc
@@ -109,7 +109,7 @@ class __$$_EditProfileStateCopyWithImpl<$Res>
       profile: null == profile
           ? _value.profile
           : profile // ignore: cast_nullable_to_non_nullable
-              as GetV1ProfilesResponse,
+              as ProfileResponse,
     ));
   }
 }
@@ -133,7 +133,7 @@ class _$_EditProfileState implements _EditProfileState {
   }
 
   @override
-  final GetV1ProfilesResponse profile;
+  final ProfileResponse profile;
 
   @override
   String toString() {
@@ -163,14 +163,14 @@ class _$_EditProfileState implements _EditProfileState {
 abstract class _EditProfileState implements EditProfileState {
   const factory _EditProfileState(
       {required final List<ProfileImage> images,
-      required final GetV1ProfilesResponse profile}) = _$_EditProfileState;
+      required final ProfileResponse profile}) = _$_EditProfileState;
 
   @override
 
   /// 編集用プロフィール写真
   List<ProfileImage> get images;
   @override
-  GetV1ProfilesResponse get profile;
+  ProfileResponse get profile;
   @override
   @JsonKey(ignore: true)
   _$$_EditProfileStateCopyWith<_$_EditProfileState> get copyWith =>

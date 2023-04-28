@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:fortune_client/data/datasource/core/annotations_headers.dart.dart';
-import 'package:fortune_client/data/model/rooms/room_id_response/room_id_response.dart';
+import 'package:fortune_client/data/model/rooms/rooms_response/rooms_response.dart';
 import 'package:retrofit/retrofit.dart';
 
 part 'favorites_data_source.g.dart';

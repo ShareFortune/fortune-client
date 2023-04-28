@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:fortune_client/data/model/core/base/address/address.dart';
-import 'package:fortune_client/data/model/core/enum/gender.dart';
+import 'package:fortune_client/data/model/addresses/address/address.dart';
+import 'package:fortune_client/data/model/enum/gender.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/icon/user_icon_widget.dart';
 import 'package:fortune_client/view/widgets/profile/profile_view_item.dart';

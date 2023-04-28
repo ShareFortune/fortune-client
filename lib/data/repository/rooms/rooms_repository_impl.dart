@@ -1,22 +1,18 @@
-import 'package:fortune_client/data/datasource/remote/go/addresses/addresses_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/go/rooms/rooms_data_source.dart';
-import 'package:fortune_client/data/model/core/base/address/address.dart';
-import 'package:fortune_client/data/model/core/base/address_with_id/address_with_id.dart';
-import 'package:fortune_client/data/model/core/base/profiles_files/profiles_files.dart';
-import 'package:fortune_client/data/model/core/base/tag/tag.dart';
-import 'package:fortune_client/data/model/core/enum/age_group.dart';
-import 'package:fortune_client/data/model/core/enum/cigarette_frequency.dart';
-import 'package:fortune_client/data/model/core/enum/drink_frequency.dart';
-import 'package:fortune_client/data/model/core/enum/gender.dart';
-import 'package:fortune_client/data/model/rooms/get_v1_rooms_guest/get_v1_rooms_guest.dart';
-import 'package:fortune_client/data/model/rooms/get_v1_rooms_host/get_v1_rooms_host.dart';
-import 'package:fortune_client/data/model/rooms/patch_v1_rooms_id/patch_v1_rooms_id.dart';
-import 'package:fortune_client/data/model/rooms/post_v1_rooms/post_v1_rooms.dart';
+import 'package:fortune_client/data/model/addresses/address/address.dart';
+import 'package:fortune_client/data/model/addresses/address_with_id/address_with_id.dart';
+import 'package:fortune_client/data/model/enum/age_group.dart';
+import 'package:fortune_client/data/model/enum/cigarette_frequency.dart';
+import 'package:fortune_client/data/model/enum/drink_frequency.dart';
+import 'package:fortune_client/data/model/enum/gender.dart';
+import 'package:fortune_client/data/model/profile/profile_response/profile_response.dart';
+import 'package:fortune_client/data/model/rooms/room/room.dart';
 import 'package:fortune_client/data/model/rooms/room_detail/room_detail.dart';
-import 'package:fortune_client/data/model/rooms/rooms/rooms.dart';
-import 'package:fortune_client/data/repository/repository.dart';
+import 'package:fortune_client/data/model/rooms/rooms_guest_response/rooms_guest_response.dart';
+import 'package:fortune_client/data/model/rooms/rooms_host_response/rooms_host_response.dart';
+import 'package:fortune_client/data/model/rooms/rooms_request/rooms_request.dart';
+import 'package:fortune_client/data/model/tags/tag/tag.dart';
 import 'package:fortune_client/data/repository/rooms/rooms_repository.dart';
-import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/util/converter/datetime_converter.dart';
 import 'package:fortune_client/util/logger/logger.dart';
 
@@ -36,7 +32,7 @@ class RoomsRepositoryImpl implements RoomsRepository {
   }) async {
     try {
       final result = await _roomsDataSource.create(
-        PostV1RoomsRequest(
+        RoomsCreateRequest(
           roomName: title,
           membersNum: membersNum,
           ageGroup: ageGroup,
@@ -61,7 +57,7 @@ class RoomsRepositoryImpl implements RoomsRepository {
     required String name,
     required Gender gender,
     required int addressId,
-    required ProfilesFiles files,
+    required ProfileFiles files,
     required int? height,
     required DrinkFrequency? drinkFrequency,
     required CigaretteFrequency? cigaretteFrequency,
@@ -72,7 +68,7 @@ class RoomsRepositoryImpl implements RoomsRepository {
     try {
       final result = await _roomsDataSource.update(
         roomId,
-        PatchV1RoomsIdRequest(
+        RoomsUpdateRequest(
           name: name,
           gender: gender,
           addressId: addressId,
@@ -93,7 +89,7 @@ class RoomsRepositoryImpl implements RoomsRepository {
   }
 
   @override
-  Future<List<Room>> fetchList({
+  Future<List<Room>> fetchRooms({
     int? memberNum,
     List<Tag>? tags,
     Address? address,
@@ -102,13 +98,13 @@ class RoomsRepositoryImpl implements RoomsRepository {
       int? addressId;
       if (address != null) {}
 
-      final result = await _roomsDataSource.fetchList(
+      final result = await _roomsDataSource.fetchRooms(
         perPage: 10,
         memberNum: memberNum,
         tagIds: tags?.map((e) => e.id).toList(),
         addressId: addressId.toString(),
       );
-      return result.data;
+      return result.rooms;
     } catch (e) {
       logger.e(e);
       rethrow;
@@ -126,10 +122,10 @@ class RoomsRepositoryImpl implements RoomsRepository {
   }
 
   @override
-  Future<List<GetV1RoomsHostResponseRoom>> getRoomsToParticipateAsHost() async {
+  Future<List<RoomsHostResponseRoom>> fetchRoomsHost() async {
     try {
       final result = await _roomsDataSource.getRoomsHost(perPage: 10);
-      return result.data;
+      return result.rooms;
     } catch (e) {
       logger.e(e);
       rethrow;
@@ -137,11 +133,10 @@ class RoomsRepositoryImpl implements RoomsRepository {
   }
 
   @override
-  Future<List<GetV1RoomsGuestResponseRoom>>
-      getRoomsToParticipateAsGuest() async {
+  Future<List<RoomsGuestResponseRoom>> fetchRoomsGuest() async {
     try {
       final result = await _roomsDataSource.getRoomsGuest(perPage: 10);
-      return result.data;
+      return result.rooms;
     } catch (e) {
       logger.e(e);
       rethrow;

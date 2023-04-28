@@ -3,13 +3,12 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:fortune_client/data/model/profiles/get_v1_profiles/get_v1_profiles.dart';
+import 'package:fortune_client/data/model/profile/profile_response/profile_response.dart';
 import 'package:fortune_client/gen/assets.gen.dart';
 import 'package:fortune_client/l10n/locale_keys.g.dart';
 import 'package:fortune_client/view/pages/my/edit/edit_profile_state.dart';
 import 'package:fortune_client/view/pages/my/edit/edit_profile_view_model.dart';
 import 'package:fortune_client/view/routes/route_navigator.dart';
-import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/app_bar/back_app_bar.dart';
 import 'package:fortune_client/view/widgets/bottom_sheet/photo_actions_sheet.dart';
@@ -20,7 +19,7 @@ import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class EditProfilePageArguments {
-  final GetV1ProfilesResponse profile;
+  final ProfileResponse profile;
 
   EditProfilePageArguments(this.profile);
 }

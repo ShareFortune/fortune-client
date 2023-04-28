@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_japanese_address_picker/flutter_japanese_address_picker.dart'
     as jp;
-import 'package:fortune_client/data/model/core/base/address/address.dart';
-import 'package:fortune_client/view/theme/app_text_theme.dart';
+import 'package:fortune_client/data/model/addresses/address/address.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/picker/base_bottom_picker.dart';
 

@@ -19,14 +19,14 @@ class _AddressesDataSource implements AddressesDataSource {
   String? baseUrl;
 
   @override
-  Future<GetV1AddressesResponse> search({city}) async {
+  Future<AddressesResponse> search({city}) async {
     const _extra = <String, dynamic>{'append-token': true};
     final queryParameters = <String, dynamic>{r'city': city};
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<GetV1AddressesResponse>(Options(
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<AddressesResponse>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -38,7 +38,7 @@ class _AddressesDataSource implements AddressesDataSource {
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = GetV1AddressesResponse.fromJson(_result.data!);
+    final value = AddressesResponse.fromJson(_result.data!);
     return value;
   }
 

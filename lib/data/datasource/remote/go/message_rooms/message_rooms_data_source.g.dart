@@ -19,13 +19,13 @@ class _MessageRoomsDataSource implements MessageRoomsDataSource {
   String? baseUrl;
 
   @override
-  Future<GetV1MessageRoomsResponse> getMessageRoomsHost() async {
+  Future<MessageRoomsResponse> getMessageRoomsHost() async {
     const _extra = <String, dynamic>{'append-token': true};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<GetV1MessageRoomsResponse>(Options(
+        _setStreamType<MessageRoomsResponse>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -37,18 +37,18 @@ class _MessageRoomsDataSource implements MessageRoomsDataSource {
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = GetV1MessageRoomsResponse.fromJson(_result.data!);
+    final value = MessageRoomsResponse.fromJson(_result.data!);
     return value;
   }
 
   @override
-  Future<GetV1MessageRoomsResponse> getMessageRoomsGuest() async {
+  Future<MessageRoomsResponse> getMessageRoomsGuest() async {
     const _extra = <String, dynamic>{'append-token': true};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<GetV1MessageRoomsResponse>(Options(
+        _setStreamType<MessageRoomsResponse>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -60,7 +60,7 @@ class _MessageRoomsDataSource implements MessageRoomsDataSource {
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = GetV1MessageRoomsResponse.fromJson(_result.data!);
+    final value = MessageRoomsResponse.fromJson(_result.data!);
     return value;
   }
 
