@@ -1,15 +1,15 @@
-import 'package:fortune_client/data/model/core/base/address/address.dart';
-import 'package:fortune_client/data/model/core/base/address_with_id/address_with_id.dart';
-import 'package:fortune_client/data/model/core/base/profiles_files/profiles_files.dart';
-import 'package:fortune_client/data/model/core/base/room/room.dart';
-import 'package:fortune_client/data/model/core/base/tag/tag.dart';
-import 'package:fortune_client/data/model/core/enum/age_group.dart';
-import 'package:fortune_client/data/model/core/enum/cigarette_frequency.dart';
-import 'package:fortune_client/data/model/core/enum/drink_frequency.dart';
-import 'package:fortune_client/data/model/core/enum/gender.dart';
-import 'package:fortune_client/data/model/rooms/get_v1_rooms/get_v1_rooms.dart';
-import 'package:fortune_client/data/model/rooms/get_v1_rooms_guest/get_v1_rooms_guest.dart';
-import 'package:fortune_client/data/model/rooms/get_v1_rooms_host/get_v1_rooms_host.dart';
+import 'package:fortune_client/data/model/addresses/address/address.dart';
+import 'package:fortune_client/data/model/addresses/address_with_id/address_with_id.dart';
+import 'package:fortune_client/data/model/enum/age_group.dart';
+import 'package:fortune_client/data/model/enum/cigarette_frequency.dart';
+import 'package:fortune_client/data/model/enum/drink_frequency.dart';
+import 'package:fortune_client/data/model/enum/gender.dart';
+import 'package:fortune_client/data/model/profile/profile_response/profile_response.dart';
+import 'package:fortune_client/data/model/rooms/room/room.dart';
+import 'package:fortune_client/data/model/rooms/room_detail/room_detail.dart';
+import 'package:fortune_client/data/model/rooms/rooms_guest_response/rooms_guest_response.dart';
+import 'package:fortune_client/data/model/rooms/rooms_host_response/rooms_host_response.dart';
+import 'package:fortune_client/data/model/tags/tag/tag.dart';
 
 abstract class RoomsRepository {
   /// ルーム作成
@@ -28,7 +28,7 @@ abstract class RoomsRepository {
     required String name,
     required Gender gender,
     required int addressId,
-    required ProfilesFiles files,
+    required ProfileFiles files,
     required int? height,
     required DrinkFrequency? drinkFrequency,
     required CigaretteFrequency? cigaretteFrequency,
@@ -38,18 +38,18 @@ abstract class RoomsRepository {
   });
 
   /// ルームリストを取得
-  Future<List<GetV1RoomsResponseRoom>> fetchList({
+  Future<List<Room>> fetchRooms({
     int? memberNum,
     List<Tag>? tags,
     Address? address,
   });
 
   /// ルームリストを取得・ホスト
-  Future<List<GetV1RoomsHostResponseRoom>> getRoomsToParticipateAsHost();
+  Future<List<RoomsHostResponseRoom>> fetchRoomsHost();
 
   /// ルームリストを取得・ゲスト
-  Future<List<GetV1RoomsGuestResponseRoom>> getRoomsToParticipateAsGuest();
+  Future<List<RoomsGuestResponseRoom>> fetchRoomsGuest();
 
   /// 詳細取得
-  Future<Room> fetchDetail(String roomId);
+  Future<RoomDetail> fetchDetail(String roomId);
 }

@@ -1,6 +1,6 @@
-import 'package:fortune_client/data/model/core/base/address/address.dart';
-import 'package:fortune_client/data/model/core/base/tag/tag.dart';
-import 'package:fortune_client/data/model/rooms/get_v1_rooms/get_v1_rooms.dart';
+import 'package:fortune_client/data/model/addresses/address/address.dart';
+import 'package:fortune_client/data/model/rooms/room/room.dart';
+import 'package:fortune_client/data/model/tags/tag/tag.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -52,7 +52,7 @@ class RoomListStateFilter with _$RoomListStateFilter {
 @freezed
 class RoomListStateRoom with _$RoomListStateRoom {
   const factory RoomListStateRoom({
-    required GetV1RoomsResponseRoom data,
+    required Room data,
     @Default(false) bool isRequested,
   }) = _RoomListItem;
 }

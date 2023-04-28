@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:fortune_client/data/model/core/enum/join_request_status.dart';
-import 'package:fortune_client/data/model/core/enum/room_status.dart';
+import 'package:fortune_client/data/model/enum/join_request_status.dart';
+import 'package:fortune_client/data/model/enum/room_status.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 
 /// ルームWidgetのTheme

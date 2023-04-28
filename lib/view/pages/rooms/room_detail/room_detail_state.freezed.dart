@@ -17,7 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$RoomDetailState {
   String get roomId => throw _privateConstructorUsedError;
-  AsyncValue<Room> get detail => throw _privateConstructorUsedError;
+  AsyncValue<RoomDetail> get detail => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $RoomDetailStateCopyWith<RoomDetailState> get copyWith =>
@@ -30,7 +30,7 @@ abstract class $RoomDetailStateCopyWith<$Res> {
           RoomDetailState value, $Res Function(RoomDetailState) then) =
       _$RoomDetailStateCopyWithImpl<$Res, RoomDetailState>;
   @useResult
-  $Res call({String roomId, AsyncValue<Room> detail});
+  $Res call({String roomId, AsyncValue<RoomDetail> detail});
 }
 
 /// @nodoc
@@ -57,7 +57,7 @@ class _$RoomDetailStateCopyWithImpl<$Res, $Val extends RoomDetailState>
       detail: null == detail
           ? _value.detail
           : detail // ignore: cast_nullable_to_non_nullable
-              as AsyncValue<Room>,
+              as AsyncValue<RoomDetail>,
     ) as $Val);
   }
 }
@@ -70,7 +70,7 @@ abstract class _$$_RoomDetailStateCopyWith<$Res>
       __$$_RoomDetailStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String roomId, AsyncValue<Room> detail});
+  $Res call({String roomId, AsyncValue<RoomDetail> detail});
 }
 
 /// @nodoc
@@ -95,7 +95,7 @@ class __$$_RoomDetailStateCopyWithImpl<$Res>
       detail: null == detail
           ? _value.detail
           : detail // ignore: cast_nullable_to_non_nullable
-              as AsyncValue<Room>,
+              as AsyncValue<RoomDetail>,
     ));
   }
 }
@@ -108,7 +108,7 @@ class _$_RoomDetailState implements _RoomDetailState {
   @override
   final String roomId;
   @override
-  final AsyncValue<Room> detail;
+  final AsyncValue<RoomDetail> detail;
 
   @override
   String toString() {
@@ -137,12 +137,12 @@ class _$_RoomDetailState implements _RoomDetailState {
 abstract class _RoomDetailState implements RoomDetailState {
   const factory _RoomDetailState(
       {required final String roomId,
-      required final AsyncValue<Room> detail}) = _$_RoomDetailState;
+      required final AsyncValue<RoomDetail> detail}) = _$_RoomDetailState;
 
   @override
   String get roomId;
   @override
-  AsyncValue<Room> get detail;
+  AsyncValue<RoomDetail> get detail;
   @override
   @JsonKey(ignore: true)
   _$$_RoomDetailStateCopyWith<_$_RoomDetailState> get copyWith =>

@@ -28,7 +28,7 @@ class AuthRepositoryImpl implements AuthRepository {
 
   AuthMethodInterface get _signInMethod {
     switch (authType()) {
-      case AuthType.facebook:
+      case AuthType.twitter:
         return _facebookSignInDataSource;
       case AuthType.apple:
         return _appleSignInDataSource;
@@ -73,7 +73,7 @@ class AuthRepositoryImpl implements AuthRepository {
   /// 各種SNSでログイン
   Future<OAuthCredential?> _loginWithSns(AuthType type) async {
     switch (type) {
-      case AuthType.facebook:
+      case AuthType.twitter:
         return _facebookSignInDataSource.login();
       case AuthType.apple:
         return _appleSignInDataSource.login();

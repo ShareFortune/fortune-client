@@ -16,9 +16,8 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$MessageRoomListState {
-  AsyncValue<List<MessageRoom>?> get host => throw _privateConstructorUsedError;
-  AsyncValue<List<MessageRoom>?> get guest =>
-      throw _privateConstructorUsedError;
+  AsyncValue<List<MessageRoom>> get host => throw _privateConstructorUsedError;
+  AsyncValue<List<MessageRoom>> get guest => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $MessageRoomListStateCopyWith<MessageRoomListState> get copyWith =>
@@ -32,8 +31,8 @@ abstract class $MessageRoomListStateCopyWith<$Res> {
       _$MessageRoomListStateCopyWithImpl<$Res, MessageRoomListState>;
   @useResult
   $Res call(
-      {AsyncValue<List<MessageRoom>?> host,
-      AsyncValue<List<MessageRoom>?> guest});
+      {AsyncValue<List<MessageRoom>> host,
+      AsyncValue<List<MessageRoom>> guest});
 }
 
 /// @nodoc
@@ -57,11 +56,11 @@ class _$MessageRoomListStateCopyWithImpl<$Res,
       host: null == host
           ? _value.host
           : host // ignore: cast_nullable_to_non_nullable
-              as AsyncValue<List<MessageRoom>?>,
+              as AsyncValue<List<MessageRoom>>,
       guest: null == guest
           ? _value.guest
           : guest // ignore: cast_nullable_to_non_nullable
-              as AsyncValue<List<MessageRoom>?>,
+              as AsyncValue<List<MessageRoom>>,
     ) as $Val);
   }
 }
@@ -75,8 +74,8 @@ abstract class _$$_MessageRoomListStateCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {AsyncValue<List<MessageRoom>?> host,
-      AsyncValue<List<MessageRoom>?> guest});
+      {AsyncValue<List<MessageRoom>> host,
+      AsyncValue<List<MessageRoom>> guest});
 }
 
 /// @nodoc
@@ -97,11 +96,11 @@ class __$$_MessageRoomListStateCopyWithImpl<$Res>
       host: null == host
           ? _value.host
           : host // ignore: cast_nullable_to_non_nullable
-              as AsyncValue<List<MessageRoom>?>,
+              as AsyncValue<List<MessageRoom>>,
       guest: null == guest
           ? _value.guest
           : guest // ignore: cast_nullable_to_non_nullable
-              as AsyncValue<List<MessageRoom>?>,
+              as AsyncValue<List<MessageRoom>>,
     ));
   }
 }
@@ -112,9 +111,9 @@ class _$_MessageRoomListState implements _MessageRoomListState {
   const _$_MessageRoomListState({required this.host, required this.guest});
 
   @override
-  final AsyncValue<List<MessageRoom>?> host;
+  final AsyncValue<List<MessageRoom>> host;
   @override
-  final AsyncValue<List<MessageRoom>?> guest;
+  final AsyncValue<List<MessageRoom>> guest;
 
   @override
   String toString() {
@@ -143,14 +142,14 @@ class _$_MessageRoomListState implements _MessageRoomListState {
 
 abstract class _MessageRoomListState implements MessageRoomListState {
   const factory _MessageRoomListState(
-          {required final AsyncValue<List<MessageRoom>?> host,
-          required final AsyncValue<List<MessageRoom>?> guest}) =
+          {required final AsyncValue<List<MessageRoom>> host,
+          required final AsyncValue<List<MessageRoom>> guest}) =
       _$_MessageRoomListState;
 
   @override
-  AsyncValue<List<MessageRoom>?> get host;
+  AsyncValue<List<MessageRoom>> get host;
   @override
-  AsyncValue<List<MessageRoom>?> get guest;
+  AsyncValue<List<MessageRoom>> get guest;
   @override
   @JsonKey(ignore: true)
   _$$_MessageRoomListStateCopyWith<_$_MessageRoomListState> get copyWith =>

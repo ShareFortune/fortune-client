@@ -1,6 +1,6 @@
 import 'package:favorite_button/favorite_button.dart';
 import 'package:flutter/material.dart';
-import 'package:fortune_client/data/model/core/base/members_num/members_num.dart';
+import 'package:fortune_client/data/model/profile/members_num/members_num.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/room/room_member_icons.dart';
 import 'package:fortune_client/view/widgets/room/room_members_num_text.dart';

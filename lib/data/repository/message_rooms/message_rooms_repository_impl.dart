@@ -1,5 +1,5 @@
 import 'package:fortune_client/data/datasource/remote/go/message_rooms/message_rooms_data_source.dart';
-import 'package:fortune_client/data/model/core/base/message_room/messege_room.dart';
+import 'package:fortune_client/data/model/messages/message_rooms_response/message_rooms_response.dart';
 import 'package:fortune_client/data/repository/message_rooms/message_rooms_repository.dart';
 import 'package:fortune_client/util/logger/logger.dart';
 
@@ -19,7 +19,7 @@ class MessageRoomsRepositoryImpl implements MessageRoomsRepository {
   }
 
   @override
-  Future<List<MessageRoom>?> fetchHost() async {
+  Future<List<MessageRoom>> fetchHost() async {
     try {
       final result = await _dataSource.getMessageRoomsHost();
       return result.messageRooms;
@@ -30,7 +30,7 @@ class MessageRoomsRepositoryImpl implements MessageRoomsRepository {
   }
 
   @override
-  Future<List<MessageRoom>?> fetchGuest() async {
+  Future<List<MessageRoom>> fetchGuest() async {
     try {
       final result = await _dataSource.getMessageRoomsGuest();
       return result.messageRooms;

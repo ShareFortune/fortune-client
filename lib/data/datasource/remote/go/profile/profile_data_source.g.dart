@@ -19,13 +19,13 @@ class _ProfileDataSource implements ProfileDataSource {
   String? baseUrl;
 
   @override
-  Future<GetV1ProfilesResponse> get() async {
+  Future<ProfileResponse> get() async {
     const _extra = <String, dynamic>{'append-token': true};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<GetV1ProfilesResponse>(Options(
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<ProfileResponse>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -37,12 +37,12 @@ class _ProfileDataSource implements ProfileDataSource {
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = GetV1ProfilesResponse.fromJson(_result.data!);
+    final value = ProfileResponse.fromJson(_result.data!);
     return value;
   }
 
   @override
-  Future<PostV1UsersIdProfilesResponse> create(
+  Future<ProfileIdResponse> create(
     id,
     body,
   ) async {
@@ -51,8 +51,8 @@ class _ProfileDataSource implements ProfileDataSource {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(body);
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<PostV1UsersIdProfilesResponse>(Options(
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<ProfileIdResponse>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -64,12 +64,12 @@ class _ProfileDataSource implements ProfileDataSource {
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = PostV1UsersIdProfilesResponse.fromJson(_result.data!);
+    final value = ProfileIdResponse.fromJson(_result.data!);
     return value;
   }
 
   @override
-  Future<PatchV1ProfilesIdResponse> update(
+  Future<ProfileIdResponse> update(
     id,
     body,
   ) async {
@@ -78,8 +78,8 @@ class _ProfileDataSource implements ProfileDataSource {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(body);
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<PatchV1ProfilesIdResponse>(Options(
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<ProfileIdResponse>(Options(
       method: 'PATCH',
       headers: _headers,
       extra: _extra,
@@ -91,7 +91,7 @@ class _ProfileDataSource implements ProfileDataSource {
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = PatchV1ProfilesIdResponse.fromJson(_result.data!);
+    final value = ProfileIdResponse.fromJson(_result.data!);
     return value;
   }
 

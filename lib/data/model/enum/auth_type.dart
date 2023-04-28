@@ -1,7 +1,7 @@
 import 'package:fortune_client/util/storage/app_pref_key.dart';
 
 enum AuthType {
-  facebook,
+  twitter,
   apple,
   google,
 }
@@ -9,8 +9,8 @@ enum AuthType {
 extension AuthTypeEx on AuthType {
   String get providerName {
     switch (this) {
-      case AuthType.facebook:
-        return 'facebook';
+      case AuthType.twitter:
+        return 'twitter';
       case AuthType.apple:
         return 'apple';
       case AuthType.google:
@@ -24,7 +24,7 @@ extension AuthTypeEx on AuthType {
         return AppPrefKey.accessTokenApple.keyString;
       case AuthType.google:
         return AppPrefKey.accessTokenGoogle.keyString;
-      case AuthType.facebook:
+      case AuthType.twitter:
         return AppPrefKey.accessTokenTwitter.keyString;
       default:
         return '';

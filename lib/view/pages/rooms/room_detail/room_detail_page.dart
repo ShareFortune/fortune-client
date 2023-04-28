@@ -1,16 +1,11 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:fortune_client/data/model/core/base/fortune_user/fortune_user.dart';
-import 'package:fortune_client/data/model/core/base/tag/tag.dart';
-import 'package:fortune_client/l10n/locale_keys.g.dart';
+import 'package:fortune_client/data/model/users/fortune_user/fortune_user.dart';
 import 'package:fortune_client/view/pages/rooms/room_detail/room_detail_view_model.dart';
-import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/app_bar/back_app_bar.dart';
 import 'package:fortune_client/view/widgets/icon/user_icon_widget.dart';
 import 'package:fortune_client/view/widgets/other/async_value_widget.dart';
-import 'package:fortune_client/view/widgets/tag/tag_widget.dart';
 import 'package:fortune_client/view/widgets/tag/tags_wraper.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';

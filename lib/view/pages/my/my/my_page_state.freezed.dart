@@ -17,8 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$MyPageState {
   File? get icon => throw _privateConstructorUsedError;
-  AsyncValue<GetV1ProfilesResponse> get profile =>
-      throw _privateConstructorUsedError;
+  AsyncValue<ProfileResponse> get profile => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $MyPageStateCopyWith<MyPageState> get copyWith =>
@@ -31,7 +30,7 @@ abstract class $MyPageStateCopyWith<$Res> {
           MyPageState value, $Res Function(MyPageState) then) =
       _$MyPageStateCopyWithImpl<$Res, MyPageState>;
   @useResult
-  $Res call({File? icon, AsyncValue<GetV1ProfilesResponse> profile});
+  $Res call({File? icon, AsyncValue<ProfileResponse> profile});
 }
 
 /// @nodoc
@@ -58,7 +57,7 @@ class _$MyPageStateCopyWithImpl<$Res, $Val extends MyPageState>
       profile: null == profile
           ? _value.profile
           : profile // ignore: cast_nullable_to_non_nullable
-              as AsyncValue<GetV1ProfilesResponse>,
+              as AsyncValue<ProfileResponse>,
     ) as $Val);
   }
 }
@@ -71,7 +70,7 @@ abstract class _$$_MyPageStateCopyWith<$Res>
       __$$_MyPageStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({File? icon, AsyncValue<GetV1ProfilesResponse> profile});
+  $Res call({File? icon, AsyncValue<ProfileResponse> profile});
 }
 
 /// @nodoc
@@ -96,7 +95,7 @@ class __$$_MyPageStateCopyWithImpl<$Res>
       profile: null == profile
           ? _value.profile
           : profile // ignore: cast_nullable_to_non_nullable
-              as AsyncValue<GetV1ProfilesResponse>,
+              as AsyncValue<ProfileResponse>,
     ));
   }
 }
@@ -109,7 +108,7 @@ class _$_MyPageState implements _MyPageState {
   @override
   final File? icon;
   @override
-  final AsyncValue<GetV1ProfilesResponse> profile;
+  final AsyncValue<ProfileResponse> profile;
 
   @override
   String toString() {
@@ -137,14 +136,13 @@ class _$_MyPageState implements _MyPageState {
 
 abstract class _MyPageState implements MyPageState {
   const factory _MyPageState(
-          {final File? icon,
-          required final AsyncValue<GetV1ProfilesResponse> profile}) =
-      _$_MyPageState;
+      {final File? icon,
+      required final AsyncValue<ProfileResponse> profile}) = _$_MyPageState;
 
   @override
   File? get icon;
   @override
-  AsyncValue<GetV1ProfilesResponse> get profile;
+  AsyncValue<ProfileResponse> get profile;
   @override
   @JsonKey(ignore: true)
   _$$_MyPageStateCopyWith<_$_MyPageState> get copyWith =>

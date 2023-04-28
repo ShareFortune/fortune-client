@@ -44,7 +44,7 @@ class _MessagesDataSource implements MessagesDataSource {
   }
 
   @override
-  Future<GetV1MessageRoomsIdMessagesResponse> get(
+  Future<MessagesResponse> fetchMessages(
     messageRoomId, {
     nextToken,
     perPage,
@@ -57,8 +57,8 @@ class _MessagesDataSource implements MessagesDataSource {
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<GetV1MessageRoomsIdMessagesResponse>(Options(
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<MessagesResponse>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -70,7 +70,7 @@ class _MessagesDataSource implements MessagesDataSource {
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = GetV1MessageRoomsIdMessagesResponse.fromJson(_result.data!);
+    final value = MessagesResponse.fromJson(_result.data!);
     return value;
   }
 

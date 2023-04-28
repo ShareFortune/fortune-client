@@ -4,17 +4,15 @@ import 'dart:io';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:fortune_client/data/datasource/local/shared_pref_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/go/profile/profile_data_source.dart';
-import 'package:fortune_client/data/model/core/base/address_with_id/address_with_id.dart';
-import 'package:fortune_client/data/model/core/base/profiles_files/profiles_files.dart';
-import 'package:fortune_client/data/model/core/base/tag/tag.dart';
-import 'package:fortune_client/data/model/core/enum/cigarette_frequency.dart';
-import 'package:fortune_client/data/model/core/enum/drink_frequency.dart';
-import 'package:fortune_client/data/model/core/enum/profile_images_type.dart';
-import 'package:fortune_client/data/model/profiles/get_v1_profiles/get_v1_profiles.dart';
-import 'package:fortune_client/data/model/profiles/patch_v1_profiles_id/patch_v1_profiles_id.dart';
-import 'package:fortune_client/data/model/profiles/post_v1_users_id_profiles/post_v1_users_id_profiles.dart';
+import 'package:fortune_client/data/model/addresses/address_with_id/address_with_id.dart';
+import 'package:fortune_client/data/model/enum/cigarette_frequency.dart';
+import 'package:fortune_client/data/model/enum/drink_frequency.dart';
+import 'package:fortune_client/data/model/enum/profile_images_type.dart';
+import 'package:fortune_client/data/model/profile/profile_request/profile_request.dart';
+import 'package:fortune_client/data/model/profile/profile_response/profile_response.dart';
+import 'package:fortune_client/data/model/tags/tag/tag.dart';
 import 'package:fortune_client/data/repository/profile/profile_repository.dart';
-import 'package:fortune_client/data/model/core/enum/gender.dart';
+import 'package:fortune_client/data/model/enum/gender.dart';
 import 'package:fortune_client/util/converter/image_converter.dart';
 import 'package:fortune_client/util/logger/logger.dart';
 import 'package:fortune_client/util/storage/app_pref_key.dart';
@@ -34,7 +32,7 @@ class ProfileRepositoryImpl implements ProfileRepository {
   }
 
   @override
-  Future<GetV1ProfilesResponse> get() async {
+  Future<ProfileResponse> get() async {
     try {
       final profile = await _profileDataSource.get();
 
@@ -50,9 +48,9 @@ class ProfileRepositoryImpl implements ProfileRepository {
   }
 
   @override
-  GetV1ProfilesResponse getCache() {
+  ProfileResponse getCache() {
     final result = _shared.getString(AppPrefKey.profile.keyString);
-    return GetV1ProfilesResponse.fromJson(jsonDecode(result!));
+    return ProfileResponse.fromJson(jsonDecode(result!));
   }
 
   @override
@@ -83,7 +81,7 @@ class ProfileRepositoryImpl implements ProfileRepository {
       );
 
       /// 作成フォーム
-      final profileForm = PostV1UsersIdProfilesRequest(
+      final profileForm = ProfileCreateRequest(
         name: name,
         gender: gender.rawValue,
         addressId: address.id,
@@ -118,7 +116,7 @@ class ProfileRepositoryImpl implements ProfileRepository {
   ///
   /// プロフィール更新
   ///
-  Future<void> _update(PatchV1ProfilesIdRequest request) async {
+  Future<void> _update(ProfileUpdateRequest request) async {
     try {
       await _profileDataSource.update(
         _shared.getString(AppPrefKey.profileId.keyString)!,
@@ -134,10 +132,10 @@ class ProfileRepositoryImpl implements ProfileRepository {
   /// 更新データフォーム作成
   ///
   Future<void> _generateUpdateRequest(
-    Function(PatchV1ProfilesIdRequest request) update,
+    Function(ProfileUpdateRequest request) update,
   ) async {
     final profile = getCache();
-    final request = PatchV1ProfilesIdRequest(
+    final request = ProfileUpdateRequest(
       name: profile.name,
       gender: profile.gender,
       height: profile.height,
@@ -146,7 +144,7 @@ class ProfileRepositoryImpl implements ProfileRepository {
       selfIntroduction: profile.selfIntroduction,
       occupationId: null,
       addressId: 65, // TODO: アドレスデータにID追加
-      tagIds: profile.tags?.map((e) => e.id).toList(),
+      tagIds: profile.tags.map((e) => e.id).toList(),
       files: getProfileImages(),
     );
     update(request);
@@ -220,8 +218,8 @@ class ProfileRepositoryImpl implements ProfileRepository {
   }
 
   @override
-  ProfilesFiles getProfileImages() {
-    return ProfilesFiles(
+  ProfileFiles getProfileImages() {
+    return ProfileFiles(
       mainImage: getProfileImageByType(ProfileImagesType.mainImage)!,
       secondImage: getProfileImageByType(ProfileImagesType.secondImage),
       thirdImage: getProfileImageByType(ProfileImagesType.thirdImage),

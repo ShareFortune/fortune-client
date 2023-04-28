@@ -1,4 +1,4 @@
-import 'package:fortune_client/data/model/core/base/room_join_request/room_join_request.dart';
+import 'package:fortune_client/data/model/join_requests/join_requests_response/join_requests_response.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 

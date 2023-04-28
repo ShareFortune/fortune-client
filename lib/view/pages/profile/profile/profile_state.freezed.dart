@@ -17,8 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$ProfileState {
   String? get profileId => throw _privateConstructorUsedError;
-  AsyncValue<GetV1ProfilesResponse> get profile =>
-      throw _privateConstructorUsedError;
+  AsyncValue<ProfileResponse> get profile => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ProfileStateCopyWith<ProfileState> get copyWith =>
@@ -31,7 +30,7 @@ abstract class $ProfileStateCopyWith<$Res> {
           ProfileState value, $Res Function(ProfileState) then) =
       _$ProfileStateCopyWithImpl<$Res, ProfileState>;
   @useResult
-  $Res call({String? profileId, AsyncValue<GetV1ProfilesResponse> profile});
+  $Res call({String? profileId, AsyncValue<ProfileResponse> profile});
 }
 
 /// @nodoc
@@ -58,7 +57,7 @@ class _$ProfileStateCopyWithImpl<$Res, $Val extends ProfileState>
       profile: null == profile
           ? _value.profile
           : profile // ignore: cast_nullable_to_non_nullable
-              as AsyncValue<GetV1ProfilesResponse>,
+              as AsyncValue<ProfileResponse>,
     ) as $Val);
   }
 }
@@ -71,7 +70,7 @@ abstract class _$$_ProfileStateCopyWith<$Res>
       __$$_ProfileStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? profileId, AsyncValue<GetV1ProfilesResponse> profile});
+  $Res call({String? profileId, AsyncValue<ProfileResponse> profile});
 }
 
 /// @nodoc
@@ -96,7 +95,7 @@ class __$$_ProfileStateCopyWithImpl<$Res>
       profile: null == profile
           ? _value.profile
           : profile // ignore: cast_nullable_to_non_nullable
-              as AsyncValue<GetV1ProfilesResponse>,
+              as AsyncValue<ProfileResponse>,
     ));
   }
 }
@@ -110,7 +109,7 @@ class _$_ProfileState extends _ProfileState {
   @override
   final String? profileId;
   @override
-  final AsyncValue<GetV1ProfilesResponse> profile;
+  final AsyncValue<ProfileResponse> profile;
 
   @override
   String toString() {
@@ -139,15 +138,14 @@ class _$_ProfileState extends _ProfileState {
 
 abstract class _ProfileState extends ProfileState {
   const factory _ProfileState(
-          {required final String? profileId,
-          required final AsyncValue<GetV1ProfilesResponse> profile}) =
-      _$_ProfileState;
+      {required final String? profileId,
+      required final AsyncValue<ProfileResponse> profile}) = _$_ProfileState;
   const _ProfileState._() : super._();
 
   @override
   String? get profileId;
   @override
-  AsyncValue<GetV1ProfilesResponse> get profile;
+  AsyncValue<ProfileResponse> get profile;
   @override
   @JsonKey(ignore: true)
   _$$_ProfileStateCopyWith<_$_ProfileState> get copyWith =>

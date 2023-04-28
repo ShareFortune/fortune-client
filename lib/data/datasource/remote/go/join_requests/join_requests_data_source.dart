@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:fortune_client/data/datasource/core/annotations_headers.dart.dart';
-import 'package:fortune_client/data/model/room_join_requests/get_v1_room_join_requests/get_v1_room_join_requests.dart';
-import 'package:fortune_client/data/model/rooms/room_id_response/room_id_response.dart';
+import 'package:fortune_client/data/model/join_requests/join_requests_response/join_requests_response.dart';
+import 'package:fortune_client/data/model/rooms/rooms_response/rooms_response.dart';
 import 'package:retrofit/retrofit.dart';
 
 part 'join_requests_data_source.g.dart';
@@ -20,7 +20,7 @@ abstract class JoinRequestsDataSource {
   /// 受信した参加リクエスト結果を取得
   @GET('/rooms/{id}/roomJoinRequests')
   @authenticatedRequest
-  Future<GetV1RoomJoinRequestsResponse> getJoinRequest(
+  Future<JoinRequestsResponse> getJoinRequest(
     @Path('id') String id, {
     @Query("nextToken") String? nextToken,
     @Query("perPage") int? perPage,

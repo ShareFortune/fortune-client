@@ -1,5 +1,5 @@
 import 'package:fortune_client/data/datasource/remote/go/join_requests/join_requests_data_source.dart';
-import 'package:fortune_client/data/model/core/base/room_join_request/room_join_request.dart';
+import 'package:fortune_client/data/model/join_requests/join_requests_response/join_requests_response.dart';
 import 'package:fortune_client/data/repository/join_requests/join_requests_repository.dart';
 import 'package:fortune_client/util/logger/logger.dart';
 

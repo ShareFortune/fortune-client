@@ -14,30 +14,12 @@ import 'package:flutter/services.dart';
 class $StubGen {
   const $StubGen();
 
-  /// File path: stub/get_v1_addresses_response.json
-  String get getV1AddressesResponse => 'stub/get_v1_addresses_response.json';
+  /// File path: stub/addresses_response.json
+  String get addressesResponse => 'stub/addresses_response.json';
 
-  /// File path: stub/get_v1_message_rooms_id_messages_response.json
-  String get getV1MessageRoomsIdMessagesResponse =>
-      'stub/get_v1_message_rooms_id_messages_response.json';
-
-  /// File path: stub/get_v1_profiles_response.json
-  String get getV1ProfilesResponse => 'stub/get_v1_profiles_response.json';
-
-  /// File path: stub/get_v1_rooms_guest_response.json
-  String get getV1RoomsGuestResponse => 'stub/get_v1_rooms_guest_response.json';
-
-  /// File path: stub/get_v1_rooms_host_response.json
-  String get getV1RoomsHostResponse => 'stub/get_v1_rooms_host_response.json';
-
-  /// File path: stub/get_v1_rooms_response.json
-  String get getV1RoomsResponse => 'stub/get_v1_rooms_response.json';
-
-  /// File path: stub/get_v1_rooms_response_room.json
-  String get getV1RoomsResponseRoom => 'stub/get_v1_rooms_response_room.json';
-
-  /// File path: stub/get_v1_tags_response.json
-  String get getV1TagsResponse => 'stub/get_v1_tags_response.json';
+  /// File path: stub/message_rooms_id_messages_response.json
+  String get messageRoomsIdMessagesResponse =>
+      'stub/message_rooms_id_messages_response.json';
 
   /// File path: stub/message_rooms_response_guest.json
   String get messageRoomsResponseGuest =>
@@ -47,18 +29,36 @@ class $StubGen {
   String get messageRoomsResponseHost =>
       'stub/message_rooms_response_host.json';
 
+  /// File path: stub/profiles_response.json
+  String get profilesResponse => 'stub/profiles_response.json';
+
+  /// File path: stub/rooms_guest_response.json
+  String get roomsGuestResponse => 'stub/rooms_guest_response.json';
+
+  /// File path: stub/rooms_host_response.json
+  String get roomsHostResponse => 'stub/rooms_host_response.json';
+
+  /// File path: stub/rooms_response.json
+  String get roomsResponse => 'stub/rooms_response.json';
+
+  /// File path: stub/rooms_response_room.json
+  String get roomsResponseRoom => 'stub/rooms_response_room.json';
+
+  /// File path: stub/tags_response.json
+  String get tagsResponse => 'stub/tags_response.json';
+
   /// List of all assets
   List<String> get values => [
-        getV1AddressesResponse,
-        getV1MessageRoomsIdMessagesResponse,
-        getV1ProfilesResponse,
-        getV1RoomsGuestResponse,
-        getV1RoomsHostResponse,
-        getV1RoomsResponse,
-        getV1RoomsResponseRoom,
-        getV1TagsResponse,
+        addressesResponse,
+        messageRoomsIdMessagesResponse,
         messageRoomsResponseGuest,
-        messageRoomsResponseHost
+        messageRoomsResponseHost,
+        profilesResponse,
+        roomsGuestResponse,
+        roomsHostResponse,
+        roomsResponse,
+        roomsResponseRoom,
+        tagsResponse
       ];
 }
 
