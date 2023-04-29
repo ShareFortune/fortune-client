@@ -57,7 +57,7 @@ class ViewStateContainer extends HookConsumerWidget {
               child: Text(
                 _value,
                 style: theme.textTheme.h30.paint(
-                  isEdit ? theme.appColors.subText1 : theme.appColors.primary,
+                  hasValue ? theme.appColors.primary : theme.appColors.subText1,
                 ),
               ),
             ),

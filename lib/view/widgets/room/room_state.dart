@@ -7,7 +7,14 @@ import 'package:fortune_client/data/model/rooms/rooms_host_response/rooms_host_r
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/room/room_theme.dart';
 
+enum RoomType {
+  host,
+  guest,
+}
+
 abstract class RoomState {
+  final RoomType type;
+
   /// ID
   final String id;
 
@@ -35,7 +42,10 @@ abstract class RoomState {
   /// テーマ
   final RoomTheme theme;
 
+  bool get isHost => type == RoomType.host;
+
   RoomState({
+    this.type = RoomType.guest,
     required this.title,
     required this.address,
     required this.id,
@@ -54,6 +64,7 @@ class HostRoomState extends RoomState {
   final int joinRequestCount;
 
   HostRoomState._({
+    required super.type,
     required super.title,
     required super.address,
     required super.id,
@@ -66,6 +77,7 @@ class HostRoomState extends RoomState {
 
   factory HostRoomState(AppTheme theme, RoomsHostResponseRoom room) {
     return HostRoomState._(
+      type: RoomType.host,
       title: room.roomName,
       address: room.address,
       id: room.id,

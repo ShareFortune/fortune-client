@@ -89,7 +89,10 @@ class _RoomInputPageState extends ConsumerState<RoomInputPage> {
                         if (roomId != null) {
                           return navigator.navigateTo(
                             RoutePath.roomDetail,
-                            arguments: RoomDetailPageArguments(roomId),
+                            arguments: RoomDetailPageArguments(
+                              roomId: roomId,
+                              roomName: state.title!,
+                            ),
                           );
                         }
 

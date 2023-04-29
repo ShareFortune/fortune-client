@@ -80,7 +80,10 @@ class RoomListPage extends HookConsumerWidget {
                       onTapRoom: () async {
                         await navigator.navigateTo(
                           RoutePath.roomDetail,
-                          arguments: RoomDetailPageArguments(room.data.id),
+                          arguments: RoomDetailPageArguments(
+                            roomId: room.data.id,
+                            roomName: room.data.roomName,
+                          ),
                         );
                       },
                       onTapHeart: (value) async {},

@@ -208,9 +208,9 @@ class _ProfileImageEditor extends HookConsumerWidget {
       context: context,
       builder: (BuildContext context) {
         return CupertinoActionSheet(
-          message: const Text(
+          message: Text(
             'プロフィール写真を変更しますか？',
-            style: TextStyle(fontSize: 15),
+            style: theme.textTheme.h30,
           ),
           actions: <Widget>[
             /// 画像を変更する

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:fortune_client/l10n/locale_keys.g.dart';
 import 'package:fortune_client/view/pages/rooms/input/room_input_page.dart';
 import 'package:fortune_client/view/pages/rooms/participating/participating_view_model.dart';
+import 'package:fortune_client/view/pages/rooms/room_detail/room_detail_page.dart';
 import 'package:fortune_client/view/routes/route_navigator.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/animation/animated_sticky_tab_bar.dart';
@@ -66,7 +67,17 @@ class _ParticipatingPageState extends ConsumerState<ParticipatingPage>
                 _Item(
                   data: state.host,
                   builder: (room) => ParticipatingRoom(
-                    HostRoomState(theme, room),
+                    room: HostRoomState(theme, room),
+                    onTap: () async {
+                      await navigator.navigateTo(
+                        RoutePath.roomDetail,
+                        arguments: RoomDetailPageArguments(
+                          type: RoomType.host,
+                          roomId: room.id,
+                          roomName: room.roomName,
+                        ),
+                      );
+                    },
                   ),
                 ),
 
@@ -74,7 +85,17 @@ class _ParticipatingPageState extends ConsumerState<ParticipatingPage>
                 _Item(
                   data: state.guest,
                   builder: (room) => ParticipatingRoom(
-                    GuestRoomState(theme, room),
+                    room: GuestRoomState(theme, room),
+                    onTap: () async {
+                      await navigator.navigateTo(
+                        RoutePath.roomDetail,
+                        arguments: RoomDetailPageArguments(
+                          type: RoomType.guest,
+                          roomId: room.id,
+                          roomName: room.roomName,
+                        ),
+                      );
+                    },
                   ),
                 ),
               ],
