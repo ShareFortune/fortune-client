@@ -4,6 +4,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:fortune_client/data/model/enum/age_group.dart';
 import 'package:fortune_client/l10n/locale_keys.g.dart';
 import 'package:fortune_client/view/pages/rooms/action/components/room_state_input_field.dart';
+import 'package:fortune_client/view/pages/rooms/action/components/room_state_text_field.dart';
 import 'package:fortune_client/view/pages/rooms/input/room_input_view_model.dart';
 import 'package:fortune_client/view/pages/tags/search/search_tags_page.dart';
 import 'package:fortune_client/view/routes/route_navigator.dart';
@@ -11,6 +12,7 @@ import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/app_bar/back_app_bar.dart';
 import 'package:fortune_client/view/widgets/container/view_state_container.dart';
 import 'package:fortune_client/view/widgets/dialog/toast.dart';
+import 'package:fortune_client/view/widgets/form_field/base_text_field.dart';
 import 'package:fortune_client/view/widgets/picker/address_picker.dart';
 import 'package:fortune_client/view/widgets/picker/enum_picker.dart';
 import 'package:fortune_client/view/widgets/picker/number_picker.dart';
@@ -76,11 +78,19 @@ class _RoomInputPageState extends ConsumerState<RoomInputPage> {
                 const Gap(30),
 
                 /// タイトル
-                RoomStateTitleInputField(
-                  theme: theme,
-                  controller: titleController,
-                  onClear: () => viewModel.changeTitle(""),
-                  onChanged: (value) => viewModel.changeTitle(value),
+                Container(
+                  padding: const EdgeInsets.only(right: 10),
+                  child: RoomStateTextInputField(
+                    theme: theme,
+                    title: LocaleKeys.data_room_title_title.tr(),
+                    content: BaseTextField(
+                      controller: titleController,
+                      maxLength: 20,
+                      onClear: () => viewModel.changeTitle(""),
+                      onChanged: (value) => viewModel.changeTitle(value),
+                      hintText: LocaleKeys.create_room_page_roomTitleHint.tr(),
+                    ),
+                  ),
                 ),
 
                 const Gap(20),
@@ -157,10 +167,26 @@ class _RoomInputPageState extends ConsumerState<RoomInputPage> {
                 const Gap(30),
 
                 /// 説明
-                RoomStateExplanationInputField(
-                  theme: theme,
-                  controller: explanationController,
-                  onChanged: (value) => viewModel.changeExplanation(value),
+                Container(
+                  padding: const EdgeInsets.only(right: 10),
+                  child: RoomStateTextInputField(
+                    theme: theme,
+                    required: false,
+                    title: LocaleKeys.data_room_description_title.tr(),
+                    content: BaseTextField(
+                      controller: explanationController,
+                      maxLength: 500,
+                      minLines: 6,
+                      maxLines: 100,
+                      isDisplaySuffixIcon: false,
+                      onChanged: (value) => viewModel.changeExplanation(value),
+                      hintText: LocaleKeys.data_room_description_hint.tr(),
+                      contentPadding: const EdgeInsets.symmetric(
+                        horizontal: 15,
+                        vertical: 15,
+                      ),
+                    ),
+                  ),
                 ),
 
                 const Gap(150),
