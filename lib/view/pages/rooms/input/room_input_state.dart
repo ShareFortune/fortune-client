@@ -8,6 +8,9 @@ part 'room_input_state.freezed.dart';
 @freezed
 class RoomInputState with _$RoomInputState {
   const factory RoomInputState({
+    /// 部屋ID
+    required String? id,
+
     /// 部屋名
     required String? title,
 

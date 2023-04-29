@@ -56,6 +56,7 @@ class RoomDetailPage extends HookConsumerWidget {
                     await navigator.navigateTo(
                       RoutePath.roomInput,
                       arguments: RoomInputPageArguments(
+                        roomId: room.id,
                         title: room.roomName,
 
                         /// TODO

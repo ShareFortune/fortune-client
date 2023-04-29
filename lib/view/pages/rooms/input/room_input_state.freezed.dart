@@ -16,6 +16,9 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$RoomInputState {
+  /// 部屋ID
+  String? get id => throw _privateConstructorUsedError;
+
   /// 部屋名
   String? get title => throw _privateConstructorUsedError;
 
@@ -46,7 +49,8 @@ abstract class $RoomInputStateCopyWith<$Res> {
       _$RoomInputStateCopyWithImpl<$Res, RoomInputState>;
   @useResult
   $Res call(
-      {String? title,
+      {String? id,
+      String? title,
       String? explanation,
       AgeGroup? ageGroup,
       int? membersNum,
@@ -69,6 +73,7 @@ class _$RoomInputStateCopyWithImpl<$Res, $Val extends RoomInputState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = freezed,
     Object? title = freezed,
     Object? explanation = freezed,
     Object? ageGroup = freezed,
@@ -77,6 +82,10 @@ class _$RoomInputStateCopyWithImpl<$Res, $Val extends RoomInputState>
     Object? address = freezed,
   }) {
     return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
       title: freezed == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -126,7 +135,8 @@ abstract class _$$_RoomInputStateCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String? title,
+      {String? id,
+      String? title,
       String? explanation,
       AgeGroup? ageGroup,
       int? membersNum,
@@ -148,6 +158,7 @@ class __$$_RoomInputStateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = freezed,
     Object? title = freezed,
     Object? explanation = freezed,
     Object? ageGroup = freezed,
@@ -156,6 +167,10 @@ class __$$_RoomInputStateCopyWithImpl<$Res>
     Object? address = freezed,
   }) {
     return _then(_$_RoomInputState(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
       title: freezed == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -188,13 +203,18 @@ class __$$_RoomInputStateCopyWithImpl<$Res>
 
 class _$_RoomInputState implements _RoomInputState {
   const _$_RoomInputState(
-      {required this.title,
+      {required this.id,
+      required this.title,
       required this.explanation,
       required this.ageGroup,
       required this.membersNum,
       required final List<Tag>? tags,
       required this.address})
       : _tags = tags;
+
+  /// 部屋ID
+  @override
+  final String? id;
 
   /// 部屋名
   @override
@@ -231,7 +251,7 @@ class _$_RoomInputState implements _RoomInputState {
 
   @override
   String toString() {
-    return 'RoomInputState(title: $title, explanation: $explanation, ageGroup: $ageGroup, membersNum: $membersNum, tags: $tags, address: $address)';
+    return 'RoomInputState(id: $id, title: $title, explanation: $explanation, ageGroup: $ageGroup, membersNum: $membersNum, tags: $tags, address: $address)';
   }
 
   @override
@@ -239,6 +259,7 @@ class _$_RoomInputState implements _RoomInputState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_RoomInputState &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.explanation, explanation) ||
                 other.explanation == explanation) &&
@@ -251,7 +272,7 @@ class _$_RoomInputState implements _RoomInputState {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, title, explanation, ageGroup,
+  int get hashCode => Object.hash(runtimeType, id, title, explanation, ageGroup,
       membersNum, const DeepCollectionEquality().hash(_tags), address);
 
   @JsonKey(ignore: true)
@@ -263,13 +284,18 @@ class _$_RoomInputState implements _RoomInputState {
 
 abstract class _RoomInputState implements RoomInputState {
   const factory _RoomInputState(
-      {required final String? title,
+      {required final String? id,
+      required final String? title,
       required final String? explanation,
       required final AgeGroup? ageGroup,
       required final int? membersNum,
       required final List<Tag>? tags,
       required final Address? address}) = _$_RoomInputState;
 
+  @override
+
+  /// 部屋ID
+  String? get id;
   @override
 
   /// 部屋名

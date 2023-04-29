@@ -70,10 +70,16 @@
         "requestCount": "{room}に参加したい人 {requestCount}名",
         "noRequest": "リクエストが存在しません。"
     },
-    "create_room_page": {
-        "title": "新しいルームを作る",
+    "room_input_page": {
+        "title": {
+            "create": "新しいルームを作る",
+            "edit": "ルームを編集する"
+        },
         "roomTitleHint": "必須（40文字）",
-        "create": "作成"
+        "action": {
+            "create": "作成",
+            "edit": "保存"
+        }
     },
     "edit_room_page": {
         "title": "ルームを編集する",

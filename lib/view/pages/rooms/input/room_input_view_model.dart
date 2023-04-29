@@ -13,6 +13,7 @@ class RoomInputViewModel extends _$RoomInputViewModel {
   @override
   RoomInputState build(RoomInputPageArguments arguments) {
     return RoomInputState(
+      id: arguments.roomId,
       title: arguments.title,
       explanation: arguments.explanation,
       ageGroup: arguments.ageGroup,
@@ -65,5 +66,9 @@ class RoomInputViewModel extends _$RoomInputViewModel {
       tagIds: state.tags,
       explanation: state.explanation!,
     );
+  }
+
+  Future<String?> update() async {
+    return "";
   }
 }

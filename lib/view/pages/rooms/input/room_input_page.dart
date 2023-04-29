@@ -21,6 +21,9 @@ import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class RoomInputPageArguments {
+  /// 部屋ID
+  final String? roomId;
+
   /// 部屋名
   final String? title;
 
@@ -40,6 +43,7 @@ class RoomInputPageArguments {
   final Address? address;
 
   const RoomInputPageArguments({
+    this.roomId,
     this.title,
     this.explanation,
     this.ageGroup,
@@ -49,63 +53,39 @@ class RoomInputPageArguments {
   });
 }
 
-class RoomInputPage extends StatefulHookConsumerWidget {
+class RoomInputPage extends HookConsumerWidget {
   const RoomInputPage(this.auguments, {super.key});
 
   final RoomInputPageArguments auguments;
 
-  @override
-  ConsumerState<RoomInputPage> createState() => _RoomInputPageState();
-}
+  bool get isEditedMode => auguments.roomId != null;
 
-class _RoomInputPageState extends ConsumerState<RoomInputPage> {
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final theme = ref.watch(appThemeProvider);
-    final state = ref.watch(roomInputViewModelProvider(widget.auguments));
-    final viewModel =
-        ref.watch(roomInputViewModelProvider(widget.auguments).notifier);
+    final state = ref.watch(roomInputViewModelProvider(auguments));
+    final viewModel = ref.watch(roomInputViewModelProvider(auguments).notifier);
 
     final titleController = useTextEditingController(text: state.title);
-    final explanationController =
-        useTextEditingController(text: state.explanation);
+    final explainController = useTextEditingController(text: state.explanation);
+    useListenable(titleController);
+    useListenable(explainController);
 
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         backgroundColor: theme.appColors.onBackground,
         appBar: BackAppBar(
-          title: LocaleKeys.create_room_page_title.tr(),
+          title: isEditedMode
+              ? LocaleKeys.room_input_page_title_edit.tr()
+              : LocaleKeys.room_input_page_title_create.tr(),
           action: [
-            Container(
-              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-              child: ElevatedButton(
-                onPressed: !viewModel.isPossibleToCreate()
-                    ? null
-                    : () async {
-                        final roomId = await viewModel.create();
-
-                        /// 成功
-                        if (roomId != null) {
-                          return navigator.navigateTo(
-                            RoutePath.roomDetail,
-                            arguments: RoomDetailPageArguments(
-                              roomId: roomId,
-                              roomName: state.title!,
-                            ),
-                          );
-                        }
-
-                        /// エラー
-                        if (!mounted) return;
-                        return showErrorToast(
-                          context,
-                          theme,
-                          LocaleKeys.data_room_action_create_failure.tr(),
-                        );
-                      },
-                child: Text(LocaleKeys.create_room_page_create.tr()),
-              ),
+            _AppBarActionButton(
+              title: state.title,
+              isEntered: viewModel.isPossibleToCreate(),
+              isEditedMode: isEditedMode,
+              onCreate: () => viewModel.create(),
+              onUpdate: () => viewModel.update(),
             ),
           ],
         ),
@@ -127,7 +107,7 @@ class _RoomInputPageState extends ConsumerState<RoomInputPage> {
                       maxLength: 20,
                       onClear: () => viewModel.changeTitle(""),
                       onChanged: (value) => viewModel.changeTitle(value),
-                      hintText: LocaleKeys.create_room_page_roomTitleHint.tr(),
+                      hintText: LocaleKeys.room_input_page_roomTitleHint.tr(),
                     ),
                   ),
                 ),
@@ -212,7 +192,7 @@ class _RoomInputPageState extends ConsumerState<RoomInputPage> {
                     required: false,
                     title: LocaleKeys.data_room_description_title.tr(),
                     content: BaseTextField(
-                      controller: explanationController,
+                      controller: explainController,
                       maxLength: 500,
                       minLines: 6,
                       maxLines: 100,
@@ -234,6 +214,69 @@ class _RoomInputPageState extends ConsumerState<RoomInputPage> {
         ),
       ),
     );
+  }
+}
+
+/// AppBarのアクションボタン
+/// 作成ボタンと更新ボタンを兼用
+class _AppBarActionButton extends HookConsumerWidget {
+  final String? title;
+  final bool isEntered;
+  final bool isEditedMode;
+  final Future<String?> Function() onCreate;
+  final Future<String?> Function() onUpdate;
+
+  const _AppBarActionButton({
+    required this.title,
+    required this.isEntered,
+    required this.isEditedMode,
+    required this.onCreate,
+    required this.onUpdate,
+  });
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final theme = ref.watch(appThemeProvider);
+
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+      child: ElevatedButton(
+        onPressed: isEntered ? () => onPressed(theme, context) : null,
+        child: Text(
+          isEditedMode
+              ? LocaleKeys.room_input_page_action_edit.tr()
+              : LocaleKeys.room_input_page_action_create.tr(),
+          style: theme.textTheme.h30,
+        ),
+      ),
+    );
+  }
+
+  Future<void> onPressed(
+    AppTheme theme,
+    BuildContext context,
+  ) async {
+    final roomId = isEditedMode ? await onUpdate() : await onCreate();
+
+    /// 成功
+    if (roomId != null) {
+      return navigator.navigateTo(
+        RoutePath.roomDetail,
+        arguments: RoomDetailPageArguments(
+          roomId: roomId,
+          roomName: title!,
+        ),
+      );
+    }
+
+    /// エラー
+    if (context.mounted) {
+      return showErrorToast(
+        context,
+        theme,
+        LocaleKeys.data_room_action_create_failure.tr(),
+      );
+    }
   }
 }
 
