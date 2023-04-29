@@ -1,6 +1,5 @@
 import 'package:fortune_client/data/datasource/remote/go/rooms/rooms_data_source.dart';
 import 'package:fortune_client/data/model/addresses/address/address.dart';
-import 'package:fortune_client/data/model/addresses/address_with_id/address_with_id.dart';
 import 'package:fortune_client/data/model/enum/age_group.dart';
 import 'package:fortune_client/data/model/enum/cigarette_frequency.dart';
 import 'package:fortune_client/data/model/enum/drink_frequency.dart';
@@ -12,6 +11,7 @@ import 'package:fortune_client/data/model/rooms/rooms_guest_response/rooms_guest
 import 'package:fortune_client/data/model/rooms/rooms_host_response/rooms_host_response.dart';
 import 'package:fortune_client/data/model/rooms/rooms_request/rooms_request.dart';
 import 'package:fortune_client/data/model/tags/tag/tag.dart';
+import 'package:fortune_client/data/repository/repository.dart';
 import 'package:fortune_client/data/repository/rooms/rooms_repository.dart';
 import 'package:fortune_client/util/converter/datetime_converter.dart';
 import 'package:fortune_client/util/logger/logger.dart';
@@ -26,7 +26,7 @@ class RoomsRepositoryImpl implements RoomsRepository {
     required String title,
     required int membersNum,
     required AgeGroup ageGroup,
-    required AddressWithId addressWithId,
+    required Address address,
     required String explanation,
     List<Tag>? tagIds,
   }) async {
@@ -36,7 +36,7 @@ class RoomsRepositoryImpl implements RoomsRepository {
           roomName: title,
           membersNum: membersNum,
           ageGroup: ageGroup,
-          addressId: addressWithId.id,
+          addressId: await Repository.address.getId(address),
           explanation: explanation,
           applicationDeadline: DateTimeConverter.toYYYYMMDD(
             DateTime.now(),
@@ -56,7 +56,7 @@ class RoomsRepositoryImpl implements RoomsRepository {
     required String roomId,
     required String name,
     required Gender gender,
-    required int addressId,
+    required Address address,
     required ProfileFiles files,
     required int? height,
     required DrinkFrequency? drinkFrequency,
@@ -71,7 +71,7 @@ class RoomsRepositoryImpl implements RoomsRepository {
         RoomsUpdateRequest(
           name: name,
           gender: gender,
-          addressId: addressId,
+          addressId: await Repository.address.getId(address),
           files: files,
           height: height,
           drinkFrequency: drinkFrequency,
@@ -95,14 +95,13 @@ class RoomsRepositoryImpl implements RoomsRepository {
     Address? address,
   }) async {
     try {
-      int? addressId;
-      if (address != null) {}
-
       final result = await _roomsDataSource.fetchRooms(
         perPage: 10,
         memberNum: memberNum,
         tagIds: tags?.map((e) => e.id).toList(),
-        addressId: addressId.toString(),
+        addressId: address != null
+            ? await Repository.address.getId(address) //
+            : null,
       );
       return result.rooms;
     } catch (e) {

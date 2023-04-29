@@ -6,8 +6,8 @@ import 'package:fortune_client/data/model/enum/drink_frequency.dart';
 import 'package:fortune_client/l10n/locale_keys.g.dart';
 import 'package:fortune_client/view/pages/common/input/input_text_page.dart';
 import 'package:fortune_client/view/routes/route_navigator.dart';
-import 'package:fortune_client/view/routes/route_path.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
+import 'package:fortune_client/view/widgets/container/view_state_container.dart';
 import 'package:fortune_client/view/widgets/picker/address_picker.dart';
 import 'package:fortune_client/view/widgets/picker/enum_picker.dart';
 import 'package:fortune_client/view/widgets/picker/number_picker.dart';
@@ -62,7 +62,7 @@ class ProfileBasicInfoWidget extends ConsumerWidget {
       child: Column(children: [
         /// 名前
         if (onEditedName != null)
-          _Item(
+          ViewStateContainer(
             isEdit: true,
             title: "名前",
             format: name,
@@ -79,7 +79,7 @@ class ProfileBasicInfoWidget extends ConsumerWidget {
           ),
 
         /// 住所
-        _Item(
+        ViewStateContainer(
           isEdit: onEditedAddress != null,
           title: LocaleKeys.data_profile_address_title.tr(),
           format: address.prefecture,
@@ -95,7 +95,7 @@ class ProfileBasicInfoWidget extends ConsumerWidget {
 
         /// 身長
         /// nullの場合は表示しない
-        _Item(
+        ViewStateContainer(
           isEdit: onEditedHeight != null,
           title: LocaleKeys.data_profile_stature_title.tr(),
           format: LocaleKeys.data_profile_stature_data.tr(),
@@ -110,7 +110,7 @@ class ProfileBasicInfoWidget extends ConsumerWidget {
         ),
 
         /// お酒
-        _Item(
+        ViewStateContainer(
           isEdit: onEditedDrinkFrequency != null,
           title: LocaleKeys.data_profile_drinkFrequency_title.tr(),
           format: drinkFrequency?.text,
@@ -126,7 +126,7 @@ class ProfileBasicInfoWidget extends ConsumerWidget {
         ),
 
         /// タバコ
-        _Item(
+        ViewStateContainer(
           isEdit: onEditedCigaretteFrequency != null,
           title: LocaleKeys.data_profile_cigaretteFrequency_title.tr(),
           format: cigaretteFrequency?.text,
@@ -142,76 +142,6 @@ class ProfileBasicInfoWidget extends ConsumerWidget {
           },
         ),
       ]),
-    );
-  }
-}
-
-class _Item extends HookConsumerWidget {
-  const _Item({
-    required this.title,
-    this.hasValue = true,
-    this.format,
-    this.args = const [],
-    this.isEdit = false,
-    this.onTapped,
-  });
-
-  /// タイトル
-  final String title;
-
-  /// 表示テキスト
-  final String? format;
-
-  /// formatの引数
-  final List<String> args;
-
-  /// 編集可能か
-  final bool isEdit;
-
-  /// 編集時にタップされた時の処理
-  final VoidCallback? onTapped;
-
-  /// 値が存在するか
-  final bool hasValue;
-
-  String get _value {
-    if (!hasValue) return "未設定";
-    final text = format?.tr(args: args);
-    return text ?? "未設定";
-  }
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final theme = ref.watch(appThemeProvider);
-
-    return GestureDetector(
-      onTap: isEdit ? onTapped : null,
-      child: Container(
-        padding: EdgeInsets.symmetric(vertical: isEdit ? 12 : 10),
-        child: Row(
-          children: [
-            Expanded(
-              child: Text(title, style: theme.textTheme.h30),
-            ),
-            Expanded(
-              flex: isEdit ? 0 : 1,
-              child: Text(
-                _value,
-                style: theme.textTheme.h30.paint(
-                  isEdit ? theme.appColors.subText1 : theme.appColors.primary,
-                ),
-              ),
-            ),
-            if (isEdit)
-              Row(
-                children: [
-                  const Gap(20),
-                  Icon(Icons.chevron_right, color: theme.appColors.iconBtn1),
-                ],
-              ),
-          ],
-        ),
-      ),
     );
   }
 }

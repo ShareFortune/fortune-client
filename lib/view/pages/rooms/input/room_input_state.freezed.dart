@@ -18,7 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$RoomInputState {
   String? get title => throw _privateConstructorUsedError;
   List<Tag>? get tags => throw _privateConstructorUsedError;
-  AddressWithId? get addressWithId => throw _privateConstructorUsedError;
+  Address? get address => throw _privateConstructorUsedError;
   int? get membersNum => throw _privateConstructorUsedError;
   AgeGroup? get ageGroup => throw _privateConstructorUsedError;
   String? get explanation => throw _privateConstructorUsedError;
@@ -37,12 +37,12 @@ abstract class $RoomInputStateCopyWith<$Res> {
   $Res call(
       {String? title,
       List<Tag>? tags,
-      AddressWithId? addressWithId,
+      Address? address,
       int? membersNum,
       AgeGroup? ageGroup,
       String? explanation});
 
-  $AddressWithIdCopyWith<$Res>? get addressWithId;
+  $AddressCopyWith<$Res>? get address;
 }
 
 /// @nodoc
@@ -60,7 +60,7 @@ class _$RoomInputStateCopyWithImpl<$Res, $Val extends RoomInputState>
   $Res call({
     Object? title = freezed,
     Object? tags = freezed,
-    Object? addressWithId = freezed,
+    Object? address = freezed,
     Object? membersNum = freezed,
     Object? ageGroup = freezed,
     Object? explanation = freezed,
@@ -74,10 +74,10 @@ class _$RoomInputStateCopyWithImpl<$Res, $Val extends RoomInputState>
           ? _value.tags
           : tags // ignore: cast_nullable_to_non_nullable
               as List<Tag>?,
-      addressWithId: freezed == addressWithId
-          ? _value.addressWithId
-          : addressWithId // ignore: cast_nullable_to_non_nullable
-              as AddressWithId?,
+      address: freezed == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as Address?,
       membersNum: freezed == membersNum
           ? _value.membersNum
           : membersNum // ignore: cast_nullable_to_non_nullable
@@ -95,13 +95,13 @@ class _$RoomInputStateCopyWithImpl<$Res, $Val extends RoomInputState>
 
   @override
   @pragma('vm:prefer-inline')
-  $AddressWithIdCopyWith<$Res>? get addressWithId {
-    if (_value.addressWithId == null) {
+  $AddressCopyWith<$Res>? get address {
+    if (_value.address == null) {
       return null;
     }
 
-    return $AddressWithIdCopyWith<$Res>(_value.addressWithId!, (value) {
-      return _then(_value.copyWith(addressWithId: value) as $Val);
+    return $AddressCopyWith<$Res>(_value.address!, (value) {
+      return _then(_value.copyWith(address: value) as $Val);
     });
   }
 }
@@ -117,13 +117,13 @@ abstract class _$$_RoomInputStateCopyWith<$Res>
   $Res call(
       {String? title,
       List<Tag>? tags,
-      AddressWithId? addressWithId,
+      Address? address,
       int? membersNum,
       AgeGroup? ageGroup,
       String? explanation});
 
   @override
-  $AddressWithIdCopyWith<$Res>? get addressWithId;
+  $AddressCopyWith<$Res>? get address;
 }
 
 /// @nodoc
@@ -139,7 +139,7 @@ class __$$_RoomInputStateCopyWithImpl<$Res>
   $Res call({
     Object? title = freezed,
     Object? tags = freezed,
-    Object? addressWithId = freezed,
+    Object? address = freezed,
     Object? membersNum = freezed,
     Object? ageGroup = freezed,
     Object? explanation = freezed,
@@ -153,10 +153,10 @@ class __$$_RoomInputStateCopyWithImpl<$Res>
           ? _value._tags
           : tags // ignore: cast_nullable_to_non_nullable
               as List<Tag>?,
-      addressWithId: freezed == addressWithId
-          ? _value.addressWithId
-          : addressWithId // ignore: cast_nullable_to_non_nullable
-              as AddressWithId?,
+      address: freezed == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as Address?,
       membersNum: freezed == membersNum
           ? _value.membersNum
           : membersNum // ignore: cast_nullable_to_non_nullable
@@ -179,7 +179,7 @@ class _$_RoomInputState implements _RoomInputState {
   const _$_RoomInputState(
       {this.title,
       final List<Tag>? tags,
-      this.addressWithId,
+      this.address,
       this.membersNum,
       this.ageGroup,
       this.explanation})
@@ -198,7 +198,7 @@ class _$_RoomInputState implements _RoomInputState {
   }
 
   @override
-  final AddressWithId? addressWithId;
+  final Address? address;
   @override
   final int? membersNum;
   @override
@@ -208,7 +208,7 @@ class _$_RoomInputState implements _RoomInputState {
 
   @override
   String toString() {
-    return 'RoomInputState(title: $title, tags: $tags, addressWithId: $addressWithId, membersNum: $membersNum, ageGroup: $ageGroup, explanation: $explanation)';
+    return 'RoomInputState(title: $title, tags: $tags, address: $address, membersNum: $membersNum, ageGroup: $ageGroup, explanation: $explanation)';
   }
 
   @override
@@ -218,8 +218,7 @@ class _$_RoomInputState implements _RoomInputState {
             other is _$_RoomInputState &&
             (identical(other.title, title) || other.title == title) &&
             const DeepCollectionEquality().equals(other._tags, _tags) &&
-            (identical(other.addressWithId, addressWithId) ||
-                other.addressWithId == addressWithId) &&
+            (identical(other.address, address) || other.address == address) &&
             (identical(other.membersNum, membersNum) ||
                 other.membersNum == membersNum) &&
             (identical(other.ageGroup, ageGroup) ||
@@ -233,7 +232,7 @@ class _$_RoomInputState implements _RoomInputState {
       runtimeType,
       title,
       const DeepCollectionEquality().hash(_tags),
-      addressWithId,
+      address,
       membersNum,
       ageGroup,
       explanation);
@@ -249,7 +248,7 @@ abstract class _RoomInputState implements RoomInputState {
   const factory _RoomInputState(
       {final String? title,
       final List<Tag>? tags,
-      final AddressWithId? addressWithId,
+      final Address? address,
       final int? membersNum,
       final AgeGroup? ageGroup,
       final String? explanation}) = _$_RoomInputState;
@@ -259,7 +258,7 @@ abstract class _RoomInputState implements RoomInputState {
   @override
   List<Tag>? get tags;
   @override
-  AddressWithId? get addressWithId;
+  Address? get address;
   @override
   int? get membersNum;
   @override

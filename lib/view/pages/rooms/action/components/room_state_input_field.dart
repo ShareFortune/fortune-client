@@ -1,6 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:fortune_client/data/model/addresses/address_with_id/address_with_id.dart';
 import 'package:fortune_client/data/model/tags/tag/tag.dart';
 import 'package:fortune_client/data/model/enum/age_group.dart';
 import 'package:fortune_client/l10n/locale_keys.g.dart';
@@ -29,15 +28,18 @@ class RoomStateTitleInputField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return RoomStateTextInputField(
-      theme: theme,
-      title: LocaleKeys.data_room_title_title.tr(),
-      content: BaseTextField(
-        controller: controller,
-        maxLength: 20,
-        onClear: onClear,
-        onChanged: onChanged,
-        hintText: LocaleKeys.create_room_page_roomTitleHint.tr(),
+    return Container(
+      padding: const EdgeInsets.only(right: 10),
+      child: RoomStateTextInputField(
+        theme: theme,
+        title: LocaleKeys.data_room_title_title.tr(),
+        content: BaseTextField(
+          controller: controller,
+          maxLength: 20,
+          onClear: onClear,
+          onChanged: onChanged,
+          hintText: LocaleKeys.create_room_page_roomTitleHint.tr(),
+        ),
       ),
     );
   }
@@ -97,29 +99,6 @@ class RoomStateAgeGroupInputField extends StatelessWidget {
 }
 
 ///
-/// 場所
-///
-class RoomStateAddressInputField extends StatelessWidget {
-  const RoomStateAddressInputField({
-    super.key,
-    this.addressWithId,
-    required this.onTap,
-  });
-
-  final AddressWithId? addressWithId;
-  final void Function()? onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    return RoomStateTransitionTile(
-      title: LocaleKeys.data_room_address_title.tr(),
-      value: addressWithId?.text,
-      onTap: onTap,
-    );
-  }
-}
-
-///
 /// タグ
 ///
 class RoomStateTagsInputField extends StatelessWidget {
@@ -159,21 +138,24 @@ class RoomStateExplanationInputField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return RoomStateTextInputField(
-      theme: theme,
-      required: false,
-      title: LocaleKeys.data_room_description_title.tr(),
-      content: BaseTextField(
-        controller: controller,
-        maxLength: 500,
-        minLines: 6,
-        maxLines: 100,
-        isDisplaySuffixIcon: false,
-        onChanged: onChanged,
-        hintText: LocaleKeys.data_room_description_hint.tr(),
-        contentPadding: const EdgeInsets.symmetric(
-          horizontal: 15,
-          vertical: 15,
+    return Container(
+      padding: const EdgeInsets.only(right: 10),
+      child: RoomStateTextInputField(
+        theme: theme,
+        required: false,
+        title: LocaleKeys.data_room_description_title.tr(),
+        content: BaseTextField(
+          controller: controller,
+          maxLength: 500,
+          minLines: 6,
+          maxLines: 100,
+          isDisplaySuffixIcon: false,
+          onChanged: onChanged,
+          hintText: LocaleKeys.data_room_description_hint.tr(),
+          contentPadding: const EdgeInsets.symmetric(
+            horizontal: 15,
+            vertical: 15,
+          ),
         ),
       ),
     );

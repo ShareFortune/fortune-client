@@ -1,11 +1,8 @@
-import 'package:easy_localization/easy_localization.dart';
+import 'package:fortune_client/data/model/addresses/address/address.dart';
 import 'package:fortune_client/data/model/enum/age_group.dart';
+import 'package:fortune_client/data/model/tags/tag/tag.dart';
 import 'package:fortune_client/data/repository/repository.dart';
-import 'package:fortune_client/l10n/locale_keys.g.dart';
 import 'package:fortune_client/view/pages/rooms/input/room_input_state.dart';
-import 'package:fortune_client/view/routes/route_navigator.dart';
-import 'package:fortune_client/view/theme/app_theme.dart';
-import 'package:fortune_client/view/widgets/dialog/toast.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'room_input_view_model.g.dart';
@@ -23,8 +20,7 @@ class RoomInputViewModel extends _$RoomInputViewModel {
         state.title!.isNotEmpty &&
         state.membersNum != null &&
         state.ageGroup != null &&
-        state.addressWithId != null &&
-        state.explanation != null;
+        state.address != null;
   }
 
   changeTitle(String value) {
@@ -35,8 +31,16 @@ class RoomInputViewModel extends _$RoomInputViewModel {
     state = state.copyWith(membersNum: value);
   }
 
-  changeAgeGroup(AgeGroup value) {
+  changeAgeGroup(AgeGroup? value) {
     state = state.copyWith(ageGroup: value);
+  }
+
+  changeAddress(Address value) {
+    state = state.copyWith(address: value);
+  }
+
+  changeTags(List<Tag>? value) {
+    state = state.copyWith(tags: value);
   }
 
   changeExplanation(String value) {
@@ -49,7 +53,7 @@ class RoomInputViewModel extends _$RoomInputViewModel {
       title: state.title!,
       membersNum: state.membersNum!,
       ageGroup: state.ageGroup!,
-      addressWithId: state.addressWithId!,
+      address: state.address!,
       tagIds: state.tags,
       explanation: state.explanation!,
     );

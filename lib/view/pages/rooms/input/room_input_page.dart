@@ -5,10 +5,15 @@ import 'package:fortune_client/data/model/enum/age_group.dart';
 import 'package:fortune_client/l10n/locale_keys.g.dart';
 import 'package:fortune_client/view/pages/rooms/action/components/room_state_input_field.dart';
 import 'package:fortune_client/view/pages/rooms/input/room_input_view_model.dart';
+import 'package:fortune_client/view/pages/tags/search/search_tags_page.dart';
 import 'package:fortune_client/view/routes/route_navigator.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/app_bar/back_app_bar.dart';
+import 'package:fortune_client/view/widgets/container/view_state_container.dart';
 import 'package:fortune_client/view/widgets/dialog/toast.dart';
+import 'package:fortune_client/view/widgets/picker/address_picker.dart';
+import 'package:fortune_client/view/widgets/picker/enum_picker.dart';
+import 'package:fortune_client/view/widgets/picker/number_picker.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -64,7 +69,7 @@ class _RoomInputPageState extends ConsumerState<RoomInputPage> {
         ),
         body: SingleChildScrollView(
           child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 30),
+            padding: const EdgeInsets.only(left: 20, right: 10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -81,20 +86,33 @@ class _RoomInputPageState extends ConsumerState<RoomInputPage> {
                 const Gap(20),
 
                 /// 募集人数
-                RoomStateMembersNumInputField(
-                  membersNum: state.membersNum,
-                  onSelect: (value) =>
-                      viewModel.changeMembersNum(int.parse(value)),
+                ViewStateContainer(
+                  isEdit: true,
+                  title: LocaleKeys.data_room_membersNum_title.tr(),
+                  format: LocaleKeys.data_room_membersNum_data_all.tr(),
+                  args: [state.membersNum.toString()],
+                  hasValue: state.membersNum != null,
+                  onTapped: () async {
+                    await NumberPicker.participants().show(
+                      context: context,
+                      onChanged: viewModel.changeMembersNum,
+                    );
+                  },
                 ),
 
                 const Gap(15),
 
                 /// 対象年齢
-                RoomStateAgeGroupInputField(
-                  ageGroup: state.ageGroup,
-                  onSelect: (value) {
-                    viewModel.changeAgeGroup(
-                      AgeGroup.values.firstWhere((e) => e.text == value),
+                ViewStateContainer(
+                  isEdit: true,
+                  title: LocaleKeys.data_room_age_title.tr(),
+                  format: state.ageGroup?.text,
+                  hasValue: state.ageGroup != null,
+                  onTapped: () async {
+                    await EnumPicker<AgeGroup>.ageGroup().show(
+                      context: context,
+                      onConvert: AgeGroupEx.fromText,
+                      onChanged: viewModel.changeAgeGroup,
                     );
                   },
                 ),
@@ -102,17 +120,38 @@ class _RoomInputPageState extends ConsumerState<RoomInputPage> {
                 const Gap(15),
 
                 /// 場所
-                RoomStateAddressInputField(
-                  addressWithId: state.addressWithId,
-                  onTap: () => viewModel.navigateToEntryAddress(),
+                ViewStateContainer(
+                  isEdit: true,
+                  title: LocaleKeys.data_room_address_title.tr(),
+                  format: state.address?.prefecture,
+                  hasValue: state.address != null,
+                  onTapped: () async {
+                    await AddressPicker().show(
+                      context: context,
+                      theme: theme,
+                      address: state.address,
+                      onChanged: viewModel.changeAddress,
+                    );
+                  },
                 ),
 
                 const Gap(15),
 
                 /// タグ
-                RoomStateTagsInputField(
-                  tags: state.tags,
-                  onTap: () => viewModel.navigateToTagsSelection(),
+                ViewStateContainer(
+                  isEdit: true,
+                  title: LocaleKeys.data_room_tags_title.tr(),
+                  format: "${state.tags?.length ?? 0}個のタグ",
+                  hasValue: state.tags != null,
+                  onTapped: () async {
+                    await navigator.navigateTo(
+                      RoutePath.searchTag,
+                      arguments: SearchTagsPageAuguments(
+                        tags: state.tags ?? [],
+                        onChanged: viewModel.changeTags,
+                      ),
+                    );
+                  },
                 ),
 
                 const Gap(30),

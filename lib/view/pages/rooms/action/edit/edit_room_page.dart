@@ -81,11 +81,11 @@ class EditRoomPage extends HookConsumerWidget {
 
                 const Gap(15),
 
-                /// 場所
-                RoomStateAddressInputField(
-                  addressWithId: state.addressWithId,
-                  onTap: () => viewModel.navigateToEntryAddress(),
-                ),
+                // /// 場所
+                // RoomStateAddressInputField(
+                //   addressWithId: state.addressWithId,
+                //   onTap: () => viewModel.navigateToEntryAddress(),
+                // ),
 
                 const Gap(15),
 

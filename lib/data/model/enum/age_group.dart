@@ -32,10 +32,6 @@ extension AgeGroupEx on AgeGroup {
 
   String get rawValue => rawValues[this]!;
 
-  static AgeGroup from(String rawValue) {
-    return rawValues.keys.firstWhere((key) => rawValues[key] == rawValue);
-  }
-
   String get text {
     switch (this) {
       case AgeGroup.teens:
@@ -51,6 +47,17 @@ extension AgeGroupEx on AgeGroup {
       case AgeGroup.more:
         return "50代以上";
     }
+  }
+
+  static AgeGroup from(String rawValue) {
+    return rawValues.keys.firstWhere((key) => rawValues[key] == rawValue);
+  }
+
+  static AgeGroup? fromText(String text) {
+    for (var value in AgeGroup.values) {
+      if (value.text == text) return value;
+    }
+    return null;
   }
 }
 

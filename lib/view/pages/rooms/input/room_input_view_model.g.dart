@@ -7,7 +7,7 @@ part of 'room_input_view_model.dart';
 // **************************************************************************
 
 String _$roomInputViewModelHash() =>
-    r'05101ec6a3f2171b40f7d292ab8a25351f18b82e';
+    r'0aeaea9fd1644c1588856fe9fcf11121583224df';
 
 /// See also [RoomInputViewModel].
 @ProviderFor(RoomInputViewModel)
