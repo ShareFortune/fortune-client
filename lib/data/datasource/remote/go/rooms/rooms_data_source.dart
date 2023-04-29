@@ -21,7 +21,7 @@ abstract class RoomsDataSource {
   @GET('/rooms')
   @authenticatedRequest
   Future<RoomsResponse> fetchRooms({
-    @Query("addressId") String? addressId,
+    @Query("addressId") int? addressId,
     @Query("applicationDeadline") String? applicationDeadline,
     @Query("memberNum") int? memberNum,
     @Query("tagIds") List<String>? tagIds,

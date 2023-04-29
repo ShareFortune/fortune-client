@@ -1,5 +1,4 @@
 import 'package:fortune_client/data/model/addresses/address/address.dart';
-import 'package:fortune_client/data/model/addresses/address_with_id/address_with_id.dart';
 import 'package:fortune_client/data/model/enum/age_group.dart';
 import 'package:fortune_client/data/model/enum/cigarette_frequency.dart';
 import 'package:fortune_client/data/model/enum/drink_frequency.dart';
@@ -17,7 +16,7 @@ abstract class RoomsRepository {
     required String title,
     required int membersNum,
     required AgeGroup ageGroup,
-    required AddressWithId addressWithId,
+    required Address address,
     required String explanation,
     List<Tag>? tagIds,
   });
@@ -27,7 +26,7 @@ abstract class RoomsRepository {
     required String roomId,
     required String name,
     required Gender gender,
-    required int addressId,
+    required Address address,
     required ProfileFiles files,
     required int? height,
     required DrinkFrequency? drinkFrequency,

@@ -8,6 +8,7 @@ import 'package:fortune_client/view/pages/message/message_room/message_room_page
 import 'package:fortune_client/view/pages/my/edit/edit_profile_page.dart';
 import 'package:fortune_client/view/pages/my/my/my_page.dart';
 import 'package:fortune_client/view/pages/profile/profile/profile_page.dart';
+import 'package:fortune_client/view/pages/rooms/input/room_input_page.dart';
 import 'package:fortune_client/view/pages/rooms/room_detail/room_detail_page.dart';
 import 'package:fortune_client/view/pages/settings/settings_page.dart';
 import 'package:fortune_client/view/pages/tags/search/search_tags_page.dart';
@@ -49,13 +50,17 @@ class AppRouter {
       case RoutePath.room:
 
       case RoutePath.roomInput:
+        arguments as RoomInputPageArguments;
+        return _slidePageRouteBuilder(
+          RoomInputPage(arguments),
+          offset: const Offset(0.0, 1.0),
+        );
 
       case RoutePath.roomEdit:
 
       case RoutePath.roomDetail:
-
-        /// ここで、RoomDetailPageに渡す引数を設定する
-        return _slidePageRouteBuilder(const RoomDetailPage(""));
+        arguments as RoomDetailPageArguments;
+        return _slidePageRouteBuilder(RoomDetailPage(arguments));
 
       case RoutePath.participatingRoom:
 

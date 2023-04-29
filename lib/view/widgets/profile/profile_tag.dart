@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fortune_client/data/model/tags/tag/tag.dart';
 import 'package:fortune_client/view/pages/tags/search/search_tags_page.dart';
 import 'package:fortune_client/view/routes/route_navigator.dart';
+import 'package:fortune_client/view/routes/route_path.dart';
 import 'package:fortune_client/view/widgets/profile/profile_view_item.dart';
 import 'package:fortune_client/view/widgets/tag/tags_wraper.dart';
 

@@ -42,7 +42,7 @@ class FakeRoomsDataSource implements RoomsDataSource {
 
   @override
   Future<RoomsResponse> fetchRooms({
-    String? addressId,
+    int? addressId,
     String? applicationDeadline,
     int? memberNum,
     List<String>? tagIds,

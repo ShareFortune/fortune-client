@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fortune_client/data/model/enum/join_request_status.dart';
 import 'package:fortune_client/data/model/enum/room_status.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 /// ルームWidgetのTheme
 class RoomTheme {
@@ -60,6 +61,7 @@ class RoomTheme {
 }
 
 /// [RoomTheme]を生成するクラス
+
 class RoomThemeFactory {
   final AppTheme theme;
 

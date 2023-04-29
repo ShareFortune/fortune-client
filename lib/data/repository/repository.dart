@@ -1,3 +1,4 @@
+import 'package:fortune_client/data/repository/addresses/addresses_repository.dart';
 import 'package:fortune_client/data/repository/auth/auth_repository.dart';
 import 'package:fortune_client/data/repository/debug/debug_repository.dart';
 import 'package:fortune_client/data/repository/favorites/favorites_repository.dart';
@@ -13,6 +14,7 @@ import 'package:fortune_client/injector.dart';
 class Repository {
   static DebugRepository get debug => getIt();
   static AuthRepository get auth => getIt();
+  static AddressesRepository get address => getIt();
   static UsersRepository get users => getIt();
   static MessagesRepository get messages => getIt();
   static MessageRoomsRepository get messageRooms => getIt();

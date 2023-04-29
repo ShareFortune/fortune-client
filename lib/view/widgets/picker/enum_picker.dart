@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fortune_client/data/model/enum/age_group.dart';
 import 'package:fortune_client/data/model/enum/cigarette_frequency.dart';
 import 'package:fortune_client/data/model/enum/drink_frequency.dart';
 import 'package:fortune_client/view/widgets/picker/base_bottom_picker.dart';
@@ -7,6 +8,11 @@ class EnumPicker<T> extends BasePicker {
   final List<String> items;
 
   EnumPicker._(this.items);
+
+  /// 年齢を選択するピッカー
+  factory EnumPicker.ageGroup() {
+    return EnumPicker._(AgeGroup.values.map((e) => e.text).toList());
+  }
 
   /// 飲酒頻度を選択するピッカー
   factory EnumPicker.drinkFrequency() {

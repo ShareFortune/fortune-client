@@ -7,43 +7,51 @@ import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class ParticipatingRoom extends HookConsumerWidget {
-  const ParticipatingRoom(this.room, {super.key});
-
   final RoomState room;
+  final VoidCallback? onTap;
+
+  const ParticipatingRoom({
+    super.key,
+    required this.room,
+    required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = ref.watch(appThemeProvider);
 
-    return Container(
-      padding: const EdgeInsets.fromLTRB(20, 15, 20, 20),
-      decoration: BoxDecoration(
-        color: room.theme.backgroundColor,
-        border: Border(top: room.theme.border, bottom: room.theme.border),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          room.theme.description,
-          const Gap(10),
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.fromLTRB(20, 15, 20, 20),
+        decoration: BoxDecoration(
+          color: room.theme.backgroundColor,
+          border: Border(top: room.theme.border, bottom: room.theme.border),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            room.theme.description,
+            const Gap(10),
 
-          /// ヘッダー
-          RoomHeader(
-            theme: theme,
-            iconUrl: room.hostImageUrl,
-          ),
+            /// ヘッダー
+            RoomHeader(
+              theme: theme,
+              iconUrl: room.hostImageUrl,
+            ),
 
-          const Gap(10),
+            const Gap(10),
 
-          /// ボディ
-          RoomBody(
-            theme: theme,
-            membersNum: room.membersNum,
-            imageUrls: room.membersImageUrl,
-            onFavorite: () {},
-            background: room.theme.userBackgroundColor,
-          ),
-        ],
+            /// ボディ
+            RoomBody(
+              theme: theme,
+              membersNum: room.membersNum,
+              imageUrls: room.membersImageUrl,
+              onFavorite: room.isHost ? null : () {},
+              background: room.theme.userBackgroundColor,
+            ),
+          ],
+        ),
       ),
     );
   }

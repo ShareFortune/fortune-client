@@ -19,7 +19,7 @@ class RoomBody extends StatelessWidget {
   final AppTheme theme;
   final MembersNum membersNum;
   final List<String> imageUrls;
-  final VoidCallback onFavorite;
+  final VoidCallback? onFavorite;
   final Color? background;
 
   @override
@@ -50,10 +50,11 @@ class RoomBody extends StatelessWidget {
                 )
             ],
           ),
-          FavoriteButton(
-            iconSize: 30,
-            valueChanged: () => onFavorite(),
-          ),
+          if (onFavorite != null)
+            FavoriteButton(
+              iconSize: 30,
+              valueChanged: onFavorite!,
+            ),
         ],
       ),
     );
