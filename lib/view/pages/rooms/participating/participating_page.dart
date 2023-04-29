@@ -150,7 +150,7 @@ class _Item<RoomType> extends HookConsumerWidget {
         return ListView.separated(
           padding: EdgeInsets.zero,
           itemCount: rooms.length,
-          separatorBuilder: (_, __) => const Gap(10),
+          separatorBuilder: (_, __) => const Gap(8),
           itemBuilder: (context, index) {
             return builder(rooms.elementAt(index));
           },
