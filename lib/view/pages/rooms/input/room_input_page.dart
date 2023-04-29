@@ -259,22 +259,16 @@ class _AppBarActionButton extends HookConsumerWidget {
     final roomId = isEditedMode ? await onUpdate() : await onCreate();
 
     /// 成功
-    if (roomId != null) {
-      return navigator.navigateTo(
-        RoutePath.roomDetail,
-        arguments: RoomDetailPageArguments(
-          roomId: roomId,
-          roomName: title!,
-        ),
-      );
-    }
+    if (roomId != null) return navigator.goBack();
 
     /// エラー
     if (context.mounted) {
       return showErrorToast(
         context,
         theme,
-        LocaleKeys.data_room_action_create_failure.tr(),
+        isEditedMode
+            ? LocaleKeys.data_room_action_edit_failure.tr()
+            : LocaleKeys.data_room_action_create_failure.tr(),
       );
     }
   }
