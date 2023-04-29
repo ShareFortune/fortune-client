@@ -6,6 +6,7 @@ import 'package:fortune_client/data/model/enum/age_group.dart';
 import 'package:fortune_client/data/model/tags/tag/tag.dart';
 import 'package:fortune_client/l10n/locale_keys.g.dart';
 import 'package:fortune_client/view/pages/rooms/input/room_input_view_model.dart';
+import 'package:fortune_client/view/pages/rooms/room_detail/room_detail_page.dart';
 import 'package:fortune_client/view/pages/tags/search/search_tags_page.dart';
 import 'package:fortune_client/view/routes/route_navigator.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
@@ -86,7 +87,10 @@ class _RoomInputPageState extends ConsumerState<RoomInputPage> {
 
                         /// 成功
                         if (roomId != null) {
-                          return navigator.navigateTo(RoutePath.roomDetail);
+                          return navigator.navigateTo(
+                            RoutePath.roomDetail,
+                            arguments: RoomDetailPageArguments(roomId),
+                          );
                         }
 
                         /// エラー

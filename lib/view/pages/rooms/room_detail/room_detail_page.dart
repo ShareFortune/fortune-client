@@ -1,4 +1,3 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:fortune_client/data/model/users/fortune_user/fortune_user.dart';
 import 'package:fortune_client/view/pages/rooms/room_detail/room_detail_view_model.dart';
@@ -10,78 +9,97 @@ import 'package:fortune_client/view/widgets/tag/tags_wraper.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class RoomDetailPage extends HookConsumerWidget {
-  const RoomDetailPage(@PathParam("roomId") this.roomId, {super.key});
-
+class RoomDetailPageArguments {
   final String roomId;
+
+  const RoomDetailPageArguments(this.roomId);
+}
+
+class RoomDetailPage extends HookConsumerWidget {
+  const RoomDetailPage(this.arguments, {super.key});
+
+  final RoomDetailPageArguments arguments;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = ref.watch(appThemeProvider);
-    final state = ref.watch(roomDetailViewModelProvider(roomId));
-    final viewModel = ref.watch(roomDetailViewModelProvider(roomId).notifier);
+    final state = ref.watch(roomDetailViewModelProvider(arguments.roomId));
+    final viewModel =
+        ref.watch(roomDetailViewModelProvider(arguments.roomId).notifier);
 
     return Scaffold(
       appBar: const BackAppBar(centerTitle: false, title: "タイトル"),
       body: AsyncValueWidget(
-        data: state.detail,
-        builder: (room) => Stack(children: [
-          /// ルーム詳細
-          Column(children: [
-            _Item(
-              title: "メンバー",
-              middleMargin: 15,
-              childPadding: EdgeInsets.zero,
-              titlePadding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
-              child: _MemberListView(
-                [room.hostUser, ...?room.participants],
-                (user) => viewModel.navigateToProfile(user.id),
+        data: state,
+        builder: (room) {
+          return Stack(children: [
+            /// ルーム詳細
+            Column(children: [
+              _Item(
+                title: "メンバー",
+                middleMargin: 15,
+                childPadding: EdgeInsets.zero,
+                titlePadding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
+                child: _MemberListView(
+                  [room.detail.hostUser, ...?room.detail.participants],
+                  (user) => viewModel.navigateToProfile(user.id),
+                ),
               ),
-            ),
-            const Gap(10),
-            Container(
-              width: double.infinity,
-              color: theme.appColors.onBackground,
-              padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 20),
-              child: Text(room.roomName, style: theme.textTheme.h40.bold()),
-            ),
-            _Item(
-              title: "集合場所",
-              child: Text(room.address.text, style: theme.textTheme.h20),
-            ),
-            _Item(
-              title: "募集人数",
-              child: Text("${room.membersNum}人", style: theme.textTheme.h20),
-            ),
-            _Item(
-              title: "タグ",
-              middleMargin: 10,
-              child: TagsWraper(room.tags ?? []),
-            ),
-            _Item(
-              title: "説明",
-              child: Text(
-                "テキスト・テキスト・テキスト・テキスト・テキスト・テキスト・テキスト・テキスト・テキスト・テキスト・テキスト・テキスト・テキスト・テキスト・テキスト・テキスト",
-                style: theme.textTheme.h20,
+              const Gap(10),
+              Container(
+                width: double.infinity,
+                color: theme.appColors.onBackground,
+                padding: const EdgeInsets.symmetric(
+                  vertical: 30,
+                  horizontal: 20,
+                ),
+                child: Text(
+                  room.detail.roomName,
+                  style: theme.textTheme.h40.bold(),
+                ),
               ),
-            ),
-            Expanded(child: Container(color: Colors.white)),
-          ]),
+              _Item(
+                title: "集合場所",
+                child: Text(
+                  room.detail.address.text,
+                  style: theme.textTheme.h20,
+                ),
+              ),
+              _Item(
+                title: "募集人数",
+                child: Text("${room.detail.membersNum}人",
+                    style: theme.textTheme.h20),
+              ),
+              _Item(
+                title: "タグ",
+                middleMargin: 10,
+                child: TagsWraper(room.detail.tags ?? []),
+              ),
+              _Item(
+                title: "説明",
+                child: Text(
+                  "テキスト・テキスト・テキスト・テキスト・テキスト・テキスト・テキスト・テキスト・テキスト・テキスト・テキスト・テキスト・テキスト・テキスト・テキスト・テキスト",
+                  style: theme.textTheme.h20,
+                ),
+              ),
+              Expanded(child: Container(color: Colors.white)),
+            ]),
 
-          /// 参加ボタン
-          Positioned(
-            left: 30,
-            right: 30,
-            bottom: 80,
-            child: MaterialButton(
-              height: 45,
-              onPressed: () => viewModel.joinRoomRequest(),
-              color: theme.appColors.primary,
-              textColor: theme.appColors.onPrimary,
-              child: Text("ルームに参加する", style: theme.textTheme.h30.bold()),
-            ),
-          )
-        ]),
+            /// 参加ボタン
+            Positioned(
+              left: 30,
+              right: 30,
+              bottom: 80,
+              child: MaterialButton(
+                height: 45,
+                onPressed: () => viewModel.joinRoomRequest(arguments.roomId),
+                color: theme.appColors.primary,
+                textColor: theme.appColors.onPrimary,
+                child: Text("ルームに参加する", style: theme.textTheme.h30.bold()),
+              ),
+            )
+          ]);
+        },
       ),
     );
   }
@@ -171,31 +189,3 @@ class _MemberListView extends HookConsumerWidget {
     );
   }
 }
-
-// class _TagsWrapper extends HookConsumerWidget {
-//   const _TagsWrapper(this.tags);
-
-//   final List<Tag>? tags;
-
-//   @override
-//   Widget build(BuildContext context, WidgetRef ref) {
-//     final theme = ref.watch(appThemeProvider);
-
-//     if (tags?.isNotEmpty != true) {
-//       return Text(
-//         LocaleKeys.myPage_profiles_tags_empty.tr(),
-//         style: theme.textTheme.h30.paint(
-//           theme.appColors.subText3,
-//         ),
-//       );
-//     }
-
-//     return Wrap(
-//       spacing: 10,
-//       runSpacing: 10,
-//       children: tags!.map((e) {
-//         return TagWidget(value: e.name);
-//       }).toList(),
-//     );
-//   }
-// }

@@ -59,9 +59,8 @@ class AppRouter {
       case RoutePath.roomEdit:
 
       case RoutePath.roomDetail:
-
-        /// ここで、RoomDetailPageに渡す引数を設定する
-        return _slidePageRouteBuilder(const RoomDetailPage(""));
+        arguments as RoomDetailPageArguments;
+        return _slidePageRouteBuilder(RoomDetailPage(arguments));
 
       case RoutePath.participatingRoom:
 
