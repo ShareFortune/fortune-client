@@ -12,7 +12,6 @@ import 'package:fortune_client/view/widgets/picker/address_picker.dart';
 import 'package:fortune_client/view/widgets/picker/enum_picker.dart';
 import 'package:fortune_client/view/widgets/picker/number_picker.dart';
 import 'package:fortune_client/view/widgets/profile/profile_view_item.dart';
-import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 /// 基本情報

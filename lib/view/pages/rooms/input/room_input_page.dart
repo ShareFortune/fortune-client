@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:fortune_client/data/model/enum/age_group.dart';
 import 'package:fortune_client/l10n/locale_keys.g.dart';
-import 'package:fortune_client/view/pages/rooms/action/components/room_state_input_field.dart';
-import 'package:fortune_client/view/pages/rooms/action/components/room_state_text_field.dart';
 import 'package:fortune_client/view/pages/rooms/input/room_input_view_model.dart';
 import 'package:fortune_client/view/pages/tags/search/search_tags_page.dart';
 import 'package:fortune_client/view/routes/route_navigator.dart';
@@ -194,6 +192,50 @@ class _RoomInputPageState extends ConsumerState<RoomInputPage> {
             ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+class RoomStateTextInputField extends StatelessWidget {
+  final AppTheme theme;
+  final bool required;
+  final String title;
+  final Widget content;
+
+  const RoomStateTextInputField({
+    super.key,
+    required this.theme,
+    required this.title,
+    required this.content,
+    this.required = true,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          children: [
+            Text(title, style: theme.textTheme.h30.bold()),
+            const Gap(10),
+            Container(child: required ? null : annotation())
+          ],
+        ),
+        const Gap(10),
+        content,
+      ],
+    );
+  }
+
+  annotation() {
+    return Container(
+      color: theme.appColors.disable,
+      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 3),
+      child: Text(
+        "任意",
+        style: theme.textTheme.h10.paint(theme.appColors.subText1),
       ),
     );
   }
