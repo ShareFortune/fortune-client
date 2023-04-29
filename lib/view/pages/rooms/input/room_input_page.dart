@@ -218,7 +218,7 @@ class RoomStateTextInputField extends StatelessWidget {
       children: [
         Row(
           children: [
-            Text(title, style: theme.textTheme.h30.bold()),
+            Text(title, style: theme.textTheme.h30),
             const Gap(10),
             Container(child: required ? null : annotation())
           ],

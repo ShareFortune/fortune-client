@@ -58,24 +58,4 @@ class RoomInputViewModel extends _$RoomInputViewModel {
       explanation: state.explanation!,
     );
   }
-
-  navigateToCreatedRoom(String roomId) async {
-    // getIt<AppRouter>().push(HomeRouter(children: [
-    //   RoomsTab(children: [RoomDetailRoute(roomId: roomId)]),
-    // ]));
-  }
-
-  navigateToEntryAddress() async {
-    // final result = await getIt<AppRouter>().push(
-    //   EntryAddressRoute(),
-    // ) as AddressWithId?;
-    // state = state.copyWith(addressWithId: result ?? state.addressWithId);
-  }
-
-  navigateToTagsSelection() async {
-    //   final result = await getIt<AppRouter>().push(
-    //     SelectTagsRoute(beingSet: state.tags ?? List.empty()),
-    //   ) as List<Tag>?;
-    //   state = state.copyWith(tags: result ?? state.tags);
-  }
 }
