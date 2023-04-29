@@ -16,12 +16,23 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$RoomInputState {
+  /// 部屋名
   String? get title => throw _privateConstructorUsedError;
-  List<Tag>? get tags => throw _privateConstructorUsedError;
-  Address? get address => throw _privateConstructorUsedError;
-  int? get membersNum => throw _privateConstructorUsedError;
-  AgeGroup? get ageGroup => throw _privateConstructorUsedError;
+
+  /// 部屋の説明
   String? get explanation => throw _privateConstructorUsedError;
+
+  /// 年齢層
+  AgeGroup? get ageGroup => throw _privateConstructorUsedError;
+
+  /// 人数
+  int? get membersNum => throw _privateConstructorUsedError;
+
+  /// タグ
+  List<Tag>? get tags => throw _privateConstructorUsedError;
+
+  /// 場所
+  Address? get address => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $RoomInputStateCopyWith<RoomInputState> get copyWith =>
@@ -36,11 +47,11 @@ abstract class $RoomInputStateCopyWith<$Res> {
   @useResult
   $Res call(
       {String? title,
-      List<Tag>? tags,
-      Address? address,
-      int? membersNum,
+      String? explanation,
       AgeGroup? ageGroup,
-      String? explanation});
+      int? membersNum,
+      List<Tag>? tags,
+      Address? address});
 
   $AddressCopyWith<$Res>? get address;
 }
@@ -59,17 +70,29 @@ class _$RoomInputStateCopyWithImpl<$Res, $Val extends RoomInputState>
   @override
   $Res call({
     Object? title = freezed,
+    Object? explanation = freezed,
+    Object? ageGroup = freezed,
+    Object? membersNum = freezed,
     Object? tags = freezed,
     Object? address = freezed,
-    Object? membersNum = freezed,
-    Object? ageGroup = freezed,
-    Object? explanation = freezed,
   }) {
     return _then(_value.copyWith(
       title: freezed == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String?,
+      explanation: freezed == explanation
+          ? _value.explanation
+          : explanation // ignore: cast_nullable_to_non_nullable
+              as String?,
+      ageGroup: freezed == ageGroup
+          ? _value.ageGroup
+          : ageGroup // ignore: cast_nullable_to_non_nullable
+              as AgeGroup?,
+      membersNum: freezed == membersNum
+          ? _value.membersNum
+          : membersNum // ignore: cast_nullable_to_non_nullable
+              as int?,
       tags: freezed == tags
           ? _value.tags
           : tags // ignore: cast_nullable_to_non_nullable
@@ -78,18 +101,6 @@ class _$RoomInputStateCopyWithImpl<$Res, $Val extends RoomInputState>
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
               as Address?,
-      membersNum: freezed == membersNum
-          ? _value.membersNum
-          : membersNum // ignore: cast_nullable_to_non_nullable
-              as int?,
-      ageGroup: freezed == ageGroup
-          ? _value.ageGroup
-          : ageGroup // ignore: cast_nullable_to_non_nullable
-              as AgeGroup?,
-      explanation: freezed == explanation
-          ? _value.explanation
-          : explanation // ignore: cast_nullable_to_non_nullable
-              as String?,
     ) as $Val);
   }
 
@@ -116,11 +127,11 @@ abstract class _$$_RoomInputStateCopyWith<$Res>
   @useResult
   $Res call(
       {String? title,
-      List<Tag>? tags,
-      Address? address,
-      int? membersNum,
+      String? explanation,
       AgeGroup? ageGroup,
-      String? explanation});
+      int? membersNum,
+      List<Tag>? tags,
+      Address? address});
 
   @override
   $AddressCopyWith<$Res>? get address;
@@ -138,17 +149,29 @@ class __$$_RoomInputStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? title = freezed,
+    Object? explanation = freezed,
+    Object? ageGroup = freezed,
+    Object? membersNum = freezed,
     Object? tags = freezed,
     Object? address = freezed,
-    Object? membersNum = freezed,
-    Object? ageGroup = freezed,
-    Object? explanation = freezed,
   }) {
     return _then(_$_RoomInputState(
       title: freezed == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String?,
+      explanation: freezed == explanation
+          ? _value.explanation
+          : explanation // ignore: cast_nullable_to_non_nullable
+              as String?,
+      ageGroup: freezed == ageGroup
+          ? _value.ageGroup
+          : ageGroup // ignore: cast_nullable_to_non_nullable
+              as AgeGroup?,
+      membersNum: freezed == membersNum
+          ? _value.membersNum
+          : membersNum // ignore: cast_nullable_to_non_nullable
+              as int?,
       tags: freezed == tags
           ? _value._tags
           : tags // ignore: cast_nullable_to_non_nullable
@@ -157,18 +180,6 @@ class __$$_RoomInputStateCopyWithImpl<$Res>
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
               as Address?,
-      membersNum: freezed == membersNum
-          ? _value.membersNum
-          : membersNum // ignore: cast_nullable_to_non_nullable
-              as int?,
-      ageGroup: freezed == ageGroup
-          ? _value.ageGroup
-          : ageGroup // ignore: cast_nullable_to_non_nullable
-              as AgeGroup?,
-      explanation: freezed == explanation
-          ? _value.explanation
-          : explanation // ignore: cast_nullable_to_non_nullable
-              as String?,
     ));
   }
 }
@@ -177,17 +188,34 @@ class __$$_RoomInputStateCopyWithImpl<$Res>
 
 class _$_RoomInputState implements _RoomInputState {
   const _$_RoomInputState(
-      {this.title,
-      final List<Tag>? tags,
-      this.address,
-      this.membersNum,
-      this.ageGroup,
-      this.explanation})
+      {required this.title,
+      required this.explanation,
+      required this.ageGroup,
+      required this.membersNum,
+      required final List<Tag>? tags,
+      required this.address})
       : _tags = tags;
 
+  /// 部屋名
   @override
   final String? title;
+
+  /// 部屋の説明
+  @override
+  final String? explanation;
+
+  /// 年齢層
+  @override
+  final AgeGroup? ageGroup;
+
+  /// 人数
+  @override
+  final int? membersNum;
+
+  /// タグ
   final List<Tag>? _tags;
+
+  /// タグ
   @override
   List<Tag>? get tags {
     final value = _tags;
@@ -197,18 +225,13 @@ class _$_RoomInputState implements _RoomInputState {
     return EqualUnmodifiableListView(value);
   }
 
+  /// 場所
   @override
   final Address? address;
-  @override
-  final int? membersNum;
-  @override
-  final AgeGroup? ageGroup;
-  @override
-  final String? explanation;
 
   @override
   String toString() {
-    return 'RoomInputState(title: $title, tags: $tags, address: $address, membersNum: $membersNum, ageGroup: $ageGroup, explanation: $explanation)';
+    return 'RoomInputState(title: $title, explanation: $explanation, ageGroup: $ageGroup, membersNum: $membersNum, tags: $tags, address: $address)';
   }
 
   @override
@@ -217,25 +240,19 @@ class _$_RoomInputState implements _RoomInputState {
         (other.runtimeType == runtimeType &&
             other is _$_RoomInputState &&
             (identical(other.title, title) || other.title == title) &&
-            const DeepCollectionEquality().equals(other._tags, _tags) &&
-            (identical(other.address, address) || other.address == address) &&
-            (identical(other.membersNum, membersNum) ||
-                other.membersNum == membersNum) &&
+            (identical(other.explanation, explanation) ||
+                other.explanation == explanation) &&
             (identical(other.ageGroup, ageGroup) ||
                 other.ageGroup == ageGroup) &&
-            (identical(other.explanation, explanation) ||
-                other.explanation == explanation));
+            (identical(other.membersNum, membersNum) ||
+                other.membersNum == membersNum) &&
+            const DeepCollectionEquality().equals(other._tags, _tags) &&
+            (identical(other.address, address) || other.address == address));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      title,
-      const DeepCollectionEquality().hash(_tags),
-      address,
-      membersNum,
-      ageGroup,
-      explanation);
+  int get hashCode => Object.hash(runtimeType, title, explanation, ageGroup,
+      membersNum, const DeepCollectionEquality().hash(_tags), address);
 
   @JsonKey(ignore: true)
   @override
@@ -246,25 +263,37 @@ class _$_RoomInputState implements _RoomInputState {
 
 abstract class _RoomInputState implements RoomInputState {
   const factory _RoomInputState(
-      {final String? title,
-      final List<Tag>? tags,
-      final Address? address,
-      final int? membersNum,
-      final AgeGroup? ageGroup,
-      final String? explanation}) = _$_RoomInputState;
+      {required final String? title,
+      required final String? explanation,
+      required final AgeGroup? ageGroup,
+      required final int? membersNum,
+      required final List<Tag>? tags,
+      required final Address? address}) = _$_RoomInputState;
 
   @override
+
+  /// 部屋名
   String? get title;
   @override
-  List<Tag>? get tags;
+
+  /// 部屋の説明
+  String? get explanation;
   @override
-  Address? get address;
-  @override
-  int? get membersNum;
-  @override
+
+  /// 年齢層
   AgeGroup? get ageGroup;
   @override
-  String? get explanation;
+
+  /// 人数
+  int? get membersNum;
+  @override
+
+  /// タグ
+  List<Tag>? get tags;
+  @override
+
+  /// 場所
+  Address? get address;
   @override
   @JsonKey(ignore: true)
   _$$_RoomInputStateCopyWith<_$_RoomInputState> get copyWith =>

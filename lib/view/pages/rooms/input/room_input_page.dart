@@ -1,7 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:fortune_client/data/model/addresses/address/address.dart';
 import 'package:fortune_client/data/model/enum/age_group.dart';
+import 'package:fortune_client/data/model/tags/tag/tag.dart';
 import 'package:fortune_client/l10n/locale_keys.g.dart';
 import 'package:fortune_client/view/pages/rooms/input/room_input_view_model.dart';
 import 'package:fortune_client/view/pages/tags/search/search_tags_page.dart';
@@ -17,8 +19,39 @@ import 'package:fortune_client/view/widgets/picker/number_picker.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+class RoomInputPageArguments {
+  /// 部屋名
+  final String? title;
+
+  /// 部屋の説明
+  final String? explanation;
+
+  /// 年齢層
+  final AgeGroup? ageGroup;
+
+  /// 人数
+  final int? membersNum;
+
+  /// タグ
+  final List<Tag>? tags;
+
+  /// 場所
+  final Address? address;
+
+  const RoomInputPageArguments({
+    this.title,
+    this.explanation,
+    this.ageGroup,
+    this.address,
+    this.membersNum,
+    this.tags,
+  });
+}
+
 class RoomInputPage extends StatefulHookConsumerWidget {
-  const RoomInputPage({Key? key}) : super(key: key);
+  const RoomInputPage(this.auguments, {super.key});
+
+  final RoomInputPageArguments auguments;
 
   @override
   ConsumerState<RoomInputPage> createState() => _RoomInputPageState();
@@ -28,11 +61,13 @@ class _RoomInputPageState extends ConsumerState<RoomInputPage> {
   @override
   Widget build(BuildContext context) {
     final theme = ref.watch(appThemeProvider);
-    final state = ref.watch(roomInputViewModelProvider);
-    final viewModel = ref.watch(roomInputViewModelProvider.notifier);
+    final state = ref.watch(roomInputViewModelProvider(widget.auguments));
+    final viewModel =
+        ref.watch(roomInputViewModelProvider(widget.auguments).notifier);
 
-    final titleController = useTextEditingController();
-    final explanationController = useTextEditingController();
+    final titleController = useTextEditingController(text: state.title);
+    final explanationController =
+        useTextEditingController(text: state.explanation);
 
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
@@ -78,8 +113,7 @@ class _RoomInputPageState extends ConsumerState<RoomInputPage> {
                 /// タイトル
                 Container(
                   padding: const EdgeInsets.only(right: 10),
-                  child: RoomStateTextInputField(
-                    theme: theme,
+                  child: _RoomStateTextInputField(
                     title: LocaleKeys.data_room_title_title.tr(),
                     content: BaseTextField(
                       controller: titleController,
@@ -167,8 +201,7 @@ class _RoomInputPageState extends ConsumerState<RoomInputPage> {
                 /// 説明
                 Container(
                   padding: const EdgeInsets.only(right: 10),
-                  child: RoomStateTextInputField(
-                    theme: theme,
+                  child: _RoomStateTextInputField(
                     required: false,
                     title: LocaleKeys.data_room_description_title.tr(),
                     content: BaseTextField(
@@ -197,22 +230,21 @@ class _RoomInputPageState extends ConsumerState<RoomInputPage> {
   }
 }
 
-class RoomStateTextInputField extends StatelessWidget {
-  final AppTheme theme;
+class _RoomStateTextInputField extends HookConsumerWidget {
   final bool required;
   final String title;
   final Widget content;
 
-  const RoomStateTextInputField({
-    super.key,
-    required this.theme,
+  const _RoomStateTextInputField({
     required this.title,
     required this.content,
     this.required = true,
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final theme = ref.watch(appThemeProvider);
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -220,23 +252,20 @@ class RoomStateTextInputField extends StatelessWidget {
           children: [
             Text(title, style: theme.textTheme.h30),
             const Gap(10),
-            Container(child: required ? null : annotation())
+            if (!required)
+              Container(
+                color: theme.appColors.disable,
+                padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 3),
+                child: Text(
+                  '任意',
+                  style: theme.textTheme.h10.paint(theme.appColors.subText1),
+                ),
+              )
           ],
         ),
         const Gap(10),
         content,
       ],
-    );
-  }
-
-  annotation() {
-    return Container(
-      color: theme.appColors.disable,
-      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 3),
-      child: Text(
-        "任意",
-        style: theme.textTheme.h10.paint(theme.appColors.subText1),
-      ),
     );
   }
 }

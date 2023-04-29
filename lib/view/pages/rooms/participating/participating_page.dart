@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:fortune_client/l10n/locale_keys.g.dart';
+import 'package:fortune_client/view/pages/rooms/input/room_input_page.dart';
 import 'package:fortune_client/view/pages/rooms/participating/participating_view_model.dart';
 import 'package:fortune_client/view/routes/route_navigator.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
@@ -85,7 +86,10 @@ class _ParticipatingPageState extends ConsumerState<ParticipatingPage>
           child: MaterialButton(
             height: 45,
             onPressed: () {
-              navigator.navigateTo(RoutePath.roomInput);
+              navigator.navigateTo(
+                RoutePath.roomInput,
+                arguments: const RoomInputPageArguments(),
+              );
             },
             padding: const EdgeInsets.symmetric(horizontal: 20),
             color: theme.appColors.primary,

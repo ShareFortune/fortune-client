@@ -2,6 +2,7 @@ import 'package:fortune_client/data/model/addresses/address/address.dart';
 import 'package:fortune_client/data/model/enum/age_group.dart';
 import 'package:fortune_client/data/model/tags/tag/tag.dart';
 import 'package:fortune_client/data/repository/repository.dart';
+import 'package:fortune_client/view/pages/rooms/input/room_input_page.dart';
 import 'package:fortune_client/view/pages/rooms/input/room_input_state.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -10,8 +11,15 @@ part 'room_input_view_model.g.dart';
 @riverpod
 class RoomInputViewModel extends _$RoomInputViewModel {
   @override
-  RoomInputState build() {
-    return const RoomInputState();
+  RoomInputState build(RoomInputPageArguments arguments) {
+    return RoomInputState(
+      title: arguments.title,
+      explanation: arguments.explanation,
+      ageGroup: arguments.ageGroup,
+      membersNum: arguments.membersNum,
+      tags: arguments.tags,
+      address: arguments.address,
+    );
   }
 
   /// タグ以外はNull非許容

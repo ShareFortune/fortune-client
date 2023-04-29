@@ -50,8 +50,9 @@ class AppRouter {
       case RoutePath.room:
 
       case RoutePath.roomInput:
+        arguments as RoomInputPageArguments;
         return _slidePageRouteBuilder(
-          const RoomInputPage(),
+          RoomInputPage(arguments),
           offset: const Offset(0.0, 1.0),
         );
 

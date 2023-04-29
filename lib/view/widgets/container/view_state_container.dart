@@ -64,7 +64,7 @@ class ViewStateContainer extends HookConsumerWidget {
             if (isEdit)
               Row(
                 children: [
-                  const Gap(20),
+                  const Gap(15),
                   Icon(Icons.chevron_right, color: theme.appColors.iconBtn1),
                 ],
               ),
