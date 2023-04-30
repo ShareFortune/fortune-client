@@ -1,3 +1,4 @@
+import 'package:fortune_client/data/model/join_requests/room_join_request/join_request.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'join_requests_response.freezed.dart';
@@ -17,22 +18,9 @@ class JoinRequestIdResponse with _$JoinRequestIdResponse {
 class JoinRequestsResponse with _$JoinRequestsResponse {
   const factory JoinRequestsResponse({
     required String nextToken,
-    required List<RoomJoinRequest> joinRequests,
+    required List<JoinRequest> joinRequests,
   }) = _JoinRequestsResponse;
 
   factory JoinRequestsResponse.fromJson(Map<String, dynamic> json) =>
       _$JoinRequestsResponseFromJson(json);
-}
-
-@freezed
-class RoomJoinRequest with _$RoomJoinRequest {
-  const factory RoomJoinRequest({
-    required String id,
-    required String name,
-    required String userId,
-    required String userImageURL,
-  }) = _RoomJoinRequest;
-
-  factory RoomJoinRequest.fromJson(Map<String, dynamic> json) =>
-      _$RoomJoinRequestFromJson(json);
 }

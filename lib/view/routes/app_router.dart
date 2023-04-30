@@ -8,6 +8,7 @@ import 'package:fortune_client/view/pages/message/message_room/message_room_page
 import 'package:fortune_client/view/pages/my/edit/edit_profile_page.dart';
 import 'package:fortune_client/view/pages/my/my/my_page.dart';
 import 'package:fortune_client/view/pages/profile/profile/profile_page.dart';
+import 'package:fortune_client/view/pages/request/join_requests_confirmation/join_requests_confirmation_page.dart';
 import 'package:fortune_client/view/pages/rooms/input/room_input_page.dart';
 import 'package:fortune_client/view/pages/rooms/room_detail/room_detail_page.dart';
 import 'package:fortune_client/view/pages/settings/settings_page.dart';
@@ -56,19 +57,19 @@ class AppRouter {
           offset: const Offset(0.0, 1.0),
         );
 
-      case RoutePath.roomEdit:
-
       case RoutePath.roomDetail:
         arguments as RoomDetailPageArguments;
         return _slidePageRouteBuilder(RoomDetailPage(arguments));
 
       case RoutePath.participatingRoom:
 
-      case RoutePath.participatingRoomAll:
-
       case RoutePath.messageRoom:
         arguments as MessageRoomPageArguments;
         return _slidePageRouteBuilder(MessageRoomPage(arguments));
+
+      case RoutePath.joinRequestsConfirm:
+        arguments as JoinRequestsConfirmationPageAuguments;
+        return _slidePageRouteBuilder(JoinRequestsConfirmationPage(arguments));
 
       case RoutePath.messageRoomList:
 
@@ -88,8 +89,6 @@ class AppRouter {
       case RoutePath.settingHelp:
 
       case RoutePath.settingAbout:
-
-      case RoutePath.searchRoom:
 
       case RoutePath.searchTag:
         arguments as SearchTagsPageAuguments;

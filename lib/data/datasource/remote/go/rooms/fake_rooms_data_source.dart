@@ -1,3 +1,4 @@
+import 'package:fortune_client/data/datasource/remote/go/join_requests/fake_join_requests_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/go/rooms/rooms_data_source.dart';
 import 'package:fortune_client/data/model/rooms/room_detail/room_detail.dart';
 import 'package:fortune_client/data/model/rooms/rooms_guest_response/rooms_guest_response.dart';
@@ -25,9 +26,14 @@ class FakeRoomsDataSource implements RoomsDataSource {
     String? nextToken,
     int? perPage,
   }) async {
-    return RoomsHostResponse.fromJson(
+    final rooms = RoomsHostResponse.fromJson(
       await JsonUtils.load(Assets.stub.roomsHostResponse),
     );
+    if (FakeJoinRequestsDataSource().ids.isNotEmpty) {
+      return rooms.copyWith(rooms: [...rooms.rooms, ...rooms.rooms]);
+    } else {
+      return rooms;
+    }
   }
 
   @override

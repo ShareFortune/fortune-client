@@ -1,5 +1,5 @@
 import 'package:fortune_client/data/datasource/remote/go/join_requests/join_requests_data_source.dart';
-import 'package:fortune_client/data/model/join_requests/join_requests_response/join_requests_response.dart';
+import 'package:fortune_client/data/model/join_requests/room_join_request/join_request.dart';
 import 'package:fortune_client/data/repository/join_requests/join_requests_repository.dart';
 import 'package:fortune_client/util/logger/logger.dart';
 
@@ -21,7 +21,7 @@ class JoinRequestsRepositoryImpl implements JoinRequestsRepository {
   }
 
   @override
-  Future<List<RoomJoinRequest>> getJoinRequests(String roomId) async {
+  Future<List<JoinRequest>> getJoinRequests(String roomId) async {
     try {
       logger.i("[$runtimeType] getJoinRequests");
       final result = await _joinRequestsDataSource.getJoinRequest(roomId);
@@ -35,6 +35,7 @@ class JoinRequestsRepositoryImpl implements JoinRequestsRepository {
   @override
   Future<bool> accept(String requestId) async {
     try {
+      print(requestId);
       logger.i("[$runtimeType] accept");
       final result = await _joinRequestsDataSource.accept(requestId);
       return result.id == requestId;

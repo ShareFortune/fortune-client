@@ -1,4 +1,4 @@
-import 'package:fortune_client/data/model/join_requests/join_requests_response/join_requests_response.dart';
+import 'package:fortune_client/data/model/join_requests/room_join_request/join_request.dart';
 
 abstract class JoinRequestsRepository {
   /// 参加申請
@@ -14,5 +14,5 @@ abstract class JoinRequestsRepository {
 
   /// 参加申請一覧取得
   /// [roomId] 参加申請を受信したルームID
-  Future<List<RoomJoinRequest>> getJoinRequests(String roomId);
+  Future<List<JoinRequest>> getJoinRequests(String roomId);
 }

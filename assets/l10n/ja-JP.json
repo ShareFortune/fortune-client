@@ -67,7 +67,7 @@
     },
     "join_requests_confirmation_page": {
         "title": "参加リクエスト",
-        "requestCount": "{room}に参加したい人 {requestCount}名",
+        "requestCount": "「 {}  」に参加したい人 {}名",
         "noRequest": "リクエストが存在しません。"
     },
     "room_input_page": {

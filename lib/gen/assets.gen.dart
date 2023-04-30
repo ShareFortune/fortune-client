@@ -17,6 +17,9 @@ class $StubGen {
   /// File path: stub/addresses_response.json
   String get addressesResponse => 'stub/addresses_response.json';
 
+  /// File path: stub/join_requests_response.json
+  String get joinRequestsResponse => 'stub/join_requests_response.json';
+
   /// File path: stub/message_rooms_id_messages_response.json
   String get messageRoomsIdMessagesResponse =>
       'stub/message_rooms_id_messages_response.json';
@@ -50,6 +53,7 @@ class $StubGen {
   /// List of all assets
   List<String> get values => [
         addressesResponse,
+        joinRequestsResponse,
         messageRoomsIdMessagesResponse,
         messageRoomsResponseGuest,
         messageRoomsResponseHost,

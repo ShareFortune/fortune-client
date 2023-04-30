@@ -48,6 +48,9 @@ abstract class RoomState {
   /// Pendingかどうか
   bool get isPending => status == RoomStatus.pending;
 
+  /// リクエスト数
+  int get joinRequestCount => 0;
+
   /// リクエストがあるかどうか
   bool get hasJoinRequest => false;
 
@@ -68,6 +71,7 @@ abstract class RoomState {
 /// ホストルーム
 class HostRoomState extends RoomState {
   /// リクエスト数
+  @override
   final int joinRequestCount;
 
   /// リクエストがあるかどうか

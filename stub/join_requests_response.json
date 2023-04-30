@@ -1,0 +1,17 @@
+{
+    "nextToken": "aaaaaaaaa",
+    "joinRequests": [
+        {
+            "id": "a",
+            "userId": "aaaaaaaaa",
+            "name": "user1",
+            "userImageURL": "https://dol.ismcdn.jp/mwimgs/7/e/1320w/img_7e0b8adba77c91687a8078920dedc7be160077.jpg"
+        },
+        {
+            "id": "b",
+            "userId": "aaaaaaaaa",
+            "name": "user2",
+            "userImageURL": "https://www.ana.co.jp/www2/travelandlife/article/id001001/001292/images/main_01.jpg"
+        }
+    ]
+}

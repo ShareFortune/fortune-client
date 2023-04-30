@@ -22,12 +22,13 @@ enum RoutePath {
   /// Room
   room('/room'),
   roomInput('/roomInput'),
-  roomEdit('/roomEdit'),
   roomDetail('/roomDetail'),
 
   /// Participating Room
   participatingRoom('/participatingRoom'),
-  participatingRoomAll('/participatingRoomAll'),
+
+  /// Join Request
+  joinRequestsConfirm('/joinRequestsConfirm'),
 
   /// Message
   messageRoom('/messageRoom'),
@@ -35,6 +36,7 @@ enum RoutePath {
 
   /// Tag
   tagInput('/tagInput'),
+  searchTag('/searchTag'),
 
   /// Setting
   setting('/setting'),
@@ -44,11 +46,6 @@ enum RoutePath {
   settingTerms('/settingTerms'),
   settingHelp('/settingHelp'),
   settingAbout('/settingAbout'),
-
-  /// Search
-  searchRoom('/searchRoom'),
-  searchTag('/searchTag'),
-  searchAddress('/searchAddress'),
 
   /// Input
   inputText('/inputText'),

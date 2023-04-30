@@ -1,37 +1,41 @@
+import 'dart:async';
+
 import 'package:fortune_client/data/repository/repository.dart';
+import 'package:fortune_client/view/pages/request/join_requests_confirmation/join_requests_confirmation_page.dart';
 import 'package:fortune_client/view/pages/request/join_requests_confirmation/join_requests_confirmation_state.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:fortune_client/view/pages/rooms/participating/participating_view_model.dart';
+import 'package:fortune_client/view/routes/route_navigator.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-final joinRequestsConfirmationViewModelProvider = StateNotifierProvider.family<
-    JoinRequestsConfirmationViewModel,
-    JoinRequestsConfirmationState,
-    String>((_, roomId) {
-  return JoinRequestsConfirmationViewModel(JoinRequestsConfirmationState(
-    roomId: roomId,
-    joinRequests: const AsyncLoading(),
-  ))
-    ..initialize();
-});
+part 'join_requests_confirmation_view_model.g.dart';
 
+@riverpod
 class JoinRequestsConfirmationViewModel
-    extends StateNotifier<JoinRequestsConfirmationState> {
-  JoinRequestsConfirmationViewModel(super.state);
+    extends _$JoinRequestsConfirmationViewModel {
+  @override
+  Future<JoinRequestsConfirmationState> build(
+    JoinRequestsConfirmationPageAuguments auguments,
+  ) async {
+    final joinRequests =
+        await Repository.joinRequests.getJoinRequests(auguments.roomId);
 
-  Future<void> initialize() async {
-    await fetchJoinRequests();
+    /// リクエストがなければ戻る
+    if (joinRequests.isEmpty) navigator.goBack();
+
+    /// ５秒ごとにリクエストを送信する
+    final timer = Timer(const Duration(seconds: 5), () => ref.invalidateSelf());
+    ref.onDispose(timer.cancel);
+
+    return JoinRequestsConfirmationState(
+      joinRequests: joinRequests,
+    );
   }
 
-  fetchJoinRequests() async {
-    await AsyncValue.guard(() async {
-      return Repository.joinRequests.getJoinRequests(state.roomId);
-    }).then((value) {
-      state = state.copyWith(joinRequests: value);
-    });
-  }
+  Future<void> accept(String requestId) async {
+    await Repository.joinRequests.accept(requestId);
 
-  acceptJoinRequest(String requestId) async {
-    await Repository.joinRequests.accept(requestId).whenComplete(() {
-      fetchJoinRequests();
-    });
+    /// 再取得
+    ref.invalidateSelf();
+    ref.invalidate(participatingViewModelProvider);
   }
 }
