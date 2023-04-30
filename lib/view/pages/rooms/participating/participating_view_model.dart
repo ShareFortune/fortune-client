@@ -1,40 +1,29 @@
 import 'package:fortune_client/data/repository/repository.dart';
 import 'package:fortune_client/view/pages/rooms/participating/participating_state.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-final participatingViewModelProvider =
-    StateNotifierProvider<ParticipatingViewModel, ParticipatingState>(
-  (ref) {
-    return ParticipatingViewModel(
-      const ParticipatingState(
-        host: AsyncLoading(),
-        guest: AsyncLoading(),
-      ),
-    )..initialize();
-  },
-);
+// final participatingViewModelProvider =
+//     StateNotifierProvider<ParticipatingViewModel, ParticipatingState>(
+//   (ref) {
+//     return ParticipatingViewModel(
+//       const ParticipatingState(
+//         host: AsyncLoading(),
+//         guest: AsyncLoading(),
+//       ),
+//     )..initialize();
+//   },
+// );
 
-class ParticipatingViewModel extends StateNotifier<ParticipatingState> {
-  ParticipatingViewModel(super.state);
+part 'participating_view_model.g.dart';
 
-  Future<void> initialize() async {
-    await getHostRooms();
-    await getGuestRooms();
-  }
-
-  Future<void> getHostRooms() async {
-    state = state.copyWith(
-      host: await AsyncValue.guard(() async {
-        return await Repository.rooms.fetchRoomsHost();
-      }),
-    );
-  }
-
-  Future<void> getGuestRooms() async {
-    state = state.copyWith(
-      guest: await AsyncValue.guard(() async {
-        return await Repository.rooms.fetchRoomsGuest();
-      }),
+@riverpod
+class ParticipatingViewModel extends _$ParticipatingViewModel {
+  @override
+  Future<ParticipatingState> build() async {
+    return ParticipatingState(
+      host: await Repository.rooms.fetchRoomsHost(),
+      guest: await Repository.rooms.fetchRoomsGuest(),
     );
   }
 }

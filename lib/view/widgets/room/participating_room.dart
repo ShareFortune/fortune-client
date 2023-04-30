@@ -31,7 +31,25 @@ class ParticipatingRoom extends HookConsumerWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            room.theme.description,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                room.theme.description,
+
+                /// 全て表示ボタン
+                /// Pendingの場合のみ表示する
+                if (room.isPending && room.hasJoinRequest)
+                  TextButton(
+                    onPressed: () {},
+                    child: Text(
+                      'すべて表示',
+                      style: theme.textTheme.h20.paint(
+                        theme.appColors.linkColor,
+                      ),
+                    ),
+                  )
+              ],
+            ),
             const Gap(10),
 
             /// ヘッダー
