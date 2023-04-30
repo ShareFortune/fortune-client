@@ -3,7 +3,7 @@ import 'package:fortune_client/view/pages/common/home/home_page.dart';
 import 'package:fortune_client/view/pages/common/input/input_long_text_page.dart';
 import 'package:fortune_client/view/pages/common/input/input_text_page.dart';
 import 'package:fortune_client/view/pages/debug/debug_page.dart';
-import 'package:fortune_client/view/pages/launch/launch_page.dart';
+import 'package:fortune_client/view/pages/common/launch/launch_page.dart';
 import 'package:fortune_client/view/pages/message/message_room/message_room_page.dart';
 import 'package:fortune_client/view/pages/my/edit/edit_profile_page.dart';
 import 'package:fortune_client/view/pages/my/my/my_page.dart';

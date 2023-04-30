@@ -49,7 +49,7 @@ class JoinRequestTile extends StatelessWidget {
           width: 16,
           height: 16,
           fit: BoxFit.contain,
-          Assets.images.icons.iconCheckCircle.path,
+          Assets.icons.iconCheckCircle.path,
         ),
         label: Text(
           "参加を許可",

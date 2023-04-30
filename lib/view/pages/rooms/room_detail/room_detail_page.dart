@@ -72,7 +72,7 @@ class RoomDetailPage extends HookConsumerWidget {
                 );
               },
               icon: SvgPicture.asset(
-                Assets.images.icons.iconMoreVert.path,
+                Assets.icons.iconMoreVert.path,
                 fit: BoxFit.contain,
               ),
             ),

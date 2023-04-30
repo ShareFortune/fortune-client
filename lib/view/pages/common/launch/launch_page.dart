@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:fortune_client/gen/assets.gen.dart';
 import 'package:fortune_client/view/routes/route_navigator.dart';
-import 'package:fortune_client/view/routes/route_path.dart';
-import 'package:lottie/lottie.dart';
 
 class LaunchPage extends StatelessWidget {
   const LaunchPage({super.key});
@@ -16,13 +15,15 @@ class LaunchPage extends StatelessWidget {
     /// リモート設定を初期化
 
     /// ホーム画面へ
-    Future.delayed(const Duration(milliseconds: 100)).whenComplete(
+    Future.delayed(const Duration(milliseconds: 1000)).whenComplete(
       () => navigator.navigateToRemoveUntil(RoutePath.home),
     );
 
-    /// 起動アニメーション
-    /// TODO: アニメーションを作成する
-    return Lottie.asset(Assets.animations.splash);
+    /// 起動画面
+    return SvgPicture.asset(
+      Assets.images.bootScreen.path,
+      fit: BoxFit.cover,
+    );
   }
 
   applyAppInfo() {

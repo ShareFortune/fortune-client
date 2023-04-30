@@ -41,11 +41,11 @@ extension AuthTypeEx on AuthType {
   String get iconPath {
     switch (this) {
       case AuthType.apple:
-        return Assets.images.icons.iconApple.path;
+        return Assets.icons.iconApple.path;
       case AuthType.google:
-        return Assets.images.icons.iconGoogle.path;
+        return Assets.icons.iconGoogle.path;
       case AuthType.twitter:
-        return Assets.images.icons.iconTwitter.path;
+        return Assets.icons.iconTwitter.path;
     }
   }
 }

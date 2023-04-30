@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fortune_client/gen/assets.gen.dart';
 import 'package:fortune_client/view/routes/route_navigator.dart';
-import 'package:fortune_client/view/routes/route_path.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -50,7 +49,7 @@ class ScrollAppBar extends HookConsumerWidget implements PreferredSizeWidget {
                       ),
                       if (onTapTitle != null)
                         SvgPicture.asset(
-                          Assets.images.icons.iconArrowDropDown.path,
+                          Assets.icons.iconArrowDropDown.path,
                           fit: BoxFit.contain,
                           width: 20,
                         ),
@@ -60,7 +59,7 @@ class ScrollAppBar extends HookConsumerWidget implements PreferredSizeWidget {
                 InkWell(
                   onTap: () => navigator.navigateTo(RoutePath.my),
                   child: SvgPicture.asset(
-                    Assets.images.icons.iconProfile.path,
+                    Assets.icons.iconProfile.path,
                     fit: BoxFit.contain,
                     width: 24,
                     height: 24,
