@@ -146,7 +146,7 @@ class _RoomsFilterButton extends HookConsumerWidget {
             ),
             const Gap(6),
             SvgPicture.asset(
-              Assets.images.icons.iconArrowDropDown.path,
+              Assets.icons.iconArrowDropDown.path,
               width: 20,
               fit: BoxFit.contain,
               colorFilter: ColorFilter.mode(

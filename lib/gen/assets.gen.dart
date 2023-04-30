@@ -76,123 +76,75 @@ class $AssetsAnimationsGen {
   List<String> get values => [splash];
 }
 
-class $AssetsImagesGen {
-  const $AssetsImagesGen();
+class $AssetsIconsGen {
+  const $AssetsIconsGen();
 
-  $AssetsImagesIconsGen get icons => const $AssetsImagesIconsGen();
+  /// File path: assets/icons/icon_add.svg
+  SvgGenImage get iconAdd => const SvgGenImage('assets/icons/icon_add.svg');
 
-  /// File path: assets/images/img_recipe_no_892-1.jpg
-  AssetGenImage get imgRecipeNo8921 =>
-      const AssetGenImage('assets/images/img_recipe_no_892-1.jpg');
+  /// File path: assets/icons/icon_apple.svg
+  SvgGenImage get iconApple => const SvgGenImage('assets/icons/icon_apple.svg');
 
-  /// File path: assets/images/insta2.jpeg
-  AssetGenImage get insta2 => const AssetGenImage('assets/images/insta2.jpeg');
-
-  /// File path: assets/images/insta3.jpeg
-  AssetGenImage get insta3 => const AssetGenImage('assets/images/insta3.jpeg');
-
-  /// File path: assets/images/insta4.jpeg
-  AssetGenImage get insta4 => const AssetGenImage('assets/images/insta4.jpeg');
-
-  /// File path: assets/images/insta5.jpeg
-  AssetGenImage get insta5 => const AssetGenImage('assets/images/insta5.jpeg');
-
-  /// File path: assets/images/thinder.jpeg
-  AssetGenImage get thinder =>
-      const AssetGenImage('assets/images/thinder.jpeg');
-
-  /// File path: assets/images/user1.jpeg
-  AssetGenImage get user1 => const AssetGenImage('assets/images/user1.jpeg');
-
-  /// List of all assets
-  List<AssetGenImage> get values =>
-      [imgRecipeNo8921, insta2, insta3, insta4, insta5, thinder, user1];
-}
-
-class $AssetsL10nGen {
-  const $AssetsL10nGen();
-
-  /// File path: assets/l10n/ja-JP.json
-  String get jaJP => 'assets/l10n/ja-JP.json';
-
-  /// List of all assets
-  List<String> get values => [jaJP];
-}
-
-class $AssetsImagesIconsGen {
-  const $AssetsImagesIconsGen();
-
-  /// File path: assets/images/icons/icon_add.svg
-  SvgGenImage get iconAdd =>
-      const SvgGenImage('assets/images/icons/icon_add.svg');
-
-  /// File path: assets/images/icons/icon_apple.svg
-  SvgGenImage get iconApple =>
-      const SvgGenImage('assets/images/icons/icon_apple.svg');
-
-  /// File path: assets/images/icons/icon_arrow_drop_down.svg
+  /// File path: assets/icons/icon_arrow_drop_down.svg
   SvgGenImage get iconArrowDropDown =>
-      const SvgGenImage('assets/images/icons/icon_arrow_drop_down.svg');
+      const SvgGenImage('assets/icons/icon_arrow_drop_down.svg');
 
-  /// File path: assets/images/icons/icon_arrow_right.svg
+  /// File path: assets/icons/icon_arrow_right.svg
   SvgGenImage get iconArrowRight =>
-      const SvgGenImage('assets/images/icons/icon_arrow_right.svg');
+      const SvgGenImage('assets/icons/icon_arrow_right.svg');
 
-  /// File path: assets/images/icons/icon_camera.svg
+  /// File path: assets/icons/icon_camera.svg
   SvgGenImage get iconCamera =>
-      const SvgGenImage('assets/images/icons/icon_camera.svg');
+      const SvgGenImage('assets/icons/icon_camera.svg');
 
-  /// File path: assets/images/icons/icon_check_circle.svg
+  /// File path: assets/icons/icon_check_circle.svg
   SvgGenImage get iconCheckCircle =>
-      const SvgGenImage('assets/images/icons/icon_check_circle.svg');
+      const SvgGenImage('assets/icons/icon_check_circle.svg');
 
-  /// File path: assets/images/icons/icon_delete.svg
+  /// File path: assets/icons/icon_delete.svg
   SvgGenImage get iconDelete =>
-      const SvgGenImage('assets/images/icons/icon_delete.svg');
+      const SvgGenImage('assets/icons/icon_delete.svg');
 
-  /// File path: assets/images/icons/icon_edit.svg
-  SvgGenImage get iconEdit =>
-      const SvgGenImage('assets/images/icons/icon_edit.svg');
+  /// File path: assets/icons/icon_edit.svg
+  SvgGenImage get iconEdit => const SvgGenImage('assets/icons/icon_edit.svg');
 
-  /// File path: assets/images/icons/icon_google.svg
+  /// File path: assets/icons/icon_google.svg
   SvgGenImage get iconGoogle =>
-      const SvgGenImage('assets/images/icons/icon_google.svg');
+      const SvgGenImage('assets/icons/icon_google.svg');
 
-  /// File path: assets/images/icons/icon_link.svg
-  SvgGenImage get iconLink =>
-      const SvgGenImage('assets/images/icons/icon_link.svg');
+  /// File path: assets/icons/icon_link.svg
+  SvgGenImage get iconLink => const SvgGenImage('assets/icons/icon_link.svg');
 
-  /// File path: assets/images/icons/icon_location.svg
+  /// File path: assets/icons/icon_location.svg
   SvgGenImage get iconLocation =>
-      const SvgGenImage('assets/images/icons/icon_location.svg');
+      const SvgGenImage('assets/icons/icon_location.svg');
 
-  /// File path: assets/images/icons/icon_more_vert.svg
+  /// File path: assets/icons/icon_more_vert.svg
   SvgGenImage get iconMoreVert =>
-      const SvgGenImage('assets/images/icons/icon_more_vert.svg');
+      const SvgGenImage('assets/icons/icon_more_vert.svg');
 
-  /// File path: assets/images/icons/icon_profile.svg
+  /// File path: assets/icons/icon_profile.svg
   SvgGenImage get iconProfile =>
-      const SvgGenImage('assets/images/icons/icon_profile.svg');
+      const SvgGenImage('assets/icons/icon_profile.svg');
 
-  /// File path: assets/images/icons/icon_profile_dark.svg
+  /// File path: assets/icons/icon_profile_dark.svg
   SvgGenImage get iconProfileDark =>
-      const SvgGenImage('assets/images/icons/icon_profile_dark.svg');
+      const SvgGenImage('assets/icons/icon_profile_dark.svg');
 
-  /// File path: assets/images/icons/icon_room.svg
-  SvgGenImage get iconRoom =>
-      const SvgGenImage('assets/images/icons/icon_room.svg');
+  /// File path: assets/icons/icon_room.svg
+  SvgGenImage get iconRoom => const SvgGenImage('assets/icons/icon_room.svg');
 
-  /// File path: assets/images/icons/icon_swap_vert.svg
+  /// File path: assets/icons/icon_swap_vert.svg
   SvgGenImage get iconSwapVert =>
-      const SvgGenImage('assets/images/icons/icon_swap_vert.svg');
+      const SvgGenImage('assets/icons/icon_swap_vert.svg');
 
-  /// File path: assets/images/icons/icon_twitter.svg
+  /// File path: assets/icons/icon_twitter.svg
   SvgGenImage get iconTwitter =>
-      const SvgGenImage('assets/images/icons/icon_twitter.svg');
+      const SvgGenImage('assets/icons/icon_twitter.svg');
 
-  /// File path: assets/images/icons/icon_user_add.svg
+  /// File path: assets/icons/icon_user_add.svg
   SvgGenImage get iconUserAdd =>
-      const SvgGenImage('assets/images/icons/icon_user_add.svg');
+      const SvgGenImage('assets/icons/icon_user_add.svg');
 
   /// List of all assets
   List<SvgGenImage> get values => [
@@ -217,10 +169,35 @@ class $AssetsImagesIconsGen {
       ];
 }
 
+class $AssetsImagesGen {
+  const $AssetsImagesGen();
+
+  /// File path: assets/images/boot_ screen.svg
+  SvgGenImage get bootScreen =>
+      const SvgGenImage('assets/images/boot_ screen.svg');
+
+  /// File path: assets/images/splash.svg
+  SvgGenImage get splash => const SvgGenImage('assets/images/splash.svg');
+
+  /// List of all assets
+  List<SvgGenImage> get values => [bootScreen, splash];
+}
+
+class $AssetsL10nGen {
+  const $AssetsL10nGen();
+
+  /// File path: assets/l10n/ja-JP.json
+  String get jaJP => 'assets/l10n/ja-JP.json';
+
+  /// List of all assets
+  List<String> get values => [jaJP];
+}
+
 class Assets {
   Assets._();
 
   static const $AssetsAnimationsGen animations = $AssetsAnimationsGen();
+  static const $AssetsIconsGen icons = $AssetsIconsGen();
   static const $AssetsImagesGen images = $AssetsImagesGen();
   static const $AssetsL10nGen l10n = $AssetsL10nGen();
   static const $StubGen stub = $StubGen();

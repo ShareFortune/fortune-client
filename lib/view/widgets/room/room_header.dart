@@ -60,7 +60,7 @@ class RoomHeader extends StatelessWidget {
   Widget _headerAddress(AppTheme theme) {
     return Row(children: [
       SvgPicture.asset(
-        Assets.images.icons.iconLocation.path,
+        Assets.icons.iconLocation.path,
         fit: BoxFit.contain,
       ),
       const Gap(3),

@@ -143,7 +143,7 @@ class _ProfileImageEditor extends HookConsumerWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           SvgPicture.asset(
-                            Assets.images.icons.iconCamera.path,
+                            Assets.icons.iconCamera.path,
                             fit: BoxFit.contain,
                           ),
                           const Gap(5),

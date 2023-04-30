@@ -109,7 +109,7 @@ class RoomListCard extends StatelessWidget {
               /// 開催地
               Row(children: [
                 SvgPicture.asset(
-                  Assets.images.icons.iconLocation.path,
+                  Assets.icons.iconLocation.path,
                   fit: BoxFit.contain,
                 ),
                 const Gap(3),

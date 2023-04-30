@@ -115,8 +115,8 @@ flutter:
     - assets/l10n/
     
     # images
+    - assets/icons/
     - assets/images/
-    - assets/images/icons/
 
     # animation
     - assets/animations/
