@@ -16,10 +16,8 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$ParticipatingState {
-  AsyncValue<List<RoomsHostResponseRoom>> get host =>
-      throw _privateConstructorUsedError;
-  AsyncValue<List<RoomsGuestResponseRoom>> get guest =>
-      throw _privateConstructorUsedError;
+  List<RoomsHostResponseRoom> get host => throw _privateConstructorUsedError;
+  List<RoomsGuestResponseRoom> get guest => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ParticipatingStateCopyWith<ParticipatingState> get copyWith =>
@@ -33,8 +31,7 @@ abstract class $ParticipatingStateCopyWith<$Res> {
       _$ParticipatingStateCopyWithImpl<$Res, ParticipatingState>;
   @useResult
   $Res call(
-      {AsyncValue<List<RoomsHostResponseRoom>> host,
-      AsyncValue<List<RoomsGuestResponseRoom>> guest});
+      {List<RoomsHostResponseRoom> host, List<RoomsGuestResponseRoom> guest});
 }
 
 /// @nodoc
@@ -57,11 +54,11 @@ class _$ParticipatingStateCopyWithImpl<$Res, $Val extends ParticipatingState>
       host: null == host
           ? _value.host
           : host // ignore: cast_nullable_to_non_nullable
-              as AsyncValue<List<RoomsHostResponseRoom>>,
+              as List<RoomsHostResponseRoom>,
       guest: null == guest
           ? _value.guest
           : guest // ignore: cast_nullable_to_non_nullable
-              as AsyncValue<List<RoomsGuestResponseRoom>>,
+              as List<RoomsGuestResponseRoom>,
     ) as $Val);
   }
 }
@@ -75,8 +72,7 @@ abstract class _$$_ParticipatingStateCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {AsyncValue<List<RoomsHostResponseRoom>> host,
-      AsyncValue<List<RoomsGuestResponseRoom>> guest});
+      {List<RoomsHostResponseRoom> host, List<RoomsGuestResponseRoom> guest});
 }
 
 /// @nodoc
@@ -95,13 +91,13 @@ class __$$_ParticipatingStateCopyWithImpl<$Res>
   }) {
     return _then(_$_ParticipatingState(
       host: null == host
-          ? _value.host
+          ? _value._host
           : host // ignore: cast_nullable_to_non_nullable
-              as AsyncValue<List<RoomsHostResponseRoom>>,
+              as List<RoomsHostResponseRoom>,
       guest: null == guest
-          ? _value.guest
+          ? _value._guest
           : guest // ignore: cast_nullable_to_non_nullable
-              as AsyncValue<List<RoomsGuestResponseRoom>>,
+              as List<RoomsGuestResponseRoom>,
     ));
   }
 }
@@ -109,12 +105,27 @@ class __$$_ParticipatingStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_ParticipatingState implements _ParticipatingState {
-  const _$_ParticipatingState({required this.host, required this.guest});
+  const _$_ParticipatingState(
+      {required final List<RoomsHostResponseRoom> host,
+      required final List<RoomsGuestResponseRoom> guest})
+      : _host = host,
+        _guest = guest;
 
+  final List<RoomsHostResponseRoom> _host;
   @override
-  final AsyncValue<List<RoomsHostResponseRoom>> host;
+  List<RoomsHostResponseRoom> get host {
+    if (_host is EqualUnmodifiableListView) return _host;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_host);
+  }
+
+  final List<RoomsGuestResponseRoom> _guest;
   @override
-  final AsyncValue<List<RoomsGuestResponseRoom>> guest;
+  List<RoomsGuestResponseRoom> get guest {
+    if (_guest is EqualUnmodifiableListView) return _guest;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_guest);
+  }
 
   @override
   String toString() {
@@ -126,12 +137,15 @@ class _$_ParticipatingState implements _ParticipatingState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ParticipatingState &&
-            (identical(other.host, host) || other.host == host) &&
-            (identical(other.guest, guest) || other.guest == guest));
+            const DeepCollectionEquality().equals(other._host, _host) &&
+            const DeepCollectionEquality().equals(other._guest, _guest));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, host, guest);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_host),
+      const DeepCollectionEquality().hash(_guest));
 
   @JsonKey(ignore: true)
   @override
@@ -143,14 +157,14 @@ class _$_ParticipatingState implements _ParticipatingState {
 
 abstract class _ParticipatingState implements ParticipatingState {
   const factory _ParticipatingState(
-          {required final AsyncValue<List<RoomsHostResponseRoom>> host,
-          required final AsyncValue<List<RoomsGuestResponseRoom>> guest}) =
+          {required final List<RoomsHostResponseRoom> host,
+          required final List<RoomsGuestResponseRoom> guest}) =
       _$_ParticipatingState;
 
   @override
-  AsyncValue<List<RoomsHostResponseRoom>> get host;
+  List<RoomsHostResponseRoom> get host;
   @override
-  AsyncValue<List<RoomsGuestResponseRoom>> get guest;
+  List<RoomsGuestResponseRoom> get guest;
   @override
   @JsonKey(ignore: true)
   _$$_ParticipatingStateCopyWith<_$_ParticipatingState> get copyWith =>

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:fortune_client/view/pages/request/join_requests_confirmation/join_requests_confirmation_page.dart';
+import 'package:fortune_client/view/routes/route_navigator.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/room/room_body.dart';
 import 'package:fortune_client/view/widgets/room/room_header.dart';
@@ -31,7 +33,34 @@ class ParticipatingRoom extends HookConsumerWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            room.theme.description,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                room.theme.description,
+
+                /// 全て表示ボタン
+                /// Pendingの場合のみ表示する
+                if (room.isPending && room.hasJoinRequest)
+                  TextButton(
+                    onPressed: () {
+                      navigator.navigateTo(
+                        RoutePath.joinRequestsConfirm,
+                        arguments: JoinRequestsConfirmationPageAuguments(
+                          roomId: room.id,
+                          roomTitle: room.title,
+                          requestCount: room.joinRequestCount,
+                        ),
+                      );
+                    },
+                    child: Text(
+                      'すべて表示',
+                      style: theme.textTheme.h20.paint(
+                        theme.appColors.linkColor,
+                      ),
+                    ),
+                  )
+              ],
+            ),
             const Gap(10),
 
             /// ヘッダー

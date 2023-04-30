@@ -49,56 +49,30 @@ class _ParticipatingPageState extends ConsumerState<ParticipatingPage>
         DefaultTabController(
           length: 2,
           child: NestedScrollView(
-            headerSliverBuilder: (context, innerBoxIsScrolled) {
-              return <Widget>[
-                ScrollAppBar(
-                  title: LocaleKeys.participating_room_list_page_title.tr(),
-                ),
-                AnimatedStickyTabBar(
-                  controller: _tabController,
-                  tabs: ['ホスト', 'ゲスト'].map((e) => Tab(text: e)).toList(),
-                ),
-              ];
-            },
-            body: TabBarView(
-              controller: _tabController,
-              children: [
-                /// ホスト
-                _Item(
-                  data: state.host,
-                  builder: (room) => ParticipatingRoom(
-                    room: HostRoomState(theme, room),
-                    onTap: () async {
-                      await navigator.navigateTo(
-                        RoutePath.roomDetail,
-                        arguments: RoomDetailPageArguments(
-                          type: RoomType.host,
-                          roomId: room.id,
-                          roomName: room.roomName,
-                        ),
-                      );
-                    },
+            headerSliverBuilder: (context, innerBoxIsScrolled) => [
+              ScrollAppBar(
+                title: LocaleKeys.participating_room_list_page_title.tr(),
+              ),
+              AnimatedStickyTabBar(
+                controller: _tabController,
+                tabs: ['ホスト', 'ゲスト'].map((e) => Tab(text: e)).toList(),
+              ),
+            ],
+            body: AsyncValueWidget(
+              data: state,
+              builder: (state) => TabBarView(
+                controller: _tabController,
+                children: [
+                  _Item(
+                    rooms: state.host,
+                    roomState: (room) => HostRoomState(theme, room),
                   ),
-                ),
-
-                /// ゲスト
-                _Item(
-                  data: state.guest,
-                  builder: (room) => ParticipatingRoom(
-                    room: GuestRoomState(theme, room),
-                    onTap: () async {
-                      await navigator.navigateTo(
-                        RoutePath.roomDetail,
-                        arguments: RoomDetailPageArguments(
-                          type: RoomType.guest,
-                          roomId: room.id,
-                          roomName: room.roomName,
-                        ),
-                      );
-                    },
+                  _Item(
+                    rooms: state.guest,
+                    roomState: (room) => GuestRoomState(theme, room),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
@@ -134,25 +108,33 @@ class _ParticipatingPageState extends ConsumerState<ParticipatingPage>
 }
 
 class _Item<RoomType> extends HookConsumerWidget {
-  final AsyncValue<List<RoomType>> data;
-  final Widget Function(RoomType) builder;
+  final List<RoomType> rooms;
+  final RoomState Function(RoomType) roomState;
 
   const _Item({
-    required this.data,
-    required this.builder,
+    required this.rooms,
+    required this.roomState,
   });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return AsyncValueWidget(
-      data: data,
-      builder: (rooms) {
-        return ListView.separated(
-          padding: EdgeInsets.zero,
-          itemCount: rooms.length,
-          separatorBuilder: (_, __) => const Gap(8),
-          itemBuilder: (context, index) {
-            return builder(rooms.elementAt(index));
+    return ListView.separated(
+      padding: EdgeInsets.zero,
+      itemCount: rooms.length,
+      separatorBuilder: (_, __) => const Gap(8),
+      itemBuilder: (context, index) {
+        final room = roomState(rooms.elementAt(index));
+        return ParticipatingRoom(
+          room: room,
+          onTap: () async {
+            await navigator.navigateTo(
+              RoutePath.roomDetail,
+              arguments: RoomDetailPageArguments(
+                type: room.type,
+                roomId: room.id,
+                roomName: room.title,
+              ),
+            );
           },
         );
       },

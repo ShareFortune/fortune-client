@@ -10,14 +10,12 @@ class JoinRequestTile extends StatelessWidget {
     super.key,
     required this.theme,
     required this.name,
-    required this.info,
     required this.image,
     required this.accept,
   });
 
   final AppTheme theme;
   final String name;
-  final String info;
   final String image;
   final VoidCallback accept;
 
@@ -40,10 +38,6 @@ class JoinRequestTile extends StatelessWidget {
       title: Text(
         name,
         style: theme.textTheme.h30.paint(theme.appColors.subText1).bold(),
-      ),
-      subtitle: Text(
-        info,
-        style: theme.textTheme.h20.paint(theme.appColors.subText2),
       ),
       trailing: OutlinedButton.icon(
         onPressed: accept,

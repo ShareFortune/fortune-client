@@ -1,13 +1,11 @@
-import 'package:fortune_client/data/model/join_requests/join_requests_response/join_requests_response.dart';
+import 'package:fortune_client/data/model/join_requests/room_join_request/join_request.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 part 'join_requests_confirmation_state.freezed.dart';
 
 @freezed
 class JoinRequestsConfirmationState with _$JoinRequestsConfirmationState {
   const factory JoinRequestsConfirmationState({
-    required String roomId,
-    required AsyncValue<List<RoomJoinRequest>> joinRequests,
+    required List<JoinRequest> joinRequests,
   }) = _JoinRequestsConfirmationState;
 }

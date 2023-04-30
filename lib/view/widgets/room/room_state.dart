@@ -42,7 +42,17 @@ abstract class RoomState {
   /// テーマ
   final RoomTheme theme;
 
+  /// ホストルームかどうか
   bool get isHost => type == RoomType.host;
+
+  /// Pendingかどうか
+  bool get isPending => status == RoomStatus.pending;
+
+  /// リクエスト数
+  int get joinRequestCount => 0;
+
+  /// リクエストがあるかどうか
+  bool get hasJoinRequest => false;
 
   RoomState({
     this.type = RoomType.guest,
@@ -61,7 +71,12 @@ abstract class RoomState {
 /// ホストルーム
 class HostRoomState extends RoomState {
   /// リクエスト数
+  @override
   final int joinRequestCount;
+
+  /// リクエストがあるかどうか
+  @override
+  bool get hasJoinRequest => joinRequestCount > 0;
 
   HostRoomState._({
     required super.type,
