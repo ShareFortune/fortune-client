@@ -16,8 +16,15 @@ class FakeTagsDataSource implements TagsDataSource {
     String? nextToken,
     int? perPage,
   }) async {
-    return TagsResponse.fromJson(
+    final tags = TagsResponse.fromJson(
       await JsonUtils.load(Assets.stub.tagsResponse),
+    );
+
+    if (name == null) return tags;
+    return tags.copyWith(
+      tags: tags.tags.where((tag) {
+        return tag.name.toLowerCase().contains(name.toLowerCase());
+      }).toList(),
     );
   }
 }
