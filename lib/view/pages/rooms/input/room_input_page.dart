@@ -244,8 +244,8 @@ class _AppBarActionButton extends HookConsumerWidget {
         onPressed: isEntered ? () => onPressed(theme, context) : null,
         child: Text(
           isEditedMode
-              ? LocaleKeys.room_input_page_action_edit.tr()
-              : LocaleKeys.room_input_page_action_create.tr(),
+              ? LocaleKeys.actions_edit.tr()
+              : LocaleKeys.actions_create.tr(),
           style: theme.textTheme.h30,
         ),
       ),

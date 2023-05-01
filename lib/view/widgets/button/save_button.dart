@@ -20,7 +20,7 @@ class SaveButton extends ConsumerWidget {
         navigator.goBack();
       },
       child: Text(
-        LocaleKeys.select_tags_page_save.tr(),
+        LocaleKeys.actions_save.tr(),
         style: theme.textTheme.h40.bold(),
       ),
     );

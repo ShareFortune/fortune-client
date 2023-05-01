@@ -74,7 +74,7 @@ class CreateTagPage extends HookConsumerWidget {
                       }
                     }
                   : null,
-              child: Text(LocaleKeys.create_tag_page_create.tr()),
+              child: Text(LocaleKeys.actions_create.tr()),
             ),
           ),
         ],
