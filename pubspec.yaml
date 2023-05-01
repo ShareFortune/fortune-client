@@ -53,14 +53,16 @@ dependencies:
   easy_localization: ^3.0.1
 
   # networking
-  connectivity_plus: ^3.0.3
   dio: ^4.0.6
   retrofit: ^3.3.1
   pretty_dio_logger: ^1.2.0-beta-1
+  connectivity_plus: ^3.0.3
+  url_launcher: ^6.1.10
 
   # firebase
   firebase_auth: ^4.2.1
   firebase_core: ^2.4.0
+  firebase_remote_config: ^4.0.2
 
   # sign in 
   google_sign_in: ^5.4.2
@@ -75,10 +77,6 @@ dependencies:
 
   #logger
   logger: ^1.1.0
-
-  # route
-  auto_route: ^5.0.2
-  get: ^4.6.5
 
   # picker
   flutter_japanese_address_picker:

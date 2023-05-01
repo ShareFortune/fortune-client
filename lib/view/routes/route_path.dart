@@ -5,6 +5,9 @@ enum RoutePath {
   /// Debug
   debug('/debug'),
 
+  /// Update
+  update('/update'),
+
   /// Auth
   login('/login'),
 
