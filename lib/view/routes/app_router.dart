@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:fortune_client/view/pages/auth/login/login_page.dart';
 import 'package:fortune_client/view/pages/common/home/home_page.dart';
 import 'package:fortune_client/view/pages/common/input/input_long_text_page.dart';
 import 'package:fortune_client/view/pages/common/input/input_text_page.dart';
+import 'package:fortune_client/view/pages/common/update/update_page.dart';
 import 'package:fortune_client/view/pages/debug/debug_page.dart';
 import 'package:fortune_client/view/pages/common/launch/launch_page.dart';
 import 'package:fortune_client/view/pages/message/message_room/message_room_page.dart';
@@ -26,7 +28,11 @@ class AppRouter {
       case RoutePath.debug:
         return _buildRoute(const DebugPage());
 
+      case RoutePath.update:
+        return _buildRoute(const UpdatePage());
+
       case RoutePath.login:
+        return _buildRoute(const LoginPage());
 
       case RoutePath.home:
         return _fadePageRouteBuilder(const HomePage());
