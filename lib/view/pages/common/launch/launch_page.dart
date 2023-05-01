@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:fortune_client/data/repository/repository.dart';
 import 'package:fortune_client/foundation/constants.dart';
 import 'package:fortune_client/gen/assets.gen.dart';
 import 'package:fortune_client/util/logger/logger.dart';
@@ -12,23 +13,29 @@ class LaunchPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    /// Remote Config初期化
-    initRemoteConfig();
+    Future.delayed(const Duration(milliseconds: 500)).whenComplete(() async {
+      /// リモート設定を初期化
+      await initRemoteConfig();
 
-    /// バージョンチェック
-    verifyNeesUpdate().then((neesUpdate) {
-      if (neesUpdate) return navigator.navigateTo(RoutePath.update);
-    });
+      /// バージョンチェック
+      if (await verifyNeesUpdate()) {
+        return navigator.navigateToRemoveUntil(RoutePath.update);
+      }
 
-    /// ログインチェック
-    /// プロフィール作成チェック
-    /// アプリ情報を保存
-    /// リモート設定を初期化
+      /// ログインチェック
+      if (!Repository.auth.isLogin) {
+        /// ログインしていない場合はログイン画面へ
+        return navigator.navigateToRemoveUntil(RoutePath.login);
+      }
 
-    /// ホーム画面へ
-    Future.delayed(const Duration(milliseconds: 1000)).whenComplete(() {
-      // navigator.navigateTo(RoutePath.update);
-      navigator.navigateToRemoveUntil(RoutePath.home);
+      /// プロフィール作成チェック
+      if (!await Repository.profile.isCreated()) {
+        /// プロフィールが作成されていない場合はプロフィール作成画面へ
+        return navigator.navigateToRemoveUntil(RoutePath.profileInput);
+      }
+
+      /// ホーム画面へ
+      return navigator.navigateToRemoveUntil(RoutePath.home);
     });
 
     /// 起動画面
@@ -65,15 +72,5 @@ class LaunchPage extends StatelessWidget {
       logger.e(e);
       return false;
     }
-  }
-
-  vertifyNeesLogin() {
-    /// ログインチェック
-    /// ログインしていない場合はログイン画面へ
-  }
-
-  vertifyNeesCreateProfile() {
-    /// プロフィール作成チェック
-    /// プロフィールが作成されていない場合はプロフィール作成画面へ
   }
 }
