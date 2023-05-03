@@ -14,6 +14,7 @@ class Loader extends HookConsumerWidget {
   const Loader({Key? key}) : super(key: key);
 
   double get indicatorSize => 50;
+  double gapHeight(double maxHeight) => maxHeight / 2 - indicatorSize / 2;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -23,7 +24,7 @@ class Loader extends HookConsumerWidget {
       builder: (context, constraints) {
         return Column(
           children: [
-            Gap(MediaQuery.of(context).size.height / 2),
+            Gap(gapHeight(MediaQuery.of(context).size.height)),
             SizedBox(
               height: indicatorSize,
               width: indicatorSize,
