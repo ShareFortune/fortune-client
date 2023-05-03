@@ -44,7 +44,7 @@ class AppRouter {
         return _buildRoute(const UserInfoInputPage());
 
       case RoutePath.profileInput:
-        return _buildRoute(const ProfileInputPage());
+        return _buildRoute(ProfileInputPage());
 
       case RoutePath.profileEdit:
         arguments as EditProfilePageArguments;

@@ -24,7 +24,10 @@ import 'package:fortune_client/data/datasource/remote/go/profile/profile_data_so
 import 'package:fortune_client/data/datasource/remote/go/rooms/fake_rooms_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/go/rooms/rooms_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/go/tags/tags_data_source.dart';
+import 'package:fortune_client/data/datasource/remote/go/users/fake_users_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/go/users/users_data_source.dart';
+import 'package:fortune_client/data/repository/addresses/addresses_repository.dart';
+import 'package:fortune_client/data/repository/addresses/addresses_repository_impl.dart';
 
 import 'package:fortune_client/data/repository/auth/auth_repository.dart';
 import 'package:fortune_client/data/repository/auth/auth_repository_impl.dart';
@@ -47,7 +50,6 @@ import 'package:fortune_client/data/repository/tags/tags_repository_impl.dart';
 import 'package:fortune_client/data/repository/users/users_repository.dart';
 import 'package:fortune_client/data/repository/users/users_repository_impl.dart';
 import 'package:fortune_client/view/routes/route_navigator.dart';
-import 'package:fortune_client/view/routes/route_guard.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -75,6 +77,9 @@ Future<void> initDependencies({bool testMode = false}) async {
   getIt.registerLazySingleton<UsersRepository>(
     () => UsersRepositoryImpl(getIt(), getIt()),
   );
+  getIt.registerLazySingleton<AddressesRepository>(
+    () => AddressesRepositoryImpl(getIt()),
+  );
   getIt.registerLazySingleton<MessagesRepository>(
     () => MessagesRepositoryImpl(getIt(), getIt()),
   );
@@ -93,7 +98,6 @@ Future<void> initDependencies({bool testMode = false}) async {
   getIt.registerLazySingleton<JoinRequestsRepository>(
     () => JoinRequestsRepositoryImpl(getIt()),
   );
-
   getIt.registerLazySingleton<FavoritesRepository>(
     () => FavoritesRepositoryImpl(getIt()),
   );
@@ -149,6 +153,9 @@ Future<void> initDependencies({bool testMode = false}) async {
   if (testMode) {
     getIt.pushNewScope();
 
+    getIt.registerSingleton<UsersDataSource>(
+      FakeUsersDataSource(),
+    );
     getIt.registerSingleton<RoomsDataSource>(
       FakeRoomsDataSource(),
     );

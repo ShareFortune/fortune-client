@@ -4,6 +4,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:fortune_client/l10n/locale_keys.g.dart';
 import 'package:fortune_client/util/common/image_utils.dart';
+import 'package:fortune_client/view/routes/route_navigator.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 
 class PhotoActionsSheet {
@@ -26,16 +27,12 @@ class PhotoActionsSheet {
 
     /// 写真から取得
     Future<File?> takePicture() {
-      return getPhotoByMethod(() {
-        return ImageUtils.takePicture(context);
-      });
+      return getPhotoByMethod(() => ImageUtils.takePicture(context));
     }
 
     /// 撮影して取得
     Future<File?> choosePhoto() {
-      return getPhotoByMethod(() {
-        return ImageUtils.choosePhoto(context);
-      });
+      return getPhotoByMethod(() => ImageUtils.choosePhoto(context));
     }
 
     return showCupertinoModalPopup<File?>(
@@ -48,9 +45,8 @@ class PhotoActionsSheet {
             /// カメラ
             CupertinoActionSheetAction(
               onPressed: () async {
-                return Navigator.of(context).pop(
-                  await takePicture(),
-                );
+                final photo = await takePicture();
+                return navigator.goBack(photo);
               },
               child: Text(
                 LocaleKeys.permission_menu_camera.tr(),
@@ -61,9 +57,8 @@ class PhotoActionsSheet {
             /// 写真
             CupertinoActionSheetAction(
               onPressed: () async {
-                return Navigator.of(context).pop(
-                  await choosePhoto(),
-                );
+                final photo = await choosePhoto();
+                return navigator.goBack(photo);
               },
               child: Text(
                 LocaleKeys.permission_menu_photo.tr(),
@@ -76,7 +71,7 @@ class PhotoActionsSheet {
               LocaleKeys.actions_cancel.tr(),
               style: TextStyle(color: textColor),
             ),
-            onPressed: () => Navigator.of(context).pop(),
+            onPressed: () => navigator.goBack(),
           ),
         );
       },

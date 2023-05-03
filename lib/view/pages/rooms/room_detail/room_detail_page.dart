@@ -14,6 +14,7 @@ import 'package:fortune_client/view/widgets/room/room_state.dart';
 import 'package:fortune_client/view/widgets/tag/tags_wraper.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:screen_loader/screen_loader.dart';
 
 class RoomDetailPageArguments {
   final RoomType type;
@@ -27,8 +28,8 @@ class RoomDetailPageArguments {
   });
 }
 
-class RoomDetailPage extends HookConsumerWidget {
-  const RoomDetailPage(this.arguments, {super.key});
+class RoomDetailPage extends HookConsumerWidget with ScreenLoader {
+  RoomDetailPage(this.arguments, {super.key});
 
   final RoomDetailPageArguments arguments;
 
@@ -181,8 +182,13 @@ class RoomDetailPage extends HookConsumerWidget {
               isDestructiveAction: true,
               child: Text('変更する', style: defaultTextStyle),
               onPressed: () async {
-                navigator.goBack();
-                update.call();
+                await performFuture(() async {
+                  await Future.delayed(const Duration(seconds: 20), () {
+                    print("object");
+                    navigator.goBack();
+                    update.call();
+                  });
+                });
               },
             ),
 
@@ -252,8 +258,8 @@ class _Item extends HookConsumerWidget {
 }
 
 /// ルームのメンバーを表示する
-class _MemberListView extends HookConsumerWidget {
-  const _MemberListView(this.users, this.onTap);
+class _MemberListView extends HookConsumerWidget with ScreenLoader {
+  _MemberListView(this.users, this.onTap);
 
   final List<FortuneUser> users;
   final Function(FortuneUser) onTap;
@@ -292,5 +298,11 @@ class _MemberListView extends HookConsumerWidget {
         },
       ),
     );
+  }
+}
+
+class NetworkService {
+  static Future getData() async {
+    return await Future.delayed(const Duration(seconds: 20));
   }
 }

@@ -14,7 +14,7 @@ class HomePage extends HookConsumerWidget {
     final viewModel = ref.watch(homeViewModelProvider.notifier);
 
     final pages = [
-      const RoomListPage(),
+      RoomListPage(),
       const ParticipatingPage(),
       const MessageRoomListPage(),
     ];

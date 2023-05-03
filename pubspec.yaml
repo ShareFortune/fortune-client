@@ -28,6 +28,8 @@ dependencies:
   dotted_border: ^2.0.0+3
   fluttertoast: ^8.0.9
   badges: ^3.0.2
+  screen_loader: ^4.0.1
+  loading_indicator: ^3.1.0
 
   # images
   lottie: ^2.3.2

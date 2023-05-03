@@ -29,9 +29,8 @@ class ProfileRepositoryImpl implements ProfileRepository {
   );
 
   @override
-  Future<bool> isCreated() async {
-    return _shared.getString(AppPrefKey.profileId.keyString) != null;
-  }
+  Future<bool> isCreated() async =>
+      _shared.getString(AppPrefKey.profileId.keyString)?.isNotEmpty == true;
 
   @override
   Future<ProfileResponse> get() async {

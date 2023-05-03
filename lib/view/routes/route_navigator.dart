@@ -26,5 +26,5 @@ class RouteNavigator {
     );
   }
 
-  void goBack() => navigatorKey.currentState?.pop();
+  void goBack<T>([T? data]) async => navigatorKey.currentState?.pop(data);
 }

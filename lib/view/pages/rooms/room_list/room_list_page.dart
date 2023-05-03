@@ -14,9 +14,10 @@ import 'package:fortune_client/view/widgets/picker/address_picker.dart';
 import 'package:fortune_client/view/widgets/picker/number_picker.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:screen_loader/screen_loader.dart';
 
-class RoomListPage extends HookConsumerWidget {
-  const RoomListPage({super.key});
+class RoomListPage extends HookConsumerWidget with ScreenLoader {
+  RoomListPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -24,77 +25,83 @@ class RoomListPage extends HookConsumerWidget {
     final state = ref.watch(roomListViewModelProvider);
     final viewModel = ref.watch(roomListViewModelProvider.notifier);
 
-    return Container(
-      color: theme.appColors.onBackground,
-      child: CustomScrollView(
-        slivers: [
-          ScrollAppBar(title: LocaleKeys.room_list_page_title.tr()),
-          SliverToBoxAdapter(
-            child: Container(
-              padding: const EdgeInsets.fromLTRB(20, 5, 20, 20),
-              child: Row(
-                children: [
-                  _RoomsFilterButton(
-                    title: "場所",
-                    isAppliedFilter: state.filter.isFilteredByAddress,
-                    onTap: () async {
-                      viewModel.filteringByAddress(
-                        await AddressPicker().show(
-                          context: context,
-                          theme: theme,
-                          address: state.filter.address,
-                        ),
-                      );
-                    },
-                  ),
-                  const Gap(15),
-                  _RoomsFilterButton(
-                    title: "人数",
-                    onTap: () async {
-                      await NumberPicker.participants().show(
-                        context: context,
-                        onChanged: viewModel.filteringByMemberNum,
-                      );
-                    },
-                    isAppliedFilter: state.filter.isFilteredByMemberNum,
-                  ),
-                  const Gap(15),
-                  _RoomsFilterButton(
-                    title: "タグ",
-                    onTap: viewModel.filteringByTags,
-                    isAppliedFilter: state.filter.isFilteredByTag,
-                  ),
-                ],
-              ),
-            ),
-          ),
-          SliverToBoxAdapter(
-            child: AsyncValueWidget(
-              data: state.rooms,
-              builder: (rooms) {
-                return Column(
-                  children: rooms.map((room) {
-                    return RoomListCard(
-                      theme: theme,
-                      room: room,
-                      onTapRoom: () async {
-                        await navigator.navigateTo(
-                          RoutePath.roomDetail,
-                          arguments: RoomDetailPageArguments(
-                            roomId: room.data.id,
-                            roomName: room.data.roomName,
+    return loadableWidget(
+      child: Container(
+        color: theme.appColors.onBackground,
+        child: CustomScrollView(
+          slivers: [
+            ScrollAppBar(title: LocaleKeys.room_list_page_title.tr()),
+            SliverToBoxAdapter(
+              child: Container(
+                padding: const EdgeInsets.fromLTRB(20, 5, 20, 20),
+                child: Row(
+                  children: [
+                    _RoomsFilterButton(
+                      title: "場所",
+                      isAppliedFilter: state.filter.isFilteredByAddress,
+                      onTap: () async {
+                        viewModel.filteringByAddress(
+                          await AddressPicker().show(
+                            context: context,
+                            theme: theme,
+                            address: state.filter.address,
                           ),
                         );
                       },
-                      onTapHeart: (value) async {},
-                      onTapJoinRequestBtn: () async {},
-                    );
-                  }).toList(),
-                );
-              },
+                    ),
+                    const Gap(15),
+                    _RoomsFilterButton(
+                      title: "人数",
+                      onTap: () async {
+                        await NumberPicker.participants().show(
+                          context: context,
+                          onChanged: viewModel.filteringByMemberNum,
+                        );
+                      },
+                      isAppliedFilter: state.filter.isFilteredByMemberNum,
+                    ),
+                    const Gap(15),
+                    _RoomsFilterButton(
+                      title: "タグ",
+                      onTap: viewModel.filteringByTags,
+                      isAppliedFilter: state.filter.isFilteredByTag,
+                    ),
+                  ],
+                ),
+              ),
             ),
-          ),
-        ],
+            SliverToBoxAdapter(
+              child: AsyncValueWidget(
+                data: state.rooms,
+                builder: (rooms) {
+                  return Column(
+                    children: rooms.map((room) {
+                      return RoomListCard(
+                        theme: theme,
+                        room: room,
+                        onTapRoom: () async {
+                          await navigator.navigateTo(
+                            RoutePath.roomDetail,
+                            arguments: RoomDetailPageArguments(
+                              roomId: room.data.id,
+                              roomName: room.data.roomName,
+                            ),
+                          );
+                        },
+                        onTapHeart: (value) async {},
+                        onTapJoinRequestBtn: () async {
+                          await performFuture(() async {
+                            await Future.delayed(const Duration(seconds: 5));
+                          });
+                        },
+                      );
+                    }).toList(),
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
