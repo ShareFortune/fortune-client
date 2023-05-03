@@ -19,7 +19,8 @@ class ProfileInputNextButton extends HookConsumerWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 30),
       child: MaterialButton(
-        onPressed: onPressed,
+        onPressed: clickable ? onPressed : null,
+        disabledColor: theme.appColors.disable,
         color: theme.appColors.primary,
         textColor: theme.appColors.onPrimary,
         shape: RoundedRectangleBorder(

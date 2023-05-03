@@ -5,6 +5,7 @@ import 'package:fortune_client/view/pages/profile/input/components/profile_input
 import 'package:fortune_client/view/pages/profile/input/components/profile_input_list_tile.dart';
 import 'package:fortune_client/view/pages/profile/input/components/profile_input_next_button.dart';
 import 'package:fortune_client/view/pages/profile/input/profile_input_view_model.dart';
+import 'package:fortune_client/view/routes/route_navigator.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -19,11 +20,13 @@ class UserInfoInputPage extends HookConsumerWidget {
     final viewModel = ref.watch(profileInputViewModelProvider.notifier);
 
     final nameController = useTextEditingController();
+    String? name = nameController.text;
     useListenable(nameController);
 
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         backgroundColor: theme.appColors.onBackground,
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -53,8 +56,11 @@ class UserInfoInputPage extends HookConsumerWidget {
             ),
             const Spacer(),
             ProfileInputNextButton(
-              clickable: viewModel.isPossibleToCreateUser(nameController.text),
-              onPressed: () => viewModel.createUser(nameController.text),
+              clickable: viewModel.isPossibleToCreateUser(name),
+              onPressed: () async {
+                final isCreated = await viewModel.createUser(name);
+                if (isCreated) navigator.navigateTo(RoutePath.profileInput);
+              },
             ),
             const Gap(100),
           ],

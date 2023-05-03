@@ -7,6 +7,7 @@ import 'package:fortune_client/view/pages/profile/input/components/profile_input
 import 'package:fortune_client/view/pages/profile/input/components/profile_input_list_tile.dart';
 import 'package:fortune_client/view/pages/profile/input/components/profile_input_next_button.dart';
 import 'package:fortune_client/view/pages/profile/input/profile_input_view_model.dart';
+import 'package:fortune_client/view/routes/route_navigator.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/bottom_sheet/photo_actions_sheet.dart';
 import 'package:fortune_client/view/widgets/container/empty_image_container.dart';
@@ -25,11 +26,13 @@ class ProfileInputPage extends HookConsumerWidget {
     final viewModel = ref.watch(profileInputViewModelProvider.notifier);
 
     final nicknameController = useTextEditingController();
+    String? nickname = nicknameController.text;
     useListenable(nicknameController);
 
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         backgroundColor: theme.appColors.onBackground,
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -71,24 +74,28 @@ class ProfileInputPage extends HookConsumerWidget {
 
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 30),
-              child: Column(children: [
-                Text(
-                  "プロフィール写真",
-                  style: theme.textTheme.h30.paint(theme.appColors.subText1),
-                ),
-                const Gap(20),
-                _ImageInputField(
-                  image: state.image,
-                  onSelected: viewModel.changeImages,
-                ),
-              ]),
+              child: Column(
+                children: [
+                  Text(
+                    "プロフィール写真",
+                    style: theme.textTheme.h30.paint(theme.appColors.subText1),
+                  ),
+                  const Gap(20),
+                  _ImageInputField(
+                    image: state.image,
+                    onSelected: viewModel.changeImages,
+                  ),
+                ],
+              ),
             ),
 
             const Spacer(),
             ProfileInputNextButton(
-              clickable:
-                  viewModel.isPossibleToCreateProfile(nicknameController.text),
-              onPressed: () => viewModel.createProfile(nicknameController.text),
+              clickable: viewModel.isPossibleToCreateProfile(nickname),
+              onPressed: () async {
+                final isCreated = await viewModel.createProfile(nickname);
+                if (isCreated) navigator.navigateTo(RoutePath.home);
+              },
             ),
             const Gap(100),
           ],
