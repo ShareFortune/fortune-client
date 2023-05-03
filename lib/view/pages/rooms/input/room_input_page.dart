@@ -6,11 +6,11 @@ import 'package:fortune_client/data/model/enum/age_group.dart';
 import 'package:fortune_client/data/model/tags/tag/tag.dart';
 import 'package:fortune_client/l10n/locale_keys.g.dart';
 import 'package:fortune_client/view/pages/rooms/input/room_input_view_model.dart';
-import 'package:fortune_client/view/pages/rooms/room_detail/room_detail_page.dart';
 import 'package:fortune_client/view/pages/tags/search/search_tags_page.dart';
 import 'package:fortune_client/view/routes/route_navigator.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/app_bar/back_app_bar.dart';
+import 'package:fortune_client/view/widgets/container/text_input_container.dart';
 import 'package:fortune_client/view/widgets/container/view_state_container.dart';
 import 'package:fortune_client/view/widgets/dialog/toast.dart';
 import 'package:fortune_client/view/widgets/form_field/base_text_field.dart';
@@ -100,15 +100,12 @@ class RoomInputPage extends HookConsumerWidget {
                 /// タイトル
                 Container(
                   padding: const EdgeInsets.only(right: 10),
-                  child: _RoomStateTextInputField(
+                  child: TextInputContainer.short(
                     title: LocaleKeys.data_room_title_title.tr(),
-                    content: BaseTextField(
-                      controller: titleController,
-                      maxLength: 20,
-                      onClear: () => viewModel.changeTitle(""),
-                      onChanged: (value) => viewModel.changeTitle(value),
-                      hintText: LocaleKeys.room_input_page_roomTitleHint.tr(),
-                    ),
+                    controller: titleController,
+                    onClear: () => viewModel.changeTitle(""),
+                    onChanged: (value) => viewModel.changeTitle(value),
+                    hintText: LocaleKeys.room_input_page_roomTitleHint.tr(),
                   ),
                 ),
 
@@ -188,22 +185,11 @@ class RoomInputPage extends HookConsumerWidget {
                 /// 説明
                 Container(
                   padding: const EdgeInsets.only(right: 10),
-                  child: _RoomStateTextInputField(
-                    required: false,
+                  child: TextInputContainer.long(
                     title: LocaleKeys.data_room_description_title.tr(),
-                    content: BaseTextField(
-                      controller: explainController,
-                      maxLength: 500,
-                      minLines: 6,
-                      maxLines: 100,
-                      isDisplaySuffixIcon: false,
-                      onChanged: (value) => viewModel.changeExplanation(value),
-                      hintText: LocaleKeys.data_room_description_hint.tr(),
-                      contentPadding: const EdgeInsets.symmetric(
-                        horizontal: 15,
-                        vertical: 15,
-                      ),
-                    ),
+                    controller: explainController,
+                    onChanged: (value) => viewModel.changeExplanation(value),
+                    hintText: LocaleKeys.data_room_description_hint.tr(),
                   ),
                 ),
 
@@ -271,45 +257,5 @@ class _AppBarActionButton extends HookConsumerWidget {
             : LocaleKeys.data_room_action_create_failure.tr(),
       );
     }
-  }
-}
-
-class _RoomStateTextInputField extends HookConsumerWidget {
-  final bool required;
-  final String title;
-  final Widget content;
-
-  const _RoomStateTextInputField({
-    required this.title,
-    required this.content,
-    this.required = true,
-  });
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final theme = ref.watch(appThemeProvider);
-
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Row(
-          children: [
-            Text(title, style: theme.textTheme.h30),
-            const Gap(10),
-            if (!required)
-              Container(
-                color: theme.appColors.disable,
-                padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 3),
-                child: Text(
-                  '任意',
-                  style: theme.textTheme.h10.paint(theme.appColors.subText1),
-                ),
-              )
-          ],
-        ),
-        const Gap(10),
-        content,
-      ],
-    );
   }
 }

@@ -5,10 +5,11 @@ import 'package:fortune_client/data/model/tags/tag/tag.dart';
 import 'package:fortune_client/l10n/locale_keys.g.dart';
 import 'package:fortune_client/view/pages/tags/search/search_tags_state.dart';
 import 'package:fortune_client/view/pages/tags/search/search_tags_view_model.dart';
+import 'package:fortune_client/view/routes/route_navigator.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/animation/animated_visibility.dart';
 import 'package:fortune_client/view/widgets/app_bar/back_app_bar.dart';
-import 'package:fortune_client/view/widgets/button/save_button.dart';
+import 'package:fortune_client/view/widgets/button/app_bar_action_button.dart';
 import 'package:fortune_client/view/widgets/form_field/base_text_field.dart';
 import 'package:fortune_client/view/widgets/other/async_value_widget.dart';
 import 'package:fortune_client/view/widgets/tag/tag_widget.dart';
@@ -57,8 +58,10 @@ class SearchTagsPage extends HookConsumerWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   BackAppBar(title: 'タグ', action: [
-                    SaveButton(
-                      () => arguments.onChanged?.call(state.selectedTags),
+                    AppBarActionButton.save(
+                      callback: () => arguments.onChanged?.call(
+                        state.selectedTags,
+                      ),
                     )
                   ]),
                   Container(
@@ -339,7 +342,9 @@ class _SearchResultEmptyWidget extends HookConsumerWidget {
               LocaleKeys.search_tag_page_create.tr(),
               style: theme.textTheme.h30.bold(),
             ),
-            onPressed: () {},
+            onPressed: () {
+              navigator.navigateTo(RoutePath.tagInput);
+            },
           ),
         ],
       ),

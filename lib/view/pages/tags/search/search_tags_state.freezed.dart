@@ -20,9 +20,8 @@ mixin _$SearchTagsState {
   bool get didSearch => throw _privateConstructorUsedError;
 
   /// 検索バーのフォーカス
-  FocusNode get focusNode =>
-      throw _privateConstructorUsedError; // /// 検索バーのテキストコントローラー
-// required TextEditingController textEditingController,
+  FocusNode get focusNode => throw _privateConstructorUsedError;
+
   /// 検索結果を表示するかどうか
   bool get shouldShowSearchResults => throw _privateConstructorUsedError;
 
@@ -190,8 +189,7 @@ class _$_SearchTagsState extends _SearchTagsState {
   /// 検索バーのフォーカス
   @override
   final FocusNode focusNode;
-// /// 検索バーのテキストコントローラー
-// required TextEditingController textEditingController,
+
   /// 検索結果を表示するかどうか
   @override
   final bool shouldShowSearchResults;
@@ -275,8 +273,8 @@ abstract class _SearchTagsState extends SearchTagsState {
 
   /// 検索バーのフォーカス
   FocusNode get focusNode;
-  @override // /// 検索バーのテキストコントローラー
-// required TextEditingController textEditingController,
+  @override
+
   /// 検索結果を表示するかどうか
   bool get shouldShowSearchResults;
   @override
