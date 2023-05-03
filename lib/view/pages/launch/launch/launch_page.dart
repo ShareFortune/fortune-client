@@ -23,7 +23,7 @@ class LaunchPage extends StatelessWidget {
       }
 
       /// ログインチェック
-      // if (!Repository.auth.isLogin) {
+      // if (Repository.auth.isLogin) {
       //   /// ログインしていない場合はログイン画面へ
       //   return navigator.navigateToRemoveUntil(RoutePath.login);
       // }

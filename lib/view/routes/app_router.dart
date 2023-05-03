@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:fortune_client/view/pages/auth/login/login_page.dart';
-import 'package:fortune_client/view/pages/common/home/home_page.dart';
-import 'package:fortune_client/view/pages/common/input/input_long_text_page.dart';
-import 'package:fortune_client/view/pages/common/input/input_text_page.dart';
-import 'package:fortune_client/view/pages/common/update/update_page.dart';
+import 'package:fortune_client/view/pages/common/input_long_text_page.dart';
+import 'package:fortune_client/view/pages/common/input_text_page.dart';
+import 'package:fortune_client/view/pages/home/home_page.dart';
+import 'package:fortune_client/view/pages/launch/update/update_page.dart';
 import 'package:fortune_client/view/pages/debug/debug_page.dart';
-import 'package:fortune_client/view/pages/common/launch/launch_page.dart';
+import 'package:fortune_client/view/pages/launch/launch/launch_page.dart';
 import 'package:fortune_client/view/pages/message/message_room/message_room_page.dart';
 import 'package:fortune_client/view/pages/my/edit/edit_profile_page.dart';
 import 'package:fortune_client/view/pages/my/my/my_page.dart';
+import 'package:fortune_client/view/pages/profile/input/profile_input_page.dart';
 import 'package:fortune_client/view/pages/profile/profile/profile_page.dart';
 import 'package:fortune_client/view/pages/request/join_requests_confirmation/join_requests_confirmation_page.dart';
 import 'package:fortune_client/view/pages/rooms/input/room_input_page.dart';
@@ -36,9 +37,10 @@ class AppRouter {
         return _buildRoute(const LoginPage());
 
       case RoutePath.home:
-        return _fadePageRouteBuilder(const HomePage());
+        return _buildRoute(const HomePage());
 
       case RoutePath.profileInput:
+        return _buildRoute(const ProfileInputPage());
 
       case RoutePath.profileEdit:
         arguments as EditProfilePageArguments;

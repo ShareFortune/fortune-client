@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fortune_client/view/pages/common/home/home_view_model.dart';
+import 'package:fortune_client/view/pages/home/home_view_model.dart';
 import 'package:fortune_client/view/pages/message/message_room_list/message_room_list_page.dart';
 import 'package:fortune_client/view/pages/rooms/participating/participating_page.dart';
 import 'package:fortune_client/view/pages/rooms/room_list/room_list_page.dart';
