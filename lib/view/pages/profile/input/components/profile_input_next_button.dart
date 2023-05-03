@@ -3,9 +3,14 @@ import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class ProfileInputNextButton extends HookConsumerWidget {
-  const ProfileInputNextButton(this.callback, {super.key});
+  const ProfileInputNextButton({
+    super.key,
+    required this.onPressed,
+    required this.clickable,
+  });
 
-  final VoidCallback? callback;
+  final bool clickable;
+  final VoidCallback? onPressed;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -14,7 +19,7 @@ class ProfileInputNextButton extends HookConsumerWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 30),
       child: MaterialButton(
-        onPressed: callback,
+        onPressed: onPressed,
         color: theme.appColors.primary,
         textColor: theme.appColors.onPrimary,
         shape: RoundedRectangleBorder(

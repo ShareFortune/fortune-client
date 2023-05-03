@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:fortune_client/data/datasource/local/shared_pref_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/go/profile/profile_data_source.dart';
+import 'package:fortune_client/data/model/addresses/address/address.dart';
 import 'package:fortune_client/data/model/addresses/address_with_id/address_with_id.dart';
 import 'package:fortune_client/data/model/enum/cigarette_frequency.dart';
 import 'package:fortune_client/data/model/enum/drink_frequency.dart';
@@ -13,6 +14,7 @@ import 'package:fortune_client/data/model/profile/profile_response/profile_respo
 import 'package:fortune_client/data/model/tags/tag/tag.dart';
 import 'package:fortune_client/data/repository/profile/profile_repository.dart';
 import 'package:fortune_client/data/model/enum/gender.dart';
+import 'package:fortune_client/data/repository/repository.dart';
 import 'package:fortune_client/util/converter/image_converter.dart';
 import 'package:fortune_client/util/logger/logger.dart';
 import 'package:fortune_client/util/storage/app_pref_key.dart';
@@ -57,7 +59,7 @@ class ProfileRepositoryImpl implements ProfileRepository {
   Future<bool> create({
     required String name,
     required Gender gender,
-    required AddressWithId address,
+    required Address address,
     int? height,
     DrinkFrequency? drinkFrequency,
     CigaretteFrequency? cigaretteFrequency,
@@ -84,7 +86,7 @@ class ProfileRepositoryImpl implements ProfileRepository {
       final profileForm = ProfileCreateRequest(
         name: name,
         gender: gender.rawValue,
-        addressId: address.id,
+        addressId: await Repository.address.getId(address),
         files: getProfileImages().toJson(),
         height: 170,
         drinkFrequency: drinkFrequency,

@@ -12,6 +12,7 @@ import 'package:fortune_client/view/routes/route_navigator.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/app_bar/back_app_bar.dart';
 import 'package:fortune_client/view/widgets/bottom_sheet/photo_actions_sheet.dart';
+import 'package:fortune_client/view/widgets/container/empty_image_container.dart';
 import 'package:fortune_client/view/widgets/profile/profile_basic_info.dart';
 import 'package:fortune_client/view/widgets/profile/profile_self_introduction.dart';
 import 'package:fortune_client/view/widgets/profile/profile_tag.dart';
@@ -124,7 +125,8 @@ class _ProfileImageEditor extends HookConsumerWidget {
             itemBuilder: (context, index) {
               /// 画像が最大数に達していない場合は再以後の要素に追加ボタンを表示する
               if (!_isMaxImageCount && index == _imageCount - 1) {
-                return InkWell(
+                return EmptyImageContainer(
+                  imageSize: _imageSize,
                   onTap: () async {
                     final file =
                         await PhotoActionsSheet.getPhoto(theme, context);
@@ -132,31 +134,6 @@ class _ProfileImageEditor extends HookConsumerWidget {
                       viewModel.addImage(ProfileImage(FileImage(file)));
                     }
                   },
-                  child: DottedBorder(
-                    color: theme.appColors.border1,
-                    borderType: BorderType.RRect,
-                    radius: const Radius.circular(10),
-                    child: SizedBox(
-                      height: _imageSize,
-                      width: _imageSize,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          SvgPicture.asset(
-                            Assets.icons.iconCamera.path,
-                            fit: BoxFit.contain,
-                          ),
-                          const Gap(5),
-                          Text(
-                            LocaleKeys.edit_profile_picture_page_add.tr(),
-                            style: theme.textTheme.h20
-                                .paint(theme.appColors.subText3)
-                                .bold(),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
                 );
               }
 

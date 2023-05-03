@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:fortune_client/data/model/addresses/address/address.dart';
 import 'package:fortune_client/data/model/addresses/address_with_id/address_with_id.dart';
 import 'package:fortune_client/data/model/enum/cigarette_frequency.dart';
 import 'package:fortune_client/data/model/enum/drink_frequency.dart';
@@ -22,11 +23,11 @@ abstract class ProfileRepository {
   Future<bool> create({
     required String name,
     required Gender gender,
-    required AddressWithId address,
-    required int? height,
-    required DrinkFrequency? drinkFrequency,
-    required CigaretteFrequency? cigaretteFrequency,
-    required int? occupationId,
+    required Address address,
+    int? height,
+    DrinkFrequency? drinkFrequency,
+    CigaretteFrequency? cigaretteFrequency,
+    int? occupationId,
 
     /// Images
     required File mainImage,

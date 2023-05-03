@@ -4,6 +4,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:fortune_client/view/pages/profile/input/components/profile_input_app_bar.dart';
 import 'package:fortune_client/view/pages/profile/input/components/profile_input_list_tile.dart';
 import 'package:fortune_client/view/pages/profile/input/components/profile_input_next_button.dart';
+import 'package:fortune_client/view/pages/profile/input/profile_input_view_model.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -14,9 +15,10 @@ class UserInfoInputPage extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = ref.watch(appThemeProvider);
+    final state = ref.watch(profileInputViewModelProvider);
+    final viewModel = ref.watch(profileInputViewModelProvider.notifier);
 
     final nameController = useTextEditingController();
-    final birthdayController = useTextEditingController();
     useListenable(nameController);
 
     return GestureDetector(
@@ -35,7 +37,7 @@ class UserInfoInputPage extends HookConsumerWidget {
             ),
             const Gap(20),
             ProfileInputListTile(
-              controller: birthdayController,
+              controller: TextEditingController(text: state.birthdayToString()),
               labelText: "生年月日",
               onTap: () async {
                 final date = await DatePicker.showDatePicker(
@@ -46,11 +48,14 @@ class UserInfoInputPage extends HookConsumerWidget {
                   currentTime: DateTime.now(),
                   locale: LocaleType.jp,
                 );
-                if (date != null) {}
+                if (date != null) viewModel.changeBirthday(date);
               },
             ),
             const Spacer(),
-            ProfileInputNextButton(() {}),
+            ProfileInputNextButton(
+              clickable: viewModel.isPossibleToCreateUser(nameController.text),
+              onPressed: () => viewModel.createUser(nameController.text),
+            ),
             const Gap(100),
           ],
         ),
