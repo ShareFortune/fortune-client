@@ -14,6 +14,7 @@ import 'package:fortune_client/view/pages/request/join_requests_confirmation/joi
 import 'package:fortune_client/view/pages/rooms/input/room_input_page.dart';
 import 'package:fortune_client/view/pages/rooms/room_detail/room_detail_page.dart';
 import 'package:fortune_client/view/pages/settings/settings_page.dart';
+import 'package:fortune_client/view/pages/tags/input/tag_input_page.dart';
 import 'package:fortune_client/view/pages/tags/search/search_tags_page.dart';
 import 'package:fortune_client/view/routes/route_path.dart';
 
@@ -80,6 +81,10 @@ class AppRouter {
       case RoutePath.messageRoomList:
 
       case RoutePath.tagInput:
+        return _slidePageRouteBuilder(
+          const TagInputPage(),
+          offset: const Offset(0.0, 1.0),
+        );
 
       case RoutePath.setting:
         return _slidePageRouteBuilder(const SettingsPage());

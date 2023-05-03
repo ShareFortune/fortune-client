@@ -15,9 +15,6 @@ class SearchTagsState with _$SearchTagsState {
     /// 検索バーのフォーカス
     required FocusNode focusNode,
 
-    /// 検索バーのテキストコントローラー
-    required TextEditingController textEditingController,
-
     /// 検索結果を表示するかどうか
     required bool shouldShowSearchResults,
 

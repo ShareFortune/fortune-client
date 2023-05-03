@@ -22,10 +22,6 @@ mixin _$SearchTagsState {
   /// 検索バーのフォーカス
   FocusNode get focusNode => throw _privateConstructorUsedError;
 
-  /// 検索バーのテキストコントローラー
-  TextEditingController get textEditingController =>
-      throw _privateConstructorUsedError;
-
   /// 検索結果を表示するかどうか
   bool get shouldShowSearchResults => throw _privateConstructorUsedError;
 
@@ -54,7 +50,6 @@ abstract class $SearchTagsStateCopyWith<$Res> {
   $Res call(
       {bool didSearch,
       FocusNode focusNode,
-      TextEditingController textEditingController,
       bool shouldShowSearchResults,
       List<TagState> selected,
       AsyncValue<List<TagState>> recommendation,
@@ -76,7 +71,6 @@ class _$SearchTagsStateCopyWithImpl<$Res, $Val extends SearchTagsState>
   $Res call({
     Object? didSearch = null,
     Object? focusNode = null,
-    Object? textEditingController = null,
     Object? shouldShowSearchResults = null,
     Object? selected = null,
     Object? recommendation = null,
@@ -91,10 +85,6 @@ class _$SearchTagsStateCopyWithImpl<$Res, $Val extends SearchTagsState>
           ? _value.focusNode
           : focusNode // ignore: cast_nullable_to_non_nullable
               as FocusNode,
-      textEditingController: null == textEditingController
-          ? _value.textEditingController
-          : textEditingController // ignore: cast_nullable_to_non_nullable
-              as TextEditingController,
       shouldShowSearchResults: null == shouldShowSearchResults
           ? _value.shouldShowSearchResults
           : shouldShowSearchResults // ignore: cast_nullable_to_non_nullable
@@ -126,7 +116,6 @@ abstract class _$$_SearchTagsStateCopyWith<$Res>
   $Res call(
       {bool didSearch,
       FocusNode focusNode,
-      TextEditingController textEditingController,
       bool shouldShowSearchResults,
       List<TagState> selected,
       AsyncValue<List<TagState>> recommendation,
@@ -146,7 +135,6 @@ class __$$_SearchTagsStateCopyWithImpl<$Res>
   $Res call({
     Object? didSearch = null,
     Object? focusNode = null,
-    Object? textEditingController = null,
     Object? shouldShowSearchResults = null,
     Object? selected = null,
     Object? recommendation = null,
@@ -161,10 +149,6 @@ class __$$_SearchTagsStateCopyWithImpl<$Res>
           ? _value.focusNode
           : focusNode // ignore: cast_nullable_to_non_nullable
               as FocusNode,
-      textEditingController: null == textEditingController
-          ? _value.textEditingController
-          : textEditingController // ignore: cast_nullable_to_non_nullable
-              as TextEditingController,
       shouldShowSearchResults: null == shouldShowSearchResults
           ? _value.shouldShowSearchResults
           : shouldShowSearchResults // ignore: cast_nullable_to_non_nullable
@@ -191,7 +175,6 @@ class _$_SearchTagsState extends _SearchTagsState {
   const _$_SearchTagsState(
       {required this.didSearch,
       required this.focusNode,
-      required this.textEditingController,
       required this.shouldShowSearchResults,
       required final List<TagState> selected,
       required this.recommendation,
@@ -206,10 +189,6 @@ class _$_SearchTagsState extends _SearchTagsState {
   /// 検索バーのフォーカス
   @override
   final FocusNode focusNode;
-
-  /// 検索バーのテキストコントローラー
-  @override
-  final TextEditingController textEditingController;
 
   /// 検索結果を表示するかどうか
   @override
@@ -236,7 +215,7 @@ class _$_SearchTagsState extends _SearchTagsState {
 
   @override
   String toString() {
-    return 'SearchTagsState(didSearch: $didSearch, focusNode: $focusNode, textEditingController: $textEditingController, shouldShowSearchResults: $shouldShowSearchResults, selected: $selected, recommendation: $recommendation, searchResults: $searchResults)';
+    return 'SearchTagsState(didSearch: $didSearch, focusNode: $focusNode, shouldShowSearchResults: $shouldShowSearchResults, selected: $selected, recommendation: $recommendation, searchResults: $searchResults)';
   }
 
   @override
@@ -248,8 +227,6 @@ class _$_SearchTagsState extends _SearchTagsState {
                 other.didSearch == didSearch) &&
             (identical(other.focusNode, focusNode) ||
                 other.focusNode == focusNode) &&
-            (identical(other.textEditingController, textEditingController) ||
-                other.textEditingController == textEditingController) &&
             (identical(
                     other.shouldShowSearchResults, shouldShowSearchResults) ||
                 other.shouldShowSearchResults == shouldShowSearchResults) &&
@@ -265,7 +242,6 @@ class _$_SearchTagsState extends _SearchTagsState {
       runtimeType,
       didSearch,
       focusNode,
-      textEditingController,
       shouldShowSearchResults,
       const DeepCollectionEquality().hash(_selected),
       recommendation,
@@ -282,7 +258,6 @@ abstract class _SearchTagsState extends SearchTagsState {
   const factory _SearchTagsState(
           {required final bool didSearch,
           required final FocusNode focusNode,
-          required final TextEditingController textEditingController,
           required final bool shouldShowSearchResults,
           required final List<TagState> selected,
           required final AsyncValue<List<TagState>> recommendation,
@@ -298,10 +273,6 @@ abstract class _SearchTagsState extends SearchTagsState {
 
   /// 検索バーのフォーカス
   FocusNode get focusNode;
-  @override
-
-  /// 検索バーのテキストコントローラー
-  TextEditingController get textEditingController;
   @override
 
   /// 検索結果を表示するかどうか

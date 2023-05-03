@@ -12,7 +12,6 @@ final searchTagsViewModelProvider = StateNotifierProvider.family<
       SearchTagsState(
         didSearch: false,
         focusNode: FocusNode(),
-        textEditingController: TextEditingController(),
         shouldShowSearchResults: false,
         selected: auguments.tags
             .map((e) => TagState(tag: e, isSelected: true))
@@ -39,11 +38,11 @@ class SearchTagsViewModel extends StateNotifier<SearchTagsState> {
   void mightShowSearchResults() {
     bool shouldShow = false;
 
-    /// 検索していない時は検索結果を表示しない
-    if (state.didSearch) shouldShow = true;
-
     /// フォーカスが当たっている時は検索結果を表示する
     if (state.focusNode.hasFocus) shouldShow = true;
+
+    /// 検索していない時は検索結果を表示しない
+    if (state.didSearch) shouldShow = true;
 
     state = state.copyWith(shouldShowSearchResults: shouldShow);
   }

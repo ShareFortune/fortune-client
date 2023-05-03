@@ -73,7 +73,7 @@ class PhotoActionsSheet {
           ],
           cancelButton: CupertinoButton(
             child: Text(
-              LocaleKeys.permission_menu_cancel.tr(),
+              LocaleKeys.actions_cancel.tr(),
               style: TextStyle(color: textColor),
             ),
             onPressed: () => Navigator.of(context).pop(),
@@ -108,7 +108,7 @@ class PhotoActionsSheet {
           ],
           cancelButton: CupertinoButton(
             child: Text(
-              LocaleKeys.permission_menu_cancel.tr(),
+              LocaleKeys.actions_cancel.tr(),
               style: TextStyle(color: theme.appColors.linkColor),
             ),
             onPressed: () => Navigator.of(context).pop(false),

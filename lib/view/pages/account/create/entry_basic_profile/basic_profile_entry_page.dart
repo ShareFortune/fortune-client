@@ -77,7 +77,7 @@ class BasicProfileEntryPage extends HookConsumerWidget {
         if (clickable) onPressed();
       },
       child: Text(
-        LocaleKeys.basic_profile_entry_page_next.tr(),
+        LocaleKeys.actions_next.tr(),
         style: TextStyle(
           fontSize: 16,
           color: clickable ? onTextColor : offTextColor,

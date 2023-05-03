@@ -20,7 +20,7 @@ Future<void> showPermissionDialog(
             builder: (context) {
               return PlatformDialogAction(
                 child: PlatformText(
-                  LocaleKeys.permission_menu_cancel.tr(),
+                  LocaleKeys.actions_cancel.tr(),
                 ),
                 onPressed: () {
                   Navigator.pop(context);
