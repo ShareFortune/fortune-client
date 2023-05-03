@@ -11,14 +11,12 @@ class FakeProfileDataSource implements ProfileDataSource {
   }
 
   @override
-  Future<ProfileIdResponse> create(String id, Map<String, dynamic> body) {
-    // TODO: implement create
-    throw UnimplementedError();
+  Future<ProfileIdResponse> create(id, body) async {
+    return const ProfileIdResponse(id: 'id');
   }
 
   @override
-  Future<ProfileIdResponse> update(String id, Map<String, dynamic> body) {
-    // TODO: implement update
-    throw UnimplementedError();
+  Future<ProfileIdResponse> update(id, body) async {
+    return const ProfileIdResponse(id: 'id');
   }
 }
