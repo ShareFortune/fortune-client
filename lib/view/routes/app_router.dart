@@ -38,7 +38,7 @@ class AppRouter {
         return _buildRoute(const LoginPage());
 
       case RoutePath.home:
-        return _buildRoute(const HomePage());
+        return _buildRoute(HomePage());
 
       case RoutePath.userInfoInput:
         return _buildRoute(const UserInfoInputPage());

@@ -43,7 +43,7 @@ void main() async {
         child: ProviderScope(
           child: DevicePreview(
             enabled: !kReleaseMode && Constants.enablePreview,
-            builder: (context) => MyApp(),
+            builder: (context) => const MyApp(),
           ),
         ),
       ),
