@@ -10,6 +10,7 @@ import 'package:fortune_client/view/pages/message/message_room/message_room_page
 import 'package:fortune_client/view/pages/my/edit/edit_profile_page.dart';
 import 'package:fortune_client/view/pages/my/my/my_page.dart';
 import 'package:fortune_client/view/pages/profile/input/profile_input_page.dart';
+import 'package:fortune_client/view/pages/profile/input/user_info_input_page.dart';
 import 'package:fortune_client/view/pages/profile/profile/profile_page.dart';
 import 'package:fortune_client/view/pages/request/join_requests_confirmation/join_requests_confirmation_page.dart';
 import 'package:fortune_client/view/pages/rooms/input/room_input_page.dart';
@@ -38,6 +39,9 @@ class AppRouter {
 
       case RoutePath.home:
         return _buildRoute(const HomePage());
+
+      case RoutePath.userInfoInput:
+        return _buildRoute(const UserInfoInputPage());
 
       case RoutePath.profileInput:
         return _buildRoute(const ProfileInputPage());

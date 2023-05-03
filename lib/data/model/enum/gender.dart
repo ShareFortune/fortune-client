@@ -20,10 +20,6 @@ extension GenderEx on Gender {
 
   String get rawValue => rawValues[this]!;
 
-  static Gender from(String rawValue) {
-    return rawValues.keys.firstWhere((key) => rawValues[key] == rawValue);
-  }
-
   String get text {
     switch (this) {
       case Gender.man:
@@ -33,6 +29,18 @@ extension GenderEx on Gender {
       case Gender.another:
         return "その他";
     }
+  }
+
+  static Gender from(String rawValue) {
+    return rawValues.keys.firstWhere((key) => rawValues[key] == rawValue);
+  }
+
+  /// [text]から[Gender]を取得
+  static Gender? fromText(String text) {
+    for (var value in Gender.values) {
+      if (value.text == text) return value;
+    }
+    return null;
   }
 }
 

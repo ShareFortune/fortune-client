@@ -52,18 +52,12 @@ class DebugPage extends HookConsumerWidget {
               _buildDummyItem(
                 'ユーザー作成',
                 showTrailing: true,
-                onTap: () => navigator.navigateTo(RoutePath.profileInput),
+                onTap: () => navigator.navigateTo(RoutePath.userInfoInput),
               ),
               _buildDummyItem(
                 'プロフィール作成',
                 showTrailing: true,
-                onTap: () {
-                  // getIt<AppRouter>().push(
-                  //   CreateProfileRoute(
-                  //     children: [DetailedProfileEntryRoute()],
-                  //   ),
-                  // );
-                },
+                onTap: () => navigator.navigateTo(RoutePath.profileInput),
               ),
               _buildDummyItem(
                 'タグ作成',
