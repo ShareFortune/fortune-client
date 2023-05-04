@@ -16,6 +16,18 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$EditProfileState {
+  /// プロフィール画像を編集したか
+  bool get isEditedProfileImage => throw _privateConstructorUsedError;
+
+  /// 基本情報を編集したか
+  bool get isEditedBasicInfo => throw _privateConstructorUsedError;
+
+  /// 自己紹介を編集したか
+  bool get isEditedIntroduction => throw _privateConstructorUsedError;
+
+  /// タグを編集したか
+  bool get isEditedTags => throw _privateConstructorUsedError;
+
   /// 編集用プロフィール写真
   List<ProfileImage> get images => throw _privateConstructorUsedError;
   ProfileResponse get profile => throw _privateConstructorUsedError;
@@ -31,7 +43,13 @@ abstract class $EditProfileStateCopyWith<$Res> {
           EditProfileState value, $Res Function(EditProfileState) then) =
       _$EditProfileStateCopyWithImpl<$Res, EditProfileState>;
   @useResult
-  $Res call({List<ProfileImage> images, ProfileResponse profile});
+  $Res call(
+      {bool isEditedProfileImage,
+      bool isEditedBasicInfo,
+      bool isEditedIntroduction,
+      bool isEditedTags,
+      List<ProfileImage> images,
+      ProfileResponse profile});
 
   $ProfileResponseCopyWith<$Res> get profile;
 }
@@ -49,10 +67,30 @@ class _$EditProfileStateCopyWithImpl<$Res, $Val extends EditProfileState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? isEditedProfileImage = null,
+    Object? isEditedBasicInfo = null,
+    Object? isEditedIntroduction = null,
+    Object? isEditedTags = null,
     Object? images = null,
     Object? profile = null,
   }) {
     return _then(_value.copyWith(
+      isEditedProfileImage: null == isEditedProfileImage
+          ? _value.isEditedProfileImage
+          : isEditedProfileImage // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isEditedBasicInfo: null == isEditedBasicInfo
+          ? _value.isEditedBasicInfo
+          : isEditedBasicInfo // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isEditedIntroduction: null == isEditedIntroduction
+          ? _value.isEditedIntroduction
+          : isEditedIntroduction // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isEditedTags: null == isEditedTags
+          ? _value.isEditedTags
+          : isEditedTags // ignore: cast_nullable_to_non_nullable
+              as bool,
       images: null == images
           ? _value.images
           : images // ignore: cast_nullable_to_non_nullable
@@ -81,7 +119,13 @@ abstract class _$$_EditProfileStateCopyWith<$Res>
       __$$_EditProfileStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<ProfileImage> images, ProfileResponse profile});
+  $Res call(
+      {bool isEditedProfileImage,
+      bool isEditedBasicInfo,
+      bool isEditedIntroduction,
+      bool isEditedTags,
+      List<ProfileImage> images,
+      ProfileResponse profile});
 
   @override
   $ProfileResponseCopyWith<$Res> get profile;
@@ -98,10 +142,30 @@ class __$$_EditProfileStateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? isEditedProfileImage = null,
+    Object? isEditedBasicInfo = null,
+    Object? isEditedIntroduction = null,
+    Object? isEditedTags = null,
     Object? images = null,
     Object? profile = null,
   }) {
     return _then(_$_EditProfileState(
+      isEditedProfileImage: null == isEditedProfileImage
+          ? _value.isEditedProfileImage
+          : isEditedProfileImage // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isEditedBasicInfo: null == isEditedBasicInfo
+          ? _value.isEditedBasicInfo
+          : isEditedBasicInfo // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isEditedIntroduction: null == isEditedIntroduction
+          ? _value.isEditedIntroduction
+          : isEditedIntroduction // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isEditedTags: null == isEditedTags
+          ? _value.isEditedTags
+          : isEditedTags // ignore: cast_nullable_to_non_nullable
+              as bool,
       images: null == images
           ? _value._images
           : images // ignore: cast_nullable_to_non_nullable
@@ -118,8 +182,33 @@ class __$$_EditProfileStateCopyWithImpl<$Res>
 
 class _$_EditProfileState implements _EditProfileState {
   const _$_EditProfileState(
-      {required final List<ProfileImage> images, required this.profile})
+      {this.isEditedProfileImage = false,
+      this.isEditedBasicInfo = false,
+      this.isEditedIntroduction = false,
+      this.isEditedTags = false,
+      required final List<ProfileImage> images,
+      required this.profile})
       : _images = images;
+
+  /// プロフィール画像を編集したか
+  @override
+  @JsonKey()
+  final bool isEditedProfileImage;
+
+  /// 基本情報を編集したか
+  @override
+  @JsonKey()
+  final bool isEditedBasicInfo;
+
+  /// 自己紹介を編集したか
+  @override
+  @JsonKey()
+  final bool isEditedIntroduction;
+
+  /// タグを編集したか
+  @override
+  @JsonKey()
+  final bool isEditedTags;
 
   /// 編集用プロフィール写真
   final List<ProfileImage> _images;
@@ -137,7 +226,7 @@ class _$_EditProfileState implements _EditProfileState {
 
   @override
   String toString() {
-    return 'EditProfileState(images: $images, profile: $profile)';
+    return 'EditProfileState(isEditedProfileImage: $isEditedProfileImage, isEditedBasicInfo: $isEditedBasicInfo, isEditedIntroduction: $isEditedIntroduction, isEditedTags: $isEditedTags, images: $images, profile: $profile)';
   }
 
   @override
@@ -145,13 +234,27 @@ class _$_EditProfileState implements _EditProfileState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_EditProfileState &&
+            (identical(other.isEditedProfileImage, isEditedProfileImage) ||
+                other.isEditedProfileImage == isEditedProfileImage) &&
+            (identical(other.isEditedBasicInfo, isEditedBasicInfo) ||
+                other.isEditedBasicInfo == isEditedBasicInfo) &&
+            (identical(other.isEditedIntroduction, isEditedIntroduction) ||
+                other.isEditedIntroduction == isEditedIntroduction) &&
+            (identical(other.isEditedTags, isEditedTags) ||
+                other.isEditedTags == isEditedTags) &&
             const DeepCollectionEquality().equals(other._images, _images) &&
             (identical(other.profile, profile) || other.profile == profile));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_images), profile);
+      runtimeType,
+      isEditedProfileImage,
+      isEditedBasicInfo,
+      isEditedIntroduction,
+      isEditedTags,
+      const DeepCollectionEquality().hash(_images),
+      profile);
 
   @JsonKey(ignore: true)
   @override
@@ -162,9 +265,29 @@ class _$_EditProfileState implements _EditProfileState {
 
 abstract class _EditProfileState implements EditProfileState {
   const factory _EditProfileState(
-      {required final List<ProfileImage> images,
+      {final bool isEditedProfileImage,
+      final bool isEditedBasicInfo,
+      final bool isEditedIntroduction,
+      final bool isEditedTags,
+      required final List<ProfileImage> images,
       required final ProfileResponse profile}) = _$_EditProfileState;
 
+  @override
+
+  /// プロフィール画像を編集したか
+  bool get isEditedProfileImage;
+  @override
+
+  /// 基本情報を編集したか
+  bool get isEditedBasicInfo;
+  @override
+
+  /// 自己紹介を編集したか
+  bool get isEditedIntroduction;
+  @override
+
+  /// タグを編集したか
+  bool get isEditedTags;
   @override
 
   /// 編集用プロフィール写真

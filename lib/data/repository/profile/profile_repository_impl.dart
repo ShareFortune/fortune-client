@@ -5,10 +5,8 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:fortune_client/data/datasource/local/shared_pref_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/go/profile/profile_data_source.dart';
 import 'package:fortune_client/data/model/addresses/address/address.dart';
-import 'package:fortune_client/data/model/addresses/address_with_id/address_with_id.dart';
 import 'package:fortune_client/data/model/enum/cigarette_frequency.dart';
 import 'package:fortune_client/data/model/enum/drink_frequency.dart';
-import 'package:fortune_client/data/model/enum/profile_images_type.dart';
 import 'package:fortune_client/data/model/profile/profile_request/profile_request.dart';
 import 'package:fortune_client/data/model/profile/profile_response/profile_response.dart';
 import 'package:fortune_client/data/model/tags/tag/tag.dart';
@@ -58,38 +56,18 @@ class ProfileRepositoryImpl implements ProfileRepository {
     required String name,
     required Gender gender,
     required Address address,
-    int? height,
-    DrinkFrequency? drinkFrequency,
-    CigaretteFrequency? cigaretteFrequency,
-    int? occupationId,
-    required File mainImage,
-    File? secondImage,
-    File? thirdImage,
-    File? fourthImage,
-    File? fifthImage,
-    File? sixthImage,
+    required List<File> images,
   }) async {
     try {
       /// 入力画像を保存
-      await saveProfileImages(
-        mainImage: mainImage,
-        secondImage: secondImage,
-        thirdImage: thirdImage,
-        fourthImage: fourthImage,
-        fifthImage: fifthImage,
-        sixthImage: sixthImage,
-      );
+      await saveProfileImages(images);
 
       /// 作成フォーム
       final profileForm = ProfileCreateRequest(
         name: name,
         gender: gender.rawValue,
         addressId: await Repository.address.getId(address),
-        files: getProfileImages().toJson(),
-        height: 170,
-        drinkFrequency: drinkFrequency,
-        cigaretteFrequency: cigaretteFrequency,
-        occupationId: null, // 開発中のためNullにしないとエラー出るよ
+        files: _generateProfileFiles().toJson(),
       );
 
       /// 作成
@@ -116,7 +94,8 @@ class ProfileRepositoryImpl implements ProfileRepository {
   ///
   /// プロフィール更新
   ///
-  Future<void> _update(ProfileUpdateRequest request) async {
+  @override
+  Future<void> update(ProfileUpdateRequest request) async {
     try {
       await _profileDataSource.update(
         _shared.getString(AppPrefKey.profileId.keyString)!,
@@ -131,9 +110,9 @@ class ProfileRepositoryImpl implements ProfileRepository {
   ///
   /// 更新データフォーム作成
   ///
-  Future<void> _generateUpdateRequest(
-    Function(ProfileUpdateRequest request) update,
-  ) async {
+  Future<ProfileUpdateRequest> _generateUpdateRequest({
+    ProfileUpdateRequest Function(ProfileUpdateRequest)? override,
+  }) async {
     final profile = getCache();
     final request = ProfileUpdateRequest(
       name: profile.name,
@@ -143,106 +122,96 @@ class ProfileRepositoryImpl implements ProfileRepository {
       cigaretteFrequency: profile.cigaretteFrequency,
       selfIntroduction: profile.selfIntroduction,
       occupationId: null,
-      addressId: 65, // TODO: アドレスデータにID追加
+      addressId: await Repository.address.getId(profile.address),
       tagIds: profile.tags.map((e) => e.id).toList(),
-      files: getProfileImages(),
+      files: _generateProfileFiles(),
     );
-    update(request);
+    return override?.call(request) ?? request;
   }
 
   @override
   Future<void> updateProfileImages() async {
-    _generateUpdateRequest(_update);
+    update(await _generateUpdateRequest());
   }
 
   @override
   Future<void> updateSelfIntroduction(String selfIntroduction) async {
-    await _generateUpdateRequest(
-      (request) => _update(
-        request.copyWith(selfIntroduction: selfIntroduction),
+    return update(await _generateUpdateRequest(
+      override: (request) => request.copyWith(
+        selfIntroduction: selfIntroduction,
       ),
-    );
+    ));
   }
 
   @override
   Future<void> updateTags(List<Tag> tags) async {
-    await _generateUpdateRequest(
-      (request) => _update(
-        request.copyWith(tagIds: tags.map((e) => e.id).toList()),
+    return update(await _generateUpdateRequest(
+      override: (request) => request.copyWith(
+        tagIds: tags.map((e) => e.id).toList(),
       ),
-    );
+    ));
   }
 
   @override
   Future<void> updateBasicInfo({
-    required AddressWithId? addressWithId,
+    required Address? address,
     required int? stature,
     required DrinkFrequency? drinkFrequency,
     required CigaretteFrequency? cigaretteFrequency,
   }) async {
-    await _generateUpdateRequest(
-      (request) => _update(
-        request.copyWith(
-          addressId: addressWithId?.id ?? request.addressId,
-          height: stature,
-          drinkFrequency: drinkFrequency,
-          cigaretteFrequency: cigaretteFrequency,
-        ),
+    int? addressId;
+    if (address != null) addressId = await Repository.address.getId(address);
+    return update(await _generateUpdateRequest(
+      override: (request) => request.copyWith(
+        addressId: addressId ?? request.addressId,
+        height: stature,
+        drinkFrequency: drinkFrequency,
+        cigaretteFrequency: cigaretteFrequency,
       ),
+    ));
+  }
+
+  Future<void> _saveProfileImagesInBase64(List<String> base64) async {
+    _shared.setStringList(AppPrefKey.profileImages.keyString, base64);
+  }
+
+  @override
+  Future<void> addProfileImage(File file) async {
+    final images = getProfileImages();
+    images.add(await ImageConverter.toBase64(file));
+    _saveProfileImagesInBase64(images);
+  }
+
+  @override
+  Future<void> updateProfileImageByIndex(int index, File file) async {
+    final images = getProfileImages();
+
+    /// 画像枚数より大きいインデックスはエラー
+    assert(images.length <= index);
+    images[index] = await ImageConverter.toBase64(file);
+    _saveProfileImagesInBase64(images);
+  }
+
+  @override
+  Future<void> removeProfileImageByIndex(int index) async {
+    _saveProfileImagesInBase64(getProfileImages()..removeAt(index));
+  }
+
+  @override
+  List<String> getProfileImages() {
+    return _shared.getStringList(AppPrefKey.profileImages.keyString);
+  }
+
+  @override
+  Future<void> saveProfileImages(List<File> files) async {
+    _saveProfileImagesInBase64(
+      await Future.wait(files.map((file) => ImageConverter.toBase64(file))),
     );
   }
 
-  /// プロおフィール画像をローカル保存
-  Future<void> _saveImageLocally(String key, File? file) async {
-    _shared.setString(
-      key,
-      file != null ? await ImageConverter.toBase64(file) : "",
-    );
-  }
-
-  @override
-  Future<void> saveProfileImages({
-    File? mainImage,
-    File? secondImage,
-    File? thirdImage,
-    File? fourthImage,
-    File? fifthImage,
-    File? sixthImage,
-  }) async {
-    _saveImageLocally(ProfileImagesType.mainImage.keyString, mainImage);
-    _saveImageLocally(ProfileImagesType.secondImage.keyString, secondImage);
-    _saveImageLocally(ProfileImagesType.thirdImage.keyString, thirdImage);
-    _saveImageLocally(ProfileImagesType.fourthImage.keyString, fourthImage);
-    _saveImageLocally(ProfileImagesType.fifthImage.keyString, fifthImage);
-    _saveImageLocally(ProfileImagesType.sixthImage.keyString, sixthImage);
-  }
-
-  @override
-  ProfileFiles getProfileImages() {
-    return ProfileFiles(
-      mainImage: getProfileImageByType(ProfileImagesType.mainImage)!,
-      secondImage: getProfileImageByType(ProfileImagesType.secondImage),
-      thirdImage: getProfileImageByType(ProfileImagesType.thirdImage),
-      fourthImage: getProfileImageByType(ProfileImagesType.fourthImage),
-      fifthImage: getProfileImageByType(ProfileImagesType.fifthImage),
-      sixthImage: getProfileImageByType(ProfileImagesType.sixthImage),
-    );
-  }
-
-  @override
-  String? getProfileImageByType(ProfileImagesType type) {
-    final data = _shared.getString(type.keyString);
-    if (data == null || data.isEmpty) {
-      return null;
-    }
-    return data;
-  }
-
-  @override
-  Future<void> saveProfileImageByType(
-    ProfileImagesType type,
-    File? file,
-  ) async {
-    await _saveImageLocally(type.keyString, file);
+  /// プロフィールデータを生成
+  ProfileFiles _generateProfileFiles() {
+    final List<String> images = getProfileImages();
+    return ProfileFiles.base64List(images);
   }
 }

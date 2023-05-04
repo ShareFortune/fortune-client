@@ -11,7 +11,11 @@ class PhotoActionsSheet {
   ///
   /// 写真を取得
   ///
-  static Future<File?> getPhoto(AppTheme theme, BuildContext context) {
+  static Future<void> getPhoto(
+    AppTheme theme,
+    BuildContext context,
+    Function(File) onGetPhoto,
+  ) async {
     /// 取得方法に応じて写真を取得
     /// [method] 取得方法
     Future<File?> getPhotoByMethod(Future<File?> Function() method) async {
@@ -35,7 +39,7 @@ class PhotoActionsSheet {
       return getPhotoByMethod(() => ImageUtils.choosePhoto(context));
     }
 
-    return showCupertinoModalPopup<File?>(
+    return showCupertinoModalPopup(
       context: context,
       builder: (context) {
         final textColor = theme.appColors.linkColor;
@@ -45,8 +49,9 @@ class PhotoActionsSheet {
             /// カメラ
             CupertinoActionSheetAction(
               onPressed: () async {
+                navigator.goBack();
                 final photo = await takePicture();
-                return navigator.goBack(photo);
+                if (photo != null) return onGetPhoto(photo);
               },
               child: Text(
                 LocaleKeys.permission_menu_camera.tr(),
@@ -57,8 +62,9 @@ class PhotoActionsSheet {
             /// 写真
             CupertinoActionSheetAction(
               onPressed: () async {
+                navigator.goBack();
                 final photo = await choosePhoto();
-                return navigator.goBack(photo);
+                if (photo != null) return onGetPhoto(photo);
               },
               child: Text(
                 LocaleKeys.permission_menu_photo.tr(),

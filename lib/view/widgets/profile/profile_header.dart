@@ -14,15 +14,12 @@ class ProfileHeaderWidget extends HookConsumerWidget {
     required this.iconUrl,
     required this.gender,
     required this.address,
-    this.onEdited,
   });
 
   final String name;
   final String iconUrl;
   final Gender gender;
   final Address address;
-
-  final VoidCallback? onEdited;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -31,7 +28,7 @@ class ProfileHeaderWidget extends HookConsumerWidget {
     return ProfileItemContainer(
       title: name,
       middleMargin: 5,
-      onTapped: () {},
+      onTapped: null,
       leading: UserIconWidget(iconUrl, radius: 30),
       child: Text(
         '${gender.text}・${address.prefecture}',

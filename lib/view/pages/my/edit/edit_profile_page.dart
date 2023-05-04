@@ -1,23 +1,23 @@
-import 'package:dotted_border/dotted_border.dart';
-import 'package:easy_localization/easy_localization.dart';
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:fortune_client/data/model/profile/profile_response/profile_response.dart';
-import 'package:fortune_client/gen/assets.gen.dart';
-import 'package:fortune_client/l10n/locale_keys.g.dart';
 import 'package:fortune_client/view/pages/my/edit/edit_profile_state.dart';
 import 'package:fortune_client/view/pages/my/edit/edit_profile_view_model.dart';
+import 'package:fortune_client/view/pages/my/my/my_page_view_model.dart';
 import 'package:fortune_client/view/routes/route_navigator.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/app_bar/back_app_bar.dart';
 import 'package:fortune_client/view/widgets/bottom_sheet/photo_actions_sheet.dart';
+import 'package:fortune_client/view/widgets/button/app_bar_action_button.dart';
 import 'package:fortune_client/view/widgets/container/empty_image_container.dart';
 import 'package:fortune_client/view/widgets/profile/profile_basic_info.dart';
 import 'package:fortune_client/view/widgets/profile/profile_self_introduction.dart';
 import 'package:fortune_client/view/widgets/profile/profile_tag.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:screen_loader/screen_loader.dart';
 
 class EditProfilePageArguments {
   final ProfileResponse profile;
@@ -25,49 +25,59 @@ class EditProfilePageArguments {
   EditProfilePageArguments(this.profile);
 }
 
-class EditProfilePage extends HookConsumerWidget {
-  const EditProfilePage(this.arguments, {super.key});
+// ignore: must_be_immutable
+class EditProfilePage extends HookConsumerWidget with ScreenLoader {
+  EditProfilePage(this.arguments, {super.key});
 
   final EditProfilePageArguments arguments;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = ref.watch(appThemeProvider);
-    final state = ref.watch(editProfileViewModelProvider(arguments.profile));
+    final state = ref.watch(editProfileViewModelProvider(arguments));
     final viewModel =
-        ref.watch(editProfileViewModelProvider(arguments.profile).notifier);
+        ref.watch(editProfileViewModelProvider(arguments).notifier);
 
-    return Scaffold(
-      backgroundColor: theme.appColors.onBackground,
-      appBar: const BackAppBar(title: "写真編集"),
-      body: ListView(
-        children: [
-          const Gap(20),
-          _ProfileImageEditor(
-            images: state.images,
-            viewModel: viewModel,
-          ),
-          ProfileSelfIntroductionWidget(
-            onEdited: viewModel.changeIntroduction,
-            selfIntroduction: state.profile.selfIntroduction,
-          ),
-          ProfileTagWidget(
-            onEdited: viewModel.changeTags,
-            tags: state.profile.tags,
-          ),
-          ProfileBasicInfoWidget(
-            name: state.profile.name,
-            address: state.profile.address,
-            height: state.profile.height,
-            drinkFrequency: state.profile.drinkFrequency,
-            cigaretteFrequency: state.profile.cigaretteFrequency,
-            onEditedName: viewModel.changeName,
-            onEditedAddress: viewModel.changeAddress,
-            onEditedHeight: viewModel.changeHeight,
-            onEditedDrinkFrequency: viewModel.changeDrinkFrequency,
-            onEditedCigaretteFrequency: viewModel.changeCigaretteFrequency,
-          ),
-        ],
+    return loadableWidget(
+      child: Scaffold(
+        backgroundColor: theme.appColors.onBackground,
+        appBar: BackAppBar(
+          title: "写真編集",
+          action: [
+            AppBarActionButton.save(callback: () async {
+              await performFuture(() async => await viewModel.updateProfile());
+            }),
+          ],
+        ),
+        body: ListView(
+          children: [
+            const Gap(20),
+            _ProfileImageEditor(
+              images: state.images,
+              viewModel: viewModel,
+            ),
+            ProfileSelfIntroductionWidget(
+              onEdited: viewModel.updateIntroduction,
+              selfIntroduction: state.profile.selfIntroduction,
+            ),
+            ProfileTagWidget(
+              onEdited: viewModel.updateTags,
+              tags: state.profile.tags,
+            ),
+            ProfileBasicInfoWidget(
+              name: state.profile.name,
+              address: state.profile.address,
+              height: state.profile.height,
+              drinkFrequency: state.profile.drinkFrequency,
+              cigaretteFrequency: state.profile.cigaretteFrequency,
+              onEditedName: viewModel.updateName,
+              onEditedAddress: viewModel.updateAddress,
+              onEditedHeight: viewModel.updateHeight,
+              onEditedDrinkFrequency: viewModel.updateDrinkFrequency,
+              onEditedCigaretteFrequency: viewModel.updateCigaretteFrequency,
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -128,11 +138,8 @@ class _ProfileImageEditor extends HookConsumerWidget {
                 return EmptyImageContainer(
                   imageSize: _imageSize,
                   onTap: () async {
-                    final file =
-                        await PhotoActionsSheet.getPhoto(theme, context);
-                    if (file != null) {
-                      viewModel.addImage(ProfileImage(FileImage(file)));
-                    }
+                    await PhotoActionsSheet.getPhoto(
+                        theme, context, viewModel.addImage);
                   },
                 );
               }
@@ -143,7 +150,7 @@ class _ProfileImageEditor extends HookConsumerWidget {
                   _showActionSheet(
                     context: context,
                     theme: theme,
-                    update: (image) => viewModel.changeImage(index, image),
+                    update: (file) => viewModel.updateImage(index, file),
                     delete: () => viewModel.removeImage(index),
                   );
                 },
@@ -174,7 +181,7 @@ class _ProfileImageEditor extends HookConsumerWidget {
   void _showActionSheet({
     required BuildContext context,
     required AppTheme theme,
-    required Function(ProfileImage) update,
+    required Function(File) update,
     required VoidCallback delete,
   }) {
     final textStyle = theme.textTheme.h50;
@@ -192,15 +199,12 @@ class _ProfileImageEditor extends HookConsumerWidget {
           actions: <Widget>[
             /// 画像を変更する
             CupertinoActionSheetAction(
-              isDestructiveAction: true,
-              child: Text('変更する', style: defaultTextStyle),
-              onPressed: () async {
-                /// 写真選択前にボトムシートを閉じる
-                navigator.goBack();
-                final file = await PhotoActionsSheet.getPhoto(theme, context);
-                if (file != null) update(ProfileImage(FileImage(file)));
-              },
-            ),
+                isDestructiveAction: true,
+                child: Text('変更する', style: defaultTextStyle),
+                onPressed: () {
+                  navigator.goBack();
+                  PhotoActionsSheet.getPhoto(theme, context, update);
+                }),
 
             /// 画像を削除する
             CupertinoActionSheetAction(

@@ -51,7 +51,7 @@ class ProfileInputViewModel extends _$ProfileInputViewModel {
   Future<bool> createProfile(String nickname) async {
     return await Repository.profile.create(
       name: nickname,
-      mainImage: state.image!,
+      images: [state.image!],
       gender: state.gender!,
       address: state.address!,
     );
