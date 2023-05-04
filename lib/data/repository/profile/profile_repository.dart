@@ -11,7 +11,7 @@ import 'package:fortune_client/data/model/tags/tag/tag.dart';
 
 abstract class ProfileRepository {
   /// 作成済みかどうか
-  Future<bool> isCreated();
+  bool isCreated();
 
   /// 取得
   Future<ProfileResponse> get();

@@ -23,7 +23,7 @@ void main() async {
         options: Constants.of().firebaseOptions,
       );
       bool testMode = false;
-      testMode = true;
+      // testMode = true;
       await initDependencies(testMode: testMode);
     }),
   ]);

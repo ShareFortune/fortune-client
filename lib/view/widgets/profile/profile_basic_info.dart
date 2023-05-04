@@ -38,7 +38,7 @@ class ProfileBasicInfoWidget extends ConsumerWidget {
 
   final Function(String)? onEditedName;
   final Function(Address)? onEditedAddress;
-  final Function(int)? onEditedHeight;
+  final Function(int?)? onEditedHeight;
   final Function(DrinkFrequency?)? onEditedDrinkFrequency;
   final Function(CigaretteFrequency?)? onEditedCigaretteFrequency;
 

@@ -66,7 +66,7 @@ class EditProfileViewModel extends StateNotifier<EditProfileState> {
   }
 
   /// 身長を更新する
-  void changeHeight(int height) {
+  void changeHeight(int? height) {
     state = state.copyWith(profile: profile.copyWith(height: height));
   }
 

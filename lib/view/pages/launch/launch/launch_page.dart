@@ -28,8 +28,14 @@ class LaunchPage extends StatelessWidget {
         return navigator.navigateToRemoveUntil(RoutePath.login);
       }
 
+      /// ユーザー作成チェック
+      if (!Repository.users.isCreated()) {
+        /// ユーザーが作成されていない場合はユーザー作成画面へ
+        return navigator.navigateToRemoveUntil(RoutePath.userInfoInput);
+      }
+
       /// プロフィール作成チェック
-      if (!await Repository.profile.isCreated()) {
+      if (!Repository.profile.isCreated()) {
         /// プロフィールが作成されていない場合はプロフィール作成画面へ
         return navigator.navigateToRemoveUntil(RoutePath.profileInput);
       }
