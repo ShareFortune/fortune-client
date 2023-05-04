@@ -5,8 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:fortune_client/data/model/profile/profile_response/profile_response.dart';
 import 'package:fortune_client/view/pages/my/edit/edit_profile_state.dart';
 import 'package:fortune_client/view/pages/my/edit/edit_profile_view_model.dart';
-import 'package:fortune_client/view/pages/my/my/my_page_view_model.dart';
-import 'package:fortune_client/view/routes/route_navigator.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/app_bar/back_app_bar.dart';
 import 'package:fortune_client/view/widgets/bottom_sheet/photo_actions_sheet.dart';
@@ -44,9 +42,13 @@ class EditProfilePage extends HookConsumerWidget with ScreenLoader {
         appBar: BackAppBar(
           title: "写真編集",
           action: [
-            AppBarActionButton.save(callback: () async {
-              await performFuture(() async => await viewModel.updateProfile());
-            }),
+            AppBarActionButton.save(
+              callback: () async {
+                await performFuture(
+                  () async => await viewModel.updateProfile(),
+                );
+              },
+            ),
           ],
         ),
         body: ListView(
@@ -111,8 +113,8 @@ class _ProfileImageEditor extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = ref.watch(appThemeProvider);
 
-    /// 画像をキャッシュしておく
-    images.map((e) => precacheImage(e.image, context));
+    // /// 画像をキャッシュしておく
+    // images.map((e) => precacheImage(e.image, context));
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -138,8 +140,7 @@ class _ProfileImageEditor extends HookConsumerWidget {
                 return EmptyImageContainer(
                   imageSize: _imageSize,
                   onTap: () async {
-                    await PhotoActionsSheet.getPhoto(
-                        theme, context, viewModel.addImage);
+                    await PhotoActionsSheet.getPhoto(viewModel.addImage);
                   },
                 );
               }
@@ -184,10 +185,6 @@ class _ProfileImageEditor extends HookConsumerWidget {
     required Function(File) update,
     required VoidCallback delete,
   }) {
-    final textStyle = theme.textTheme.h50;
-    final defaultTextStyle = textStyle.paint(theme.appColors.linkColor);
-    final deleteTextStyle = textStyle.paint(theme.appColors.error);
-
     showCupertinoModalPopup<void>(
       context: context,
       builder: (BuildContext context) {
@@ -198,28 +195,19 @@ class _ProfileImageEditor extends HookConsumerWidget {
           ),
           actions: <Widget>[
             /// 画像を変更する
-            CupertinoActionSheetAction(
-                isDestructiveAction: true,
-                child: Text('変更する', style: defaultTextStyle),
-                onPressed: () {
-                  navigator.goBack();
-                  PhotoActionsSheet.getPhoto(theme, context, update);
-                }),
+            ActionSheetItem(
+              title: '変更する',
+              callback: () => PhotoActionsSheet.getPhoto(update),
+            ),
 
             /// 画像を削除する
-            CupertinoActionSheetAction(
-              isDestructiveAction: true,
-              child: Text('削除する', style: deleteTextStyle),
-              onPressed: () {
-                delete.call();
-                navigator.goBack();
-              },
-            )
+            ActionSheetItem(
+              isDefaultAction: false,
+              title: '削除する',
+              callback: delete,
+            ),
           ],
-          cancelButton: CupertinoActionSheetAction(
-            onPressed: navigator.goBack,
-            child: Text("キャンセル", style: defaultTextStyle),
-          ),
+          cancelButton: const ActionSheetCancelBtn(),
         );
       },
     );

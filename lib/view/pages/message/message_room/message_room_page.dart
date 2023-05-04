@@ -55,8 +55,7 @@ class MessageRoomPage extends HookConsumerWidget {
             ),
             messages: messages,
             onAttachmentPressed: () async {
-              await PhotoActionsSheet.getPhoto(
-                  theme, context, viewModel.handleImageSelection);
+              await PhotoActionsSheet.getPhoto(viewModel.handleImageSelection);
             },
             onSendPressed: viewModel.handleSendPressed,
             showUserAvatars: true,

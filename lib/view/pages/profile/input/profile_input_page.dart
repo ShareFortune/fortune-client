@@ -128,9 +128,7 @@ class _ImageInputField extends HookConsumerWidget {
     final theme = ref.watch(appThemeProvider);
 
     Future<void> changeImage() async {
-      await PhotoActionsSheet.getPhoto(theme, context, (file) {
-        onSelected?.call(file);
-      });
+      await PhotoActionsSheet.getPhoto(onSelected);
     }
 
     if (image == null) {
