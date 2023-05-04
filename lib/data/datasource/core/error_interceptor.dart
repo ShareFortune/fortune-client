@@ -18,17 +18,18 @@ class ErrorInterceptor extends InterceptorsWrapper {
   @override
   void onError(err, handler) {
     switch (err.type) {
-      case DioErrorType.connectTimeout:
-        throw FortuneError(type: ErrorType.timeout);
+      case DioErrorType.connectionTimeout:
       case DioErrorType.sendTimeout:
-        throw FortuneError(type: ErrorType.timeout);
       case DioErrorType.receiveTimeout:
         throw FortuneError(type: ErrorType.timeout);
-      case DioErrorType.response:
+
+      case DioErrorType.badCertificate:
+      case DioErrorType.badResponse:
+      case DioErrorType.connectionError:
         throw FortuneError(type: ErrorType.apiFailure);
+
       case DioErrorType.cancel:
-        throw FortuneError();
-      case DioErrorType.other:
+      case DioErrorType.unknown:
         throw FortuneError();
     }
   }

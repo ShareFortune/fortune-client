@@ -8,11 +8,11 @@ class DioClient {
   static get client => Dio(options)..interceptors.addAll(interceptors);
 
   static get options => BaseOptions(
-      baseUrl: Constants.of().baseUrl,
-      contentType: Headers.jsonContentType,
-      responseType: ResponseType.json,
-      connectTimeout: 30 * 1000, // 30 seconds
-      receiveTimeout: 30 * 1000 // 30 seconds
+        baseUrl: Constants.of().baseUrl,
+        contentType: Headers.jsonContentType,
+        responseType: ResponseType.json,
+        connectTimeout: const Duration(seconds: 30),
+        receiveTimeout: const Duration(seconds: 30),
       );
 
   static get interceptors => [

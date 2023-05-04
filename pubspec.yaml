@@ -55,8 +55,8 @@ dependencies:
   easy_localization: ^3.0.1
 
   # networking
-  dio: ^4.0.6
-  retrofit: ^3.3.1
+  dio: any
+  retrofit: any
   pretty_dio_logger: ^1.2.0-beta-1
   connectivity_plus: ^3.0.3
   url_launcher: ^6.1.10
@@ -94,14 +94,14 @@ dev_dependencies:
   flutter_lints: ^2.0.0
   freezed: ^2.2.0
   auto_route_generator: ^5.0.3
-  retrofit_generator: ^4.2.0
+  retrofit_generator: any
   flutter_gen_runner: ^5.2.0
   dependency_validator: any
   riverpod_generator: ^2.2.1
 
 flutter_gen:
-  output: lib/gen/ # Optional (default: lib/gen/)
-  lineLength: 80 # Optional (default: 80)
+  output: lib/gen/ 
+  lineLength: 80 
   integrations:
     flutter_svg: true
 
