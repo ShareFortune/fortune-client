@@ -26,7 +26,6 @@ class ScrollAppBar extends HookConsumerWidget implements PreferredSizeWidget {
     final theme = ref.watch(appThemeProvider);
 
     return SliverAppBar(
-      floating: true,
       expandedHeight: hieght,
       backgroundColor: theme.appColors.onBackground,
       flexibleSpace: FlexibleSpaceBar(

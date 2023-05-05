@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fortune_client/gen/assets.gen.dart';
 import 'package:fortune_client/l10n/locale_keys.g.dart';
-import 'package:fortune_client/util/logger/logger.dart';
 import 'package:fortune_client/view/pages/rooms/room_detail/room_detail_page.dart';
 import 'package:fortune_client/view/pages/rooms/room_list/room_list_state.dart';
 import 'package:fortune_client/view/widgets/app_bar/scroll_app_bar.dart';
@@ -49,10 +48,42 @@ class _RoomListPageState extends ConsumerState<RoomListPage>
           headerSliverBuilder: (_, __) => [
             ScrollAppBar(title: LocaleKeys.room_list_page_title.tr()),
             SliverToBoxAdapter(
-              child: _RoomsFilter(
-                state: state,
-                viewModel: viewModel,
-                theme: theme,
+              child: Container(
+                padding: const EdgeInsets.fromLTRB(20, 5, 20, 20),
+                child: Row(
+                  children: [
+                    _RoomsFilterButton(
+                      title: "場所",
+                      isAppliedFilter: state.filter.isFilteredByAddress,
+                      onTap: () async {
+                        viewModel.filteringByAddress(
+                          await AddressPicker().show(
+                            context: context,
+                            theme: theme,
+                            address: state.filter.address,
+                          ),
+                        );
+                      },
+                    ),
+                    const Gap(15),
+                    _RoomsFilterButton(
+                      title: "人数",
+                      onTap: () async {
+                        await NumberPicker.participants().show(
+                          context: context,
+                          onChanged: viewModel.filteringByMemberNum,
+                        );
+                      },
+                      isAppliedFilter: state.filter.isFilteredByMemberNum,
+                    ),
+                    const Gap(15),
+                    _RoomsFilterButton(
+                      title: "タグ",
+                      onTap: viewModel.filteringByTags,
+                      isAppliedFilter: state.filter.isFilteredByTag,
+                    ),
+                  ],
+                ),
               ),
             ),
           ],
@@ -64,19 +95,12 @@ class _RoomListPageState extends ConsumerState<RoomListPage>
                 addAutomaticKeepAlives: true,
                 children: [
                   ...rooms.map((room) => _RoomListCard(room)).toList(),
-                  if (state.isFetchingNextPage) ...[
-                    const Gap(16),
-                    const SizedBox(
-                      width: 30,
-                      height: 30,
-                      child: Center(
-                        child: CircularProgressIndicator(
-                          strokeWidth: 2,
-                        ),
-                      ),
+                  if (state.isFetchingNextPage)
+                    Container(
+                      alignment: Alignment.center,
+                      padding: const EdgeInsets.only(top: 20, bottom: 50),
+                      child: const CircularProgressIndicator(strokeWidth: 3),
                     ),
-                    const Gap(30),
-                  ],
                 ],
               );
             },
@@ -109,59 +133,6 @@ class _RoomListCard extends StatelessWidget {
   }
 }
 
-class _RoomsFilter extends StatelessWidget {
-  const _RoomsFilter({
-    required this.state,
-    required this.viewModel,
-    required this.theme,
-  });
-
-  final RoomListState state;
-  final RoomListViewModel viewModel;
-  final AppTheme theme;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.fromLTRB(20, 5, 20, 20),
-      child: Row(
-        children: [
-          _RoomsFilterButton(
-            title: "場所",
-            isAppliedFilter: state.filter.isFilteredByAddress,
-            onTap: () async {
-              viewModel.filteringByAddress(
-                await AddressPicker().show(
-                  context: context,
-                  theme: theme,
-                  address: state.filter.address,
-                ),
-              );
-            },
-          ),
-          const Gap(15),
-          _RoomsFilterButton(
-            title: "人数",
-            onTap: () async {
-              await NumberPicker.participants().show(
-                context: context,
-                onChanged: viewModel.filteringByMemberNum,
-              );
-            },
-            isAppliedFilter: state.filter.isFilteredByMemberNum,
-          ),
-          const Gap(15),
-          _RoomsFilterButton(
-            title: "タグ",
-            onTap: viewModel.filteringByTags,
-            isAppliedFilter: state.filter.isFilteredByTag,
-          ),
-        ],
-      ),
-    );
-  }
-}
-
 /// フィルターボタン
 class _RoomsFilterButton extends HookConsumerWidget {
   const _RoomsFilterButton({
@@ -183,13 +154,13 @@ class _RoomsFilterButton extends HookConsumerWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        padding: const EdgeInsets.fromLTRB(20, 6, 12, 6),
+        padding: const EdgeInsets.fromLTRB(20, 5, 12, 5),
         decoration: BoxDecoration(
           border: Border.all(
             width: 1,
             color: isAppliedFilter
                 ? theme.appColors.primary.withOpacity(0.1)
-                : theme.appColors.border1,
+                : theme.appColors.border2,
           ),
           borderRadius: BorderRadius.circular(30),
           color: isAppliedFilter
@@ -200,11 +171,11 @@ class _RoomsFilterButton extends HookConsumerWidget {
           children: [
             Text(
               title,
-              style: theme.textTheme.h30.paint(
-                isAppliedFilter
-                    ? theme.appColors.primary
-                    : theme.appColors.subText2,
-              ),
+              style: theme.textTheme.h20.bold().paint(
+                    isAppliedFilter
+                        ? theme.appColors.primary
+                        : theme.appColors.subText2,
+                  ),
             ),
             const Gap(6),
             SvgPicture.asset(
@@ -214,7 +185,7 @@ class _RoomsFilterButton extends HookConsumerWidget {
               colorFilter: ColorFilter.mode(
                 isAppliedFilter
                     ? theme.appColors.primary
-                    : theme.appColors.iconBtn2,
+                    : theme.appColors.subText2,
                 BlendMode.srcIn,
               ),
             ),
