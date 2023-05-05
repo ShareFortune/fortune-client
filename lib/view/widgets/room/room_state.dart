@@ -98,7 +98,7 @@ class HostRoomState extends RoomState {
       id: room.id,
       status: room.status,
       membersNum: room.membersNum,
-      membersImageUrl: [...?room.participantMainImageURLs],
+      membersImageUrl: [...?room.httpParticipantMainImageURLs],
       joinRequestCount: room.joinRequestsCount,
       theme: RoomThemeFactory.host(
         theme: theme,
@@ -134,8 +134,8 @@ class GuestRoomState extends RoomState {
       membersNum: room.membersNum,
       hostImageUrl: room.hostMainImageURL,
       membersImageUrl: [
-        room.hostMainImageURL,
-        ...?room.participantMainImageURLs
+        room.httpHostImageURL,
+        ...?room.httpParticipantMainImageURLs,
       ],
       status: room.roomStatus,
       joinRequestStatus: room.joinRequestStatus,

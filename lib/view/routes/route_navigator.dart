@@ -11,6 +11,8 @@ class RouteNavigator {
   // グローバルキーで共有されるNavigatorStateオブジェクトを格納する
   final navigatorKey = GlobalKey<NavigatorState>();
 
+  BuildContext get context => navigatorKey.currentState!.context;
+
   Future<dynamic>? navigateTo(RoutePath route, {Object? arguments}) {
     return navigatorKey.currentState?.pushNamed(
       route.name,
@@ -26,5 +28,5 @@ class RouteNavigator {
     );
   }
 
-  void goBack() => navigatorKey.currentState?.pop();
+  void goBack<T>([T? data]) async => navigatorKey.currentState?.pop(data);
 }

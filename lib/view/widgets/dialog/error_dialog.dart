@@ -119,7 +119,7 @@ Future<void> _showErrorDialogWithReloadAndCancel(
     context: context,
     builder: (_) => WillPopScope(
       child: PlatformAlertDialog(
-        title: Text("タイトル"),
+        title: const Text("タイトル"),
         content: Text(content),
         actions: <Widget>[
           Builder(builder: (context) {

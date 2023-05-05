@@ -23,7 +23,7 @@ enum AppPrefKey {
   profile,
 
   /// プロフィール写真
-  profileImage,
+  profileImages,
   profileMainImage,
   profileSecondImage,
   profileThirdImage,

@@ -14,6 +14,7 @@ import 'package:fortune_client/view/widgets/room/room_state.dart';
 import 'package:fortune_client/view/widgets/tag/tags_wraper.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:screen_loader/screen_loader.dart';
 
 class RoomDetailPageArguments {
   final RoomType type;
@@ -27,8 +28,9 @@ class RoomDetailPageArguments {
   });
 }
 
-class RoomDetailPage extends HookConsumerWidget {
-  const RoomDetailPage(this.arguments, {super.key});
+// ignore: must_be_immutable
+class RoomDetailPage extends HookConsumerWidget with ScreenLoader {
+  RoomDetailPage(this.arguments, {super.key});
 
   final RoomDetailPageArguments arguments;
 
@@ -181,8 +183,10 @@ class RoomDetailPage extends HookConsumerWidget {
               isDestructiveAction: true,
               child: Text('変更する', style: defaultTextStyle),
               onPressed: () async {
-                navigator.goBack();
-                update.call();
+                await performFuture(() async {
+                  navigator.goBack();
+                  update.call();
+                });
               },
             ),
 
@@ -281,7 +285,7 @@ class _MemberListView extends HookConsumerWidget {
           return GestureDetector(
             onTap: () => onTap(user),
             child: Column(children: [
-              UserIconWidget(user.mainImageURL, radius: iconRadius),
+              UserIconWidget(user.image, radius: iconRadius),
               Gap(middleMargin),
               SizedBox(
                 height: nameHeight,
@@ -292,5 +296,11 @@ class _MemberListView extends HookConsumerWidget {
         },
       ),
     );
+  }
+}
+
+class NetworkService {
+  static Future getData() async {
+    return await Future.delayed(const Duration(seconds: 20));
   }
 }

@@ -225,7 +225,7 @@ abstract class _RoomListState implements RoomListState {
 /// @nodoc
 mixin _$RoomListStateFilter {
   /// 募集人数
-  int get memberNum => throw _privateConstructorUsedError;
+  int? get memberNum => throw _privateConstructorUsedError;
 
   /// 開催地
   Address? get address => throw _privateConstructorUsedError;
@@ -244,7 +244,7 @@ abstract class $RoomListStateFilterCopyWith<$Res> {
           RoomListStateFilter value, $Res Function(RoomListStateFilter) then) =
       _$RoomListStateFilterCopyWithImpl<$Res, RoomListStateFilter>;
   @useResult
-  $Res call({int memberNum, Address? address, List<Tag> tags});
+  $Res call({int? memberNum, Address? address, List<Tag> tags});
 
   $AddressCopyWith<$Res>? get address;
 }
@@ -262,15 +262,15 @@ class _$RoomListStateFilterCopyWithImpl<$Res, $Val extends RoomListStateFilter>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? memberNum = null,
+    Object? memberNum = freezed,
     Object? address = freezed,
     Object? tags = null,
   }) {
     return _then(_value.copyWith(
-      memberNum: null == memberNum
+      memberNum: freezed == memberNum
           ? _value.memberNum
           : memberNum // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       address: freezed == address
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
@@ -303,7 +303,7 @@ abstract class _$$_RoomListStateFilterCopyWith<$Res>
       __$$_RoomListStateFilterCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int memberNum, Address? address, List<Tag> tags});
+  $Res call({int? memberNum, Address? address, List<Tag> tags});
 
   @override
   $AddressCopyWith<$Res>? get address;
@@ -320,15 +320,15 @@ class __$$_RoomListStateFilterCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? memberNum = null,
+    Object? memberNum = freezed,
     Object? address = freezed,
     Object? tags = null,
   }) {
     return _then(_$_RoomListStateFilter(
-      memberNum: null == memberNum
+      memberNum: freezed == memberNum
           ? _value.memberNum
           : memberNum // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       address: freezed == address
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
@@ -345,14 +345,13 @@ class __$$_RoomListStateFilterCopyWithImpl<$Res>
 
 class _$_RoomListStateFilter extends _RoomListStateFilter {
   const _$_RoomListStateFilter(
-      {this.memberNum = -1, this.address, final List<Tag> tags = const []})
+      {this.memberNum, this.address, final List<Tag> tags = const []})
       : _tags = tags,
         super._();
 
   /// 募集人数
   @override
-  @JsonKey()
-  final int memberNum;
+  final int? memberNum;
 
   /// 開催地
   @override
@@ -400,7 +399,7 @@ class _$_RoomListStateFilter extends _RoomListStateFilter {
 
 abstract class _RoomListStateFilter extends RoomListStateFilter {
   const factory _RoomListStateFilter(
-      {final int memberNum,
+      {final int? memberNum,
       final Address? address,
       final List<Tag> tags}) = _$_RoomListStateFilter;
   const _RoomListStateFilter._() : super._();
@@ -408,7 +407,7 @@ abstract class _RoomListStateFilter extends RoomListStateFilter {
   @override
 
   /// 募集人数
-  int get memberNum;
+  int? get memberNum;
   @override
 
   /// 開催地

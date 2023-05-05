@@ -382,7 +382,7 @@ class __$$_RoomsHostResponseRoomCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_RoomsHostResponseRoom implements _RoomsHostResponseRoom {
+class _$_RoomsHostResponseRoom extends _RoomsHostResponseRoom {
   const _$_RoomsHostResponseRoom(
       {required this.id,
       required this.roomName,
@@ -391,7 +391,8 @@ class _$_RoomsHostResponseRoom implements _RoomsHostResponseRoom {
       required this.membersNum,
       required this.joinRequestsCount,
       @RoomStatusConverter() required this.status})
-      : _participantMainImageURLs = participantMainImageURLs;
+      : _participantMainImageURLs = participantMainImageURLs,
+        super._();
 
   factory _$_RoomsHostResponseRoom.fromJson(Map<String, dynamic> json) =>
       _$$_RoomsHostResponseRoomFromJson(json);
@@ -485,7 +486,7 @@ class _$_RoomsHostResponseRoom implements _RoomsHostResponseRoom {
   }
 }
 
-abstract class _RoomsHostResponseRoom implements RoomsHostResponseRoom {
+abstract class _RoomsHostResponseRoom extends RoomsHostResponseRoom {
   const factory _RoomsHostResponseRoom(
           {required final String id,
           required final String roomName,
@@ -495,6 +496,7 @@ abstract class _RoomsHostResponseRoom implements RoomsHostResponseRoom {
           required final int joinRequestsCount,
           @RoomStatusConverter() required final RoomStatus status}) =
       _$_RoomsHostResponseRoom;
+  const _RoomsHostResponseRoom._() : super._();
 
   factory _RoomsHostResponseRoom.fromJson(Map<String, dynamic> json) =
       _$_RoomsHostResponseRoom.fromJson;

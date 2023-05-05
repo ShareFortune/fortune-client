@@ -1,4 +1,4 @@
-import 'package:fortune_client/view/pages/common/home/home_state.dart';
+import 'package:fortune_client/view/pages/home/home_state.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final homeViewModelProvider = StateNotifierProvider<HomeViewModel, HomeState>(

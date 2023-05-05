@@ -20,14 +20,10 @@ FortuneUser _$FortuneUserFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$FortuneUser {
-  @JsonKey(name: 'id')
   String get id => throw _privateConstructorUsedError;
-  @JsonKey(name: 'name')
   String get name => throw _privateConstructorUsedError;
-  @JsonKey(name: "gender")
   @GenderConverter()
   Gender get gender => throw _privateConstructorUsedError;
-  @JsonKey(name: 'mainImageURL')
   String get mainImageURL => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -43,10 +39,10 @@ abstract class $FortuneUserCopyWith<$Res> {
       _$FortuneUserCopyWithImpl<$Res, FortuneUser>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') String id,
-      @JsonKey(name: 'name') String name,
-      @JsonKey(name: "gender") @GenderConverter() Gender gender,
-      @JsonKey(name: 'mainImageURL') String mainImageURL});
+      {String id,
+      String name,
+      @GenderConverter() Gender gender,
+      String mainImageURL});
 }
 
 /// @nodoc
@@ -97,10 +93,10 @@ abstract class _$$_FortuneUserCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') String id,
-      @JsonKey(name: 'name') String name,
-      @JsonKey(name: "gender") @GenderConverter() Gender gender,
-      @JsonKey(name: 'mainImageURL') String mainImageURL});
+      {String id,
+      String name,
+      @GenderConverter() Gender gender,
+      String mainImageURL});
 }
 
 /// @nodoc
@@ -142,28 +138,25 @@ class __$$_FortuneUserCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_FortuneUser implements _FortuneUser {
+class _$_FortuneUser extends _FortuneUser {
   const _$_FortuneUser(
-      {@JsonKey(name: 'id') required this.id,
-      @JsonKey(name: 'name') required this.name,
-      @JsonKey(name: "gender") @GenderConverter() required this.gender,
-      @JsonKey(name: 'mainImageURL') required this.mainImageURL});
+      {required this.id,
+      required this.name,
+      @GenderConverter() required this.gender,
+      required this.mainImageURL})
+      : super._();
 
   factory _$_FortuneUser.fromJson(Map<String, dynamic> json) =>
       _$$_FortuneUserFromJson(json);
 
   @override
-  @JsonKey(name: 'id')
   final String id;
   @override
-  @JsonKey(name: 'name')
   final String name;
   @override
-  @JsonKey(name: "gender")
   @GenderConverter()
   final Gender gender;
   @override
-  @JsonKey(name: 'mainImageURL')
   final String mainImageURL;
 
   @override
@@ -201,33 +194,25 @@ class _$_FortuneUser implements _FortuneUser {
   }
 }
 
-abstract class _FortuneUser implements FortuneUser {
+abstract class _FortuneUser extends FortuneUser {
   const factory _FortuneUser(
-      {@JsonKey(name: 'id')
-          required final String id,
-      @JsonKey(name: 'name')
-          required final String name,
-      @JsonKey(name: "gender")
-      @GenderConverter()
-          required final Gender gender,
-      @JsonKey(name: 'mainImageURL')
-          required final String mainImageURL}) = _$_FortuneUser;
+      {required final String id,
+      required final String name,
+      @GenderConverter() required final Gender gender,
+      required final String mainImageURL}) = _$_FortuneUser;
+  const _FortuneUser._() : super._();
 
   factory _FortuneUser.fromJson(Map<String, dynamic> json) =
       _$_FortuneUser.fromJson;
 
   @override
-  @JsonKey(name: 'id')
   String get id;
   @override
-  @JsonKey(name: 'name')
   String get name;
   @override
-  @JsonKey(name: "gender")
   @GenderConverter()
   Gender get gender;
   @override
-  @JsonKey(name: 'mainImageURL')
   String get mainImageURL;
   @override
   @JsonKey(ignore: true)

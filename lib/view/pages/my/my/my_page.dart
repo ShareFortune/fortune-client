@@ -4,7 +4,6 @@ import 'package:fortune_client/l10n/locale_keys.g.dart';
 import 'package:fortune_client/view/pages/my/edit/edit_profile_page.dart';
 import 'package:fortune_client/view/pages/my/my/my_page_view_model.dart';
 import 'package:fortune_client/view/routes/route_navigator.dart';
-import 'package:fortune_client/view/routes/route_path.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/app_bar/back_app_bar.dart';
 import 'package:fortune_client/view/widgets/other/async_value_widget.dart';
@@ -22,7 +21,6 @@ class MyPage extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = ref.watch(appThemeProvider);
     final state = ref.watch(myPageViewModelProvider);
-    final viewModel = ref.watch(myPageViewModelProvider.notifier);
 
     return Scaffold(
       backgroundColor: theme.appColors.onBackground,
@@ -36,8 +34,9 @@ class MyPage extends HookConsumerWidget {
         ],
       ),
       body: AsyncValueWidget(
-        data: state.profile,
-        builder: (profile) {
+        data: state,
+        builder: (myPageState) {
+          final profile = myPageState.profile;
           return Stack(
             children: [
               SingleChildScrollView(

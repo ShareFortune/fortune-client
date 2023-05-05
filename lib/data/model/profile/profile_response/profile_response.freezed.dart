@@ -824,14 +824,15 @@ class __$$_ProfileFilesCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_ProfileFiles implements _ProfileFiles {
+class _$_ProfileFiles extends _ProfileFiles {
   _$_ProfileFiles(
       {required this.mainImage,
       this.secondImage,
       this.thirdImage,
       this.fourthImage,
       this.fifthImage,
-      this.sixthImage});
+      this.sixthImage})
+      : super._();
 
   factory _$_ProfileFiles.fromJson(Map<String, dynamic> json) =>
       _$$_ProfileFilesFromJson(json);
@@ -892,7 +893,7 @@ class _$_ProfileFiles implements _ProfileFiles {
   }
 }
 
-abstract class _ProfileFiles implements ProfileFiles {
+abstract class _ProfileFiles extends ProfileFiles {
   factory _ProfileFiles(
       {required final String mainImage,
       final String? secondImage,
@@ -900,6 +901,7 @@ abstract class _ProfileFiles implements ProfileFiles {
       final String? fourthImage,
       final String? fifthImage,
       final String? sixthImage}) = _$_ProfileFiles;
+  _ProfileFiles._() : super._();
 
   factory _ProfileFiles.fromJson(Map<String, dynamic> json) =
       _$_ProfileFiles.fromJson;

@@ -29,6 +29,13 @@ class NumberPicker extends BasePicker {
     return isUnselected(value) ? unselected : value;
   }
 
+  int? getValidValue(int index) {
+    final value = getValue(index);
+    if (value < minValue) return null;
+    if (value > maxValue) return null;
+    return value;
+  }
+
   NumberPicker._({
     required this.minValue,
     required this.maxValue,
@@ -42,7 +49,7 @@ class NumberPicker extends BasePicker {
       minValue: 4,
       maxValue: 10,
       format: LocaleKeys.data_room_membersNum_data_all.tr(),
-      args: (int value) => [value.toString()],
+      args: (int? value) => [value.toString()],
     );
   }
 
@@ -52,13 +59,13 @@ class NumberPicker extends BasePicker {
       minValue: 130,
       maxValue: 200,
       format: LocaleKeys.data_profile_stature_data.tr(),
-      args: (int value) => [value.toString()],
+      args: (int? value) => [value.toString()],
     );
   }
 
   Future<void> show({
     required BuildContext context,
-    Function(int)? onChanged,
+    Function(int?)? onChanged,
   }) async {
     await showModalBottomSheet(
       context: context,
@@ -68,7 +75,7 @@ class NumberPicker extends BasePicker {
           items: List.generate(count, (index) {
             return format.tr(args: args?.call(getValue(index)));
           }).toList(),
-          onChanged: (index) => onChanged?.call(getValue(index)),
+          onChanged: (index) => onChanged?.call(getValidValue(index)),
         );
       },
     );

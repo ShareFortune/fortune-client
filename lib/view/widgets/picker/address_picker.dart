@@ -21,7 +21,7 @@ class AddressPicker extends BasePicker {
   Future<Address?> show({
     required BuildContext context,
     required AppTheme theme,
-    required Address? address,
+    Address? address,
     Function(Address)? onChanged,
   }) async {
     return convertAddress(

@@ -13,7 +13,6 @@ import 'package:fortune_client/view/widgets/app_bar/back_app_bar.dart';
 import 'package:fortune_client/view/widgets/container/text_input_container.dart';
 import 'package:fortune_client/view/widgets/container/view_state_container.dart';
 import 'package:fortune_client/view/widgets/dialog/toast.dart';
-import 'package:fortune_client/view/widgets/form_field/base_text_field.dart';
 import 'package:fortune_client/view/widgets/picker/address_picker.dart';
 import 'package:fortune_client/view/widgets/picker/enum_picker.dart';
 import 'package:fortune_client/view/widgets/picker/number_picker.dart';

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fortune_client/view/pages/common/input/input_long_text_page.dart';
+import 'package:fortune_client/view/pages/common/input_long_text_page.dart';
 import 'package:fortune_client/view/routes/route_navigator.dart';
 import 'package:fortune_client/view/widgets/profile/profile_view_item.dart';
 

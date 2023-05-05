@@ -36,7 +36,7 @@ class RoomInputViewModel extends _$RoomInputViewModel {
     state = state.copyWith(title: value);
   }
 
-  changeMembersNum(int value) {
+  changeMembersNum(int? value) {
     state = state.copyWith(membersNum: value);
   }
 

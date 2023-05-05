@@ -15,6 +15,7 @@ enum RoutePath {
   home('/home'),
 
   /// Profile
+  userInfoInput('/userInfoInput'),
   profileInput('/profileInput'),
   profileEdit('/profileEdit'),
   profile('/profile'),

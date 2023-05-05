@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:fortune_client/view/pages/common/home/home_view_model.dart';
+import 'package:fortune_client/view/pages/home/home_view_model.dart';
 import 'package:fortune_client/view/pages/message/message_room_list/message_room_list_page.dart';
 import 'package:fortune_client/view/pages/rooms/participating/participating_page.dart';
 import 'package:fortune_client/view/pages/rooms/room_list/room_list_page.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:screen_loader/screen_loader.dart';
 
-class HomePage extends HookConsumerWidget {
-  const HomePage({super.key});
+class HomePage extends HookConsumerWidget with ScreenLoader {
+  HomePage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -14,7 +15,7 @@ class HomePage extends HookConsumerWidget {
     final viewModel = ref.watch(homeViewModelProvider.notifier);
 
     final pages = [
-      const RoomListPage(),
+      RoomListPage(),
       const ParticipatingPage(),
       const MessageRoomListPage(),
     ];

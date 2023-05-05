@@ -19,11 +19,11 @@ class _JoinRequestsDataSource implements JoinRequestsDataSource {
   String? baseUrl;
 
   @override
-  Future<RoomIdResponse> sendJoinRequest(roomId) async {
+  Future<RoomIdResponse> sendJoinRequest(String roomId) async {
     const _extra = <String, dynamic>{'append-token': true};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
+    final Map<String, dynamic>? _data = null;
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<RoomIdResponse>(Options(
       method: 'POST',
@@ -43,9 +43,9 @@ class _JoinRequestsDataSource implements JoinRequestsDataSource {
 
   @override
   Future<JoinRequestsResponse> getJoinRequest(
-    id, {
-    nextToken,
-    perPage,
+    String id, {
+    String? nextToken,
+    int? perPage,
   }) async {
     const _extra = <String, dynamic>{'append-token': true};
     final queryParameters = <String, dynamic>{
@@ -54,7 +54,7 @@ class _JoinRequestsDataSource implements JoinRequestsDataSource {
     };
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
+    final Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<JoinRequestsResponse>(Options(
       method: 'GET',
@@ -73,11 +73,11 @@ class _JoinRequestsDataSource implements JoinRequestsDataSource {
   }
 
   @override
-  Future<RoomIdResponse> accept(requestId) async {
+  Future<RoomIdResponse> accept(String requestId) async {
     const _extra = <String, dynamic>{'append-token': true};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
+    final Map<String, dynamic>? _data = null;
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<RoomIdResponse>(Options(
       method: 'PATCH',
@@ -96,11 +96,11 @@ class _JoinRequestsDataSource implements JoinRequestsDataSource {
   }
 
   @override
-  Future<RoomIdResponse> reject(requestId) async {
+  Future<RoomIdResponse> reject(String requestId) async {
     const _extra = <String, dynamic>{'append-token': true};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
+    final Map<String, dynamic>? _data = null;
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<RoomIdResponse>(Options(
       method: 'PATCH',

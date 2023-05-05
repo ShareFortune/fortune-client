@@ -23,16 +23,22 @@ class LaunchPage extends StatelessWidget {
       }
 
       /// ログインチェック
-      // if (!Repository.auth.isLogin) {
-      //   /// ログインしていない場合はログイン画面へ
-      //   return navigator.navigateToRemoveUntil(RoutePath.login);
-      // }
+      if (!Repository.auth.isLogin) {
+        /// ログインしていない場合はログイン画面へ
+        return navigator.navigateToRemoveUntil(RoutePath.login);
+      }
 
-      // /// プロフィール作成チェック
-      // if (!await Repository.profile.isCreated()) {
-      //   /// プロフィールが作成されていない場合はプロフィール作成画面へ
-      //   return navigator.navigateToRemoveUntil(RoutePath.profileInput);
-      // }
+      /// ユーザー作成チェック
+      if (!Repository.users.isCreated()) {
+        /// ユーザーが作成されていない場合はユーザー作成画面へ
+        return navigator.navigateToRemoveUntil(RoutePath.userInfoInput);
+      }
+
+      /// プロフィール作成チェック
+      if (!Repository.profile.isCreated()) {
+        /// プロフィールが作成されていない場合はプロフィール作成画面へ
+        return navigator.navigateToRemoveUntil(RoutePath.profileInput);
+      }
 
       /// ホーム画面へ
       return navigator.navigateToRemoveUntil(RoutePath.home);

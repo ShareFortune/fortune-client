@@ -16,8 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$MyPageState {
-  File? get icon => throw _privateConstructorUsedError;
-  AsyncValue<ProfileResponse> get profile => throw _privateConstructorUsedError;
+  ProfileResponse get profile => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $MyPageStateCopyWith<MyPageState> get copyWith =>
@@ -30,7 +29,9 @@ abstract class $MyPageStateCopyWith<$Res> {
           MyPageState value, $Res Function(MyPageState) then) =
       _$MyPageStateCopyWithImpl<$Res, MyPageState>;
   @useResult
-  $Res call({File? icon, AsyncValue<ProfileResponse> profile});
+  $Res call({ProfileResponse profile});
+
+  $ProfileResponseCopyWith<$Res> get profile;
 }
 
 /// @nodoc
@@ -46,19 +47,22 @@ class _$MyPageStateCopyWithImpl<$Res, $Val extends MyPageState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? icon = freezed,
     Object? profile = null,
   }) {
     return _then(_value.copyWith(
-      icon: freezed == icon
-          ? _value.icon
-          : icon // ignore: cast_nullable_to_non_nullable
-              as File?,
       profile: null == profile
           ? _value.profile
           : profile // ignore: cast_nullable_to_non_nullable
-              as AsyncValue<ProfileResponse>,
+              as ProfileResponse,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ProfileResponseCopyWith<$Res> get profile {
+    return $ProfileResponseCopyWith<$Res>(_value.profile, (value) {
+      return _then(_value.copyWith(profile: value) as $Val);
+    });
   }
 }
 
@@ -70,7 +74,10 @@ abstract class _$$_MyPageStateCopyWith<$Res>
       __$$_MyPageStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({File? icon, AsyncValue<ProfileResponse> profile});
+  $Res call({ProfileResponse profile});
+
+  @override
+  $ProfileResponseCopyWith<$Res> get profile;
 }
 
 /// @nodoc
@@ -84,18 +91,13 @@ class __$$_MyPageStateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? icon = freezed,
     Object? profile = null,
   }) {
     return _then(_$_MyPageState(
-      icon: freezed == icon
-          ? _value.icon
-          : icon // ignore: cast_nullable_to_non_nullable
-              as File?,
       profile: null == profile
           ? _value.profile
           : profile // ignore: cast_nullable_to_non_nullable
-              as AsyncValue<ProfileResponse>,
+              as ProfileResponse,
     ));
   }
 }
@@ -103,16 +105,14 @@ class __$$_MyPageStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_MyPageState implements _MyPageState {
-  const _$_MyPageState({this.icon, required this.profile});
+  const _$_MyPageState({required this.profile});
 
   @override
-  final File? icon;
-  @override
-  final AsyncValue<ProfileResponse> profile;
+  final ProfileResponse profile;
 
   @override
   String toString() {
-    return 'MyPageState(icon: $icon, profile: $profile)';
+    return 'MyPageState(profile: $profile)';
   }
 
   @override
@@ -120,12 +120,11 @@ class _$_MyPageState implements _MyPageState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_MyPageState &&
-            (identical(other.icon, icon) || other.icon == icon) &&
             (identical(other.profile, profile) || other.profile == profile));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, icon, profile);
+  int get hashCode => Object.hash(runtimeType, profile);
 
   @JsonKey(ignore: true)
   @override
@@ -135,14 +134,11 @@ class _$_MyPageState implements _MyPageState {
 }
 
 abstract class _MyPageState implements MyPageState {
-  const factory _MyPageState(
-      {final File? icon,
-      required final AsyncValue<ProfileResponse> profile}) = _$_MyPageState;
+  const factory _MyPageState({required final ProfileResponse profile}) =
+      _$_MyPageState;
 
   @override
-  File? get icon;
-  @override
-  AsyncValue<ProfileResponse> get profile;
+  ProfileResponse get profile;
   @override
   @JsonKey(ignore: true)
   _$$_MyPageStateCopyWith<_$_MyPageState> get copyWith =>

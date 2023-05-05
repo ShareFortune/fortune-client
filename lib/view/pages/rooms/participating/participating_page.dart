@@ -42,7 +42,6 @@ class _ParticipatingPageState extends ConsumerState<ParticipatingPage>
   Widget build(BuildContext context) {
     final theme = ref.watch(appThemeProvider);
     final state = ref.watch(participatingViewModelProvider);
-    final viewModel = ref.watch(participatingViewModelProvider.notifier);
 
     return Stack(
       children: [

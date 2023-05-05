@@ -23,7 +23,7 @@ class _MessageRoomsDataSource implements MessageRoomsDataSource {
     const _extra = <String, dynamic>{'append-token': true};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
+    final Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<MessageRoomsResponse>(Options(
       method: 'GET',
@@ -46,7 +46,7 @@ class _MessageRoomsDataSource implements MessageRoomsDataSource {
     const _extra = <String, dynamic>{'append-token': true};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
+    final Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<MessageRoomsResponse>(Options(
       method: 'GET',
