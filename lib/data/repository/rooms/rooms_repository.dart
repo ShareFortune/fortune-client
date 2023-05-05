@@ -43,6 +43,9 @@ abstract class RoomsRepository {
     Address? address,
   });
 
+  /// 次のページを取得
+  Future<List<Room>> fetchNextRooms();
+
   /// ルームリストを取得・ホスト
   Future<List<RoomsHostResponseRoom>> fetchRoomsHost();
 

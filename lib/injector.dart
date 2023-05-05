@@ -90,7 +90,7 @@ Future<void> initDependencies({bool testMode = false}) async {
     () => ProfileRepositoryImpl(getIt(), getIt()),
   );
   getIt.registerLazySingleton<RoomsRepository>(
-    () => RoomsRepositoryImpl(getIt()),
+    () => RoomsRepositoryImpl(getIt(), getIt()),
   );
   getIt.registerLazySingleton<TagsRepository>(
     () => TagsRepositoryImpl(getIt()),

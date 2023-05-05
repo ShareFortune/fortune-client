@@ -1,5 +1,4 @@
 import 'package:fortune_client/data/model/profile/profile_response/profile_response.dart';
-import 'package:fortune_client/util/storage/app_pref_key.dart';
 
 enum ProfileImagesType {
   mainImage,
@@ -19,24 +18,6 @@ extension ProfileImagesTypeEx on ProfileImagesType {
       ProfileImagesType.fifthImage,
       ProfileImagesType.sixthImage,
     ];
-  }
-
-  /// SharedPreferences key
-  String get keyString {
-    switch (this) {
-      case ProfileImagesType.mainImage:
-        return AppPrefKey.profileMainImage.keyString;
-      case ProfileImagesType.secondImage:
-        return AppPrefKey.profileSecondImage.keyString;
-      case ProfileImagesType.thirdImage:
-        return AppPrefKey.profileThirdImage.keyString;
-      case ProfileImagesType.fourthImage:
-        return AppPrefKey.profileFourthImage.keyString;
-      case ProfileImagesType.fifthImage:
-        return AppPrefKey.profileFifthImage.keyString;
-      case ProfileImagesType.sixthImage:
-        return AppPrefKey.profileSixthImage.keyString;
-    }
   }
 
   String? imageURL(ProfileResponse profile) {

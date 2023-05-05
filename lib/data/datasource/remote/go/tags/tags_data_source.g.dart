@@ -19,7 +19,7 @@ class _TagsDataSource implements TagsDataSource {
   String? baseUrl;
 
   @override
-  Future<TagIdResponse> create(body) async {
+  Future<TagIdResponse> create(Map<String, dynamic> body) async {
     const _extra = <String, dynamic>{'append-token': true};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -44,9 +44,9 @@ class _TagsDataSource implements TagsDataSource {
 
   @override
   Future<TagsResponse> search({
-    name,
-    nextToken,
-    perPage,
+    String? name,
+    String? nextToken,
+    int? perPage,
   }) async {
     const _extra = <String, dynamic>{'append-token': true};
     final queryParameters = <String, dynamic>{
@@ -56,7 +56,7 @@ class _TagsDataSource implements TagsDataSource {
     };
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
+    final Map<String, dynamic>? _data = null;
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<TagsResponse>(Options(
       method: 'GET',
