@@ -19,7 +19,7 @@ class _UsersDataSource implements UsersDataSource {
   String? baseUrl;
 
   @override
-  Future<UsersIdResponse> create(body) async {
+  Future<UsersIdResponse> create(Map<String, dynamic> body) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};

@@ -21,7 +21,6 @@ class MyPage extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = ref.watch(appThemeProvider);
     final state = ref.watch(myPageViewModelProvider);
-    final viewModel = ref.watch(myPageViewModelProvider.notifier);
 
     return Scaffold(
       backgroundColor: theme.appColors.onBackground,

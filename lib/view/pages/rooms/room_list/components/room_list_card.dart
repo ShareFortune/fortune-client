@@ -6,7 +6,6 @@ import 'package:fortune_client/gen/assets.gen.dart';
 import 'package:fortune_client/l10n/locale_keys.g.dart';
 import 'package:fortune_client/util/logger/logger.dart';
 import 'package:fortune_client/view/pages/rooms/room_list/room_list_state.dart';
-import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/room/room_member_icons.dart';
 import 'package:gap/gap.dart';
@@ -80,7 +79,7 @@ class RoomListCard extends StatelessWidget {
         /// ホストアイコン
         ClipOval(
           child: Image.network(
-            room.data.hostMainImageURL,
+            room.data.hostImageURL,
             width: 50,
             height: 50,
             fit: BoxFit.cover,

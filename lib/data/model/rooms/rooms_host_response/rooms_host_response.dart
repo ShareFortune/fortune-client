@@ -1,6 +1,7 @@
 import 'package:fortune_client/data/model/addresses/address/address.dart';
 import 'package:fortune_client/data/model/enum/room_status.dart';
 import 'package:fortune_client/data/model/profile/members_num/members_num.dart';
+import 'package:fortune_client/util/converter/image_converter.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'rooms_host_response.freezed.dart';
@@ -19,6 +20,7 @@ class RoomsHostResponse with _$RoomsHostResponse {
 
 @freezed
 class RoomsHostResponseRoom with _$RoomsHostResponseRoom {
+  const RoomsHostResponseRoom._();
   const factory RoomsHostResponseRoom({
     /// ルームID
     required String id,
@@ -41,6 +43,15 @@ class RoomsHostResponseRoom with _$RoomsHostResponseRoom {
     /// ステータス
     @RoomStatusConverter() required RoomStatus status,
   }) = _RoomsHostResponseRoom;
+
+  /// HttpsのURLをHttpに変換する
+  String httpUrl(String url) {
+    return ImageConverter.convertHttpsToHttp(url);
+  }
+
+  List<String>? get httpParticipantMainImageURLs {
+    return participantMainImageURLs?.map((e) => httpUrl(e)).toList();
+  }
 
   factory RoomsHostResponseRoom.fromJson(Map<String, dynamic> json) =>
       _$RoomsHostResponseRoomFromJson(json);

@@ -20,8 +20,8 @@ class _MessagesDataSource implements MessagesDataSource {
 
   @override
   Future<void> send(
-    messageRoomId,
-    body,
+    String messageRoomId,
+    Map<String, dynamic> body,
   ) async {
     const _extra = <String, dynamic>{'append-token': true};
     final queryParameters = <String, dynamic>{};
@@ -40,14 +40,13 @@ class _MessagesDataSource implements MessagesDataSource {
           data: _data,
         )
         .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    return null;
   }
 
   @override
   Future<MessagesResponse> fetchMessages(
-    messageRoomId, {
-    nextToken,
-    perPage,
+    String messageRoomId, {
+    String? nextToken,
+    int? perPage,
   }) async {
     const _extra = <String, dynamic>{'append-token': true};
     final queryParameters = <String, dynamic>{
@@ -56,7 +55,7 @@ class _MessagesDataSource implements MessagesDataSource {
     };
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
+    final Map<String, dynamic>? _data = null;
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<MessagesResponse>(Options(
       method: 'GET',

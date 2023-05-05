@@ -402,7 +402,7 @@ class __$$_GetV1RoomsGuestResponseRoomCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_GetV1RoomsGuestResponseRoom implements _GetV1RoomsGuestResponseRoom {
+class _$_GetV1RoomsGuestResponseRoom extends _GetV1RoomsGuestResponseRoom {
   const _$_GetV1RoomsGuestResponseRoom(
       {required this.id,
       required this.roomName,
@@ -412,7 +412,8 @@ class _$_GetV1RoomsGuestResponseRoom implements _GetV1RoomsGuestResponseRoom {
       required this.membersNum,
       @RoomStatusConverter() required this.roomStatus,
       @JoinRequestStatusConverter() required this.joinRequestStatus})
-      : _participantMainImageURLs = participantMainImageURLs;
+      : _participantMainImageURLs = participantMainImageURLs,
+        super._();
 
   factory _$_GetV1RoomsGuestResponseRoom.fromJson(Map<String, dynamic> json) =>
       _$$_GetV1RoomsGuestResponseRoomFromJson(json);
@@ -515,7 +516,7 @@ class _$_GetV1RoomsGuestResponseRoom implements _GetV1RoomsGuestResponseRoom {
   }
 }
 
-abstract class _GetV1RoomsGuestResponseRoom implements RoomsGuestResponseRoom {
+abstract class _GetV1RoomsGuestResponseRoom extends RoomsGuestResponseRoom {
   const factory _GetV1RoomsGuestResponseRoom(
           {required final String id,
           required final String roomName,
@@ -528,6 +529,7 @@ abstract class _GetV1RoomsGuestResponseRoom implements RoomsGuestResponseRoom {
           @JoinRequestStatusConverter()
               required final JoinRequestStatus joinRequestStatus}) =
       _$_GetV1RoomsGuestResponseRoom;
+  const _GetV1RoomsGuestResponseRoom._() : super._();
 
   factory _GetV1RoomsGuestResponseRoom.fromJson(Map<String, dynamic> json) =
       _$_GetV1RoomsGuestResponseRoom.fromJson;

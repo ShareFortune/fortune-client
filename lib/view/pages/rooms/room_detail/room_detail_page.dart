@@ -28,6 +28,7 @@ class RoomDetailPageArguments {
   });
 }
 
+// ignore: must_be_immutable
 class RoomDetailPage extends HookConsumerWidget with ScreenLoader {
   RoomDetailPage(this.arguments, {super.key});
 
@@ -183,11 +184,8 @@ class RoomDetailPage extends HookConsumerWidget with ScreenLoader {
               child: Text('変更する', style: defaultTextStyle),
               onPressed: () async {
                 await performFuture(() async {
-                  await Future.delayed(const Duration(seconds: 20), () {
-                    print("object");
-                    navigator.goBack();
-                    update.call();
-                  });
+                  navigator.goBack();
+                  update.call();
                 });
               },
             ),
@@ -258,8 +256,8 @@ class _Item extends HookConsumerWidget {
 }
 
 /// ルームのメンバーを表示する
-class _MemberListView extends HookConsumerWidget with ScreenLoader {
-  _MemberListView(this.users, this.onTap);
+class _MemberListView extends HookConsumerWidget {
+  const _MemberListView(this.users, this.onTap);
 
   final List<FortuneUser> users;
   final Function(FortuneUser) onTap;
@@ -287,7 +285,7 @@ class _MemberListView extends HookConsumerWidget with ScreenLoader {
           return GestureDetector(
             onTap: () => onTap(user),
             child: Column(children: [
-              UserIconWidget(user.mainImageURL, radius: iconRadius),
+              UserIconWidget(user.image, radius: iconRadius),
               Gap(middleMargin),
               SizedBox(
                 height: nameHeight,

@@ -4,7 +4,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'my_page_view_model.g.dart';
 
-@riverpod
+@Riverpod(keepAlive: true)
 class MyPageViewModel extends _$MyPageViewModel {
   @override
   Future<MyPageState> build() async {

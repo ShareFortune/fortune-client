@@ -16,6 +16,7 @@ import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:screen_loader/screen_loader.dart';
 
+// ignore: must_be_immutable
 class RoomListPage extends HookConsumerWidget with ScreenLoader {
   RoomListPage({super.key});
 

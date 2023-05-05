@@ -114,7 +114,7 @@ class _ProfileImageEditor extends HookConsumerWidget {
     final theme = ref.watch(appThemeProvider);
 
     // /// 画像をキャッシュしておく
-    // images.map((e) => precacheImage(e.image, context));
+    images.map((e) => precacheImage(e.image, context));
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
