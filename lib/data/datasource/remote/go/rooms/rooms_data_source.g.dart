@@ -19,7 +19,7 @@ class _RoomsDataSource implements RoomsDataSource {
   String? baseUrl;
 
   @override
-  Future<RoomIdResponse> create(Map<String, dynamic> body) async {
+  Future<RoomIdResponse> create(body) async {
     const _extra = <String, dynamic>{'append-token': true};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -44,12 +44,12 @@ class _RoomsDataSource implements RoomsDataSource {
 
   @override
   Future<RoomsResponse> fetchRooms({
-    int? addressId,
-    String? applicationDeadline,
-    int? memberNum,
-    List<String>? tagIds,
-    String? nextToken,
-    int? perPage,
+    addressId,
+    applicationDeadline,
+    memberNum,
+    tagIds,
+    nextToken,
+    perPage,
   }) async {
     const _extra = <String, dynamic>{'append-token': true};
     final queryParameters = <String, dynamic>{
@@ -62,7 +62,7 @@ class _RoomsDataSource implements RoomsDataSource {
     };
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
-    final Map<String, dynamic>? _data = null;
+    final _data = <String, dynamic>{};
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<RoomsResponse>(Options(
       method: 'GET',
@@ -81,11 +81,11 @@ class _RoomsDataSource implements RoomsDataSource {
   }
 
   @override
-  Future<RoomDetail> getDetail(String id) async {
+  Future<RoomDetail> getDetail(id) async {
     const _extra = <String, dynamic>{'append-token': true};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final Map<String, dynamic>? _data = null;
+    final _data = <String, dynamic>{};
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<RoomDetail>(Options(
       method: 'GET',
@@ -105,8 +105,8 @@ class _RoomsDataSource implements RoomsDataSource {
 
   @override
   Future<RoomsHostResponse> getRoomsHost({
-    String? nextToken,
-    int? perPage,
+    nextToken,
+    perPage,
   }) async {
     const _extra = <String, dynamic>{'append-token': true};
     final queryParameters = <String, dynamic>{
@@ -115,7 +115,7 @@ class _RoomsDataSource implements RoomsDataSource {
     };
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
-    final Map<String, dynamic>? _data = null;
+    final _data = <String, dynamic>{};
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<RoomsHostResponse>(Options(
       method: 'GET',
@@ -135,8 +135,8 @@ class _RoomsDataSource implements RoomsDataSource {
 
   @override
   Future<RoomsGuestResponse> getRoomsGuest({
-    String? nextToken,
-    int? perPage,
+    nextToken,
+    perPage,
   }) async {
     const _extra = <String, dynamic>{'append-token': true};
     final queryParameters = <String, dynamic>{
@@ -145,7 +145,7 @@ class _RoomsDataSource implements RoomsDataSource {
     };
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
-    final Map<String, dynamic>? _data = null;
+    final _data = <String, dynamic>{};
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<RoomsGuestResponse>(Options(
       method: 'GET',
@@ -165,8 +165,8 @@ class _RoomsDataSource implements RoomsDataSource {
 
   @override
   Future<RoomIdResponse> update(
-    String id,
-    Map<String, dynamic> body,
+    id,
+    body,
   ) async {
     const _extra = <String, dynamic>{'append-token': true};
     final queryParameters = <String, dynamic>{};

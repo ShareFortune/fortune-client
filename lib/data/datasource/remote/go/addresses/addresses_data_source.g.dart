@@ -19,12 +19,12 @@ class _AddressesDataSource implements AddressesDataSource {
   String? baseUrl;
 
   @override
-  Future<AddressesResponse> search({String? city}) async {
+  Future<AddressesResponse> search({city}) async {
     const _extra = <String, dynamic>{'append-token': true};
     final queryParameters = <String, dynamic>{r'city': city};
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
-    final Map<String, dynamic>? _data = null;
+    final _data = <String, dynamic>{};
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<AddressesResponse>(Options(
       method: 'GET',

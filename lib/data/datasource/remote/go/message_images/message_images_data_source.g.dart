@@ -20,8 +20,8 @@ class _MessageImagesDataSource implements MessageImagesDataSource {
 
   @override
   Future<ImageMessageIdResponse> send(
-    String messageRoomId,
-    Map<String, dynamic> body,
+    messageRoomId,
+    body,
   ) async {
     const _extra = <String, dynamic>{'append-token': true};
     final queryParameters = <String, dynamic>{};
