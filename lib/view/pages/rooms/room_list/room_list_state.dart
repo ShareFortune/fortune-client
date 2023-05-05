@@ -9,6 +9,9 @@ part 'room_list_state.freezed.dart';
 @freezed
 class RoomListState with _$RoomListState {
   const factory RoomListState({
+    /// 次のページを取得中か
+    @Default(false) bool isFetchingNextPage,
+
     /// ルームの検索結果が存在するか
     ///
     /// 存在しない場合はfalseになり、

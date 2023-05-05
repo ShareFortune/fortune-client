@@ -46,13 +46,19 @@ class RoomListViewModel extends StateNotifier<RoomListState> {
   /// 次のページを取得
   Future<void> fetchNextRooms() async {
     if (state.rooms.value == null) return;
-    final result = await Repository.rooms.fetchNextRooms();
-    if (result.isEmpty) return;
+    state = state.copyWith(isFetchingNextPage: true);
+    final result = await Future.delayed(
+      const Duration(seconds: 5),
+      () => Repository.rooms.fetchNextRooms(),
+    );
+
     state = state.copyWith(
+      isFetchingNextPage: false,
       rooms: await AsyncValue.guard(() async {
-        final data = state.rooms.value!;
-        data.addAll(result.map((data) => RoomListStateRoom(data: data)));
-        return data;
+        return [
+          ...state.rooms.value!,
+          ...result.map((data) => RoomListStateRoom(data: data))
+        ];
       }),
     );
   }
