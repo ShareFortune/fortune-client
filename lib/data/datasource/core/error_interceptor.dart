@@ -20,13 +20,15 @@ class ErrorInterceptor extends InterceptorsWrapper {
   @override
   Future<void> onError(err, handler) async {
     switch (err.type) {
+      case DioErrorType.badResponse:
+        return handler.next(err);
+
       case DioErrorType.connectionTimeout:
       case DioErrorType.sendTimeout:
       case DioErrorType.receiveTimeout:
         throw FortuneError(type: ErrorType.timeout);
 
       case DioErrorType.badCertificate:
-      case DioErrorType.badResponse:
       case DioErrorType.connectionError:
         throw FortuneError(type: ErrorType.apiFailure);
 
