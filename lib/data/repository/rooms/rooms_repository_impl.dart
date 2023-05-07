@@ -26,14 +26,6 @@ class RoomsRepositoryImpl implements RoomsRepository {
 
   RoomsRepositoryImpl(this._roomsDataSource, this._shared);
 
-  /// NextTokenを取得
-  String? get roomsNextToken =>
-      _shared.getString(AppPrefKey.roomsNextToken.keyString);
-
-  /// NextTokenを保存
-  void setRoomsNextToken(String? nextToken) =>
-      _shared.setString(AppPrefKey.roomsNextToken.keyString, nextToken ?? "");
-
   @override
   Future<String> create({
     required String title,
@@ -100,28 +92,28 @@ class RoomsRepositoryImpl implements RoomsRepository {
     int? addressId;
     if (address != null) addressId = await Repository.address.getId(address);
 
-    final response = await _roomsDataSource.fetchRooms(
+    final result = await _roomsDataSource.fetchRooms(
       perPage: roomPageSize,
       memberNum: memberNum,
       tagIds: tags?.map((e) => e.id).toList(),
       addressId: addressId,
     );
 
-    setRoomsNextToken(response.nextToken);
-    return response.rooms;
+    setRoomsNextToken(result.nextToken);
+    return result.rooms;
   }
 
   @override
-  Future<List<Room>> fetchNextRooms() async {
+  Future<List<Room>> fetchRoomsNext() async {
     if (roomsNextToken?.isNotEmpty != true) return [];
 
-    final response = await _roomsDataSource.fetchRooms(
+    final result = await _roomsDataSource.fetchRooms(
       perPage: roomPageSize,
       nextToken: roomsNextToken,
     );
 
-    setRoomsNextToken(response.nextToken);
-    return response.rooms;
+    setRoomsNextToken(result.nextToken);
+    return result.rooms;
   }
 
   @override
@@ -131,13 +123,65 @@ class RoomsRepositoryImpl implements RoomsRepository {
 
   @override
   Future<List<RoomsHostResponseRoom>> fetchRoomsHost() async {
-    final result = await _roomsDataSource.getRoomsHost(perPage: 10);
+    final result = await _roomsDataSource.getRoomsHost(perPage: roomPageSize);
+    setRoomsHostNextToken(result.nextToken);
     return result.rooms;
   }
 
   @override
   Future<List<RoomsGuestResponseRoom>> fetchRoomsGuest() async {
-    final result = await _roomsDataSource.getRoomsGuest(perPage: 10);
+    final result = await _roomsDataSource.getRoomsGuest(perPage: roomPageSize);
+    setRoomsGuestNextToken(result.nextToken);
     return result.rooms;
   }
+
+  @override
+  Future<List<RoomsHostResponseRoom>> fetchRoomsHostNext() async {
+    if (roomsHostNextToken?.isNotEmpty != true) return [];
+
+    final result = await _roomsDataSource.getRoomsHost(
+      perPage: roomPageSize,
+      nextToken: roomsNextToken,
+    );
+
+    setRoomsHostNextToken(result.nextToken);
+    return result.rooms;
+  }
+
+  @override
+  Future<List<RoomsGuestResponseRoom>> fetchRoomsGuestNext() async {
+    if (roomsGuestNextToken?.isNotEmpty != true) return [];
+
+    final result = await _roomsDataSource.getRoomsGuest(
+      perPage: roomPageSize,
+      nextToken: roomsNextToken,
+    );
+
+    setRoomsGuestNextToken(result.nextToken);
+    return result.rooms;
+  }
+
+  /// NextTokenを取得
+  String? get roomsNextToken =>
+      _shared.getString(AppPrefKey.roomsNextToken.keyString);
+
+  /// NextTokenを保存
+  void setRoomsNextToken(String? nextToken) =>
+      _shared.setString(AppPrefKey.roomsNextToken.keyString, nextToken ?? "");
+
+  /// NextTokenを取得 (Host)
+  String? get roomsHostNextToken =>
+      _shared.getString(AppPrefKey.joinRoomsNextTokenHost.keyString);
+
+  /// NextTokenを保存 (Host)
+  void setRoomsHostNextToken(String? nextToken) => _shared.setString(
+      AppPrefKey.joinRoomsNextTokenHost.keyString, nextToken ?? "");
+
+  /// NextTokenを取得 (Guest)
+  String? get roomsGuestNextToken =>
+      _shared.getString(AppPrefKey.joinRoomsNextTokenGuest.keyString);
+
+  /// NextTokenを保存 (Guest)
+  void setRoomsGuestNextToken(String? nextToken) => _shared.setString(
+      AppPrefKey.joinRoomsNextTokenGuest.keyString, nextToken ?? "");
 }

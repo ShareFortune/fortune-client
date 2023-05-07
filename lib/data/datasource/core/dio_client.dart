@@ -6,10 +6,6 @@ import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 class DioClient {
   static get client => Dio(options)..interceptors.addAll(interceptors);
-  // final dio = Dio()..interceptors.addAll(interceptors);
-  // dio.options.baseUrl = Constants.of().baseUrl;
-  // // dio.options.connectTimeout = const Duration(milliseconds: 30000);
-  // // dio.options.receiveTimeout = const Duration(milliseconds: 30000);
 
   static get options => BaseOptions(
         baseUrl: Constants.of().baseUrl,

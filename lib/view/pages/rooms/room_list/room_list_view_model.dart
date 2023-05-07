@@ -47,14 +47,10 @@ class RoomListViewModel extends StateNotifier<RoomListState> {
   Future<void> fetchNextRooms() async {
     if (state.rooms.value == null) return;
     state = state.copyWith(isFetchingNextPage: true);
-    final result = await Future.delayed(
-      const Duration(seconds: 5),
-      () => Repository.rooms.fetchNextRooms(),
-    );
-
     state = state.copyWith(
       isFetchingNextPage: false,
       rooms: await AsyncValue.guard(() async {
+        final result = await Repository.rooms.fetchRoomsNext();
         return [
           ...state.rooms.value!,
           ...result.map((data) => RoomListStateRoom(data: data))

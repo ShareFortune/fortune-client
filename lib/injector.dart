@@ -28,7 +28,6 @@ import 'package:fortune_client/data/datasource/remote/go/users/fake_users_data_s
 import 'package:fortune_client/data/datasource/remote/go/users/users_data_source.dart';
 import 'package:fortune_client/data/repository/addresses/addresses_repository.dart';
 import 'package:fortune_client/data/repository/addresses/addresses_repository_impl.dart';
-
 import 'package:fortune_client/data/repository/auth/auth_repository.dart';
 import 'package:fortune_client/data/repository/auth/auth_repository_impl.dart';
 import 'package:fortune_client/data/repository/debug/debug_repository.dart';

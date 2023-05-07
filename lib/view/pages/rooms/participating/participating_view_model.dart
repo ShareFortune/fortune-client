@@ -13,4 +13,36 @@ class ParticipatingViewModel extends _$ParticipatingViewModel {
       guest: await Repository.rooms.fetchRoomsGuest(),
     );
   }
+
+  /// 次のページを取得 (ホスト)
+  Future<void> fetchNextHostRooms() async {
+    final value = state.value;
+    if (value == null) return;
+    state = AsyncData(value.copyWith(isFetchingNextHostPage: true));
+    state = await AsyncValue.guard(() async {
+      return value.copyWith(
+        isFetchingNextHostPage: false,
+        host: [
+          ...value.host,
+          ...await Repository.rooms.fetchRoomsHostNext(),
+        ],
+      );
+    });
+  }
+
+  /// 次のページを取得 (ゲスト)
+  Future<void> fetchNextGuestRooms() async {
+    final value = state.value;
+    if (value == null) return;
+    state = AsyncData(value.copyWith(isFetchingNextGuestPage: true));
+    state = await AsyncValue.guard(() async {
+      return value.copyWith(
+        isFetchingNextGuestPage: false,
+        guest: [
+          ...value.guest,
+          ...await Repository.rooms.fetchRoomsGuestNext(),
+        ],
+      );
+    });
+  }
 }

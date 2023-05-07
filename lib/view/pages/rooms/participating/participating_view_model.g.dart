@@ -7,7 +7,7 @@ part of 'participating_view_model.dart';
 // **************************************************************************
 
 String _$participatingViewModelHash() =>
-    r'06138bcd3a34604e487df41db5e02a4295656d4f';
+    r'58e4bfea142eb887f9b961fb9146a522266422a6';
 
 /// See also [ParticipatingViewModel].
 @ProviderFor(ParticipatingViewModel)

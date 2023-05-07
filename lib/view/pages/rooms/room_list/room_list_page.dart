@@ -26,9 +26,6 @@ class RoomListPage extends StatefulHookConsumerWidget {
 class _RoomListPageState extends ConsumerState<RoomListPage>
     with AutomaticKeepAliveClientMixin {
   @override
-  bool get wantKeepAlive => true;
-
-  @override
   Widget build(BuildContext context) {
     super.build(context);
     final theme = ref.watch(appThemeProvider);
@@ -109,6 +106,9 @@ class _RoomListPageState extends ConsumerState<RoomListPage>
       ),
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }
 
 class _RoomListCard extends StatelessWidget {

@@ -27,6 +27,8 @@ enum AppPrefKey {
 
   /// Next Token
   roomsNextToken,
+  joinRoomsNextTokenHost,
+  joinRoomsNextTokenGuest,
 }
 
 extension AppPrefKeyEx on AppPrefKey {

@@ -22,7 +22,7 @@ class ParticipatingPage extends StatefulHookConsumerWidget {
 }
 
 class _ParticipatingPageState extends ConsumerState<ParticipatingPage>
-    with SingleTickerProviderStateMixin {
+    with AutomaticKeepAliveClientMixin, SingleTickerProviderStateMixin {
   TabController? _tabController;
 
   @override
@@ -40,8 +40,10 @@ class _ParticipatingPageState extends ConsumerState<ParticipatingPage>
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     final theme = ref.watch(appThemeProvider);
     final state = ref.watch(participatingViewModelProvider);
+    final viewModel = ref.watch(participatingViewModelProvider.notifier);
 
     return Stack(
       children: [
@@ -57,86 +59,125 @@ class _ParticipatingPageState extends ConsumerState<ParticipatingPage>
                 tabs: ['ホスト', 'ゲスト'].map((e) => Tab(text: e)).toList(),
               ),
             ],
-            body: AsyncValueWidget(
-              data: state,
-              builder: (state) => TabBarView(
-                controller: _tabController,
-                children: [
-                  _Item(
-                    rooms: state.host,
-                    roomState: (room) => HostRoomState(theme, room),
-                  ),
-                  _Item(
-                    rooms: state.guest,
-                    roomState: (room) => GuestRoomState(theme, room),
-                  ),
-                ],
+            body: NotificationListener<ScrollEndNotification>(
+              onNotification: (notification) {
+                if (notification.metrics.extentAfter == 0) {
+                  _tabController?.index == 0
+                      ? viewModel.fetchNextHostRooms()
+                      : viewModel.fetchNextGuestRooms();
+                }
+                return false;
+              },
+              child: AsyncValueWidget(
+                data: state,
+                builder: (state) => TabBarView(
+                  controller: _tabController,
+                  children: [
+                    _Item(
+                      rooms: state.host,
+                      roomState: (room) => HostRoomState(theme, room),
+                      isFetching: state.isFetchingNextHostPage,
+                    ),
+                    _Item(
+                      rooms: state.guest,
+                      roomState: (room) => GuestRoomState(theme, room),
+                      isFetching: state.isFetchingNextGuestPage,
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
         ),
-        Align(
-          alignment: const Alignment(0.9, 0.9),
-          child: MaterialButton(
-            height: 45,
-            onPressed: () {
-              navigator.navigateTo(
-                RoutePath.roomInput,
-                arguments: const RoomInputPageArguments(),
-              );
-            },
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            color: theme.appColors.primary,
-            textColor: theme.appColors.onPrimary,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20),
+        _CreateButton(theme: theme),
+      ],
+    );
+  }
+
+  @override
+  bool get wantKeepAlive => true;
+}
+
+class _Item<RoomType> extends HookConsumerWidget {
+  /// [rooms] には [HostRoom] か [GuestRoom] が入る
+  final List<RoomType> rooms;
+  final RoomState Function(RoomType) roomState;
+
+  /// 次のページを取得中かどうか
+  final bool isFetching;
+
+  const _Item({
+    required this.rooms,
+    required this.roomState,
+    this.isFetching = false,
+  });
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return ListView(
+      padding: EdgeInsets.zero,
+      // itemCount: itemCount,
+      addAutomaticKeepAlives: true,
+      children: [
+        ...rooms.map((room) {
+          final roomStateItem = roomState(room);
+          return ParticipatingRoom(
+            room: roomStateItem,
+            onTap: () => navigator.navigateTo(
+              RoutePath.roomDetail,
+              arguments: RoomDetailPageArguments(
+                type: roomStateItem.type,
+                roomId: roomStateItem.id,
+                roomName: roomStateItem.title,
+              ),
             ),
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text("作成", style: theme.textTheme.h30.bold()),
-                const Gap(10),
-                const Icon(Icons.edit, size: 20),
-              ],
-            ),
+          );
+        }).toList(),
+        if (isFetching)
+          Container(
+            alignment: Alignment.center,
+            padding: const EdgeInsets.only(top: 20, bottom: 50),
+            child: const CircularProgressIndicator(strokeWidth: 3),
           ),
-        ),
       ],
     );
   }
 }
 
-class _Item<RoomType> extends HookConsumerWidget {
-  final List<RoomType> rooms;
-  final RoomState Function(RoomType) roomState;
-
-  const _Item({
-    required this.rooms,
-    required this.roomState,
+class _CreateButton extends StatelessWidget {
+  const _CreateButton({
+    required this.theme,
   });
 
+  final AppTheme theme;
+
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    return ListView.separated(
-      padding: EdgeInsets.zero,
-      itemCount: rooms.length,
-      separatorBuilder: (_, __) => const Gap(8),
-      itemBuilder: (context, index) {
-        final room = roomState(rooms.elementAt(index));
-        return ParticipatingRoom(
-          room: room,
-          onTap: () async {
-            await navigator.navigateTo(
-              RoutePath.roomDetail,
-              arguments: RoomDetailPageArguments(
-                type: room.type,
-                roomId: room.id,
-                roomName: room.title,
-              ),
-            );
-          },
-        );
-      },
+  Widget build(BuildContext context) {
+    return Align(
+      alignment: const Alignment(0.9, 0.9),
+      child: MaterialButton(
+        height: 45,
+        onPressed: () {
+          navigator.navigateTo(
+            RoutePath.roomInput,
+            arguments: const RoomInputPageArguments(),
+          );
+        },
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        color: theme.appColors.primary,
+        textColor: theme.appColors.onPrimary,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text("作成", style: theme.textTheme.h30.bold()),
+            const Gap(10),
+            const Icon(Icons.edit, size: 20),
+          ],
+        ),
+      ),
     );
   }
 }
