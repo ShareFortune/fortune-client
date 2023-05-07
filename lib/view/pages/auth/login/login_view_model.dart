@@ -2,7 +2,6 @@ import 'package:fortune_client/data/model/enum/auth_type.dart';
 import 'package:fortune_client/data/repository/repository.dart';
 import 'package:fortune_client/foundation/constants.dart';
 import 'package:fortune_client/injector.dart';
-import 'package:fortune_client/view/routes/app_router.gr.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final loginViewModelProvider =
@@ -41,6 +40,6 @@ class LoginViewModel extends StateNotifier<AsyncValue<void>> {
   }
 
   Future navigateToHome() async {
-    await getIt<AppRouter>().push(const HomeRouter());
+    // await getIt<AppRouter>().push(const HomeRouter());
   }
 }

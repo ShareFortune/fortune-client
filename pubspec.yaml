@@ -9,94 +9,99 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  intl: ^0.17.0
-  uuid: ^3.0.6
-  mime: ^1.0.2
-  open_filex: ^4.1.1
-  freezed_annotation: ^2.2.0
-  flutter_svg: ^2.0.0+1
-  google_fonts: ^4.0.3
-  sizer: ^2.0.15
-  enum_to_string: ^2.0.1
-  device_preview: ^1.1.0
+  intl: any
+  uuid: any
+  enum_to_string: any
+  device_preview: any
+  google_fonts: any
 
   # util
-  json_serializable: ^6.5.4
-  flutter_staggered_animations: ^1.1.1
-  flutter_chat_ui: ^1.6.5
-  path_provider: ^2.0.11
-  bottom_picker: ^2.0.1
-  image_picker: ^0.8.6
-  package_info_plus: ^3.0.2
-  shimmer: ^2.0.0
-  flutter_datetime_picker: ^1.5.1
-  favorite_button: ^0.0.4
-  flutter_expanded_tile: ^0.3.6
-  gap: ^2.0.1
-  dotted_border: ^2.0.0+3
-  fluttertoast: ^8.0.9
-  speech_bubble: ^0.0.9
-  badges: ^3.0.2
-  modal_bottom_sheet:
-    git:
-      url: https://github.com/followthemoney1/modal_bottom_sheet.git
-      ref: main
-      path: modal_bottom_sheet
+  json_serializable: any
+  flutter_staggered_animations: any
+  flutter_chat_ui: any
+  package_info_plus: any
+  shimmer: any
+  flutter_datetime_picker: any
+  favorite_button: any
+  flutter_expanded_tile: any
+  gap: any
+  dotted_border: any
+  fluttertoast: any
+  badges: any
+  screen_loader: any
+  loading_indicator: any
+
+  # images
+  lottie: any
+  flutter_svg: any
+  image_picker: any
+  path_provider: any
 
   # camera & album
-  file_picker: ^5.2.5
-  permission_handler: ^10.2.0
-  flutter_image_compress: ^1.1.0
-  flutter_platform_widgets: ^3.0.0
+  file_picker: any
+  permission_handler: any
+  flutter_image_compress: any
+  flutter_platform_widgets: any
+
+  # generator
+  freezed_annotation: any
+  riverpod_annotation: any
 
   # state management
-  hooks_riverpod: ^2.1.1
+  flutter_hooks: any
+  hooks_riverpod: any
 
   # localization
-  easy_localization: ^3.0.1
+  easy_localization: any
 
   # networking
-  dio: ^4.0.6
-  retrofit: ^3.3.1
-  pretty_dio_logger: ^1.2.0-beta-1
+  dio: ^5.1.1
+  retrofit: any
+  pretty_dio_logger: any
+  connectivity_plus: any
+  url_launcher: any
 
   # firebase
-  firebase_auth: ^4.2.1
-  firebase_core: ^2.4.0
+  firebase_auth: any
+  firebase_core: any
+  firebase_remote_config: any
 
   # sign in 
-  google_sign_in: ^5.4.2
-  sign_in_with_apple: ^4.3.0
-  flutter_facebook_auth: ^5.0.7
+  google_sign_in: any
+  sign_in_with_apple: any
+  flutter_facebook_auth: any
 
   # storage
-  shared_preferences: ^2.0.15
+  shared_preferences: any
 
   # di
-  get_it: ^7.2.0
+  get_it: any
 
   #logger
-  logger: ^1.1.0
+  logger: any
 
-  # route
-  auto_route: ^5.0.2
-  flutter_line_sdk: ^2.3.1
+  # picker
+  flutter_japanese_address_picker:
+    git:
+      url: https://github.com/daisukemaki1003/flutter-japanese-address-picker.git
+      ref: main
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  mockito: ^5.3.2
-  build_runner: ^2.3.2
-  flutter_lints: ^2.0.0
-  freezed: ^2.2.0
-  auto_route_generator: ^5.0.3
-  retrofit_generator: ^4.2.0
-  flutter_gen_runner: ^5.2.0
+  mockito: any
+  build_runner: any
+  flutter_lints: any
+  freezed: any
+  auto_route_generator: any
+  retrofit_generator: any
+  flutter_gen_runner: any
   dependency_validator: any
+  riverpod_generator: any
 
 flutter_gen:
-  output: lib/gen/ # Optional (default: lib/gen/)
-  lineLength: 80 # Optional (default: 80)
+  output: lib/gen/ 
+  lineLength: 80 
   integrations:
     flutter_svg: true
 
@@ -105,8 +110,15 @@ flutter:
   assets:
     # stub
     - stub/
+    
     # l10n
     - assets/l10n/
+    
     # images
+    - assets/icons/
     - assets/images/
-    - assets/images/icons/
+
+    # animation
+    - assets/animations/
+
+

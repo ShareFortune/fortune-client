@@ -4,6 +4,11 @@ import 'package:path/path.dart' as path;
 import 'package:flutter_image_compress/flutter_image_compress.dart';
 
 class ImageConverter {
+  /// HttpsをHttpに変換
+  static String convertHttpsToHttp(String url) {
+    return url.replaceFirst("https", "http");
+  }
+
   /// カメラロールから選択した画像ファイルをBase64に変換
   /// [file] 変換まえの画像ファイル
   static Future<String> toBase64(File file) async {

@@ -4,13 +4,18 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:fortune_client/l10n/locale_keys.g.dart';
 import 'package:fortune_client/util/common/image_utils.dart';
+import 'package:fortune_client/view/routes/route_navigator.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class PhotoActionsSheet {
   ///
   /// 写真を取得
   ///
-  static Future<File?> getPhoto(AppTheme theme, BuildContext context) {
+  static Future<void> getPhoto(
+    // BuildContext context,
+    Function(File)? onGetPhoto,
+  ) async {
     /// 取得方法に応じて写真を取得
     /// [method] 取得方法
     Future<File?> getPhotoByMethod(Future<File?> Function() method) async {
@@ -25,58 +30,45 @@ class PhotoActionsSheet {
     }
 
     /// 写真から取得
-    Future<File?> takePicture() {
-      return getPhotoByMethod(() {
-        return ImageUtils.takePicture(context);
-      });
+    Future<File?> takePicture(BuildContext context) {
+      return getPhotoByMethod(
+        () => ImageUtils.takePicture(context),
+      );
     }
 
     /// 撮影して取得
-    Future<File?> choosePhoto() {
-      return getPhotoByMethod(() {
-        return ImageUtils.choosePhoto(context);
-      });
+    Future<File?> choosePhoto(BuildContext context) {
+      return getPhotoByMethod(
+        () => ImageUtils.choosePhoto(context),
+      );
     }
 
-    return showCupertinoModalPopup<File?>(
-      context: context,
+    return showCupertinoModalPopup(
+      context: navigator.context,
       builder: (context) {
-        final textColor = theme.appColors.linkColor;
         return CupertinoActionSheet(
           title: null,
           actions: [
             /// カメラ
-            CupertinoActionSheetAction(
-              onPressed: () async {
-                return Navigator.of(context).pop(
-                  await takePicture(),
-                );
+            ActionSheetItem(
+              title: LocaleKeys.permission_menu_camera.tr(),
+              callback: () async {
+                final photo = await takePicture(context);
+                if (photo != null) return onGetPhoto?.call(photo);
               },
-              child: Text(
-                LocaleKeys.camera_or_photo_menu_camera.tr(),
-                style: TextStyle(color: textColor),
-              ),
             ),
 
             /// 写真
-            CupertinoActionSheetAction(
-              onPressed: () async {
-                return Navigator.of(context).pop(
-                  await choosePhoto(),
-                );
+            ActionSheetItem(
+              title: LocaleKeys.permission_menu_photo.tr(),
+              callback: () async {
+                final photo = await choosePhoto(context);
+                if (photo != null) return onGetPhoto?.call(photo);
               },
-              child: Text(
-                LocaleKeys.camera_or_photo_menu_photo.tr(),
-                style: TextStyle(color: textColor),
-              ),
             ),
           ],
-          cancelButton: CupertinoButton(
-            child: Text(
-              LocaleKeys.camera_or_photo_btn_cancel.tr(),
-              style: TextStyle(color: textColor),
-            ),
-            onPressed: () => Navigator.of(context).pop(),
+          cancelButton: ActionSheetCancelBtn(
+            callback: () => navigator.goBack(),
           ),
         );
       },
@@ -98,23 +90,75 @@ class PhotoActionsSheet {
         return CupertinoActionSheet(
           title: Text(title),
           actions: [
-            CupertinoActionSheetAction(
-              onPressed: () => Navigator.of(context).pop(true),
-              child: Text(
-                LocaleKeys.camera_or_photo_menu_delete.tr(),
-                style: TextStyle(color: theme.appColors.error),
-              ),
+            ActionSheetItem(
+              isDefaultAction: false,
+              title: LocaleKeys.permission_menu_deletePhoto.tr(),
+              callback: () => navigator.goBack(true),
             ),
           ],
-          cancelButton: CupertinoButton(
-            child: Text(
-              LocaleKeys.camera_or_photo_btn_cancel.tr(),
-              style: TextStyle(color: theme.appColors.linkColor),
-            ),
-            onPressed: () => Navigator.of(context).pop(false),
+          cancelButton: ActionSheetCancelBtn(
+            callback: () => navigator.goBack(false),
           ),
         );
       },
+    );
+  }
+}
+
+class ActionSheetItem extends HookConsumerWidget {
+  const ActionSheetItem({
+    super.key,
+    required this.title,
+    required this.callback,
+    this.isDefaultAction = true,
+  });
+
+  final String title;
+  final Function() callback;
+  final bool isDefaultAction;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final theme = ref.watch(appThemeProvider);
+
+    return CupertinoActionSheetAction(
+      onPressed: () async {
+        navigator.goBack();
+        callback.call();
+      },
+      child: Text(
+        title,
+        style: theme.textTheme.h40.paint(
+          isDefaultAction ? theme.appColors.linkColor : theme.appColors.error,
+        ),
+      ),
+    );
+  }
+}
+
+class ActionSheetCancelBtn extends HookConsumerWidget {
+  const ActionSheetCancelBtn({
+    super.key,
+    this.title = LocaleKeys.actions_cancel,
+    this.callback,
+  });
+
+  final String title;
+  final Function()? callback;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final theme = ref.watch(appThemeProvider);
+
+    return CupertinoButton(
+      onPressed: () async {
+        navigator.goBack();
+        callback?.call();
+      },
+      child: Text(
+        title.tr(),
+        style: theme.textTheme.h40.paint(theme.appColors.linkColor),
+      ),
     );
   }
 }

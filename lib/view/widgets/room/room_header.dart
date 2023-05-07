@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fortune_client/gen/assets.gen.dart';
-import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:gap/gap.dart';
 
@@ -13,7 +12,7 @@ class RoomHeader extends StatelessWidget {
   });
 
   final AppTheme theme;
-  final String iconUrl;
+  final String? iconUrl;
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +60,7 @@ class RoomHeader extends StatelessWidget {
   Widget _headerAddress(AppTheme theme) {
     return Row(children: [
       SvgPicture.asset(
-        Assets.images.icons.iconLocation.path,
+        Assets.icons.iconLocation.path,
         fit: BoxFit.contain,
       ),
       const Gap(3),

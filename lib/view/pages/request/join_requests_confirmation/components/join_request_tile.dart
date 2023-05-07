@@ -10,14 +10,12 @@ class JoinRequestTile extends StatelessWidget {
     super.key,
     required this.theme,
     required this.name,
-    required this.info,
     required this.image,
     required this.accept,
   });
 
   final AppTheme theme;
   final String name;
-  final String info;
   final String image;
   final VoidCallback accept;
 
@@ -41,10 +39,6 @@ class JoinRequestTile extends StatelessWidget {
         name,
         style: theme.textTheme.h30.paint(theme.appColors.subText1).bold(),
       ),
-      subtitle: Text(
-        info,
-        style: theme.textTheme.h20.paint(theme.appColors.subText2),
-      ),
       trailing: OutlinedButton.icon(
         onPressed: accept,
         style: OutlinedButton.styleFrom(
@@ -55,7 +49,7 @@ class JoinRequestTile extends StatelessWidget {
           width: 16,
           height: 16,
           fit: BoxFit.contain,
-          Assets.images.icons.iconCheckCircle.path,
+          Assets.icons.iconCheckCircle.path,
         ),
         label: Text(
           "参加を許可",

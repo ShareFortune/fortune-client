@@ -1,76 +1,70 @@
-class RoutePath {
-  static const root = '/';
+enum RoutePath {
+  /// Launch
+  launch('/launch'),
 
   /// Debug
-  static const debug = 'debug';
+  debug('/debug'),
 
-  /// ログイン
-  static const login = 'login';
+  /// Update
+  update('/update'),
 
-  /// プロフィール作成
-  static const createProfileBasic = 'create-profile-basic'; // 基本情報
-  static const createProfileDetail = 'create-profile-detail'; // 詳細
-  static const createProfileIconImage = 'create-profile-icon-image'; // アイコン
-  static const createProfileSubImage = 'create-profile-sub-image'; // サブイメージ
+  /// Auth
+  login('/login'),
 
-  static const updateProfile = 'update-profile';
+  /// Home
+  home('/home'),
 
-  static const enterAddress = 'enter-address';
+  /// Profile
+  userInfoInput('/userInfoInput'),
+  profileInput('/profileInput'),
+  profileEdit('/profileEdit'),
+  profile('/profile'),
 
-  /// ルームリスト
-  static const rooms = 'rooms';
+  /// My Page
+  my('/my'),
 
-  /// ルーム詳細
-  static const roomDetail = 'room/:roomId';
+  /// Room
+  room('/room'),
+  roomInput('/roomInput'),
+  roomDetail('/roomDetail'),
 
-  /// 参加ルームリスト
-  static const participatingRooms = 'participating-rooms';
+  /// Participating Room
+  participatingRoom('/participatingRoom'),
 
-  /// 全ての参加ルームリスト
-  static const participatingroomsAll = 'participating-rooms-all';
+  /// Join Request
+  joinRequestsConfirm('/joinRequestsConfirm'),
 
-  /// 参加リクエスト
-  static const requestConfirmation = 'request-confirmation/:id';
+  /// Message
+  messageRoom('/messageRoom'),
+  messageRoomList('/messageRoomList'),
 
-  /// ルーム作成
-  static const createRoom = 'create-room';
+  /// Tag
+  tagInput('/tagInput'),
+  searchTag('/searchTag'),
 
-  /// ルーム編集
-  static const editRoom = 'edit-room';
+  /// Setting
+  setting('/setting'),
+  settingAccount('/settingAccount'),
+  settingNotification('/settingNotification'),
+  settingPrivacy('/settingPrivacy'),
+  settingTerms('/settingTerms'),
+  settingHelp('/settingHelp'),
+  settingAbout('/settingAbout'),
 
-  /// メッセージルームリスト
-  static const messageRooms = 'message-rooms';
+  /// Input
+  inputText('/inputText'),
+  inputLongText('/inputLongText'),
 
-  /// メッセージルーム
-  static const messageRoom = 'message-room/:id';
+  /// Error
+  error('/error'),
 
-  /// プロフィール
-  static const profile = 'profile/:id';
+  /// Unknown
+  unknown('/unknown');
 
-  /// タグ
-  static const selectTag = 'select-tag';
+  final String name;
+  const RoutePath(this.name);
 
-  /// タグ作成
-  static const createTag = 'create-tag';
-
-  /// 説明入力
-  static const entryDescription = 'entry-description';
-
-  /// アカウント
-  static const account = 'account';
-
-  /// 設定
-  static const setting = 'setting';
-
-  /// ボトムシート
-  /// ---------------------------
-
-  static const bottomSheet = 'BottomSheetRouter';
-  static const hostRoomActions = 'HostRoomActions';
-  static const guestRoomActions = 'GuestRoomActions';
-
-  /// プロフィール写真編集
-  static const editProfilePicture = 'EditProfilePicture';
-
-  /// ---------------------------
+  factory RoutePath.from(String? name) {
+    return values.firstWhere((e) => e.name == name, orElse: () => unknown);
+  }
 }

@@ -1,10 +1,7 @@
-// ignore_for_file: library_private_types_in_public_api
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/view/pages/debug/debug_view_model.dart';
-import 'package:fortune_client/view/routes/app_router.gr.dart';
+import 'package:fortune_client/view/routes/route_navigator.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/app_bar/back_app_bar.dart';
 import 'package:fortune_client/view/widgets/dialog/Info_dialog.dart';
@@ -55,26 +52,18 @@ class DebugPage extends HookConsumerWidget {
               _buildDummyItem(
                 'ユーザー作成',
                 showTrailing: true,
-                onTap: () {
-                  getIt<AppRouter>().push(const CreateProfileRoute());
-                },
+                onTap: () => navigator.navigateTo(RoutePath.userInfoInput),
               ),
               _buildDummyItem(
                 'プロフィール作成',
                 showTrailing: true,
-                onTap: () {
-                  getIt<AppRouter>().push(
-                    CreateProfileRoute(
-                      children: [DetailedProfileEntryRoute()],
-                    ),
-                  );
-                },
+                onTap: () => navigator.navigateTo(RoutePath.profileInput),
               ),
               _buildDummyItem(
                 'タグ作成',
                 showTrailing: true,
                 onTap: () {
-                  getIt<AppRouter>().push(CreateTagRoute());
+                  // getIt<AppRouter>().push(CreateTagRoute());
                 },
               ),
             ],

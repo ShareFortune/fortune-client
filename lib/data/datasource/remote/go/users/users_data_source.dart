@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:fortune_client/data/model/users/post_v1_users/post_v1_users.dart';
+import 'package:fortune_client/data/model/users/users_response/users_response.dart';
 import 'package:retrofit/http.dart';
 
 part 'users_data_source.g.dart';
@@ -9,7 +9,7 @@ abstract class UsersDataSource {
   factory UsersDataSource(Dio dio) = _UsersDataSource;
 
   @POST('/users')
-  Future<PostV1UsersResponse> create(
+  Future<UsersIdResponse> create(
     @Body() Map<String, dynamic> body,
   );
 }

@@ -19,11 +19,11 @@ class _FavoritesDataSource implements FavoritesDataSource {
   String? baseUrl;
 
   @override
-  Future<RoomIdResponse> register(id) async {
+  Future<RoomIdResponse> register(String id) async {
     const _extra = <String, dynamic>{'append-token': true};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
+    final Map<String, dynamic>? _data = null;
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<RoomIdResponse>(Options(
       method: 'POST',
@@ -42,11 +42,11 @@ class _FavoritesDataSource implements FavoritesDataSource {
   }
 
   @override
-  Future<RoomIdResponse> unregister(id) async {
+  Future<RoomIdResponse> unregister(String id) async {
     const _extra = <String, dynamic>{'append-token': true};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
+    final Map<String, dynamic>? _data = null;
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<RoomIdResponse>(Options(
       method: 'DELETE',

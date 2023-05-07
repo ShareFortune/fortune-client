@@ -15,13 +15,16 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'app.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-
   await Future.wait([
     Future(() async {
-      await Firebase.initializeApp();
+      WidgetsFlutterBinding.ensureInitialized();
       await EasyLocalization.ensureInitialized();
-      await initDependencies(testMode: false);
+      await Firebase.initializeApp(
+        options: Constants.of().firebaseOptions,
+      );
+      bool testMode = false;
+      // testMode = true;
+      await initDependencies(testMode: testMode);
     }),
   ]);
 

@@ -4,9 +4,9 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 
-import 'package:fortune_client/data/model/core/base/message/message.dart';
 import 'package:flutter_chat_types/flutter_chat_types.dart' as chat_types;
-import 'package:fortune_client/data/model/core/base/message_from_user/message_from_user.dart';
+import 'package:fortune_client/data/model/messages/message/message.dart';
+import 'package:fortune_client/data/model/messages/message_from_user/message_from_user.dart';
 import 'package:uuid/uuid.dart';
 import 'package:file/memory.dart';
 import 'package:http/http.dart' as http;
@@ -35,7 +35,7 @@ class MessageConverter {
     return chat_types.TextMessage(
       id: message.id,
       author: toUser(message.fromUser),
-      createdAt: message.sendAt.millisecondsSinceEpoch,
+      createdAt: message.sentAt.millisecondsSinceEpoch,
       text: message.text,
     );
   }
@@ -68,7 +68,7 @@ class MessageConverter {
       uri: uri,
       name: uri,
       author: toUser(message.fromUser),
-      createdAt: message.sendAt.millisecondsSinceEpoch,
+      createdAt: message.sentAt.millisecondsSinceEpoch,
       size: bytes.length,
       height: image.height.toDouble(),
       width: image.width.toDouble(),

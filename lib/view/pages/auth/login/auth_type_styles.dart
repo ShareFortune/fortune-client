@@ -11,7 +11,7 @@ extension AuthTypeEx on AuthType {
         return Colors.black;
       case AuthType.google:
         return const Color(0xFFF8F8F8);
-      case AuthType.facebook:
+      case AuthType.twitter:
         return const Color(0xFF1B93E3);
     }
   }
@@ -22,7 +22,7 @@ extension AuthTypeEx on AuthType {
         return LocaleKeys.loginPage_login_apple.tr();
       case AuthType.google:
         return LocaleKeys.loginPage_login_google.tr();
-      case AuthType.facebook:
+      case AuthType.twitter:
         return LocaleKeys.loginPage_login_twitter.tr();
     }
   }
@@ -33,7 +33,7 @@ extension AuthTypeEx on AuthType {
         return const Color(0xFFFEFEFE);
       case AuthType.google:
         return Colors.black;
-      case AuthType.facebook:
+      case AuthType.twitter:
         return const Color(0xFFFFFFFF);
     }
   }
@@ -41,11 +41,11 @@ extension AuthTypeEx on AuthType {
   String get iconPath {
     switch (this) {
       case AuthType.apple:
-        return Assets.images.icons.iconApple.path;
+        return Assets.icons.iconApple.path;
       case AuthType.google:
-        return Assets.images.icons.iconGoogle.path;
-      case AuthType.facebook:
-        return Assets.images.icons.iconTwitter.path;
+        return Assets.icons.iconGoogle.path;
+      case AuthType.twitter:
+        return Assets.icons.iconTwitter.path;
     }
   }
 }

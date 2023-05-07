@@ -1,0 +1,36 @@
+{
+    "address": {
+        "city": "岩見沢市",
+        "country": "日本",
+        "id": 10,
+        "prefecture": "北海道"
+    },
+    "cigaretteFrequency": "OFTEN",
+    "drinkFrequency": "OFTEN",
+    "gender": "MAN",
+    "height": 177,
+    "id": "7ace8c25-159f-4508-8ee0-684dd23bc07a",
+    "mainImageURL": "https://dol.ismcdn.jp/mwimgs/7/e/1320w/img_7e0b8adba77c91687a8078920dedc7be160077.jpg",
+    "secondImageURL": "https://www.ana.co.jp/www2/travelandlife/article/id001001/001292/images/main_01.jpg",
+    "thirdImageURL": "https://i0.wp.com/pet-dictionary.net/wp-content/uploads/2017/08/large-54d6f316da08b.jpg?fit=640%2C480&ssl=1",
+    "fourthImageURL": "https://upload.wikimedia.org/wikipedia/commons/0/03/Vulpes_vulpes_laying_in_snow.jpg",
+    "fifthImageURL": "https://pz-garden.stardust31.com/syokuniku-moku/neko-ka/photo/white-tiger.a~WM.jpg",
+    "sixthImageURL": "https://media.loom-app.com/gizmodo/dist/images/2017/05/170531_anaconda_eaten_alive.jpg?w=1280",
+    "name": "こうすけ",
+    "selfIntroduction": "初めまして。恋人が欲しくて始めました。",
+    "tags": [
+        {
+            "id": "2b13519a-95dd-443a-9a9b-e07d2856a713",
+            "name": "大学生"
+        },
+        {
+            "id": "31f4fb7b-eb5e-4501-a064-eea195bad5e9",
+            "name": "スポーツ"
+        },
+        {
+            "id": "7407afa1-5976-4765-ad6d-f09871b081d1",
+            "name": "サッカー"
+        }
+    ],
+    "username": "maki"
+}

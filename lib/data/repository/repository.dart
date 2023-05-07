@@ -14,6 +14,7 @@ import 'package:fortune_client/injector.dart';
 class Repository {
   static DebugRepository get debug => getIt();
   static AuthRepository get auth => getIt();
+  static AddressesRepository get address => getIt();
   static UsersRepository get users => getIt();
   static MessagesRepository get messages => getIt();
   static MessageRoomsRepository get messageRooms => getIt();
@@ -21,6 +22,5 @@ class Repository {
   static RoomsRepository get rooms => getIt();
   static TagsRepository get tags => getIt();
   static JoinRequestsRepository get joinRequests => getIt();
-  static AddressesRepository get addresses => getIt();
   static FavoritesRepository get favorites => getIt();
 }

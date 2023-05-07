@@ -16,8 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$RoomDetailState {
-  String get roomId => throw _privateConstructorUsedError;
-  AsyncValue<Room> get detail => throw _privateConstructorUsedError;
+  RoomDetail get detail => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $RoomDetailStateCopyWith<RoomDetailState> get copyWith =>
@@ -30,7 +29,9 @@ abstract class $RoomDetailStateCopyWith<$Res> {
           RoomDetailState value, $Res Function(RoomDetailState) then) =
       _$RoomDetailStateCopyWithImpl<$Res, RoomDetailState>;
   @useResult
-  $Res call({String roomId, AsyncValue<Room> detail});
+  $Res call({RoomDetail detail});
+
+  $RoomDetailCopyWith<$Res> get detail;
 }
 
 /// @nodoc
@@ -46,19 +47,22 @@ class _$RoomDetailStateCopyWithImpl<$Res, $Val extends RoomDetailState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? roomId = null,
     Object? detail = null,
   }) {
     return _then(_value.copyWith(
-      roomId: null == roomId
-          ? _value.roomId
-          : roomId // ignore: cast_nullable_to_non_nullable
-              as String,
       detail: null == detail
           ? _value.detail
           : detail // ignore: cast_nullable_to_non_nullable
-              as AsyncValue<Room>,
+              as RoomDetail,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $RoomDetailCopyWith<$Res> get detail {
+    return $RoomDetailCopyWith<$Res>(_value.detail, (value) {
+      return _then(_value.copyWith(detail: value) as $Val);
+    });
   }
 }
 
@@ -70,7 +74,10 @@ abstract class _$$_RoomDetailStateCopyWith<$Res>
       __$$_RoomDetailStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String roomId, AsyncValue<Room> detail});
+  $Res call({RoomDetail detail});
+
+  @override
+  $RoomDetailCopyWith<$Res> get detail;
 }
 
 /// @nodoc
@@ -84,18 +91,13 @@ class __$$_RoomDetailStateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? roomId = null,
     Object? detail = null,
   }) {
     return _then(_$_RoomDetailState(
-      roomId: null == roomId
-          ? _value.roomId
-          : roomId // ignore: cast_nullable_to_non_nullable
-              as String,
       detail: null == detail
           ? _value.detail
           : detail // ignore: cast_nullable_to_non_nullable
-              as AsyncValue<Room>,
+              as RoomDetail,
     ));
   }
 }
@@ -103,18 +105,14 @@ class __$$_RoomDetailStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_RoomDetailState implements _RoomDetailState {
-  const _$_RoomDetailState(
-      {required this.roomId, this.detail = const AsyncLoading()});
+  const _$_RoomDetailState({required this.detail});
 
   @override
-  final String roomId;
-  @override
-  @JsonKey()
-  final AsyncValue<Room> detail;
+  final RoomDetail detail;
 
   @override
   String toString() {
-    return 'RoomDetailState(roomId: $roomId, detail: $detail)';
+    return 'RoomDetailState(detail: $detail)';
   }
 
   @override
@@ -122,12 +120,11 @@ class _$_RoomDetailState implements _RoomDetailState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_RoomDetailState &&
-            (identical(other.roomId, roomId) || other.roomId == roomId) &&
             (identical(other.detail, detail) || other.detail == detail));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, roomId, detail);
+  int get hashCode => Object.hash(runtimeType, detail);
 
   @JsonKey(ignore: true)
   @override
@@ -137,14 +134,11 @@ class _$_RoomDetailState implements _RoomDetailState {
 }
 
 abstract class _RoomDetailState implements RoomDetailState {
-  const factory _RoomDetailState(
-      {required final String roomId,
-      final AsyncValue<Room> detail}) = _$_RoomDetailState;
+  const factory _RoomDetailState({required final RoomDetail detail}) =
+      _$_RoomDetailState;
 
   @override
-  String get roomId;
-  @override
-  AsyncValue<Room> get detail;
+  RoomDetail get detail;
   @override
   @JsonKey(ignore: true)
   _$$_RoomDetailStateCopyWith<_$_RoomDetailState> get copyWith =>

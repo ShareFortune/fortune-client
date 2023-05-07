@@ -1,143 +1,191 @@
-// ignore_for_file: use_build_context_synchronously
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fortune_client/gen/assets.gen.dart';
 import 'package:fortune_client/l10n/locale_keys.g.dart';
-import 'package:fortune_client/view/pages/common/scroll_app_bar/scroll_app_bar.dart';
+import 'package:fortune_client/view/pages/rooms/room_detail/room_detail_page.dart';
+import 'package:fortune_client/view/widgets/app_bar/scroll_app_bar.dart';
 import 'package:fortune_client/view/pages/rooms/room_list/components/room_list_card.dart';
-import 'package:fortune_client/view/pages/rooms/room_list/components/rooms_filter_bottom_sheet.dart';
-import 'package:fortune_client/view/pages/rooms/room_list/room_list_state.dart';
 import 'package:fortune_client/view/pages/rooms/room_list/room_list_view_model.dart';
-import 'package:fortune_client/view/theme/app_text_theme.dart';
+import 'package:fortune_client/view/routes/route_navigator.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
-import 'package:fortune_client/view/widgets/dialog/toast.dart';
-import 'package:fortune_client/view/widgets/other/list_animation.dart';
-import 'package:fortune_client/view/widgets/other/error_widget.dart';
-import 'package:fortune_client/view/widgets/other/loading_widget.dart';
+import 'package:fortune_client/view/widgets/other/async_value_widget.dart';
+import 'package:fortune_client/view/widgets/picker/address_picker.dart';
+import 'package:fortune_client/view/widgets/picker/number_picker.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class RoomListPage extends HookConsumerWidget {
-  const RoomListPage({super.key});
+class RoomListPage extends StatefulHookConsumerWidget {
+  const RoomListPage({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<RoomListPage> createState() => _RoomListPageState();
+}
+
+class _RoomListPageState extends ConsumerState<RoomListPage>
+    with AutomaticKeepAliveClientMixin {
+  @override
+  Widget build(BuildContext context) {
+    super.build(context);
     final theme = ref.watch(appThemeProvider);
     final state = ref.watch(roomListViewModelProvider);
     final viewModel = ref.watch(roomListViewModelProvider.notifier);
 
-    ///
-    /// 検索結果が存在するか
-    ///
-    final noSearchResultsFoundViewAsync = state.hasRoomSearchResult
-        ? Container()
-        : _noSearchResultsFoundView(theme);
-
-    ///
-    /// ルームリスト
-    ///
-    final roomListViewAsync = state.rooms.when(
-      data: (data) => _roomListView(data, theme, viewModel, context),
-      error: (e, msg) => SliverToBoxAdapter(child: errorWidget(e, msg)),
-      loading: () => SliverToBoxAdapter(child: loadingWidget()),
-    );
-
     return Container(
       color: theme.appColors.onBackground,
-      child: CustomScrollView(
-        slivers: [
-          ScrollAppBar(
-            title: LocaleKeys.room_list_page_title.tr(),
-            onTapTitle: () async {
-              viewModel.changeFilter(
-                await RoomsFilterBottomSheet.show(
-                  context,
-                  filter: state.filter,
-                  onSelectAddress: viewModel.navigateToEntryAddress,
-                  onSelectTags: viewModel.navigateToTagsSelection,
+      child: NotificationListener<ScrollEndNotification>(
+        onNotification: (notification) {
+          if (notification.metrics.extentAfter == 0) {
+            viewModel.fetchNextRooms();
+          }
+          return false;
+        },
+        child: NestedScrollView(
+          headerSliverBuilder: (_, __) => [
+            ScrollAppBar(title: LocaleKeys.room_list_page_title.tr()),
+            SliverToBoxAdapter(
+              child: Container(
+                padding: const EdgeInsets.fromLTRB(20, 5, 20, 20),
+                child: Row(
+                  children: [
+                    _RoomsFilterButton(
+                      title: "場所",
+                      isAppliedFilter: state.filter.isFilteredByAddress,
+                      onTap: () async {
+                        viewModel.filteringByAddress(
+                          await AddressPicker().show(
+                            context: context,
+                            theme: theme,
+                            address: state.filter.address,
+                          ),
+                        );
+                      },
+                    ),
+                    const Gap(15),
+                    _RoomsFilterButton(
+                      title: "人数",
+                      onTap: () async {
+                        await NumberPicker.participants().show(
+                          context: context,
+                          onChanged: viewModel.filteringByMemberNum,
+                        );
+                      },
+                      isAppliedFilter: state.filter.isFilteredByMemberNum,
+                    ),
+                    const Gap(15),
+                    _RoomsFilterButton(
+                      title: "タグ",
+                      onTap: viewModel.filteringByTags,
+                      isAppliedFilter: state.filter.isFilteredByTag,
+                    ),
+                  ],
                 ),
+              ),
+            ),
+          ],
+          body: AsyncValueWidget(
+            data: state.rooms,
+            builder: (rooms) {
+              if (rooms.isEmpty) {}
+              return ListView(
+                padding: EdgeInsets.zero,
+                addAutomaticKeepAlives: true,
+                children: [
+                  ...rooms.map((room) {
+                    return RoomListCard(
+                        room: room,
+                        onTapRoom: () => navigator.navigateTo(
+                              RoutePath.roomDetail,
+                              arguments: RoomDetailPageArguments(
+                                roomId: room.id,
+                                roomName: room.roomName,
+                              ),
+                            ),
+                        onTapHeart: (isFavorite) {
+                          viewModel.saveOrReleaseRoom(room.id, isFavorite);
+                        },
+                        onTapJoinRequestBtn: () {
+                          return viewModel.sendJoinRequest(room.id);
+                        });
+                  }).toList(),
+                  if (state.isFetchingNextPage)
+                    Container(
+                      alignment: Alignment.center,
+                      padding: const EdgeInsets.only(top: 20, bottom: 50),
+                      child: const CircularProgressIndicator(strokeWidth: 3),
+                    ),
+                ],
               );
             },
           ),
-          SliverToBoxAdapter(child: noSearchResultsFoundViewAsync),
-          SliverPadding(
-            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-            sliver: roomListViewAsync,
-          ),
-        ],
+        ),
       ),
     );
   }
 
-  Widget _roomListView(
-    List<RoomListStateRoom> data,
-    AppTheme theme,
-    RoomListViewModel viewModel,
-    BuildContext context,
-  ) {
-    return ListAnimationWidget(
-      items: data,
-      spacing: 10,
-      container: (room) {
-        return RoomListCard(
-          theme: theme,
-          room: room,
-          onTapRoom: () => viewModel.navigateToRoomDetail(room.data.id),
-          onTapHeart: (bool value) async {
-            if (!await viewModel.saveOrReleaseRoom(room.data.id, value)) {
-              await _showFailedToRegisterToast(context, theme);
-            }
-          },
-          onTapJoinRequestBtn: () async {
-            final result = await viewModel.sendJoinRequest(room.data.id);
-            await _showJoinRequestToast(context, theme, result);
-          },
-        );
-      },
-    );
-  }
+  @override
+  bool get wantKeepAlive => true;
+}
 
-  Widget _noSearchResultsFoundView(AppTheme theme) {
-    return SizedBox(
-      height: 150,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          SvgPicture.asset(
-            Assets.images.icons.iconRoom.path,
-            fit: BoxFit.contain,
+/// フィルターボタン
+class _RoomsFilterButton extends HookConsumerWidget {
+  const _RoomsFilterButton({
+    required this.title,
+    required this.onTap,
+    this.isAppliedFilter = false,
+  });
+
+  final String title;
+  final VoidCallback? onTap;
+
+  /// フィルターが適用されているか
+  final bool isAppliedFilter;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final theme = ref.watch(appThemeProvider);
+
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.fromLTRB(20, 5, 12, 5),
+        decoration: BoxDecoration(
+          border: Border.all(
+            width: 1,
+            color: isAppliedFilter
+                ? theme.appColors.primary.withOpacity(0.1)
+                : theme.appColors.border2,
           ),
-          const Gap(15),
-          Text(
-            LocaleKeys.room_list_page_rooms_empty.tr(),
-            style: theme.textTheme.h20.paint(theme.appColors.subText1),
-          ),
-        ],
+          borderRadius: BorderRadius.circular(30),
+          color: isAppliedFilter
+              ? theme.appColors.primary.withOpacity(0.1)
+              : theme.appColors.onBackground,
+        ),
+        child: Row(
+          children: [
+            Text(
+              title,
+              style: theme.textTheme.h20.bold().paint(
+                    isAppliedFilter
+                        ? theme.appColors.primary
+                        : theme.appColors.subText2,
+                  ),
+            ),
+            const Gap(6),
+            SvgPicture.asset(
+              Assets.icons.iconArrowDropDown.path,
+              width: 20,
+              fit: BoxFit.contain,
+              colorFilter: ColorFilter.mode(
+                isAppliedFilter
+                    ? theme.appColors.primary
+                    : theme.appColors.subText2,
+                BlendMode.srcIn,
+              ),
+            ),
+          ],
+        ),
       ),
     );
-  }
-
-  _showFailedToRegisterToast(BuildContext context, AppTheme theme) {
-    showErrorToast(
-      context,
-      theme,
-      LocaleKeys.data_room_action_save_failure.tr(),
-    );
-  }
-
-  _showJoinRequestToast(BuildContext context, AppTheme theme, bool isSuccess) {
-    isSuccess
-        ? showToast(
-            context,
-            theme,
-            LocaleKeys.data_room_action_joinRequest_success.tr(),
-          )
-        : showErrorToast(
-            context,
-            theme,
-            LocaleKeys.data_room_action_joinRequest_failure.tr(),
-          );
   }
 }

@@ -1,9 +1,9 @@
+import 'package:fortune_client/data/datasource/remote/go/join_requests/fake_join_requests_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/go/rooms/rooms_data_source.dart';
-import 'package:fortune_client/data/model/rooms/get_v1_rooms/get_v1_rooms.dart';
-import 'package:fortune_client/data/model/rooms/room_id_response/room_id_response.dart';
-import 'package:fortune_client/data/model/rooms/get_v1_rooms_host/get_v1_rooms_host.dart';
-import 'package:fortune_client/data/model/rooms/get_v1_rooms_guest/get_v1_rooms_guest.dart';
-import 'package:fortune_client/data/model/core/base/room/room.dart';
+import 'package:fortune_client/data/model/rooms/room_detail/room_detail.dart';
+import 'package:fortune_client/data/model/rooms/rooms_guest_response/rooms_guest_response.dart';
+import 'package:fortune_client/data/model/rooms/rooms_host_response/rooms_host_response.dart';
+import 'package:fortune_client/data/model/rooms/rooms_response/rooms_response.dart';
 import 'package:fortune_client/gen/assets.gen.dart';
 import 'package:fortune_client/util/common/json_utils.dart';
 
@@ -15,42 +15,48 @@ class FakeRoomsDataSource implements RoomsDataSource {
   }
 
   @override
-  Future<Room> getDetail(String id) {
-    // TODO: implement getDetail
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<GetV1RoomsGuestResponse> getRoomsGuest({
-    String? nextToken,
-    int? perPage,
-  }) async {
-    return GetV1RoomsGuestResponse.fromJson(
-      await JsonUtils.load(Assets.stub.getV1RoomsGuestResponse),
+  Future<RoomDetail> getDetail(String id) async {
+    return RoomDetail.fromJson(
+      await JsonUtils.load(Assets.stub.roomsResponseRoom),
     );
   }
 
   @override
-  Future<GetV1RoomsHostResponse> getRoomsHost({
+  Future<RoomsHostResponse> getRoomsHost({
     String? nextToken,
     int? perPage,
   }) async {
-    return GetV1RoomsHostResponse.fromJson(
-      await JsonUtils.load(Assets.stub.getV1RoomsHostResponse),
+    final rooms = RoomsHostResponse.fromJson(
+      await JsonUtils.load(Assets.stub.roomsHostResponse),
+    );
+    if (FakeJoinRequestsDataSource().ids.isNotEmpty) {
+      return rooms.copyWith(rooms: [...rooms.rooms, ...rooms.rooms]);
+    } else {
+      return rooms;
+    }
+  }
+
+  @override
+  Future<RoomsGuestResponse> getRoomsGuest({
+    String? nextToken,
+    int? perPage,
+  }) async {
+    return RoomsGuestResponse.fromJson(
+      await JsonUtils.load(Assets.stub.roomsGuestResponse),
     );
   }
 
   @override
-  Future<GetV1RoomsResponse> fetchList({
-    String? addressId,
+  Future<RoomsResponse> fetchRooms({
+    int? addressId,
     String? applicationDeadline,
     int? memberNum,
     List<String>? tagIds,
     String? nextToken,
     int? perPage,
   }) async {
-    return GetV1RoomsResponse.fromJson(
-      await JsonUtils.load(Assets.stub.getV1RoomsResponse),
+    return RoomsResponse.fromJson(
+      await JsonUtils.load(Assets.stub.roomsResponse),
     );
   }
 

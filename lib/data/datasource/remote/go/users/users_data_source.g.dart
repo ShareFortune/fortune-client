@@ -19,14 +19,14 @@ class _UsersDataSource implements UsersDataSource {
   String? baseUrl;
 
   @override
-  Future<PostV1UsersResponse> create(body) async {
+  Future<UsersIdResponse> create(Map<String, dynamic> body) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(body);
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<PostV1UsersResponse>(Options(
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<UsersIdResponse>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -38,7 +38,7 @@ class _UsersDataSource implements UsersDataSource {
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = PostV1UsersResponse.fromJson(_result.data!);
+    final value = UsersIdResponse.fromJson(_result.data!);
     return value;
   }
 

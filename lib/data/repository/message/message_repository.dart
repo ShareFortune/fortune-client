@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:fortune_client/data/model/core/base/message/message.dart';
+import 'package:fortune_client/data/model/messages/message/message.dart';
 
 abstract class MessagesRepository {
   /// メッセージ送信
@@ -16,5 +16,5 @@ abstract class MessagesRepository {
   });
 
   /// メッセージ取得
-  Future<List<Message>> getMessages(String messageRoomId);
+  Future<List<Message>> fetchMessages(String messageRoomId);
 }

@@ -1,35 +1,24 @@
 import 'package:fortune_client/data/repository/repository.dart';
-import 'package:fortune_client/injector.dart';
 import 'package:fortune_client/view/pages/rooms/room_detail/room_detail_state.dart';
-import 'package:fortune_client/view/routes/app_router.gr.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:fortune_client/view/routes/route_navigator.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-final roomDetailViewModelProvider =
-    StateNotifierProvider.family<RoomDetailViewModel, RoomDetailState, String>(
-  (_, roomId) =>
-      RoomDetailViewModel(RoomDetailState(roomId: roomId))..initialize(),
-);
+part 'room_detail_view_model.g.dart';
 
-class RoomDetailViewModel extends StateNotifier<RoomDetailState> {
-  RoomDetailViewModel(super.state);
-
-  Future<void> initialize() async {
-    await fetch();
-  }
-
-  Future<void> fetch() async {
-    state = state.copyWith(
-      detail: await AsyncValue.guard(() async {
-        return await Repository.rooms.fetchDetail(state.roomId);
-      }),
+@riverpod
+class RoomDetailViewModel extends _$RoomDetailViewModel {
+  @override
+  Future<RoomDetailState> build(String roomId) async {
+    return RoomDetailState(
+      detail: await Repository.rooms.fetchDetail(roomId),
     );
   }
 
-  Future<bool> joinRequest() {
-    return Repository.joinRequests.request(state.roomId);
+  Future<bool> joinRoomRequest(String roomId) {
+    return Repository.joinRequests.request(roomId);
   }
 
   navigateToProfile(String id) async {
-    await getIt<AppRouter>().push(ProfileRoute(id: id));
+    await navigator.navigateTo(RoutePath.profile);
   }
 }

@@ -4,8 +4,7 @@ Fortune app client repository
 
 # DEMO
 
-<image src="https://user-images.githubusercontent.com/68681355/219053338-888bdbed-b0bb-4ccd-a358-261831ba0a0a.png" width="200" />
-<image src="https://user-images.githubusercontent.com/68681355/219054484-82b138e5-007d-4990-a6da-c9697954ac60.png" width="200" />
+<image src="https://user-images.githubusercontent.com/68681355/219053338-888bdbed-b0bb-4ccd-a358-261831ba0a0a.png" width="200" />&emsp;<image src="https://user-images.githubusercontent.com/68681355/219054484-82b138e5-007d-4990-a6da-c9697954ac60.png" width="200" />
 
 
 # Requirement
@@ -24,7 +23,7 @@ flutter pub get
 # freezed code
 flutter pub run build_runner watch --delete-conflicting-outputs
 ```
-### 実行コマンド
+### Run
 ```zsh
 flutter run --debug
 flutter run --release

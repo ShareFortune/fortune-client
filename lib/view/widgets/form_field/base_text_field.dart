@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -118,18 +117,10 @@ class _BaseTextFieldState extends ConsumerState<BaseTextField> {
     super.initState();
     _focusNode = widget.focusNode ?? FocusNode();
     _focusNode.addListener(() {
-      if (mounted) {
-        setState(() {
-          _showingKeyboard = _focusNode.hasFocus;
-        });
-      }
+      setState(() => _showingKeyboard = _focusNode.hasFocus);
     });
     widget.controller.addListener(() {
-      if (mounted) {
-        setState(() {
-          _valueIsNotEmpty = widget.controller.text.isNotEmpty;
-        });
-      }
+      setState(() => _valueIsNotEmpty = widget.controller.text.isNotEmpty);
     });
   }
 
@@ -161,12 +152,15 @@ class _BaseTextFieldState extends ConsumerState<BaseTextField> {
       onSaved: widget.onSaved,
       validator: widget.validator,
       decoration: InputDecoration(
+        filled: true,
         iconColor: Colors.red,
         labelStyle: theme.textTheme.h30.paint(theme.appColors.subText2),
         hintStyle: theme.textTheme.h30.paint(theme.appColors.subText3),
         errorStyle: theme.textTheme.h10.paint(theme.appColors.error),
-        contentPadding: const EdgeInsets.symmetric(horizontal: 15, vertical: 6),
-        filled: true,
+        contentPadding: const EdgeInsets.symmetric(
+          horizontal: 15,
+          vertical: 13,
+        ),
         suffixIcon: isDisplaySuffixIcon
             ? IconButton(
                 icon: const Icon(Icons.close),

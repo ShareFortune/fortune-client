@@ -1,73 +1,57 @@
 import 'dart:io';
 
-import 'package:fortune_client/data/model/core/base/address_with_id/address_with_id.dart';
-import 'package:fortune_client/data/model/core/base/profiles_files/profiles_files.dart';
-import 'package:fortune_client/data/model/core/base/tag/tag.dart';
-import 'package:fortune_client/data/model/core/enum/cigarette_frequency.dart';
-import 'package:fortune_client/data/model/core/enum/drink_frequency.dart';
-import 'package:fortune_client/data/model/core/enum/gender.dart';
-import 'package:fortune_client/data/model/core/enum/profile_images_type.dart';
-import 'package:fortune_client/data/model/profiles/get_v1_profiles/get_v1_profiles.dart';
+import 'package:fortune_client/data/model/addresses/address/address.dart';
+import 'package:fortune_client/data/model/enum/cigarette_frequency.dart';
+import 'package:fortune_client/data/model/enum/drink_frequency.dart';
+import 'package:fortune_client/data/model/enum/gender.dart';
+import 'package:fortune_client/data/model/profile/profile_request/profile_request.dart';
+import 'package:fortune_client/data/model/profile/profile_response/profile_response.dart';
+import 'package:fortune_client/data/model/tags/tag/tag.dart';
 
 abstract class ProfileRepository {
   /// 作成済みかどうか
-  Future<bool> isCreated();
+  bool isCreated();
 
   /// 取得
-  Future<GetV1ProfilesResponse> get();
+  Future<ProfileResponse> get();
 
   /// キャッシュに保存されたプロフィールを取得
-  GetV1ProfilesResponse getCache();
+  ProfileResponse getCache();
 
   /// 作成
   Future<bool> create({
     required String name,
     required Gender gender,
-    required AddressWithId address,
-    required int? height,
-    required DrinkFrequency? drinkFrequency,
-    required CigaretteFrequency? cigaretteFrequency,
-    required int? occupationId,
+    required Address address,
 
     /// Images
-    required File mainImage,
-    File? secondImage,
-    File? thirdImage,
-    File? fourthImage,
-    File? fifthImage,
-    File? sixthImage,
+    required List<File> images,
   });
 
   /// 更新
+  Future<void> update(ProfileUpdateRequest request);
   Future<void> updateProfileImages();
   Future<void> updateSelfIntroduction(String selfIntroduction);
   Future<void> updateTags(List<Tag> tags);
   Future<void> updateBasicInfo({
-    required AddressWithId? addressWithId,
+    required Address? address,
     required int? stature,
     required DrinkFrequency? drinkFrequency,
     required CigaretteFrequency? cigaretteFrequency,
   });
 
-  /// プロフィール画像をローカル保存
-  /// プロフィール編集用のプロフィール画像を保存する。
-  Future<void> saveProfileImages({
-    File? mainImage,
-    File? secondImage,
-    File? thirdImage,
-    File? fourthImage,
-    File? fifthImage,
-    File? sixthImage,
-  });
+  /// プロフィール画像をList形式でローカル保存
+  Future<void> saveProfileImages(List<File> files);
 
-  /// ローカル保存されたプロフィール画像を取得
-  /// [ProfilesFiles]
-  ProfilesFiles getProfileImages();
+  /// プロフィール画像をList形式で取得
+  List<String> getProfileImages();
 
-  /// [ProfileImagesType]に応じて画像を取得
-  /// 文字列が存在しない場合はnullを返す
-  String? getProfileImageByType(ProfileImagesType type);
+  /// プロフィール画像を追加
+  Future<void> addProfileImage(File file);
 
-  /// [ProfileImagesType]に応じて画像を保存
-  Future<void> saveProfileImageByType(ProfileImagesType type, File? file);
+  /// プロフィール画像を変更
+  Future<void> updateProfileImageByIndex(int index, File file);
+
+  /// List形式で保存されたプロフィール画像をIndexで削除
+  Future<void> removeProfileImageByIndex(int index);
 }

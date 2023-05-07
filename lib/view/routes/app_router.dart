@@ -1,202 +1,184 @@
-// ignore_for_file: implementation_imports
-
-import 'package:auto_route/auto_route.dart';
-import 'package:auto_route/empty_router_widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:fortune_client/view/pages/account/create/entry_basic_profile/basic_profile_entry_page.dart';
-import 'package:fortune_client/view/pages/account/create/entry_detailed_profile/detailed_profile_entry_page.dart';
-import 'package:fortune_client/view/pages/account/create/entry_profile_icon_image/profile_icon_image_entry_page.dart';
-import 'package:fortune_client/view/pages/account/create/entry_profile_sub_image/entry_profile_sub_image_page.dart';
-import 'package:fortune_client/view/pages/common/bottom_sheet/room_actions/guest/guest_room_actions_bottom_sheet.dart';
-import 'package:fortune_client/view/pages/common/bottom_sheet/room_actions/host/host_room_actions_bottom_sheet.dart';
 import 'package:fortune_client/view/pages/auth/login/login_page.dart';
-import 'package:fortune_client/view/pages/common/bottom_navigation_bar/bottom_navigation_bar.dart';
-import 'package:fortune_client/view/pages/common/entry_page/entry_address/entry_address_page.dart';
-import 'package:fortune_client/view/pages/common/entry_page/entry_description/entry_description_page.dart';
+import 'package:fortune_client/view/pages/common/input_long_text_page.dart';
+import 'package:fortune_client/view/pages/common/input_text_page.dart';
+import 'package:fortune_client/view/pages/home/home_page.dart';
+import 'package:fortune_client/view/pages/launch/update/update_page.dart';
 import 'package:fortune_client/view/pages/debug/debug_page.dart';
+import 'package:fortune_client/view/pages/launch/launch/launch_page.dart';
 import 'package:fortune_client/view/pages/message/message_room/message_room_page.dart';
-import 'package:fortune_client/view/pages/message/message_room_list/message_room_list_page.dart';
-import 'package:fortune_client/view/pages/my_page/edit_profile_images/edit_profile_images_page.dart';
-import 'package:fortune_client/view/pages/my_page/my_page/my_page.dart';
-import 'package:fortune_client/view/pages/my_page/update/profile_update_page.dart';
+import 'package:fortune_client/view/pages/my/edit/edit_profile_page.dart';
+import 'package:fortune_client/view/pages/my/my/my_page.dart';
+import 'package:fortune_client/view/pages/profile/input/profile_input_page.dart';
+import 'package:fortune_client/view/pages/profile/input/user_info_input_page.dart';
 import 'package:fortune_client/view/pages/profile/profile/profile_page.dart';
 import 'package:fortune_client/view/pages/request/join_requests_confirmation/join_requests_confirmation_page.dart';
-import 'package:fortune_client/view/pages/rooms/action/create/create_room_page.dart';
-import 'package:fortune_client/view/pages/rooms/action/edit/edit_room_page.dart';
-import 'package:fortune_client/view/pages/rooms/participating/participating_page.dart';
-import 'package:fortune_client/view/pages/rooms/participating_room_list/participating_room_list_page.dart';
+import 'package:fortune_client/view/pages/rooms/input/room_input_page.dart';
 import 'package:fortune_client/view/pages/rooms/room_detail/room_detail_page.dart';
-import 'package:fortune_client/view/pages/rooms/room_list/room_list_page.dart';
-import 'package:fortune_client/view/pages/tags/create/create_tag_page.dart';
-import 'package:fortune_client/view/pages/tags/select/select_tags_page.dart';
 import 'package:fortune_client/view/pages/settings/settings_page.dart';
-import 'package:fortune_client/view/routes/route_guard.dart';
+import 'package:fortune_client/view/pages/tags/input/tag_input_page.dart';
+import 'package:fortune_client/view/pages/tags/search/search_tags_page.dart';
 import 'package:fortune_client/view/routes/route_path.dart';
-import 'package:modal_bottom_sheet/src/bottom_sheet_route.dart' as mbs;
 
-export 'app_router.gr.dart';
+class AppRouter {
+  static Route<dynamic>? onGenerateRoute(RouteSettings settings) {
+    final arguments = settings.arguments;
 
-@AdaptiveAutoRouter(
-  replaceInRouteName: 'Page,Route',
-  routes: <AutoRoute>[
-    /// ボトムナビゲータで管理するページ
-    AutoRoute(
-      initial: true,
-      name: "HomeRouter",
-      page: MyBottomNavigationBar,
-      guards: [AuthGuard, CheckIfMyProfileExists],
-      children: [
-        /// ルームリスト
-        AutoRoute(
-          name: "RoomsTab",
-          path: RoutePath.rooms,
-          page: EmptyRouterPage,
-          children: [
-            AutoRoute(path: '', page: RoomListPage),
-            AutoRoute(
-                path: RoutePath.roomDetail, page: RoomDetailPage), // ルーム詳細
-          ],
-        ),
+    switch (RoutePath.from(settings.name)) {
+      case RoutePath.launch:
+        return _buildRoute(const LaunchPage());
 
-        /// 参加ルームリスト
-        AutoRoute(
-          name: "ParticipatingTab",
-          path: RoutePath.participatingRooms,
-          page: EmptyRouterPage,
-          children: [
-            AutoRoute(
-              path: '',
-              page: ParticipatingPage,
-            ),
-            AutoRoute(
-              path: RoutePath.roomDetail,
-              page: RoomDetailPage,
-            ), // ルーム詳細
+      case RoutePath.debug:
+        return _buildRoute(const DebugPage());
 
-            /// 参加リクエスト
-            AutoRoute(
-              path: RoutePath.requestConfirmation,
-              page: JoinRequestsConfirmationPage,
-            ),
+      case RoutePath.update:
+        return _buildRoute(const UpdatePage());
 
-            AutoRoute(
-              path: RoutePath.participatingroomsAll,
-              page: ParticipatingRoomListPage,
-            ),
-          ],
-        ),
+      case RoutePath.login:
+        return _buildRoute(const LoginPage());
 
-        /// メッセージルームリスト
-        AutoRoute(
-          name: "MessagesTab",
-          path: RoutePath.rooms,
-          page: EmptyRouterPage,
-          children: [
-            AutoRoute(path: '', page: MessageRoomListPage),
-            AutoRoute(
-                path: RoutePath.roomDetail, page: RoomDetailPage), // ルーム詳細
-          ],
-        ),
-      ],
-    ),
+      case RoutePath.home:
+        return _buildRoute(HomePage());
 
-    /// プロフィール作成
-    AutoRoute(
-      name: "CreateProfileRoute",
-      page: EmptyRouterPage,
-      guards: [AuthGuard],
-      children: [
-        RedirectRoute(path: "", redirectTo: RoutePath.createProfileBasic),
-        AutoRoute(
-          path: RoutePath.createProfileBasic,
-          page: BasicProfileEntryPage,
-        ),
-        AutoRoute(
-          path: RoutePath.createProfileDetail,
-          page: DetailedProfileEntryPage,
-        ),
-        AutoRoute(
-          path: RoutePath.createProfileIconImage,
-          page: ProfileIconImageEntryPage,
-        ),
-        AutoRoute(
-          path: RoutePath.createProfileSubImage,
-          page: EntryProfileSubImagePage,
-        ),
-      ],
-    ),
+      case RoutePath.userInfoInput:
+        return _buildRoute(const UserInfoInputPage());
 
-    /// ログイン
-    AutoRoute(path: RoutePath.login, page: LoginPage),
+      case RoutePath.profileInput:
+        return _buildRoute(ProfileInputPage());
 
-    /// メッセージ
-    AutoRoute(path: RoutePath.messageRoom, page: MessageRoomPage),
+      case RoutePath.profileEdit:
+        arguments as EditProfilePageArguments;
+        return _fadePageRouteBuilder(EditProfilePage(arguments));
 
-    /// デバッグ
-    AutoRoute(path: RoutePath.debug, page: DebugPage),
+      case RoutePath.profile:
 
-    /// プロフィール
-    AutoRoute(path: RoutePath.profile, page: ProfilePage),
+        /// ここで、ProfilePageに渡す引数を設定する
+        return _slidePageRouteBuilder(
+          const ProfilePage(),
+          offset: const Offset(0.0, 1.0),
+        );
 
-    /// ルーム作成
-    AutoRoute(path: RoutePath.createRoom, page: CreateRoomPage),
+      case RoutePath.my:
+        return _fadePageRouteBuilder(const MyPage());
 
-    /// ルーム編集
-    AutoRoute(path: RoutePath.editRoom, page: EditRoomPage),
+      case RoutePath.room:
 
-    /// 住所検索
-    AutoRoute(path: RoutePath.enterAddress, page: EntryAddressPage),
+      case RoutePath.roomInput:
+        arguments as RoomInputPageArguments;
+        return _slidePageRouteBuilder(
+          RoomInputPage(arguments),
+          offset: const Offset(0.0, 1.0),
+        );
 
-    /// アカウント
-    AutoRoute(path: RoutePath.account, page: MyPage),
+      case RoutePath.roomDetail:
+        arguments as RoomDetailPageArguments;
+        return _slidePageRouteBuilder(RoomDetailPage(arguments));
 
-    /// プロフィール更新
-    AutoRoute(path: RoutePath.updateProfile, page: ProfileUpdatePage),
+      case RoutePath.participatingRoom:
 
-    /// 設定
-    AutoRoute(path: RoutePath.setting, page: SettingsPage),
+      case RoutePath.messageRoom:
+        arguments as MessageRoomPageArguments;
+        return _slidePageRouteBuilder(MessageRoomPage(arguments));
 
-    /// タグ作成
-    AutoRoute(path: RoutePath.createTag, page: CreateTagPage),
+      case RoutePath.joinRequestsConfirm:
+        arguments as JoinRequestsConfirmationPageAuguments;
+        return _slidePageRouteBuilder(JoinRequestsConfirmationPage(arguments));
 
-    /// タグ選択
-    AutoRoute(path: RoutePath.selectTag, page: SelectTagsPage),
+      case RoutePath.messageRoomList:
 
-    /// 説明入力
-    AutoRoute(path: RoutePath.entryDescription, page: EntryDescriptionPage),
+      case RoutePath.tagInput:
+        return _slidePageRouteBuilder(
+          const TagInputPage(),
+          offset: const Offset(0.0, 1.0),
+        );
 
-    CustomRoute(
-      name: RoutePath.bottomSheet,
-      page: EmptyRouterPage,
-      customRouteBuilder: modalSheetBuilder,
-      children: [
-        AutoRoute(
-          name: RoutePath.hostRoomActions,
-          page: HostRoomActionsBottomSheet,
-        ),
-        AutoRoute(
-          name: RoutePath.guestRoomActions,
-          page: GuestRoomActionsBottomSheet,
-        ),
-        AutoRoute(
-          name: RoutePath.editProfilePicture,
-          page: EditProfileImagesPage,
-        ),
-      ],
-    ),
-  ],
-)
-class $AppRouter {}
+      case RoutePath.setting:
+        return _slidePageRouteBuilder(const SettingsPage());
 
-Route<T> modalSheetBuilder<T>(
-  BuildContext context,
-  Widget child,
-  CustomPage<T> page,
-) {
-  return mbs.ModalBottomSheetRoute(
-    settings: page,
-    builder: (context) => child,
-    expanded: true,
-    duration: const Duration(milliseconds: 300),
-  );
+      case RoutePath.settingAccount:
+
+      case RoutePath.settingNotification:
+
+      case RoutePath.settingPrivacy:
+
+      case RoutePath.settingTerms:
+
+      case RoutePath.settingHelp:
+
+      case RoutePath.settingAbout:
+
+      case RoutePath.searchTag:
+        arguments as SearchTagsPageAuguments;
+        return _slidePageRouteBuilder(SearchTagsPage(arguments));
+
+      case RoutePath.inputText:
+        arguments as InputTextPageArguments;
+        return _slidePageRouteBuilder(InputTextPage(arguments));
+
+      case RoutePath.inputLongText:
+        arguments as InputLongTextPageArguments;
+        return _slidePageRouteBuilder(InputLongTextPage(arguments));
+
+      case RoutePath.error:
+      case RoutePath.unknown:
+      default:
+        break;
+    }
+    return null;
+  }
+
+  static Route<dynamic>? _buildRoute(
+    Widget child, {
+    RouteSettings? settings,
+    bool fullscreenDialog = false,
+  }) {
+    return MaterialPageRoute<dynamic>(
+      settings: settings,
+      fullscreenDialog: fullscreenDialog,
+      builder: (BuildContext context) => child,
+    );
+  }
+
+  static PageRouteBuilder<dynamic> _slidePageRouteBuilder(
+    Widget child, {
+    RouteSettings? settings,
+    Offset offset = const Offset(1.0, 0.0),
+    Duration transitionDuration = const Duration(milliseconds: 200),
+  }) {
+    return PageRouteBuilder(
+      settings: settings,
+      transitionDuration: transitionDuration,
+      reverseTransitionDuration: transitionDuration,
+      pageBuilder: (context, animation, secondaryAnimation) => child,
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        final Animatable<Offset> tween = Tween(begin: offset, end: Offset.zero);
+
+        return SlideTransition(
+          position: animation.drive(tween),
+          child: child,
+        );
+      },
+    );
+  }
+
+  static PageRouteBuilder<dynamic> _fadePageRouteBuilder(
+    Widget child, {
+    RouteSettings? settings,
+    Duration transitionDuration = const Duration(milliseconds: 200),
+  }) {
+    return PageRouteBuilder(
+      settings: settings,
+      transitionDuration: transitionDuration,
+      reverseTransitionDuration: transitionDuration,
+      pageBuilder: (context, animation, secondaryAnimation) => child,
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        final Animatable<double> tween = Tween(begin: 0.0, end: 1.0);
+
+        return FadeTransition(
+          opacity: animation.drive(tween),
+          child: child,
+        );
+      },
+    );
+  }
 }

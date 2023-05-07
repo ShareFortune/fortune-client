@@ -23,19 +23,18 @@ final messageRoomViewModelProvider = StateNotifierProvider.family<
 class MessageRoomViewModel extends StateNotifier<MessageRoomState> {
   MessageRoomViewModel(super.state);
 
-  initialize() => loadMessages();
+  Future<void> initialize() => loadMessages();
 
   /// メッセージ読み込み
-  loadMessages() async {
-    final List<chat_types.Message> messages = [];
-
+  Future<void> loadMessages() async {
     state = state.copyWith(
       messages: await AsyncValue.guard(() async {
-        final data = await Repository.messages.getMessages(state.messageRoomId);
-        for (var message in data) {
-          messages.add(await MessageConverter.toMessage(message));
-        }
-        return messages;
+        final messages = await Repository.messages.fetchMessages(
+          state.messageRoomId,
+        );
+        return Future.wait(messages.map((message) async {
+          return await MessageConverter.toMessage(message);
+        }).toList());
       }),
     );
   }
@@ -71,7 +70,7 @@ class MessageRoomViewModel extends StateNotifier<MessageRoomState> {
   }
 
   /// Stateに[chat_types.Message]を追加
-  _addMessage(chat_types.Message message) async {
+  Future<void> _addMessage(chat_types.Message message) async {
     state = state.copyWith(
       messages: await AsyncValue.guard(() async {
         return [message, ...?state.messages.value];

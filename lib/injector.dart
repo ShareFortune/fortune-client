@@ -24,6 +24,7 @@ import 'package:fortune_client/data/datasource/remote/go/profile/profile_data_so
 import 'package:fortune_client/data/datasource/remote/go/rooms/fake_rooms_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/go/rooms/rooms_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/go/tags/tags_data_source.dart';
+import 'package:fortune_client/data/datasource/remote/go/users/fake_users_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/go/users/users_data_source.dart';
 import 'package:fortune_client/data/repository/addresses/addresses_repository.dart';
 import 'package:fortune_client/data/repository/addresses/addresses_repository_impl.dart';
@@ -47,8 +48,7 @@ import 'package:fortune_client/data/repository/tags/tags_repository.dart';
 import 'package:fortune_client/data/repository/tags/tags_repository_impl.dart';
 import 'package:fortune_client/data/repository/users/users_repository.dart';
 import 'package:fortune_client/data/repository/users/users_repository_impl.dart';
-import 'package:fortune_client/view/routes/app_router.gr.dart';
-import 'package:fortune_client/view/routes/route_guard.dart';
+import 'package:fortune_client/view/routes/route_navigator.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -58,27 +58,15 @@ final getIt = GetIt.instance;
 
 Future<void> initDependencies({bool testMode = false}) async {
   /// SharedPreferences
-  getIt.registerSingletonAsync<SharedPreferences>(
-    () => SharedPreferences.getInstance(),
-  );
+  final sharedPreferences = await SharedPreferences.getInstance();
 
   /// Dio
-  getIt.registerLazySingleton<Dio>(() => DioClient.client);
+  getIt.registerSingleton<Dio>(DioClient.client);
 
-  ///
   /// Router
-  ///
-  getIt.registerLazySingleton<AuthGuard>(() => AuthGuard());
-  getIt.registerLazySingleton<CheckIfMyProfileExists>(
-    () => CheckIfMyProfileExists(),
-  );
-  getIt.registerLazySingleton<AppRouter>(
-    () => AppRouter(authGuard: getIt(), checkIfMyProfileExists: getIt()),
-  );
+  getIt.registerLazySingleton<RouteNavigator>(() => RouteNavigator());
 
-  ///
   /// Repository
-  ///
   getIt.registerLazySingleton<DebugRepository>(
     () => DebugRepositoryImpl(getIt()),
   );
@@ -88,17 +76,20 @@ Future<void> initDependencies({bool testMode = false}) async {
   getIt.registerLazySingleton<UsersRepository>(
     () => UsersRepositoryImpl(getIt(), getIt()),
   );
+  getIt.registerLazySingleton<AddressesRepository>(
+    () => AddressesRepositoryImpl(getIt()),
+  );
   getIt.registerLazySingleton<MessagesRepository>(
     () => MessagesRepositoryImpl(getIt(), getIt()),
   );
   getIt.registerLazySingleton<MessageRoomsRepository>(
-    () => MessageRoomsRepositoryImpl(getIt()),
+    () => MessageRoomsRepositoryImpl(getIt(), getIt()),
   );
   getIt.registerLazySingleton<ProfileRepository>(
     () => ProfileRepositoryImpl(getIt(), getIt()),
   );
   getIt.registerLazySingleton<RoomsRepository>(
-    () => RoomsRepositoryImpl(getIt()),
+    () => RoomsRepositoryImpl(getIt(), getIt()),
   );
   getIt.registerLazySingleton<TagsRepository>(
     () => TagsRepositoryImpl(getIt()),
@@ -106,94 +97,90 @@ Future<void> initDependencies({bool testMode = false}) async {
   getIt.registerLazySingleton<JoinRequestsRepository>(
     () => JoinRequestsRepositoryImpl(getIt()),
   );
-  getIt.registerLazySingleton<AddressesRepository>(
-    () => AddressesRepositoryImpl(getIt()),
-  );
   getIt.registerLazySingleton<FavoritesRepository>(
     () => FavoritesRepositoryImpl(getIt()),
   );
 
-  ///
   /// DataSource
-  ///
   getIt.registerLazySingleton<SharedPreferencesDataSource>(
-    () => SharedPreferencesDataSourceImpl(getIt()),
+    () => SharedPreferencesDataSourceImpl(sharedPreferences),
   );
-  getIt.registerSingleton<FirebaseAuthDataSource>(
-    FirebaseAuthDataSourceImpl(),
+  getIt.registerLazySingleton<FirebaseAuthDataSource>(
+    () => FirebaseAuthDataSourceImpl(),
   );
-  getIt.registerSingleton<FacebookSignInDataSource>(
-    FacebookSignInDataSource(),
+  getIt.registerLazySingleton<FacebookSignInDataSource>(
+    () => FacebookSignInDataSource(),
   );
-  getIt.registerSingleton<AppleSignInDataSource>(
-    AppleSignInDataSource(),
+  getIt.registerLazySingleton<AppleSignInDataSource>(
+    () => AppleSignInDataSource(),
   );
-  getIt.registerSingleton<GoogleSignInDataSource>(
-    GoogleSignInDataSource(),
+  getIt.registerLazySingleton<GoogleSignInDataSource>(
+    () => GoogleSignInDataSource(),
   );
-  getIt.registerSingleton<UsersDataSource>(
-    UsersDataSource(getIt()),
+  getIt.registerLazySingleton<UsersDataSource>(
+    () => UsersDataSource(getIt()),
   );
-  getIt.registerSingleton<RoomsDataSource>(
-    RoomsDataSource(getIt()),
+  getIt.registerLazySingleton<RoomsDataSource>(
+    () => RoomsDataSource(getIt()),
   );
-  getIt.registerSingleton<ProfileDataSource>(
-    ProfileDataSource(getIt()),
+  getIt.registerLazySingleton<ProfileDataSource>(
+    () => ProfileDataSource(getIt()),
   );
-  getIt.registerSingleton<MessagesDataSource>(
-    MessagesDataSource(getIt()),
+  getIt.registerLazySingleton<MessagesDataSource>(
+    () => MessagesDataSource(getIt()),
   );
-  getIt.registerSingleton<MessageImagesDataSource>(
-    MessageImagesDataSource(getIt()),
+  getIt.registerLazySingleton<MessageImagesDataSource>(
+    () => MessageImagesDataSource(getIt()),
   );
-  getIt.registerSingleton<MessageRoomsDataSource>(
-    MessageRoomsDataSource(getIt()),
+  getIt.registerLazySingleton<MessageRoomsDataSource>(
+    () => MessageRoomsDataSource(getIt()),
   );
-  getIt.registerSingleton<TagsDataSource>(
-    TagsDataSource(getIt()),
+  getIt.registerLazySingleton<TagsDataSource>(
+    () => TagsDataSource(getIt()),
   );
-  getIt.registerSingleton<JoinRequestsDataSource>(
-    JoinRequestsDataSource(getIt()),
+  getIt.registerLazySingleton<JoinRequestsDataSource>(
+    () => JoinRequestsDataSource(getIt()),
   );
-  getIt.registerSingleton<AddressesDataSource>(
-    AddressesDataSource(getIt()),
+  getIt.registerLazySingleton<AddressesDataSource>(
+    () => AddressesDataSource(getIt()),
   );
-  getIt.registerSingleton<FavoritesDataSource>(
-    FavoritesDataSource(getIt()),
+  getIt.registerLazySingleton<FavoritesDataSource>(
+    () => FavoritesDataSource(getIt()),
   );
 
-  ///
-  /// Test DataSource
-  ///
+  /// Fake DataSource
   if (testMode) {
     getIt.pushNewScope();
 
-    getIt.registerLazySingleton<RoomsDataSource>(
-      () => FakeRoomsDataSource(),
+    getIt.registerSingleton<UsersDataSource>(
+      FakeUsersDataSource(),
     );
-    getIt.registerLazySingleton<ProfileDataSource>(
-      () => FakeProfileDataSource(),
+    getIt.registerSingleton<RoomsDataSource>(
+      FakeRoomsDataSource(),
     );
-    getIt.registerLazySingleton<MessagesDataSource>(
-      () => FakeMessagesDataSource(),
+    getIt.registerSingleton<ProfileDataSource>(
+      FakeProfileDataSource(),
     );
-    getIt.registerLazySingleton<MessageImagesDataSource>(
-      () => FakeMessageImagesDataSource(),
+    getIt.registerSingleton<MessagesDataSource>(
+      FakeMessagesDataSource(),
     );
-    getIt.registerLazySingleton<MessageRoomsDataSource>(
-      () => FakeMessageRoomsDataSource(),
+    getIt.registerSingleton<MessageImagesDataSource>(
+      FakeMessageImagesDataSource(),
     );
-    getIt.registerLazySingleton<TagsDataSource>(
-      () => FakeTagsDataSource(),
+    getIt.registerSingleton<MessageRoomsDataSource>(
+      FakeMessageRoomsDataSource(),
     );
-    getIt.registerLazySingleton<JoinRequestsDataSource>(
-      () => FakeJoinRequestsDataSource(),
+    getIt.registerSingleton<TagsDataSource>(
+      FakeTagsDataSource(),
     );
-    getIt.registerLazySingleton<AddressesDataSource>(
-      () => FakeAddressesDataSource(),
+    getIt.registerSingleton<JoinRequestsDataSource>(
+      FakeJoinRequestsDataSource(),
     );
-    getIt.registerLazySingleton<FavoritesDataSource>(
-      () => FakeFavoritesDataSource(),
+    getIt.registerSingleton<AddressesDataSource>(
+      FakeAddressesDataSource(),
+    );
+    getIt.registerSingleton<FavoritesDataSource>(
+      FakeFavoritesDataSource(),
     );
   }
 

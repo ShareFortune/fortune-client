@@ -12,16 +12,16 @@ class GoogleSignInDataSource implements AuthMethodInterface {
     try {
       /// Googleにサインイン
       final GoogleSignInAccount? loginResult = await GoogleSignIn().signIn();
+      print("object");
+      // /// SignInできなかったらnullを返す
+      // if (loginResult == null) return null;
 
-      /// SignInできなかったらnullを返す
-      if (loginResult == null) return null;
-
-      /// Credentialの生成
-      final authentication = await loginResult.authentication;
-      return GoogleAuthProvider.credential(
-        accessToken: authentication.accessToken,
-        idToken: authentication.idToken,
-      );
+      // /// Credentialの生成
+      // final authentication = await loginResult.authentication;
+      // return GoogleAuthProvider.credential(
+      //   accessToken: authentication.accessToken,
+      //   idToken: authentication.idToken,
+      // );
     } on PlatformException catch (e) {
       logger.e(e.toString());
       rethrow;

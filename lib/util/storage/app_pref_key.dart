@@ -23,13 +23,14 @@ enum AppPrefKey {
   profile,
 
   /// プロフィール写真
-  profileImage,
-  profileMainImage,
-  profileSecondImage,
-  profileThirdImage,
-  profileFourthImage,
-  profileFifthImage,
-  profileSixthImage,
+  profileImages,
+
+  /// Next Token
+  roomsNextToken,
+  joinRoomsNextTokenHost,
+  joinRoomsNextTokenGuest,
+  messagesNextTokenHost,
+  messagesNextTokenGuest,
 }
 
 extension AppPrefKeyEx on AppPrefKey {

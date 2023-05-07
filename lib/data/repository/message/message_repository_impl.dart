@@ -2,9 +2,8 @@ import 'dart:io';
 
 import 'package:fortune_client/data/datasource/remote/go/message_images/message_images_data_source.dart';
 import 'package:fortune_client/data/datasource/remote/go/messages/messages_data_source.dart';
-import 'package:fortune_client/data/model/core/base/message/message.dart';
-import 'package:fortune_client/data/model/message_images/post_v1_message_rooms_id_message_images/post_v1_message_rooms_id_message_images.dart';
-import 'package:fortune_client/data/model/messages/post_v1_message_rooms_id_messages/post_v1_message_rooms_id_messages.dart';
+import 'package:fortune_client/data/model/messages/message/message.dart';
+import 'package:fortune_client/data/model/messages/messages_request/messages_request.dart';
 import 'package:fortune_client/data/repository/message/message_repository.dart';
 import 'package:fortune_client/util/converter/image_converter.dart';
 import 'package:fortune_client/util/logger/logger.dart';
@@ -26,7 +25,7 @@ class MessagesRepositoryImpl implements MessagesRepository {
     try {
       await _messagesDataSource.send(
         messageRoomId,
-        PostV1MessageRoomsIdMessagesRequest(text).toJson(),
+        MessagesRequest(text: text).toJson(),
       );
     } catch (e) {
       logger.e(e);
@@ -42,8 +41,8 @@ class MessagesRepositoryImpl implements MessagesRepository {
     try {
       await _messageImagesDataSource.send(
         messageRoomId,
-        PostV1MessageRoomsIdMessageImagesRequest(
-          await ImageConverter.toBase64(file),
+        ImageMessagesRequest(
+          file: await ImageConverter.toBase64(file),
         ).toJson(),
       );
     } catch (e) {
@@ -53,10 +52,10 @@ class MessagesRepositoryImpl implements MessagesRepository {
   }
 
   @override
-  Future<List<Message>> getMessages(String messageRoomId) async {
+  Future<List<Message>> fetchMessages(String messageRoomId) async {
     try {
-      final result = await _messagesDataSource.get(messageRoomId);
-      return result.data;
+      final result = await _messagesDataSource.fetchMessages(messageRoomId);
+      return result.messages;
     } catch (e) {
       logger.e(e);
       rethrow;

@@ -1,0 +1,54 @@
+{
+    "address": {
+        "city": "横手市",
+        "country": "日本",
+        "prefecture": "秋田県"
+    },
+    "applicationDeadline": "2023-01-22",
+    "hostUser": {
+        "gender": "MAN",
+        "id": "a82d2785-56f8-4739-b192-1efe44ebd695",
+        "mainImageURL": "https://dol.ismcdn.jp/mwimgs/7/e/1320w/img_7e0b8adba77c91687a8078920dedc7be160077.jpg",
+        "name": "こうすけ"
+    },
+    "id": "ad3c1da2-7e53-449f-808f-6da62b4fd4c0",
+    "isHost": false,
+    "isMember": false,
+    "membersNum": 0,
+    "participants": [
+        {
+            "gender": "MAN",
+            "id": "cf7840c5-c6a6-444f-aa80-fe31783de1de",
+            "mainImageURL": "https://dol.ismcdn.jp/mwimgs/7/e/1320w/img_7e0b8adba77c91687a8078920dedc7be160077.jpg",
+            "name": "kosuke-test"
+        }
+    ],
+    "roomName": "テストルーム",
+    "status": "PENDING",
+    "tags": [
+        {
+            "id": "9e859233-a284-445e-ae0b-d52560c67d9c",
+            "name": "YouTube"
+        },
+        {
+            "id": "9e859233-a284-445e-ae0b-d52560c67d9c",
+            "name": "サッカー"
+        },
+        {
+            "id": "9e859233-a284-445e-ae0b-d52560c67d9c",
+            "name": "アニメ"
+        },
+        {
+            "id": "9e859233-a284-445e-ae0b-d52560c67d9c",
+            "name": "大学生"
+        },
+        {
+            "id": "9e859233-a284-445e-ae0b-d52560c67d9c",
+            "name": "麻雀"
+        },
+        {
+            "id": "9e859233-a284-445e-ae0b-d52560c67d9c",
+            "name": "映画"
+        }
+    ]
+}

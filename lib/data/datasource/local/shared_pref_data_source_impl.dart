@@ -7,7 +7,8 @@ class SharedPreferencesDataSourceImpl implements SharedPreferencesDataSource {
 
   final SharedPreferences _sharedPreferences;
 
-  Future<bool> _logger<T>(Future<bool> Function(String, T) setter, String key, T value) {
+  Future<bool> _logger<T>(
+      Future<bool> Function(String, T) setter, String key, T value) {
     return setter(key, value).whenComplete(
       () => logger.i('[$runtimeType] set ${T.runtimeType} for key: $key'),
     );
@@ -65,9 +66,8 @@ class SharedPreferencesDataSourceImpl implements SharedPreferencesDataSource {
 
   @override
   Future<bool> remove(String key) {
-    return _sharedPreferences
-        .remove(key)
-        .whenComplete(() => logger.i('[$runtimeType] removed value for key: $key'));
+    return _sharedPreferences.remove(key).whenComplete(
+        () => logger.i('[$runtimeType] removed value for key: $key'));
   }
 
   @override

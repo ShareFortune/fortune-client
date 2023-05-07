@@ -1,5 +1,5 @@
 import 'package:fortune_client/data/datasource/remote/go/favorites/favorites_data_source.dart';
-import 'package:fortune_client/data/model/rooms/room_id_response/room_id_response.dart';
+import 'package:fortune_client/data/model/rooms/rooms_response/rooms_response.dart';
 
 class FakeFavoritesDataSource implements FavoritesDataSource {
   @override
