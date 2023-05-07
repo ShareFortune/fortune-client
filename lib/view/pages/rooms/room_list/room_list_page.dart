@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:fortune_client/gen/assets.gen.dart';
 import 'package:fortune_client/l10n/locale_keys.g.dart';
 import 'package:fortune_client/view/pages/rooms/room_detail/room_detail_page.dart';
+import 'package:fortune_client/view/pages/rooms/room_list/room_list_state.dart';
 import 'package:fortune_client/view/widgets/app_bar/scroll_app_bar.dart';
 import 'package:fortune_client/view/pages/rooms/room_list/components/room_list_card.dart';
 import 'package:fortune_client/view/pages/rooms/room_list/room_list_view_model.dart';
@@ -14,23 +15,34 @@ import 'package:fortune_client/view/widgets/picker/address_picker.dart';
 import 'package:fortune_client/view/widgets/picker/number_picker.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:screen_loader/screen_loader.dart';
 
-// ignore: must_be_immutable
-class RoomListPage extends HookConsumerWidget with ScreenLoader {
-  RoomListPage({super.key});
+class RoomListPage extends StatefulHookConsumerWidget {
+  const RoomListPage({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<RoomListPage> createState() => _RoomListPageState();
+}
+
+class _RoomListPageState extends ConsumerState<RoomListPage>
+    with AutomaticKeepAliveClientMixin {
+  @override
+  Widget build(BuildContext context) {
+    super.build(context);
     final theme = ref.watch(appThemeProvider);
     final state = ref.watch(roomListViewModelProvider);
     final viewModel = ref.watch(roomListViewModelProvider.notifier);
 
-    return loadableWidget(
-      child: Container(
-        color: theme.appColors.onBackground,
-        child: CustomScrollView(
-          slivers: [
+    return Container(
+      color: theme.appColors.onBackground,
+      child: NotificationListener<ScrollEndNotification>(
+        onNotification: (notification) {
+          if (notification.metrics.extentAfter == 0) {
+            viewModel.fetchNextRooms();
+          }
+          return false;
+        },
+        child: NestedScrollView(
+          headerSliverBuilder: (_, __) => [
             ScrollAppBar(title: LocaleKeys.room_list_page_title.tr()),
             SliverToBoxAdapter(
               child: Container(
@@ -71,39 +83,52 @@ class RoomListPage extends HookConsumerWidget with ScreenLoader {
                 ),
               ),
             ),
-            SliverToBoxAdapter(
-              child: AsyncValueWidget(
-                data: state.rooms,
-                builder: (rooms) {
-                  return Column(
-                    children: rooms.map((room) {
-                      return RoomListCard(
-                        theme: theme,
-                        room: room,
-                        onTapRoom: () async {
-                          await navigator.navigateTo(
-                            RoutePath.roomDetail,
-                            arguments: RoomDetailPageArguments(
-                              roomId: room.data.id,
-                              roomName: room.data.roomName,
-                            ),
-                          );
-                        },
-                        onTapHeart: (value) async {},
-                        onTapJoinRequestBtn: () async {
-                          await performFuture(() async {
-                            await Future.delayed(const Duration(seconds: 5));
-                          });
-                        },
-                      );
-                    }).toList(),
-                  );
-                },
-              ),
-            ),
           ],
+          body: AsyncValueWidget(
+            data: state.rooms,
+            builder: (rooms) {
+              return ListView(
+                padding: EdgeInsets.zero,
+                addAutomaticKeepAlives: true,
+                children: [
+                  ...rooms.map((room) => _RoomListCard(room)).toList(),
+                  if (state.isFetchingNextPage)
+                    Container(
+                      alignment: Alignment.center,
+                      padding: const EdgeInsets.only(top: 20, bottom: 50),
+                      child: const CircularProgressIndicator(strokeWidth: 3),
+                    ),
+                ],
+              );
+            },
+          ),
         ),
       ),
+    );
+  }
+
+  @override
+  bool get wantKeepAlive => true;
+}
+
+class _RoomListCard extends StatelessWidget {
+  const _RoomListCard(this.room);
+
+  final RoomListStateRoom room;
+
+  @override
+  Widget build(BuildContext context) {
+    return RoomListCard(
+      room: room,
+      onTapRoom: () => navigator.navigateTo(
+        RoutePath.roomDetail,
+        arguments: RoomDetailPageArguments(
+          roomId: room.data.id,
+          roomName: room.data.roomName,
+        ),
+      ),
+      onTapHeart: (value) async {},
+      onTapJoinRequestBtn: () async {},
     );
   }
 }
@@ -129,13 +154,13 @@ class _RoomsFilterButton extends HookConsumerWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        padding: const EdgeInsets.fromLTRB(20, 6, 12, 6),
+        padding: const EdgeInsets.fromLTRB(20, 5, 12, 5),
         decoration: BoxDecoration(
           border: Border.all(
             width: 1,
             color: isAppliedFilter
                 ? theme.appColors.primary.withOpacity(0.1)
-                : theme.appColors.border1,
+                : theme.appColors.border2,
           ),
           borderRadius: BorderRadius.circular(30),
           color: isAppliedFilter
@@ -146,11 +171,11 @@ class _RoomsFilterButton extends HookConsumerWidget {
           children: [
             Text(
               title,
-              style: theme.textTheme.h30.paint(
-                isAppliedFilter
-                    ? theme.appColors.primary
-                    : theme.appColors.subText2,
-              ),
+              style: theme.textTheme.h20.bold().paint(
+                    isAppliedFilter
+                        ? theme.appColors.primary
+                        : theme.appColors.subText2,
+                  ),
             ),
             const Gap(6),
             SvgPicture.asset(
@@ -160,7 +185,7 @@ class _RoomsFilterButton extends HookConsumerWidget {
               colorFilter: ColorFilter.mode(
                 isAppliedFilter
                     ? theme.appColors.primary
-                    : theme.appColors.iconBtn2,
+                    : theme.appColors.subText2,
                 BlendMode.srcIn,
               ),
             ),

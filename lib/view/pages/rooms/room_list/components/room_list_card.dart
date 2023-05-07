@@ -9,25 +9,26 @@ import 'package:fortune_client/view/pages/rooms/room_list/room_list_state.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/room/room_member_icons.dart';
 import 'package:gap/gap.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class RoomListCard extends StatelessWidget {
+class RoomListCard extends HookConsumerWidget {
   const RoomListCard({
     super.key,
-    required this.theme,
     required this.room,
     required this.onTapRoom,
     required this.onTapHeart,
     required this.onTapJoinRequestBtn,
   });
 
-  final AppTheme theme;
   final RoomListStateRoom room;
   final VoidCallback onTapRoom;
   final Function(bool) onTapHeart;
   final VoidCallback onTapJoinRequestBtn;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final theme = ref.watch(appThemeProvider);
+
     const shadowOffset = Offset(4, 4);
     shadow(Offset offset) => BoxShadow(
           color: theme.appColors.shadow,

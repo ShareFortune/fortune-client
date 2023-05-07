@@ -186,8 +186,7 @@ class ProfileRepositoryImpl implements ProfileRepository {
   Future<void> updateProfileImageByIndex(int index, File file) async {
     final images = getProfileImages();
 
-    /// 画像枚数より大きいインデックスはエラー
-    assert(images.length <= index);
+    assert(index < images.length, '画像枚数より大きいインデックスが指定された！');
     images[index] = await ImageConverter.toBase64(file);
     _saveProfileImagesInBase64(images);
   }

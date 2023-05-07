@@ -3,7 +3,6 @@ import 'package:fortune_client/data/repository/repository.dart';
 import 'package:fortune_client/view/pages/rooms/room_list/room_list_state.dart';
 import 'package:fortune_client/view/pages/tags/search/search_tags_page.dart';
 import 'package:fortune_client/view/routes/route_navigator.dart';
-import 'package:fortune_client/view/routes/route_path.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final roomListViewModelProvider =
@@ -19,11 +18,9 @@ class RoomListViewModel extends StateNotifier<RoomListState> {
   /// フィルター
   RoomListStateFilter get filter => state.filter;
 
-  Future<void> initialize() async {
-    await fetchList();
-  }
+  Future<void> initialize() => fetchRooms();
 
-  Future<void> fetchList() async {
+  Future<void> fetchRooms() async {
     bool hasRoomSearchResult = false;
     state = state.copyWith(
       rooms: await AsyncValue.guard(() async {
@@ -43,6 +40,22 @@ class RoomListViewModel extends StateNotifier<RoomListState> {
         return result.map((data) => RoomListStateRoom(data: data)).toList();
       }),
       hasRoomSearchResult: hasRoomSearchResult,
+    );
+  }
+
+  /// 次のページを取得
+  Future<void> fetchNextRooms() async {
+    if (state.rooms.value == null) return;
+    state = state.copyWith(isFetchingNextPage: true);
+    state = state.copyWith(
+      isFetchingNextPage: false,
+      rooms: await AsyncValue.guard(() async {
+        final result = await Repository.rooms.fetchRoomsNext();
+        return [
+          ...state.rooms.value!,
+          ...result.map((data) => RoomListStateRoom(data: data))
+        ];
+      }),
     );
   }
 
@@ -86,7 +99,7 @@ class RoomListViewModel extends StateNotifier<RoomListState> {
   Future<void> _filtering(RoomListStateFilter? filter) async {
     if (filter == null) return;
     state = state.copyWith(filter: filter);
-    await fetchList();
+    await fetchRooms();
   }
 
   /// タグでフィルタリング
@@ -113,6 +126,6 @@ class RoomListViewModel extends StateNotifier<RoomListState> {
   /// フィルターのリセット
   void resetFilter() async {
     state = state.copyWith(filter: const RoomListStateFilter());
-    await fetchList();
+    await fetchRooms();
   }
 }

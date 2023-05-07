@@ -7,6 +7,8 @@ part 'participating_state.freezed.dart';
 @freezed
 class ParticipatingState with _$ParticipatingState {
   const factory ParticipatingState({
+    @Default(false) bool isFetchingNextHostPage,
+    @Default(false) bool isFetchingNextGuestPage,
     required List<RoomsHostResponseRoom> host,
     required List<RoomsGuestResponseRoom> guest,
   }) = _ParticipatingState;

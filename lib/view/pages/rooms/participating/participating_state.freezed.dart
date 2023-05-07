@@ -16,6 +16,8 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$ParticipatingState {
+  bool get isFetchingNextHostPage => throw _privateConstructorUsedError;
+  bool get isFetchingNextGuestPage => throw _privateConstructorUsedError;
   List<RoomsHostResponseRoom> get host => throw _privateConstructorUsedError;
   List<RoomsGuestResponseRoom> get guest => throw _privateConstructorUsedError;
 
@@ -31,7 +33,10 @@ abstract class $ParticipatingStateCopyWith<$Res> {
       _$ParticipatingStateCopyWithImpl<$Res, ParticipatingState>;
   @useResult
   $Res call(
-      {List<RoomsHostResponseRoom> host, List<RoomsGuestResponseRoom> guest});
+      {bool isFetchingNextHostPage,
+      bool isFetchingNextGuestPage,
+      List<RoomsHostResponseRoom> host,
+      List<RoomsGuestResponseRoom> guest});
 }
 
 /// @nodoc
@@ -47,10 +52,20 @@ class _$ParticipatingStateCopyWithImpl<$Res, $Val extends ParticipatingState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? isFetchingNextHostPage = null,
+    Object? isFetchingNextGuestPage = null,
     Object? host = null,
     Object? guest = null,
   }) {
     return _then(_value.copyWith(
+      isFetchingNextHostPage: null == isFetchingNextHostPage
+          ? _value.isFetchingNextHostPage
+          : isFetchingNextHostPage // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isFetchingNextGuestPage: null == isFetchingNextGuestPage
+          ? _value.isFetchingNextGuestPage
+          : isFetchingNextGuestPage // ignore: cast_nullable_to_non_nullable
+              as bool,
       host: null == host
           ? _value.host
           : host // ignore: cast_nullable_to_non_nullable
@@ -72,7 +87,10 @@ abstract class _$$_ParticipatingStateCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {List<RoomsHostResponseRoom> host, List<RoomsGuestResponseRoom> guest});
+      {bool isFetchingNextHostPage,
+      bool isFetchingNextGuestPage,
+      List<RoomsHostResponseRoom> host,
+      List<RoomsGuestResponseRoom> guest});
 }
 
 /// @nodoc
@@ -86,10 +104,20 @@ class __$$_ParticipatingStateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? isFetchingNextHostPage = null,
+    Object? isFetchingNextGuestPage = null,
     Object? host = null,
     Object? guest = null,
   }) {
     return _then(_$_ParticipatingState(
+      isFetchingNextHostPage: null == isFetchingNextHostPage
+          ? _value.isFetchingNextHostPage
+          : isFetchingNextHostPage // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isFetchingNextGuestPage: null == isFetchingNextGuestPage
+          ? _value.isFetchingNextGuestPage
+          : isFetchingNextGuestPage // ignore: cast_nullable_to_non_nullable
+              as bool,
       host: null == host
           ? _value._host
           : host // ignore: cast_nullable_to_non_nullable
@@ -106,11 +134,19 @@ class __$$_ParticipatingStateCopyWithImpl<$Res>
 
 class _$_ParticipatingState implements _ParticipatingState {
   const _$_ParticipatingState(
-      {required final List<RoomsHostResponseRoom> host,
+      {this.isFetchingNextHostPage = false,
+      this.isFetchingNextGuestPage = false,
+      required final List<RoomsHostResponseRoom> host,
       required final List<RoomsGuestResponseRoom> guest})
       : _host = host,
         _guest = guest;
 
+  @override
+  @JsonKey()
+  final bool isFetchingNextHostPage;
+  @override
+  @JsonKey()
+  final bool isFetchingNextGuestPage;
   final List<RoomsHostResponseRoom> _host;
   @override
   List<RoomsHostResponseRoom> get host {
@@ -129,7 +165,7 @@ class _$_ParticipatingState implements _ParticipatingState {
 
   @override
   String toString() {
-    return 'ParticipatingState(host: $host, guest: $guest)';
+    return 'ParticipatingState(isFetchingNextHostPage: $isFetchingNextHostPage, isFetchingNextGuestPage: $isFetchingNextGuestPage, host: $host, guest: $guest)';
   }
 
   @override
@@ -137,6 +173,11 @@ class _$_ParticipatingState implements _ParticipatingState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ParticipatingState &&
+            (identical(other.isFetchingNextHostPage, isFetchingNextHostPage) ||
+                other.isFetchingNextHostPage == isFetchingNextHostPage) &&
+            (identical(
+                    other.isFetchingNextGuestPage, isFetchingNextGuestPage) ||
+                other.isFetchingNextGuestPage == isFetchingNextGuestPage) &&
             const DeepCollectionEquality().equals(other._host, _host) &&
             const DeepCollectionEquality().equals(other._guest, _guest));
   }
@@ -144,6 +185,8 @@ class _$_ParticipatingState implements _ParticipatingState {
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      isFetchingNextHostPage,
+      isFetchingNextGuestPage,
       const DeepCollectionEquality().hash(_host),
       const DeepCollectionEquality().hash(_guest));
 
@@ -157,10 +200,16 @@ class _$_ParticipatingState implements _ParticipatingState {
 
 abstract class _ParticipatingState implements ParticipatingState {
   const factory _ParticipatingState(
-          {required final List<RoomsHostResponseRoom> host,
+          {final bool isFetchingNextHostPage,
+          final bool isFetchingNextGuestPage,
+          required final List<RoomsHostResponseRoom> host,
           required final List<RoomsGuestResponseRoom> guest}) =
       _$_ParticipatingState;
 
+  @override
+  bool get isFetchingNextHostPage;
+  @override
+  bool get isFetchingNextGuestPage;
   @override
   List<RoomsHostResponseRoom> get host;
   @override

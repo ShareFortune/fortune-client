@@ -11,8 +11,9 @@ class DioClient {
         baseUrl: Constants.of().baseUrl,
         contentType: Headers.jsonContentType,
         responseType: ResponseType.json,
-        connectTimeout: const Duration(seconds: 30),
-        receiveTimeout: const Duration(seconds: 30),
+        connectTimeout: const Duration(milliseconds: 30000),
+        receiveTimeout: const Duration(milliseconds: 30000),
+        sendTimeout: const Duration(milliseconds: 30000),
       );
 
   static get interceptors => [

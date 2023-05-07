@@ -1,48 +1,48 @@
 import 'package:fortune_client/data/repository/repository.dart';
-import 'package:fortune_client/view/pages/message/message_room/message_room_page.dart';
 import 'package:fortune_client/view/pages/message/message_room_list/message_room_list_state.dart';
-import 'package:fortune_client/view/routes/route_navigator.dart';
-import 'package:fortune_client/view/routes/route_path.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-final messageRoomListViewModelProvider =
-    StateNotifierProvider<MessageRoomListViewModel, MessageRoomListState>(
-  (ref) => MessageRoomListViewModel(
-    const MessageRoomListState(
-      host: AsyncLoading(),
-      guest: AsyncLoading(),
-    ),
-  )..initialize(),
-);
+part 'message_room_list_view_model.g.dart';
 
-class MessageRoomListViewModel extends StateNotifier<MessageRoomListState> {
-  MessageRoomListViewModel(super.state);
-
-  Future<void> initialize() async {
-    await fetchMessageRoomsHost();
-    await fetchMessageRoomsGuest();
-  }
-
-  Future<void> fetchMessageRoomsHost() async {
-    state = state.copyWith(
-      host: await AsyncValue.guard(
-        () => Repository.messageRooms.fetchHost(),
-      ),
+@riverpod
+class MessageRoomListViewModel extends _$MessageRoomListViewModel {
+  @override
+  Future<MessageRoomListState> build() async {
+    return MessageRoomListState(
+      host: await Repository.messageRooms.fetchHost(),
+      guest: await Repository.messageRooms.fetchGuest(),
     );
   }
 
-  Future<void> fetchMessageRoomsGuest() async {
-    state = state.copyWith(
-      guest: await AsyncValue.guard(
-        () => Repository.messageRooms.fetchGuest(),
-      ),
-    );
+  /// 次のページを取得 (ホスト)
+  Future<void> fetchNextHostRooms() async {
+    final value = state.value;
+    if (value == null) return;
+    state = AsyncData(value.copyWith(isFetchingNextHostPage: true));
+    state = await AsyncValue.guard(() async {
+      return value.copyWith(
+        isFetchingNextHostPage: false,
+        host: [
+          ...value.host,
+          ...await Repository.messageRooms.fetchHostNext(),
+        ],
+      );
+    });
   }
 
-  navigateToMessagePage(String id) async {
-    navigator.navigateTo(
-      RoutePath.messageRoom,
-      arguments: MessageRoomPageArguments(id: id),
-    );
+  /// 次のページを取得 (ゲスト)
+  Future<void> fetchNextGuestRooms() async {
+    final value = state.value;
+    if (value == null) return;
+    state = AsyncData(value.copyWith(isFetchingNextGuestPage: true));
+    state = await AsyncValue.guard(() async {
+      return value.copyWith(
+        isFetchingNextGuestPage: false,
+        guest: [
+          ...value.guest,
+          ...await Repository.messageRooms.fetchGuestNext(),
+        ],
+      );
+    });
   }
 }

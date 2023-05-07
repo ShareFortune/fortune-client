@@ -15,7 +15,7 @@ class LaunchPage extends StatelessWidget {
   Widget build(BuildContext context) {
     Future.delayed(const Duration(milliseconds: 500)).whenComplete(() async {
       /// リモート設定を初期化
-      await initRemoteConfig();
+      // await Future.wait([initRemoteConfig()]);
 
       /// バージョンチェック
       if (await verifyNeesUpdate()) {
@@ -54,11 +54,11 @@ class LaunchPage extends StatelessWidget {
   /// リモート設定を初期化
   Future<void> initRemoteConfig() async {
     final remoteConfig = FirebaseRemoteConfig.instance;
-    await remoteConfig.setConfigSettings(RemoteConfigSettings(
+    final settings = RemoteConfigSettings(
       fetchTimeout: const Duration(minutes: 1),
-      minimumFetchInterval: const Duration(minutes: 1),
-    ));
-
+      minimumFetchInterval: const Duration(minutes: 5),
+    );
+    await remoteConfig.setConfigSettings(settings);
     await remoteConfig.fetchAndActivate();
   }
 

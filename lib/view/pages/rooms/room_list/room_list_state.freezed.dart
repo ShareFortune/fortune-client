@@ -16,6 +16,9 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$RoomListState {
+  /// 次のページを取得中か
+  bool get isFetchingNextPage => throw _privateConstructorUsedError;
+
   /// ルームの検索結果が存在するか
   ///
   /// 存在しない場合はfalseになり、
@@ -42,7 +45,8 @@ abstract class $RoomListStateCopyWith<$Res> {
       _$RoomListStateCopyWithImpl<$Res, RoomListState>;
   @useResult
   $Res call(
-      {bool hasRoomSearchResult,
+      {bool isFetchingNextPage,
+      bool hasRoomSearchResult,
       RoomListStateFilter filter,
       AsyncValue<List<RoomListStateRoom>> rooms});
 
@@ -62,11 +66,16 @@ class _$RoomListStateCopyWithImpl<$Res, $Val extends RoomListState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? isFetchingNextPage = null,
     Object? hasRoomSearchResult = null,
     Object? filter = null,
     Object? rooms = null,
   }) {
     return _then(_value.copyWith(
+      isFetchingNextPage: null == isFetchingNextPage
+          ? _value.isFetchingNextPage
+          : isFetchingNextPage // ignore: cast_nullable_to_non_nullable
+              as bool,
       hasRoomSearchResult: null == hasRoomSearchResult
           ? _value.hasRoomSearchResult
           : hasRoomSearchResult // ignore: cast_nullable_to_non_nullable
@@ -100,7 +109,8 @@ abstract class _$$_RoomListStateCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {bool hasRoomSearchResult,
+      {bool isFetchingNextPage,
+      bool hasRoomSearchResult,
       RoomListStateFilter filter,
       AsyncValue<List<RoomListStateRoom>> rooms});
 
@@ -119,11 +129,16 @@ class __$$_RoomListStateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? isFetchingNextPage = null,
     Object? hasRoomSearchResult = null,
     Object? filter = null,
     Object? rooms = null,
   }) {
     return _then(_$_RoomListState(
+      isFetchingNextPage: null == isFetchingNextPage
+          ? _value.isFetchingNextPage
+          : isFetchingNextPage // ignore: cast_nullable_to_non_nullable
+              as bool,
       hasRoomSearchResult: null == hasRoomSearchResult
           ? _value.hasRoomSearchResult
           : hasRoomSearchResult // ignore: cast_nullable_to_non_nullable
@@ -144,9 +159,15 @@ class __$$_RoomListStateCopyWithImpl<$Res>
 
 class _$_RoomListState implements _RoomListState {
   const _$_RoomListState(
-      {this.hasRoomSearchResult = true,
+      {this.isFetchingNextPage = false,
+      this.hasRoomSearchResult = true,
       this.filter = const RoomListStateFilter(),
       this.rooms = const AsyncLoading()});
+
+  /// 次のページを取得中か
+  @override
+  @JsonKey()
+  final bool isFetchingNextPage;
 
   /// ルームの検索結果が存在するか
   ///
@@ -169,7 +190,7 @@ class _$_RoomListState implements _RoomListState {
 
   @override
   String toString() {
-    return 'RoomListState(hasRoomSearchResult: $hasRoomSearchResult, filter: $filter, rooms: $rooms)';
+    return 'RoomListState(isFetchingNextPage: $isFetchingNextPage, hasRoomSearchResult: $hasRoomSearchResult, filter: $filter, rooms: $rooms)';
   }
 
   @override
@@ -177,6 +198,8 @@ class _$_RoomListState implements _RoomListState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_RoomListState &&
+            (identical(other.isFetchingNextPage, isFetchingNextPage) ||
+                other.isFetchingNextPage == isFetchingNextPage) &&
             (identical(other.hasRoomSearchResult, hasRoomSearchResult) ||
                 other.hasRoomSearchResult == hasRoomSearchResult) &&
             (identical(other.filter, filter) || other.filter == filter) &&
@@ -184,8 +207,8 @@ class _$_RoomListState implements _RoomListState {
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, hasRoomSearchResult, filter, rooms);
+  int get hashCode => Object.hash(
+      runtimeType, isFetchingNextPage, hasRoomSearchResult, filter, rooms);
 
   @JsonKey(ignore: true)
   @override
@@ -196,10 +219,15 @@ class _$_RoomListState implements _RoomListState {
 
 abstract class _RoomListState implements RoomListState {
   const factory _RoomListState(
-      {final bool hasRoomSearchResult,
+      {final bool isFetchingNextPage,
+      final bool hasRoomSearchResult,
       final RoomListStateFilter filter,
       final AsyncValue<List<RoomListStateRoom>> rooms}) = _$_RoomListState;
 
+  @override
+
+  /// 次のページを取得中か
+  bool get isFetchingNextPage;
   @override
 
   /// ルームの検索結果が存在するか
