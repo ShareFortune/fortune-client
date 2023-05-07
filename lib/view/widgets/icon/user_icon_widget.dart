@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fortune_client/util/converter/image_converter.dart';
 import 'package:fortune_client/util/logger/logger.dart';
 
 class UserIconWidget extends StatelessWidget {
@@ -15,7 +16,7 @@ class UserIconWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return ClipOval(
       child: Image.network(
-        url,
+        ImageConverter.convertHttpsToHttp(url),
         width: radius * 2,
         height: radius * 2,
         fit: BoxFit.cover,

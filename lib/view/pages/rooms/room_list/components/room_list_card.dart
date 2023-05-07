@@ -80,7 +80,7 @@ class RoomListCard extends HookConsumerWidget {
         /// ホストアイコン
         ClipOval(
           child: Image.network(
-            room.data.hostImageURL,
+            room.data.hostImageUrlHttp,
             width: 50,
             height: 50,
             fit: BoxFit.cover,
@@ -128,7 +128,6 @@ class RoomListCard extends HookConsumerWidget {
             backgroundColor: joinBtnColor,
             minimumSize: Size.zero,
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-            // tapTargetSize: MaterialTapTargetSize.shrinkWrap,
           ),
           child: Text(
             LocaleKeys.data_room_action_joinRequest_label.tr(),

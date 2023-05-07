@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fortune_client/util/converter/image_converter.dart';
 import 'package:fortune_client/util/logger/logger.dart';
 
 class RoomMemberIcons extends StatelessWidget {
@@ -36,7 +37,7 @@ class RoomMemberIcons extends StatelessWidget {
           alignment: Alignment.centerRight,
           child: ClipOval(
             child: Image.network(
-              urls[index],
+              ImageConverter.convertHttpsToHttp(urls[index]),
               width: radius * 2,
               height: radius * 2,
               fit: BoxFit.cover,
