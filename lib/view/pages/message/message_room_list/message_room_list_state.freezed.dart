@@ -16,8 +16,10 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$MessageRoomListState {
-  AsyncValue<List<MessageRoom>> get host => throw _privateConstructorUsedError;
-  AsyncValue<List<MessageRoom>> get guest => throw _privateConstructorUsedError;
+  bool get isFetchingNextHostPage => throw _privateConstructorUsedError;
+  bool get isFetchingNextGuestPage => throw _privateConstructorUsedError;
+  List<MessageRoom> get host => throw _privateConstructorUsedError;
+  List<MessageRoom> get guest => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $MessageRoomListStateCopyWith<MessageRoomListState> get copyWith =>
@@ -31,8 +33,10 @@ abstract class $MessageRoomListStateCopyWith<$Res> {
       _$MessageRoomListStateCopyWithImpl<$Res, MessageRoomListState>;
   @useResult
   $Res call(
-      {AsyncValue<List<MessageRoom>> host,
-      AsyncValue<List<MessageRoom>> guest});
+      {bool isFetchingNextHostPage,
+      bool isFetchingNextGuestPage,
+      List<MessageRoom> host,
+      List<MessageRoom> guest});
 }
 
 /// @nodoc
@@ -49,18 +53,28 @@ class _$MessageRoomListStateCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? isFetchingNextHostPage = null,
+    Object? isFetchingNextGuestPage = null,
     Object? host = null,
     Object? guest = null,
   }) {
     return _then(_value.copyWith(
+      isFetchingNextHostPage: null == isFetchingNextHostPage
+          ? _value.isFetchingNextHostPage
+          : isFetchingNextHostPage // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isFetchingNextGuestPage: null == isFetchingNextGuestPage
+          ? _value.isFetchingNextGuestPage
+          : isFetchingNextGuestPage // ignore: cast_nullable_to_non_nullable
+              as bool,
       host: null == host
           ? _value.host
           : host // ignore: cast_nullable_to_non_nullable
-              as AsyncValue<List<MessageRoom>>,
+              as List<MessageRoom>,
       guest: null == guest
           ? _value.guest
           : guest // ignore: cast_nullable_to_non_nullable
-              as AsyncValue<List<MessageRoom>>,
+              as List<MessageRoom>,
     ) as $Val);
   }
 }
@@ -74,8 +88,10 @@ abstract class _$$_MessageRoomListStateCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {AsyncValue<List<MessageRoom>> host,
-      AsyncValue<List<MessageRoom>> guest});
+      {bool isFetchingNextHostPage,
+      bool isFetchingNextGuestPage,
+      List<MessageRoom> host,
+      List<MessageRoom> guest});
 }
 
 /// @nodoc
@@ -89,18 +105,28 @@ class __$$_MessageRoomListStateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? isFetchingNextHostPage = null,
+    Object? isFetchingNextGuestPage = null,
     Object? host = null,
     Object? guest = null,
   }) {
     return _then(_$_MessageRoomListState(
+      isFetchingNextHostPage: null == isFetchingNextHostPage
+          ? _value.isFetchingNextHostPage
+          : isFetchingNextHostPage // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isFetchingNextGuestPage: null == isFetchingNextGuestPage
+          ? _value.isFetchingNextGuestPage
+          : isFetchingNextGuestPage // ignore: cast_nullable_to_non_nullable
+              as bool,
       host: null == host
-          ? _value.host
+          ? _value._host
           : host // ignore: cast_nullable_to_non_nullable
-              as AsyncValue<List<MessageRoom>>,
+              as List<MessageRoom>,
       guest: null == guest
-          ? _value.guest
+          ? _value._guest
           : guest // ignore: cast_nullable_to_non_nullable
-              as AsyncValue<List<MessageRoom>>,
+              as List<MessageRoom>,
     ));
   }
 }
@@ -108,16 +134,39 @@ class __$$_MessageRoomListStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_MessageRoomListState implements _MessageRoomListState {
-  const _$_MessageRoomListState({required this.host, required this.guest});
+  const _$_MessageRoomListState(
+      {this.isFetchingNextHostPage = false,
+      this.isFetchingNextGuestPage = false,
+      required final List<MessageRoom> host,
+      required final List<MessageRoom> guest})
+      : _host = host,
+        _guest = guest;
 
   @override
-  final AsyncValue<List<MessageRoom>> host;
+  @JsonKey()
+  final bool isFetchingNextHostPage;
   @override
-  final AsyncValue<List<MessageRoom>> guest;
+  @JsonKey()
+  final bool isFetchingNextGuestPage;
+  final List<MessageRoom> _host;
+  @override
+  List<MessageRoom> get host {
+    if (_host is EqualUnmodifiableListView) return _host;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_host);
+  }
+
+  final List<MessageRoom> _guest;
+  @override
+  List<MessageRoom> get guest {
+    if (_guest is EqualUnmodifiableListView) return _guest;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_guest);
+  }
 
   @override
   String toString() {
-    return 'MessageRoomListState(host: $host, guest: $guest)';
+    return 'MessageRoomListState(isFetchingNextHostPage: $isFetchingNextHostPage, isFetchingNextGuestPage: $isFetchingNextGuestPage, host: $host, guest: $guest)';
   }
 
   @override
@@ -125,12 +174,22 @@ class _$_MessageRoomListState implements _MessageRoomListState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_MessageRoomListState &&
-            (identical(other.host, host) || other.host == host) &&
-            (identical(other.guest, guest) || other.guest == guest));
+            (identical(other.isFetchingNextHostPage, isFetchingNextHostPage) ||
+                other.isFetchingNextHostPage == isFetchingNextHostPage) &&
+            (identical(
+                    other.isFetchingNextGuestPage, isFetchingNextGuestPage) ||
+                other.isFetchingNextGuestPage == isFetchingNextGuestPage) &&
+            const DeepCollectionEquality().equals(other._host, _host) &&
+            const DeepCollectionEquality().equals(other._guest, _guest));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, host, guest);
+  int get hashCode => Object.hash(
+      runtimeType,
+      isFetchingNextHostPage,
+      isFetchingNextGuestPage,
+      const DeepCollectionEquality().hash(_host),
+      const DeepCollectionEquality().hash(_guest));
 
   @JsonKey(ignore: true)
   @override
@@ -142,14 +201,19 @@ class _$_MessageRoomListState implements _MessageRoomListState {
 
 abstract class _MessageRoomListState implements MessageRoomListState {
   const factory _MessageRoomListState(
-          {required final AsyncValue<List<MessageRoom>> host,
-          required final AsyncValue<List<MessageRoom>> guest}) =
-      _$_MessageRoomListState;
+      {final bool isFetchingNextHostPage,
+      final bool isFetchingNextGuestPage,
+      required final List<MessageRoom> host,
+      required final List<MessageRoom> guest}) = _$_MessageRoomListState;
 
   @override
-  AsyncValue<List<MessageRoom>> get host;
+  bool get isFetchingNextHostPage;
   @override
-  AsyncValue<List<MessageRoom>> get guest;
+  bool get isFetchingNextGuestPage;
+  @override
+  List<MessageRoom> get host;
+  @override
+  List<MessageRoom> get guest;
   @override
   @JsonKey(ignore: true)
   _$$_MessageRoomListStateCopyWith<_$_MessageRoomListState> get copyWith =>

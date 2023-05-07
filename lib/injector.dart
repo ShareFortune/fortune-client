@@ -83,7 +83,7 @@ Future<void> initDependencies({bool testMode = false}) async {
     () => MessagesRepositoryImpl(getIt(), getIt()),
   );
   getIt.registerLazySingleton<MessageRoomsRepository>(
-    () => MessageRoomsRepositoryImpl(getIt()),
+    () => MessageRoomsRepositoryImpl(getIt(), getIt()),
   );
   getIt.registerLazySingleton<ProfileRepository>(
     () => ProfileRepositoryImpl(getIt(), getIt()),

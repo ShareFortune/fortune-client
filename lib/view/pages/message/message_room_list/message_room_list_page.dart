@@ -4,7 +4,6 @@ import 'package:fortune_client/l10n/locale_keys.g.dart';
 import 'package:fortune_client/view/pages/message/message_room_list/components/empty_message_room_list_view.dart';
 import 'package:fortune_client/view/pages/message/message_room_list/components/message_room_list_view.dart';
 import 'package:fortune_client/view/pages/message/message_room_list/message_room_list_view_model.dart';
-import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/animation/animated_sticky_tab_bar.dart';
 import 'package:fortune_client/view/widgets/app_bar/scroll_app_bar.dart';
 import 'package:fortune_client/view/widgets/other/async_value_widget.dart';
@@ -19,7 +18,7 @@ class MessageRoomListPage extends StatefulHookConsumerWidget {
 }
 
 class _MessageRoomListPageState extends ConsumerState<MessageRoomListPage>
-    with SingleTickerProviderStateMixin {
+    with AutomaticKeepAliveClientMixin, SingleTickerProviderStateMixin {
   TabController? _tabController;
 
   @override
@@ -37,7 +36,7 @@ class _MessageRoomListPageState extends ConsumerState<MessageRoomListPage>
 
   @override
   Widget build(BuildContext context) {
-    final theme = ref.watch(appThemeProvider);
+    super.build(context);
     final state = ref.watch(messageRoomListViewModelProvider);
     final viewModel = ref.watch(messageRoomListViewModelProvider.notifier);
 
@@ -53,20 +52,43 @@ class _MessageRoomListPageState extends ConsumerState<MessageRoomListPage>
             ),
           ];
         },
-        body: TabBarView(
-          controller: _tabController,
-          children: [state.host, state.guest].map((messageRoom) {
-            return AsyncValueWidget(
-                data: messageRoom,
-                builder: (data) {
-                  if (data.isNotEmpty == true) {
-                    return MessageRoomListView(data);
+        body: NotificationListener<ScrollEndNotification>(
+          onNotification: (notification) {
+            if (notification.metrics.extentAfter == 0) {
+              _tabController?.index == 0
+                  ? viewModel.fetchNextHostRooms()
+                  : viewModel.fetchNextGuestRooms();
+            }
+            return false;
+          },
+          child: TabBarView(
+            controller: _tabController,
+            children: [
+              AsyncValueWidget(
+                data: state,
+                builder: (state) {
+                  if (state.host.isNotEmpty == true) {
+                    return MessageRoomListView(state.host);
                   }
                   return const EmptyMessageRoomListView();
-                });
-          }).toList(),
+                },
+              ),
+              AsyncValueWidget(
+                data: state,
+                builder: (state) {
+                  if (state.guest.isNotEmpty == true) {
+                    return MessageRoomListView(state.guest);
+                  }
+                  return const EmptyMessageRoomListView();
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }
