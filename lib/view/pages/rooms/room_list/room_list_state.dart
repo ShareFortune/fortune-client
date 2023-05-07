@@ -2,7 +2,7 @@ import 'package:fortune_client/data/model/addresses/address/address.dart';
 import 'package:fortune_client/data/model/rooms/room/room.dart';
 import 'package:fortune_client/data/model/tags/tag/tag.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'room_list_state.freezed.dart';
 
@@ -12,18 +12,12 @@ class RoomListState with _$RoomListState {
     /// 次のページを取得中か
     @Default(false) bool isFetchingNextPage,
 
-    /// ルームの検索結果が存在するか
-    ///
-    /// 存在しない場合はfalseになり、
-    /// [rooms]には検索前のデータが引き続き存在する
-    @Default(true) bool hasRoomSearchResult,
-
     /// フィルター
     /// [rooms]取得時に適用
     @Default(RoomListStateFilter()) RoomListStateFilter filter,
 
     /// ルームリスト
-    @Default(AsyncLoading()) AsyncValue<List<RoomListStateRoom>> rooms,
+    @Default(AsyncLoading()) AsyncValue<List<Room>> rooms,
   }) = _RoomListState;
 }
 
@@ -52,10 +46,10 @@ class RoomListStateFilter with _$RoomListStateFilter {
   bool get isFilteredByMemberNum => memberNum != null;
 }
 
-@freezed
-class RoomListStateRoom with _$RoomListStateRoom {
-  const factory RoomListStateRoom({
-    required Room data,
-    @Default(false) bool isRequested,
-  }) = _RoomListItem;
-}
+// @freezed
+// class RoomListStateRoom with _$RoomListStateRoom {
+//   const factory RoomListStateRoom({
+//     required Room data,
+//     @Default(false) bool isRequested,
+//   }) = _RoomListItem;
+// }
