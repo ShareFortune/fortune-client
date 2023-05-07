@@ -19,7 +19,7 @@ class Room with _$Room {
     required bool isFavorite,
   }) = _Room;
 
-  String get hostImageURL =>
+  String get hostImageUrlHttp =>
       ImageConverter.convertHttpsToHttp(hostMainImageURL);
 
   factory Room.fromJson(Map<String, dynamic> json) => _$RoomFromJson(json);

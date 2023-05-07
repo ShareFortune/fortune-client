@@ -4,7 +4,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:fortune_client/gen/assets.gen.dart';
 import 'package:fortune_client/l10n/locale_keys.g.dart';
 import 'package:fortune_client/view/pages/rooms/room_detail/room_detail_page.dart';
-import 'package:fortune_client/view/pages/rooms/room_list/room_list_state.dart';
 import 'package:fortune_client/view/widgets/app_bar/scroll_app_bar.dart';
 import 'package:fortune_client/view/pages/rooms/room_list/components/room_list_card.dart';
 import 'package:fortune_client/view/pages/rooms/room_list/room_list_view_model.dart';
@@ -87,11 +86,28 @@ class _RoomListPageState extends ConsumerState<RoomListPage>
           body: AsyncValueWidget(
             data: state.rooms,
             builder: (rooms) {
+              if (rooms.isEmpty) {}
               return ListView(
                 padding: EdgeInsets.zero,
                 addAutomaticKeepAlives: true,
                 children: [
-                  ...rooms.map((room) => _RoomListCard(room)).toList(),
+                  ...rooms.map((room) {
+                    return RoomListCard(
+                        room: room,
+                        onTapRoom: () => navigator.navigateTo(
+                              RoutePath.roomDetail,
+                              arguments: RoomDetailPageArguments(
+                                roomId: room.id,
+                                roomName: room.roomName,
+                              ),
+                            ),
+                        onTapHeart: (isFavorite) {
+                          viewModel.saveOrReleaseRoom(room.id, isFavorite);
+                        },
+                        onTapJoinRequestBtn: () {
+                          return viewModel.sendJoinRequest(room.id);
+                        });
+                  }).toList(),
                   if (state.isFetchingNextPage)
                     Container(
                       alignment: Alignment.center,
@@ -109,28 +125,6 @@ class _RoomListPageState extends ConsumerState<RoomListPage>
 
   @override
   bool get wantKeepAlive => true;
-}
-
-class _RoomListCard extends StatelessWidget {
-  const _RoomListCard(this.room);
-
-  final RoomListStateRoom room;
-
-  @override
-  Widget build(BuildContext context) {
-    return RoomListCard(
-      room: room,
-      onTapRoom: () => navigator.navigateTo(
-        RoutePath.roomDetail,
-        arguments: RoomDetailPageArguments(
-          roomId: room.data.id,
-          roomName: room.data.roomName,
-        ),
-      ),
-      onTapHeart: (value) async {},
-      onTapJoinRequestBtn: () async {},
-    );
-  }
 }
 
 /// フィルターボタン

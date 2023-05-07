@@ -1,7 +1,4 @@
-import 'dart:math' as math;
-
 import 'package:flutter/material.dart';
-import 'package:fortune_client/gen/assets.gen.dart';
 
 /// [radius] 画像の半径
 Widget circleIcon({
@@ -31,23 +28,4 @@ Widget circleIcon({
       ),
     ),
   );
-}
-
-class CircleIconWidget extends StatelessWidget {
-  final double radius;
-  final String url;
-
-  const CircleIconWidget({
-    super.key,
-    required this.radius,
-    required this.url,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return CircleAvatar(
-      radius: radius,
-      backgroundImage: Image.network(url, fit: BoxFit.cover).image,
-    );
-  }
 }

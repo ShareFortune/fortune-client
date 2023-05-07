@@ -25,7 +25,7 @@ Future<void> showToast(
 
   fToast.showToast(
     child: toast,
-    gravity: ToastGravity.BOTTOM,
+    gravity: ToastGravity.TOP,
     toastDuration: const Duration(seconds: 2),
   );
 }

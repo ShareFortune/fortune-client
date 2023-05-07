@@ -19,19 +19,12 @@ mixin _$RoomListState {
   /// 次のページを取得中か
   bool get isFetchingNextPage => throw _privateConstructorUsedError;
 
-  /// ルームの検索結果が存在するか
-  ///
-  /// 存在しない場合はfalseになり、
-  /// [rooms]には検索前のデータが引き続き存在する
-  bool get hasRoomSearchResult => throw _privateConstructorUsedError;
-
   /// フィルター
   /// [rooms]取得時に適用
   RoomListStateFilter get filter => throw _privateConstructorUsedError;
 
   /// ルームリスト
-  AsyncValue<List<RoomListStateRoom>> get rooms =>
-      throw _privateConstructorUsedError;
+  AsyncValue<List<Room>> get rooms => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $RoomListStateCopyWith<RoomListState> get copyWith =>
@@ -46,9 +39,8 @@ abstract class $RoomListStateCopyWith<$Res> {
   @useResult
   $Res call(
       {bool isFetchingNextPage,
-      bool hasRoomSearchResult,
       RoomListStateFilter filter,
-      AsyncValue<List<RoomListStateRoom>> rooms});
+      AsyncValue<List<Room>> rooms});
 
   $RoomListStateFilterCopyWith<$Res> get filter;
 }
@@ -67,7 +59,6 @@ class _$RoomListStateCopyWithImpl<$Res, $Val extends RoomListState>
   @override
   $Res call({
     Object? isFetchingNextPage = null,
-    Object? hasRoomSearchResult = null,
     Object? filter = null,
     Object? rooms = null,
   }) {
@@ -76,10 +67,6 @@ class _$RoomListStateCopyWithImpl<$Res, $Val extends RoomListState>
           ? _value.isFetchingNextPage
           : isFetchingNextPage // ignore: cast_nullable_to_non_nullable
               as bool,
-      hasRoomSearchResult: null == hasRoomSearchResult
-          ? _value.hasRoomSearchResult
-          : hasRoomSearchResult // ignore: cast_nullable_to_non_nullable
-              as bool,
       filter: null == filter
           ? _value.filter
           : filter // ignore: cast_nullable_to_non_nullable
@@ -87,7 +74,7 @@ class _$RoomListStateCopyWithImpl<$Res, $Val extends RoomListState>
       rooms: null == rooms
           ? _value.rooms
           : rooms // ignore: cast_nullable_to_non_nullable
-              as AsyncValue<List<RoomListStateRoom>>,
+              as AsyncValue<List<Room>>,
     ) as $Val);
   }
 
@@ -110,9 +97,8 @@ abstract class _$$_RoomListStateCopyWith<$Res>
   @useResult
   $Res call(
       {bool isFetchingNextPage,
-      bool hasRoomSearchResult,
       RoomListStateFilter filter,
-      AsyncValue<List<RoomListStateRoom>> rooms});
+      AsyncValue<List<Room>> rooms});
 
   @override
   $RoomListStateFilterCopyWith<$Res> get filter;
@@ -130,7 +116,6 @@ class __$$_RoomListStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? isFetchingNextPage = null,
-    Object? hasRoomSearchResult = null,
     Object? filter = null,
     Object? rooms = null,
   }) {
@@ -139,10 +124,6 @@ class __$$_RoomListStateCopyWithImpl<$Res>
           ? _value.isFetchingNextPage
           : isFetchingNextPage // ignore: cast_nullable_to_non_nullable
               as bool,
-      hasRoomSearchResult: null == hasRoomSearchResult
-          ? _value.hasRoomSearchResult
-          : hasRoomSearchResult // ignore: cast_nullable_to_non_nullable
-              as bool,
       filter: null == filter
           ? _value.filter
           : filter // ignore: cast_nullable_to_non_nullable
@@ -150,7 +131,7 @@ class __$$_RoomListStateCopyWithImpl<$Res>
       rooms: null == rooms
           ? _value.rooms
           : rooms // ignore: cast_nullable_to_non_nullable
-              as AsyncValue<List<RoomListStateRoom>>,
+              as AsyncValue<List<Room>>,
     ));
   }
 }
@@ -160,7 +141,6 @@ class __$$_RoomListStateCopyWithImpl<$Res>
 class _$_RoomListState implements _RoomListState {
   const _$_RoomListState(
       {this.isFetchingNextPage = false,
-      this.hasRoomSearchResult = true,
       this.filter = const RoomListStateFilter(),
       this.rooms = const AsyncLoading()});
 
@@ -168,14 +148,6 @@ class _$_RoomListState implements _RoomListState {
   @override
   @JsonKey()
   final bool isFetchingNextPage;
-
-  /// ルームの検索結果が存在するか
-  ///
-  /// 存在しない場合はfalseになり、
-  /// [rooms]には検索前のデータが引き続き存在する
-  @override
-  @JsonKey()
-  final bool hasRoomSearchResult;
 
   /// フィルター
   /// [rooms]取得時に適用
@@ -186,11 +158,11 @@ class _$_RoomListState implements _RoomListState {
   /// ルームリスト
   @override
   @JsonKey()
-  final AsyncValue<List<RoomListStateRoom>> rooms;
+  final AsyncValue<List<Room>> rooms;
 
   @override
   String toString() {
-    return 'RoomListState(isFetchingNextPage: $isFetchingNextPage, hasRoomSearchResult: $hasRoomSearchResult, filter: $filter, rooms: $rooms)';
+    return 'RoomListState(isFetchingNextPage: $isFetchingNextPage, filter: $filter, rooms: $rooms)';
   }
 
   @override
@@ -200,15 +172,13 @@ class _$_RoomListState implements _RoomListState {
             other is _$_RoomListState &&
             (identical(other.isFetchingNextPage, isFetchingNextPage) ||
                 other.isFetchingNextPage == isFetchingNextPage) &&
-            (identical(other.hasRoomSearchResult, hasRoomSearchResult) ||
-                other.hasRoomSearchResult == hasRoomSearchResult) &&
             (identical(other.filter, filter) || other.filter == filter) &&
             (identical(other.rooms, rooms) || other.rooms == rooms));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, isFetchingNextPage, hasRoomSearchResult, filter, rooms);
+  int get hashCode =>
+      Object.hash(runtimeType, isFetchingNextPage, filter, rooms);
 
   @JsonKey(ignore: true)
   @override
@@ -220,21 +190,13 @@ class _$_RoomListState implements _RoomListState {
 abstract class _RoomListState implements RoomListState {
   const factory _RoomListState(
       {final bool isFetchingNextPage,
-      final bool hasRoomSearchResult,
       final RoomListStateFilter filter,
-      final AsyncValue<List<RoomListStateRoom>> rooms}) = _$_RoomListState;
+      final AsyncValue<List<Room>> rooms}) = _$_RoomListState;
 
   @override
 
   /// 次のページを取得中か
   bool get isFetchingNextPage;
-  @override
-
-  /// ルームの検索結果が存在するか
-  ///
-  /// 存在しない場合はfalseになり、
-  /// [rooms]には検索前のデータが引き続き存在する
-  bool get hasRoomSearchResult;
   @override
 
   /// フィルター
@@ -243,7 +205,7 @@ abstract class _RoomListState implements RoomListState {
   @override
 
   /// ルームリスト
-  AsyncValue<List<RoomListStateRoom>> get rooms;
+  AsyncValue<List<Room>> get rooms;
   @override
   @JsonKey(ignore: true)
   _$$_RoomListStateCopyWith<_$_RoomListState> get copyWith =>
@@ -447,154 +409,5 @@ abstract class _RoomListStateFilter extends RoomListStateFilter {
   @override
   @JsonKey(ignore: true)
   _$$_RoomListStateFilterCopyWith<_$_RoomListStateFilter> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-mixin _$RoomListStateRoom {
-  Room get data => throw _privateConstructorUsedError;
-  bool get isRequested => throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $RoomListStateRoomCopyWith<RoomListStateRoom> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $RoomListStateRoomCopyWith<$Res> {
-  factory $RoomListStateRoomCopyWith(
-          RoomListStateRoom value, $Res Function(RoomListStateRoom) then) =
-      _$RoomListStateRoomCopyWithImpl<$Res, RoomListStateRoom>;
-  @useResult
-  $Res call({Room data, bool isRequested});
-
-  $RoomCopyWith<$Res> get data;
-}
-
-/// @nodoc
-class _$RoomListStateRoomCopyWithImpl<$Res, $Val extends RoomListStateRoom>
-    implements $RoomListStateRoomCopyWith<$Res> {
-  _$RoomListStateRoomCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? data = null,
-    Object? isRequested = null,
-  }) {
-    return _then(_value.copyWith(
-      data: null == data
-          ? _value.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as Room,
-      isRequested: null == isRequested
-          ? _value.isRequested
-          : isRequested // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $RoomCopyWith<$Res> get data {
-    return $RoomCopyWith<$Res>(_value.data, (value) {
-      return _then(_value.copyWith(data: value) as $Val);
-    });
-  }
-}
-
-/// @nodoc
-abstract class _$$_RoomListItemCopyWith<$Res>
-    implements $RoomListStateRoomCopyWith<$Res> {
-  factory _$$_RoomListItemCopyWith(
-          _$_RoomListItem value, $Res Function(_$_RoomListItem) then) =
-      __$$_RoomListItemCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({Room data, bool isRequested});
-
-  @override
-  $RoomCopyWith<$Res> get data;
-}
-
-/// @nodoc
-class __$$_RoomListItemCopyWithImpl<$Res>
-    extends _$RoomListStateRoomCopyWithImpl<$Res, _$_RoomListItem>
-    implements _$$_RoomListItemCopyWith<$Res> {
-  __$$_RoomListItemCopyWithImpl(
-      _$_RoomListItem _value, $Res Function(_$_RoomListItem) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? data = null,
-    Object? isRequested = null,
-  }) {
-    return _then(_$_RoomListItem(
-      data: null == data
-          ? _value.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as Room,
-      isRequested: null == isRequested
-          ? _value.isRequested
-          : isRequested // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$_RoomListItem implements _RoomListItem {
-  const _$_RoomListItem({required this.data, this.isRequested = false});
-
-  @override
-  final Room data;
-  @override
-  @JsonKey()
-  final bool isRequested;
-
-  @override
-  String toString() {
-    return 'RoomListStateRoom(data: $data, isRequested: $isRequested)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_RoomListItem &&
-            (identical(other.data, data) || other.data == data) &&
-            (identical(other.isRequested, isRequested) ||
-                other.isRequested == isRequested));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, data, isRequested);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$_RoomListItemCopyWith<_$_RoomListItem> get copyWith =>
-      __$$_RoomListItemCopyWithImpl<_$_RoomListItem>(this, _$identity);
-}
-
-abstract class _RoomListItem implements RoomListStateRoom {
-  const factory _RoomListItem(
-      {required final Room data, final bool isRequested}) = _$_RoomListItem;
-
-  @override
-  Room get data;
-  @override
-  bool get isRequested;
-  @override
-  @JsonKey(ignore: true)
-  _$$_RoomListItemCopyWith<_$_RoomListItem> get copyWith =>
       throw _privateConstructorUsedError;
 }
