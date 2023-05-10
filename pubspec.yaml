@@ -16,20 +16,22 @@ dependencies:
   google_fonts: any
 
   # util
-  json_serializable: any
-  flutter_staggered_animations: any
-  flutter_chat_ui: any
   package_info_plus: any
-  shimmer: any
-  flutter_datetime_picker: any
   favorite_button: any
-  flutter_expanded_tile: any
-  gap: any
-  dotted_border: any
-  fluttertoast: any
   badges: any
+  flutter_datetime_picker: any
+
+  # ui
+  gap: any
+  shimmer: any
+  flutter_chat_ui: any
+  dotted_border: any
+  flutter_staggered_animations: any
+  fluttertoast: any
   screen_loader: any
   loading_indicator: any
+  flutter_expanded_tile: any
+
 
   # images
   lottie: any
@@ -44,6 +46,7 @@ dependencies:
   flutter_platform_widgets: any
 
   # generator
+  json_serializable: any
   freezed_annotation: any
   riverpod_annotation: any
 
@@ -80,7 +83,7 @@ dependencies:
   #logger
   logger: any
 
-  # picker
+  # self made
   flutter_japanese_address_picker:
     git:
       url: https://github.com/daisukemaki1003/flutter-japanese-address-picker.git
@@ -98,6 +101,7 @@ dev_dependencies:
   flutter_gen_runner: any
   dependency_validator: any
   riverpod_generator: any
+  flutter_launcher_icons: any
 
 flutter_gen:
   output: lib/gen/ 
@@ -121,4 +125,7 @@ flutter:
     # animation
     - assets/animations/
 
-
+flutter_launcher_icons:       
+  android: true
+  ios: true
+  image_path: "assets/images/fortune_logo.png"
