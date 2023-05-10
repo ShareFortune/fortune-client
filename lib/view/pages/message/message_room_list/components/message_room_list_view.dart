@@ -41,7 +41,9 @@ class MessageRoomListView extends HookConsumerWidget {
                 onTap: () {
                   navigator.navigateTo(
                     RoutePath.messageRoom,
-                    arguments: MessageRoomPageArguments(id: messageRoom.id),
+                    arguments: MessageRoomPageArguments(
+                      messageRoomId: messageRoom.id,
+                    ),
                   );
                 },
               );

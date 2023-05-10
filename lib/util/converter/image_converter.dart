@@ -37,6 +37,7 @@ class ImageConverter {
     int lastIndex = 0;
     CompressFormat format = CompressFormat.jpeg;
 
+    /// 画像の拡張子を判定
     if (extensions == 'png') {
       lastIndex = filePath.lastIndexOf(RegExp(r'.png'));
       format = CompressFormat.png;
@@ -47,18 +48,20 @@ class ImageConverter {
       return null;
     }
 
+    /// 画像の保存先
     final split = filePath.substring(0, (lastIndex));
-    final outPath = "${split}_out${filePath.substring(lastIndex)}";
+    File imageFile = File("${split}_out${filePath.substring(lastIndex)}");
 
-    var result = await FlutterImageCompress.compressAndGetFile(
+    /// 画像圧縮
+    var result = await FlutterImageCompress.compressWithFile(
       file.absolute.path,
-      outPath,
       minWidth: 80,
       minHeight: 80,
       quality: 50,
       format: format,
     );
 
-    return result;
+    if (result == null) return null;
+    return imageFile..writeAsBytesSync(result);
   }
 }

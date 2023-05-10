@@ -13,6 +13,12 @@ class UsersRepositoryImpl implements UsersRepository {
   UsersRepositoryImpl(this._users, this._prefs);
 
   @override
+  String get userId {
+    assert(isCreated());
+    return _prefs.getString(AppPrefKey.fortuneId.keyString)!;
+  }
+
+  @override
   bool isCreated() => _prefs.contains(AppPrefKey.fortuneId.keyString);
 
   @override
