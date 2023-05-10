@@ -5,57 +5,57 @@
     
     
       
-      <testcase classname="fastlane.lanes" name="00: default_platform" time="0.000186">
+      <testcase classname="fastlane.lanes" name="00: default_platform" time="0.000197">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="01: is_ci" time="8.6e-05">
+      <testcase classname="fastlane.lanes" name="01: is_ci" time="8.4e-05">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="02: is_ci" time="6.5e-05">
+      <testcase classname="fastlane.lanes" name="02: is_ci" time="6.6e-05">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="03: match" time="18.868023">
+      <testcase classname="fastlane.lanes" name="03: match" time="26.881984">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="04: update_code_signing_settings" time="0.046131">
+      <testcase classname="fastlane.lanes" name="04: update_code_signing_settings" time="0.050824">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="05: increment_build_number" time="1.170871">
+      <testcase classname="fastlane.lanes" name="05: increment_build_number" time="2.495677">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="06: gym" time="120.465015">
+      <testcase classname="fastlane.lanes" name="06: gym" time="102.091029">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="07: git log -n 1 &gt; ./latest_commit_log.txt" time="0.015029">
+      <testcase classname="fastlane.lanes" name="07: git log -n 1 --merges &gt; ./latest_commit_log.txt" time="0.031882">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="08: cat ./latest_commit_log.txt" time="0.003945">
+      <testcase classname="fastlane.lanes" name="08: cat ./latest_commit_log.txt" time="0.003263">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="09: firebase_app_distribution" time="13.357988">
+      <testcase classname="fastlane.lanes" name="09: firebase_app_distribution" time="13.297416">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="10: rm ./latest_commit_log.txt" time="0.010523">
+      <testcase classname="fastlane.lanes" name="10: rm ./latest_commit_log.txt" time="0.011144">
         
       </testcase>
     
