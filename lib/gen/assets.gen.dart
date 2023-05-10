@@ -176,11 +176,15 @@ class $AssetsImagesGen {
   SvgGenImage get bootScreen =>
       const SvgGenImage('assets/images/boot_ screen.svg');
 
+  /// File path: assets/images/fortune_logo.png
+  AssetGenImage get fortuneLogo =>
+      const AssetGenImage('assets/images/fortune_logo.png');
+
   /// File path: assets/images/splash.svg
   SvgGenImage get splash => const SvgGenImage('assets/images/splash.svg');
 
   /// List of all assets
-  List<SvgGenImage> get values => [bootScreen, splash];
+  List<dynamic> get values => [bootScreen, fortuneLogo, splash];
 }
 
 class $AssetsL10nGen {

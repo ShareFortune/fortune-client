@@ -1,20 +1,21 @@
-// ignore_for_file: depend_on_referenced_packages
-
 import 'dart:io';
 
-import 'package:uuid/uuid.dart';
+import 'package:fortune_client/view/pages/message/message_room/message_room_page.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:fortune_client/data/repository/repository.dart';
 import 'package:fortune_client/view/pages/message/message_room/message_converter.dart';
 import 'package:fortune_client/view/pages/message/message_room/message_room_state.dart';
+// ignore: depend_on_referenced_packages
 import 'package:flutter_chat_types/flutter_chat_types.dart' as chat_types;
 
 final messageRoomViewModelProvider = StateNotifierProvider.family<
-    MessageRoomViewModel, MessageRoomState, String>((_, messageRoomId) {
+    MessageRoomViewModel,
+    MessageRoomState,
+    MessageRoomPageArguments>((_, arguments) {
   return MessageRoomViewModel(
     MessageRoomState(
-      messageRoomId: messageRoomId,
-      author: chat_types.User(id: const Uuid().v4()),
+      messageRoomId: arguments.messageRoomId,
+      author: chat_types.User(id: Repository.users.userId),
       messages: const AsyncLoading(),
     ),
   )..initialize();
