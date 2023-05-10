@@ -53,7 +53,8 @@ class ImageUtils {
         );
 
         if (image != null) {
-          return await ImageConverter.compress(File(image.path));
+          final compressed = await ImageConverter.compress(File(image.path));
+          if (compressed != null) return compressed;
         }
       }
     } on PlatformException catch (_) {
