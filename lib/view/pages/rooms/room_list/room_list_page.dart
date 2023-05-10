@@ -203,11 +203,16 @@ class _RoomsEmptyPage extends HookConsumerWidget {
           Assets.icons.iconRoom.path,
           width: 100,
           fit: BoxFit.contain,
+          colorFilter: ColorFilter.mode(
+            theme.appColors.iconBtn2,
+            BlendMode.srcIn,
+          ),
         ),
-        const Gap(20),
+        const Gap(30),
         Text(
           "条件に一致する\nルームが存在しません。",
-          style: theme.textTheme.h20.bold().paint(theme.appColors.subText2),
+          textAlign: TextAlign.center,
+          style: theme.textTheme.h30.paint(theme.appColors.subText3),
         ),
       ],
     );
