@@ -1,5 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:fortune_client/gen/assets.gen.dart';
 import 'package:fortune_client/l10n/locale_keys.g.dart';
 import 'package:fortune_client/view/pages/rooms/input/room_input_page.dart';
 import 'package:fortune_client/view/pages/rooms/participating/participating_view_model.dart';
@@ -89,7 +91,7 @@ class _ParticipatingPageState extends ConsumerState<ParticipatingPage>
             ),
           ),
         ),
-        _CreateButton(theme: theme),
+        _RoomCreateButton(theme: theme),
       ],
     );
   }
@@ -114,9 +116,10 @@ class _Item<RoomType> extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    if (rooms.isEmpty) return _RoomsEmptyPage();
+
     return ListView(
       padding: EdgeInsets.zero,
-      // itemCount: itemCount,
       addAutomaticKeepAlives: true,
       children: [
         ...rooms.map((room) {
@@ -144,8 +147,8 @@ class _Item<RoomType> extends HookConsumerWidget {
   }
 }
 
-class _CreateButton extends StatelessWidget {
-  const _CreateButton({
+class _RoomCreateButton extends StatelessWidget {
+  const _RoomCreateButton({
     required this.theme,
   });
 
@@ -178,6 +181,29 @@ class _CreateButton extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+class _RoomsEmptyPage extends HookConsumerWidget {
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final theme = ref.watch(appThemeProvider);
+
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        SvgPicture.asset(
+          Assets.icons.iconRoom.path,
+          width: 100,
+          fit: BoxFit.contain,
+        ),
+        const Gap(20),
+        Text(
+          "参加中のルームが存在しません。",
+          style: theme.textTheme.h20.bold().paint(theme.appColors.subText2),
+        ),
+      ],
     );
   }
 }

@@ -206,7 +206,7 @@ class _RoomsEmptyPage extends HookConsumerWidget {
         ),
         const Gap(20),
         Text(
-          "該当するルームがありません",
+          "条件に一致する\nルームが存在しません。",
           style: theme.textTheme.h20.bold().paint(theme.appColors.subText2),
         ),
       ],
