@@ -86,7 +86,8 @@ class _RoomListPageState extends ConsumerState<RoomListPage>
           body: AsyncValueWidget(
             data: state.rooms,
             builder: (rooms) {
-              if (rooms.isEmpty) {}
+              if (rooms.isEmpty) return _RoomsEmptyPage();
+
               return ListView(
                 padding: EdgeInsets.zero,
                 addAutomaticKeepAlives: true,
@@ -186,6 +187,34 @@ class _RoomsFilterButton extends HookConsumerWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+class _RoomsEmptyPage extends HookConsumerWidget {
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final theme = ref.watch(appThemeProvider);
+
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        SvgPicture.asset(
+          Assets.icons.iconRoom.path,
+          width: 100,
+          fit: BoxFit.contain,
+          colorFilter: ColorFilter.mode(
+            theme.appColors.iconBtn2,
+            BlendMode.srcIn,
+          ),
+        ),
+        const Gap(30),
+        Text(
+          "条件に一致する\nルームが存在しません。",
+          textAlign: TextAlign.center,
+          style: theme.textTheme.h30.paint(theme.appColors.subText3),
+        ),
+      ],
     );
   }
 }

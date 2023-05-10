@@ -9,10 +9,10 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class MessageRoomPageArguments {
   const MessageRoomPageArguments({
-    required this.id,
+    required this.messageRoomId,
   });
 
-  final String id;
+  final String messageRoomId;
 }
 
 class MessageRoomPage extends HookConsumerWidget {
@@ -23,9 +23,9 @@ class MessageRoomPage extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = ref.watch(appThemeProvider);
-    final state = ref.watch(messageRoomViewModelProvider(arguments.id));
+    final state = ref.watch(messageRoomViewModelProvider(arguments));
     final viewModel =
-        ref.watch(messageRoomViewModelProvider(arguments.id).notifier);
+        ref.watch(messageRoomViewModelProvider(arguments).notifier);
 
     return Scaffold(
       backgroundColor: theme.appColors.onBackground,

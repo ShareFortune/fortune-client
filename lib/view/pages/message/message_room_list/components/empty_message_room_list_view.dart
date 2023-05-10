@@ -20,14 +20,14 @@ class EmptyMessageRoomListView extends HookConsumerWidget {
           Icon(
             Icons.email,
             size: 80.0,
-            color: theme.appColors.disable,
+            color: theme.appColors.iconBtn2,
           ),
           const Gap(30),
 
           /// 注釈テキスト
           Text(
             LocaleKeys.message_room_list_page_empty.tr(),
-            style: theme.textTheme.h20.paint(
+            style: theme.textTheme.h30.paint(
               theme.appColors.subText3,
             ),
           ),
