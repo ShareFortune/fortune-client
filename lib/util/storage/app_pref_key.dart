@@ -31,6 +31,9 @@ enum AppPrefKey {
   joinRoomsNextTokenGuest,
   messagesNextTokenHost,
   messagesNextTokenGuest,
+
+  /// アドレスデータ
+  addresses,
 }
 
 extension AppPrefKeyEx on AppPrefKey {

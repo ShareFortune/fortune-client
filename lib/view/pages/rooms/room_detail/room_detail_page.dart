@@ -8,6 +8,8 @@ import 'package:fortune_client/view/pages/rooms/room_detail/room_detail_view_mod
 import 'package:fortune_client/view/routes/route_navigator.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/app_bar/back_app_bar.dart';
+import 'package:fortune_client/view/widgets/dialog/error_dialog.dart';
+import 'package:fortune_client/view/widgets/dialog/toast.dart';
 import 'package:fortune_client/view/widgets/icon/user_icon_widget.dart';
 import 'package:fortune_client/view/widgets/other/async_value_widget.dart';
 import 'package:fortune_client/view/widgets/room/room_state.dart';
@@ -144,7 +146,18 @@ class RoomDetailPage extends HookConsumerWidget with ScreenLoader {
               bottom: 80,
               child: MaterialButton(
                 height: 45,
-                onPressed: () => viewModel.joinRoomRequest(arguments.roomId),
+                onPressed: () async {
+                  final result =
+                      await viewModel.joinRoomRequest(arguments.roomId);
+                  if (result && context.mounted) {
+                    showToast(context, theme, '参加申請しました');
+                  } else {
+                    ErrorDialog.show(
+                      context,
+                      '参加申請に失敗しました。時間をおいて再度お試しください。',
+                    );
+                  }
+                },
                 color: theme.appColors.primary,
                 textColor: theme.appColors.onPrimary,
                 child: Text("ルームに参加する", style: theme.textTheme.h30.bold()),

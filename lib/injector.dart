@@ -77,7 +77,7 @@ Future<void> initDependencies({bool testMode = false}) async {
     () => UsersRepositoryImpl(getIt(), getIt()),
   );
   getIt.registerLazySingleton<AddressesRepository>(
-    () => AddressesRepositoryImpl(getIt()),
+    () => AddressesRepositoryImpl(getIt(), getIt()),
   );
   getIt.registerLazySingleton<MessagesRepository>(
     () => MessagesRepositoryImpl(getIt(), getIt()),
