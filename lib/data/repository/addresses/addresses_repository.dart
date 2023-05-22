@@ -2,6 +2,12 @@ import 'package:fortune_client/data/model/addresses/address/address.dart';
 import 'package:fortune_client/data/model/addresses/address_with_id/address_with_id.dart';
 
 abstract class AddressesRepository {
+  /// アドレスデータをローカルに保存
+  Future<void> save();
+
+  /// アドレスデータをローカルから取得
+  Future<List<AddressWithId>> load();
+
   /// 検索
   /// [keyword]検索キーワード
   Future<List<AddressWithId>> search(String keyword);

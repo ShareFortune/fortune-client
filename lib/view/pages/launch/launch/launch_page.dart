@@ -15,12 +15,15 @@ class LaunchPage extends StatelessWidget {
   Widget build(BuildContext context) {
     Future.delayed(const Duration(milliseconds: 500)).whenComplete(() async {
       /// リモート設定を初期化
-      // await Future.wait([initRemoteConfig()]);
+      await Future.wait([initRemoteConfig()]);
 
       /// バージョンチェック
       if (await verifyNeesUpdate()) {
         return navigator.navigateToRemoveUntil(RoutePath.update);
       }
+
+      /// ローカル設定を初期化
+      await initLocalConfig();
 
       /// ログインチェック
       if (!Repository.auth.isLogin) {
@@ -49,6 +52,12 @@ class LaunchPage extends StatelessWidget {
       Assets.images.bootScreen.path,
       fit: BoxFit.cover,
     );
+  }
+
+  /// ローカル設定を初期化
+  Future<void> initLocalConfig() async {
+    /// パッケージ情報を初期化
+    await Repository.address.save();
   }
 
   /// リモート設定を初期化
