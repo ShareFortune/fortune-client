@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:fortune_client/view/theme/app_text_theme.dart';
 import 'package:fortune_client/view/theme/app_theme.dart';
 import 'package:fortune_client/view/widgets/form_field/base_expanded_tile.dart';
 import 'package:fortune_client/view/widgets/picker/base_cupertino_picker.dart';

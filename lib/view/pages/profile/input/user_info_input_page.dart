@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
+import 'package:flutter_datetime_picker_plus/flutter_datetime_picker_plus.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:fortune_client/view/pages/profile/input/components/profile_input_app_bar.dart';
 import 'package:fortune_client/view/pages/profile/input/components/profile_input_list_tile.dart';
