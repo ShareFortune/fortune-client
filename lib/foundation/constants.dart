@@ -25,7 +25,7 @@ class Constants {
   factory Constants._dev() {
     return Constants._(
       baseUrl: dotenv.get('DEV_API_KEY'),
-      configVersion: dotenv.get('DevAppVersion'),
+      configVersion: dotenv.get('DEV_APP_VERSION'),
       firebaseOptions: dev.DefaultFirebaseOptions.currentPlatform,
     );
   }
@@ -33,7 +33,7 @@ class Constants {
   factory Constants._prod() {
     return Constants._(
       baseUrl: dotenv.get('PROD_API_KEY'),
-      configVersion: dotenv.get('ForceUpdateAppVersion'),
+      configVersion: dotenv.get('FORCE_UPDATE_APP_VERSION'),
 
       /// まだ本番環境作ってない
       firebaseOptions: dev.DefaultFirebaseOptions.currentPlatform,
